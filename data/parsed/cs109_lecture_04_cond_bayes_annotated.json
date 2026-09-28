@@ -1,0 +1,216 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/04_cond_bayes_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/04_cond_bayes_annotated.pdf",
+  "sha256": "38ee17c0c09f50b74aa51dd3427201e926aa63c6397bf2aecc54432b1398bfca",
+  "title_guess": "04 cond bayes annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "04: Conditional \nProbability and Bayes\nJerry Cain\nApril 8th, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 92
+    },
+    {
+      "page_index": 1,
+      "text": "Conditional \nProbability\n2",
+      "char_count": 26
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRoll two, fair 6-sided dice, \nyielding values 𝐷! and 𝐷\".\nLet 𝐸 be event: 𝐷! + 𝐷\" = 4.\nWhat is 𝑃𝐸?\nLet 𝐹 be event: 𝐷! = 2.\nWhat is 𝑃𝐸, knowing 𝐹 already observed ?\n3\nDice, our misunderstood friends\n𝑆= 36\n𝐸=\n1,3 , 2, 2 , 3,1\n𝑃𝐸= 3/36 = 1/12",
+      "char_count": 311
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional Probability\nThe conditional probability of 𝐸 given 𝐹 is the probability that 𝐸 occurs \ngiven that F has already occurred. This is known as conditioning on F.\nWritten as: \n \n \n𝑃(𝐸|𝐹)\nMeans:  \n \n \n\"𝑃𝐸, knowing 𝐹 already observed \"\nSample space à  \nall possible outcomes in 𝐹\nEvent à \n \n \nall possible outcomes in 𝐸∩𝐹\n4",
+      "char_count": 401
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional Probability, equally likely outcomes\nThe conditional probability of 𝐸 given 𝐹 is the probability that 𝐸 occurs \ngiven that F has already occurred. This is known as conditioning on F.\nWith equally likely outcomes:\n𝑃𝐸𝐹= # of outcomes in E consistent with F\n# of outcomes in S consistent with F = |𝐸∩𝐹|\n|𝑆∩𝐹| = |𝐸∩𝐹|\n|𝐹|\n5\n𝑃𝐸𝐹= |𝐸𝐹|\n|𝐹|\n𝑃𝐸𝐹= 3\n14 ≈0.21\n𝑃𝐸= 8\n50 ≈0.16",
+      "char_count": 449
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n24 emails are sent, 6 each to 4 users.\n• 10 of the 24 emails are spam.\n• All possible outcomes are equally likely.\nLet 𝐸 = user 1 receives \n3 spam emails.\nWhat is 𝑃𝐸?\n6\nSlicing up the spam\n𝑃𝐸|𝐹= 𝐸𝐹\n|𝐹|\nEqually likely\noutcomes\nLet 𝐺 = user 3 receives \n5 spam emails.\nWhat is 𝑃𝐺|𝐹?\nLet 𝐹 = user 2 receives \n6 spam emails.\nWhat is 𝑃𝐸|𝐹?",
+      "char_count": 406
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n24 emails are sent, 6 each to 4 users.\n• 10 of the 24 emails are spam.\n• All possible outcomes are equally likely.\nLet 𝐸 = user 1 receives \n3 spam emails.\nWhat is 𝑃𝐸?\n7\nSlicing up the spam\n𝑃𝐸|𝐹= 𝐸𝐹\n|𝐹|\nEqually likely\noutcomes\nLet 𝐺 = user 3 receives \n5 spam emails.\nWhat is 𝑃𝐺|𝐹?\nLet 𝐹 = user 2 receives \n6 spam emails.\nWhat is 𝑃𝐸|𝐹?\n𝑃𝐸=\n!#\n$\n!%\n$\n\"%\n&\n𝑃𝐸|𝐹=\n%\n$\n!%\n$\n!'\n&\n𝑃𝐺|𝐹=\n%\n(\n!%\n!\n!'\n&\nNo way to choose 5 spam from\n4 remaining spam emails!\n⚠\n≈0.3245\n≈0.0784\n= 0",
+      "char_count": 541
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional probability in general\nGeneral definition of conditional probability:\n𝑃𝐸|𝐹= 𝑃𝐸𝐹\n𝑃(𝐹)\nThe Chain Rule (aka Product rule):\n𝑃𝐸𝐹= 𝑃𝐹𝑃𝐸𝐹\n8\nThese properties hold even when \noutcomes are not equally likely.",
+      "char_count": 283
+    },
+    {
+      "page_index": 8,
+      "text": "and Learn",
+      "char_count": 9
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNetﬂix and Learn\nLet 𝐸 = a user watches Life is Beautiful.\nWhat is 𝑃𝐸?\nEqually likely outcomes?\n𝑃𝐸= lim\n)→+\n)(-)\n)\n≈# people who have watched movie\n# people on Netflix\n \n = 10,234,231 / 50,923,123 ≈0.20\n10\n𝑆= {watch, not watch}\n𝐸= {watch}\n𝑃𝐸= 1/2 ?\n❌\n✅\n𝑃𝐸|𝐹= 𝑃𝐸𝐹\n𝑃(𝐹)\nDefinition of\nCond. Probability",
+      "char_count": 372
+    },
+    {
+      "page_index": 10,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNetflix and Learn\n11\n𝑃𝐸|𝐹= 𝑃𝐸𝐹\n𝑃(𝐹)\nDefinition of\nCond. Probability\n𝑃𝐸= 0.19\n𝑃𝐸= 0.32\n𝑃𝐸= 0.20\n𝑃𝐸= 0.20\n𝑃𝐸= 0.09\nLet 𝐸 be the event that a user watches the given movie.",
+      "char_count": 241
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNetflix and Learn\nLet 𝐸 = a user watches Life is Beautiful.\nLet 𝐹 = a user watches Amelie.\nWhat is the probability that a user watches\nLife is Beautiful, given they watched Amelie?\n \n \n \n𝑃𝐸|𝐹 \n \n \n𝑃𝐸|𝐹= \n \n = # people who have watched both\n# people who have watched Amelie \n12\n𝑃𝐸|𝐹= 𝑃𝐸𝐹\n𝑃(𝐹)\nDefinition of\nCond. Probability\n= \n# people who have watched both\n# people on Netflix\n# people who have watched Amelie\n# people on Netflix\n𝑃𝐸𝐹\n𝑃(𝐹)\n≈0.42",
+      "char_count": 518
+    },
+    {
+      "page_index": 12,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNetﬂix and Learn\nLet 𝐸 be the event that a user watches the given movie.\nLet 𝐹 be the event that the same user watches Amelie.\n13\n𝑃𝐸= 0.19\n𝑃𝐸= 0.32\n𝑃𝐸= 0.20\n𝑃𝐸= 0.20\n𝑃𝐸= 0.09\n𝑃𝐸|𝐹= 𝑃𝐸𝐹\n𝑃(𝐹)\nDefinition of\nCond. Probability\n𝑃𝐸|𝐹= 0.14\n𝑃𝐸|𝐹= 0.35\n𝑃𝐸|𝐹= 0.20\n𝑃𝐸|𝐹= 0.72\n𝑃𝐸|𝐹= 0.42",
+      "char_count": 349
+    },
+    {
+      "page_index": 13,
+      "text": "Law of Total \nProbability\n14",
+      "char_count": 28
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nToday’s tasks\n15\n𝑃𝐸\n𝑃𝐸|𝐹\nLaw of Total\nProbability\nDefinition of\nconditional probability\nChain rule\n(Product rule)\n𝑃𝐸𝐹",
+      "char_count": 190
+    },
+    {
+      "page_index": 15,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLaw of Total Probability\nThm \nLet 𝐹 be an event where 𝑃𝐹> 0. For any event 𝐸,\n \n𝑃(𝐸) = 𝑃𝐸|𝐹𝑃𝐹+ 𝑃𝐸|𝐹! 𝑃𝐹!  \nProof\n \n1. 𝐹, 𝐹(are disjoint such that 𝐹∪𝐹( = S \nDef. of complement\n \n2. 𝐸= 𝐸𝐹∪(𝐸𝐹()  \n \n \n \n(see diagram)\n \n3. 𝑃(𝐸) = 𝑃𝐸𝐹+ 𝑃(𝐸𝐹()  \n \n \nAdditivity axiom\n \n4. 𝑃(𝐸) = 𝑃𝐸|𝐹𝑃𝐹+ 𝑃𝐸|𝐹( 𝑃𝐹(  \nChain rule (product rule)\n16\nNote: disjoint sets are, by definition, mutually exclusive events",
+      "char_count": 460
+    },
+    {
+      "page_index": 16,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGeneral Law of Total Probability\nThm \nFor mutually exclusive events 𝐹!, 𝐹\", …, 𝐹)\n \nsuch that 𝐹! ∪𝐹\" ∪⋯∪𝐹) = 𝑆,\n17\n𝑃(𝐸) = A\n/0!\n)\n𝑃𝐸|𝐹/ 𝑃𝐹/",
+      "char_count": 212
+    },
+    {
+      "page_index": 17,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFinding 𝑃𝐸 from  𝑃𝐸|𝐹 \nLaw of Total\nProbability\n• Flip a fair coin.\n• If heads: roll a fair 6-sided die.\n• Else: roll a fair 3-sided die.\nYou win if you roll a 6. What is P(winning)?\n18\n𝑃𝐸= 𝑃𝐸|𝐹𝑃𝐹+ 𝑃𝐸|𝐹! 𝑃𝐹!",
+      "char_count": 280
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFinding 𝑃𝐸 from  𝑃𝐸|𝐹 \nLaw of Total\nProbability\n• Flip a fair coin.\n• If heads: roll a fair 6-sided die.\n• Else: roll a fair 3-sided die.\nYou win if you roll a 6. What is P(winning)?\n19\nLet: \n𝐸: win, 𝐹: flip heads\nWant: 𝑃win\n \n    = 𝑃𝐸\n𝑃win|H = 𝑃𝐸|𝐹 = 1/6 \n𝑃H  \n= 𝑃𝐹 \n= 1/2 \n𝑃win|T  = 𝑃𝐸|𝐹( = 0 \n𝑃T  \n= 𝑃𝐹( = 1 −1/2 \n1. Define events\n& state goal\n2. Identify known \nprobabilities\n3. Solve\n𝑃𝐸= 𝑃𝐸|𝐹𝑃𝐹+ 𝑃𝐸|𝐹! 𝑃𝐹!\n𝑃𝐸= 1/6\n1/2\n                  + 0\n1/2\n= 1\n12 ≈0.083",
+      "char_count": 535
+    },
+    {
+      "page_index": 19,
+      "text": "Bayes’ Theorem I\n20",
+      "char_count": 19
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nToday’s tasks\n21\n𝑃𝐸\n𝑃𝐸|𝐹\n𝑃𝐹|𝐸\nLaw of Total\nProbability\nBayes’\nTheorem\nDefinition of\nconditional probability\nChain rule\n(Product rule)\n𝑃𝐸𝐹\nRev. Thomas Bayes (~1701-1761):\nBritish mathematician and Presbyterian minister",
+      "char_count": 290
+    },
+    {
+      "page_index": 21,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDetecting spam email\n22\n𝑃𝐸𝐹= 𝑃 \n&\n \"Dear\" Spam\nemail\nBut what is the probability that a mystery  \nemail containing \"Dear\" is spam?\n𝑃𝐹𝐸= 𝑃 \n&  \"Dear\"\nSpam \nemail\nWe can easily calculate how many \nexisting spam emails contain \"Dear\":",
+      "char_count": 304
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBayes’ Theorem\n23\nThm For any events 𝐸 and 𝐹 where 𝑃𝐸> 0 and 𝑃𝐹> 0,\n𝑃𝐹𝐸= 𝑃𝐸𝐹𝑃𝐹\n𝑃𝐸\nProof\n \n2 steps!\nExpanded form:\n𝑃𝐹𝐸=\n𝑃𝐸𝐹𝑃𝐹\n𝑃𝐸|𝐹𝑃𝐹+ 𝑃𝐸𝐹! 𝑃(𝐹!)\n𝑃𝐹|𝐸\n𝑃𝐸|𝐹\nProof\n \n1 more step!",
+      "char_count": 247
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDetecting spam email\n𝑃𝐹𝐸=\n𝑃𝐸𝐹𝑃𝐹\n𝑃𝐸|𝐹𝑃𝐹+ 𝑃𝐸𝐹! 𝑃(𝐹!)\nBayes’ \nTheorem\n• 60% of all email in 2016 is spam.\n• 20% of spam has the word \"Dear\"\n• 1% of non-spam (aka ham) has the word \"Dear\"\nYou get an email with the word \"Dear\" in it.\nWhat is the probability that the email is spam?\n24\n1. Define events\n& state goal\n2. Identify known \nprobabilities\n3. Solve\nLet: \n𝐸: \"Dear\", 𝐹: spam\nWant: 𝑃spam|\"Dear\"\n \n    = 𝑃𝐹|𝐸",
+      "char_count": 481
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBayes’ Theorem terminology\n𝑃𝐹𝐸= 𝑃𝐸𝐹𝑃𝐹\n𝑃𝐸\n25\nposterior\nlikelihood\nprior\n𝑃𝐹\n 𝑃𝐸|𝐹\n 𝑃𝐸|𝐹(\nWant: 𝑃𝐹|𝐸\nnormalization constant\n• 60% of all email in 2016 is spam.\n• 20% of spam has the word \"Dear\"\n• 1% of non-spam (aka ham) has the word \"Dear\"\nYou get an email with the word \"Dear\" in it.\nWhat is the probability that the email is spam?",
+      "char_count": 403
+    },
+    {
+      "page_index": 25,
+      "text": "Bayes’ Theorem II\n26",
+      "char_count": 20
+    },
+    {
+      "page_index": 26,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n𝑃𝐸 given some evidence\nhas been observed\nThis class going forward\n27\nEqually likely\nevents\nLast week\nToday and for most of this course\nEvents not always equally likely\n𝑃𝐸∩𝐹\n𝑃𝐸∪𝐹\n(counting, combinatorics)\n𝑃𝐸= Evidence | 𝐹= Fact\n𝑃𝐹= Fact | 𝐸= Evidence\n(categorize\n  a new datapoint)\n(collected from data)\nBayes’",
+      "char_count": 382
+    },
+    {
+      "page_index": 27,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMathematically:\n  \n \n \n \n \n \n𝑃𝐸𝐹→𝑃𝐹|𝐸\nReal-life application:  \n \n \n \n \n \n \nGiven new evidence 𝐸, update belief of fact 𝐹 \n \n \n \n \n \n \nPrior belief → Posterior belief\n \n \n \n \n \n \n𝑃𝐹→𝑃𝐹|𝐸\nBayes’ Theorem\n28\nposterior\nlikelihood\nprior\nReview\n𝑃𝐹𝐸= 𝑃𝐸𝐹𝑃𝐹\n𝑃𝐸",
+      "char_count": 324
+    },
+    {
+      "page_index": 28,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nZika, an autoimmune disease\n29\nRhesus monkeys \nA disease spread through mosquito bites.\nGenerally, no symptoms, but can cause paralysis in very, \nvery rare cases. During pregnancy: may cause birth \ndefects.  Very serious news story in 2015/2016.\nZiika Forest, Uganda\nIf a test returns positive,\nwhat is the likelihood\nyou have the disease?\nhttps://www.nytimes.com/2016/04/06/world/africa/ugand\na-zika-forest-mosquitoes.html",
+      "char_count": 496
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTaking tests: Confusion matrix\n30\nFact,  𝐹     Has disease\n     or 𝐹(    No disease\nTake \ntest\nEvidence,  𝐸 \nTest positive\n             or 𝐸( Test negative\nFact\n𝐹, disease +\n𝐹1, disease –\nEvidence\n𝐸, Test +\nTrue positive\n𝑃𝐸|𝐹\nFalse positive\n𝑃𝐸|𝐹1\n𝐸!, Test –\nFalse negative\n𝑃𝐸1|𝐹\nTrue negative\n𝑃𝐸1|𝐹1\nIf a test returns positive,\nwhat is the likelihood\nyou have the disease?",
+      "char_count": 445
+    },
+    {
+      "page_index": 30,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTaking tests: Confusion matrix\n31\nTake \ntest\nFact,  𝐹     Has disease\n     or 𝐹(    No disease\nEvidence,  𝐸 \nTest positive\n             or 𝐸( Test negative\nFact\n𝐹, disease +\n𝐹1, disease –\nEvidence\n𝐸, Test +\nTrue positive\n𝑃𝐸|𝐹\nFalse positive\n𝑃𝐸|𝐹1\n𝐸!, Test –\nFalse negative\n𝑃𝐸1|𝐹\nTrue negative\n𝑃𝐸1|𝐹1\nIf a test returns positive,\nwhat is the likelihood\nyou have the disease?",
+      "char_count": 445
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nZika Testing\n•\nA test is 98% effective at detecting Zika (\"true positive\").\n•\nHowever, the test has a \"false positive\" rate of 1%.\n•\n0.5% of the US population has Zika.\nWhat is the likelihood you have Zika if you test positive?\nWhy would you expect this number?\n32\nLet: \n𝐸 = you test positive\n \n \n𝐹 = you actually have\n \n \nthe disease\nWant:\n \nP(disease | test+)\n \n = 𝑃𝐹|𝐸\n1. Define events\n& state goal\n𝑃𝐹𝐸=\n𝑃𝐸𝐹𝑃𝐹\n𝑃𝐸|𝐹𝑃𝐹+ 𝑃𝐸𝐹! 𝑃(𝐹!)\nBayes’ \nTheorem",
+      "char_count": 520
+    },
+    {
+      "page_index": 32,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nZika Testing\n•\nA test is 98% effective at detecting Zika (\"true positive\").\n•\nHowever, the test has a \"false positive\" rate of 1%.\n•\n0.5% of the US population has Zika.\nWhat is the likelihood you have Zika if you test positive?\nWhy would you expect this number?\n33\nLet: \n𝐸 = you test positive\n \n \n𝐹 = you actually have\n \n \nthe disease\nWant:\n \nP(disease | test+)\n \n = 𝑃𝐹|𝐸\n1. Define events\n& state goal\n2. Identify known \nprobabilities\n3. Solve\n𝑃𝐹𝐸=\n𝑃𝐸𝐹𝑃𝐹\n𝑃𝐸|𝐹𝑃𝐹+ 𝑃𝐸𝐹! 𝑃(𝐹!)\nBayes’ \nTheorem",
+      "char_count": 562
+    },
+    {
+      "page_index": 33,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBayes’ Theorem intuition\n34\nOriginal question:\nWhat is the likelihood \nyou have Zika if you \ntest positive for the \ndisease?\nPeople who test positive\nPeople with Zika\nThe space\nof facts\nAll People",
+      "char_count": 269
+    },
+    {
+      "page_index": 34,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBayes’ Theorem intuition\n35\nPeople who test positive\nPeople with Zika\nInterpretation:\nOf the people who test \npositive, how many actually \nhave Zika?\nOriginal question:\nWhat is the likelihood \nyou have Zika if you \ntest positive for the \ndisease?\nThe space\nof facts\nAll People\nInterpret",
+      "char_count": 359
+    },
+    {
+      "page_index": 35,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBayes’ Theorem intuition\n36\nThe space of facts,\nconditioned on a positive test result\nPeople who test\npositive and have Zika\nPeople who test positive\nInterpretation:\nOf the people who test \npositive, how many actually \nhave Zika?\nOriginal question:\nWhat is the likelihood \nyou have Zika if you \ntest positive for the \ndisease?\nPeople who test positive\nbut don’t have Zika\nInterpret",
+      "char_count": 454
+    },
+    {
+      "page_index": 36,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nUpdate your beliefs with Bayes’ Theorem\n37\nI have a 0.5% \nchance of having \nZika.\nWith these test \nresults, I now have a \n33% chance of having \nZika!!!\n𝑃𝐹\n𝑃𝐹|𝐸\n⚠\n𝐸 = you test positive for Zika\n𝐹 = you have the disease\nTake test,\nresults positive",
+      "char_count": 318
+    },
+    {
+      "page_index": 37,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n•\nA test is 98% effective at detecting Zika (“true positive”).\n•\nHowever, the test has a “false positive” rate of 1%.\n•\n0.5% of the US population has Zika.\n38\nWhy it’s still good to get tested\nLet: \n𝐸 = you test positive\n \n \n𝐹 = you actually have\n \n \nthe disease\nLet: \n𝐸(= you test negative\n \n \nfor Zika with this test.\nWhat is 𝑃𝐹|𝐸1 ?\n𝐹, disease +\n𝐹(, disease –\n𝐸, Test +\nTrue positive\n𝑃𝐸|𝐹= 0.98\nFalse positive\n𝑃𝐸|𝐹( = 0.01\n𝑃𝐹𝐸=\n𝑃𝐸𝐹𝑃𝐹\n𝑃𝐸|𝐹𝑃𝐹+ 𝑃𝐸𝐹! 𝑃(𝐹!)\nBayes’ \nTheorem\n(ruminating)",
+      "char_count": 557
+    },
+    {
+      "page_index": 38,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n•\nA test is 98% effective at detecting Zika (“true positive”).\n•\nHowever, the test has a “false positive” rate of 1%.\n•\n0.5% of the US population has Zika.\n39\nWhy it’s still good to get tested\nLet: \n𝐸 = you test positive\n \n \n𝐹 = you actually have\n \n \nthe disease\nLet: \n𝐸(= you test negative\n \n \nfor Zika with this test.\nWhat is 𝑃𝐹|𝐸1 ?\n𝐹, disease +\n𝐹(, disease –\n𝐸, Test +\nTrue positive\n𝑃𝐸|𝐹= 0.98\nFalse positive\n𝑃𝐸|𝐹( = 0.01\n𝑃𝐹𝐸=\n𝑃𝐸𝐹𝑃𝐹\n𝑃𝐸|𝐹𝑃𝐹+ 𝑃𝐸𝐹! 𝑃(𝐹!)\nBayes’ \nTheorem",
+      "char_count": 544
+    },
+    {
+      "page_index": 39,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n•\nA test is 98% effective at detecting Zika (\"true positive\").\n•\nHowever, the test has a \"false positive\" rate of 1%.\n•\n0.5% of the US population has Zika.\n40\nWhy it’s still good to get tested\nLet: \n𝐸 = you test positive\n \n \n𝐹 = you actually have\n \n \nthe disease\nLet: \n𝐸(= you test negative\n \n \nfor Zika with this test.\nWhat is 𝑃𝐹|𝐸1 ?\n𝐹, disease +\n𝐹(, disease –\n𝐸, Test +\nTrue positive\n𝑃𝐸|𝐹= 0.98\nFalse positive\n𝑃𝐸|𝐹( = 0.01\n𝑃𝐹𝐸=\n𝑃𝐸𝐹𝑃𝐹\n𝑃𝐸|𝐹𝑃𝐹+ 𝑃𝐸𝐹! 𝑃(𝐹!)\nBayes’ \nTheorem\n𝑃𝐹𝐸! =\n𝑃𝐸! 𝐹𝑃𝐹\n𝑃𝐸!|𝐹𝑃𝐹+ 𝑃𝐸! 𝐹! 𝑃(𝐹!)\n𝐸(, Test –\nFalse negative\n𝑃𝐸(|𝐹= 0.02\nTrue negative\n𝑃𝐸(|𝐹( = 0.99",
+      "char_count": 647
+    },
+    {
+      "page_index": 40,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhy it’s still good to get tested\n41\nI have a 0.5% \nchance of having \nZika disease.\nWith these test results, \nI now have a 0.01% \nchance of having Zika \ndisease!!!\n𝑃𝐹\n𝑃𝐹|𝐸1 ✅\n𝐸 = you test positive for Zika\n𝐹 = you actually have the disease\nWith these test \nresults, I now have a \n33% chance of \nhaving Zika!!!\n𝑃𝐹|𝐸⚠\n𝐸( = you test negative for Zika\nTake test,\nresults positive\nTake test,\nresults negative",
+      "char_count": 476
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:57Z"
+}

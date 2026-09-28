@@ -1,0 +1,206 @@
+/* Layout mirrors StudentStudyReviewPage.module.css so the exit survey
+   feels like a natural continuation of the review screen (same terracotta
+   theme variables, same card treatment). */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 32px 20px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.title {
+  font-size: 28px;
+  margin: 0;
+  color: var(--color-ink);
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+/* ---------- Form card ---------- */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text);
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.questionLabel {
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0;
+  color: var(--color-sage-700);
+}
+
+.questionPrompt {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+/* ---------- Likert (1-5) radios ---------- */
+
+.ratingRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ratingOption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  padding: 10px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
+}
+
+.ratingOption:hover {
+  border-color: var(--color-clay-700);
+}
+
+.ratingOption input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ratingOptionSelected {
+  background: var(--color-clay-700);
+  border-color: var(--color-clay-700);
+  color: var(--color-surface);
+}
+
+/* ---------- Free-text answers ---------- */
+
+.textArea {
+  width: 100%;
+  min-height: 96px;
+  resize: vertical;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.textArea:focus {
+  outline: none;
+  border-color: var(--color-sage-700);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-sage-700) 30%, transparent);
+}
+
+.charCount {
+  align-self: flex-end;
+  font-size: 12px;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.error {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-red-700, #b42318);
+}
+
+/* ---------- Footer / submit ---------- */
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.skipButton,
+.submitButton {
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease;
+}
+
+.skipButton {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+
+.skipButton:hover {
+  border-color: var(--color-clay-700);
+}
+
+.submitButton {
+  border: 1px solid var(--color-clay-700);
+  background: var(--color-clay-700);
+  color: var(--color-surface);
+}
+
+.submitButton:hover {
+  background: color-mix(in srgb, var(--color-clay-700) 85%, black);
+}
+
+.skipButton:disabled,
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.hint {
+  font-size: 13px;
+  color: var(--color-muted);
+  margin: 0;
+}

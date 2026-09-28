@@ -1,0 +1,55 @@
+{
+  "course": "CS109",
+  "topic_id": "probability_basics",
+  "topic_name": "Probability Basics",
+  "queries_used": [
+    "Probability Basics definition",
+    "Probability Basics intuition",
+    "Probability Basics worked example",
+    "Probability Basics exam problem",
+    "sample space overview",
+    "sample space practice",
+    "events overview",
+    "events practice",
+    "axioms of probability overview",
+    "axioms of probability practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_demo_p0_p1_9c72e6785c",
+      "text": "Introduction to probability: sample space, events, and the axioms of probability.\n\nConditional probability P(A|B) and Bayes rule connect prior, likelihood, and posterior.",
+      "source_type": "lecture_slide",
+      "document_name": "Demo Lecture",
+      "score": 0.6573768854141235
+    },
+    {
+      "chunk_id": "cs109_demo_exam_q1_c290a1b3af",
+      "text": "Define independence for two discrete random variables.",
+      "source_type": "exam_question",
+      "document_name": "Demo Exam",
+      "score": 0.45348691940307617
+    },
+    {
+      "chunk_id": "cs109_demo_exam_q2_efd3fc77a3",
+      "text": "A fair coin is flipped twice.",
+      "source_type": "exam_question",
+      "document_name": "Demo Exam",
+      "score": 0.3732967972755432
+    },
+    {
+      "chunk_id": "cs109_demo_exam_q2a_600ae699f9",
+      "text": "What is P(two heads)?",
+      "source_type": "exam_question",
+      "document_name": "Demo Exam",
+      "score": 0.3497529923915863
+    },
+    {
+      "chunk_id": "cs109_demo_exam_q2b_9d729a7773",
+      "text": "What is P(at least one head)?",
+      "source_type": "exam_question",
+      "document_name": "Demo Exam",
+      "score": 0.31509971618652344
+    }
+  ],
+  "built_at": "2026-04-18T02:06:43Z"
+}

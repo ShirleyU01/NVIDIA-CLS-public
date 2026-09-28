@@ -1,0 +1,248 @@
+{
+  "course": "CS109",
+  "topic_id": "probability_axioms",
+  "topic_name": "Axioms of Probability",
+  "queries_used": [
+    "Axioms of Probability definition",
+    "Axioms of Probability intuition",
+    "Axioms of Probability worked example",
+    "Axioms of Probability exam problem",
+    "probability axioms overview",
+    "probability axioms practice",
+    "sample space overview",
+    "sample space practice",
+    "events overview",
+    "events practice",
+    "probability rules overview",
+    "probability rules practice",
+    "equally likely outcomes overview",
+    "equally likely outcomes practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_03_probability_annotated_p16_p17_ba45532e31",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nAxiom 3 is the (analytically) useful axiom\nAxiom 3: \n \nIf 𝐸 and 𝐹 are mutually exclusive—that is, if\n                              𝐸∩𝐹= ∅—then 𝑃𝐸∪𝐹= 𝑃𝐸+ 𝑃𝐹\nMore generally, for any sequence of\nmutually exclusive events 𝐸(, 𝐸), … :\n17\njust like the Sum Rule of Counting, but \nfor probabilities\n𝑃O\n*+(\n$\n𝐸*\n= P\n*+(\n$\n𝑃𝐸*\n𝑆\n𝐸!\n𝐸\"\n𝐸#\n\nEqually Likely \nOutcomes\n18",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.6591550707817078
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p32_f98bba92d1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n3 Corollaries of Axioms of Probability\nCorollary 1:  \n \n𝑃𝐸! = 1 −𝑃(𝐸)\nCorollary 2:  \n \nIf 𝐸⊆𝐹, then 𝑃𝐸≤𝑃(𝐹)\nCorollary 3:  \n \n𝑃𝐸∪𝐹= 𝑃𝐸+ 𝑃𝐹−𝑃𝐸𝐹\n  \n \n \n \n \n(Inclusion-Exclusion Principle for Probability)\n33",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.6521309018135071
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p15_3b7231a7cc",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThree Axioms of Probability\nDefinition of probability: \n𝑃𝐸= lim\n\"→$\n\"(&)\n\"\nAxiom 1: \n \n \n \n0 ≤𝑃𝐸≤1\nAxiom 2: \n \n \n \n𝑃𝑆= 1\nAxiom 3: \n \n \n \nIf 𝐸 and 𝐹 are mutually exclusive (𝐸∩𝐹= ∅),\n \n \n \n \n \n \nthen 𝑃𝐸∪𝐹= 𝑃𝐸+ 𝑃𝐹\n16",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.648070216178894
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p18_b9b50386f9",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEqually Likely Outcomes\nSome sample spaces have equally likely outcomes.\n•\nFlipping one coin: S = {Head, Tails}\n•\nFlipping two coins: S = {(H, H), (H, T), (T, H), (T, T)}\n•\nRoll of 6-sided die: S = {1, 2, 3, 4, 5, 6}\nIf we have equally likely outcomes, then P(Each outcome)\nTherefore\n19\n(by Axiom 3)\n= 1\n|𝑆|\n𝑃(𝐸) = # outcomes in E\n# outcomes in S = |𝐸|\n|𝑆|",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.6319811344146729
+    },
+    {
+      "chunk_id": "cs109_demo_p0_p1_9c72e6785c",
+      "text": "Introduction to probability: sample space, events, and the axioms of probability.\n\nConditional probability P(A|B) and Bayes rule connect prior, likelihood, and posterior.",
+      "source_type": "lecture_slide",
+      "document_name": "Demo Lecture",
+      "score": 0.6240063309669495
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p2_4797680fc1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional Paradigm\nFor any events A, B, and E, you can condition consistently on E,\nand all formulas still hold:\nAxiom 1  \n \n \n \n \n 0 ≤𝑃𝐴𝐸≤1\nCorollary 1 (complement)  \n 𝑃𝐴𝐸= 1 −𝑃𝐴!|𝐸\nTransitivity \n \n \n \n \n 𝑃𝐴𝐵𝐸= 𝑃(𝐵𝐴|𝐸)\nChain Rule  \n \n \n \n 𝑃𝐴𝐵𝐸= 𝑃(𝐵|𝐸)𝑃𝐴𝐵𝐸\nBayes’ Theorem  \n \n \n \n3\n𝑃𝐴𝐵𝐸= 𝑃𝐵𝐴𝐸𝑃𝐴|𝐸\n𝑃(𝐵|𝐸)\n‘s theorem?",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.5902270078659058
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p9_p10_e8e8715fe6",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhat is a probability?\n𝑃𝐸= lim\n!→#\n𝑛(𝐸)\n𝑛\n𝑛 = # of total trials\n𝑛(𝐸) = # trials where 𝐸 occurs\n10\nLet 𝐸 = the set of outcomes\n \nwhere you hit the target.\n𝑃𝐸≈0.458\n\nAxioms of \nProbability\n11",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.5850803256034851
+    },
+    {
+      "chunk_id": "cs109_finalwin2025soln_q0_7ae5c17be7",
+      "text": "7 · 0.1\n(0.7 · 0.1) + (0.2 · 0.9)\n= 0.07",
+      "source_type": "exam_question",
+      "document_name": "FinalWin2025Soln",
+      "score": 0.5769438147544861
+    },
+    {
+      "chunk_id": "cs109_midtermfall2024soln_preamble_1a95125874",
+      "text": "CS109 Midterm Exam\nChris Piech\nCS109\nFall 2024\nOct 29th\nThis is a closed calculator/computer exam. You are, however, allowed to use notes in the exam. You have 2\nhours (120 minutes) to take the exam. The exam is 120 points, meant to roughly correspond to one point per\nminute of the exam. You may want to use the point allocation for each problem as an indicator for pacing\nyourself on the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions and\nparameter values you used, where appropriate. It is fine for your answers to include summations, products,\nfactorials, exponentials, and combinations. You can leave your answer in terms of Φ (the CDF of the standard\nnormal) or Φ−1. For example Φ(3/4) is an acceptable final answer. Code can be written in pseudo code. In\npseudo code, ideas are more important than syntax.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than I have in\nmy entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\nStanford Email (@stanford.edu):\n\n1\nAdventure is Out There [20 points]\ndef adventure_is_out_there ():\nmystery = bernoulli (0.3)\nif mystery == 1:\nreturn bernoulli (0.5) == 1\nelse:\nreturn good_times ()\ndef good_times ():\ntreasure = bernoulli (0.2)\nkindness = bernoulli (0.7)\nreturn treasure == 1 or kindness == 1\ndef bernoulli(p):\n# returns 1 with probability p\n# returns 0 with probability (1-p)\nif random () < p: return 1\nelse: return 0\na. (5 points) You call good times(). What is the probability that good times returns True?\nLet T be the event treasure is 1 and K be the event kindness is 1.\nWe can use the Inclusion-Exclusion Rule to find the probability of OR:\nP(good times returns True) = P(T or K)\n= P(T)+P(K)−P(T and K)\n= P(T)+P(K)−P(T)·P(K)\n= 0.2+0.7−0.2·0.7\nAlternatively, we could subtract the complement: 1−0.3·0.8\nb. (5 points) You call adventure is out there(). What is the probability that adventure is out there\nreturns True? if needed let pa be your answer to part (a).\nLet M be the event that mystery was 1 and B be the event that the bernoulli(0.5) call on line 4 returned\na 1.\nThere are two cases where this function returns True: if M and B both happened, or if M didn’t happen,\nand then good times returned True. These two possibilities are mutually exclusive, so we can break down\nthis probability of OR into a sum.\nP(adventure is out there returns True) = P(M and B or MC and good times returns True)\n= P(M and B)+P(MC and good times returns True)\n= P(M)P(B|M)+P(MC)P(good times returns True|MC)\n= 0.3·0.5+(1−0.3)pa\n= 0.15+0.7pa\n2\n\nc. (6 points) You call adventure is out there() and it returns True. What is the probability that mystery\nwas 1? if needed let pb be your answer to part (b).\nLet A be the event that adventure is out there() returns True. Let M be the event that mystery was 1.\nHere, we are told the A happened, and we want to know if M happened, conditioned on A happening. This\nconditional is hard to reason about directly, but if it was flipped, it would be easier to calculate a number\nfor; this tells us that we should use Bayes’ Theorem.\nWe know that P(M) = 0.3, and P(A) = pb is from part b. If M happens, then the function returns True if\nthe Bernoulli call on line 4 is 1, and False otherwise. Thus, P(A|M) = P(B) = 0.5.\nP(M|A) = P(A|M)P(M)\nP(A)\n= 0.5·0.3\npb\nd. (4 points) If adventure is out there returns True, you win $100; otherwise, you win $0. What are your\nexpected winnings? if needed let pa and pb be your answer to part (a) and (b) respectively.\nLet W be our winnings. The possible values for W are 0 and 100, and the probability that W = 100 is pb,\nso P(W = 0) = 1−pb. Using the general formula for expectation:\nE[W] = 100·P(W = 100)+0·P(W = 0) = 100pb\n3\n\n2\nChance Encounters [20 points]\nFor each of the following scenarios, Step 1: Declare a random variable of a type introduced in class that best\nmodels the scenario, specifying its parameters e.g., X ∼Bin(n = 10, p = 0.3). Step 2: State the question in\nterms of your random variable e.g., P(X = 2). Do not solve the probability statements from Step 2.\nImportant notes: If the problem cannot be modeled using one of the random variables types introduced in\nclass, write “N/A” and move on. Use an approximation variable if doing so would provide a substantial\ncomputational speedup.\na. (5 points) During lecture, Chris has an probability of 0.05 of giving out one fruit for each slide he presents\n(independently). What is the probability that he gives out his first fruit on slide 5?\nLet S be the first slide when Chris gives out fruit. There are multiple possible solutions:\nS ∼Geo(p = 0.05). We want to find P(S = 5).\nS ∼NegBin(r = 1, p = 0.05). We want to find P(S = 5).\nWe can also consider the number of fruits in which Chris gives out fruits using S ∼Bin(n = 5, p = 0.05).\nWe want to find P(S = 1)\n5\n. We have to divide by 5 because we must only count the outcome where Chris\ngives out fruit on the last of the 5 slides.\nb. (5 points) On a clear night at the Stanford Observatory, astronomers see an average of 5 stars per 2-degree\nby 2-degree area of the night sky. Assuming stars are randomly scattered across the sky, what is the\nprobability that exactly three stars will be seen in a randomly selected 2x2 degree patch?\nLet S be the number of stars in a 2x2 degree patch of the night sky. S ∼Poi(λ = 5). We want to find\nP(S = 3).\nc. (5 points) You are flipping 10 unusual coins. The first coin has a probability of 1/1 of landing heads, the\nsecond has a probability of 1/2, the third has a probability of 1/3, and so on. What is the probability of\nobserving exactly 5 heads if you flip each of these 10 coins once?\nN/A; because the probabilities of success or heads on each coin flip are not consistent, there is no random\nvariable we’ve learned in class that fits this scenario.\nd. (5 points) A blossoming cherry tree currently has 300,000 beautiful pink petals. Today each petal has a",
+      "source_type": "exam_question",
+      "document_name": "MidtermFall2024Soln",
+      "score": 0.5759631395339966
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p22_cf0d04ea8f",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEverything* in probability is a sum or a product (or both)\n23\nSum of values that can \nbe considered separately \n(possibly weighted by \nprob. of happening)\nProduct of values that \ncan each be considered \nin sequence\n𝐸𝑋|𝑌= 𝑦= (\n./\n/\n𝑥𝑓+|, 𝑥|𝑦𝑑𝑥\n𝐸𝑋= ;\n:\n𝑥𝑝𝑥\nLaw of Total Probability\n𝑃(𝐸) = ;\n;<=\n>\n𝑃𝐸|𝐹; 𝑃𝐹;\nweight\nweight\nweight\nAxiom 3, 𝐸= 𝐸+ ∪⋯∪𝐸,\n𝑃𝐸= ;\n;<=\n>\n𝑃𝐸;\nChain Rule\n𝑃(𝐸∩𝐹∩𝐺) = 𝑃𝐸𝑃𝐹|𝐸𝑃𝐺|𝐸𝐹\n𝑓+,, 𝑥, 𝑦= 𝑓+ 𝑥𝑓, 𝑦\nIndependent cont. RVs \n*except conditional probability (a ratio)\n𝑃𝑋+ 𝑌= 𝑛= *\n0\n𝑃𝑋= 𝑘𝑃𝑌= 𝑛−𝑘\nSum of indep. discrete RVs \n(convolution)",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.5748128294944763
+    },
+    {
+      "chunk_id": "cs109_01_section_soln_sec1_part1_ca6b35b380",
+      "text": "CS109\nApril 11, 2024\nSection 1 Solution: Combinatorics and Probability\nChris Piech, Mehran Sahami, Jerry Cain, Lisa Yan, and numerous CS109 CA’s.\nOverview of Section Materials\nThe warm-up questions provided will help students practice concepts introduced in lectures. The section prob-\nlems are meant to apply these concepts in more complex scenarios similar to what you will see in problem sets\nand exams. In fact, many of them are old exam questions.\nBefore you leave lab, make sure you click here so that you’re marked as having attended this week’s section. The\nCA leading your discussion section can enter the password needed once you’ve submitted.\nWarm-ups\n1. Equality versus Inequality\nShow that for any events 𝐴and 𝐵that\n𝑃(𝐴) + 𝑃(𝐵) −1 ≤𝑃(𝐴∩𝐵) ≤𝑃(𝐴∪𝐵) ≤𝑃(𝐴) + 𝑃(𝐵)\nFor each of the three inequalities, describe sets 𝐴and 𝐵that would result in equality.\nWe’ll show each of the three to be true, one by one.\n• The Inclusion-Exclusion Principle is clear that 𝑃(𝐴∪𝐵) = 𝑃(𝐴) + 𝑃(𝐵) −𝑃(𝐴∩𝐵). Because all\nprobabilities, including those of intersections, are greater than or equal to 0, we have that 𝑃(𝐴∪𝐵) =\n𝑃(𝐴) + 𝑃(𝐵) −𝑃(𝐴∩𝐵) ≤𝑃(𝐴) + 𝑃(𝐵). When does the equality hold? When 𝐴and 𝐵are mutually\nexclusive events so that the probability that both events occur is 0.\n• 𝑃(𝐴∩𝐵) ≤𝑃(𝐴∪𝐵) is true simply because 𝐴∩𝐵⊆𝐴∪𝐵. Equality holds when 𝐴and 𝐵are the same\nevent.\n• Inclusion-Exclusion states that 𝑃(𝐴∪𝐵) = 𝑃(𝐴) + 𝑃(𝐵) −𝑃(𝐴∩𝐵) so that 𝑃(𝐴∪𝐵) + 𝑃(𝐴∩𝐵) = 𝑃(𝐴) +\n𝑃(𝐵). Because all probabilities are at most 1, we have 𝑃(𝐴) +𝑃(𝐵) = 𝑃(𝐴∩𝐵) +𝑃(𝐴∪𝐵) ≤𝑃(𝐴∩𝐵) +1,\nso that 𝑃(𝐴) + 𝑃(𝐵) −1 ≤𝑃(𝐴∩𝐵). Equality holds when the union of 𝐴and 𝐵is the full sample space 𝑆.\n2. Fish Pond\nSuppose there are 7 blue fish, 4 red fish, and 8 green fish in a large fishing tank. You drop a net into it and end up\nwith 2 fish. What is the probability you get 2 blue fish?",
+      "source_type": "review_section",
+      "document_name": "01 section soln",
+      "score": 0.5729737281799316
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p35_p36_8b26957b9e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n𝑆\nTakeaway: Union of events\n36\n𝑆\n𝐸\n𝐹\n𝐺\nAxiom 3,\nMutually exclusive events\nE\nF\nG\nCorollary 3,\nInclusion-Exclusion Principle\nThe challenge of probability is in defining events.\nSome event probabilities are easier to compute than others.\nReview\n\nLisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSerendipity\n37",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.5725388526916504
+    },
+    {
+      "chunk_id": "cs109_finalwin2022soln_preamble_667e8456d8",
+      "text": "CS109 Final Exam\nChris Piech\nCS109\nWinter 2022\nThis is a closed calculator/computer exam. You are, however, allowed to use notes in the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions and\nparameter values you used, where appropriate. It is fine for your answers to include summations, products,\nfactorials, exponentials, and combinations.\nYou can leave your answer in terms of Φ (the CDF of the standard normal) or Φ−1 (the inverse CDF). For\nexample Φ\n\u0010\n3\n4\n\u0011\nis an acceptable final answer. Recall that the exam is going to be “curved\" according to the\ndifficulty of the questions and as such hard questions will not translate to lower grades.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than I have in\nmy entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\nEmail (preferably your gradescope email):\n\n1\nShort Answer (30 points)\nAnswer each of the following questions. You must give a brief justification for your answer.\na. (6 points) Google Maps stores a probability distribution of the time of day that people go to the San\nFrancisco Airport (SFO):\nLet 𝑝𝑖be the probability that a person will show up at SFO 𝑖hours past midnight (so 𝑝6 is the probability\nthat they will show up between 6a and 7a). Out of the visitors that will visit SFO on a given day, what\nfraction do you expect to show up between midnight and noon? Give an expression.\n11\n∑︁\n𝑖=0\n𝑝𝑖\nSince Í23\n𝑖=0 𝑝𝑖= 1, the following is another equivalent answer:\n11Í\n𝑖=0\n𝑝𝑖\n23Í\n𝑖=0\n𝑝𝑖\nb. (7 points) We will consider a datapoint 𝑥an “outlier” if the probability of seeing a value 𝑥or larger is\n≤0.05. Consider a distribution 𝑋∼Geo(𝑝= 0.8). Is 7 an outlier? Give an expression.\n7 is an outlier if 1 −Σ6\n𝑖=0(0.2)𝑖−1(0.8) ≤0.05\nc. (7 points) A class uses High Resolution Course Feedback. In a given week they ask a random sample\nof 20 people for a numerical rating, instead of asking everyone. Assume the population expectation of\nrating is 4.5 and the population variance of rating is 1.0. What is the probability that the sample mean\nrating from 20 students will be ≥4.7?\nTrue\nA p-value of 0.99 would occur if the difference we observed between the modes of the two datasets is\nthe kind of difference we would observe frequently by chance if the two sets of points were drawn from\ndistributions with the same mode.\nd. (10 points) You meet a person at a party who mentions that they have two children. They reveal that\nthey have a daughter who was born on a Tuesday. What is the probability that they have two daughters?\nAssume a child has a 1⁄2 chance of being a daughter and a 1⁄7 chance of being born on a Tuesday. Assume\nthat the genders of the children, and the weekdays they were born on, are all independent of one another.\n\nThe answer is 13/27.\nLet B be the event that both children are girls. Let T be the event that there is a girl born on a Tuesday.\n𝑃(𝐵|𝑇) = 𝑃(𝑇|𝐵)𝑃(𝐵)\n𝑃(𝑇)\n𝑃(𝐵) = 1/4\n𝑃(𝑇|𝐵) = 1/7 + 1/7 −1/49\n𝑃(𝑇) = 1/14 + 1/14 −1/196\nAnother explanation:\nThis is a well known paradox known as the boy-girl-paradox. Intuition says that the answer is 0.5, but\nit is not!\nFigure 1: We are conditioning on the yellow region (i.e. think of it as the \"new sample space\"). We are\nassessing the probability of the yellow region inside the \"female/female\" quadrant.\nLet the event \"there are two daughters\" be 𝐸.\nLet the event \"there is at least one daughter born on Tuesday\" be 𝐹.\n𝑃(𝐸|𝐹) = 𝑃(𝐸𝐹)\n𝑃(𝐹)\nUsing Inclusion-Exclusion Principle:\n= 𝑃(C1 Fem Tue, C2 Fem) + 𝑃(C1 Fem, C2 Fem Tue) −𝑃(C1 Fem Tue, C2 Fem Tue)\n𝑃(C1 Fem Tue) + 𝑃(C2 Fem Tue) −𝑃(C1 Fem Tue, C2 Fem Tue)\nThis turns into\n(7 + 7 −1)/142\n(14 + 14 −1)/142 = 13\n27 = 0.48148148\n.\n\n2\nQuantitative Art History (20 points)\nA Stanford alumni discovered that the “Average Number of Brushstrokes in the Neighborhood\" is very\npredictive of whether a painting has been painted by Van Gough [1].\nLet 𝑋∼𝑁(𝜇= 20, 𝜎2 = 9) be the average number of brushstrokes in the neighborhood if Van Gough is\nthe painter. Let 𝑋∼𝑁(𝜇= 12, 𝜎2 = 25) be the average number of brushstrokes in the neighborhood if Van\nGough is not the painter.\nAside: A brushstroke 𝑗is a neighbor of brushstroke 𝑖if they are at most 200 pixels apart. For each brushstroke\nwe can calculate how many other brushstrokes are neighbours. The Average Number of Brushstrokes in the\nNeighborhood is an average of these values over all brushstrokes in a painting. Here is a painting by Van\nGough (left) and the auto-identified brush strokes (right).\na. (4 points) Why is a normal distribution appropriate for the “average number of brushstrokes in the\nneighborhood\" of a painting?\nMust mention the central limit theorem.\n\nb. (16 points) A painting is discovered. Based on background information your prior belief that it was\npainted by Van Gough is 0.75. What is your updated belief after observing that the average number of\nbrushstrokes in the neighbourhood is 19?\nThis is an inference question: Let 𝑌be the event that Van gough was the artist.\n𝑃(𝑌|𝑋= 19) =\n𝑓(𝑋= 19|𝑌)𝑃(𝑌)\n𝑓(𝑋= 19|𝑌)𝑃(𝑌) + 𝑓(𝑋= 19|𝑌)𝑃(𝑌𝐶)\n\n3\nBeta ± (20 points)\nYou have observed 30 successes and 20 fails for an event with unknown probability. Based on this information\nyou can model the probability of success, 𝑋, as a Beta random variable. You want to make a claim of the\nform: \"the probability of success is 𝑚± 𝑏.\"\nSelect 𝑚to be the expectation of 𝑋. Select 𝑏to be the smallest value, rounded to two decimal places, such\nthat 𝑃(𝑚−𝑏< 𝑋< 𝑚+ 𝑏) is greater than or equal to 95%. Provide your answer as pseudocode that prints\nout the values 𝑚and 𝑏.\nIncremental solution:\n\n4\nBayesian Carbon Dating (34 points)\nWe are able to know the age of ancient artefacts using a process called carbon dating. This process involves\na lot of uncertainty! Living things have a constant proportion of a molecule called C14 in them. When living\nthings die those molecules start to decay. The time to decay in years, 𝑇, of a C14 molecule is distributed as an\nexponential. 𝑇∼Exp(𝜆= 1/8267).\na. (5 points) Consider a single C14 molecule. What is the probability that it decays within 500 years?\n𝑃(𝑇≤500) = 1 −𝑒−\n1\n8267 ∗500 = 0.05868875306\nb. (8 points) C14 molecules decay independently. A particular sample started with 100 molecules. What\nis the probability that exactly 95 are left after 500 years? Let 𝑝be your answer to part a.\nX Bin(n=100, p = 0.0586)\nP(X = 5) = scipy.stats.binom.pmf(5, 100, 0.05868)\n\nc. (6 points) Write pseudocode for a function pr_measure_given_age(m, age) which returns 𝑃(𝑀=\nm|𝐴= age), the probability that exactly m molecules are left out of the original 100 after exactly age\nnumber of years.\nd. (15 points) You observe a measurement of 95 C14 molecules in a sample. You assume that the sample\noriginally had 100 C14 molecules when it died. Write pseudocode for a function age_belief() that\nreturns a list of length 1000 where the value at index 𝑖in the list stores 𝑃(𝐴= 𝑖|𝑀= 95). Age is a\ndiscrete random variable which takes on whole numbers of years. 𝐴= 𝑖is the event that the sample\norganism died 𝑖years ago. You may use the function pr_measure_given_age(m, age) from part c.\nFor your prior belief: you know that the sample must be between 𝐴= 500 and 𝐴= 600 inclusive and\nyou assume that every year in that range is equally likely.\n\n5\nReliability engineering (23 points)\nThe “reliability distribution\" is a random variable parameterized by 𝑎with PDF:\n𝑓(𝑋= 𝑥) = 1\n𝑎2 𝑥𝑎−1𝑒−𝑥2\n𝑎2\nWe wish to model how long a particular model of phone will function before it breaks. We are going to use\na reliability distribution. To this end we collect 𝑁independent measurements of how long the type of phone\nfunctions before it breaks: 𝑥1, 𝑥2, . . . , 𝑥𝑁. Explain, in words, how you would choose parameter 𝑎using the\nmaximum likelihood estimation framework, and provide any necessary derivatives.\nFirst, we start by defining our likelihood function.\n𝐿(𝑎) =\n𝑁\nÖ\n𝑖=1\n𝑓(𝑋𝑖|𝑎)\nWe want to determine ˆ𝑎= argmax\n𝑎\n𝐿(𝑎). Since the argmax of 𝐿(𝑎) is equivalent to the argmax of the log of\n𝐿(𝑎) and logs make the math simpler we write:\n𝐿𝐿(𝑎) = log\n 𝑁\nÖ\n𝑖=1\n𝑓(𝑋𝑖|𝑎)\n!\nPlugging in the provided PDF and simplifying:\n𝐿𝐿(𝑎) = log\n 𝑁\nÖ\n𝑖=1\n1\n𝑎2 𝑥𝑎−1\n𝑖\n𝑒−\n𝑥2\n𝑖\n𝑎2\n!\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\nlog\n \n1\n𝑎2 𝑥𝑎−1\n𝑖\n𝑒−\n𝑥2\n𝑖\n𝑎2\n!#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\nlog\n\u0012 1\n𝑎2\n\u0013\n+ log\n\u0010\n𝑥𝑎−1\n𝑖\n\u0011\n+ log\n \n𝑒−\n𝑥2\n𝑖\n𝑎2\n!#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\n−2 log (𝑎) + (𝑎−1) log (𝑥𝑖) −𝑥2\n𝑖\n𝑎2 log (𝑒)\n#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n−2 log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n(𝑎−1) log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\n𝑎2 log (𝑒)\n𝐿𝐿(𝑎) = −2𝑁log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n𝑎log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) −1\n𝑎2\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\nNow we will take the partial derivative of the log likelihood with respect to the parameter of interest 𝑎:\n𝜕𝐿𝐿(𝑎)\n𝜕𝑎\n= 𝜕\n𝜕𝑎\n \n−2𝑁log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n𝑎log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) −1\n𝑎2\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\n!\n𝜕𝐿𝐿(𝑎)\n𝜕𝑎\n= −2𝑁\n𝑎+\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) + 2\n𝑎3\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\nFrom here, we would set the partial derivative equal to 0 and solve for 𝑎.\nNote: You were required to provide the necessary derivatives but you did not need to actually determine the\nvalue of 𝑎as the problem states. Any math beyond the calculation of the partial derivative was not required\nor penalized.\n\n6\nRank ordering of samples (25 points)\nA random variable 𝑋can take on three values: 1, 2 or 3 with the following probabilities:\nValue\nProbability\n1",
+      "source_type": "exam_question",
+      "document_name": "FinalWin2022Soln",
+      "score": 0.5692707896232605
+    },
+    {
+      "chunk_id": "cs109_09_continuous_rv_annotated_p7_7e66b85479",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComputing probability\n8\n𝑓𝑥= ,\n𝑥\n2\nif 0 ≤𝑥≤2\n0\notherwise\nLet 𝑋 be a continuous RV with PDF:\n0.00\n0.50\n1.00\n0.00\n1.00\n2.00\n!(\") \n!\nWhat is 𝑃𝑋≥1 ? \nStrategy 1: Integrate\nStrategy 2: Know triangles\n𝑃1 ≤𝑋< ∞= -\n$\n%\n𝑓𝑥𝑑𝑥= -\n$\n\" 1\n2 𝑥𝑑𝑥\n= 1\n2\n1\n2 𝑥\" 2\n$\n\"\n = 1\n2 2 −1\n2 = 3\n4\n1 −1\n2\n1\n2 = 3\n4\nWait! Is this even legal?\n𝑃0 ≤𝑋< 1 = ∫&\n$ 𝑓𝑥𝑑𝑥? ? \n𝑃𝑎 ≤𝑋≤𝑏= 2\n!\n\"\n𝑓(𝑥) 𝑑𝑥",
+      "source_type": "lecture_slide",
+      "document_name": "09 continuous rv annotated",
+      "score": 0.5676079988479614
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p4_6c2e1bc6c8",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhat is a probability?\nA number between 0 and 1\nto which we ascribe meaning.*\n5\n*our belief that an event 𝐸 occurs.",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.5670437812805176
+    },
+    {
+      "chunk_id": "cs109_05_independence_annotated_p19_d0c710402d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProbability of events\n20\nE or F\n𝑃𝐸∪𝐹\nE and F\n𝑃𝐸𝐹\nJust add!\nInclusion-\nExclusion \nPrinciple\nJust multiply!\nChain Rule\nDe Morgan’s\nMutually \nexclusive?\nIndependent?",
+      "source_type": "lecture_slide",
+      "document_name": "05 independence annotated",
+      "score": 0.5666593313217163
+    },
+    {
+      "chunk_id": "cs109_05_independence_annotated_p18_04c0cf27a7",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProbability of events\n19\nE or F\n𝑃𝐸∪𝐹\nE and F\n𝑃𝐸𝐹\nJust add!\nInclusion-\nExclusion \nPrinciple\nJust multiply!\nChain Rule\nMutually \nexclusive?\nIndependent?\n𝑃𝐸+ 𝑃(𝐹)\n𝑃𝐸+ 𝑃𝐹−𝑃(𝐸∩𝐹)\n𝑃𝐸𝑃𝐹𝐸\nor \n𝑃𝐹𝑃(𝐸|𝐹)\n𝑃𝐸𝑃𝐹",
+      "source_type": "lecture_slide",
+      "document_name": "05 independence annotated",
+      "score": 0.5660418272018433
+    },
+    {
+      "chunk_id": "cs109_midtermfall2024soln_q0_403ea1f789",
+      "text": "45 probability of falling off the tree, independent of the other petals. What is the probability that more\nthan 135,001 petals will fall today?\nLet F be the number of petals that fall from the tree today. F ∼Bin(n = 300,000, p = 0.45). We want to\nfind P(F > 135,001).\nBecause this Binomial has extreme n, we need to approximate. Let X be an approximation of F. X ∼\nN(µ = n· p = 300,000·0.45, σ2 = n· p·(1−p) = 300,000·0.45·0.55). Using continuity correction, we\nwant to approximate P(F > 135,001) using P(X > 135,001.5).\n4\n\n3\nBingo! [18 points]\nA Bingo card is constructed as a 5x5 grid, with each cell containing a unique integer. The possible values for\neach cell depend on the column in which it is located:\nColumn 1: contains numbers in the range 1 to 15 inclusive\nColumn 2: contains numbers in the range 16 to 30 inclusive\nColumn 3: contains numbers in the range 31 to 45 inclusive\nColumn 4: contains numbers in the range 46 to 60 inclusive\nColumn 5: contains numbers in the range 61 to 75 inclusive\nEach column contains five distinct, randomly chosen numbers from its respective range. The center cell of\nthe grid (in the third column) is an exception: it is always marked as “free” and does not contain a number.\nBelow is an example Bingo card, with each column annotated to indicate the possible values for that column.\na. (6 points) How many unique Bingo cards can be created under these rules? Two cards are unique if they\nhave different values, or if they have the same values, but in different cells.\nWe can break down the count of the total number of unique Bingo cards using the step rule of counting,\nwhere each step is choosing the values for one column.\nIf there was no free space: for each column, there are 5 cells we need to choose values for. Since the\nnumbers must be distinct, we can’t repeat values; so for the first cell in a column, we have 15 choices, and\nthen for the second cell, we have 14, for the third, we have 13, and so on until for the fifth cell, we have\n11 choices. Thus for each column there are 15·14·13·12·11 or 15!\n10! possible ways to choose 5 values.\nFor the column with only 4 values to pick, we instead have 15·14·13·12 or 15!\n11! possibilities.\nOur final answer is obtained by multiplying together the possibilities for all five columns together:\n\u001215!\n10!\n\u00134 \u001215!\n11!\n\u0013\nWhy didn’t we use\n\u000015\n5\n\u0001\nand\n\u000015\n4\n\u0001\n? Because that would treat the values in each column as unordered, but\nwe are told that two bingo cards are unique if a column has the same values in different orders, so we want\nto count ordered. Writing\n\u000015\n5\n\u0001\n·5! is equivalent to 15!\n10!.\n5\n\nb. (6 points) Four distinct integers are randomly selected from the range 1 to 75, where each integer in the\nrange is equally likely. What is the probability that all four selected integers are in the range 31 to 45\ninclusive? Note: there are 15 integers in the range [31 to 45].\nSince we are in a world where it is doable to count outcomes, we can find this probability by counting the\nnumber of outcomes in our event space and sample space and dividing.\nThe sample space is all the ways we can select 4 distinct integers from the range 1 to 75. Here we do not\ncount about order, so |S| =\n\u000075\n4\n\u0001\n.\nThe event space is all the ways to select 4 distinct integers from the range 31 to 35, so |E| =\n\u000015\n4\n\u0001\n.\nPutting these together, |E|\n|S| = (15\n4)\n(75\n4).\nc. (6 points) Four distinct integers are randomly selected from the range 1 to 75, where each integer in the\nrange is equally likely. What is the probability that exactly:\nOne integer is from the range 1 to 15 and\nOne integer is from the range 16 to 30 and\nOne integer is from the range 46 to 60 and\nOne integer is from the range 61 to 75?\nNote that each range above consists of exactly 15 integers and is inclusive.\nWe can also find this probability by counting the number of outcomes in our event space and sample space\nand dividing.\nThe sample space is the same as the previous part: |S| =\n\u000075\n4\n\u0001\n.\nThe event space is all the ways to have one value from each of the four ranges of values. Using the step\nrule of counting, we can multiply the number of ways to choose one value from the first range, times the\nnumber of ways to choose one value from the second range, etc. This is 15·15·15·15 = 154.\nPutting these together, |E|\n|S| = 154\n(75\n4).\nWhy is the event space not 75 · 60 · 30 · 15 or similar? That strategy would be counting ordered, but we\nwant to count unordered to be consistent with our sample space count. Alternative solutions could count\nboth the event space and sample space ordered.\n6",
+      "source_type": "exam_question",
+      "document_name": "MidtermFall2024Soln",
+      "score": 0.5660393238067627
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p18_p19_653a0fdfd1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRatios of PDFs \nare meaningful!\nRelative probabilities of continuous random variables\n19\n𝑃𝑋= 𝑎= 𝑃𝑎−𝜀\n2 ≤𝑋≤𝑎+ 𝜀\n2\n𝑃𝑋= 10\n𝑃𝑋= 5\n= 𝑓10\n𝑓5\n𝑃𝑋= 𝑎\n𝑃𝑋= 𝑏= 𝜀𝑓𝑎\n𝜀𝑓𝑏= 𝑓𝑎\n𝑓𝑏\nTherefore\n= ?\n$%&\n'\n$#&\n'𝑓𝑥𝑑𝑥≈𝜀𝑓(𝑎)\n=\n1\n𝜎2𝜋𝑒\" )* \" + !\n,-!\n1\n𝜎2𝜋𝑒\n\" . \" + !\n,-!\n= 𝑒\" )* \")* !\n,⋅,\n𝑒\" . \" )* !\n,⋅,\n= \n𝑒(\n𝑒% ')\n*\n = 518\n5             10\n!\n\"(!)\nLet 𝑋= time to finish problem set 4.\nSuppose 𝑋~𝒩10, 2 .\nHow much more likely are you to \ncomplete in 10 hours than 5 hours?\n\nContinuous \nconditional \ndistributions\n20",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.5636023879051208
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p33_dd831876d1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEvent-driven probability\n• Relate only binary events\n◦Either something happens (𝐸)\n◦or it doesn’t happen (𝐸*)\n• Can only report probability\n• Lots of combinatorics\nRandom Variables\n• Link multiple similar events \ntogether (𝑋= 1, 𝑋= 2, … , 𝑋= 6)\n• Can compute statistics: report the \n\"average\" outcome\n• Once we have the PMF (for \ndiscrete RVs), we can do regular \nmath\n34\nA Whole New World with Random Variables",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.562175989151001
+    },
+    {
+      "chunk_id": "cs109_05_independence_annotated_p17_16b5b5c1df",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProbability of events\n18\nE or F\n𝑃𝐸∪𝐹\nE and F\n𝑃𝐸𝐹\nJust add!\nInclusion-\nExclusion \nPrinciple\nJust multiply!\nChain Rule\nMutually \nexclusive?\nIndependent?\n𝑃𝐸+ 𝑃(𝐹)\n𝑃𝐸+ 𝑃𝐹−𝑃(𝐸∩𝐹)",
+      "source_type": "lecture_slide",
+      "document_name": "05 independence annotated",
+      "score": 0.5599752068519592
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p15_p16_55ef09c173",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRandom variables are NOT events!\nIt is confusing that random variables and events use the same notation.\n• Random variables ≠ events.\n• We can define an event to be a particular assignment of a random \nvariable, or more generally, in terms of a random variable.\n16\nExample:\n 3 coins are flipped.\n Let 𝑋= # of heads.\n 𝑋 is a random variable.\n𝑋= 𝟏\n{(H, T, T), (T, H, T), \n(T, T, H)}\n3/8\n𝑋= 𝟐\n{(H, H, T), (H, T, H), \n(T, H, H)}\n3/8\n𝑋= 𝟑\n{(H, H, H)}\n1/8\n𝑋≥4\n{ }\n0\n𝑋= 𝑥\nSet of outcomes\n𝑃𝑋= 𝑘\n𝑋= 𝟎\n{(T, T, T)}\n1/8\n\nPMF/CDF\n17",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.5537106990814209
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p2_809a737650",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nKey definitions\nAn experiment in probability:\nSample Space, 𝑆:  \nThe set of all possible outcomes of an experiment\nEvent, 𝐸: \n \n \nSome subset of 𝑆 (𝐸⊆𝑆).\nOutcome\n3\nExperiment\n𝑆\n𝐸",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.5512296557426453
+    },
+    {
+      "chunk_id": "cs109_05_independence_annotated_p3_9f91220977",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIntuition through proof\nStatement:\nIf 𝐸 and 𝐹 are independent, then 𝑃𝐸𝐹= 𝑃𝐸.\nProof: \n \n \n \n \n \n \n \n \n \n \nDefinition of\n \n \n \n \n \n \n \n \nconditional probability\n \n \n \n \n \n \n \n \nIndependence of 𝐸 and 𝐹\n \n \n \n \n \n \n \n \nTaking the bus to cancellation city\n4\n𝑃𝐸𝐹= 𝑃𝐸𝐹\n𝑃(𝐹)\n= 𝑃𝐸𝑃𝐹\n𝑃(𝐹)\n= 𝑃(𝐸)\nKnowing that 𝐹 happened does not \nchange our belief that 𝐸 happened.\n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹)\nIndependent\nevents 𝐸 and 𝐹",
+      "source_type": "lecture_slide",
+      "document_name": "05 independence annotated",
+      "score": 0.5413415431976318
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p24_p25_78ee9a2e6b",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMultiple Bayes’ Theorems\n25\n𝑝!|# 𝑦|𝑥=\n𝑝! 𝑦𝑝#|! 𝑥|𝑦\n𝑝# 𝑥\n𝑃𝐹|𝐸= 𝑃𝐹𝑃𝐸|𝐹\n𝑃𝐸\n𝑓!|# 𝑦|𝑥=\n𝑓! 𝑦𝑓#|! 𝑥|𝑦\n𝑓# 𝑥\nwith \nevents\nwith\ndiscrete RVs\nwith\ncontinuous RVs\nReally all the \nsame idea!\nYou are given \nthis value…\n…so this is just a scalar\n\nIntense\nExercise\n26",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.5366965532302856
+    },
+    {
+      "chunk_id": "cs109_04_cond_bayes_annotated_p4_08eb1a3d3d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional Probability, equally likely outcomes\nThe conditional probability of 𝐸 given 𝐹 is the probability that 𝐸 occurs \ngiven that F has already occurred. This is known as conditioning on F.\nWith equally likely outcomes:\n𝑃𝐸𝐹= # of outcomes in E consistent with F\n# of outcomes in S consistent with F = |𝐸∩𝐹|\n|𝑆∩𝐹| = |𝐸∩𝐹|\n|𝐹|\n5\n𝑃𝐸𝐹= |𝐸𝐹|\n|𝐹|\n𝑃𝐸𝐹= 3\n14 ≈0.21\n𝑃𝐸= 8\n50 ≈0.16",
+      "source_type": "lecture_slide",
+      "document_name": "04 cond bayes annotated",
+      "score": 0.525667667388916
+    },
+    {
+      "chunk_id": "cs109_01_section_soln_sec1_part2_bd8625d366",
+      "text": "For the full sample space, we consider the number of ways we can select 2 fish from all 19 fish without regard\nfor blue, red, or green. We treat all of the fish as distinct in order to make sure that each event is equally likely.\nWe don’t consider order of fish to matter. The size of our sample space is thus \u000019\n2\n\u0001. For our event space, we con-\nsider the number of ways we can select 2 blue fish. There are 7 distinct blue fish from which we can chose two.\nRecall that the event space must be consistent with the sample space:\n𝑝=\n\u00007\n2\n\u0001\n\u000019\n2\n\u0001 = 21\n171 ≈0.123\nThe same answer could be arrived at by using the chain rule. The probability that the first fish is blue is 7/19.\nThe probability that the second fish is blue, given that the first fish was blue is 6/18. The probability that both\nfish are blue is 7/19 · 6/18 ≈0.123\nProblems\n3. Rolling Fair Dice\nConsider an experiment where we roll a fair, six-sided die multiple times.\na. What is the probability that at least one 3 appears when you roll the same fair die 10 times?\nLet 𝐴be the event that we roll one or more 3’s in 10 rolls of the fair die. It’s easier to exclude the scenario\nwhere we never get any 3’s than it is to include all the ways to get one or more of them. We compute 𝑃(𝐴)\nby counting equally likely outcomes, where the full sample space is of size 610. The number of ways to get\nprecisely zero 3’s is 510, so that 𝑃(𝐴𝐶) = 510\n610 and 𝑃(𝐴) = 1 −510\n610.\nWhat is the probability that at least two 3’s appear when you roll the same fair die 20 times? You may\nleave your answer in terms of one or more choose terms.\nLet 𝐵be the event of interest this time, and once again let’s compute 𝑃(𝐵𝐶) by counting the fraction of\nequally likely events that lead to 0 or 1 3’s among the 20 rolls of the die. The outcome space is of size 620\nthis time, and there are 520 ways to be devoid of 3’s, and \u000020\n1\n\u0001519 ways to generate exactly one 3 somewhere\nwithin 19 other non-3’s. That means that:\n𝑃(𝐵𝐶) = 520 + \u000020\n1\n\u0001519\n620\n𝑃(𝐵) = 1 −520 + \u000020\n1\n\u0001519\n620\nb. What is the probability that at least 𝑛3’s appear when you roll the same fair die 10𝑛times? Your answer\nwill certainly involve a sum of many combinatorial terms, and you needn’t simplify provided we under-\nstand the structure of your answer.",
+      "source_type": "review_section",
+      "document_name": "01 section soln",
+      "score": 0.5213866233825684
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p21_e6052dd1a3",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCats and sharks (note: stuffed animals)\n4 cats and 3 sharks in a bag. 3 drawn.\nWhat is P(1 cat and 2 sharks drawn)?\n22\nQuestion: Do indistinct objects give \nyou an equally likely sample space?\nA.\nU\nV\nB.\nW\nX ⋅\nY\nU\nC.\nX\nV + 2 ⋅\nU\nZ\nD.\nWY\nU[\nE. 0\n𝑃𝐸= |𝐸|\n|𝑆|\nEqually likely \noutcomes\n(No)\nMake indistinct items distinct\nto get equally likely outcomes.",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.5115638971328735
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p8_6a6bc6c8fd",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhat is a probability?\n𝑃𝐸= lim\n!→#\n𝑛(𝐸)\n𝑛\n𝑛 = # of total trials\n𝑛(𝐸) = # trials where 𝐸 occurs\n9\nLet 𝐸 = the set of outcomes\n \nwhere you hit the target.\n𝑃𝐸≈0.667",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.506721556186676
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p41_8141ea98ea",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n42\ndef rejection_sampling(event, observation):\nsamples = sample_a_ton()\nsamples_observation =\n        reject_inconsistent(samples, observation)\nsamples_event =\n        reject_inconsistent(samples_observation, event)\nreturn len(samples_event)/len(samples_observation)\nConditional event = samples with 𝐹+, = 1, 𝑈= 1, 𝑇= 1 .\nWhat is 𝑃𝐹!\" = 1|𝑈= 1, 𝑇= 1 ?\nInference\nquestion:",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.5057274103164673
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p4_72e881cd9b",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nOkay, just one more MLE with the Multinomial\nConsider a sample of 𝑛 iid random variables where:\n• Each element is drawn from one of 𝑚 outcomes.\n𝑃outcome 𝑖= 𝑝!, where ∑!\"#\n$ 𝑝! = 1\n• 𝑋! = # of trials with outcome 𝑖, where ∑!\"#\n$ 𝑋! = 𝑛\n1. What is the likelihood of observing\nthe sample 𝑋#, 𝑋%, … , 𝑋$ ,\ngiven the probabilities 𝑝#, 𝑝%, … , 𝑝$?\n5\nA.  \n𝑛!\n𝑋#! 𝑋%! ⋯𝑋$! 𝑝#\n&!𝑝%\n&\" ⋯𝑝$\n&#\nB.  \n𝑝#\n&!𝑝%\n&\" ⋯𝑝$\n&#\nC.  \n𝑛!\n𝑋#! 𝑋%! ⋯𝑋$! 𝑋#\n'!𝑋%\n'\" ⋯𝑋$\n'#",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.5049653053283691
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p5_c1d9d32b84",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSample\n6\nA sample is selected from a population.",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.50465989112854
+    }
+  ],
+  "built_at": "2026-04-28T05:13:06Z"
+}

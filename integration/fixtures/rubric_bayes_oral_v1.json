@@ -1,0 +1,54 @@
+{
+  "rubric_id": "bayes_oral_v1",
+  "name": "Bayesian reasoning oral exam (mock)",
+  "scale": { "min": 0, "max": 2 },
+  "criteria": [
+    {
+      "id": "C1",
+      "name": "Prior definition",
+      "description": "Student correctly defines or describes the prior distribution.",
+      "max": 2,
+      "anchors": {
+        "0": "Incorrect or missing explanation of prior",
+        "1": "Partial or vague explanation of prior",
+        "2": "Clear, correct explanation of prior"
+      },
+      "weight": 1.0
+    },
+    {
+      "id": "C2",
+      "name": "Conceptual understanding",
+      "description": "Student explains prior, likelihood, posterior, and evidence correctly.",
+      "max": 2,
+      "anchors": {
+        "0": "Incorrect or missing explanations",
+        "1": "Partial explanation of terms",
+        "2": "Clear explanation of all major terms"
+      },
+      "weight": 1.0
+    },
+    {
+      "id": "C3",
+      "name": "Bayes rule application",
+      "description": "Student applies Bayes rule or updates correctly.",
+      "max": 2,
+      "anchors": {
+        "0": "No correct application",
+        "1": "Partial or one-step application",
+        "2": "Correct full application"
+      },
+      "weight": 1.0
+    },
+    {
+      "id": "C4",
+      "name": "Communication",
+      "description": "Answer is coherent and uses appropriate terminology.",
+      "max": 1,
+      "anchors": {
+        "0": "Incoherent or off-topic",
+        "1": "Clear and coherent with correct terminology"
+      },
+      "weight": 0.5
+    }
+  ]
+}

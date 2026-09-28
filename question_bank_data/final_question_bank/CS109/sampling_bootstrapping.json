@@ -1,0 +1,1218 @@
+{
+  "topic_id": "sampling_bootstrapping",
+  "topic_name": "Sampling and Bootstrapping",
+  "course": "CS109",
+  "questions": [
+    {
+      "question_id": "CS109_sampling_bootstrapping_0001",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "conceptual",
+      "difficulty": "easy",
+      "question": "You are given a sample of 200 commute times from a much larger population of commuters. Explain, in words, how the bootstrap replaces the unknown population distribution with something you can actually compute from, and why that replacement is plausible at all. Then state one key assumption under which this logic is defensible.",
+      "expected_answer": "A strong answer should say that we do not know the true population distribution, so bootstrap uses the empirical distribution of the observed sample, i.e. the sample histogram or estimated PMF, as a stand-in for the population. We then pretend future samples came from that empirical distribution and repeatedly resample from it to approximate the sampling distribution of a statistic. This is plausible when the observed sample is representative of the population, especially when the data are iid. A key assumption is that the original sample is iid; otherwise the empirical distribution does not correctly mimic the data-generating process.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p32_38c0131b65",
+        "cs109_19_sampling_bootstrap_annotated_p33_a57db77c85",
+        "cs109_19_sampling_bootstrap_annotated_p54_d0e2d8fe3c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains empirical/sample distribution as estimate of unknown population distribution",
+          "Connects repeated resampling to approximating the sampling distribution of a statistic",
+          "States and justifies iid as a key assumption"
+        ],
+        "partial_credit": [
+          "Mentions resampling from the sample but not why that approximates the population",
+          "States iid without explaining its role",
+          "Describes histogram/PMF vaguely"
+        ],
+        "common_mistakes": [
+          "Saying bootstrap samples from the true population",
+          "Confusing the sample distribution with the sampling distribution",
+          "Omitting the iid assumption"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the sample were biased but still iid from the wrong subpopulation, what exactly would the bootstrap estimate well, and what would it fail to estimate?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When you say 'distribution of the sample,' do you mean the histogram of observed values or the distribution of a statistic like the sample mean? Distinguish those two."
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from sampling bootstrapping; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying bootstrap samples from the true population. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0002",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says: 'When bootstrapping a sample of size n, we should resample without replacement, because that better preserves the original data.' Do you agree? Give a careful argument using what distribution the bootstrap is trying to simulate.",
+      "expected_answer": "The student is wrong for standard nonparametric bootstrap. We resample with replacement because we are treating the observed sample as an estimated PMF or empirical distribution, and independent draws from that distribution can repeat values. Sampling without replacement from the original sample would force each bootstrap resample to look too much like the original, especially when the resample size is n, and would not mimic drawing a fresh iid sample from the estimated population. Replacement is what recreates sampling variability.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p53_6222fa1d83",
+        "cs109_06_section_soln_clt_sec1_part2_cfea372a3f",
+        "cs109_19_sampling_bootstrap_annotated_p43_96e15597e5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that bootstrap resamples with replacement",
+          "Explains empirical PMF interpretation",
+          "Explains why without replacement understates variability or nearly reproduces the original sample"
+        ],
+        "partial_credit": [
+          "Says 'with replacement' is correct but gives only a procedural reason",
+          "Mentions variability but not independence or empirical PMF"
+        ],
+        "common_mistakes": [
+          "Arguing that preserving the original sample exactly is the goal",
+          "Confusing bootstrap with train/test splitting or permutation testing",
+          "Saying replacement is only to allow larger samples than n"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose you sampled without replacement anyway and kept the resample size equal to n. What would happen to the bootstrap distribution of the sample mean relative to the correct one?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If your original sample is [2, 5, 9], can a fresh iid draw from the empirical distribution produce [2, 2, 9]? Why or why not?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from sampling bootstrapping.",
+        "Watch out for this common trap: Arguing that preserving the original sample exactly is the goal. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0003",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "You have one iid sample of 80 observations and you care about the sample mean. Describe the bootstrap algorithm step by step, but for each step explain what probabilistic object is being approximated. Do not just list code-like instructions.",
+      "expected_answer": "Step 1: use the sample to form the empirical distribution or estimated PMF, which approximates the unknown population distribution. Step 2: repeatedly draw bootstrap samples of size 80 with replacement from that empirical distribution; each such resample approximates what another iid sample of size 80 from the population might have looked like. Step 3: compute the sample mean on each resample; the resulting collection of means approximates the sampling distribution of the sample mean. From that bootstrap distribution we can estimate probabilities, standard errors, intervals, or other summaries about the mean.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p36_5ee070b082",
+        "cs109_19_sampling_bootstrap_annotated_p37_7fdcaaf36b",
+        "cs109_19_sampling_bootstrap_annotated_p52_af07371a26"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Gives the three steps in correct order",
+          "Interprets empirical distribution, bootstrap samples, and bootstrap statistic distribution probabilistically",
+          "Mentions size of resamples equals original sample size"
+        ],
+        "partial_credit": [
+          "Gives algorithm steps without interpretation",
+          "Explains some objects correctly but confuses sample distribution vs sampling distribution"
+        ],
+        "common_mistakes": [
+          "Saying each resample is drawn from a fitted normal by default",
+          "Using sample size different from n without justification",
+          "Calling the histogram of bootstrap means the empirical distribution of the raw data"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is it important that each bootstrap resample has the same size as the original sample when approximating the sampling distribution of the mean?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which object is the approximation to the population: the original sample, the bootstrap means, or the resampling rule? Explain."
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Saying each resample is drawn from a fitted normal by default. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0004",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A team has a single sample of daily website revenue that contains a few extremely large days due to viral events. They want to bootstrap the sample mean. Based on the lecture caveat, explain why you might worry about the result even if the data are iid, and what aspect of the underlying distribution causes the concern.",
+      "expected_answer": "Even if the observations are iid, bootstrap can behave poorly when the underlying distribution has a long or heavy tail. A few extreme observations can dominate the sample mean, and the empirical distribution may not adequately represent the probability of yet-unseen large values in the population. Then resampling from the sample can give a misleading approximation to the true sampling distribution of the mean, often understating or distorting uncertainty because the tail behavior is unstable with finite samples.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p54_d0e2d8fe3c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies long/heavy tails as the issue",
+          "Explains that empirical distribution may poorly capture extreme tail behavior",
+          "Connects this to unreliable bootstrap approximation for the mean"
+        ],
+        "partial_credit": [
+          "Mentions outliers or extremes but not the tail assumption explicitly",
+          "Says bootstrap may be 'less accurate' without explaining why"
+        ],
+        "common_mistakes": [
+          "Claiming iid is sufficient in all cases",
+          "Saying bootstrap fails only because mean is a bad statistic, with no mention of tail behavior",
+          "Treating one or two outliers as automatically violating iid"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would your concern be smaller, larger, or similar if the statistic were the median instead of the mean? Defend your answer qualitatively."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does 'long tail' mean operationally here: is the issue dependence, skewness, or rare extreme values? Clarify."
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming iid is sufficient in all cases. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0005",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose your original sample is [1, 1, 4, 10]. Without doing exhaustive arithmetic, describe the empirical PMF that the bootstrap uses, and give two different bootstrap resamples of size 4 that are possible. Then explain why one of those resamples may contain repeated values not repeated in the original positions.",
+      "expected_answer": "The empirical PMF places probability 2/4 on value 1, probability 1/4 on value 4, and probability 1/4 on value 10. Possible bootstrap resamples include [1, 4, 10, 1] and [10, 10, 1, 4], among many others. Repeated values occur because we sample with replacement from the empirical distribution, so each draw is independent from that PMF and can select the same observed value multiple times regardless of how many times it appeared in specific original positions.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p53_6222fa1d83",
+        "cs109_19_sampling_bootstrap_annotated_p43_96e15597e5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correct empirical PMF from observed frequencies",
+          "Provides valid bootstrap resamples of size 4",
+          "Explains repetition via with-replacement iid draws from empirical PMF"
+        ],
+        "partial_credit": [
+          "Gets the idea of frequencies right but muddles one probability",
+          "Provides one valid resample but weak explanation of repetition"
+        ],
+        "common_mistakes": [
+          "Assigning equal probability to all distinct values rather than frequency-weighted values",
+          "Thinking 10 cannot appear twice because it appeared once originally",
+          "Confusing value repetition with index repetition"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If instead the original sample were [1, 4, 10, 13], what would change in the empirical PMF and what would stay the same about the resampling logic?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In your PMF, are probabilities attached to distinct values or to sample positions? Why does that matter?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Assigning equal probability to all distinct values rather than frequency-weighted values. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0006",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Why does bootstrapping help especially when there is no convenient closed-form distribution for a statistic, such as the sample variance? Answer by comparing what you would like to know mathematically with what the bootstrap constructs computationally.",
+      "expected_answer": "For a statistic like the sample variance, the exact sampling distribution may be hard to derive or use in practice, especially beyond textbook settings. What we want mathematically is the distribution of that statistic over repeated iid samples from the population. Bootstrap constructs a computational approximation to that distribution by resampling from the empirical distribution and recalculating the statistic many times. So it replaces an analytically difficult repeated-sampling argument with simulation based on the observed data.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p38_p39_9dc7c60e9c",
+        "cs109_19_sampling_bootstrap_annotated_p40_979ac90e2a",
+        "cs109_19_sampling_bootstrap_annotated_p54_d0e2d8fe3c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the target as the sampling distribution of the statistic",
+          "Explains that closed forms may be unavailable or inconvenient",
+          "Explains simulation via many resamples and recalculated statistic"
+        ],
+        "partial_credit": [
+          "Says bootstrap is useful when math is hard but does not name the sampling distribution",
+          "Mentions sample variance example without explaining the computational substitution"
+        ],
+        "common_mistakes": [
+          "Saying bootstrap gives the exact distribution",
+          "Confusing population variance with sampling distribution of sample variance",
+          "Claiming bootstrap only works for the mean"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the exact distribution were known, why might someone still use bootstrap in practice?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When you say 'distribution of the variance,' do you mean the population variance itself is random, or the sample variance across repeated samples?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from sampling bootstrapping; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying bootstrap gives the exact distribution. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0007",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A classmate says: 'The bootstrap distribution of the sample mean is just the histogram of the original sample values, because both come from the sample.' Explain precisely why this is false. Your explanation should distinguish three different distributions that students often blur together.",
+      "expected_answer": "This is false because the histogram of the original sample values is the empirical distribution of the data themselves, while the bootstrap distribution of the sample mean is the distribution of a statistic computed over many resamples. A third distinct object is the true sampling distribution of the sample mean, which is what the bootstrap is trying to approximate. The original sample histogram lives on raw observed values; the bootstrap mean distribution lives on averages of entire resamples; and the true sampling distribution lives over repeated hypothetical samples from the population.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p32_38c0131b65",
+        "cs109_19_sampling_bootstrap_annotated_p33_a57db77c85",
+        "cs109_19_sampling_bootstrap_annotated_p36_5ee070b082"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Clearly distinguishes empirical distribution of data, bootstrap distribution of statistic, and true sampling distribution",
+          "Explains that the bootstrap distribution is over recalculated means, not raw values",
+          "Connects bootstrap distribution to an approximation target"
+        ],
+        "partial_credit": [
+          "Separates raw data from means but omits the true sampling distribution",
+          "Uses correct intuition but vague terminology"
+        ],
+        "common_mistakes": [
+          "Saying both are the same because they use the same data",
+          "Ignoring the role of the statistic",
+          "Calling the sample histogram the sampling distribution"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the statistic were the median instead of the mean, which of the three distributions changes, and which does not?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the random outcomes in the bootstrap distribution of the mean: individual observations or whole resamples?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from sampling bootstrapping.",
+        "Watch out for this common trap: Saying both are the same because they use the same data. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0008",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A pollster cannot survey an entire population and asks, 'What can we safely infer from a sample, and how do we express confidence in those conclusions?' Use this prompt to explain how sampling and bootstrapping answer two different parts of that question.",
+      "expected_answer": "Sampling gives the core idea that a reasonably representative sample can stand in for the population for estimating quantities like means, proportions, or other statistics. Bootstrapping addresses the uncertainty part: after computing a statistic from the sample, we resample from the empirical distribution to approximate how that statistic would vary across repeated samples. That lets us express confidence through estimated variability, intervals, or probabilities, rather than just a point estimate.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p6_d6230156f4",
+        "cs109_19_sampling_bootstrap_annotated_p29_2ad960cadc",
+        "cs109_19_sampling_bootstrap_annotated_p37_7fdcaaf36b"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains sampling as producing estimators for population quantities",
+          "Explains bootstrap as quantifying uncertainty in those estimators",
+          "Links bootstrap output to confidence/variability/probability statements"
+        ],
+        "partial_credit": [
+          "Discusses only estimation or only uncertainty",
+          "Gives a generic statement about confidence without saying how bootstrap provides it"
+        ],
+        "common_mistakes": [
+          "Treating bootstrap as a way to collect more real data",
+          "Saying sampling alone gives confidence without variability assumptions",
+          "Equating a point estimate with a confidence statement"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What would be missing if the pollster reported only the sample mean but no bootstrap or other uncertainty measure?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can a single sample ever tell you everything about uncertainty by itself, without some model or resampling procedure? Why not?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Treating bootstrap as a way to collect more real data. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0009",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "You run 10,000 bootstrap resamples of an iid sample and compute the sample variance each time. The resulting bootstrap distribution is quite spread out. Give two different interpretations of that spread, one correct and one incorrect, and explain why the incorrect one is a misunderstanding.",
+      "expected_answer": "The correct interpretation is that, under the empirical distribution as a stand-in for the population, the sample variance is a variable statistic and would fluctuate substantially from sample to sample; the spread estimates uncertainty in the sample variance. An incorrect interpretation is that the underlying population itself has many different variances or that the observed dataset contains multiple true variances. The population variance is a fixed parameter in the model; the randomness is in the statistic across repeated samples or resamples.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p38_p39_9dc7c60e9c",
+        "cs109_19_sampling_bootstrap_annotated_p40_979ac90e2a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly interprets spread as sampling variability of the statistic",
+          "Identifies and refutes the mistaken idea that the parameter itself varies",
+          "Uses sample variance example specifically"
+        ],
+        "partial_credit": [
+          "States that wider spread means 'more uncertainty' but does not clarify what is uncertain",
+          "Identifies incorrect interpretation but weakly explains why"
+        ],
+        "common_mistakes": [
+          "Confusing parameter variability with estimator variability",
+          "Calling the bootstrap distribution the distribution of the raw data",
+          "Saying wide spread proves the bootstrap failed"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What features of the original sample would tend to make the bootstrap distribution of the sample variance especially wide?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In this setup, which object is random across resamples: the population variance or the computed sample variance?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Confusing parameter variability with estimator variability. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0010",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "An analyst has two independent datasets from two user interfaces and wants a p-value for whether the interfaces differ in a chosen statistic. The lecture notes mention creating a 'universal sample' by combining the two samples to recreate the null hypothesis. Explain the logic of that bootstrap-style testing strategy and why pooling is connected to the null.",
+      "expected_answer": "Under the null hypothesis that the two interfaces come from the same underlying distribution, it is reasonable to treat all observations as coming from one common population. Pooling the two samples creates an empirical version of that shared population, sometimes called a universal sample. Then we repeatedly resample two groups of the original sizes from this pooled empirical distribution, compute the statistic difference each time, and compare the observed difference to that null distribution to estimate a p-value. Pooling is justified specifically because the null says there is no group-specific distributional difference.",
+      "source_chunk_ids": [
+        "cs109_20_mle_annotated_p5_45b3167180"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains pooling as empirical implementation of the null hypothesis of a common distribution",
+          "Describes resampling two groups and computing a difference statistic",
+          "Explains p-value as comparison of observed statistic to null resampled distribution"
+        ],
+        "partial_credit": [
+          "Mentions pooling and p-value but not why pooling reflects the null",
+          "Describes permutation-like logic vaguely"
+        ],
+        "common_mistakes": [
+          "Pooling under the alternative rather than the null",
+          "Using separate-group bootstraps to generate the null distribution without modification",
+          "Defining p-value as probability the null is true"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the resampling strategy differ if your goal were a confidence interval for the difference in means rather than a null p-value?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why does pooling make more sense when the null says 'same distribution' than when the alternative says 'different distributions'?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Pooling under the alternative rather than the null. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0011",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "In one sentence, a lecture says bootstrapping works for any statistic, with caveats. I now ask you to unpack that sentence carefully. What is powerful about the 'any statistic' claim, and what are the main limitations that stop it from being literally universal?",
+      "expected_answer": "The power is that bootstrap does not depend on having a special formula for the sampling distribution of a particular statistic; as long as you can compute the statistic on a dataset, you can usually recompute it on many resamples and approximate its distribution. That makes it broadly applicable to means, medians, variances, quantiles, and complex statistics. But it is not literally universal: it relies on the original sample being iid and sufficiently representative, and it can perform badly for long-tailed distributions or in settings where dependence, bias, or unstable statistics break the empirical-distribution approximation.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p54_d0e2d8fe3c",
+        "cs109_19_sampling_bootstrap_annotated_p37_7fdcaaf36b"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains flexibility across many statistics",
+          "Names iid and long-tail caveats",
+          "Frames limitations as failures of approximation rather than arbitrary exceptions"
+        ],
+        "partial_credit": [
+          "Mentions flexibility and one caveat only",
+          "Says 'works for any statistic' without discussing why"
+        ],
+        "common_mistakes": [
+          "Claiming bootstrap requires only large sample size and nothing else",
+          "Interpreting 'any statistic' as 'any dataset and any sampling design'",
+          "Omitting the caveats entirely"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Give an example of a statistic that is not just a mean and explain why bootstrap is attractive there."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does the algorithm actually need from a statistic in order to bootstrap it? A formula for its distribution, or just a way to compute it on data?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from sampling bootstrapping; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming bootstrap requires only large sample size and nothing else. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0012",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "Someone says, 'If my bootstrap resamples are all the same size as the original sample, then every bootstrap sample should contain every original observation exactly once, just shuffled.' Diagnose the error and relate your correction to the phrase 'generated with replacement.'",
+      "expected_answer": "The error is confusing bootstrap resampling with a random permutation. In bootstrap, we draw each of the n positions independently from the empirical distribution with replacement, so some original observations can appear multiple times and some may not appear at all in a particular resample. 'With replacement' means after each draw, the full set of original observed values remains available for future draws, so the resample is not constrained to be a shuffle of the original data.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p43_96e15597e5",
+        "cs109_19_sampling_bootstrap_annotated_p53_6222fa1d83"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies confusion with permutation/shuffling",
+          "Explains repeated or omitted observations in a bootstrap sample",
+          "Defines with replacement correctly"
+        ],
+        "partial_credit": [
+          "Says duplicates are allowed but gives weak reasoning",
+          "Corrects the claim without distinguishing permutation from bootstrap"
+        ],
+        "common_mistakes": [
+          "Saying sample size n forces each point to appear once",
+          "Believing with replacement only matters if resample size exceeds n",
+          "Using 'replacement' to mean replacing missing values"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If you actually shuffled the sample instead of bootstrapping it, what statistic distributions would remain unchanged, and why would that fail to estimate sampling variability?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can a bootstrap resample of size n omit a particular original observation entirely? Give a concrete small example."
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from sampling bootstrapping.",
+        "Watch out for this common trap: Saying sample size n forces each point to appear once. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0013",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You sample 1,000 iid observations from a NegBin(10, 0.5) population and compute the sample mean and the usual 'divide by n' sample variance. Without calculating exact numbers, compare the roles of the Central Limit Theorem and the bootstrap if your goal is to understand uncertainty in those two statistics.",
+      "expected_answer": "For the sample mean, the Central Limit Theorem gives an analytic approximation to its sampling distribution: approximately normal with mean equal to the population mean and variance equal to the population variance divided by n. For the sample variance, the CLT is not directly the standard tool and the exact distribution is less convenient, so bootstrap is attractive because it can simulate the sampling distribution by resampling and recomputing the variance many times. Also, the 'divide by n' variance estimator is typically biased low relative to the population variance, which is a separate issue from uncertainty: bootstrap can estimate variability of that estimator but does not magically remove its bias unless the procedure is adjusted.",
+      "source_chunk_ids": [
+        "cs109_06_section_soln_clt_sec1_part2_cfea372a3f",
+        "cs109_19_sampling_bootstrap_annotated_p38_p39_9dc7c60e9c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Contrasts CLT for mean with bootstrap for variance",
+          "Mentions approximate normality of sample mean under CLT",
+          "Notes divide-by-n variance is biased low and separates bias from variability"
+        ],
+        "partial_credit": [
+          "Mentions CLT for mean and bootstrap for variance but ignores bias issue",
+          "Discusses only one of the two statistics"
+        ],
+        "common_mistakes": [
+          "Using CLT as if it directly gives the exact distribution of sample variance",
+          "Claiming bootstrap automatically corrects the divide-by-n bias",
+          "Confusing estimator bias with spread of its sampling distribution"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If you did bootstrap the sample mean as well, why might its bootstrap distribution resemble the CLT approximation in this setting?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the difference between saying an estimator is biased low and saying its sampling distribution has large variance?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using CLT as if it directly gives the exact distribution of sample variance. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0014",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "You use code like np.random.choice(sample, n, replace=True) inside a bootstrap routine. Explain what random variable that code is effectively sampling from, and why the probabilities are not necessarily uniform over the distinct observed values.",
+      "expected_answer": "That code samples from the empirical distribution supported on the observed sample values. If a value appears multiple times in the original sample, then it receives proportionally more mass in the empirical PMF because the probability of drawing that value is its relative frequency in the sample. Therefore the probabilities are uniform over sample positions, but not necessarily uniform over distinct observed values unless all distinct values appear equally often.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p53_6222fa1d83",
+        "cs109_19_sampling_bootstrap_annotated_p52_af07371a26"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies empirical distribution as the sampled-from random variable",
+          "Explains frequency weighting of duplicated values",
+          "Distinguishes uniform over positions from nonuniform over distinct values"
+        ],
+        "partial_credit": [
+          "Says it samples from the sample with replacement but not how probabilities are induced",
+          "Mentions duplicates vaguely"
+        ],
+        "common_mistakes": [
+          "Assuming all distinct values have equal probability",
+          "Calling the code a draw from a fitted parametric model",
+          "Ignoring repeated observations in the original sample"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If your sample has 90 zeros and 10 ones, what empirical probability does the bootstrap assign to drawing a one, and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If the original sample contains the value 7 three times and the value 9 once, should 7 and 9 be equally likely in a bootstrap draw?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Assuming all distinct values have equal probability. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0015",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "A researcher says, 'I only have one sample, so it makes no sense to talk about the distribution of my sample mean.' Give a response that uses the repeated-sampling idea and then explain how the bootstrap approximates that thought experiment from the one sample actually observed.",
+      "expected_answer": "Even with one realized sample, the sample mean is still a random variable conceptually because it depends on which iid sample of size n could have been drawn from the population. Its distribution across repeated hypothetical samples is the sampling distribution. Since we cannot usually repeat the actual data collection many times, bootstrap approximates that thought experiment by replacing the unknown population with the empirical distribution from the observed sample and then generating many pseudo-samples to see how the mean varies.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p33_a57db77c85",
+        "cs109_19_sampling_bootstrap_annotated_p36_5ee070b082"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains sampling distribution as distribution over hypothetical repeated samples",
+          "Clarifies that one observed value of the mean does not eliminate underlying randomness",
+          "Explains bootstrap as computational approximation from empirical distribution"
+        ],
+        "partial_credit": [
+          "Mentions repeated sampling but weakly connects it to bootstrap",
+          "Explains bootstrap without defining sampling distribution"
+        ],
+        "common_mistakes": [
+          "Saying the mean is not random once observed, therefore no distribution exists",
+          "Treating bootstrap draws as new real-world data rather than pseudo-samples",
+          "Confusing posterior uncertainty with sampling uncertainty"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How is this different from saying the population mean itself is random?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If two different researchers independently sample from the same population, could they get different sample means? What does that imply?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from sampling bootstrapping; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying the mean is not random once observed, therefore no distribution exists. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0016",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "Imagine you are comparing rejection sampling from a known joint distribution with bootstrap resampling from an observed dataset. Both involve generating many samples on a computer. Explain the fundamental difference in what source distribution you are sampling from in each case.",
+      "expected_answer": "In rejection or direct sampling from a known probabilistic model, we generate samples from a specified joint distribution whose probabilities are assumed known. In bootstrap, we do not know the true data-generating distribution, so we sample from the empirical distribution induced by the observed dataset. Thus one method uses a modeled or known population distribution, while the other uses the sample itself as a stand-in for the unknown population.",
+      "source_chunk_ids": [
+        "cs109_15_general_inference_annotated_p34_aef0eac23e",
+        "cs109_15_general_inference_annotated_p43_31db23ba0a",
+        "cs109_19_sampling_bootstrap_annotated_p32_38c0131b65"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Contrasts known/model joint distribution with empirical distribution from observed data",
+          "Notes both are simulation methods but with different sources",
+          "Uses correct terminology about unknown population in bootstrap"
+        ],
+        "partial_credit": [
+          "Says one uses a model and one uses data, but not clearly",
+          "Brings up rejection steps without addressing source distribution"
+        ],
+        "common_mistakes": [
+          "Claiming bootstrap requires a known joint distribution",
+          "Equating rejection sampling and bootstrap because both 'sample a ton'",
+          "Ignoring the role of the empirical distribution"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why does this difference matter for the assumptions you need to trust the resulting probability estimates?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I know the full joint distribution exactly, do I need bootstrap to simulate new datasets from it?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming bootstrap requires a known joint distribution. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0017",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student argues: 'Because the sample is only an approximation to the population, bootstrap can never tell us anything about uncertainty.' Give the best rebuttal you can, but also acknowledge the valid caution hidden inside the statement.",
+      "expected_answer": "The rebuttal is that bootstrap is specifically designed to estimate uncertainty by using the sample as an empirical stand-in for the population and then simulating repeated sampling from that stand-in. When the sample is iid and reasonably representative, this often gives useful approximations to the sampling distribution of statistics. The valid caution is that bootstrap is only as good as that approximation: if the sample is biased, dependent, too small, or from a long-tailed distribution, the bootstrap can misrepresent uncertainty. So bootstrap can tell us a lot, but not without assumptions.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p32_38c0131b65",
+        "cs109_19_sampling_bootstrap_annotated_p54_d0e2d8fe3c",
+        "cs109_19_sampling_bootstrap_annotated_p6_d6230156f4"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defends bootstrap as an uncertainty-estimation tool",
+          "Explains why it can work under representativeness/iid",
+          "Acknowledges legitimate limitations and failure modes"
+        ],
+        "partial_credit": [
+          "Defends bootstrap but gives no caveats",
+          "Lists caveats but does not explain why bootstrap is still useful"
+        ],
+        "common_mistakes": [
+          "Saying approximation means uselessness",
+          "Saying bootstrap is always reliable if sample size is large",
+          "Treating assumptions as minor technicalities with no practical impact"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Which is the more dangerous failure in practice: a small sample from the right population, or a large sample from a biased subpopulation? Justify."
+        },
+        {
+          "condition": "incorrect",
+          "question": "Do approximate methods in statistics have to be exact to be useful? Give an analogy from another area of inference."
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from sampling bootstrapping.",
+        "Watch out for this common trap: Saying approximation means uselessness. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0018",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose you bootstrap the sample mean from a dataset of size n and obtain 10,000 bootstrap means. How would you use those 10,000 numbers to answer the oral question, 'What is the estimated probability that a fresh sample mean exceeds the observed sample mean by at least 2 units?' Explain the approximation carefully.",
+      "expected_answer": "I would treat the 10,000 bootstrap means as an approximation to the sampling distribution of the sample mean under the empirical distribution. Let m_obs be the observed sample mean. Then I would estimate the probability by the fraction of bootstrap means m_star satisfying m_star >= m_obs + 2. This is not exact probability under the true population, but a bootstrap estimate of that probability under the plug-in empirical approximation.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p54_d0e2d8fe3c",
+        "cs109_19_sampling_bootstrap_annotated_p36_5ee070b082"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses fraction of bootstrap means beyond threshold as probability estimate",
+          "Defines threshold relative to observed mean",
+          "States approximation is with respect to empirical/bootstrap distribution"
+        ],
+        "partial_credit": [
+          "Says to count exceedances but not what threshold is being compared",
+          "Forgets to mention this is an estimate under the bootstrap approximation"
+        ],
+        "common_mistakes": [
+          "Comparing raw data values instead of bootstrap means",
+          "Calling the resulting fraction the exact population probability",
+          "Using the original sample histogram rather than the bootstrap statistic distribution"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If only 37 of the 10,000 bootstrap means exceed that threshold, how would you verbally interpret 0.0037?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which numbers should be counted here: the 10,000 raw bootstrap observations or the 10,000 bootstrap sample means?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Comparing raw data values instead of bootstrap means. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0019",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Why is the empirical distribution often described as 'just a histogram of your data,' and what important mathematical simplification does that phrase hide when the data are discrete?",
+      "expected_answer": "The phrase emphasizes that bootstrap starts from the observed frequency pattern in the sample rather than from a parametric model. For discrete data, that histogram directly defines an empirical PMF: the probability assigned to value k is the number of sample observations equal to k divided by n. So the apparently informal picture of a histogram is actually a concrete probability distribution that the computer can sample from.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p32_38c0131b65",
+        "cs109_19_sampling_bootstrap_annotated_p52_af07371a26"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Connects histogram to empirical PMF for discrete data",
+          "States probability as relative frequency",
+          "Explains why this matters for computation/resampling"
+        ],
+        "partial_credit": [
+          "Mentions histogram and relative frequencies loosely",
+          "Understands it is an estimate of the distribution but not how it becomes a PMF"
+        ],
+        "common_mistakes": [
+          "Treating histogram as merely visual and not probabilistic",
+          "Assuming a smooth density is required before bootstrapping",
+          "Ignoring discreteness and frequency counts"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If a value never appears in the sample, what probability does the empirical PMF assign to it, and what consequence does that have for bootstrap resamples?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "How would you compute the bootstrap probability of drawing value k from a discrete sample?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from sampling bootstrapping; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Treating histogram as merely visual and not probabilistic. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0020",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A scientist has time-series data observed across consecutive days and wants to use the standard bootstrap described in lecture. She argues, 'I can just treat the days as my sample and resample them iid.' Critique this plan using the lecture\u2019s assumptions, but keep your answer focused on first principles rather than specialized time-series methods.",
+      "expected_answer": "The main critique is that the lecture\u2019s standard bootstrap assumes the original sample is iid. Consecutive daily observations often have dependence, trends, or serial correlation, so treating days as interchangeable iid draws may break the logic that the empirical distribution approximates the data-generating mechanism. Then resampling individual days independently can destroy the dependence structure and yield a misleading sampling distribution for the statistic. The problem is not that bootstrap is impossible in principle, but that this standard iid bootstrap is not justified without the iid assumption.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p54_d0e2d8fe3c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies violation of iid due to dependence across days",
+          "Explains why independent resampling from empirical distribution is then misaligned with the data-generating process",
+          "Keeps critique at principle level"
+        ],
+        "partial_credit": [
+          "Says time series may be problematic but not why",
+          "Mentions dependence without linking it to bootstrap validity"
+        ],
+        "common_mistakes": [
+          "Saying bootstrap only fails for long tails, not dependence",
+          "Treating ordered observations as automatically iid because sample size is large",
+          "Jumping to advanced remedies without first identifying the assumption failure"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the scientist insisted the daily observations were independent but not identically distributed because of a trend, would standard bootstrap still be conceptually justified?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does the iid assumption contribute here: independence, identical distribution, or both?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying bootstrap only fails for long tails, not dependence. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0021",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "After seeing a bootstrap distribution of the sample mean, a student concludes, 'This shows where future individual observations will lie.' Explain why that interpretation is wrong, and say what kind of random quantity the bootstrap distribution is actually about.",
+      "expected_answer": "That interpretation is wrong because the bootstrap distribution shown is for the sample mean, not for individual data points. Its variability reflects how averages of whole samples of size n fluctuate under repeated sampling from the empirical distribution. Future individual observations come from the population-level data distribution, which is a different random quantity and usually much more variable than the sample mean.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p36_5ee070b082",
+        "cs109_19_sampling_bootstrap_annotated_p33_a57db77c85"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects confusion between distribution of observations and distribution of a statistic",
+          "Identifies the statistic as the sample mean over resamples",
+          "Explains why individual observations and means have different variability"
+        ],
+        "partial_credit": [
+          "Says 'wrong distribution' without specifying which two are confused",
+          "Identifies means versus observations but does not explain the consequence"
+        ],
+        "common_mistakes": [
+          "Treating all distributions built from the sample as interchangeable",
+          "Saying bootstrap mean distribution predicts next observation directly",
+          "Ignoring the role of sample size in averaging"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would a bootstrap distribution for the sample median also generally be narrower than the raw data distribution? Why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What exactly is being recomputed on each resample in the example you are discussing: an observation or a mean?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from sampling bootstrapping.",
+        "Watch out for this common trap: Treating all distributions built from the sample as interchangeable. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0022",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "You have 25 observations and want to compare bootstrapping the mean versus bootstrapping the variance. Without invoking formulas, explain why the bootstrap distribution for the variance might look qualitatively more irregular than the one for the mean, even when both are based on the same resamples.",
+      "expected_answer": "The variance is more sensitive to the exact presence and multiplicity of extreme values in a resample because it squares deviations, so repeated inclusion or omission of unusually large or small observations can change it a lot. The mean also changes with resampling, but it averages linearly and is often smoother in behavior. Therefore, using the same bootstrap resamples, the distribution of bootstrap variances can be more skewed, wider, or rougher-looking than the distribution of bootstrap means, especially in smaller samples.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p38_p39_9dc7c60e9c",
+        "cs109_19_sampling_bootstrap_annotated_p43_96e15597e5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Contrasts sensitivity of variance vs mean to extremes and duplicate draws",
+          "Explains qualitative irregularity in bootstrap distribution of variance",
+          "Mentions role of same resamples leading to different statistic behavior"
+        ],
+        "partial_credit": [
+          "Says variance is 'more variable' without explaining why",
+          "Attributes difference only to sample size"
+        ],
+        "common_mistakes": [
+          "Assuming all statistics have similarly shaped bootstrap distributions",
+          "Confusing raw data spread with spread of bootstrap statistic distributions",
+          "Claiming variance bootstrap is irregular because algorithm changes"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would this qualitative difference likely change if the original sample size were much larger?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which statistic reacts more strongly when one extreme observation is duplicated several times in a resample: the mean or the variance? Why?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Assuming all statistics have similarly shaped bootstrap distributions. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0023",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A classmate says: \"If I have a sample of size 200, then a bootstrap resample should contain each of the 200 original observations exactly once, just in a different order. Otherwise we are changing the data.\" Explain carefully why this statement is wrong, and why bootstrap resampling is done with replacement rather than without replacement.",
+      "expected_answer": "A strong answer should say that the bootstrap treats the observed sample as an estimate of the population PMF or distribution. A bootstrap resample is therefore generated by drawing 200 times from that estimated PMF with replacement, so some original observations may appear multiple times and some may not appear at all in a given resample. If we resampled without replacement and kept the same size, we would mostly just permute the original sample, which would not recreate the variability we want in the sampling distribution of a statistic. Sampling with replacement is what lets us simulate the idea of drawing a fresh iid sample from the underlying population estimate.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p53_6222fa1d83",
+        "cs109_19_sampling_bootstrap_annotated_p43_96e15597e5",
+        "cs109_06_section_soln_clt_sec1_part2_cfea372a3f",
+        "cs109_19_sampling_bootstrap_annotated_p32_38c0131b65"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that the sample is used to estimate the population PMF/distribution.",
+          "States that bootstrap draws are with replacement.",
+          "Explains that duplicates and omissions in a resample are expected, not errors.",
+          "Justifies why without-replacement resampling would fail to capture sampling variability when resample size equals original size."
+        ],
+        "partial_credit": [
+          "Mentions with replacement but gives only an intuitive reason.",
+          "Says duplicates can occur but does not connect this to estimating a sampling distribution.",
+          "Recognizes that without replacement would just shuffle the data, but does not explain why that is a problem."
+        ],
+        "common_mistakes": [
+          "Claiming bootstrap resamples should be permutations of the original data.",
+          "Saying replacement is used only so the resample can be larger than the original sample.",
+          "Confusing the sample distribution with the sampling distribution of a statistic."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose your statistic is the sample median instead of the sample mean. Why does the same resampling logic still apply?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you resample 200 points without replacement from 200 observed points, what possible datasets can you get, and how much would a statistic like the mean vary across them?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from sampling bootstrapping.",
+        "Watch out for this common trap: Claiming bootstrap resamples should be permutations of the original data. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0024",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "You observe the sample [2, 2, 5, 9]. Without doing 10,000 simulations, describe exactly what empirical PMF the bootstrap uses, and explain how you would estimate the sampling distribution of the sample mean from it. Then compare the center of that bootstrap distribution to the original sample mean and justify your claim.",
+      "expected_answer": "The empirical PMF places probability 2/4 on value 2, probability 1/4 on value 5, and probability 1/4 on value 9, because those are the observed frequencies in the sample. To bootstrap the sample mean, we repeatedly draw 4 iid values from this empirical PMF with replacement and compute the mean of each resample; the resulting collection of means approximates the sampling distribution of the sample mean under the estimated population. The original sample mean is (2+2+5+9)/4 = 4.5. The bootstrap distribution of the sample mean should also be centered at 4.5, because the expected value of a draw from the empirical PMF equals the sample mean, so the expected mean of a bootstrap resample matches the original sample mean.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p32_38c0131b65",
+        "cs109_19_sampling_bootstrap_annotated_p36_5ee070b082",
+        "cs109_19_sampling_bootstrap_annotated_p37_7fdcaaf36b",
+        "cs109_19_sampling_bootstrap_annotated_p53_6222fa1d83"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly constructs the empirical PMF from observed frequencies.",
+          "Describes resampling 4 observations with replacement from that PMF.",
+          "Explains that repeating this many times yields an approximate distribution of the sample mean.",
+          "Correctly computes the original sample mean as 4.5 and explains why the bootstrap mean distribution is centered there."
+        ],
+        "partial_credit": [
+          "Gets the PMF right but is vague about the simulation procedure.",
+          "Describes the algorithm correctly but does not justify the center of the bootstrap distribution.",
+          "Computes the sample mean correctly but gives only an intuitive, not probabilistic, explanation of centering."
+        ],
+        "common_mistakes": [
+          "Using probabilities 1/4,1/4,1/4 for the distinct values and ignoring the duplicate 2.",
+          "Sampling without replacement.",
+          "Saying the bootstrap distribution is centered at the population mean, which is unknown."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the statistic were sample variance instead, what changes in the algorithm, and what stays the same?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What probability would the bootstrap assign to the value 2, and why is it not 1/3?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using probabilities 1/4,1/4,1/4 for the distinct values and ignoring the duplicate 2. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0025",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A startup measures daily spending per user. The data are iid, but a few users spend vastly more than everyone else, producing an extremely long right tail. A teammate says, \"Bootstrap works for any statistic, so let's use it to estimate uncertainty for the sample mean.\" Based on the lecture caveat, how would you respond? Give a nuanced answer: what assumption is satisfied here, what assumption is questionable, and what practical consequence might that have for the bootstrap estimate.",
+      "expected_answer": "A strong answer should say that one key assumption is satisfied: the observations are iid. However, the lecture also warns that bootstrap works well only when the underlying distribution does not have a long tail, so that assumption is questionable here. With a very long-tailed distribution, a small sample may badly underrepresent or overrepresent rare extreme values, and the empirical distribution may be a poor stand-in for the true population tail. As a result, the bootstrap distribution for the sample mean can be unstable or misleading, especially because the mean is highly sensitive to outliers. The student should not say bootstrap is impossible in principle, but should explain that the caveat means we should be cautious and perhaps prefer a more robust statistic or collect more data.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p54_d0e2d8fe3c",
+        "cs109_19_sampling_bootstrap_annotated_p32_38c0131b65",
+        "cs109_19_sampling_bootstrap_annotated_p33_a57db77c85"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies iid as satisfied in the scenario.",
+          "Identifies the long-tail caveat as the problematic assumption.",
+          "Explains why long tails are troublesome for bootstrap approximation of the mean.",
+          "Discusses the practical impact: unstable or misleading uncertainty estimates, especially for the mean."
+        ],
+        "partial_credit": [
+          "Mentions long tails are bad but does not explain why.",
+          "Says only that outliers are a problem, without connecting to the empirical distribution approximation.",
+          "Suggests caution but provides no reasoning about assumptions."
+        ],
+        "common_mistakes": [
+          "Claiming iid alone is sufficient for bootstrap validity in all cases.",
+          "Saying bootstrap never works with skewed data of any kind.",
+          "Confusing long tail issues with dependence issues."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What statistic might you prefer over the mean in this setting if you wanted a more robust summary, and why might bootstrap behave better for it?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "The lecture gave two caveats. Can you name both, and say which one is the concern in this startup example?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming iid alone is sufficient for bootstrap validity in all cases. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0026",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "conceptual_depth",
+      "difficulty": "medium",
+      "question": "Explain the difference between these two objects in the bootstrap story: the sample distribution and the sampling distribution of a statistic. Your answer should use the phrase \"estimate the PMF using the sample\" and should make clear why students often confuse the two.",
+      "expected_answer": "The sample distribution is the empirical distribution of the observed data itself, essentially the histogram or estimated PMF obtained from the sample. In bootstrap, we first estimate the PMF using the sample; that empirical distribution is our stand-in for the unknown population. The sampling distribution of a statistic is different: it is the distribution of a quantity like the sample mean or sample variance across many repeated samples of the same size. Bootstrap uses the sample distribution as input, then repeatedly resamples from it and recomputes the statistic to approximate the sampling distribution of that statistic. Students confuse them because both are distributions built from the same observed data, but one is a distribution over raw data values and the other is a distribution over computed summary statistics.",
+      "source_chunk_ids": [
+        "cs109_19_sampling_bootstrap_annotated_p32_38c0131b65",
+        "cs109_19_sampling_bootstrap_annotated_p33_a57db77c85",
+        "cs109_19_sampling_bootstrap_annotated_p37_7fdcaaf36b"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines the sample distribution as the empirical distribution/histogram/estimated PMF of observed values.",
+          "Defines the sampling distribution as the distribution of a statistic over repeated samples.",
+          "Explains that bootstrap uses the first to simulate the second.",
+          "Explicitly distinguishes distributions over data values versus distributions over statistics."
+        ],
+        "partial_credit": [
+          "Gives partially correct definitions but blurs the distinction.",
+          "States the algorithm but does not explain the conceptual difference.",
+          "Recognizes one is about means/variances and the other about data, but lacks precision."
+        ],
+        "common_mistakes": [
+          "Saying the sample distribution and sampling distribution are the same thing.",
+          "Describing the bootstrap output as another estimate of the population distribution rather than of the statistic's distribution.",
+          "Failing to distinguish values from statistics computed from values."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If your statistic is the sample variance, what are the random outcomes in the bootstrap distribution: raw observations or variance values?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Take the sample [1, 4, 4]. What is the sample distribution, and what would one point in the sampling distribution of the mean look like?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from sampling bootstrapping; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying the sample distribution and sampling distribution are the same thing. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_sampling_bootstrapping_0027",
+      "course": "CS109",
+      "topic_id": "sampling_bootstrapping",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are comparing two small classes' exam scores and want a p-value for the difference in their average scores. A peer proposes bootstrapping each class separately from its own data and then checking how often the bootstrapped mean difference is as large as the observed one. Another peer says you should first combine the two samples into one 'universal sample' before resampling. Which approach is appropriate for testing the null hypothesis of equal means, and why?",
+      "expected_answer": "For a p-value under the null hypothesis that the two groups come from the same distribution or have the same mean under a shared null model, the appropriate bootstrap-style idea from the lecture is to first create a universal combined sample that represents the null world. Then we resample new groups of the original sizes from that combined pool and compute the difference in means repeatedly. This recreates the null hypothesis because both groups are drawn from the same estimated distribution. If we bootstrap each class separately from its own data, we preserve the observed difference between the groups rather than imposing the null, so that procedure is better for estimating uncertainty around the observed group means, not for generating a null distribution for a p-value.",
+      "source_chunk_ids": [
+        "cs109_20_mle_annotated_p5_45b3167180",
+        "cs109_19_sampling_bootstrap_annotated_p37_7fdcaaf36b",
+        "cs109_19_sampling_bootstrap_annotated_p29_2ad960cadc"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Chooses the combined or universal sample approach for the hypothesis test.",
+          "Explains that combining recreates the null hypothesis of no group difference.",
+          "Explains that separate bootstrapping preserves the observed difference and therefore does not generate the correct null distribution.",
+          "Distinguishes between estimating sampling variability and computing a p-value under a null."
+        ],
+        "partial_credit": [
+          "Chooses the combined approach but gives only an intuitive explanation.",
+          "Recognizes that separate resampling is wrong for a p-value but cannot explain what distribution it estimates instead.",
+          "Mentions the null hypothesis but does not connect it to the resampling scheme."
+        ],
+        "common_mistakes": [
+          "Bootstrapping each group separately for a null-hypothesis p-value.",
+          "Thinking any bootstrap procedure automatically gives a valid p-value.",
+          "Failing to distinguish a confidence-style bootstrap from a hypothesis-test null simulation."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the groups have sizes 12 and 18, how should those sizes be used during the resampling step from the combined sample?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What distribution are you trying to simulate when computing a p-value: the distribution under the observed data-generating difference, or under the null hypothesis?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Bootstrapping each group separately for a null-hypothesis p-value. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    }
+  ]
+}

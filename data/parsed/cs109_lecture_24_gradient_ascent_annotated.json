@@ -1,0 +1,291 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/24_gradient_ascent_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/24_gradient_ascent_annotated.pdf",
+  "sha256": "c0d87b81e64048e12e575ebb6bff445f97181ef77a54953975b104d357f9c6ae",
+  "title_guess": "24 gradient ascent annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "24: Linear Regression \nand Gradient Ascent\nJerry Cain and Matt Harvill\nMay 24, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 110
+    },
+    {
+      "page_index": 1,
+      "text": "and Learn\nnaively",
+      "char_count": 17
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nWhat is Bayes doing in my mail server?\n3\nLet’s get Bayesian on your spam:\nContent analysis details:   (49.5 hits, 7.0 required)\n 0.9 RCVD_IN_PBL            RBL: Received via a relay in Spamhaus PBL\n                            [93.40.189.29 listed in zen.spamhaus.org]\n 1.5 URIBL_WS_SURBL         Contains an URL listed in the WS SURBL blocklist\n                            [URIs: recragas.cn]\n 5.0 URIBL_JP_SURBL         Contains an URL listed in the JP SURBL blocklist\n                            [URIs: recragas.cn]\n 5.0 URIBL_OB_SURBL         Contains an URL listed in the OB SURBL blocklist\n                            [URIs: recragas.cn]\n 5.0 URIBL_SC_SURBL         Contains an URL listed in the SC SURBL blocklist\n                            [URIs: recragas.cn]\n 2.0 URIBL_BLACK            Contains an URL listed in the URIBL blacklist\n                            [URIs: recragas.cn]\n 8.0 BAYES_99               BODY: Bayesian spam probability is 99 to 100%\n                            [score: 1.0000]",
+      "char_count": 1080
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nEmail classification\nGoal \n \nBased on email content 𝑿, predict if email is spam or not.\nFeatures \nConsider a lexicon 𝑚 words (for English: 𝑚≈100,000).\n𝑿= 𝑋!, 𝑋\", … , 𝑋# , 𝑚 indicator variables\n𝑋$ = 1 if word 𝑗 appeared in document\nOutput  \n𝑌= 1 if email is spam\nNote: 𝑚 is huge. Make Naïve Bayes assumption:\n4\n𝑃𝑿|spam = %\n!\"#\n$\n𝑃𝑋!|spam\nAppearances of words in email are conditionally independent \ngiven the email is spam or not",
+      "char_count": 501
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nTraining: Naïve Bayes Email classification\nTrain set \n \n 𝑛 previous emails 𝒙! , 𝑦! , 𝒙\" , 𝑦\" , …, 𝒙% , 𝑦%\n𝒙& = 𝑥!\n& , 𝑥\"\n& , … , 𝑥#\n&\n𝑦& = 1 if spam, 0 if not spam\nNote: 𝑚 is huge. \nWhich estimator should\nwe use for 0𝑃𝑋$|𝑌?\n5\nfor each word, whether it \nappears in email 𝑖\nA. MLE\nB. Laplace estimate (MAP)\nC. Other MAP estimate\nD. Both A and B\nMany words are \nlikely to not \nappear at all in \nthe training set!",
+      "char_count": 482
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nEx 3. Naïve Bayes Classiﬁer (𝑚, 𝑛 large)\n6\n0𝑌= arg max\n'( ),!\n9\n$(!\n#\n0𝑃𝑋$|𝑌\n0𝑃𝑌\n6\n∀𝑗:\n0𝑃𝑌= 1 , 0𝑃𝑌= 0  \n0𝑃𝑋$ = 1|𝑌= 0 , 0𝑃𝑋$ = 0|𝑌= 0 ,\n0𝑃𝑋$ = 1|𝑌= 1 , 0𝑃𝑋$ = 0|𝑌= 0 ,\nTesting\nTraining\nUse MLE or\nLaplace (MAP)\n0𝑌= arg max\n'( ),!\n9\n$(!\n#\n0𝑃𝑋$|𝑌\n0𝑃𝑌\nLaplace (MAP) estimates avoid estimating \n0 probabilities for events that don’t occur \nin your training data.",
+      "char_count": 431
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nTesting: Naïve Bayes Email classification\nFor a new email:\n• Generate 𝑿= 𝑋#, 𝑋%, … , 𝑋$\n• Classify as spam or not using Naïve Bayes assumption\nNote: 𝑚 is huge.\nSuppose train set size 𝑛 also huge (many labeled emails).\nCan we still use the below prediction?\n7\n0𝑌= arg max\n'( ),!\n9\n$(!\n#\n0𝑃𝑋$|𝑌\n0𝑃𝑌",
+      "char_count": 369
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nTesting: Naïve Bayes Email classification\nFor a new email:\n• Generate 𝑿= 𝑋#, 𝑋%, … , 𝑋$\n• Classify as spam or not using Naïve Bayes assumption\nNote: 𝑚 is huge.\nSuppose train set size 𝑛 also huge (many labeled emails).\nCan we still use the below prediction?\n8\n0𝑌= arg max\n'( ),!\n9\n$(!\n#\n0𝑃𝑋$|𝑌\n0𝑃𝑌\nWill probably lead to underflow!",
+      "char_count": 402
+    },
+    {
+      "page_index": 8,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nEx 3. Naïve Bayes Classifier (𝑚, 𝑛 large)\n9\n0𝑌= arg max\n'( ),!\n9\n$(!\n#\n0𝑃𝑋$|𝑌\n0𝑃𝑌\n9\n∀𝑖:\n0𝑃𝑌= 1 , 0𝑃𝑌= 0  \n0𝑃𝑋$ = 1|𝑌= 0 , 0𝑃𝑋$ = 0|𝑌= 0 ,\n0𝑃𝑋$ = 1|𝑌= 1 , 0𝑃𝑋$ = 0|𝑌= 0 ,\nTesting\nTraining\nUse MLE or\nLaplace (MAP)\n0𝑌= arg max\n'( ),!\nlog 0𝑃𝑌+ ?\n$(!\n#\nlog 0𝑃𝑋$|𝑌\nUse sums of log-\nprobabilities for \nnumerical stability.",
+      "char_count": 388
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nHow well does Naïve Bayes perform?\nAfter training, you can test with another set of data, called the test set.\n• Test set also has known values for 𝑌 so we can see how often\nwe were right/wrong in our predictions 0𝑌.\nTypical workflow:\n• Have a dataset of 1789 emails (1578 spam, 211 ham)\n• Train set: First 1538 emails (by time)\n• Test set:  Next 251 messages\nEvaluation criteria on test set:\n10\nprecision = # correctly predicted class 𝑌\n# predicted class 𝑌\nrecall = # correctly predicted class 𝑌\n# real class 𝑌 messages\nSpam\nNon-spam\nPrec.\nRecall\nPrec.\nRecall\nWords only\n \n97.1%\n94.3% 87.7% 93.4%\nWords +\naddtl features\n100%\n98.3% 96.2% 100%",
+      "char_count": 715
+    },
+    {
+      "page_index": 10,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nWhat are precision and recall?\nAccuracy (# correct)/(# total) sometimes just doesn’t cut it.\nPrecision: \nOf the emails you predicted as spam,\n \n \n \nhow many are truly spam?\nRecall:  \nOf the emails that are truly spam,\n \n \n \nhow many did you predict?\n11\nMeasure of \nfalse positives\nMeasure of \nfalse negatives\nMore on Wikipedia (https://en.wikipedia.org/wiki/Precision_and_recall)",
+      "char_count": 452
+    },
+    {
+      "page_index": 11,
+      "text": "Linear \nRegression\n12",
+      "char_count": 21
+    },
+    {
+      "page_index": 12,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nToday’s goals\nWe are going to learn linear regression.\n• Informally known as \"fitting data to a straight line\"\n• Linear models, admittedly, are often too simple for complex datasets\n• Many tasks in computer science call for classification, not regression\nWe still cover this topic so we can learn compelling techniques that will \nhelp us design and understand more complicated learning algorithms:\n1. How to model likelihood of training data 𝒙& , 𝑦&\n \n2. What rules of calculus and argmax are important to remember\n3. What gradient ascent is and why it is useful\n13",
+      "char_count": 638
+    },
+    {
+      "page_index": 13,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nRegression: Predicting real numbers\n14\nTraining data: 𝒙# , 𝑦# , 𝒙% , 𝑦% , …, 𝒙& , 𝑦&\nCO2 levels\nOutput\n…\nYear 1 \n 338.8 \n  \n 0.26 \nYear 2 \n 340.0 \n \n 0.32 \n     …\nYear 𝑛 \n 340.76 \n \n 0.14\nGlobal Land-\nOcean\ntemperature\nReview\n𝑿= 𝑋#\n(assume one feature)\n𝑌∈ℝ\nModel:\n$𝑌= 𝑔𝑿,\nfor some parametric \nfunction 𝑔",
+      "char_count": 376
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nLinear Regression\nAssume linear model\n(and 𝑿 is 1-D):\n15\nLearn parameters 𝜃= 𝑎, 𝑏 \nTraining data: 𝑥! , 𝑦! , 𝑥\" , 𝑦\" , …, 𝑥% , 𝑦%\nTraining\nTwo approaches:\n• Analytical solution via mean squared error\n• Iterative solution via MLE and gradient ascent\n$𝑌= 𝑔𝑿= 𝑎𝑋+ 𝑏",
+      "char_count": 334
+    },
+    {
+      "page_index": 15,
+      "text": "Linear \nRegression: \nMSE\n16",
+      "char_count": 27
+    },
+    {
+      "page_index": 16,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nMean Squared Error (MSE)\nFor most regressions, we generally choose a 𝑔𝑋 that minimizes MSE:\n𝜃+,- = arg min\n.\n 𝐸\n𝑌−0𝑌\n\"  = arg min\n.\n 𝐸\n𝑌−𝑔𝑋\n\"\n• 𝑌 and 0𝑌= 𝑔𝑋 are both random variables\n• Intuitively: Choose parameter 𝜃 that minimizes the expected squared \ndeviation—what can be called an error—of your 0𝑌 predictor from true 𝑌\nFor linear regression, where 0𝑌= 𝑎𝑋+ 𝑏 (so that 𝜃= 𝑎, 𝑏): \n𝐸\n𝑌−𝑎𝑋−𝑏\"\n17",
+      "char_count": 469
+    },
+    {
+      "page_index": 17,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nDon’t make me go nonlinear!\n𝜃+,- = arg min\n.( /,0\n𝐸\n𝑌−𝑎𝑋−𝑏\"\nCan we compute these statistics for 𝑋 and 𝑌 from our training data?\nTraining data: \n𝑥! , 𝑦! , 𝑥\" , 𝑦\" , …, 𝑥% , 𝑦%\n18\n𝑎+,- = 𝜌𝑋, 𝑌𝜎1\n𝜎2\n, −𝑏+,- = 𝜇1 −𝑎+,- 𝜇2\nTechnically no, but we can estimate them!\n(derivation included at the end of slides)",
+      "char_count": 375
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nDon’t make me go nonlinear!\n𝜃+,- = arg min\n.( /,0\n𝐸\n𝑌−𝑎𝑋−𝑏\"\nCan we compute these statistics for 𝑋 and 𝑌 from our training data?\nTraining data: \n𝑥! , 𝑦! , 𝑥\" , 𝑦\" , …, 𝑥% , 𝑦%\n19\nEstimate parameters \nbased on observed \ntraining data:\nT𝑎+,- = T𝜌𝑋, 𝑌𝑆1\n𝑆2\n,\n0𝑏+,- = V𝑌−T𝑎+,- V𝑋\n'𝜌𝑋, 𝑌: \nSample \ncorrelation \n(Wikipedia)\n𝑎+,- = 𝜌𝑋, 𝑌𝜎1\n𝜎2\n, −𝑏+,- = 𝜇1 −𝑎+,- 𝜇2\n(derivation included at the end of slides)",
+      "char_count": 472
+    },
+    {
+      "page_index": 19,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nSummary: Linear Regression\nAssume linear model (and 𝑿 is 1-D):\n   \nIf we want to minimize the mean squared error of our prediction, \n20\nLearn parameters 𝜃= 𝑎, 𝑏 \nTraining data: 𝑥! , 𝑦! , 𝑥\" , 𝑦\" , …, 𝑥% , 𝑦%\nTraining\n$𝑌= 𝑔𝑿= 𝑎𝑋+ 𝑏\nT𝑎+,- = T𝜌𝑋, 𝑌𝑆1\n𝑆2\n,\n0𝑏+,- = V𝑌−T𝑎+,- V𝑋",
+      "char_count": 345
+    },
+    {
+      "page_index": 20,
+      "text": "Linear \nRegression: \nMLE\n21",
+      "char_count": 27
+    },
+    {
+      "page_index": 21,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nLinear Regression\nAssume linear model\n(and 𝑿 is 1-D, i.e., 𝑿= 𝑋):\nWe’ve seen which parameters—that is, what choices of a and b—minimize \nmean squared error: 𝑎+,- and 𝑏+,-, estimated by T𝑎+,- and 0𝑏+,-.\nWhat if we want parameters that maximize \nthe likelihood of the training data?\n22\nLearn parameters 𝜃= 𝑎, 𝑏 \nTraining data: 𝑥! , 𝑦! , 𝑥\" , 𝑦\" , …, 𝑥% , 𝑦%\nTraining\nReview\nNote: Maximizing likelihood is \ntypically an objective for \nclassification models.\n$𝑌= 𝑔𝑿= 𝑎𝑋+ 𝑏",
+      "char_count": 541
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nLikelihood, it’s been a minute\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋%.\n• 𝑋& was drawn from some distribution with density function 𝑓𝑋&|𝜃.\n• Observed sample: 𝑋!, 𝑋\", … , 𝑋%\nLikelihood question:\nHow likely is the observed sample 𝑋!, 𝑋\", … , 𝑋%  given parameter 𝜃? \nLikelihood function, 𝐿𝜃:\n23\nThis is just a product, since 𝑋- are iid\n= 9\n&(!\n%\n𝑓𝑋&|𝜃\n𝐿𝜃= 𝑓𝑋!, 𝑋\", … , 𝑋%|𝜃\nReview",
+      "char_count": 469
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nLikelihood of the training data\nTraining data (𝑛 datapoints):\n•\n𝑥- , 𝑦-\n drawn iid from a distribution 𝑓𝑋= 𝑥- , 𝑌= 𝑦- |𝜃= 𝑓𝑥- , 𝑦- |𝜃\n•\n1𝑌= 𝑔𝑋, where 𝑔 is a function on 𝑋 and parameter 𝜃\nWe can show that 𝜃+3- maximizes the\nlog conditional likelihood function:\n24\n𝜃+3- = arg max\n.\n?\n&(!\n%\nlog 𝑓𝑦& | 𝑥& , 𝜃\n(shorthand)",
+      "char_count": 389
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nLinear Regression, MLE\n1. Assume linear model\n(and 𝑿 is 1-D):\n2. Define maximum likelihood\nestimator:\n• Drama: We have a model for 0𝑌, not 𝑌\n• Remember the MSE approach, where we minimize the squared error \nbetween 0𝑌 and 𝑌?\n• Here we model this error directly!\n25\n$𝑌= 𝑔𝑿= 𝑎𝑋+ 𝑏\n𝜃+3- = arg max\n.\n?\n&(!\n%\nlog 𝑓𝑦& | 𝑥& , 𝜃\n⚠\nerror/noise\n(also random)\n𝑌= '𝑌+ 𝑍\n= 𝑎𝑋+ 𝑏+ 𝑍",
+      "char_count": 441
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nMinimum Mean Squared Error\n𝜃+,- = arg min\n.\n𝐸\n𝑌−𝑔𝑋\n\"\n• Don’t directly model 𝑌 (or any errors)\n• Parameters are estimates of\nstatistics from training data:\n3𝑎./0 = 3𝜌𝑋, 𝑌𝑆1\n𝑆2\n 1𝑏./0 = 8𝑌−3𝑎./0 8𝑋\nMaximum Likelihood Estimation\n• Directly model error between\npredicted 1𝑌 and 𝑌 as an RV 𝑍\n𝑌= 1𝑌+ 𝑍= 𝑎𝑋+ 𝑏+ 𝑍\n26\nComparison: MSE vs MLE\n$𝑌= 𝑔𝑿= 𝑎𝑋+ 𝑏\n𝜃+3- = arg max\n.\n?\n&(!\n%\nlog 𝑓𝑦& | 𝑥& , 𝜃\nIf we assume error 𝑍~𝒩0, 𝜎% , then \nthese two estimators are equivalent.\n𝜃./0 = 𝜃.30!",
+      "char_count": 546
+    },
+    {
+      "page_index": 26,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nLinear Regression, MLE (next steps)\n1. Assume linear model\n(and 𝑿 is 1-D):\n2. Define maximum likelihood\nestimator:\n3. Model error, 𝑍:\n4. Pick 𝜃= 𝑎, 𝑏 that maximizes\nlikelihood of training data\n27\n$𝑌= 𝑔𝑿= 𝑎𝑋+ 𝑏\n𝜃+3- = arg max\n.\n?\n&(!\n%\nlog 𝑓𝑦& | 𝑥& , 𝜃\n𝑌= 𝑎𝑋+ 𝑏+ 𝑍, where Z~𝒩0, 𝜎!\nWe won’t find a solution analytically. \nInstead, we’ll leverage gradient ascent, an \niterative optimization algorithm.",
+      "char_count": 471
+    },
+    {
+      "page_index": 27,
+      "text": "Gradient \nAscent\n28",
+      "char_count": 19
+    },
+    {
+      "page_index": 28,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nMultiple ways to calculate argmax\n29\nLet 𝑓𝑥= −𝑥\" + 4, \nwhere −2 < 𝑥< 2.\nWhat is arg max\n4\n 𝑓𝑥?\n0\n1\n2\n3\n4\n-2\n-1\n0\n1\n2\n𝑓𝑥\n𝑥\nA. Graph and guess\nB. Differentiate,\nset derivative to \n0, and solve\nC. Gradient ascent: educated \nguess & iteratively update\n𝑑𝑓\n𝑑𝑥= −2𝑥= 0\n𝑥= 0\n0\n1\n2\n3\n4\n-2\n-1\n0\n1\n2\n𝑓𝑥\n𝑥\nobjective function",
+      "char_count": 385
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nGradient ascent\nWalk uphill and you’ll find a local maxima\n(if your step is small enough).\n30\n𝐿𝜃\n𝜃\"\n𝜃!\nIf your function is concave,\nLocal maxima = global maxima",
+      "char_count": 233
+    },
+    {
+      "page_index": 30,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nGradient ascent algorithm\n31\nLet 𝑓𝑥= −𝑥\" + 4, \nwhere −2 < 𝑥< 2.\nGradient ascent algorithm:\ninitialize x\nrepeat many times:\n  compute gradient\nx += η * gradient\nWalk uphill and you’ll find a local maxima\n(if your step is small enough).\n𝑑𝑓\n𝑑𝑥= −2𝑥\nGradient at 𝑥\n1.\n2.\n(demo)",
+      "char_count": 345
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nLinear Regression, MLE (so far)\nAssume linear model\n(and 𝑿 is 1-D):\nModel 𝑌 as 0𝑌+ 𝑍:\nPick 𝜃= 𝑎, 𝑏 that maximizes\nlikelihood of training data\n32\n$𝑌= 𝑔𝑿= 𝑎𝑋+ 𝑏\n𝑌= 𝑎𝑋+ 𝑏+ 𝑍, where 𝑍~𝒩0, 𝜎!\n𝜃.30 = arg max\n4\n𝐿𝐿𝜃\n(𝜃!\"# also maximizes\nlog conditional likelihood)\n= arg max\n4\nG\n-\"#\n&\nlog 𝑓𝑦- | 𝑥- , 𝜃\n= arg max\n4\nG\n-\"#\n&\nlog 𝑓𝑥- , 𝑦- , |𝜃",
+      "char_count": 404
+    },
+    {
+      "page_index": 32,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nComputing the MLE with gradient ascent\nGeneral approach for finding 𝜃+3- , the MLE of 𝜃:\n33\n1. Determine formula \nfor 𝐿𝐿𝜃\n2. Differentiate 𝐿𝐿𝜃\nw.r.t. (each) 𝜃\n3. Solve resulting \nequations\n(computer)\nGradient Ascent\nlog conditional likelihood\nG\n-\"#\n&\nlog 𝑓𝑦- | 𝑥- , 𝜃\n𝜕\n𝜕𝜃!\nG\n-\"#\n&\nlog 𝑓𝑦- | 𝑥- , 𝜃",
+      "char_count": 371
+    },
+    {
+      "page_index": 33,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n1. Determine formula for log conditional likelihood\n34\n𝜃= 𝑎, 𝑏 \n𝑌= 𝑎𝑋+ 𝑏+ 𝑍 \n𝑍~𝒩0, 𝜎%  \narg max\n$\n<\n%&'\n(\nlog 𝑓𝑦% | 𝑥% , 𝜃\nModel:\nOptimization \nproblem:\narg max\n#\n−<\n$%\"\n&\n𝑦$ −𝑎𝑥$ −𝑏\n!\nOver the next few slides, we will show that \nour MLE linear regression 𝜃+3- reduces to\nobjective function",
+      "char_count": 363
+    },
+    {
+      "page_index": 34,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n1. Determine formula for log conditional likelihood\n1. What is the conditional\ndistribution, 𝑌|𝑋, 𝜃?\n2. Substitute 1. into objective fn.\n3. Use argmax properties\nto simplify objective fn.\n35\n𝜃= 𝑎, 𝑏 \n𝑌= 𝑎𝑋+ 𝑏+ 𝑍 \n𝑍~𝒩0, 𝜎%  \narg max\n$\n<\n%&'\n(\nlog 𝑓𝑦% | 𝑥% , 𝜃\nModel:\nOptimization \nproblem:\narg max\n!\n−<\n\"#$\n%\n𝑦\" −𝑎𝑥\" −𝑏\n&\ngoal",
+      "char_count": 398
+    },
+    {
+      "page_index": 35,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n1. Determine formula for log conditional likelihood\n1. What is the conditional\ndistribution, 𝑌|𝑋, 𝜃?\n2. Substitute 1. into objective fn.\n36\n𝜃= 𝑎, 𝑏 \n𝑌= 𝑎𝑋+ 𝑏+ 𝑍 \n𝑍~𝒩0, 𝜎%  \n= arg max\n$\n<\n%&'\n(\nlog\n1\n2𝜋𝜎𝑒) * ' )+, ' )-\n(/ /0(\n \n= arg max\n$\n<\n%&'\n(\n−log\n2𝜋𝜎−1\n2𝜎/ <\n%&'\n(\n𝑦% −𝑎𝑥% −𝑏\n/\nusing \nnatural log\narg max\n$\n<\n%&'\n(\nlog 𝑓𝑦% | 𝑥% , 𝜃\n𝑌|𝑋, 𝜃~ 𝒩𝑎𝑋+ 𝑏, 𝜎%\n𝑓𝑦- | 𝑥- , 𝜃=\n1\n2𝜋𝜎\n𝑒A B ! A CD ! EF\n\"\n/ %H\"\narg max\n$\n<\n%&'\n(\nlog 𝑓𝑦% | 𝑥% , 𝜃\nModel:\nOptimization \nproblem:",
+      "char_count": 538
+    },
+    {
+      "page_index": 36,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n1. Determine formula for log conditional likelihood\n3. Use argmax properties\nto simplify objective fn.\n37\n𝜃= 𝑎, 𝑏 \n𝑌= 𝑎𝑋+ 𝑏+ 𝑍 \n𝑍~𝒩0, 𝜎%  \nModel:\narg max\n$\n'\n%&'\n(\n−log\n2𝜋𝜎−\n1\n2𝜎/ '\n%&'\n(\n𝑦% −𝑎𝑥% −𝑏\n/\n(from previous slide)\n= arg max\n$\n−1\n2𝜎/ '\n%&'\n(\n𝑦% −𝑎𝑥% −𝑏\n/\n= arg max\n$\n−'\n%&'\n(\n𝑦% −𝑎𝑥% −𝑏\n/\nOptimization \nproblem:\narg max\n$\n<\n%&'\n(\nlog 𝑓𝑦% | 𝑥% , 𝜃\nArgmax refresher #1:\nInvariant to additive constants\nArgmax refresher #2:\nInvariant to positive constant scalars",
+      "char_count": 540
+    },
+    {
+      "page_index": 37,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n1. Determine formula for log conditional likelihood\n4. Celebrate!\n38\n𝜃= 𝑎, 𝑏 \n𝑌= 𝑎𝑋+ 𝑏+ 𝑍 \n𝑍~𝒩0, 𝜎%  \nModel:\narg max\n#\n−<\n$%\"\n&\n𝑦$ −𝑎𝑥$ −𝑏\n!\n🎉🎉🎊🎊\nOptimization \nproblem:\narg max\n$\n<\n%&'\n(\nlog 𝑓𝑦% | 𝑥% , 𝜃",
+      "char_count": 276
+    },
+    {
+      "page_index": 38,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nComputing the MLE with gradient ascent\nGeneral approach for finding 𝜃+3- , the MLE of 𝜃:\n39\n1. Determine \nformula for 𝐿𝐿𝜃\n2. Differentiate 𝐿𝐿𝜃\nw.r.t. (each) 𝜃\n3. Solve resulting\n(simultaneous) \nequations\n(computer)\nGradient Ascent\nlog conditional likelihood\nG\n-\"#\n&\nlog 𝑓𝑦- | 𝑥- , 𝜃\n𝜕\n𝜕𝜃!\nG\n-\"#\n&\nlog 𝑓𝑦- | 𝑥- , 𝜃\n2-D gradient:\n𝜕ℎ𝜃\n𝜕𝑎\n, 𝜕ℎ𝜃\n𝜕𝑏\nℎ𝜃= −<\n%&'\n(\n𝑦% −𝑎𝑥% −𝑏\n/",
+      "char_count": 442
+    },
+    {
+      "page_index": 39,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n2. Compute gradient\n1. What is the derivative of the \nobjective function w.r.t. 𝑎?\n2. What is the derivative of the \nobjective function wrt 𝑏?\n40\n𝜃= 𝑎, 𝑏 \n𝑌= 𝑎𝑋+ 𝑏+ 𝑍 \n𝑍~𝒩0, 𝜎%  \nModel:\nOptimization \nproblem:\narg max\n$\n−<\n%&'\n(\n𝑦% −𝑎𝑥% −𝑏\n/\n𝜕\n𝜕𝑎−'\n%&'\n(\n𝑦% −𝑎𝑥% −𝑏\n/  =",
+      "char_count": 342
+    },
+    {
+      "page_index": 40,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n2. Compute gradient\n1. What is the derivative of the \nobjective function w.r.t. 𝑎?\n41\n𝜃= 𝑎, 𝑏 \n𝑌= 𝑎𝑋+ 𝑏+ 𝑍 \n𝑍~𝒩0, 𝜎%  \nModel:\nOptimization \nproblem:\nCalculus refresher #1:\nDerivative(sum) = sum(derivative)\nCalculus refresher #2:\nChain rule 🌟 🌟 🌟\n𝜕\n𝜕𝑎−'\n%&'\n(\n𝑦% −𝑎𝑥% −𝑏\n/  =\narg max\n$\n−<\n%&'\n(\n𝑦% −𝑎𝑥% −𝑏\n/",
+      "char_count": 379
+    },
+    {
+      "page_index": 41,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n2. Compute gradient\n1. What is the derivative of the \nobjective function wrt 𝑎?\n2. What is the derivative of the \nobjective function wrt 𝑏?\n42\n𝜃= 𝑎, 𝑏 \n𝑌= 𝑎𝑋+ 𝑏+ 𝑍 \n𝑍~𝒩0, 𝜎%  \nModel:\n'\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\n𝑥%\nOptimization \nproblem:\n'\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\nNext up: We will reach the same solution \ncomputationally with gradient ascent.\nanalytical solution for 𝑎.30, 𝑏.30: Set \nto 0 and solve simultaneous equations\narg max\n$\n−<\n%&'\n(\n𝑦% −𝑎𝑥% −𝑏\n/",
+      "char_count": 514
+    },
+    {
+      "page_index": 42,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nComputing the MLE with gradient ascent\nGeneral approach for finding 𝜃+3- , the MLE of 𝜃:\n43\n1. Determine \nformula for 𝐿𝐿𝜃\n2. Differentiate 𝐿𝐿𝜃\nwrt (each) 𝜃\n3. Solve resulting\n(simultaneous) \nequations\n(computer)\nGradient Ascent\nlog conditional likelihood\nG\n-\"#\n&\nlog 𝑓𝑦- | 𝑥- , 𝜃\n𝜕\n𝜕𝜃!\nG\n-\"#\n&\nlog 𝑓𝑦- | 𝑥- , 𝜃\n𝜕ℎ𝜃\n𝜕𝑎\n= <\n\"#$\n%\n2 𝑦\" −𝑎𝑥\" −𝑏\n𝑥\"\n𝜕ℎ𝜃\n𝜕𝑏\n= <\n\"#$\n%\n2 𝑦\" −𝑎𝑥\" −𝑏\nℎ𝜃= −<\n%&'\n(\n𝑦% −𝑎𝑥% −𝑏\n/",
+      "char_count": 472
+    },
+    {
+      "page_index": 43,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n3. Gradient ascent with multiple parameters (if time)\n44\n𝜕ℎ𝜃\n𝜕𝑎\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\n𝑥%\nOptimization \nproblem:\n= arg max\n4\nℎ𝜃\narg max\n!\n−<\n\"#$\n%\n𝑦\" −𝑎𝑥\" −𝑏\n&\nGradient:\n𝜕ℎ𝜃\n𝜕𝑏\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\ninitialize 𝜃\nrepeat many times:\n  compute gradient\n  𝜃 += η * gradient\nHow does this \nwork for\nmultiple \nparameters?",
+      "char_count": 389
+    },
+    {
+      "page_index": 44,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n3. Gradient ascent with multiple parameters\n45\n𝜕ℎ𝜃\n𝜕𝑎\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\n𝑥%\nOptimization \nproblem:\n= arg max\n4\nℎ𝜃\narg max\n!\n−<\n\"#$\n%\n𝑦\" −𝑎𝑥\" −𝑏\n&\nGradient:\n𝜕ℎ𝜃\n𝜕𝑏\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\nHow do we\npseudocode the\ngradients we \nderived?\na, b = 0, 0  \n \n \n \n \n# initialize 𝜃\nrepeat many times:\n  gradient_a, gradient_b = 0, 0  \n  # TODO: fill in\n  a += η * gradient_a    # 𝜃 += η * gradient\n  b += η * gradient_b",
+      "char_count": 485
+    },
+    {
+      "page_index": 45,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n3. Gradient ascent with multiple parameters\n46\n𝜕ℎ𝜃\n𝜕𝑎\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\n𝑥%\nOptimization \nproblem:\n= arg max\n4\nℎ𝜃\narg max\n!\n−<\n\"#$\n%\n𝑦\" −𝑎𝑥\" −𝑏\n&\nGradient:\n𝜕ℎ𝜃\n𝜕𝑏\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\na, b = 0, 0  \n \n \n \n \n# initialize 𝜃\nrepeat many times:\n  gradient_a, gradient_b = 0, 0\n  for each training example (x, y):\n    diff = y – (a * x + b)\n    gradient_a += 2 * diff * x\n    gradient_b += 2 * diff\n  a += η * gradient_a    # 𝜃 += η * gradient\n  b += η * gradient_b\nFinish computing\ngradient before\nupdating any part \nof 𝜃.\n(demo)",
+      "char_count": 603
+    },
+    {
+      "page_index": 46,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nGlobal land-ocean temperature prediction\n47\nTraining data: 𝒙# , 𝑦# , 𝒙% , 𝑦% , …, 𝒙& , 𝑦&\nCO2 levels\nOutput\n…\nYear 1 \n 338.8 \n  \n 0.26 \nYear 2 \n 340.0 \n \n 0.32 \n     …\nYear 𝑛 \n 340.76 \n \n 0.14\n𝑿= 𝑋#\n(assume one feature)\n𝑌∈ℝ\n𝜃./0 = arg min\n4\n𝐸\n𝑌−𝑔𝑋\n%\n1𝑌= 3𝜌𝑋, 𝑌𝑆1\n𝑆2\n𝑋−8𝑋+ 8𝑌\n𝑎!\"# = 0.01452\n𝑏!\"# = 0.17511\nReview\nMinimizing\nMean Square Error",
+      "char_count": 413
+    },
+    {
+      "page_index": 47,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n3b. Interpret\n48\n𝜕ℎ𝜃\n𝜕𝑎\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\n𝑥%\nOptimization \nproblem:\n= arg max\n4\nℎ𝜃\narg max\n!\n−<\n\"#$\n%\n𝑦\" −𝑎𝑥\" −𝑏\n&\nGradient:\n𝜕ℎ𝜃\n𝜕𝑏\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\na, b = 0, 0  \n \n \n \n \n# initialize 𝜃\nrepeat many times:\n  gradient_a, gradient_b = 0, 0\n  for each training example (x, y):\n    diff = y – (a * x + b)\n    gradient_a += 2 * diff * x\n    gradient_b += 2 * diff\n  a += η * gradient_a    # 𝜃 += η * gradient\n  b += η * gradient_b\nUpdates to\n𝑎 and 𝑏 should\ninclude information\nfrom all 𝑛 training \ndatapoints",
+      "char_count": 586
+    },
+    {
+      "page_index": 48,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n3b. Interpret\n49\n𝜕ℎ𝜃\n𝜕𝑎\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\n𝑥%\nOptimization \nproblem:\n= arg max\n4\nℎ𝜃\narg max\n!\n−<\n\"#$\n%\n𝑦\" −𝑎𝑥\" −𝑏\n&\nGradient:\n𝜕ℎ𝜃\n𝜕𝑏\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\na, b = 0, 0  \n \n \n \n \n# initialize 𝜃\nrepeat many times:\n  gradient_a, gradient_b = 0, 0\n  for each training example (x, y):\n    diff = y – (a * x + b)\n    gradient_a += 2 * diff * x\n    gradient_b += 2 * diff\n  a += η * gradient_a    # 𝜃 += η * gradient\n  b += η * gradient_b\nHow do we interpret \nthe contribution of \nthe i-th training \ndatapoint?",
+      "char_count": 580
+    },
+    {
+      "page_index": 49,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n3b. Interpret\n50\n𝜕ℎ𝜃\n𝜕𝑎\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\n𝑥%\nOptimization \nproblem:\n= arg max\n4\nℎ𝜃\narg max\n!\n−<\n\"#$\n%\n𝑦\" −𝑎𝑥\" −𝑏\n&\nGradient:\n𝜕ℎ𝜃\n𝜕𝑏\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\na, b = 0, 0  \n \n \n \n \n# initialize 𝜃\nrepeat many times:\n  gradient_a, gradient_b = 0, 0\n  for each training example (x, y):\n    diff = y – (a * x + b)\n    gradient_a += 2 * diff * x\n    gradient_b += 2 * diff\n  a += η * gradient_a    # 𝜃 += η * gradient\n  b += η * gradient_b\nPrediction error! \n𝑦& −T𝑦&",
+      "char_count": 535
+    },
+    {
+      "page_index": 50,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n3b. Interpret\n51\n𝜕ℎ𝜃\n𝜕𝑎\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\n𝑥%\nOptimization \nproblem:\n= arg max\n4\nℎ𝜃\narg max\n!\n−<\n\"#$\n%\n𝑦\" −𝑎𝑥\" −𝑏\n&\nGradient:\n𝜕ℎ𝜃\n𝜕𝑏\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\na, b = 0, 0  \n \n \n \n \n# initialize 𝜃\nrepeat many times:\n  gradient_a, gradient_b = 0, 0\n  for each training example (x, y):     \n    prediction_error = y – (a * x + b)\n    gradient_a += 2 * prediction_error * x\n    gradient_b += 2 * prediction_error\n  a += η * gradient_a    # 𝜃 += η * gradient\n  b += η * gradient_b",
+      "char_count": 549
+    },
+    {
+      "page_index": 51,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n3b. Interpret\n52\n𝜕ℎ𝜃\n𝜕𝑎\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\n𝑥%\nOptimization \nproblem:\n= arg max\n4\nℎ𝜃\narg max\n!\n−<\n\"#$\n%\n𝑦\" −𝑎𝑥\" −𝑏\n&\nGradient:\n𝜕ℎ𝜃\n𝜕𝑏\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\na, b = 0, 0  \n \n \n \n \n# initialize 𝜃\nrepeat many times:\n  gradient_a, gradient_b = 0, 0\n  for each training example (x, y):     \n    prediction_error = y – (a * x + b)\n    gradient_a += 2 * prediction_error * x\n    gradient_b += 2 * prediction_error\n  a += η * gradient_a    # 𝜃 += η * gradient\n  b += η * gradient_b\n0𝑌= 𝑎𝑋+ 𝑏, so\nupdate to 𝑎 should \nalso scale by 𝑥&",
+      "char_count": 600
+    },
+    {
+      "page_index": 52,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n3b. Interpret\n53\n𝜕ℎ𝜃\n𝜕𝑎\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\n𝑥%\nOptimization \nproblem:\n= arg max\n4\nℎ𝜃\narg max\n!\n−<\n\"#$\n%\n𝑦\" −𝑎𝑥\" −𝑏\n&\nGradient:\n𝜕ℎ𝜃\n𝜕𝑏\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\na, b = 0, 0  \n \n \n \n \n# initialize 𝜃\nrepeat many times:\n  gradient_a, gradient_b = 0, 0\n  for each training example (x, y):     \n    prediction_error = y – (a * x + b)\n    gradient_a += 2 * prediction_error * x\n    gradient_b += 2 * prediction_error * 1\n  a += η * gradient_a    # 𝜃 += η * gradient\n  b += η * gradient_b\n0𝑌= 𝑎𝑋+ 𝑏, so\nupdate to 𝑏 just \nscales by 1",
+      "char_count": 597
+    },
+    {
+      "page_index": 53,
+      "text": "Extra: \nDerivations\n54",
+      "char_count": 22
+    },
+    {
+      "page_index": 54,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nDon’t make me get nonlinear!\n𝜃+,- = arg min\n.( /,0\n𝐸\n𝑌−𝑎𝑋−𝑏\"\n55\n1. Differentiate \nwrt (each) 𝜃, \nset to 0\n2. Solve resulting\nsimultaneous\nequations\n𝜕\n𝜕𝑎𝐸\n𝑌−𝑎𝑋−𝑏/\n= 𝐸\n𝜕\n𝜕𝑎𝑌−𝑎𝑋−𝑏/\n(𝐸⋅ is a linear \nfunction w.r.t. 𝑎)\n= 𝐸−2 𝑌−𝑎𝑋−𝑏𝑋\n= −2𝐸𝑋𝑌+ 2𝑎𝐸𝑋/ + 2𝑏𝐸𝑋\n𝜕\n𝜕𝑏𝐸\n𝑌−𝑎𝑋−𝑏/\n= 𝐸−2 𝑌−𝑎𝑋−𝑏\n= −2𝐸𝑌+ 2𝑎𝐸𝑋+ 2𝑏\n𝑎!1# = 𝐸𝑋𝑌−𝐸𝑋𝐸𝑌\n𝐸𝑋/ −𝐸𝑋\n/ =\nCov 𝑋, 𝑌\nVar 𝑋\n= 𝜌𝑋, 𝑌𝜎2\n𝜎3\n𝑏!1# = 𝐸𝑌−𝑎!1#𝐸𝑋\n= 𝜇2 −𝜌𝑋, 𝑌𝜎2\n𝜎3\n𝜇3",
+      "char_count": 459
+    },
+    {
+      "page_index": 55,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nLog conditional likelihood, a derivation\nShow that 𝜃+3- maximizes the\nlog conditional likelihood function:\n56\n𝜃.30 = arg max\n4\nG\n-\"#\n&\nlog 𝑓𝑦- | 𝑥- , 𝜃\n𝜃!\"# = arg max\n$\nN\n%&'\n(\n𝑓𝑥% , 𝑦% |𝜃\n= arg max\n$\n<\n%&'\n(\nlog 𝑓𝑥% |𝜃+ <\n%&'\n(\nlog 𝑓𝑦% |𝑥% , 𝜃\n(𝑥%  indep. of 𝜃)\n(chain rule,\nlog of product = sum of logs)\n= arg max\n$\n<\n%&'\n(\nlog 𝑓𝑦% |𝑥% , 𝜃\nProof:\n(𝑓𝑥%  constant w.r.t. 𝜃)\n= arg max\n$\n<\n%&'\n(\nlog 𝑓𝑥% , 𝑦% |𝜃\n= arg max\n$\n<\n%&'\n(\nlog 𝑓𝑥%\n+ <\n%&'\n(\nlog 𝑓𝑦% |𝑥% , 𝜃\n(𝜃!\"# also\nmaximizes 𝐿𝐿𝜃)\nR𝑌= 𝑔𝑋, where 𝑔⋅ is a \nfunction with parameter 𝜃",
+      "char_count": 611
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:59Z"
+}

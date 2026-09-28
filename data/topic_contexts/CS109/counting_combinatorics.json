@@ -1,0 +1,234 @@
+{
+  "course": "CS109",
+  "topic_id": "counting_combinatorics",
+  "topic_name": "Counting and Combinatorics",
+  "queries_used": [
+    "Counting and Combinatorics definition",
+    "Counting and Combinatorics intuition",
+    "Counting and Combinatorics worked example",
+    "Counting and Combinatorics exam problem",
+    "counting overview",
+    "counting practice",
+    "permutations overview",
+    "permutations practice",
+    "combinations overview",
+    "combinations practice",
+    "combinatorics overview",
+    "combinatorics practice",
+    "counting principles overview",
+    "counting principles practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_02_combinatorics_annotated_p0_da25830346",
+      "text": "02: Combinatorics\nJerry Cain\nApril 3rd, 2024\n1\nLecture Discussion on Ed",
+      "source_type": "lecture_slide",
+      "document_name": "02 combinatorics annotated",
+      "score": 0.6846686005592346
+    },
+    {
+      "chunk_id": "cs109_01_intros_and_counting_annotated_p28_4789449e8f",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nWhat is Counting Combinatorial Analysis?\n29\n6\n36\n{1, 2, 3,\n 4, 5, 6}\nRoll even only\n3\n{2, 4, 6}\n{(1, 1) , (1, 2), (1, 3), (1, 4), (1, 5), (1, 6),\n (2, 1) , (2, 2), (2, 3), (2, 4), (2, 5), (2, 6),\n (3, 1) , (3, 2), (3, 3), (3, 4), (3, 5), (3, 6),\n (4, 1) , (4, 2), (4, 3), (4, 4), (4, 5), (4, 6),\n (5, 1) , (5, 2), (5, 3), (5, 4), (5, 5), (5, 6),\n (6, 1) , (6, 2), (6, 3), (6, 4), (6, 5), (6, 6)}\nRoll\nRoll",
+      "source_type": "lecture_slide",
+      "document_name": "01 intros and counting annotated",
+      "score": 0.6417964100837708
+    },
+    {
+      "chunk_id": "cs109_02_combinatorics_annotated_p50_p51_ec337e48cf",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSummary of Combinatorics\n51\nCounting tasks on 𝑛 objects\nSort objects\n(permutations)\nChoose 𝑘 objects\n(combinations)\nPut objects in 𝑟 \nbuckets\nDistinct\n(distinguishable)\nSome\ndistinct\nDistinct\nIndistinct\nDistinct\n1 group\n𝑟 groups\n• determine if objects are distinct\n• use product rule if several steps \n• use inclusion-exclusion if different cases\n\nCombinatorial \nProofs\n52",
+      "source_type": "lecture_slide",
+      "document_name": "02 combinatorics annotated",
+      "score": 0.6410046219825745
+    },
+    {
+      "chunk_id": "cs109_02_combinatorics_annotated_p10_p11_2ab5b55af2",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSummary of Combinatorics\n11\nSort objects\n(permutations)\nDistinct\n(distinguishable)\nSome\ndistinct\nCounting tasks on 𝑛 objects\nChoose 𝑘 objects\n(combinations)\nPut objects in 𝑟 \nbuckets\n𝑛!\n𝑛!\n𝑛\"! 𝑛#! ⋯𝑛$!\n\nCombinations I\n12",
+      "source_type": "lecture_slide",
+      "document_name": "02 combinatorics annotated",
+      "score": 0.6176102161407471
+    },
+    {
+      "chunk_id": "cs109_02_combinatorics_annotated_p37_f7088c93d7",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSummary of Combinatorics\n38\nSort objects\n(permutations)\nDistinct\n(distinguishable)\nSome\ndistinct\nDistinct\nIndistinct\nDistinct\n1 group\n𝑟 groups\nCounting tasks on 𝑛 objects\nChoose 𝑘 objects\n(combinations)\nPut objects in 𝑟 \nbuckets\n𝑛\n𝑘\n𝑛\n𝑛\", 𝑛#, ⋯, 𝑛$ \n𝑟+\n𝑛!\n𝑛!\n𝑛\"! 𝑛#! ⋯𝑛$!",
+      "source_type": "lecture_slide",
+      "document_name": "02 combinatorics annotated",
+      "score": 0.61700838804245
+    },
+    {
+      "chunk_id": "cs109_02_combinatorics_annotated_p1_1b9935fbd7",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSummary of Combinatorics\n2\nSort objects\n(permutations)\nDistinct\n(distinguishable)\nSome\ndistinct\nCounting tasks on 𝑛 objects\nChoose 𝑘 objects\n(combinations)\nPut objects in 𝑟 \nbuckets\n𝑛!",
+      "source_type": "lecture_slide",
+      "document_name": "02 combinatorics annotated",
+      "score": 0.6165136098861694
+    },
+    {
+      "chunk_id": "cs109_02_combinatorics_annotated_p35_10a560e2f5",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSummary of Combinatorics\n36\nSort objects\n(permutations)\nDistinct\n(distinguishable)\nSome\ndistinct\nDistinct\nIndistinct\nDistinct\n1 group\n𝑟 groups\nCounting tasks on 𝑛 objects\nChoose 𝑘 objects\n(combinations)\nPut objects in 𝑟 \nbuckets\n𝑛\n𝑘\n𝑛\n𝑛\", 𝑛#, ⋯, 𝑛$ \n𝑛!\n𝑛!\n𝑛\"! 𝑛#! ⋯𝑛$!",
+      "source_type": "lecture_slide",
+      "document_name": "02 combinatorics annotated",
+      "score": 0.6163784265518188
+    },
+    {
+      "chunk_id": "cs109_02_combinatorics_annotated_p12_5e5d72ccb5",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSummary of Combinatorics\n13\nSort objects\n(permutations)\nDistinct\n(distinguishable)\nSome\ndistinct\nDistinct\nCounting tasks on 𝑛 objects\nChoose 𝑘 objects\n(combinations)\nPut objects in 𝑟 \nbuckets\n𝑛!\n𝑛!\n𝑛\"! 𝑛#! ⋯𝑛$!",
+      "source_type": "lecture_slide",
+      "document_name": "02 combinatorics annotated",
+      "score": 0.6091523766517639
+    },
+    {
+      "chunk_id": "cs109_01_intros_and_counting_annotated_p40_fc10f99d68",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nPermutations\nA permutation is an ordered arrangement of objects.\nThe number of unique orderings (permutations) of 𝑛 distinct objects is\n \n \n \n𝑛! = 𝑛 × 𝑛−1  × 𝑛−2  × ⋯ × 2 × 1 \n41",
+      "source_type": "lecture_slide",
+      "document_name": "01 intros and counting annotated",
+      "score": 0.6017477512359619
+    },
+    {
+      "chunk_id": "cs109_02_combinatorics_annotated_p2_72670408d4",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGeneral approach to counting permutations\nWhen there are 𝑛 objects such that\n \n 𝑛! are the same (indistinguishable or indistinct), and\n \n 𝑛\" are the same, and\n \n…\n \n 𝑛# are the same,\nThe number of unique orderings (permutations) is\n𝑛!\n𝑛#! 𝑛$! ⋯𝑛%! .\n3\nFor each group of indistinct objects,\ndivide by the overcounted permutations.",
+      "source_type": "lecture_slide",
+      "document_name": "02 combinatorics annotated",
+      "score": 0.6012634038925171
+    },
+    {
+      "chunk_id": "cs109_02_combinatorics_annotated_p20_247584d496",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCombinations\nA combination is an unordered selection of 𝑘 objects\nfrom a set of 𝑛 distinct objects.\nThe number of ways of making this selection is\n \n \n \n𝑛!\n𝑘! 𝑛−𝑘! = 𝑛! × 1 × 1\n𝑘! ×\n1\n𝑛−𝑘! = 𝑛\n𝑘\n21\n1.Order 𝑛 \ndistinct \nobjects\n2.Take first 𝑘 \nas chosen\n3.Overcounted:\nany ordering of \nchosen group is \nsame choice\n4. Overcounted:\nany ordering \nof unchosen \ngroup is \nsame choice",
+      "source_type": "lecture_slide",
+      "document_name": "02 combinatorics annotated",
+      "score": 0.5950949788093567
+    },
+    {
+      "chunk_id": "cs109_02_combinatorics_annotated_p24_647097be2d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSummary of Combinatorics\n25\nSort objects\n(permutations)\nDistinct\n(distinguishable)\nSome\ndistinct\nDistinct\n1 group\n𝑟 groups\nCounting tasks on 𝑛 objects\nChoose 𝑘 objects\n(combinations)\nPut objects in 𝑟 \nbuckets\n𝑛\n𝑘\n𝑛!\n𝑛!\n𝑛\"! 𝑛#! ⋯𝑛$!",
+      "source_type": "lecture_slide",
+      "document_name": "02 combinatorics annotated",
+      "score": 0.5855125188827515
+    },
+    {
+      "chunk_id": "cs109_02_combinatorics_annotated_p21_d65c1208d5",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCombinations\nA combination is an unordered selection of 𝑘 objects\nfrom a set of 𝑛 distinct objects.\nThe number of ways of making this selection is\n \n \n \n𝑛!\n𝑘! 𝑛−𝑘! = 𝑛! × 1 × 1\n𝑘! ×\n1\n𝑛−𝑘! = 𝑛\n𝑘\nNote: \n!\n!\"# =\n!\n#\n22\nBinomial \ncoefficient\n𝑛\n𝑘",
+      "source_type": "lecture_slide",
+      "document_name": "02 combinatorics annotated",
+      "score": 0.580825686454773
+    },
+    {
+      "chunk_id": "cs109_02_combinatorics_annotated_p25_13faff62ce",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGeneral approach to combinations\nThe number of ways to choose 𝑟 groups of 𝑛 distinct objects such that\n  \n For all 𝑖= 1, … , 𝑟, group 𝑖 has size 𝑛*, and\n  \n ∑*+!\n#\n𝑛* = 𝑛 (all objects are assigned), is\n𝑛!\n𝑛#! 𝑛$! ⋯𝑛%! =\n𝑛\n𝑛#, 𝑛$, ⋯, 𝑛%\n26\nMultinomial coefficient",
+      "source_type": "lecture_slide",
+      "document_name": "02 combinatorics annotated",
+      "score": 0.5546898245811462
+    },
+    {
+      "chunk_id": "cs109_midtermwinter2022soln_q0_7bd445c87f",
+      "text": "002 · 0.4 · 0.6\n= 237.5\nWe see that the letters ”CAT” are 237.5 times more likely than ”MAN”.\n5a\nX ∼Bin(5, 0.6)\nP(X = 3)\n\u00125\n3\n\u0013",
+      "source_type": "exam_question",
+      "document_name": "MidtermWinter2022Soln",
+      "score": 0.5413975715637207
+    },
+    {
+      "chunk_id": "cs109_midtermwinter2022_q0_e19e8f8d71",
+      "text": "002 · 0.4 · 0.6\n= 237.5\nWe see that the letters ”CAT” are 237.5 times more likely than ”MAN”.\n5a\nX ↓Bin(5, 0.6)\nP(X = 3)\n!5\n3\n\"",
+      "source_type": "exam_question",
+      "document_name": "MidtermWinter2022",
+      "score": 0.5350024104118347
+    },
+    {
+      "chunk_id": "cs109_11_joint_rvs_annotated_p27_8bb8ddf198",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRecall the good times\n28\nPermutations\n𝑛!\nHow many ways are \nthere to order 𝑛 \nobjects?",
+      "source_type": "lecture_slide",
+      "document_name": "11 joint rvs annotated",
+      "score": 0.5282706618309021
+    },
+    {
+      "chunk_id": "cs109_01_intros_and_counting_annotated_p27_70e2e81f37",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nWhat is Counting?\nAn experiment\nin probability:\nCounting: \nHow many possible outcomes can occur by\n \nperforming this experiment?\n28\nOutcome\nExperiment",
+      "source_type": "lecture_slide",
+      "document_name": "01 intros and counting annotated",
+      "score": 0.509467363357544
+    },
+    {
+      "chunk_id": "cs109_01_intros_and_counting_annotated_p30_a0f9799e32",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nProduct Rule of Counting\nIf an experiment has two parts, where\nthe first part’s outcomes are drawn from 𝐴, where 𝐴= 𝑚, \nand the second part’s outcomes are drawn from 𝐵, where 𝐵= 𝑛,\nThen the number of outcomes of the experiment is\n 𝐴𝐵= 𝑚𝑛.\nThis generalizes to multistep experiments—i.e., three steps, five steps, fifty \nsteps, and so forth.\n31\nTwo-step experiment\nA\nB",
+      "source_type": "lecture_slide",
+      "document_name": "01 intros and counting annotated",
+      "score": 0.4388321340084076
+    },
+    {
+      "chunk_id": "cs109_01_section_soln_sec1_part5_63bf8a16e5",
+      "text": "5. The Birthday Problem\nWhen solving a counting problem, it can often be useful to come up with a generative process, a series of steps\nthat “generates” examples. A correct generative process to count the elements of set 𝐴will (1) generate every el-\nement of 𝐴and (2) not generate any element of 𝐴more than once. If our process has the added property that (3)\nany given step always has the same number of possible outcomes, then we can use the product rule of counting.\nProblem: Assume that birthdays happen on any of the 365 days of the year with equal likelihood (we’ll ignore\nleap years).\na. What is the probability that of the 𝑛people in class, at least two people share the same birthday?\nComputing 𝑃(at least 2 people share a birthday) is difficult. We realize that this can be thought of as\n𝑃(exactly 2 people share birthday ∪exactly 3 ∪exactly 4 ∪... ∪exactly 𝑛people share birthday)\nUsing the additivity axiom of probability, we realize that this can be split up because the events are mutu-\nally exclusive.\n𝑃(exactly 2 people share birthday) + 𝑃(exactly 3) + 𝑃(exactly 4) + ... + 𝑃(exactly 𝑛people share birthday)\nHowever, this is very tedious!\nIt is much easier to calculate 1 −𝑃(no one shares a birthday). Let our sample space, 𝑆be the set of all\npossible assignments of birthdays to the students in section. By the assumptions of this problem, each of\nthose assignments is equally likely, so this is a good choice of sample space. We can use the product rule\nof counting to calculate |𝑆|:\n|𝑆| = (365)𝑛\nOur event 𝐸will be the set of assignments in which there are no matches (i.e. everyone has a different\nbirthday). We can think of this as a generative process where there are 365 choices of birthdays for the\nfirst student, 364 for the second (since it can’t be the same birthday as the first student), and so on. Verify\nfor yourself that this process satisfies the three conditions listed above. We can then use the product rule of\ncounting:\n|𝐸| = (365) · (364) · · · · · (365 −𝑛+ 1)\n𝑃(birthday match) = 1 −𝑃(no matches)\n= 1 −|𝐸|\n|𝑆|\n= 1 −(365) · (364) . . . (365 −𝑛+ 1)\n(365)𝑛\nA common misconception is that the size of the event 𝐸can be computed as |𝐸| = \u0000365\n𝑛\n\u0001 by choosing 𝑛\ndistinct birthdays from 365 options. However, outcomes in this event (𝑛unordered distinct dates) cannot\nrecreate any outcomes in the sample space |𝑆| = 365𝑛(𝑛distinct dates, one for each distinct person). How-\never if we compute the size of event 𝐸as |𝐸| = \u0000365\n𝑛\n\u0001𝑛! (equivalent to the number above), then we can\nassign the 𝑛birthdays to each person in a way consistent with the sample space. The expression \u0000365\n𝑛\n\u0001𝑛! is\nequivalent to\n365!\n(365−𝑛)! which is known as a ”falling factorial” and also as ”365 permute 𝑛” outside of this\nclass.\nInteresting values: (𝑛= 13 : 𝑝≈0.19), (𝑛= 23 : 𝑝≈0.5), (𝑛= 70 : 𝑝≥0.99).",
+      "source_type": "review_section",
+      "document_name": "01 section soln",
+      "score": 0.4358214735984802
+    },
+    {
+      "chunk_id": "cs109_finalfall2022soln_q0_aa9d28f538",
+      "text": "8𝑎· 0.25−𝑎\n\u00125\n𝑏\n\u0013",
+      "source_type": "exam_question",
+      "document_name": "FinalFall2022Soln",
+      "score": 0.4297170042991638
+    },
+    {
+      "chunk_id": "cs109_practicemidterm_preamble_638eba6eb0",
+      "text": "– 1 –\nChris Piech\nCS 109\nOct 27, 2017\nPractice Midterm Examination\nProblems by Will Monroe, Mehran Sahami and Chris Piech\nThis is a closed calculator/computer exam. You are, however, allowed to use notes or a textbook\nin the exam. The last page of the exam is a Standard Normal Table, in case you need it. You have\n2 hours (120 minutes) to take the exam. The exam is 120 points, meant to roughly correspond to\none point per minute of the exam. You may want to use the point allocation for each problem as an\nindicator for pacing yourself on the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions\nand parameter values you used, where appropriate. It is ﬁne for your answers to include summations,\nproducts, factorials, exponentials, and combinations, unless the question speciﬁcally asks for a\nnumeric quantity or closed form. Where numeric answers are required, the use of fractions is ﬁne.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than\nI have in my entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\n\n– 2 –",
+      "source_type": "exam_question",
+      "document_name": "PracticeMidterm",
+      "score": 0.42913269996643066
+    },
+    {
+      "chunk_id": "cs109_practicemidterm_q0_58ea894b39",
+      "text": "00",
+      "source_type": "exam_question",
+      "document_name": "PracticeMidterm",
+      "score": 0.42786553502082825
+    },
+    {
+      "chunk_id": "cs109_midtermfall2021soln_q8_a567677fd2",
+      "text": "Both are equally hard.\nMethod 1:\nProof for f(X1 = x|N = 1) = 1",
+      "source_type": "exam_question",
+      "document_name": "MidtermFall2021Soln",
+      "score": 0.4244939684867859
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p25_7ff4cb6a23",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCS109 so far\n26\n𝑃𝐸= |𝐸|\n|𝑆|\nEqually likely \noutcomes:\nReview\nSort objects\n(permutations)\nDistinct\n(distinguishable)\nSome\ndistinct\nDistinct\nIndistinct\nDistinct\n1 group\n\" groups\nCounting tasks on ! objects\nChoose \" objects\n(combinations)\nPut objects in #\nbuckets\n#\n$\n#\n#!, #\", ⋯, ## \n\"$\n# + \" −1 !\n#! \" −1 !\n#!\n#!\n#!! #\"! ⋯##!\nCombinatorics\nProbability",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.3972623944282532
+    },
+    {
+      "chunk_id": "cs109_01_intros_and_counting_annotated_p29_53a8a5a0bf",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nSum Rule of Counting, Inclusion-Exclusion Principle\nIf the outcome of an experiment can be either from\nSet 𝐴, where 𝐴= 𝑚,\nor Set 𝐵, where 𝐵= 𝑛,\nwhere 𝐴 and 𝐵 may overlap, then\nThe total number of outcomes of the experiment is\n 𝐴∪𝐵= 𝐴+ 𝐵−|𝐴∩𝐵|.\n30",
+      "source_type": "lecture_slide",
+      "document_name": "01 intros and counting annotated",
+      "score": 0.3958297371864319
+    },
+    {
+      "chunk_id": "cs109_finalwin2022soln_q0_22f09650a5",
+      "text": "625\n2",
+      "source_type": "exam_question",
+      "document_name": "FinalWin2022Soln",
+      "score": 0.394914448261261
+    },
+    {
+      "chunk_id": "cs109_midtermfall2024soln_q0_403ea1f789",
+      "text": "45 probability of falling off the tree, independent of the other petals. What is the probability that more\nthan 135,001 petals will fall today?\nLet F be the number of petals that fall from the tree today. F ∼Bin(n = 300,000, p = 0.45). We want to\nfind P(F > 135,001).\nBecause this Binomial has extreme n, we need to approximate. Let X be an approximation of F. X ∼\nN(µ = n· p = 300,000·0.45, σ2 = n· p·(1−p) = 300,000·0.45·0.55). Using continuity correction, we\nwant to approximate P(F > 135,001) using P(X > 135,001.5).\n4\n\n3\nBingo! [18 points]\nA Bingo card is constructed as a 5x5 grid, with each cell containing a unique integer. The possible values for\neach cell depend on the column in which it is located:\nColumn 1: contains numbers in the range 1 to 15 inclusive\nColumn 2: contains numbers in the range 16 to 30 inclusive\nColumn 3: contains numbers in the range 31 to 45 inclusive\nColumn 4: contains numbers in the range 46 to 60 inclusive\nColumn 5: contains numbers in the range 61 to 75 inclusive\nEach column contains five distinct, randomly chosen numbers from its respective range. The center cell of\nthe grid (in the third column) is an exception: it is always marked as “free” and does not contain a number.\nBelow is an example Bingo card, with each column annotated to indicate the possible values for that column.\na. (6 points) How many unique Bingo cards can be created under these rules? Two cards are unique if they\nhave different values, or if they have the same values, but in different cells.\nWe can break down the count of the total number of unique Bingo cards using the step rule of counting,\nwhere each step is choosing the values for one column.\nIf there was no free space: for each column, there are 5 cells we need to choose values for. Since the\nnumbers must be distinct, we can’t repeat values; so for the first cell in a column, we have 15 choices, and\nthen for the second cell, we have 14, for the third, we have 13, and so on until for the fifth cell, we have\n11 choices. Thus for each column there are 15·14·13·12·11 or 15!\n10! possible ways to choose 5 values.\nFor the column with only 4 values to pick, we instead have 15·14·13·12 or 15!\n11! possibilities.\nOur final answer is obtained by multiplying together the possibilities for all five columns together:\n\u001215!\n10!\n\u00134 \u001215!\n11!\n\u0013\nWhy didn’t we use\n\u000015\n5\n\u0001\nand\n\u000015\n4\n\u0001\n? Because that would treat the values in each column as unordered, but\nwe are told that two bingo cards are unique if a column has the same values in different orders, so we want\nto count ordered. Writing\n\u000015\n5\n\u0001\n·5! is equivalent to 15!\n10!.\n5\n\nb. (6 points) Four distinct integers are randomly selected from the range 1 to 75, where each integer in the\nrange is equally likely. What is the probability that all four selected integers are in the range 31 to 45\ninclusive? Note: there are 15 integers in the range [31 to 45].\nSince we are in a world where it is doable to count outcomes, we can find this probability by counting the\nnumber of outcomes in our event space and sample space and dividing.\nThe sample space is all the ways we can select 4 distinct integers from the range 1 to 75. Here we do not\ncount about order, so |S| =\n\u000075\n4\n\u0001\n.\nThe event space is all the ways to select 4 distinct integers from the range 31 to 35, so |E| =\n\u000015\n4\n\u0001\n.\nPutting these together, |E|\n|S| = (15\n4)\n(75\n4).\nc. (6 points) Four distinct integers are randomly selected from the range 1 to 75, where each integer in the\nrange is equally likely. What is the probability that exactly:\nOne integer is from the range 1 to 15 and\nOne integer is from the range 16 to 30 and\nOne integer is from the range 46 to 60 and\nOne integer is from the range 61 to 75?\nNote that each range above consists of exactly 15 integers and is inclusive.\nWe can also find this probability by counting the number of outcomes in our event space and sample space\nand dividing.\nThe sample space is the same as the previous part: |S| =\n\u000075\n4\n\u0001\n.\nThe event space is all the ways to have one value from each of the four ranges of values. Using the step\nrule of counting, we can multiply the number of ways to choose one value from the first range, times the\nnumber of ways to choose one value from the second range, etc. This is 15·15·15·15 = 154.\nPutting these together, |E|\n|S| = 154\n(75\n4).\nWhy is the event space not 75 · 60 · 30 · 15 or similar? That strategy would be counting ordered, but we\nwant to count unordered to be consistent with our sample space count. Alternative solutions could count\nboth the event space and sample space ordered.\n6",
+      "source_type": "exam_question",
+      "document_name": "MidtermFall2024Soln",
+      "score": 0.388710081577301
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p16_p17_ba45532e31",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nAxiom 3 is the (analytically) useful axiom\nAxiom 3: \n \nIf 𝐸 and 𝐹 are mutually exclusive—that is, if\n                              𝐸∩𝐹= ∅—then 𝑃𝐸∪𝐹= 𝑃𝐸+ 𝑃𝐹\nMore generally, for any sequence of\nmutually exclusive events 𝐸(, 𝐸), … :\n17\njust like the Sum Rule of Counting, but \nfor probabilities\n𝑃O\n*+(\n$\n𝐸*\n= P\n*+(\n$\n𝑃𝐸*\n𝑆\n𝐸!\n𝐸\"\n𝐸#\n\nEqually Likely \nOutcomes\n18",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.3859526216983795
+    },
+    {
+      "chunk_id": "cs109_midtermspr2017_q3b_edb03ffd58",
+      "text": "✓50\n2\n◆\n=\n49\n’\nn=0\nn =\n50\n’\nn=1\n50 −n\nCommon mistakes: 50·49 (order shouldn’t matter), oﬀby 1 on summation bounds, product instead\nof summation.",
+      "source_type": "exam_question",
+      "document_name": "MidtermSpr2017",
+      "score": 0.3817773163318634
+    }
+  ],
+  "built_at": "2026-04-28T05:13:03Z"
+}

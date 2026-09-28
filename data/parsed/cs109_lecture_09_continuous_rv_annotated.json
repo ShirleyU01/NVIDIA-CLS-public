@@ -1,0 +1,216 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/09_continuous_rv_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/09_continuous_rv_annotated.pdf",
+  "sha256": "186633673539ef7bd781fed2ebe229996ab494ff543cdc799dfbd29bd413fbaf",
+  "title_guess": "09 continuous rv annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "09: Continuous RVs\nJerry Cain\nApril 19th, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 73
+    },
+    {
+      "page_index": 1,
+      "text": "Continuous RVs\n2",
+      "char_count": 16
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0\n…\n44\n52\n60\n…\n90\n𝑥\n0 … 44\n52\n60\n… 90\n44\n… 52 56 60\nPeople heights\nYou are volunteering at the local elementary school fundraiser.\n• To buy a t-shirt for your friend Vanessa, you need to know her height.\n1. What is the probability that your\nfriend is 54.0923857234 inches tall?\n2. What is the probability that Vanessa is between 52–56 inches tall?\n3\nEssentially 0\n𝑥\n𝑓𝑥\nprobability \ndensity \nfunction\nsmaller-\nwidth \nbars\n∞-ly \nsmall \nbars\n𝑃52 < 𝑋≤56\n𝑝(𝑥)\n𝑝(𝑥)\n𝑥\n48    52   56    60\n𝑃52 < 𝑋≤54\n+ 𝑃54 < 𝑋≤56\n𝑃52 < 𝑋≤56",
+      "char_count": 589
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nContinuous RV definition\nA random variable 𝑋 is continuous if there is a probability density function \n𝑓𝑥≥0 such that for −∞< 𝑥< ∞:\n𝑃𝑎 ≤𝑋≤𝑏= 0\n!\n\"\n𝑓(𝑥) 𝑑𝑥\nIntegrating a PDF must always yield a valid probability, no matter the values of a \nand b. The PDF must also satisfy:\n0\n#$\n$\n𝑓(𝑥) 𝑑𝑥= 𝑃−∞< 𝑋< ∞= 1\nNote: 𝑓𝑥 is sometimes written as 𝑓%(𝑥) to be clear the random variable is 𝑋. \n4",
+      "char_count": 454
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0\n…\n44\n52\n60\n…\n90\nMain takeaway\nIntegrate 𝑓(𝑥) to get \nprobabilities.\n5\n𝑥\n𝑓𝑥: prob/inch\n4 inches\n𝑃52 ≤𝑋≤56 = -\n!\"\n!#\n𝑓(𝑥) 𝑑𝑥\nPDF Units: probability per units of 𝑋",
+      "char_count": 235
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDiscrete random variable 𝑋\nProbability mass function (PMF):\n 𝑝𝑥\nTo get probability:\n𝑃𝑋= 𝑥= 𝑝𝑥\nContinuous random variable 𝑋\nProbability density function (PDF):\n  𝑓𝑥\nTo get probability:\n𝑃𝑎≤𝑋≤𝑏= *\n,\n-\n𝑓𝑥𝑑𝑥\n6\nPMF vs PDF\nBoth are measures of how likely 𝑋 is to take \non a value or some range of values.",
+      "char_count": 370
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComputing probability\n7\n𝑓𝑥= ,\n𝑥\n2\nif 0 ≤𝑥≤2\n0\notherwise\nLet 𝑋 be a continuous RV with PDF:\n0.00\n0.50\n1.00\n0.00\n1.00\n2.00\n!(\") \n!\nWhat is 𝑃𝑋≥1 ? \n𝑃𝑎 ≤𝑋≤𝑏= 2\n!\n\"\n𝑓(𝑥) 𝑑𝑥",
+      "char_count": 240
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComputing probability\n8\n𝑓𝑥= ,\n𝑥\n2\nif 0 ≤𝑥≤2\n0\notherwise\nLet 𝑋 be a continuous RV with PDF:\n0.00\n0.50\n1.00\n0.00\n1.00\n2.00\n!(\") \n!\nWhat is 𝑃𝑋≥1 ? \nStrategy 1: Integrate\nStrategy 2: Know triangles\n𝑃1 ≤𝑋< ∞= -\n$\n%\n𝑓𝑥𝑑𝑥= -\n$\n\" 1\n2 𝑥𝑑𝑥\n= 1\n2\n1\n2 𝑥\" 2\n$\n\"\n = 1\n2 2 −1\n2 = 3\n4\n1 −1\n2\n1\n2 = 3\n4\nWait! Is this even legal?\n𝑃0 ≤𝑋< 1 = ∫&\n$ 𝑓𝑥𝑑𝑥? ? \n𝑃𝑎 ≤𝑋≤𝑏= 2\n!\n\"\n𝑓(𝑥) 𝑑𝑥",
+      "char_count": 432
+    },
+    {
+      "page_index": 8,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTrue/False:\n1.  𝑃𝑋= 𝑐= 0 \n2.  𝑃𝑎≤𝑋≤𝑏= 𝑃𝑎< 𝑋< 𝑏= 𝑃𝑎≤𝑋< 𝑏= 𝑃𝑎< 𝑋≤𝑏\n3.  𝑓(𝑥) is a probability\n4.  In the graphed PDF above,\n 𝑃𝑥8 ≤𝑋≤𝑥9 > 𝑃𝑥9 ≤𝑋≤𝑥:\n𝑥'\n𝑥\"\nPDF Properties\n9\n𝑃𝑎 ≤𝑋≤𝑏=  *\n,\n-\n𝑓(𝑥) 𝑑𝑥\nFor a continuous RV 𝑋 with PDF 𝑓,\n❌\nInterval width 𝑑𝑥→0\n𝑥\n𝑓𝑥\n𝑥$\nCompare area under the curve\n⭐\nsupport: values of \n𝑥 where 𝑓𝑥> 0\n⭐\nIt’s a probability density!\n⭐",
+      "char_count": 424
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDetermining valid PDFs\nWhich of the following functions are valid PDFs?\n10\n𝑓𝑥\n𝑥\n𝑥$\n𝑥\"\n-\n(%\n%\n𝑓𝑥𝑑𝑥= 0.5\n𝑔𝑥\n𝑥\n𝑥'\n𝑥)\n-\n(%\n%\n𝑔𝑥𝑑𝑥= 1\nℎ𝑥\n𝑥\n0.5\n1\n1\n2\n-\n(%\n%\nℎ𝑥𝑑𝑥= 1\n𝑤𝑥\n𝑥\n𝑥!\n𝑥#\n0\n-\n(%\n%\n𝑤𝑥𝑑𝑥= 1\n1.  \n2.  \n3.  \n4.  \n𝑃𝑎 ≤𝑋≤𝑏= 2\n!\n\"\n𝑓(𝑥) 𝑑𝑥",
+      "char_count": 302
+    },
+    {
+      "page_index": 10,
+      "text": "Uniform RV\n11",
+      "char_count": 13
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\ndef A Uniform random variable 𝑋 is defined as follows:\n \nUniform Random Variable\n12\n𝑓𝑥= >\n1\n𝛽−𝛼 \nif 𝛼≤𝑥≤𝛽\n0 \notherwise\n𝑋~Uni(𝛼, 𝛽)\nSupport: 𝛼, 𝛽\n(sometimes defined \nover 𝛼, 𝛽)\nVariance  \nExpectation \n \n \nPDF\n𝐸𝑋= 𝛼+ 𝛽\n2\nVar 𝑋= 𝛽−𝛼9\n12\n𝛼\n𝛽\n𝑥\n𝑓𝑥\n1\n𝛽−𝛼",
+      "char_count": 321
+    },
+    {
+      "page_index": 12,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nQuick check\n13\nWhat is \n8\nBCD if the following graphs are PDFs of Uniform RVs 𝑋?\n0\n25\n𝑥\n𝑓𝑥\n?\n1.  \n2.  \n3.  \n1\n𝑥\n𝑓𝑥\n?\n3/2\n𝛼\n𝛽\n𝑥\n𝑓𝑥\n1\n𝛽−𝛼\n−5\n5\n𝑥\n𝑓𝑥\n?\nIf 𝑋~Uni(𝛼, 𝛽), the PDF of 𝑋 is:\n𝑓𝑥= ,\n8\nBCD  \nif 𝛼≤𝑥≤𝛽\n0 \notherwise",
+      "char_count": 289
+    },
+    {
+      "page_index": 13,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n−5\n5\n𝑥\n𝑓𝑥\n?\n1\n𝑥\n𝑓𝑥\n?\n3/2\nQuick check\n14\n?\n?\n1.  \n2.  \n3.  \n2\n1\n10\n0\n25\n𝑥\n𝑓𝑥\n?\n1\n25\n𝛼\n𝛽\n𝑥\n𝑓𝑥\n1\n𝛽−𝛼\nWhat is \n8\nBCD if the following graphs are PDFs of Uniform RVs 𝑋?\nIf 𝑋~Uni(𝛼, 𝛽), the PDF of 𝑋 is:\n𝑓𝑥= ,\n8\nBCD  \nif 𝛼≤𝑥≤𝛽\n0 \notherwise",
+      "char_count": 305
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nExpectation and Variance\nDiscrete RV 𝑋\n15\n𝐸𝑋= C\n*\n𝑥𝑝𝑥\n𝐸𝑔(𝑋) = C\n*\n𝑔(𝑥) 𝑝𝑥\n𝐸𝑋= -\n(%\n%\n𝑥𝑓𝑥𝑑𝑥\n𝐸𝑔(𝑋) = -\n(%\n%\n𝑔𝑥𝑓𝑥𝑑𝑥\nContinuous RV 𝑋\nBoth continuous and discrete RVs\n𝐸𝑎𝑋+ 𝑏= 𝑎𝐸𝑋+ 𝑏\nVar(𝑋) = 𝐸(𝑋 −𝐸[𝑋])9  = 𝐸𝑋9  −(𝐸[𝑋])9\nVar(𝑎𝑋+ 𝑏) = 𝑎9Var(𝑋)\nLinearity of \nExpectation\nProperties of \nvariance\nTL;DR: ∑*+,\n-\n⇒∫,\n-",
+      "char_count": 379
+    },
+    {
+      "page_index": 15,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nUniform RV expectation\n16\n-\n(%\n%\n𝑥⋅𝑓𝑥𝑑𝑥\n=\n1\n𝛽−𝛼⋅\nG\n1\n2 𝑥\"\n.\n/\n=\n1\n𝛽−𝛼⋅1\n2 𝛽\" −𝛼\"\n= 1\n2 ⋅𝛽+ 𝛼\n𝛽−𝛼\n𝛽−𝛼\n𝐸𝑋=\n= 𝛼+ 𝛽\n2\nInterpretation:\nAverage the start & end\n𝛼\n𝛽\n𝑥\n𝑓𝑥\n1\n𝛽−𝛼\n= -\n.\n/\n𝑥⋅\n1\n𝛽−𝛼𝑑𝑥",
+      "char_count": 260
+    },
+    {
+      "page_index": 16,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\ndef An Uniform random variable 𝑋 is defined as follows:\n \nUniform Random Variable\n17\n𝑓𝑥= >\n1\n𝛽−𝛼 \nif 𝛼≤𝑥≤𝛽\n0 \notherwise\n𝑋~Uni(𝛼, 𝛽)\nSupport: 𝛼, 𝛽\n(sometimes defined \nover 𝛼, 𝛽)\nVariance  \nExpectation \n \n \nPDF\n𝐸𝑋= 𝛼+ 𝛽\n2\nVar 𝑋= 𝛽−𝛼9\n12\nOn your own!\nJust now\n𝛼\n𝛽\n𝑥\n𝑓𝑥\n1\n𝛽−𝛼",
+      "char_count": 344
+    },
+    {
+      "page_index": 17,
+      "text": "Exponential RV\n18",
+      "char_count": 17
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGrid of random variables\n19\nNumber of \nsuccesses\nBer(𝑝)\nOne trial\nSeveral\ntrials\nInterval\nof time\nBin(𝑛, 𝑝)\nPoi(𝜆)\nGeo(𝑝)\nNegBin(𝑟, 𝑝)\nOne success\nSeveral\nsuccesses\nAmount of time\nbefore first success\nTime until \nsuccess\n𝑛= 1\n𝑟= 1\n?\nExp(𝜆)",
+      "char_count": 312
+    },
+    {
+      "page_index": 19,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider an experiment that lasts a duration of time until success occurs.\ndef An Exponential random variable 𝑋 is the amount of time until success.\n \nExamples:\n• Time until next earthquake\n• Time for request to reach web server\n• Time until water main break on Campus Dr.\nExponential Random Variable\n20\n𝑓𝑥= A𝜆𝑒CIJ \nif 𝑥≥0\n0 \notherwise\n𝑋~Exp(𝜆)\nSupport: 0, ∞\nVariance  \nExpectation \n \n \nPDF\n𝐸𝑋= 1\n𝜆\nVar 𝑋= 1\n𝜆9\n(in extra slides)\n(on your own)\n0\n0.2\n0.4\n0.6\n0.8\n1\n0\n1\n2\n3\n4\n5\n𝑓𝑥\n𝑥",
+      "char_count": 552
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEarthquakes\n21\n1906 Earthquake \nMagnitude 7.8",
+      "char_count": 118
+    },
+    {
+      "page_index": 21,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEarthquakes\nMajor earthquakes (magnitude 8.0+) occur once every 500 years.*\n1. What is the probability of a major earthquake in the next 30 years?\n22\nDefine events/ \nRVs & state goal\nSolve\n𝑋: when next\n     earthquake happens\n𝑋 ~Exp 𝜆= 0.002\nWant: 𝑃𝑋< 30\nyear($\n𝜆:\n𝑋~Exp(𝜆) 𝑓𝑥= 𝜆𝑒#$% if 𝑥≥0\n∫𝑒&%𝑑𝑥= 1\n𝑐𝑒&%\n*In California, according to historical data form USGS, 2015\nRecall\n= 1/500\n𝐸𝑋= 1/𝜆",
+      "char_count": 462
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEarthquakes\nMajor earthquakes (magnitude 8.0+) occur once every 500 years.*\n1. What is the probability of a major earthquake in the next 30 years?\n2. What is the standard deviation of years until the next earthquake?\n23\nDefine events/ \nRVs & state goal\n𝑋: when next\n     earthquake happens\n𝑋 ~Exp 𝜆= 0.002\nWant: 𝑃𝑋< 30\nyear($\n𝜆:\n*In California, according to historical data form USGS, 2015\nSolve\n𝑋~Exp(𝜆) 𝑓𝑥= 𝜆𝑒#$% if 𝑥≥0\n𝐸𝑋= 1/𝜆",
+      "char_count": 502
+    },
+    {
+      "page_index": 23,
+      "text": "Cumulative \nDistribution \nFunctions\n24",
+      "char_count": 38
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFor a random variable 𝑋, the cumulative distribution function (CDF) is \ndefined as\n𝐹𝑎= 𝐹R 𝑎= 𝑃𝑋≤𝑎, where −∞< 𝑎< ∞\nFor a discrete RV 𝑋, the CDF is:\n𝐹𝑎= 𝑃𝑋≤𝑎=\nI\nall JS,\n𝑝(𝑥)\nFor a continuous RV 𝑋, the CDF is:\n𝐹𝑎= 𝑃𝑋≤𝑎= *\nCT\n,\n𝑓𝑥𝑑𝑥\nCumulative Distribution Function (CDF)\n25\nCDF is a probability, \nthough PDF is not.\nIf you learn to use \nCDFs, you can avoid \nintegrating the PDF.\n𝑓𝑥\n𝑥\n𝑎\n𝐹𝑎",
+      "char_count": 458
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nUsing the CDF for continuous RVs\nFor a continuous random variable 𝑋 with PDF 𝑓(𝑥), the CDF of 𝑋 is\n𝐹𝑎= 𝑃𝑋≤𝑎= *\nCT\n,\n𝑓𝑥𝑑𝑥\n26\nMatching (choices are used 0/1/2 times)\nA.  𝐹𝑎\nB.  1 −𝐹(𝑎)\nC.  𝐹𝑏−𝐹(𝑎)\nD.  𝐹𝑎−𝐹(𝑏)\n1.  𝑃𝑋< 𝑎\n2.  𝑃𝑋> 𝑎\n3.  𝑃𝑋≥𝑎\n4.  𝑃𝑎≤𝑋≤𝑏",
+      "char_count": 319
+    },
+    {
+      "page_index": 26,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nUsing the CDF for continuous RVs\nFor a continuous random variable 𝑋 with PDF 𝑓(𝑥), the CDF of 𝑋 is\n𝐹𝑎= 𝑃𝑋≤𝑎= *\nCT\n,\n𝑓𝑥𝑑𝑥\n27\nA.  𝐹𝑎\nB.  1 −𝐹(𝑎)\nC.  𝐹𝑏−𝐹(𝑎)\nD.  𝐹𝑎−𝐹(𝑏)\nMatching (choices are used 0/1/2 times)\n(next slide)\n1.  𝑃𝑋< 𝑎\n2.  𝑃𝑋> 𝑎\n3.  𝑃𝑋≥𝑎\n4.  𝑃𝑎≤𝑋≤𝑏",
+      "char_count": 332
+    },
+    {
+      "page_index": 27,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nUsing the CDF for continuous RVs\nFor a continuous random variable 𝑋 with PDF 𝑓(𝑥), the CDF of 𝑋 is\n𝐹𝑎= 𝑃𝑋≤𝑎= *\nCT\n,\n𝑓𝑥𝑑𝑥\n28\n4.  𝑃𝑎≤𝑋≤𝑏= 𝐹𝑏−𝐹(𝑎) \n𝐹𝑏−𝐹𝑎= \n-\n(¥\n-\n𝑓𝑥𝑑𝑥−-\n(¥\n,\n𝑓𝑥𝑑𝑥\n=\n-\n(¥\n,\n𝑓𝑥𝑑𝑥+ -\n,\n-\n𝑓𝑥𝑑𝑥\n−-\n(¥\n,\n𝑓𝑥𝑑𝑥\n= -\n,\n-\n𝑓𝑥𝑑𝑥\n𝑓𝑥\n𝑥\n𝑎\n𝑏\n𝐹𝑏\nProof:\n𝐹𝑎\n−\n=",
+      "char_count": 327
+    },
+    {
+      "page_index": 28,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCDF of an Exponential RV\nProof:\n𝐹𝑥= 𝑃𝑋≤𝑥= *\nUVCT\nJ\n𝑓𝑦𝑑𝑦= *\nUVW\nJ\n𝜆𝑒CIU𝑑𝑦\n=\nK\n𝜆1\n−𝜆𝑒CIU\nW\nJ\n \n                   = −1 𝑒CIJ −𝑒CIW  \n                   = 1 −𝑒CIJ \n29\n𝑋~Exp(𝜆)\n𝐹𝑥= 1 −𝑒!\"# if 𝑥≥0\n∫𝑒&%𝑑𝑥= 1\n𝑐𝑒&%\nRecall\n𝑋~Exp(𝜆) 𝑓𝑥= 𝜆𝑒#$% if 𝑥≥0",
+      "char_count": 311
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0\n0.2\n0.4\n0.6\n0.8\n1\n1.2\n0\n1\n2\n3\n4\n5\n0\n0.2\n0.4\n0.6\n0.8\n1\n0\n1\n2\n3\n4\n5\n0\n0.2\n0.4\n0.6\n0.8\n1\n1.2\n0\n1\n2\n3\n4\n5\n0\n0.2\n0.4\n0.6\n0.8\n1\n0\n1\n2\n3\n4\n5\nPDF/CDF 𝑋~Exp(𝜆= 1)\n30\n𝐹𝑥\n𝑓𝑥\n𝑥\n𝑥\n2\n'\n(\n𝜆𝑒#$%𝑑𝑥≈0.86\n1 −𝑒#($ ≈0.86 \n𝑥\n𝐹𝑥\n𝑥\n1 −𝐹2 = 𝑒#($ ≈0.14\n𝑓𝑥\n2\n(\n)\n𝜆𝑒#$%𝑑𝑥≈0.14\n𝑃𝑋≤2\n𝑃𝑋> 2\n𝑓𝑥= 𝜆𝑒#$%\n𝐹𝑥= 1 −𝑒#$%\n𝑋~Exp(𝜆)\n𝑥≥0:",
+      "char_count": 370
+    },
+    {
+      "page_index": 30,
+      "text": "Memoryless\nProperty\n31",
+      "char_count": 22
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMemorylessness: Hurry Up and Wait\nA continuous probability distribution is said to be memoryless if a \nrandom variable 𝑋 on that probability distribution satisfies the following for \nall 𝑠, 𝑡≥ 0:\n𝑃𝑋≥𝑠+ 𝑡 | 𝑋≥𝑠= 𝑃𝑋≥𝑡\n32\n• Here, 𝑠 represents the time you’ve already spent waiting.\n• The above states that after you’ve waited 𝑠 time units, the probability \nyou’ll need to wait an additional 𝑡 time units is equal to the probability \nyou’d have to wait 𝑡 time units without having waited those 𝑠 time units \nin the first place.\n• Example: If train arrival is guided by a memoryless random variable, the \nfact that you’ve waited 15 minutes doesn’t obligate the train to arrive \nany faster!",
+      "char_count": 757
+    },
+    {
+      "page_index": 32,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMemorylessness: Hurry Up and Wait\nA continuous probability distribution is said to be memoryless if a \nrandom variable 𝑋 on that probability distribution satisfies the following for \nall 𝑠, 𝑡≥ 0:\n𝑃𝑋≥𝑠+ 𝑡 | 𝑋≥𝑠= 𝑃𝑋≥𝑡\nUsing the definition of conditional probability, we can show that our \nExponential distribution exhibits the memoryless property. Just let \n𝑋 ~ Exp(𝜆) and trust the math:\n𝑃𝑋≥𝑠+ 𝑡 | 𝑋≥𝑠= 𝑃𝑋≥𝑠+ 𝑡\n𝑃𝑋≥𝑠\n= 𝑒CI(]^_)\n𝑒CI]\n= 𝑒CI_ =  𝑃𝑋≥𝑡\n33",
+      "char_count": 521
+    },
+    {
+      "page_index": 33,
+      "text": "Exercises\n34",
+      "char_count": 12
+    },
+    {
+      "page_index": 34,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEarthquakes\n35\nMajor earthquakes (magnitude 8.0+) occur independently on average \nonce every 500 years.*\nWhat is the probability of zero major earthquakes next year?\n*In California, according to historical data form USGS, 2015",
+      "char_count": 299
+    },
+    {
+      "page_index": 35,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEarthquakes\nMajor earthquakes (magnitude 8.0+) occur independently on average\nonce every 500 years.*\nWhat is the probability of zero major earthquakes next year?\n36\nStrategy 1: Exponential RV\nDefine events/RVs & state goal\nSolve\n𝑇: when first earthquake happens\n𝑇 ~Exp(𝜆= 0.002)\nWant: 𝑃𝑇> 1 = 1 −𝐹(1)\n𝑃𝑇> 1 = 1 −1 −𝑒CI⋅8 = 𝑒CI\n*In California, according to historical data form USGS, 2015",
+      "char_count": 460
+    },
+    {
+      "page_index": 36,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEarthquakes\nMajor earthquakes (magnitude 8.0+) occur independently on average\nonce every 500 years.*\nWhat is the probability of zero major earthquakes next year?\n37\nStrategy 1: Exponential RV\nStrategy 2: Poisson RV\n𝑌~Poi(𝜆)\n𝑝𝑘= 𝑒#$ 𝜆*\n𝑘!\nDefine events/RVs & state goal\nSolve\n𝑇: when first earthquake happens\n𝑇 ~Exp(𝜆= 0.002)\nWant: 𝑃𝑇> 1 = 1 −𝐹(1)\n𝑃𝑇> 1 = 1 −1 −𝑒CI⋅8 = 𝑒CI\n*In California, according to historical data form USGS, 2015\n𝑁: # earthquakes next year\n𝑁 ~Poi(𝜆= 0.002)\nWant: 𝑃𝑁= 0\nDefine events/RVs & state goal\nSolve\n𝑃𝑁= 0 = 𝜆W𝑒CI\n0!\n= 𝑒CI ≈0.998\nearthquakes\nyear\n𝜆:",
+      "char_count": 649
+    },
+    {
+      "page_index": 37,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nReplacing your laptop\nLet 𝑋= # hours of use until your laptop dies.\n• 𝑋 is distributed as an Exponential RV, where\n• On average, laptops die after 5000 hours of use.\n• You use your laptop 5 hours a day.\nWhat is 𝑃your laptop lasts 4 years ?\n38\n𝑋~Exp(𝜆)\n𝐸𝑋= 1/𝜆\n𝐹𝑥= 1 −𝑒#$%",
+      "char_count": 344
+    },
+    {
+      "page_index": 38,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nReplacing your laptop\nLet 𝑋= # hours of use until your laptop dies.\n• 𝑋 is distributed as an Exponential RV, where\n• On average, laptops die after 5000 hours of use.\n• You use your laptop 5 hours a day.\nWhat is 𝑃your laptop lasts 4 years ?\n39\n𝑋: # hours until\n     laptop death\n𝑋 ~Exp(𝜆= 1/5000)\n𝑃𝑋> 7300 = 1 −𝐹(7300)\nDefine\nSolve\nWant: 𝑃𝑋> 5 ⋅365 ⋅4\n𝑋~Exp(𝜆)\n𝐸𝑋= 1/𝜆\n𝐹𝑥= 1 −𝑒#$%\n= 1 −1 −𝑒( 3'&&/!&&& = 𝑒($.)# ≈0.2322\nBetter plan ahead if you’re co-terming!\n• 5-year plan:\n• 6-year plan:\n𝑃𝑋> 9125 = 𝑒($.6\"! ≈0.1612\n𝑃𝑋> 10950 = 𝑒(\".$7 ≈0.1119",
+      "char_count": 614
+    },
+    {
+      "page_index": 39,
+      "text": "Extra\n40",
+      "char_count": 8
+    },
+    {
+      "page_index": 40,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nExpectation of the Exponential\n41\n- 𝑥𝜆𝑒(8*𝑑𝑥= - 𝑢V 𝑑𝑣\n𝑢=  𝑥  \n  𝑑𝑣= 𝜆𝑒(8*𝑑𝑥\n𝑑𝑢=  𝑑𝑥   𝑣= −𝑒(8*\n𝐸𝑋= *\nCT\nT\n𝑥𝑓𝑥𝑑𝑥= *\nW\nT\n𝑥𝜆𝑒CIJ𝑑𝑥\n- 𝑢V 𝑑𝑣= 𝑢V 𝑣−- 𝑣V 𝑑𝑢\n−𝑥𝑒(8* −∫−𝑒(8*𝑑𝑥 \n=\nU\n−𝑥𝑒CIJ\nW\nT\n+ *\nW\nT\n𝑒CIJ𝑑𝑥\n=\nU\n−𝑥𝑒CIJ\nW\nT\n−1\nλ\nU\n𝑒CIJ\nW\nT\n \n= 0 −0 + 0 −−1\n𝜆\n= 1\n𝜆\nProof:\n𝑋~Exp(𝜆)\nExpectation \n \n 𝐸𝑋= 1\n𝜆\nIntegration by parts\n𝑋~Exp(𝜆) 𝑓𝑥= 𝜆𝑒#$% if 𝑥≥0\n−𝑥𝑒(8* −∫−𝑒(8*𝑑𝑥",
+      "char_count": 430
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:57Z"
+}

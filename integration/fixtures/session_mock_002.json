@@ -1,0 +1,18 @@
+{
+  "session_id": "sess_mock_002",
+  "recording_uri": "sessions/sess_mock_002/",
+  "qa_blocks": [
+    {
+      "block_id": "Q1",
+      "question": "What is the prior in Bayesian inference?",
+      "student_answer": "I'm not sure.",
+      "screenshots": []
+    },
+    {
+      "block_id": "Q2",
+      "question": "Explain how you would update a prior using Bayes rule, step by step.",
+      "student_answer": "So first we have a prior distribution over the parameter, and we observe some data. The likelihood tells us the probability of the data given the parameter. We multiply the prior by the likelihood to get the numerator of Bayes rule. The denominator is the marginal probability of the data, which we get by integrating the prior times the likelihood over all parameter values. So the posterior is proportional to prior times likelihood, and we normalize by that integral. In practice we often work with the unnormalized posterior when we can sample or when the normalizing constant is hard to compute.",
+      "screenshots": []
+    }
+  ]
+}

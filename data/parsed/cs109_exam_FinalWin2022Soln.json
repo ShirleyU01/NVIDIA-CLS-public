@@ -1,0 +1,81 @@
+{
+  "course": "CS109",
+  "document_role": "exam",
+  "source_path": "data/raw/CS109/exams/FinalWin2022Soln.pdf",
+  "relative_path": "data/raw/CS109/exams/FinalWin2022Soln.pdf",
+  "sha256": "48c0343c0184db2e0a9e6264e59c0f4c33cc74ddae64ad45e71c867d95831aa1",
+  "title_guess": "FinalWin2022Soln",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "CS109 Final Exam\nChris Piech\nCS109\nWinter 2022\nThis is a closed calculator/computer exam. You are, however, allowed to use notes in the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions and\nparameter values you used, where appropriate. It is fine for your answers to include summations, products,\nfactorials, exponentials, and combinations.\nYou can leave your answer in terms of Φ (the CDF of the standard normal) or Φ−1 (the inverse CDF). For\nexample Φ\n\u0010\n3\n4\n\u0011\nis an acceptable final answer. Recall that the exam is going to be “curved\" according to the\ndifficulty of the questions and as such hard questions will not translate to lower grades.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than I have in\nmy entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\nEmail (preferably your gradescope email):",
+      "char_count": 1026
+    },
+    {
+      "page_index": 1,
+      "text": "1\nShort Answer (30 points)\nAnswer each of the following questions. You must give a brief justification for your answer.\na. (6 points) Google Maps stores a probability distribution of the time of day that people go to the San\nFrancisco Airport (SFO):\nLet 𝑝𝑖be the probability that a person will show up at SFO 𝑖hours past midnight (so 𝑝6 is the probability\nthat they will show up between 6a and 7a). Out of the visitors that will visit SFO on a given day, what\nfraction do you expect to show up between midnight and noon? Give an expression.\n11\n∑︁\n𝑖=0\n𝑝𝑖\nSince Í23\n𝑖=0 𝑝𝑖= 1, the following is another equivalent answer:\n11Í\n𝑖=0\n𝑝𝑖\n23Í\n𝑖=0\n𝑝𝑖\nb. (7 points) We will consider a datapoint 𝑥an “outlier” if the probability of seeing a value 𝑥or larger is\n≤0.05. Consider a distribution 𝑋∼Geo(𝑝= 0.8). Is 7 an outlier? Give an expression.\n7 is an outlier if 1 −Σ6\n𝑖=0(0.2)𝑖−1(0.8) ≤0.05\nc. (7 points) A class uses High Resolution Course Feedback. In a given week they ask a random sample\nof 20 people for a numerical rating, instead of asking everyone. Assume the population expectation of\nrating is 4.5 and the population variance of rating is 1.0. What is the probability that the sample mean\nrating from 20 students will be ≥4.7?\nTrue\nA p-value of 0.99 would occur if the difference we observed between the modes of the two datasets is\nthe kind of difference we would observe frequently by chance if the two sets of points were drawn from\ndistributions with the same mode.\nd. (10 points) You meet a person at a party who mentions that they have two children. They reveal that\nthey have a daughter who was born on a Tuesday. What is the probability that they have two daughters?\nAssume a child has a 1⁄2 chance of being a daughter and a 1⁄7 chance of being born on a Tuesday. Assume\nthat the genders of the children, and the weekdays they were born on, are all independent of one another.",
+      "char_count": 1883
+    },
+    {
+      "page_index": 2,
+      "text": "The answer is 13/27.\nLet B be the event that both children are girls. Let T be the event that there is a girl born on a Tuesday.\n𝑃(𝐵|𝑇) = 𝑃(𝑇|𝐵)𝑃(𝐵)\n𝑃(𝑇)\n𝑃(𝐵) = 1/4\n𝑃(𝑇|𝐵) = 1/7 + 1/7 −1/49\n𝑃(𝑇) = 1/14 + 1/14 −1/196\nAnother explanation:\nThis is a well known paradox known as the boy-girl-paradox. Intuition says that the answer is 0.5, but\nit is not!\nFigure 1: We are conditioning on the yellow region (i.e. think of it as the \"new sample space\"). We are\nassessing the probability of the yellow region inside the \"female/female\" quadrant.\nLet the event \"there are two daughters\" be 𝐸.\nLet the event \"there is at least one daughter born on Tuesday\" be 𝐹.\n𝑃(𝐸|𝐹) = 𝑃(𝐸𝐹)\n𝑃(𝐹)\nUsing Inclusion-Exclusion Principle:\n= 𝑃(C1 Fem Tue, C2 Fem) + 𝑃(C1 Fem, C2 Fem Tue) −𝑃(C1 Fem Tue, C2 Fem Tue)\n𝑃(C1 Fem Tue) + 𝑃(C2 Fem Tue) −𝑃(C1 Fem Tue, C2 Fem Tue)\nThis turns into\n(7 + 7 −1)/142\n(14 + 14 −1)/142 = 13\n27 = 0.48148148\n.",
+      "char_count": 913
+    },
+    {
+      "page_index": 3,
+      "text": "2\nQuantitative Art History (20 points)\nA Stanford alumni discovered that the “Average Number of Brushstrokes in the Neighborhood\" is very\npredictive of whether a painting has been painted by Van Gough [1].\nLet 𝑋∼𝑁(𝜇= 20, 𝜎2 = 9) be the average number of brushstrokes in the neighborhood if Van Gough is\nthe painter. Let 𝑋∼𝑁(𝜇= 12, 𝜎2 = 25) be the average number of brushstrokes in the neighborhood if Van\nGough is not the painter.\nAside: A brushstroke 𝑗is a neighbor of brushstroke 𝑖if they are at most 200 pixels apart. For each brushstroke\nwe can calculate how many other brushstrokes are neighbours. The Average Number of Brushstrokes in the\nNeighborhood is an average of these values over all brushstrokes in a painting. Here is a painting by Van\nGough (left) and the auto-identified brush strokes (right).\na. (4 points) Why is a normal distribution appropriate for the “average number of brushstrokes in the\nneighborhood\" of a painting?\nMust mention the central limit theorem.",
+      "char_count": 981
+    },
+    {
+      "page_index": 4,
+      "text": "b. (16 points) A painting is discovered. Based on background information your prior belief that it was\npainted by Van Gough is 0.75. What is your updated belief after observing that the average number of\nbrushstrokes in the neighbourhood is 19?\nThis is an inference question: Let 𝑌be the event that Van gough was the artist.\n𝑃(𝑌|𝑋= 19) =\n𝑓(𝑋= 19|𝑌)𝑃(𝑌)\n𝑓(𝑋= 19|𝑌)𝑃(𝑌) + 𝑓(𝑋= 19|𝑌)𝑃(𝑌𝐶)",
+      "char_count": 385
+    },
+    {
+      "page_index": 5,
+      "text": "3\nBeta ± (20 points)\nYou have observed 30 successes and 20 fails for an event with unknown probability. Based on this information\nyou can model the probability of success, 𝑋, as a Beta random variable. You want to make a claim of the\nform: \"the probability of success is 𝑚± 𝑏.\"\nSelect 𝑚to be the expectation of 𝑋. Select 𝑏to be the smallest value, rounded to two decimal places, such\nthat 𝑃(𝑚−𝑏< 𝑋< 𝑚+ 𝑏) is greater than or equal to 95%. Provide your answer as pseudocode that prints\nout the values 𝑚and 𝑏.\nIncremental solution:",
+      "char_count": 528
+    },
+    {
+      "page_index": 6,
+      "text": "4\nBayesian Carbon Dating (34 points)\nWe are able to know the age of ancient artefacts using a process called carbon dating. This process involves\na lot of uncertainty! Living things have a constant proportion of a molecule called C14 in them. When living\nthings die those molecules start to decay. The time to decay in years, 𝑇, of a C14 molecule is distributed as an\nexponential. 𝑇∼Exp(𝜆= 1/8267).\na. (5 points) Consider a single C14 molecule. What is the probability that it decays within 500 years?\n𝑃(𝑇≤500) = 1 −𝑒−\n1\n8267 ∗500 = 0.05868875306\nb. (8 points) C14 molecules decay independently. A particular sample started with 100 molecules. What\nis the probability that exactly 95 are left after 500 years? Let 𝑝be your answer to part a.\nX Bin(n=100, p = 0.0586)\nP(X = 5) = scipy.stats.binom.pmf(5, 100, 0.05868)",
+      "char_count": 815
+    },
+    {
+      "page_index": 7,
+      "text": "c. (6 points) Write pseudocode for a function pr_measure_given_age(m, age) which returns 𝑃(𝑀=\nm|𝐴= age), the probability that exactly m molecules are left out of the original 100 after exactly age\nnumber of years.\nd. (15 points) You observe a measurement of 95 C14 molecules in a sample. You assume that the sample\noriginally had 100 C14 molecules when it died. Write pseudocode for a function age_belief() that\nreturns a list of length 1000 where the value at index 𝑖in the list stores 𝑃(𝐴= 𝑖|𝑀= 95). Age is a\ndiscrete random variable which takes on whole numbers of years. 𝐴= 𝑖is the event that the sample\norganism died 𝑖years ago. You may use the function pr_measure_given_age(m, age) from part c.\nFor your prior belief: you know that the sample must be between 𝐴= 500 and 𝐴= 600 inclusive and\nyou assume that every year in that range is equally likely.",
+      "char_count": 856
+    },
+    {
+      "page_index": 8,
+      "text": "5\nReliability engineering (23 points)\nThe “reliability distribution\" is a random variable parameterized by 𝑎with PDF:\n𝑓(𝑋= 𝑥) = 1\n𝑎2 𝑥𝑎−1𝑒−𝑥2\n𝑎2\nWe wish to model how long a particular model of phone will function before it breaks. We are going to use\na reliability distribution. To this end we collect 𝑁independent measurements of how long the type of phone\nfunctions before it breaks: 𝑥1, 𝑥2, . . . , 𝑥𝑁. Explain, in words, how you would choose parameter 𝑎using the\nmaximum likelihood estimation framework, and provide any necessary derivatives.\nFirst, we start by defining our likelihood function.\n𝐿(𝑎) =\n𝑁\nÖ\n𝑖=1\n𝑓(𝑋𝑖|𝑎)\nWe want to determine ˆ𝑎= argmax\n𝑎\n𝐿(𝑎). Since the argmax of 𝐿(𝑎) is equivalent to the argmax of the log of\n𝐿(𝑎) and logs make the math simpler we write:\n𝐿𝐿(𝑎) = log\n 𝑁\nÖ\n𝑖=1\n𝑓(𝑋𝑖|𝑎)\n!\nPlugging in the provided PDF and simplifying:\n𝐿𝐿(𝑎) = log\n 𝑁\nÖ\n𝑖=1\n1\n𝑎2 𝑥𝑎−1\n𝑖\n𝑒−\n𝑥2\n𝑖\n𝑎2\n!\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\nlog\n \n1\n𝑎2 𝑥𝑎−1\n𝑖\n𝑒−\n𝑥2\n𝑖\n𝑎2\n!#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\nlog\n\u0012 1\n𝑎2\n\u0013\n+ log\n\u0010\n𝑥𝑎−1\n𝑖\n\u0011\n+ log\n \n𝑒−\n𝑥2\n𝑖\n𝑎2\n!#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\n−2 log (𝑎) + (𝑎−1) log (𝑥𝑖) −𝑥2\n𝑖\n𝑎2 log (𝑒)\n#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n−2 log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n(𝑎−1) log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\n𝑎2 log (𝑒)\n𝐿𝐿(𝑎) = −2𝑁log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n𝑎log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) −1\n𝑎2\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\nNow we will take the partial derivative of the log likelihood with respect to the parameter of interest 𝑎:\n𝜕𝐿𝐿(𝑎)\n𝜕𝑎\n= 𝜕\n𝜕𝑎\n \n−2𝑁log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n𝑎log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) −1\n𝑎2\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\n!\n𝜕𝐿𝐿(𝑎)\n𝜕𝑎\n= −2𝑁\n𝑎+\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) + 2\n𝑎3\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\nFrom here, we would set the partial derivative equal to 0 and solve for 𝑎.\nNote: You were required to provide the necessary derivatives but you did not need to actually determine the\nvalue of 𝑎as the problem states. Any math beyond the calculation of the partial derivative was not required\nor penalized.",
+      "char_count": 1810
+    },
+    {
+      "page_index": 9,
+      "text": "6\nRank ordering of samples (25 points)\nA random variable 𝑋can take on three values: 1, 2 or 3 with the following probabilities:\nValue\nProbability\n1\n0.625\n2\n0.250\n3\n0.125\nConsider 𝑛IID samples from X. The samples are in “correct rank order\" if count(1) > count(2) > count(3)\nsuch that “count\" is the number of samples with the given value. Samples are not in correct rank order if\nnumber of 1s <= number of 2s, or if the number of 2s <= number of 3s.\na. (7 points) We draw 3 IID samples. What is the probability they are in “correct rank order”?\nWith 3 IID samples, there must two 1’s and one 2 in order for the samples be in correct rank order.\nThe probability of this is 0.6252 ∗0.250 ∗3.\nb. (18 points) If 𝑛IID samples are collected, what is the probability that they will be in “correct rank\norder”? Write pseudo-code that calculates the probability. For full credit, your algorithm should provide\nan exact answer (not a sampling approximation) and should run in polynomial time.\nimport math\ncounts = []\nfor i in range(n + 1):\nfor j in range(n - i + 1):\nif i > j and j > n - i - j:\ncounts.append([i, j, n - i - j])\np = 0.0\nfor c in counts:\n# mutinomial formula\ncoefficient = math.factorial(n) / (math.factorial(c[0]) * math.factorial(c[1]) *\nmath.factorial(c[2]))\np += coefficient * (0.625 ** c[0]) * (0.250 ** c[1]) * (0.125 ** c[2])",
+      "char_count": 1337
+    },
+    {
+      "page_index": 10,
+      "text": "7\nMachine Teaching (28 points)\nIn this problem you will write a machine teaching algorithm that can select three datapoints from a dataset\n(eg the Netflix dataset), such that a logistic regression algorithm trained on just those three datapoints would\nhave the best possible parameters. You are given two functions and a dataset:\ntheta = train(dataset)\nan implementation of logistic regression training. It returns theta, a list of 𝑚+ 1 weights, where 𝑚is the\nnumber of features in the dataset. theta[0] is the intercept and theta[i] is the weight for feature 𝑖.\nall_combinations = comb(items_list, k)\nwhich returns a list of all unique sets of size 𝑘from the input list of items. For example comb([1,2,3], 2)\nwould return [[1,2],[1,3],[2,3]]\ndataset\nis a list of dictionaries (one for each datapoint). Each datapoint has both a list of x values as well as a single\nlabel 𝑦. All the values are binary. Here is an example with four datapoints and 𝑚= 3:\ndataset = [\n{\"x\": [0,0,1], \"y\": 1},\n{\"x\": [1,0,1], \"y\": 1},\n{\"x\": [1,1,1], \"y\": 0},\n{\"x\": [0,0,0], \"y\": 0},\n]\na. (5 points) What is the length of the list returned by comb in terms of 𝑛, the length of items_list,\nwhen 𝑘= 3? For full credit, give both the exact number and the big-O notation. Assume that each item\nis distinct and that the same item can’t show up more than once in any set of three.\nThere are \u0000𝑛\n3\n\u0001 possible combinations of 3, so this is the length of comb. If we expand, we get \u0000𝑛\n3\n\u0001 =\n𝑛!\n3!(𝑛−3)! = 𝑛(𝑛−1) (𝑛−2)\n3!\n= 𝑛(𝑛−1) (𝑛−2)\n6\n. From this, we can estimate the Big-O: 𝑂(𝑛3).",
+      "char_count": 1550
+    },
+    {
+      "page_index": 11,
+      "text": "b. (5 points) What is the logistic regression likelihood for three datapoints (𝑥1, 𝑦1), (𝑥2, 𝑦2), (𝑥3, 𝑦3) and\nparameters 𝜃? Recall that |𝑥𝑖| = 𝑚and |𝜃| = 𝑚+ 1.\nFirst we append a 1 to the beginning of 𝑥1, 𝑥2, and 𝑥3. This allows us to create the \"bias\" term and make\n|𝑥𝑖| = 𝑚+ 1. For example (𝜃𝑇𝑥1) = 𝜃0 + 𝜃1𝑥(1)\n1\n+ 𝜃2𝑥(2)\n1\n+ 𝜃3𝑥(3)\n1\n𝐿(𝜃) =\n𝑛\nÖ\n𝑖=1\n𝑃(𝑌= 𝑦(𝑖)|𝑋= 𝑥(𝑖))\n𝐿(𝜃) =\n3\nÖ\n𝑖=1\n𝜎(𝜃𝑇𝑥𝑖)𝑦𝑖· [1 −𝜎(𝜃𝑇𝑥𝑖)]1−𝑦(𝑖)",
+      "char_count": 415
+    },
+    {
+      "page_index": 12,
+      "text": "c. (14 points) Write pseudo-code that returns a list of three datapoints from a given dataset. Select the\nthree datapoint, such that a logistic regression algorithm trained on just those three datapoints will have\nthe best possible parameters. The best parameters are ones which maximise the likelihood of the full\ndataset. You can (and should) define helper functions:\ndef machine_teach(dataset):\nd. (4 points) Consider a randomly chosen set of three datapoints. A logistic regression classifier is trained\non just those three datapoints. For the learned 𝜃do you expect the likelihood of those three datapoints\nto be larger or smaller than the likelihood of the whole dataset? Explain.\nLarger. The classifier will overfit those three datapoints during training, i.e. learn 𝜃that maximizes\nthe likelihood of those 3 datapoints. However, since these three datapoints probably don’t cover the\ndiversity in the dataset, we expect the likelihood of those three datapoints to be larger than that of the\nwhole dataset.",
+      "char_count": 1012
+    },
+    {
+      "page_index": 13,
+      "text": "That’s all folks. Thank you all for the wonderful quarter and we hope you have a fantastic spring break. Machine\nteaching is a real field which has implications for education. Carbon Dating had very minor simplifications\nfrom the true probabilistic algorithm! Many things in the natural world are analyzed in terms of their rank\nordering. Reliability engineering introduced a version of the Weibull distribution. This was a great class and\nthe teaching team really appreciated how positive, curious and intelligent you all were. All the best.\n[1] http://infolab.stanford.edu/~wangz/project/imsearch/ART/PAMI11/li.pdf",
+      "char_count": 616
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:59Z"
+}

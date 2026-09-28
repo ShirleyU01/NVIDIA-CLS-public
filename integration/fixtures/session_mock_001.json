@@ -1,0 +1,29 @@
+{
+  "session_id": "sess_mock_001",
+  "recording_uri": "sessions/sess_mock_001/",
+  "qa_blocks": [
+    {
+      "block_id": "Q1",
+      "question": "What is the prior in Bayesian inference?",
+      "student_answer": "The prior is our belief about the parameter before we see the data. So we have some distribution over the parameter and then we update it with the likelihood.",
+      "screenshots": [
+        {
+          "timestamp": 12.3,
+          "image_id": "frame_00042_12300.jpg",
+          "region": "whiteboard_top_left"
+        },
+        {
+          "timestamp": 15.1,
+          "image_id": "frame_00058_15100.jpg",
+          "region": "whiteboard_center"
+        }
+      ]
+    },
+    {
+      "block_id": "Q2",
+      "question": "How do you combine prior and likelihood to get the posterior?",
+      "student_answer": "We use Bayes rule. The posterior is proportional to the prior times the likelihood. So we multiply them and then normalize.",
+      "screenshots": []
+    }
+  ]
+}

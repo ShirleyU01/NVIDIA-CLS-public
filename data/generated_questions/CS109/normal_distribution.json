@@ -1,0 +1,1206 @@
+{
+  "topic_id": "normal_distribution",
+  "topic_name": "Normal Distribution",
+  "course": "CS109",
+  "model": "gpt-5.4",
+  "questions": [
+    {
+      "question_id": "CS109_normal_distribution_0001",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "conceptual",
+      "difficulty": "easy",
+      "question": "A student says, 'A normal distribution is just any bell-shaped curve, so if two datasets look roughly symmetric, they are basically the same normal distribution.' Do you agree? Explain using the roles of mean and variance, and describe how changing each parameter changes the graph.",
+      "expected_answer": "A strong answer should reject the claim. A normal distribution is specified by two parameters, mean and variance: X ~ N(mu, sigma^2). The mean shifts the center left or right, while the variance controls spread; larger variance makes the curve wider and lower, smaller variance makes it narrower and taller. So two symmetric bell-shaped curves may both be normal, but they need not be the same normal distribution unless both their means and variances match.",
+      "source_chunk_ids": [
+        "cs109_10_normal_gaussian_annotated_p10_8eddb3475d",
+        "cs109_10_normal_gaussian_annotated_p21_6dbb7ba655"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that a normal distribution is determined by mean and variance.",
+          "Explains that mean changes location/center.",
+          "Explains that variance changes spread/height.",
+          "Explicitly rejects the idea that all bell-shaped curves are the same normal."
+        ],
+        "partial_credit": [
+          "Mentions mean and variance but does not clearly tie them to graph shape.",
+          "Says distributions can differ in center or spread but gives only one parameter correctly."
+        ],
+        "common_mistakes": [
+          "Confusing variance and standard deviation.",
+          "Saying taller means larger mean.",
+          "Treating symmetry alone as enough to identify a normal distribution."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If two normal distributions have the same mean but different variances, where do their peaks occur relative to each other, and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What two numerical values would you need to specify before you could fully identify a normal distribution?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from normal distribution; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Confusing variance and standard deviation. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0002",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose adult reaction times in milliseconds are modeled as X ~ N(250, 40^2). Without plugging in table values, explain how you would compute the probability that a randomly chosen person has a reaction time between 220 and 300 milliseconds, and interpret the result in terms of areas under a curve.",
+      "expected_answer": "Standardize both endpoints: Z = (X - 250)/40. Then P(220 <= X <= 300) = P((220-250)/40 <= Z <= (300-250)/40) = Phi(1.25) - Phi(-0.75). The student should explain that this is the area under the standard normal curve between the two z-scores, not the height of the density at those points.",
+      "source_chunk_ids": [
+        "cs109_10_normal_gaussian_annotated_p21_6dbb7ba655",
+        "cs109_finalfall2022soln_preamble_879cb11add"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses correct standardization formula.",
+          "Sets up probability as difference of two CDF values.",
+          "Interprets answer as area/probability, not density height."
+        ],
+        "partial_credit": [
+          "Gets one z-score correct but not the other.",
+          "Knows to use Phi but does not clearly show interval subtraction."
+        ],
+        "common_mistakes": [
+          "Using the PDF instead of the CDF.",
+          "Forgetting to subtract the lower-tail probability.",
+          "Using variance 40^2 incorrectly as if standard deviation were 1600."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your setup change if the question asked for the probability reaction time is at least 300 milliseconds?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does Phi(z) represent geometrically on the standard normal curve?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using the PDF instead of the CDF. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0003",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A factory measures the diameter of a part, and past data suggest diameters are approximately normal with mean 10 mm and variance 0.04. The quality manager wants the probability a part falls between 9.8 and 10.1 mm. Describe the full modeling and computation steps aloud, including whether you would use variance or standard deviation when standardizing.",
+      "expected_answer": "First identify that X ~ N(10, 0.04), so the standard deviation is sqrt(0.04) = 0.2. Then standardize: P(9.8 <= X <= 10.1) = P((9.8-10)/0.2 <= Z <= (10.1-10)/0.2) = Phi(0.5) - Phi(-1). A strong answer should stress that standardization uses the standard deviation, not the variance.",
+      "source_chunk_ids": [
+        "cs109_10_normal_gaussian_annotated_p10_8eddb3475d",
+        "cs109_10_normal_gaussian_annotated_p21_6dbb7ba655"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly identifies sigma = 0.2 from variance 0.04.",
+          "Sets up both z-scores correctly.",
+          "Uses Phi difference correctly.",
+          "Explicitly notes standard deviation is used in standardization."
+        ],
+        "partial_credit": [
+          "Correct method with arithmetic slip.",
+          "Understands interval probability but is vague about variance vs standard deviation."
+        ],
+        "common_mistakes": [
+          "Dividing by 0.04 instead of 0.2.",
+          "Confusing variance notation with standard deviation notation.",
+          "Using symmetry without computing both endpoints."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the variance were larger but the mean stayed at 10, would this interval probability generally increase or decrease? Why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In X ~ N(mu, sigma^2), what is sigma when sigma^2 = 0.04?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Dividing by 0.04 instead of 0.2. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0004",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "You are modeling student heights from one classroom. Someone argues that using a normal model is justified because 'this classroom histogram looks nice and smooth,' while another person argues it is useful because the model generalizes through mean and variance. Compare these justifications and say which is stronger.",
+      "expected_answer": "A strong answer should say that visual fit to one sample can be suggestive, but the stronger justification is that the normal family is a flexible model summarized by mean and variance and often generalizes well across similar contexts. The student can mention that Gaussian models are often used because many real-valued measurements are approximately normal and because a Gaussian is a principled distribution once mean and variance are specified. The answer should distinguish descriptive fit from modeling rationale.",
+      "source_chunk_ids": [
+        "cs109_10_normal_gaussian_annotated_p6_d49a4720b4",
+        "cs109_10_normal_gaussian_annotated_p7_3ccab4149b"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Contrasts empirical visual fit with modeling/generalization reasoning.",
+          "States that the normal is specified by mean and variance.",
+          "Explains why generalization is a stronger argument than a single histogram looking smooth."
+        ],
+        "partial_credit": [
+          "Says both are valid without comparing their strengths.",
+          "Mentions bell shape but not mean/variance or generalization."
+        ],
+        "common_mistakes": [
+          "Claiming a single classroom histogram proves exact normality.",
+          "Saying maximum entropy means every dataset should be normal.",
+          "Ignoring the distinction between sample histogram and population model."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What additional evidence would you want before trusting the normal model for a new classroom?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why might fitting one classroom perfectly still be a weak argument for using the same model elsewhere?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from normal distribution; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming a single classroom histogram proves exact normality. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0005",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Let X1, X2, and X3 be independent Gaussian random variables with means 5, -2, and 1 and variances 4, 9, and 16 respectively. Without deriving from scratch, give the distribution of S = X1 + X2 + X3 and explain why the variance adds the way it does.",
+      "expected_answer": "Because sums of independent Gaussians are Gaussian, S is normal. Its mean is 5 + (-2) + 1 = 4, and its variance is 4 + 9 + 16 = 29, so S ~ N(4, 29). The variances add because independence makes covariance terms zero.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p28_4cdee69411"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States sum is Gaussian under independence.",
+          "Computes mean 4 correctly.",
+          "Computes variance 29 correctly.",
+          "Explains role of independence/covariance."
+        ],
+        "partial_credit": [
+          "Gets form right but confuses variance and standard deviation.",
+          "States parameters correctly without explanation of independence."
+        ],
+        "common_mistakes": [
+          "Adding standard deviations instead of variances.",
+          "Forgetting the result is Gaussian.",
+          "Using 5-2+1 for mean but then also subtracting variances."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your answer change if X2 were not independent of X1 and Cov(X1, X2) were positive?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When adding independent random variables, do standard deviations or variances add directly?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Adding standard deviations instead of variances. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0006",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose X ~ N(100, 15^2), and you take an independent sample of size 10. Explain the distribution of the sample mean, and then set up the probability that the sample mean lies between 95 and 105. Do not just state the answer; explain where the new standard deviation comes from.",
+      "expected_answer": "For i.i.d. normal observations, the sample mean is also normal: Xbar ~ N(100, 15^2/10), equivalently standard deviation 15/sqrt(10). Therefore P(95 <= Xbar <= 105) = Phi((105-100)/(15/sqrt(10))) - Phi((95-100)/(15/sqrt(10))). The reduction in spread comes from averaging independent observations, which divides the variance by n.",
+      "source_chunk_ids": [
+        "cs109_finalfall2022soln_preamble_879cb11add"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly states distribution of sample mean.",
+          "Uses variance divided by n or standard deviation divided by sqrt(n).",
+          "Sets up probability with correct standardized bounds.",
+          "Explains why averaging reduces variability."
+        ],
+        "partial_credit": [
+          "Correct setup but vague explanation of why spread changes.",
+          "States CLT-like result without noting exact normality here."
+        ],
+        "common_mistakes": [
+          "Using standard deviation 15/10 instead of 15/sqrt(10).",
+          "Leaving sample mean with same variance as original X.",
+          "Confusing variance 15^2/10 with standard deviation 15^2/sqrt(10)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would your answer about the distribution of the sample mean still be approximately normal if the original distribution were not normal but had finite variance? What theorem would you invoke?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you average more independent observations, should the sample mean become more or less variable?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using standard deviation 15/10 instead of 15/sqrt(10). Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0007",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "A classmate says, 'Whenever I see a binomial random variable with large n, I will use a normal approximation.' Give a careful response. Your answer should discuss when a normal approximation is reasonable, when a Poisson approximation is more appropriate, and what independence assumption matters for the normal case.",
+      "expected_answer": "The statement is too broad. For a binomial Bin(n,p), a normal approximation is good when n is large and p is not too close to 0 or 1; a common rule is np(1-p) > 10, and the trials should be independent. If n is large but p is very small, then Poisson with lambda = np is often better. So 'large n' alone is not sufficient; the value of p and the dependence assumptions matter.",
+      "source_chunk_ids": [
+        "cs109_11_joint_rvs_annotated_p10_761317177f",
+        "cs109_08_poisson_and_more_annotated_p30_7e1affcde8",
+        "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects 'large n alone' as sufficient.",
+          "States a normal-approximation criterion involving np(1-p).",
+          "States a Poisson-approximation regime with large n and small p.",
+          "Mentions independence for the normal approximation."
+        ],
+        "partial_credit": [
+          "Identifies one approximation regime correctly but not the comparison.",
+          "Mentions p near 0 or 1 is problematic but gives no criterion."
+        ],
+        "common_mistakes": [
+          "Saying Poisson is always better when n is large.",
+          "Ignoring p entirely.",
+          "Forgetting continuity correction if using normal for a discrete variable."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "For Bin(100, 0.04), which approximation would you prefer first, and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If p = 0.5 and n = 100, does that look more like a normal-approximation setting or a Poisson-approximation setting?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from normal distribution; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying Poisson is always better when n is large. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0008",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "Consider three binomial distributions: Bin(100, 0.5), Bin(100, 0.04), and Bin(100, 0.96). A student claims that Poisson should approximate all three because n is 100 in every case. Evaluate each case separately, and for the third one explain the useful trick if you still want a Poisson-style approximation.",
+      "expected_answer": "Bin(100,0.5) is not a good Poisson candidate because p is not small and lambda = 50 is not in the sparse-event regime; a normal approximation is more natural. Bin(100,0.04) is a good Poisson candidate with lambda = 4 because n is large and p is small. Bin(100,0.96) is not directly suitable for Poisson on the number of successes, but one can approximate the number of failures, which is Bin(100, 0.04), by Poisson(4), then translate back if needed.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p30_7e1affcde8",
+        "cs109_08_poisson_and_more_annotated_p31_c5b48dc4ec",
+        "cs109_11_joint_rvs_annotated_p10_761317177f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly rejects Poisson for Bin(100,0.5).",
+          "Correctly accepts Poisson for Bin(100,0.04).",
+          "Explains complement/failure-count trick for Bin(100,0.96)."
+        ],
+        "partial_credit": [
+          "Gets two of three cases right.",
+          "Recognizes that Bin(100,0.96) is problematic but cannot articulate the failure-count trick."
+        ],
+        "common_mistakes": [
+          "Using Poisson directly for Bin(100,0.96) successes.",
+          "Thinking lambda large automatically helps Poisson approximation.",
+          "Not distinguishing rare failures from common successes."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If you wanted P(X >= 95) for X ~ Bin(100, 0.96), how could the failure-count trick rewrite the event?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In a Poisson approximation to a binomial, which kind of event is supposed to be rare: successes or failures?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from normal distribution.",
+        "Watch out for this common trap: Using Poisson directly for Bin(100,0.96) successes. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0009",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Let X ~ Bin(100, 0.5). You want an approximate value for P(48 <= X <= 56) using a normal approximation. Set up the approximation carefully, including the mean, variance, and the continuity correction, and explain why the correction is needed.",
+      "expected_answer": "For X ~ Bin(100,0.5), the normal approximation is Y ~ N(mu = np = 50, variance = np(1-p) = 25), so standard deviation is 5. Because X is discrete, apply continuity correction: P(48 <= X <= 56) is approximated by P(47.5 < Y < 56.5). Then standardize to get Phi((56.5-50)/5) - Phi((47.5-50)/5). The correction improves the approximation by matching integer masses to intervals on the continuous normal curve.",
+      "source_chunk_ids": [
+        "cs109_11_joint_rvs_annotated_p10_761317177f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies mu = 50 and variance = 25.",
+          "Uses continuity-corrected bounds 47.5 and 56.5.",
+          "Explains why correction is used for discrete-to-continuous approximation."
+        ],
+        "partial_credit": [
+          "Correct normal parameters but no continuity correction.",
+          "Applies some correction but with one bound wrong."
+        ],
+        "common_mistakes": [
+          "Using bounds 48 and 56 directly without explanation.",
+          "Using standard deviation 25 instead of 5.",
+          "Forgetting that both endpoints must be shifted by 0.5."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the continuity correction change if the event were P(X > 56)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why might a continuous curve underestimate or overestimate a point-mass probability if you do not adjust by 0.5?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using bounds 48 and 56 directly without explanation. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0010",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "In a web-service setting, the number of requests landing in one bucket of a large hash table is only approximately independent across items, and the success probabilities vary slightly from item to item. A teammate says this invalidates all approximations based on rare events. Using the course guidance, explain whether a Poisson approximation can still be reasonable and what caveat you would mention.",
+      "expected_answer": "A strong answer should say that Poisson approximation can still be reasonable even when assumptions are mildly violated, especially for rare events. Slight dependence or small variation in the tiny success probabilities does not automatically destroy the approximation. The caveat is that this is an approximation rather than an exact model, and one should justify that dependence and heterogeneity are mild relative to the rare-event regime.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p29_1cfe0aced4",
+        "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that mild dependence/slight p variation can still permit Poisson approximation.",
+          "Explains the rare-event intuition.",
+          "Mentions approximation is not exact and assumptions are only approximately satisfied."
+        ],
+        "partial_credit": [
+          "Says 'yes, maybe' but without specifying the mild-violation conditions.",
+          "Mentions rare events but not the caveat."
+        ],
+        "common_mistakes": [
+          "Claiming any dependence makes Poisson impossible.",
+          "Claiming heterogeneity in p always invalidates the model.",
+          "Treating the result as exact rather than approximate."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What aspect of the problem would make you most skeptical of a Poisson approximation in this setting?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If each event remains very rare, does slight non-identicality in the success probabilities necessarily rule out Poisson reasoning?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming any dependence makes Poisson impossible. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0011",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "You are told that the number of floods in a 500-year period is modeled as Poisson with parameter 1. Explain how to compute the probability of at least 3 floods in 500 years, and then describe why summing the lower counts is preferable to summing the infinite upper tail.",
+      "expected_answer": "If X ~ Poi(1), then P(X >= 3) = 1 - P(X <= 2) = 1 - sum from i=0 to 2 of e^-1 * 1^i / i!. This complement is preferable because the upper tail has infinitely many terms, while the lower tail up to 2 has only three terms. The answer should emphasize the modeling step and the complement trick.",
+      "source_chunk_ids": [
+        "cs109_midtermfall2017soln_q49_376e2f8f80"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies X ~ Poi(1).",
+          "Uses complement 1 - P(X <= 2).",
+          "Writes the finite Poisson sum correctly.",
+          "Explains why the complement is computationally convenient."
+        ],
+        "partial_credit": [
+          "Gets the distribution and idea right but omits one Poisson term.",
+          "Says 'use complement' without explicit finite sum."
+        ],
+        "common_mistakes": [
+          "Using a binomial model with arbitrary n.",
+          "Computing P(X=3) instead of P(X>=3).",
+          "Forgetting the e^-lambda term."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the question changed to 'within the next 100 years,' would you still use the same random variable, or would a waiting-time model be more natural?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a Poisson random variable, what finite event is complementary to 'at least 3'?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using a binomial model with arbitrary n. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0012",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A region is called a '500-year floodplain,' meaning the average flood rate is 1 per 500 years. A student concludes that after 499 years without a flood, a flood is now almost guaranteed next year. Respond to this claim by connecting the counting model and the waiting-time model.",
+      "expected_answer": "The claim is false. The count of floods over time can be modeled by a Poisson process with rate 1/500 per year, and the waiting time to the next flood is exponential with parameter 1/500. Exponential waiting times are memoryless, so having already waited 499 years does not make next year almost guaranteed; the probability of a flood within the next year is still about 1 - e^(-1/500), approximately 1/500 for small rates.",
+      "source_chunk_ids": [
+        "cs109_midtermfall2017soln_q49_376e2f8f80"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects the misconception clearly.",
+          "Connects Poisson counts to exponential waiting time.",
+          "Mentions memorylessness or equivalent reasoning.",
+          "Gives correct next-year probability expression or interpretation."
+        ],
+        "partial_credit": [
+          "Correct intuition without naming memorylessness.",
+          "Uses long-run average rate correctly but does not connect models."
+        ],
+        "common_mistakes": [
+          "Interpreting '500-year floodplain' as exactly one flood every 500 years.",
+          "Confusing average waiting time with certainty after that time.",
+          "Using P(T>499)=0.5 or similar unsupported claim."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What is the probability of at least one flood in the next 100 years under this model?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Does an expected waiting time of 500 years mean the event must happen by year 500?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from normal distribution; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Interpreting '500-year floodplain' as exactly one flood every 500 years. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0013",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose there are 10 independent floodplains, each with annual flood count modeled as Poisson(1/500). You care about the event that more than 2 of the floodplains have at least 3 floods in a given year. Explain the two-stage modeling strategy and write the final probability expression.",
+      "expected_answer": "First, for one floodplain let X ~ Poi(1/500) be the number of floods in a year, and compute p* = P(X >= 3) = 1 - sum_{i=0}^2 e^{-1/500}(1/500)^i / i!. Then let Y ~ Bin(10, p*) count how many floodplains satisfy that rare event. The target probability is P(Y > 2) = sum_{i=3}^{10} C(10,i)(p*)^i(1-p*)^{10-i}.",
+      "source_chunk_ids": [
+        "cs109_midtermfall2017soln_q49_376e2f8f80"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines single-floodplain event probability p* correctly.",
+          "Uses binomial model across 10 independent floodplains.",
+          "Writes correct upper-tail binomial sum for more than 2."
+        ],
+        "partial_credit": [
+          "Understands two-stage structure but gets the threshold wrong.",
+          "Uses p* conceptually but leaves it poorly defined."
+        ],
+        "common_mistakes": [
+          "Using Poisson directly for the number of floodplains.",
+          "Confusing 'in 500 years' with 'in a given year.'",
+          "Forgetting that the first stage is P(X>=3), not P(X=3)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is the second-stage model binomial rather than Poisson?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the Bernoulli trial in your second-stage model?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using Poisson directly for the number of floodplains. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0014",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A botanist thinks a population of rose bushes is actually a mixture of two visually identical species. Species A occurs with probability 2/3 and has flower count approximated by N(4, 4); species B occurs with probability 1/3 and has flower count approximated by N(2, 9). Explain how to compute the probability that a randomly chosen bush has more than 3 flowers, and justify any continuity correction you use.",
+      "expected_answer": "Condition on species and use the law of total probability. Because flower count is discrete but being approximated by normals, use continuity correction: P(XA > 3) \u2248 1 - Phi((3.5-4)/2), and P(XB > 3) \u2248 1 - Phi((3.5-2)/3). Then combine them: P(X > 3) = (2/3)P(XA > 3) + (1/3)P(XB > 3). The correction is needed because the Gaussian is continuous but the underlying flower count is integer-valued.",
+      "source_chunk_ids": [
+        "cs109_midtermfall2017soln_q49_376e2f8f80"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Conditions on species correctly with weights 2/3 and 1/3.",
+          "Uses continuity correction with threshold 3.5.",
+          "Sets up both Gaussian tail probabilities correctly.",
+          "Explains why continuity correction is needed."
+        ],
+        "partial_credit": [
+          "Gets mixture weighting right but omits continuity correction.",
+          "Uses correction conceptually but on only one component."
+        ],
+        "common_mistakes": [
+          "Averaging means first and treating mixture as one normal.",
+          "Using 3 instead of 3.5 without justification.",
+          "Reversing species weights."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is the unconditional distribution here not generally a single normal distribution, even though both components are normal?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you want 'more than 3' for an integer count, what continuous cutoff should replace 3 in a continuity correction?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Averaging means first and treating mixture as one normal. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0015",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Using the same two-species rose model, a bush is observed to have exactly 3 flowers. Explain how to compare how likely species B is relative to species A. Do not just say 'use Bayes'; describe why densities appear and how the ratio simplifies.",
+      "expected_answer": "Because the observation is a single value under continuous approximations, one compares small-interval probabilities around 3, which leads to a ratio of densities. The posterior odds ratio is P(B|X=3) / P(A|X=3) = [f_B(3)P(B)] / [f_A(3)P(A)]. The student should explain that the tiny interval width cancels, so one may use Gaussian PDFs at x=3 multiplied by the priors 1/3 and 2/3.",
+      "source_chunk_ids": [
+        "cs109_midtermfall2017soln_q49_376e2f8f80",
+        "cs109_midtermfall2022soln_p6_180472912b"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses posterior odds or Bayes ratio correctly.",
+          "Explains why density values are used for a point observation under continuous models.",
+          "Includes prior weights for A and B.",
+          "Explains cancellation of the small interval width/epsilon idea."
+        ],
+        "partial_credit": [
+          "Invokes Bayes correctly but does not explain density-vs-probability distinction.",
+          "Sets up ratio but forgets one prior weight."
+        ],
+        "common_mistakes": [
+          "Saying P(X=3)=0 for continuous variables so Bayes cannot be used.",
+          "Using CDF values instead of PDF values at the observed point.",
+          "Ignoring the prior species proportions."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the observed flower count were very large, which species would become more plausible and why in terms of means and spreads?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why is it not enough to compare only the priors when you have observed X = 3?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Saying P(X=3)=0 for continuous variables so Bayes cannot be used. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0016",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A program first samples X ~ Bernoulli(0.3). If X=0 it returns Y ~ N(-1, 2^2); if X=1 it returns Y ~ N(1, 1^2). Explain how to compute P(Y < 0), and then comment on why treating Y as a single normal with mean equal to the weighted average would be a conceptual mistake.",
+      "expected_answer": "Condition on the latent Bernoulli variable: P(Y<0) = P(Y<0|X=0)P(X=0) + P(Y<0|X=1)P(X=1) = 0.7 Phi((0-(-1))/2) + 0.3 Phi((0-1)/1). Treating Y as a single normal with the weighted mean would be incorrect because a mixture of normals is generally not itself normal; the shape can be asymmetric or multimodal, and probabilities must be computed from the mixture law.",
+      "source_chunk_ids": [
+        "cs109_midtermfall2022soln_p6_180472912b"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses law of total probability over X.",
+          "Correctly standardizes each conditional normal.",
+          "Explains why a Gaussian mixture is not generally one Gaussian."
+        ],
+        "partial_credit": [
+          "Sets up conditional decomposition but with minor sign error in one z-score.",
+          "Recognizes mixture issue but explains vaguely."
+        ],
+        "common_mistakes": [
+          "Averaging the two means and variances and using one normal directly.",
+          "Forgetting the Bernoulli weights 0.7 and 0.3.",
+          "Using Phi(1) instead of Phi(-1) for the second term."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would the output distribution necessarily be symmetric? Why or why not?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What random variable are you conditioning on when you split the probability into two cases?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Averaging the two means and variances and using one normal directly. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0017",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "In the same Gaussian-mixture program, suppose the output value observed is y = 0.1. Explain how to compute the posterior probability that the Bernoulli variable was X=1. Your answer should distinguish clearly between probabilities and densities.",
+      "expected_answer": "Use Bayes with densities: P(X=1|Y=0.1) = f_{Y|X=1}(0.1)P(X=1) / [f_{Y|X=1}(0.1)P(X=1) + f_{Y|X=0}(0.1)P(X=0)]. Here f_{Y|X=1} is the N(1,1) density and f_{Y|X=0} is the N(-1,4) density, evaluated at 0.1. A strong answer explains that for a continuous observation at a point we use densities because actual point probabilities are zero.",
+      "source_chunk_ids": [
+        "cs109_midtermfall2022soln_p6_180472912b"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes Bayes formula with densities in numerator and denominator.",
+          "Uses correct priors 0.3 and 0.7.",
+          "Explains why densities rather than probabilities appear for continuous observations."
+        ],
+        "partial_credit": [
+          "Correct Bayes structure but omits one denominator term.",
+          "States 'use PDF' without explaining why."
+        ],
+        "common_mistakes": [
+          "Writing P(Y=0.1|X=1) as a nonzero probability mass.",
+          "Using CDFs instead of PDFs.",
+          "Ignoring the mixture denominator."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If y were observed much closer to 1 than to -1, what qualitative effect would that have on the posterior?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a continuous random variable, what is P(Y = 0.1) exactly?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Writing P(Y=0.1|X=1) as a nonzero probability mass. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0018",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Suppose a painting feature is defined as the average number of neighboring brushstrokes across all brushstrokes in a painting. Why might a normal model be appropriate for this average even if the individual neighbor counts are not normal? Explain the theorem and the assumptions you would want.",
+      "expected_answer": "Because the quantity is an average of many contributions, the central limit theorem suggests its distribution can be approximately normal under suitable conditions. The student should mention that one would want many approximately independent or weakly dependent terms with finite variance, or at least enough regularity for a CLT-style approximation. The key point is that the average can be close to normal even if the original per-brushstroke counts are not.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Invokes the central limit theorem.",
+          "Explains that the feature is an average/sum of many terms.",
+          "Mentions some assumptions such as independence or finite variance."
+        ],
+        "partial_credit": [
+          "Says 'averages are normal' without naming CLT or assumptions.",
+          "Mentions CLT but not why it applies here."
+        ],
+        "common_mistakes": [
+          "Claiming every average is exactly normal.",
+          "Confusing the distribution of individual counts with the distribution of the average.",
+          "Ignoring assumptions entirely."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would increasing the number of brushstrokes in the painting typically affect the variability of this average?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What classical theorem links sums or averages of many random variables to the normal distribution?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from normal distribution; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming every average is exactly normal. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0019",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "An art historian has prior probability 0.75 that a painting is by Van Gogh. A measured feature value is x = 19, and under the two hypotheses the feature is modeled as N(20, 9) if Van Gogh and N(12, 25) otherwise. Explain how to update the belief using Bayes' rule, and say whether you should compare CDF values or PDF values at x = 19.",
+      "expected_answer": "Use Bayes with likelihoods from the normal densities: P(VG|X=19) = f_VG(19)\u00b70.75 / [f_VG(19)\u00b70.75 + f_not(19)\u00b70.25], where f_VG is the N(20,9) PDF and f_not is the N(12,25) PDF. Since the observation is a specific continuous value, the relevant quantities are densities, not CDFs. The reasoning is that one compares how plausible 19 is under each model and then incorporates the prior odds.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correct Bayes update with PDFs.",
+          "Includes prior 0.75 and complementary prior 0.25.",
+          "Explains why densities, not CDFs, are used for an exact observed value."
+        ],
+        "partial_credit": [
+          "Gets Bayes structure right but forgets denominator expansion.",
+          "Recognizes use of likelihoods but is vague about density vs probability."
+        ],
+        "common_mistakes": [
+          "Using Phi-based tail probabilities instead of densities at 19.",
+          "Ignoring the prior.",
+          "Saying the posterior equals the prior because 19 is near 20."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the prior were only 0.1 instead of 0.75, could observing x = 19 still make Van Gogh more likely than not? What would determine that?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When you observe one exact value from a continuous model, what mathematical object gives the likelihood at that value?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using Phi-based tail probabilities instead of densities at 19. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0020",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A random variable X has mean 0.01 and variance 0.482, and you collect 100 independent samples and average them. State the approximate distribution of the average and explain why the variance changes by a factor of 1/100 rather than staying the same.",
+      "expected_answer": "Let Xbar be the sample average of 100 i.i.d. draws. By the CLT, or exactly if normality held, Xbar is approximately N(0.01, 0.482/100). The variance shrinks by a factor of n because averaging sums n independent variables, whose variances add to n\u00b70.482, and then dividing by n scales variance by 1/n^2, giving 0.482/n overall.",
+      "source_chunk_ids": [
+        "cs109_midtermfall2025soln_q0_96c40be370"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States approximate mean 0.01 and variance 0.482/100.",
+          "Explains variance scaling under averaging.",
+          "Mentions CLT or independent-sum reasoning."
+        ],
+        "partial_credit": [
+          "Correct distribution form but no explanation of variance scaling.",
+          "Uses standard deviation form correctly but not variance form."
+        ],
+        "common_mistakes": [
+          "Leaving variance unchanged.",
+          "Dividing standard deviation by 100 and calling that variance.",
+          "Forgetting the average has same mean as individual draws."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If a second simulation had the same mean but much smaller variance, which sample average would concentrate more tightly around 0.01?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When you divide a random variable by 100, does its variance divide by 100 or by 100^2?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Leaving variance unchanged. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0021",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student approximates X ~ Poi(1000) by N(1000, 1000) and then computes P(990 < X < 1000) using the bounds 990 and 1000 directly. Critique this method carefully. What parts are right, what part needs refinement, and what would the corrected setup look like?",
+      "expected_answer": "Approximating a large-parameter Poisson by a normal with matching mean and variance is reasonable, so N(1000,1000) is the right approximating distribution. But because the Poisson is discrete and the normal is continuous, continuity correction should be used: P(990 < X < 1000) means X is one of 991 through 999, so the corrected normal approximation is P(990.5 < Y < 999.5) for Y ~ N(1000,1000). Then one standardizes those corrected bounds.",
+      "source_chunk_ids": [
+        "cs109_midtermspr2017_q6k_9949ec7b94",
+        "cs109_11_joint_rvs_annotated_p10_761317177f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Approves the normal approximation for large lambda.",
+          "Identifies need for continuity correction.",
+          "Translates strict inequalities to corrected bounds 990.5 and 999.5.",
+          "Notes matching mean and variance."
+        ],
+        "partial_credit": [
+          "Mentions continuity correction but gets one bound slightly wrong.",
+          "Gets normal approximation right but vague about discrete-to-continuous issue."
+        ],
+        "common_mistakes": [
+          "Using 989.5 and 1000.5 for this strict-inequality event.",
+          "Matching variance incorrectly as standard deviation 1000.",
+          "Rejecting normal approximation altogether despite large lambda."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is the variance of a Poisson(lambda) equal to lambda relevant when choosing the approximating normal?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If X is discrete and Y is continuous, what tool is commonly added to improve a normal approximation to X?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from normal distribution.",
+        "Watch out for this common trap: Using 989.5 and 1000.5 for this strict-inequality event. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0022",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Someone says, 'The standard normal is a completely different distribution from the normal distribution.' Give a careful response that includes its parameters, its CDF notation, and why standardization is useful.",
+      "expected_answer": "The statement is false. The standard normal is just the special case Z ~ N(0,1) of the normal family, with mean 0 and variance 1. Its CDF is denoted Phi(z) = P(Z <= z). Standardization converts a general normal X ~ N(mu, sigma^2) into Z = (X-mu)/sigma, allowing probabilities for any normal to be computed using the single standard normal table or function Phi.",
+      "source_chunk_ids": [
+        "cs109_10_normal_gaussian_annotated_p21_6dbb7ba655",
+        "cs109_finalfall2022soln_preamble_879cb11add"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States Z ~ N(0,1).",
+          "Identifies standard normal as a special case, not a separate family.",
+          "Defines Phi(z) correctly.",
+          "Explains purpose of standardization."
+        ],
+        "partial_credit": [
+          "Knows parameters 0 and 1 but not CDF notation or use.",
+          "Explains standardization mechanically without the conceptual purpose."
+        ],
+        "common_mistakes": [
+          "Calling 1 the standard deviation when asked for variance without clarification.",
+          "Saying Phi is the PDF.",
+          "Treating standardization as changing the shape to a different family."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If X ~ N(10, 9), what is the standardized form of X?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the mean and variance of the standard normal random variable?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from normal distribution; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Calling 1 the standard deviation when asked for variance without clarification. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0023",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A factory produces light bulbs, and the lifetime of a single bulb is modeled as a normal random variable with mean 1200 hours and standard deviation 300 hours. An engineer tests 25 bulbs independently and wants the probability that the sample mean lifetime is at least 1300 hours. Explain which random variable you would model, what its distribution is, and how you would express the probability in terms of the standard normal CDF.",
+      "expected_answer": "Let \\(\\bar X\\) be the sample mean of the 25 independent bulb lifetimes. Because each lifetime is normal, the sample mean is exactly normal: \\(\\bar X \\sim N(1200, 300^2/25)\\), so its standard deviation is \\(300/5 = 60\\). Then the desired probability is \\(P(\\bar X \\ge 1300) = P\\left(Z \\ge \\frac{1300-1200}{60}\\right) = 1-\\Phi(100/60)\\). A strong answer should also note that this is about the mean of a sample, not a single bulb, so the variability is smaller than 300.",
+      "source_chunk_ids": [
+        "cs109_finalfall2022soln_preamble_879cb11add"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines the sample mean as the random variable of interest.",
+          "States that the sample mean is normal with mean 1200 and variance \\(300^2/25\\) or standard deviation 60.",
+          "Correctly standardizes to a Z-score and writes the answer using \\(\\Phi\\).",
+          "Explains why the sample mean has smaller spread than an individual observation."
+        ],
+        "partial_credit": [
+          "Correct setup but uses the single-observation standard deviation 300 instead of 60.",
+          "Gets the right distributional idea but leaves the probability only partially standardized.",
+          "States CLT-type reasoning without recognizing that exact normality already holds because the original distribution is normal."
+        ],
+        "common_mistakes": [
+          "Treating the sample mean as \\(N(1200,300^2)\\).",
+          "Using \\(\\Phi(z)\\) instead of \\(1-\\Phi(z)\\) for an upper-tail probability.",
+          "Confusing variance and standard deviation when scaling by sample size."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the sample size increased to 100, how would your expression change qualitatively, and would the event 'sample mean at least 1300' become more or less likely?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you distinguish carefully between the distribution of one bulb lifetime and the distribution of the average of 25 bulb lifetimes?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Treating the sample mean as \\(N(1200,300^2)\\). Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0024",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student says: 'For any large-count discrete random variable, if I approximate it with a normal distribution, I never need a continuity correction because the normal is already continuous.' Do you agree? Use a concrete example such as approximating a binomial probability like \\(P(X \\le 50)\\) for \\(X \\sim \\text{Bin}(100,0.5)\\), and explain what correction should be used and why.",
+      "expected_answer": "I do not agree. When a normal distribution is used to approximate a discrete random variable, a continuity correction is typically needed because the discrete event places mass on integers, while the normal assigns probability to intervals. For example, if \\(X \\sim \\text{Bin}(100,0.5)\\), then \\(X\\) has mean 50 and variance \\(100\\cdot 0.5\\cdot 0.5 = 25\\), so the approximation is \\(N(50,25)\\). To approximate \\(P(X \\le 50)\\), we use \\(P(Y \\le 50.5)\\), not \\(P(Y \\le 50)\\), where \\(Y\\sim N(50,25)\\). The reason is that the binomial event \\(X\\le 50\\) includes all integer values up through 50, so the corresponding continuous interval should extend halfway past 50.",
+      "source_chunk_ids": [
+        "cs109_11_joint_rvs_annotated_p10_761317177f",
+        "cs109_midtermfall2017soln_q49_376e2f8f80"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explicitly disagrees with the claim.",
+          "Explains the discrete-versus-continuous mismatch.",
+          "Uses a correct continuity correction such as 50.5 for \\(P(X\\le 50)\\), or 49.5 and 50.5 for exact-point events converted to intervals.",
+          "Mentions that normal approximation is reasonable here because binomial conditions are met."
+        ],
+        "partial_credit": [
+          "Knows a continuity correction is needed but gives the wrong boundary direction.",
+          "Explains the idea verbally without a concrete example.",
+          "Correctly computes mean and variance but omits why the half-unit adjustment matters."
+        ],
+        "common_mistakes": [
+          "Saying continuity correction is only needed for Poisson and not binomial.",
+          "Using \\(P(Y\\le 50)\\) directly for \\(P(X\\le 50)\\).",
+          "Applying a correction in the wrong direction, such as 49.5 for \\(P(X\\le 50)\\)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you approximate \\(P(X=50)\\) under the same model, and what interval in the normal would correspond to that single integer value?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If the binomial puts probability mass exactly at 50, what interval around 50 in a continuous model should represent that mass?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from normal distribution.",
+        "Watch out for this common trap: Saying continuity correction is only needed for Poisson and not binomial. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0025",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "You are modeling the total score from two independent measurement devices. One device\u2019s error is \\(X \\sim N(2,4)\\), the other\u2019s is \\(Y \\sim N(-1,9)\\), independently. Without doing any integration, explain the distribution of the combined error \\(X+Y\\), and then explain what assumption would break if the devices were strongly dependent.",
+      "expected_answer": "Because independent Gaussian random variables add to another Gaussian, \\(X+Y\\) is normal. Its mean is the sum of the means, \\(2+(-1)=1\\), and its variance is the sum of the variances, \\(4+9=13\\), so \\(X+Y\\sim N(1,13)\\). The key assumption is independence; if the device errors were strongly dependent, we could no longer simply add the variances. In that case the variance would be \\(\\mathrm{Var}(X+Y)=\\mathrm{Var}(X)+\\mathrm{Var}(Y)+2\\mathrm{Cov}(X,Y)\\), so dependence changes the spread, even though the mean still adds.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p28_4cdee69411"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that the sum is normal.",
+          "Correctly gives mean 1 and variance 13.",
+          "Explains that independence justifies adding variances directly.",
+          "Identifies covariance as the missing term under dependence."
+        ],
+        "partial_credit": [
+          "Correct mean and variance but weak explanation of why normality is preserved.",
+          "Mentions dependence matters but cannot state how.",
+          "Uses standard deviations instead of variances when combining spread."
+        ],
+        "common_mistakes": [
+          "Adding standard deviations to get 5.",
+          "Saying the sum is only approximately normal rather than exactly normal here.",
+          "Claiming dependence changes the mean formula."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If \\(Y\\) were replaced by \\(-Y\\), what would happen to the mean and variance of the new sum \\(X-Y\\)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you restate the rule for combining variances of independent random variables, and why it uses variances rather than standard deviations?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from normal distribution; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Adding standard deviations to get 5. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0026",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "A call center tracks the number of successful upsells per day. Historically, each of 400 calls independently leads to an upsell with probability 0.03. A manager proposes two approximations for the distribution of the daily upsell count: Poisson and Normal. Which approximation would you recommend first, which would you avoid, and how would you justify your choice using the problem parameters rather than just intuition?",
+      "expected_answer": "The exact model is \\(X\\sim \\text{Bin}(400,0.03)\\). Since \\(n\\) is large and \\(p\\) is small, Poisson is a natural approximation with \\(\\lambda=np=12\\). Normal can also be considered because \\(np(1-p)=400\\cdot 0.03\\cdot 0.97\\approx 11.64\\), which is above the common threshold of about 10, so the normal conditions are also borderline acceptable. However, based on the guideline 'if there is a choice, use Gaussian to approximate,' I would recommend the normal approximation first, with mean 12 and variance 11.64, and I would remember to use continuity correction for probability calculations. I would avoid saying Poisson is the only valid option; both are defensible here, but the normal is preferred by the stated course heuristic when available.",
+      "source_chunk_ids": [
+        "cs109_11_joint_rvs_annotated_p10_761317177f",
+        "cs109_08_poisson_and_more_annotated_p30_7e1affcde8",
+        "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the exact distribution as binomial with \\(n=400, p=0.03\\).",
+          "Computes \\(\\lambda=np=12\\) for Poisson and recognizes why Poisson is plausible.",
+          "Computes or discusses \\(np(1-p)\\approx 11.64\\) and recognizes why normal is also plausible.",
+          "States the preference for normal when both are available, and mentions continuity correction for normal approximation to a discrete RV."
+        ],
+        "partial_credit": [
+          "Correctly identifies one valid approximation with justification but does not discuss the other.",
+          "Recognizes both approximations but gives no parameter-based threshold argument.",
+          "Chooses normal but forgets continuity correction."
+        ],
+        "common_mistakes": [
+          "Rejecting normal solely because \\(p\\) is small, without checking \\(np(1-p)\\).",
+          "Using Poisson with parameter \\(p\\) instead of \\(np\\).",
+          "Claiming continuity correction is unnecessary because the sample size is large."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the manager asked for an approximation to \\(P(X\\ge 15)\\), how would your normal setup incorporate continuity correction?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you compute both \\(np\\) and \\(np(1-p)\\) and use them to compare the two approximation rules explicitly?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Rejecting normal solely because \\(p\\) is small, without checking \\(np(1-p)\\). Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_normal_distribution_0027",
+      "course": "CS109",
+      "topic_id": "normal_distribution",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A data scientist builds a classifier using a mixture model. With probability 0.7, a measurement comes from \\(N(-1, 2^2)\\); with probability 0.3, it comes from \\(N(1,1^2)\\). You observe a value of 0.1. Explain aloud how to compute the posterior probability that it came from the second component, and why you must use densities rather than probabilities at the single point 0.1.",
+      "expected_answer": "Let \\(C\\in\\{0,1\\}\\) indicate the component, with \\(P(C=1)=0.3\\) and \\(P(C=0)=0.7\\). Because the observation is continuous, \\(P(X=0.1\\mid C=i)=0\\) for each component, so we use Bayes' rule with densities: \\(P(C=1\\mid X=0.1)=\\frac{f_{1}(0.1)\\cdot 0.3}{f_{1}(0.1)\\cdot 0.3+f_{0}(0.1)\\cdot 0.7}\\), where \\(f_1\\) is the \\(N(1,1)\\) density and \\(f_0\\) is the \\(N(-1,4)\\) density. Concretely, \\(f_1(0.1)=\\frac{1}{\\sqrt{2\\pi}}e^{-\\frac12(0.1-1)^2}\\) and \\(f_0(0.1)=\\frac{1}{2\\sqrt{2\\pi}}e^{-\\frac12((0.1+1)/2)^2}\\). A strong answer should explain that point probabilities are zero for continuous variables, but density ratios still determine the posterior through Bayes' rule.",
+      "source_chunk_ids": [
+        "cs109_midtermfall2022soln_p6_180472912b",
+        "cs109_midtermfall2017soln_q49_376e2f8f80"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Introduces a latent component variable and states the prior probabilities.",
+          "Uses Bayes' rule with densities, not point probabilities.",
+          "Writes the posterior as density times prior over total evidence.",
+          "Explains why densities are appropriate for a continuous observation at a single point."
+        ],
+        "partial_credit": [
+          "Correct Bayes setup but omits one of the Gaussian density normalizing constants.",
+          "Gets the idea of weighting components by likelihood but does not justify the use of densities.",
+          "Uses informal proportionality correctly but does not normalize."
+        ],
+        "common_mistakes": [
+          "Writing \\(P(X=0.1\\mid C=i)\\) as an ordinary nonzero probability.",
+          "Ignoring the prior weights 0.7 and 0.3.",
+          "Using CDF values instead of density values for the observed point."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Without calculating exactly, would observing 3.5 instead of 0.1 increase or decrease the posterior probability of the second component, and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a continuous Gaussian, what is \\(P(X=0.1)\\), and if it is zero, what quantity do we compare instead when applying Bayes' rule?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Writing \\(P(X=0.1\\mid C=i)\\) as an ordinary nonzero probability. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    }
+  ]
+}

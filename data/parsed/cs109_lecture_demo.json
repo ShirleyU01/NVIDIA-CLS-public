@@ -1,0 +1,19 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/demo.pdf",
+  "relative_path": "data/raw/CS109/lectures/demo.pdf",
+  "sha256": "demo0000",
+  "title_guess": "Demo Lecture",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "Introduction to probability: sample space, events, and the axioms of probability."
+    },
+    {
+      "page_index": 1,
+      "text": "Conditional probability P(A|B) and Bayes rule connect prior, likelihood, and posterior."
+    }
+  ],
+  "ingested_at": "2026-04-17T00:00:00Z"
+}

@@ -1,0 +1,1071 @@
+{
+  "topic_id": "conditional_probability",
+  "topic_name": "Conditional Probability and Bayes Rule",
+  "course": "CS109",
+  "questions": [
+    {
+      "question_id": "CS109_conditional_probability_0001",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A student says, \u201cConditional probability just means dividing by the thing you condition on, so it\u2019s basically a computational trick.\u201d Respond to that claim using the idea of sample-space restriction. Then explain why independence is exactly the special case where conditioning does not change the sample space in any meaningful way.",
+      "expected_answer": "A strong answer should say that conditional probability is not merely a trick: when we compute P(E|F), we are redefining the relevant sample space to be only outcomes consistent with F. The event of interest becomes E\u2229F inside that reduced space, so P(E|F)=P(E\u2229F)/P(F). The student should then explain that if E and F are independent, learning F does not change the chance of E, so P(E|F)=P(E). Equivalently, the scaling induced by restricting to F leaves the relative weight of E unchanged.",
+      "source_chunk_ids": [
+        "cs109_04_cond_bayes_annotated_p3_e28a5b5ae2",
+        "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045",
+        "cs109_04_cond_bayes_annotated_p7_p8_8ddf92746a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains conditioning as restricting the sample space to F",
+          "States and interprets P(E|F)=P(E\u2229F)/P(F)",
+          "Connects independence to P(E|F)=P(E)",
+          "Gives conceptual justification, not just formulas"
+        ],
+        "partial_credit": [
+          "Gives correct formula but weak interpretation",
+          "Mentions independence correctly without explaining why conditioning has no effect"
+        ],
+        "common_mistakes": [
+          "Saying P(E|F)=P(E)/P(F)",
+          "Confusing independence with mutual exclusivity",
+          "Failing to mention that P(F) must be positive"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example where P(E|F) is much larger than P(E), and explain verbally what changed?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If the sample space is restricted to F, what set represents the favorable outcomes for E inside that restricted space?"
+        }
+      ],
+      "hints": [
+        "Start by treating conditioning as a change in the relevant universe: once you know F happened, outcomes outside F are no longer in the sample space.",
+        "In that restricted sample space, the event you care about is the part of E that still survives, namely E\u2229F, and the total mass of the new space is P(F) (with P(F)>0).",
+        "For independence, ask when restricting to F leaves E\u2019s relative weight unchanged; express that as P(E|F)=P(E), and relate it to the usual intersection/product relationship."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0002",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A university runs two entrance gates to a stadium. Forty percent of attendees use Gate A and sixty percent use Gate B. Security flags 5% of people at Gate A and 2% at Gate B for extra screening. A randomly chosen attendee was flagged. What is the probability they came through Gate A, and what does that number mean in words?",
+      "expected_answer": "Let A be the event the attendee used Gate A, B the event Gate B, and F the event of being flagged. By Bayes' rule, P(A|F)=P(F|A)P(A)/P(F). Using the law of total probability, P(F)=P(F|A)P(A)+P(F|B)P(B)=0.05\u00b70.4+0.02\u00b70.6=0.032. Therefore P(A|F)=0.05\u00b70.4/0.032=0.625. In words, among flagged attendees, 62.5% came through Gate A.",
+      "source_chunk_ids": [
+        "cs109_04_cond_bayes_annotated_p15_ae4b655a54",
+        "cs109_04_cond_bayes_annotated_p22_f25b261e45",
+        "cs109_04_cond_bayes_annotated_p24_p25_db149ab3a8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines relevant events clearly",
+          "Uses law of total probability for denominator",
+          "Applies Bayes correctly",
+          "Interprets posterior in words"
+        ],
+        "partial_credit": [
+          "Correct setup but arithmetic slip",
+          "Gets denominator right but does not interpret result"
+        ],
+        "common_mistakes": [
+          "Using P(A|F)=P(F|A)",
+          "Forgetting to weight by gate proportions",
+          "Conditioning on the wrong event"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If Gate A\u2019s flagging rate rose while all else stayed fixed, would P(A|F) necessarily increase? Explain without recomputing fully."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the denominator in Bayes\u2019 rule here, and why is it not just 0.05+0.02?"
+        }
+      ],
+      "hints": [
+        "Define events like A = used Gate A and F = was flagged, and notice the question asks for a reverse conditional: from flagged back to gate used.",
+        "Use Bayes\u2019 rule: P(A|F) = P(F|A)P(A) / P(F). For the denominator, find the overall chance of being flagged by weighting each gate\u2019s flag rate by the fraction of attendees using that gate.",
+        "Be careful not to treat P(A|F) as the same as P(F|A). Once you compute the posterior, state it in words as the share of flagged attendees who came through Gate A."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0003",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "Someone argues: \u201cIf a disease test is 99% accurate, then a person who tests positive has a 99% chance of having the disease.\u201d Give a careful response using Bayes\u2019 rule, and explain what extra information is missing from that statement.",
+      "expected_answer": "The correct response is that test accuracy alone does not determine P(disease|positive). Bayes\u2019 rule says P(D|+)=P(+|D)P(D)/P(+), and P(+) depends on both true positives and false positives. So we also need the base rate P(D), and typically the false positive rate or specificity. If the disease is rare, even a highly accurate test can yield many positives from healthy people, so the posterior probability can be much lower than 99%.",
+      "source_chunk_ids": [
+        "cs109_04_cond_bayes_annotated_p24_p25_db149ab3a8",
+        "cs109_04_cond_bayes_annotated_p33_4c0a52aac2",
+        "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Distinguishes P(+|D) from P(D|+)",
+          "States need for prior/base rate",
+          "Mentions denominator includes all ways to test positive",
+          "Explains rarity effect qualitatively"
+        ],
+        "partial_credit": [
+          "Notes the conditional reversal but gives limited explanation",
+          "Mentions base rate without connecting to denominator"
+        ],
+        "common_mistakes": [
+          "Equating sensitivity with posterior probability",
+          "Ignoring false positives",
+          "Claiming accuracy alone is enough"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you construct a rare-disease numerical example where the posterior after a positive is still below 50%?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which probability is 99% accuracy closest to: P(+|disease) or P(disease|+)?"
+        }
+      ],
+      "hints": [
+        "First check whether the statement is confusing two different conditional probabilities: a test being accurate for sick people is not the same as the chance a positive person is sick.",
+        "Write the quantity you actually want as P(D|+) and apply Bayes' rule. Identify what must appear in the numerator and, especially, all the cases that contribute to P(+).",
+        "Ask what extra information is needed beyond \u201c99% accurate\u201d: you need the disease\u2019s base rate and information about false positives/specificity. If the disease is rare, many positive tests can still come from healthy people, which changes P(D|+)."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0004",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You flip a biased coin: with probability 0.7 it lands heads. If heads, you draw one card from Deck H containing 3 red and 1 black card. If tails, you draw one card from Deck T containing 1 red and 3 black cards. You observe that the card is red. What is the probability the coin landed heads, and how would you explain this as prior, likelihood, and posterior?",
+      "expected_answer": "Let H be heads and R be drawing red. The prior is P(H)=0.7. The likelihoods are P(R|H)=3/4 and P(R|H^c)=1/4. By Bayes, P(H|R)=P(R|H)P(H)/[P(R|H)P(H)+P(R|H^c)P(H^c)] = (3/4\u00b70.7)/((3/4\u00b70.7)+(1/4\u00b70.3)) = 0.525/0.6 = 0.875. So observing red raises belief in heads from prior 0.7 to posterior 0.875 because red is more likely under heads.",
+      "source_chunk_ids": [
+        "cs109_04_cond_bayes_annotated_p22_f25b261e45",
+        "cs109_04_cond_bayes_annotated_p24_p25_db149ab3a8",
+        "cs109_04_cond_bayes_annotated_p27_08be1e5795"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies prior, likelihood, posterior correctly",
+          "Computes denominator via total probability",
+          "Obtains 0.875",
+          "Explains why posterior increases"
+        ],
+        "partial_credit": [
+          "Correct Bayes setup but arithmetic slip",
+          "Gets numerical answer with little interpretation"
+        ],
+        "common_mistakes": [
+          "Using 0.7 directly as posterior",
+          "Neglecting the tails-red path in denominator",
+          "Reversing P(R|H) and P(H|R)"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the coin were fair instead, how would the posterior change qualitatively and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Before conditioning on red, what was your prior probability of heads, and what piece of evidence should update it?"
+        }
+      ],
+      "hints": [
+        "Define events carefully: let H = \u201ccoin landed heads\u201d and R = \u201cdrawn card is red.\u201d Since you observed red and want the chance of heads, this is a Bayes\u2019 rule problem for P(H|R).",
+        "Identify the ingredients before computing: the prior is P(H), and the likelihoods come from the deck compositions, so find P(R|H) from Deck H and P(R|H^c) from Deck T).",
+        "Use Bayes\u2019 rule: P(H|R) = P(R|H)P(H) / P(R), and compute P(R) by total probability as the sum of the heads-red path and the tails-red path. Then explain that the posterior should be larger than the prior because red is more likely if heads happened."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0005",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Derive Bayes\u2019 theorem aloud starting from the definition of conditional probability, but do not just quote the result. Your derivation should make clear why the denominator is a normalization constant, and why the theorem requires positive probability for the conditioned events.",
+      "expected_answer": "Start from P(F|E)=P(E\u2229F)/P(E) when P(E)>0. Also, P(E|F)=P(E\u2229F)/P(F) when P(F)>0, so P(E\u2229F)=P(E|F)P(F). Substituting into the first expression gives P(F|E)=P(E|F)P(F)/P(E). The denominator P(E) normalizes the numerator so that the posterior probabilities across possible causes of E sum to 1. We require P(E)>0 and P(F)>0 because conditional probabilities on zero-probability events are not defined in this elementary event setting.",
+      "source_chunk_ids": [
+        "cs109_04_cond_bayes_annotated_p7_p8_8ddf92746a",
+        "cs109_04_cond_bayes_annotated_p22_f25b261e45",
+        "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses both conditional-probability definitions correctly",
+          "Substitutes through the joint probability",
+          "Explains denominator as normalization",
+          "States positivity conditions and why they matter"
+        ],
+        "partial_credit": [
+          "States Bayes with a partial derivation",
+          "Gives formula but weak normalization explanation"
+        ],
+        "common_mistakes": [
+          "Claiming Bayes is independent of P(E)",
+          "Failing to mention positivity assumptions",
+          "Treating normalization as optional"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you expand P(E) if F and F^c form a partition of the sample space?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What expression do you get for P(E\u2229F) from the chain rule?"
+        }
+      ],
+      "hints": [
+        "Start with the definition of conditional probability and focus on the same joint event from two different conditioning perspectives.",
+        "Write one expression for conditioning on E and another for conditioning on F, both in terms of the joint event E \u2229 F. Keep track of when each expression is valid: the event you condition on must have positive probability.",
+        "Rearrange one conditional-probability equation to express the joint probability, then substitute it into the other. After that, explain why the denominator is the factor that makes the resulting conditional probabilities over possible causes sum to 1, rather than just an extra term."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0006",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A job candidate may come from one of three training programs: A, B, or C, with probabilities 0.5, 0.3, and 0.2. The probability of passing a technical screen is 0.8 for A, 0.6 for B, and 0.3 for C. A candidate passed the screen. Compute the probability they came from program B, and explain how the law of total probability enters the calculation.",
+      "expected_answer": "Let P be passing. We want P(B|P). By Bayes, P(B|P)=P(P|B)P(B)/P(P). The denominator is found by the general law of total probability across the partition A, B, C: P(P)=0.8\u00b70.5+0.6\u00b70.3+0.3\u00b70.2=0.64. Thus P(B|P)=0.6\u00b70.3/0.64=0.28125. The law of total probability is needed because there are multiple mutually exclusive ways to pass, depending on the program.",
+      "source_chunk_ids": [
+        "cs109_04_cond_bayes_annotated_p16_0709e8c976",
+        "cs109_04_cond_bayes_annotated_p22_f25b261e45",
+        "cs109_17_cont_joint_ii_annotated_p22_cf0d04ea8f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Recognizes A, B, C as partition",
+          "Computes total pass probability correctly",
+          "Applies Bayes to get 0.28125",
+          "Explains role of total probability"
+        ],
+        "partial_credit": [
+          "Correct setup with arithmetic error",
+          "Computes P(P) but misinterprets final answer"
+        ],
+        "common_mistakes": [
+          "Dividing by 0.3 instead of P(P)",
+          "Ignoring one of the programs in denominator",
+          "Assuming equal weighting among programs"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would passing make program A more or less likely than before? Justify from the numbers."
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you list all disjoint pathways by which the event 'pass' can occur?"
+        }
+      ],
+      "hints": [
+        "Treat A, B, and C as a partition of all candidates, and let P be the event that the candidate passed the screen. Since you know the candidate passed, this is a conditional probability question: think Bayes\u2019 rule.",
+        "First identify the two ingredients in P(B|P): the numerator P(P|B)P(B) and the denominator P(P). The denominator is not just one program\u2019s pass rate; it must combine all possible ways a candidate could pass.",
+        "Use Bayes: P(B|P)=P(P|B)P(B)/P(P), and compute P(P) with the law of total probability as P(P|A)P(A)+P(P|B)P(B)+P(P|C)P(C). Plug in the given numbers and simplify, making sure every program appears in the denominator."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0007",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student claims that if two events are disjoint, then they must also be independent because they \u201cdo not affect each other.\u201d Evaluate this claim carefully, including any exceptional case.",
+      "expected_answer": "The claim is false in general. If E and F are disjoint, then P(E\u2229F)=0. For independence we would need P(E\u2229F)=P(E)P(F), so unless P(E)=0 or P(F)=0, disjointness cannot imply independence. In fact, if disjoint events both have positive probability, observing one makes the other impossible, so they are maximally dependent rather than independent.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p15_3b7231a7cc",
+        "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045",
+        "cs109_03_probability_annotated_p32_f98bba92d1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States claim is false except zero-probability edge case",
+          "Uses P(E\u2229F)=0 vs P(E)P(F) reasoning",
+          "Explains intuitive dependence"
+        ],
+        "partial_credit": [
+          "Says false but gives only intuition",
+          "Mentions formulas without exceptional case"
+        ],
+        "common_mistakes": [
+          "Confusing disjointness with independence",
+          "Ignoring zero-probability exception",
+          "Saying 'not affecting each other' implies disjointness"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give a concrete example of independent events that are not disjoint?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If E and F are disjoint and both have positive probability, what is P(E|F)?"
+        }
+      ],
+      "hints": [
+        "Start by separating the two ideas: disjoint events cannot happen together, while independent events satisfy a product rule for happening together.",
+        "Write down the two relevant facts: if events are disjoint, then P(E\u2229F)=0; if they are independent, then P(E\u2229F)=P(E)P(F). Compare these directly.",
+        "Ask when P(E)P(F) could equal 0. Also check the conditional view: for disjoint events, what happens to P(F|E) when P(E)>0, and how does that compare to independence?"
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0008",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A company\u2019s spam filter uses the word \u201cDear\u201d as one signal. Suppose 60% of all incoming emails are spam, 20% of spam emails contain \u201cDear,\u201d and 1% of non-spam emails contain \u201cDear.\u201d An email contains \u201cDear.\u201d What is the probability it is spam, and why might someone initially guess the wrong direction?",
+      "expected_answer": "Let S be spam and D be containing \u201cDear.\u201d Then P(S|D)=P(D|S)P(S)/[P(D|S)P(S)+P(D|S^c)P(S^c)] = 0.2\u00b70.6/(0.2\u00b70.6+0.01\u00b70.4)=0.12/0.124\u22480.9677. So the email is very likely spam given this evidence. Someone might guess wrong by focusing only on the fact that only 20% of spam has 'Dear' and ignoring how extremely rare 'Dear' is among non-spam, plus the high prior spam rate.",
+      "source_chunk_ids": [
+        "cs109_04_cond_bayes_annotated_p24_p25_db149ab3a8",
+        "cs109_04_cond_bayes_annotated_p27_08be1e5795"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Sets up Bayes correctly",
+          "Calculates denominator correctly",
+          "Gets posterior about 0.968",
+          "Explains misconception using likelihood comparison and prior"
+        ],
+        "partial_credit": [
+          "Correct formula with arithmetic slip",
+          "Gets answer but weak explanation of intuition"
+        ],
+        "common_mistakes": [
+          "Reporting 0.2 as the posterior",
+          "Ignoring non-spam contribution in denominator",
+          "Thinking a small likelihood automatically means a small posterior"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If only 5% of all email were spam instead of 60%, would the posterior remain as high? Explain qualitatively."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the two disjoint ways an email can contain the word 'Dear'?"
+        }
+      ],
+      "hints": [
+        "Define events like S = spam and D = email contains \u201cDear.\u201d The key is that you want P(S|D), which is not the same as the given 20% value P(D|S).",
+        "Use Bayes\u2019 rule: compare the spam path and the non-spam path that could both produce an email with \u201cDear.\u201d Compute the numerator P(D|S)P(S) and the denominator by adding P(D|S)P(S) + P(D|S^c)P(S^c).",
+        "For intuition, don\u2019t focus only on \u201conly 20% of spam says Dear.\u201d Also notice how rare \u201cDear\u201d is in non-spam and include the base rate that most emails are spam; that combination drives the posterior in the opposite direction from the naive guess."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0009",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Explain the chain rule for three events by telling a story of information revealed sequentially. Then contrast it with the law of total probability, which combines mutually exclusive alternatives. I want to hear not just formulas but when each tool is the natural one to use.",
+      "expected_answer": "For three events E, F, and G, the chain rule writes P(E\u2229F\u2229G)=P(E)P(F|E)P(G|E\u2229F), which matches a story where we first ask whether E happens, then whether F happens given E, then whether G happens given both. The law of total probability is different: it computes P(E) by partitioning the sample space into disjoint cases F1, F2, ... and summing P(E|Fi)P(Fi). So the chain rule is for building a joint probability along a sequence, while total probability is for marginalizing over alternative hidden cases.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p22_cf0d04ea8f",
+        "cs109_04_cond_bayes_annotated_p15_ae4b655a54",
+        "cs109_04_cond_bayes_annotated_p16_0709e8c976"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States chain rule for three events",
+          "States total probability over a partition",
+          "Explains sequential vs alternative-case viewpoints",
+          "Indicates when each is used"
+        ],
+        "partial_credit": [
+          "Provides formulas with limited interpretation",
+          "Explains one tool well but not the contrast"
+        ],
+        "common_mistakes": [
+          "Using chain rule where partitioning is needed",
+          "Thinking total probability requires independence",
+          "Forgetting disjointness in the partition"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Could you combine both tools in one problem? Describe a scenario where you would."
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you want P(E) and you know different conditional probabilities P(E|Fi), what condition must the Fi satisfy for the total-probability formula to apply?"
+        }
+      ],
+      "hints": [
+        "Start by deciding which picture fits each rule: one follows a single outcome as information is revealed step by step, while the other breaks the world into separate cases and adds them up.",
+        "For the chain rule, tell a story like: first learn whether E happened, then whether F happened given E, then whether G happened given both earlier events. For total probability, pick a partition F1, F2, ... that is mutually exclusive and exhaustive, and ask how your event behaves inside each case.",
+        "The key contrast is to write a joint event as a product of successive conditional probabilities, but write an overall event as a sum of case-by-case contributions weighted by each case\u2019s probability. Make sure you mention that total probability uses disjoint alternatives and does not require independence."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0010",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "A machine component is manufactured on one of two lines. Line 1 makes 30% of components and produces a defect with probability 4%; Line 2 makes 70% and produces a defect with probability 1%. If a component is found defective, compute the probability it came from Line 1. Then compare that posterior to the prior and explain the direction of the change.",
+      "expected_answer": "Let L1 be Line 1 and D be defective. By Bayes, P(L1|D)=P(D|L1)P(L1)/[P(D|L1)P(L1)+P(D|L2)P(L2)] = 0.04\u00b70.3/(0.04\u00b70.3+0.01\u00b70.7)=0.012/0.019\u22480.6316. The prior P(L1) was only 0.3, but after seeing a defect, the posterior rises to about 0.632 because defects are much more likely on Line 1 than Line 2.",
+      "source_chunk_ids": [
+        "cs109_04_cond_bayes_annotated_p22_f25b261e45",
+        "cs109_04_cond_bayes_annotated_p27_08be1e5795",
+        "cs109_04_cond_bayes_annotated_p15_ae4b655a54"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correct Bayes setup",
+          "Correct weighted denominator",
+          "Computes about 0.632",
+          "Explains posterior increases because defect is more likely under Line 1"
+        ],
+        "partial_credit": [
+          "Correct setup but arithmetic error",
+          "States posterior is larger than prior without good explanation"
+        ],
+        "common_mistakes": [
+          "Using 0.04/(0.04+0.01) without priors",
+          "Confusing prior with posterior",
+          "Ignoring production proportions"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If Line 1 produced 90% of all components instead, would the posterior be even higher? Why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why can\u2019t you compare 4% and 1% alone without also using 30% and 70%?"
+        }
+      ],
+      "hints": [
+        "Let L1 be \u201cmade on Line 1\u201d and D be \u201cdefective.\u201d This is a Bayes-rule question: you want a posterior probability after observing a defect, not just a raw defect rate.",
+        "Set up P(L1|D)=P(D|L1)P(L1)/P(D), where P(D) must include defects from both lines: P(D|L1)P(L1)+P(D|L2)P(L2). Be careful not to use 0.04/(0.04+0.01), since that ignores the production proportions.",
+        "Compute the weighted numerator and denominator, then compare your result to the prior P(L1)=0.30. Since a defect is more likely if the part came from Line 1 than from Line 2, the posterior should shift upward relative to the prior."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0011",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "Suppose someone writes, for events E and F, 'Since P(E)=P(E|F)P(F), we can always recover unconditional probabilities by multiplying a conditional probability by the probability of the condition.' Diagnose the mistake and repair the statement.",
+      "expected_answer": "The mistake is that P(E|F)P(F)=P(E\u2229F), not generally P(E). Multiplying by P(F) only gives the portion of E that occurs together with F. To recover P(E), we must also include the complementary case: P(E)=P(E|F)P(F)+P(E|F^c)P(F^c), or more generally sum over a partition. The student has confused a joint probability with a marginal probability.",
+      "source_chunk_ids": [
+        "cs109_04_cond_bayes_annotated_p7_p8_8ddf92746a",
+        "cs109_04_cond_bayes_annotated_p15_ae4b655a54",
+        "cs109_04_cond_bayes_annotated_p16_0709e8c976"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies P(E|F)P(F)=P(E\u2229F)",
+          "Explains why this is not usually P(E)",
+          "Repairs using law of total probability",
+          "Uses language of joint vs marginal"
+        ],
+        "partial_credit": [
+          "Spots that statement is wrong but not why",
+          "Mentions complement case without formula"
+        ],
+        "common_mistakes": [
+          "Saying formula is correct only if E and F independent",
+          "Forgetting the F^c term",
+          "Confusing intersection with conditioning"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Under what special condition would P(E)=P(E|F)P(F) actually hold?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What event does P(E|F)P(F) represent in terms of set operations?"
+        }
+      ],
+      "hints": [
+        "Notice that conditioning on F only talks about the world where F happens. Multiplying by P(F) therefore counts only the portion of E associated with F.",
+        "Use the definition P(E|F)=P(E\u2229F)/P(F) (when P(F)>0) and rearrange it. Ask yourself: does that product represent all of E, or just E together with F?",
+        "To recover the unconditional probability, break E into the cases where F happens and where F does not happen, then add those contributions. This is the law of total probability, and it fixes the joint-vs-marginal confusion."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0012",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You are told a game works as follows: first choose a bag by rolling a fair die. On 1\u20134 you use Bag X, on 5\u20136 you use Bag Y. Bag X contains 1 gold and 4 silver coins; Bag Y contains 3 gold and 2 silver coins. You draw a gold coin. What is the probability you were using Bag Y?",
+      "expected_answer": "Let Y be using Bag Y and G be drawing gold. The prior is P(Y)=2/6=1/3 and P(X)=2/3. The likelihoods are P(G|X)=1/5 and P(G|Y)=3/5. Bayes gives P(Y|G)=(3/5\u00b71/3)/[(1/5\u00b72/3)+(3/5\u00b71/3)] = (1/5)/(2/15+1/5) = (1/5)/(1/3)=3/5. So after seeing gold, Bag Y becomes more likely than its prior because gold is more common there.",
+      "source_chunk_ids": [
+        "cs109_04_cond_bayes_annotated_p17_4f3ffa1457",
+        "cs109_04_cond_bayes_annotated_p22_f25b261e45",
+        "cs109_04_cond_bayes_annotated_p27_08be1e5795"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses correct priors from die outcomes",
+          "Uses correct bag likelihoods",
+          "Applies Bayes to obtain 3/5",
+          "Explains evidence shifts belief toward Y"
+        ],
+        "partial_credit": [
+          "Correct setup with arithmetic slip",
+          "Gets answer but not interpretation"
+        ],
+        "common_mistakes": [
+          "Treating bags as equally likely",
+          "Using P(Y|G)=P(G|Y)=3/5 without Bayes",
+          "Ignoring Bag X in denominator"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If Bag Y had 5 gold and 0 silver instead, what qualitative effect would that have on the posterior?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Before observing the coin, what was the probability of Bag Y, and why is it not 1/2?"
+        }
+      ],
+      "hints": [
+        "This is a Bayes\u2019 rule update: start from how likely each bag was before the draw, then revise after observing a gold coin. Also notice the bags are not equally likely because the die favors Bag X.",
+        "Let Y mean \u201cBag Y was used\u201d and G mean \u201ca gold coin was drawn.\u201d Find the prior for each bag from the die outcomes, then find the likelihoods P(G|X) and P(G|Y) from the bag contents.",
+        "Apply P(Y|G)=P(G|Y)P(Y)/P(G), and expand P(G) by considering gold coming from either bag: P(G|X)P(X)+P(G|Y)P(Y). This avoids the common mistake of setting P(Y|G) equal to P(G|Y)."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0013",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "In discrete and continuous settings, Bayes\u2019 theorem appears with probabilities, PMFs, or PDFs. Explain what stays the same across all three versions, and what changes in interpretation when moving to continuous random variables.",
+      "expected_answer": "What stays the same is the structure: posterior is proportional to prior times likelihood, divided by a normalizing term. For events we write P(F|E)=P(E|F)P(F)/P(E); for discrete random variables we use PMFs; for continuous random variables we use densities, such as f_{Y|X}(y|x)=f_Y(y)f_{X|Y}(x|y)/f_X(x). In the continuous case, densities are not probabilities at single points, so the formula concerns relative plausibility through densities, and the denominator normalizes over y. The same Bayes logic still applies: update beliefs after observing x.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p24_p25_78ee9a2e6b",
+        "cs109_21_beta_annotated_p14_f31b05e7ec",
+        "cs109_17_cont_joint_ii_annotated_p18_p19_653a0fdfd1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States common posterior-prior-likelihood-normalizer structure",
+          "Distinguishes events/PMFs/PDFs",
+          "Explains that densities at points are not probabilities",
+          "Mentions normalization role in continuous case"
+        ],
+        "partial_credit": [
+          "Knows formulas but weak interpretation of densities",
+          "Explains continuous case vaguely"
+        ],
+        "common_mistakes": [
+          "Saying P(X=x)>0 for continuous X in general",
+          "Treating a density value as a probability",
+          "Failing to mention normalization"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why can ratios of PDFs still be meaningful even though point probabilities are zero?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a continuous random variable, what object replaces P(X=x) in Bayes\u2019 theorem?"
+        }
+      ],
+      "hints": [
+        "First compare the form, not the notation: in every version, Bayes updates a prior using a likelihood and then divides by something that makes the result valid.",
+        "Separate the three objects being conditioned on: events use probabilities, discrete random variables use PMFs, and continuous random variables use PDFs. Ask yourself what each numerator term represents and what the denominator is doing in each case.",
+        "The key interpretation shift is in the continuous case: a density value at a single point is not itself a probability. So explain Bayes there as comparing relative plausibility via densities, with the denominator acting as the normalizer over all possible values."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0014",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "A hidden state Z can be 1, 2, or 3 with prior probabilities 0.2, 0.5, and 0.3. Given Z=z, a sensor reports success S with probabilities 0.9, 0.4, and 0.2 respectively. After observing success, rank the three posterior probabilities from largest to smallest and compute the exact posterior for Z=2.",
+      "expected_answer": "We use Bayes with a three-way partition. First compute the evidence: P(S)=0.9\u00b70.2+0.4\u00b70.5+0.2\u00b70.3=0.18+0.20+0.06=0.44. Then P(Z=2|S)=0.4\u00b70.5/0.44=0.20/0.44=5/11\u22480.4545. To rank the posteriors, compare the numerators 0.18, 0.20, and 0.06, so the order is Z=2 largest, then Z=1, then Z=3.",
+      "source_chunk_ids": [
+        "cs109_04_cond_bayes_annotated_p16_0709e8c976",
+        "cs109_17_cont_joint_ii_annotated_p22_cf0d04ea8f",
+        "cs109_04_cond_bayes_annotated_p22_f25b261e45"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes evidence 0.44",
+          "Computes posterior for Z=2 as 5/11",
+          "Ranks posterior probabilities via weighted likelihoods",
+          "Explains denominator is common to all categories"
+        ],
+        "partial_credit": [
+          "Correct ranking but numerical error",
+          "Correct posterior computation but no ranking explanation"
+        ],
+        "common_mistakes": [
+          "Ranking by likelihood alone and ignoring priors",
+          "Using priors alone",
+          "Forgetting to normalize"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Without recomputing fully, why can Z=2 have the largest posterior even though Z=1 has the largest likelihood?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What quantity is proportional to each posterior before normalization?"
+        }
+      ],
+      "hints": [
+        "Use Bayes\u2019 rule after the success observation: each posterior is proportional to prior \u00d7 likelihood of success. Be careful not to rank states by likelihood alone or by prior alone.",
+        "Set up \\(P(Z=z\\mid S)=\\frac{P(S\\mid Z=z)P(Z=z)}{P(S)}\\). The normalizing term is the total success probability, found by summing the three weighted terms across \\(z=1,2,3\\).",
+        "To rank the posteriors, compare the three numerators \\(0.9\\cdot0.2\\), \\(0.4\\cdot0.5\\), and \\(0.2\\cdot0.3\\), since they all share the same denominator. For the exact posterior of \\(Z=2\\), take its weighted term over the total evidence and simplify the fraction."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0015",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A classmate says, \u201cSince P(F|E)=P(E|F)P(F)/P(E), if P(E|F) is big then P(F|E) must also be big.\u201d Is that always true? Give a counterexample structure or explain the conditions under which the intuition fails.",
+      "expected_answer": "It is not always true. P(F|E) depends not only on the likelihood P(E|F) but also on the prior P(F) and the overall evidence probability P(E). A rare F can still have small posterior even if P(E|F) is large, because E may also happen often without F. A disease-testing example is the classic counterexample: high sensitivity does not imply high probability of disease after a positive when prevalence is very low.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045",
+        "cs109_04_cond_bayes_annotated_p24_p25_db149ab3a8",
+        "cs109_04_cond_bayes_annotated_p33_4c0a52aac2"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States claim is false in general",
+          "Explains dependence on prior and normalization term",
+          "Provides or describes a counterexample structure",
+          "Distinguishes likelihood from posterior"
+        ],
+        "partial_credit": [
+          "Says false but explanation is vague",
+          "Mentions base rate without discussing denominator"
+        ],
+        "common_mistakes": [
+          "Assuming likelihood monotonicity guarantees large posterior",
+          "Ignoring prior rarity",
+          "Confusing P(E|F) with P(F|E)"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you state one sufficient condition under which larger P(E|F) would indeed imply larger P(F|E) when comparing two hypotheses?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Besides P(E|F), what two other quantities appear in Bayes\u2019 rule?"
+        }
+      ],
+      "hints": [
+        "Start by separating the two quantities: P(E|F) is a likelihood, while P(F|E) is a posterior. Bayes\u2019 rule shows they are related, but they are not the same kind of probability.",
+        "Ask what other factors appear in Bayes\u2019 rule besides P(E|F): you should identify the prior P(F) and the overall evidence probability P(E). A very rare F, or an E that also happens often without F, can change the posterior a lot.",
+        "Try a counterexample structure like a medical test: make P(E|F) high, but let F be extremely uncommon and let E occur for other reasons too. Then compare how the small base rate and the denominator prevent P(F|E) from automatically being large."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0016",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "At a school, 15% of students are in the robotics club. Among robotics members, 70% know Python; among non-members, 20% know Python. A randomly chosen student knows Python. What is the chance they are in robotics, and what verbal explanation would you give a nontechnical audience?",
+      "expected_answer": "Let R be robotics and P be knows Python. Bayes gives P(R|P)=P(P|R)P(R)/[P(P|R)P(R)+P(P|R^c)P(R^c)] = 0.7\u00b70.15/(0.7\u00b70.15+0.2\u00b70.85)=0.105/0.275\u22480.3818. So the student has about a 38.2% chance of being in robotics. A good verbal explanation is: robotics members are much more likely to know Python, but robotics is still a small club, so knowing Python increases the chance of membership without making it more likely than not.",
+      "source_chunk_ids": [
+        "cs109_04_cond_bayes_annotated_p22_f25b261e45",
+        "cs109_04_cond_bayes_annotated_p27_08be1e5795",
+        "cs109_demo_p0_p1_9c72e6785c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correct Bayes setup",
+          "Correct denominator and posterior \u22480.382",
+          "Provides nontechnical interpretation balancing prior and likelihood"
+        ],
+        "partial_credit": [
+          "Correct setup but arithmetic slip",
+          "Correct number with weak interpretation"
+        ],
+        "common_mistakes": [
+          "Answering 70%",
+          "Ignoring non-members who know Python",
+          "Misreading 15% as posterior"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What if 60% of students were in robotics instead of 15%? How would the posterior change qualitatively?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the two disjoint groups among Python-knowing students that make up the denominator?"
+        }
+      ],
+      "hints": [
+        "This is a Bayes' rule question: you\u2019re asked to reverse a conditional probability after being told someone knows Python. Also keep the base rate in mind, since robotics is only a small fraction of the school.",
+        "Let R = 'in robotics' and P = 'knows Python.' First find the overall chance a random student knows Python by combining the robotics and non-robotics groups: P(P)=P(P|R)P(R)+P(P|R^c)P(R^c).",
+        "Now compute P(R|P)=\\frac{P(P|R)P(R)}{P(P)}. For the verbal explanation, emphasize that knowing Python makes robotics membership more plausible, but many non-members also know Python and most students are not in the club."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0017",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Suppose F1, F2, ..., Fk form a partition of the sample space. Explain how Bayes\u2019 theorem and the law of total probability fit together into one coherent update procedure after observing event E. I want a response that emphasizes both the numerator and the denominator conceptually.",
+      "expected_answer": "For each hypothesis Fi, Bayes says P(Fi|E)=P(E|Fi)P(Fi)/P(E). The numerator is the prior weight of hypothesis Fi multiplied by how well that hypothesis explains the evidence E. The denominator P(E) is the sum over all hypotheses, P(E)=\u03a3_i P(E|Fi)P(Fi), from the law of total probability. So updating works by assigning each hypothesis a score from prior times likelihood, then normalizing those scores so the posterior probabilities across the partition add to 1.",
+      "source_chunk_ids": [
+        "cs109_04_cond_bayes_annotated_p16_0709e8c976",
+        "cs109_04_cond_bayes_annotated_p22_f25b261e45",
+        "cs109_17_cont_joint_ii_annotated_p22_cf0d04ea8f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States Bayes over partition elements",
+          "Uses total probability for denominator",
+          "Explains numerator as prior\u00d7likelihood",
+          "Explains normalization over competing hypotheses"
+        ],
+        "partial_credit": [
+          "Provides formulas without conceptual explanation",
+          "Explains numerator or denominator well, but not both"
+        ],
+        "common_mistakes": [
+          "Forgetting partition requirement",
+          "Treating denominator as arbitrary constant rather than total evidence probability",
+          "Not noting posteriors sum to 1"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would this viewpoint help when classifying among several possible labels?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If there are three hypotheses, what does the denominator sum over?"
+        }
+      ],
+      "hints": [
+        "Start by viewing the F1, ..., Fk as a set of mutually exclusive, exhaustive hypotheses. After observing E, the task is to explain how each hypothesis gets reweighted.",
+        "For one hypothesis Fi, identify the Bayes pieces: prior P(Fi), likelihood P(E|Fi), and posterior P(Fi|E). Conceptually, the numerator combines how plausible Fi was before with how well Fi accounts for the evidence.",
+        "Now focus on the denominator: it is not just a constant, but the total probability of seeing E across the whole partition. Use the law of total probability to write P(E) as a sum over all Fj, showing that the prior\u00d7likelihood scores are normalized so the updated probabilities fit together coherently."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0018",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A website has two traffic sources: ads and search. Thirty percent of visitors come from ads and seventy percent from search. The purchase rate is 12% for ad visitors and 4% for search visitors. If a random visitor made a purchase, what is the probability they came from ads? Then say whether purchases are disproportionately coming from ads relative to their share of traffic.",
+      "expected_answer": "Let A be ads and P be purchase. Then P(A|P)=P(P|A)P(A)/[P(P|A)P(A)+P(P|A^c)P(A^c)] = 0.12\u00b70.3/(0.12\u00b70.3+0.04\u00b70.7)=0.036/0.064=0.5625. So 56.25% of purchases come from ad traffic, even though ads generate only 30% of visits. Yes, purchases are disproportionately from ads because ad visitors convert at a much higher rate.",
+      "source_chunk_ids": [
+        "cs109_04_cond_bayes_annotated_p15_ae4b655a54",
+        "cs109_04_cond_bayes_annotated_p22_f25b261e45",
+        "cs109_04_cond_bayes_annotated_p27_08be1e5795"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correct Bayes setup",
+          "Correct posterior 0.5625",
+          "Compares posterior share to prior traffic share",
+          "Interprets disproportionate contribution"
+        ],
+        "partial_credit": [
+          "Correct calculation without interpretation",
+          "Minor arithmetic error with correct setup"
+        ],
+        "common_mistakes": [
+          "Reporting 12%",
+          "Ignoring source proportions",
+          "Interpreting posterior as purchase rate"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What single feature of the problem most strongly pulls the posterior above 30%?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Among all purchasers, what are the two disjoint paths contributing to the denominator?"
+        }
+      ],
+      "hints": [
+        "Let A = came from ads and P = made a purchase. The question asks for the reverse conditional, P(A|P), not the purchase rate among ad visitors.",
+        "Use Bayes' rule: combine each source's traffic share with its purchase rate, and first think about the total purchase probability as a weighted sum across ads and search. Be careful not to answer with 12%, since that ignores how common each source is.",
+        "Set up the posterior as P(A|P) = [0.12\u00b70.30] / [0.12\u00b70.30 + 0.04\u00b70.70]. After computing it, compare that result to the ad traffic share of 0.30 to decide whether purchases are overrepresented from ads."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0020",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says: 'If a medical test is 99% accurate, then a person who tests positive has a 99% chance of having the disease.' Give a careful response using conditional probability notation. Your explanation should distinguish between the probability the test is positive given disease and the probability of disease given a positive test, and say what extra information is needed to connect them.",
+      "expected_answer": "A strong response should say that '99% accurate' is ambiguous, but even if it means high sensitivity or high specificity, that does not by itself determine P(disease | positive). The student is confusing P(positive | disease) with P(disease | positive), which are generally different because they condition on different sample spaces. To compute P(disease | positive), we need Bayes' rule: P(disease | positive) = P(positive | disease)P(disease) / P(positive), and P(positive) must be expanded using the law of total probability, typically as P(positive | disease)P(disease) + P(positive | no disease)P(no disease). The missing ingredient is the base rate or prior prevalence P(disease), along with the false positive rate.",
+      "source_chunk_ids": [
+        "cs109_04_cond_bayes_annotated_p24_p25_db149ab3a8",
+        "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045",
+        "cs109_04_cond_bayes_annotated_p15_ae4b655a54",
+        "cs109_04_cond_bayes_annotated_p33_4c0a52aac2"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explicitly distinguishes P(positive | disease) from P(disease | positive).",
+          "States that the conditioning changes the sample space.",
+          "Uses Bayes' rule correctly and identifies the need for a prior/base rate and false positive information.",
+          "Mentions law of total probability for the denominator or explains how P(positive) is obtained."
+        ],
+        "partial_credit": [
+          "Recognizes the two probabilities are different but gives only an informal explanation.",
+          "States Bayes' rule but does not explain the denominator.",
+          "Mentions prevalence/base rate without clearly connecting it to the formula."
+        ],
+        "common_mistakes": [
+          "Claiming the two conditional probabilities are equal.",
+          "Ignoring false positives in the denominator.",
+          "Saying 'accuracy' alone is sufficient without clarifying prevalence or test characteristics."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose the disease is very rare but the test has high sensitivity and high specificity. Without doing arithmetic, explain why P(disease | positive) can still be much lower than people expect."
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you define in words what population is being considered in P(positive | disease) and what population is being considered in P(disease | positive)?"
+        }
+      ],
+      "hints": [
+        "Start by translating the student's claim into notation: compare \\(P(\\text{positive}\\mid \\text{disease})\\) with \\(P(\\text{disease}\\mid \\text{positive})\\). Ask whether those condition on the same group of people.",
+        "Point out that changing the condition changes the sample space, so these probabilities are generally not the same. Also note that saying a test is \"99% accurate\" is ambiguous unless you clarify whether it refers to sensitivity, specificity, or both.",
+        "Use Bayes' rule to connect them: write \\(P(\\text{disease}\\mid \\text{positive})\\) in terms of \\(P(\\text{positive}\\mid \\text{disease})\\), the disease prevalence \\(P(\\text{disease})\\), and \\(P(\\text{positive})\\). Then expand \\(P(\\text{positive})\\) with the law of total probability, which requires false-positive information too."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0021",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A website has two traffic sources. Forty percent of visitors come from ads and sixty percent come from organic search. Among ad visitors, 8% make a purchase; among organic visitors, 3% make a purchase. A visitor just made a purchase. Compute the probability they came from ads, and explain each step as a change from prior belief to posterior belief.",
+      "expected_answer": "Let A be 'came from ads' and B be 'made a purchase.' We want P(A | B). By Bayes' rule, P(A | B) = P(B | A)P(A) / P(B). Here P(B | A)=0.08 and P(A)=0.40. The denominator comes from the law of total probability: P(B)=P(B | A)P(A)+P(B | A^c)P(A^c)=0.08(0.40)+0.03(0.60)=0.05. So P(A | B)=0.032/0.05=0.64. Interpretation: the prior chance a visitor came from ads was 40%, but observing a purchase increases that to 64% because purchases are more likely among ad visitors.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045",
+        "cs109_04_cond_bayes_annotated_p22_f25b261e45",
+        "cs109_04_cond_bayes_annotated_p15_ae4b655a54",
+        "cs109_04_cond_bayes_annotated_p27_08be1e5795"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines events clearly.",
+          "Applies Bayes' rule with correct numerator.",
+          "Computes P(B) via law of total probability.",
+          "Obtains 0.64 and interprets it as posterior versus prior."
+        ],
+        "partial_credit": [
+          "Correct setup but arithmetic error.",
+          "Gets numerator right but denominator incomplete.",
+          "Computes P(purchase) correctly but does not finish the Bayes step."
+        ],
+        "common_mistakes": [
+          "Using P(A | B)=P(B | A).",
+          "Forgetting to weight by source proportions in the denominator.",
+          "Conditioning on the wrong event or reversing ad and purchase."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the ad conversion rate fell to 4% while everything else stayed the same, would the posterior P(ads | purchase) go above or below 50%? Explain before calculating."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the difference between the question 'What fraction of ad visitors purchase?' and 'What fraction of purchasers came from ads?'"
+        }
+      ],
+      "hints": [
+        "Let A be \u201ccame from ads\u201d and B be \u201cmade a purchase.\u201d Start from the prior belief P(A)=0.40, then ask how observing B should update that belief.",
+        "Use Bayes\u2019 rule: P(A|B)=P(B|A)P(A)/P(B). Be careful not to swap P(A|B) with P(B|A), and find P(B) by weighting each source\u2019s purchase rate by its traffic share.",
+        "For the numerator, use the ads-and-purchase path; for the denominator, add the purchase paths from ads and from organic. After computing, interpret the result as the posterior probability of ads given a purchase, compared to the original prior."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0022",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "You are told events E and F are independent. A classmate concludes that conditioning on E never changes any probability, so for every event G, P(G | E) = P(G). Is that conclusion valid? Give a careful argument, including either a proof under stronger assumptions or a counterexample showing why the statement as given is too broad.",
+      "expected_answer": "The conclusion is not valid as stated. Independence of E and F only implies P(F | E)=P(F), or equivalently P(E \u2229 F)=P(E)P(F), for that particular pair of events. It does not imply that every event G is independent of E. A counterexample: let G=E. Then P(G | E)=P(E | E)=1, while P(G)=P(E), which is generally not 1 unless E is certain. So conditioning on E can drastically change probabilities. The correct statement is: if G is independent of E, then P(G | E)=P(G).",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045",
+        "cs109_04_cond_bayes_annotated_p7_p8_8ddf92746a",
+        "cs109_04_cond_bayes_annotated_p3_e28a5b5ae2"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that independence is pairwise and event-specific.",
+          "Explains that P(F | E)=P(F) only for events independent of E.",
+          "Provides a valid counterexample such as G=E.",
+          "Identifies the corrected statement: if G and E are independent, then conditioning on E does not change G's probability."
+        ],
+        "partial_credit": [
+          "Says the claim is false but gives only an informal reason.",
+          "Mentions pairwise independence without a concrete example.",
+          "Provides a counterexample but does not connect it back to conditional probability."
+        ],
+        "common_mistakes": [
+          "Claiming independence of one pair implies independence with all events.",
+          "Using G=F as the only example without explaining why that case is special.",
+          "Confusing mutual exclusivity with independence."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example of a nontrivial event G, different from E and the whole sample space, for which conditioning on E does change the probability?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If G = E, what is P(G | E)? How does that compare to P(G)?"
+        }
+      ],
+      "hints": [
+        "Start by unpacking what \u201cE and F are independent\u201d actually means: independence is a statement about that specific pair of events, not automatically about every other event.",
+        "Write the definition as either P(F | E) = P(F) (when P(E) > 0) or P(E \u2229 F) = P(E)P(F). Then ask: does that same definition have to hold for an arbitrary event G, or only for events that are themselves independent of E?",
+        "Try a counterexample by choosing G to be closely tied to E, such as G = E. Compare P(G | E) with P(G); this exposes why the classmate\u2019s \u201cfor every G\u201d claim is too strong and points to the corrected statement."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0023",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A game works as follows: first flip a biased coin that lands Heads with probability 0.3. If Heads, you draw one card uniformly from deck H, which contains 3 red and 1 blue card. If Tails, you draw one card uniformly from deck T, which contains 1 red and 3 blue cards. You observe that the card drawn is red. What is the probability the coin landed Heads, and why is the law of total probability essential in your reasoning?",
+      "expected_answer": "Let H be the event that the coin landed Heads and R the event that the drawn card is red. We want P(H | R). Bayes gives P(H | R)=P(R | H)P(H)/P(R). Here P(R | H)=3/4 and P(H)=0.3. The denominator must account for all ways to get a red card: P(R)=P(R | H)P(H)+P(R | T)P(T)=(3/4)(0.3)+(1/4)(0.7)=0.225+0.175=0.4. Therefore P(H | R)=0.225/0.4=0.5625. The law of total probability is essential because observing red does not tell us which deck we used; the denominator must combine both disjoint pathways to a red draw.",
+      "source_chunk_ids": [
+        "cs109_04_cond_bayes_annotated_p17_4f3ffa1457",
+        "cs109_04_cond_bayes_annotated_p16_0709e8c976",
+        "cs109_04_cond_bayes_annotated_p22_f25b261e45",
+        "cs109_17_cont_joint_ii_annotated_p22_cf0d04ea8f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines relevant events and target posterior.",
+          "Uses Bayes' rule correctly.",
+          "Computes P(R) with the law of total probability over Heads and Tails.",
+          "Gets 0.5625 and explains the denominator as combining mutually exclusive cases."
+        ],
+        "partial_credit": [
+          "Correct conceptual setup but arithmetic error.",
+          "Finds P(R) correctly but does not finish posterior.",
+          "Uses an intuitive explanation of reweighting without full notation."
+        ],
+        "common_mistakes": [
+          "Using only P(R | H) in the denominator.",
+          "Forgetting that Tails also can produce a red card.",
+          "Confusing P(H | R) with P(R | H)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Without recalculating from scratch, if the coin became fair instead of biased toward Tails, would P(H | R) increase or decrease? Explain."
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you list the two disjoint ways the event 'red card observed' can happen in this experiment?"
+        }
+      ],
+      "hints": [
+        "Let H be \u201ccoin landed Heads\u201d and R be \u201cdrawn card is red.\u201d Since you observed a red card and want to reason backward to the coin flip, think Bayes\u2019 rule rather than just the deck composition under Heads.",
+        "Write the target as P(H | R) = P(R | H)P(H) / P(R). Identify each ingredient from the story: the coin bias gives P(H) and P(T), and each deck gives the conditional red probabilities P(R | H) and P(R | T).",
+        "The key step is the denominator: a red card could have come from either Heads then deck H or Tails then deck T. Use the law of total probability to combine those two mutually exclusive paths, then plug that total into Bayes\u2019 formula."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_0024",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "For three events A, B, and C with positive probability, derive an expression for P(A \u2229 B \u2229 C) using the chain rule, and then explain how you would rewrite P(A | C) if B and B^c form a partition of the sample space. I am not asking for numbers; I want the structure of the reasoning and why each factor or term appears.",
+      "expected_answer": "For the triple intersection, the chain rule gives P(A \u2229 B \u2229 C) = P(A)P(B | A)P(C | A \u2229 B); equivalent orderings are also valid, such as P(C)P(B | C)P(A | B \u2229 C). For P(A | C), since B and B^c partition the sample space, we can decompose the event A \u2229 C into the disjoint union (A \u2229 C \u2229 B) \u222a (A \u2229 C \u2229 B^c). Dividing by P(C), we get P(A | C) = P(A \u2229 B | C) + P(A \u2229 B^c | C), and then applying the conditional chain rule inside C gives P(A | C)=P(A | B, C)P(B | C)+P(A | B^c, C)P(B^c | C). This is the law of total probability applied within the conditioned world where C has already occurred.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p22_cf0d04ea8f",
+        "cs109_04_cond_bayes_annotated_p7_p8_8ddf92746a",
+        "cs109_06_rvs_annotated_p2_4797680fc1",
+        "cs109_04_cond_bayes_annotated_p16_0709e8c976"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States a correct chain-rule factorization for P(A \u2229 B \u2229 C).",
+          "Recognizes B and B^c as a partition and decomposes A \u2229 C into disjoint pieces.",
+          "Derives P(A | C)=P(A | B,C)P(B | C)+P(A | B^c,C)P(B^c | C).",
+          "Explains that conditioning on C changes the sample space but the same probability rules still apply."
+        ],
+        "partial_credit": [
+          "Correct chain rule but incomplete conditional decomposition.",
+          "States law of total probability without conditioning on C explicitly.",
+          "Uses correct intuition but weak notation."
+        ],
+        "common_mistakes": [
+          "Writing P(A | C)=P(A | B)P(B)+P(A | B^c)P(B^c), forgetting the conditioning on C throughout.",
+          "Dropping one of the partition terms.",
+          "Treating A, B, C as automatically independent."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If B is independent of C but A is not, which terms in your expression simplify and which generally do not?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you first write A as (A \u2229 B) \u222a (A \u2229 B^c), and then explain what changes after conditioning on C?"
+        }
+      ],
+      "hints": [
+        "For a triple intersection, think of building the probability one event at a time: start with one event, then multiply by the chance of the next event given what has already occurred. Also, when you condition on C, you are working inside the reduced sample space where C is already true.",
+        "Pick an order such as A, then B, then C, and write P(A \u2229 B \u2229 C) as a product where each later factor is conditional on the earlier events. For the second part, use that B and B^c are disjoint and cover the whole space, so A \u2229 C can be split into two disjoint pieces involving B and B^c.",
+        "After splitting A \u2229 C into those two pieces, divide by P(C) and rewrite each term as a conditional probability within the world C. The result should look like a two-term law of total probability, with C kept in every factor so you do not accidentally drop the conditioning."
+      ]
+    }
+  ]
+}

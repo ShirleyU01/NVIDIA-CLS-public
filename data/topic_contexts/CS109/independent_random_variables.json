@@ -1,0 +1,244 @@
+{
+  "course": "CS109",
+  "topic_id": "independent_random_variables",
+  "topic_name": "Independent Random Variables",
+  "queries_used": [
+    "Independent Random Variables definition",
+    "Independent Random Variables intuition",
+    "Independent Random Variables worked example",
+    "Independent Random Variables exam problem",
+    "independence of random variables overview",
+    "independence of random variables practice",
+    "sum of random variables overview",
+    "sum of random variables practice",
+    "convolution intuition overview",
+    "convolution intuition practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_demo_exam_q1_c290a1b3af",
+      "text": "Define independence for two discrete random variables.",
+      "source_type": "exam_question",
+      "document_name": "Demo Exam",
+      "score": 0.7326412200927734
+    },
+    {
+      "chunk_id": "cs109_18_clt_annotated_p2_b1d98f2cbe",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIndependence of multiple random variables\nWe have independence of 𝑛 discrete random variables 𝑋!, 𝑋\", … , 𝑋# if\n \nfor all 𝑥!, 𝑥\", … , 𝑥#:\nWe have independence of 𝑛 continuous random variables 𝑋!, 𝑋\", … , 𝑋# if\n \nfor all 𝑥!, 𝑥\", … , 𝑥#:\n3\nReview\n𝑝!!,!\",…,!# 𝑥$, 𝑥%, … , 𝑥& = &\n'($\n&\n𝑝!$ 𝑥'\n𝑃𝑋$ = 𝑥$, 𝑋% = 𝑥%, … , 𝑋& = 𝑥& = &\n'($\n&\n𝑃𝑋' = 𝑥'\n𝑃𝑋$ ≤𝑥$, 𝑋% ≤𝑥%, … , 𝑋& ≤𝑥& = &\n'($\n&\n𝑃𝑋' ≤𝑥'\n𝑓!!,!\",…,!# 𝑥$, 𝑥%, … , 𝑥& = &\n'($\n&\n𝑓!$ 𝑥'",
+      "source_type": "lecture_slide",
+      "document_name": "18 clt annotated",
+      "score": 0.6490260362625122
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p22_cf0d04ea8f",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEverything* in probability is a sum or a product (or both)\n23\nSum of values that can \nbe considered separately \n(possibly weighted by \nprob. of happening)\nProduct of values that \ncan each be considered \nin sequence\n𝐸𝑋|𝑌= 𝑦= (\n./\n/\n𝑥𝑓+|, 𝑥|𝑦𝑑𝑥\n𝐸𝑋= ;\n:\n𝑥𝑝𝑥\nLaw of Total Probability\n𝑃(𝐸) = ;\n;<=\n>\n𝑃𝐸|𝐹; 𝑃𝐹;\nweight\nweight\nweight\nAxiom 3, 𝐸= 𝐸+ ∪⋯∪𝐸,\n𝑃𝐸= ;\n;<=\n>\n𝑃𝐸;\nChain Rule\n𝑃(𝐸∩𝐹∩𝐺) = 𝑃𝐸𝑃𝐹|𝐸𝑃𝐺|𝐸𝐹\n𝑓+,, 𝑥, 𝑦= 𝑓+ 𝑥𝑓, 𝑦\nIndependent cont. RVs \n*except conditional probability (a ratio)\n𝑃𝑋+ 𝑌= 𝑛= *\n0\n𝑃𝑋= 𝑘𝑃𝑌= 𝑛−𝑘\nSum of indep. discrete RVs \n(convolution)",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.6121506690979004
+    },
+    {
+      "chunk_id": "cs109_13_joint_statistics_annotated_p10_eeee2cdc0b",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStatistics of sums of RVs\nFor any random variables 𝑋 and 𝑌,\n𝐸𝑋+ 𝑌= 𝐸𝑋+ 𝐸𝑌\nVar 𝑋+ 𝑌= ?\n11\nBut first, a new statistic!",
+      "source_type": "lecture_slide",
+      "document_name": "13 joint statistics annotated",
+      "score": 0.6073266267776489
+    },
+    {
+      "chunk_id": "cs109_finalfall2021soln_preamble_dfa36463ce",
+      "text": "CS109 Final Exam\nChris Piech\nCS109\nFall 2021\nThis is a closed calculator/computer exam. You are, however, allowed to use notes in the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions and\nparameter values you used, where appropriate. It is fine for your answers to include summations, products,\nfactorials, exponentials, and combinations.\nYou can leave your answer in terms of Φ (the CDF of the standard normal) or Φ−1 (the inverse CDF). For\nexample Φ\n\u0010\n3\n4\n\u0011\nis an acceptable final answer.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than I have in\nmy entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\nEmail (preferably your gradescope email):\n\n1\nTrue of False (36 points)\nAnswer True or False for each of the following questions. You must give a brief justification for your answer.\na. (6 points) If two random variables 𝑋and𝑌are independent, then it is still possible for some assignments\n𝑋= 𝑥and 𝑌= 𝑦to be dependent.\nFalse\nAll events must be independent as well.\nb. (6 points) The log likelihood function that is used to estimate 𝑝of a Bernoulli, for a set of observations,\nmust always be 0 or smaller.\nTrue\n𝐿𝐿(𝑝) = log\n𝑛\nÖ\n𝑖=1\n𝑃(𝑋= 𝑥𝑖; 𝑝) =\n𝑛\n∑︁\n𝑖=1\nlog 𝑃(𝑋= 𝑥𝑖; 𝑝)\nBecause the bernoulli distribution is discrete, the likelihood of any point must be between 0 and 1\ninclusive. This means the log likelihood of any point is at most 0. If you sum together non-positive\nnumbers, the result is non-positive. (This is not strictly true for continuous distributions since the\nlikelihood of a point can be greater than 1)\nc. (6 points) You sampled two sets of numbers from unknown distributions: (𝑎1...𝑎𝑛) and (𝑏1...𝑏𝑛). You\nobserve a difference between their modes, and you decide to use bootstrapping to ascertain whether the\nmodes of their respective distributions are truly different. If your algorithm estimates a p-value of 0.99,\nthis implies that the modes of the underlying distributions are not meaningfully different.\nTrue\nA p-value of 0.99 would occur if the difference we observed between the modes of the two datasets is\nthe kind of difference we would observe frequently by chance if the two sets of points were drawn from\ndistributions with the same mode.\n\nd. (6 points) Let 𝑋1...𝑋𝑛be i.i.d. Then ( 1\n𝑛\nÍ𝑛\n𝑖=1 𝑋𝑖) is a new random variable which tends toward a normal\ndistribution with mean 0 and variance 0 as 𝑛tends toward infinity.\nFalse\nThe mean does not tend towards 0, but it is always the same value 𝐸[𝑋𝑖] regardless of 𝑛. This can even\nbe shown for non-independent variables: 𝐸[ 1\n𝑛\nÍ𝑛\n𝑖=1 𝑋𝑖] = 1\n𝑛𝐸[Í𝑛\n𝑖=1 𝑋𝑖] = 1\n𝑛\nÍ𝑛\n𝑖=1 𝐸[𝑋𝑖] = 1\n𝑛𝑛𝐸[𝑋𝑖] =\n𝐸[𝑋𝑖]. The variance does tend toward 0 for large 𝑛(but the whole answer is still false).\nIt is worth mentioning that the central limit theorem does not hold for random variables that have\nundefined variance (we did not discuss these distributions in class), so it would also be technically\ncorrect to say that these i.i.d. R.V.s don’t always tend toward Normal, making the statement false. This\nlevel of detail is beyond scope of this course.\ne. (6 points) Let 𝑋∼Poi(𝜆= 5) and let 𝑌∼Exp(𝜆= 5). 𝑃(𝑋= 0) is equal to 𝑃(𝑌> 1)\nTrue\nIntuitively, the probability of no occurrences in an interval is the same as the first occurrence happening\nafter the interval. Mathematically, 𝑃(𝑋= 0) = 50𝑒−5\n0!\n= 𝑒−5 = 1 −(1 −𝑒−5) = 1 −𝑃(𝑌≤1) = 𝑃(𝑌> 1)\nf. (6 points) Let 𝑋1, 𝑋2, ..., 𝑋𝑛be (not necessarily independent) random variables each with mean 1. It\nmust be the case that 𝑃(𝑋1 + ... + 𝑋𝑛>= 𝑛) is greater than 0.\nTrue\nThis is one of the more challenging problems.\nBy linearity of expectation (Lecture 6), E(𝑋1 + ... + 𝑋𝑛) = E(𝑋1) + ... + E(𝑋𝑛) = 1 + ... + 1 = 𝑛,\nregardless of any dependency among the 𝑋𝑖s. Then there must be at least some positive probability that\n𝑋1 + ... + 𝑋𝑛≥𝑛, or else the mean of 𝑋1 + ... + 𝑋𝑛would be less than 𝑛.\nSome incorrect or insufficient arguments included:\n• Invoking the Central Limit Theorem, which does not necessarily apply here because the 𝑋𝑖s are\nnot necessarily independent, and 𝑛may not necessarily be large. Even if this was used to argue\nthat the mean of the sum is 𝑛(which is true), we still deducted most of the points because using\nthe CLT in an unjustified situation is a serious mistake (we don’t want you to do that in real\napplications later in your careers!)\n• Arguing that each 𝑋𝑖must be able to take on the value 1 with some probability (this is not true,\ne.g., consider a variable that is 2 half the time and 0 half the time)\n• Arguing that each 𝑋𝑖must be able to take on a value 1 or greater with some probability (this is\ntrue), so there must be some outcome where this happens for all of them (this is not true, and\ndoes not address the issue of the variables potentially being dependent. e.g., consider a case where\n𝑋1 = 2 half the time and 0 the other half of the time, and 𝑋2 = 2 half of the time and 0 the other\nhalf of the time, but they are dependent such that 𝑋1 is 2 when 𝑋2 is 0, and vice versa. Then there\nis no such outcome, even though the situation is valid for the problem because both 𝑋𝑖s have mean",
+      "source_type": "exam_question",
+      "document_name": "FinalFall2021Soln",
+      "score": 0.5942730903625488
+    },
+    {
+      "chunk_id": "cs109_18_clt_annotated_p22_p23_b529a32b75",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n?\nWhat about other functions?\n23\nK\n$2!\n#\n𝑋$ ~𝒩(𝑛𝜇, 𝑛𝜎\")\nAverage of iid RVs\nMax of iid RVs\n(sample mean)\nLet 𝑋!, 𝑋\", … , 𝑋# be iid, where 𝐸𝑋$ = 𝜇, Var 𝑋$ = 𝜎\". As 𝑛→∞:\nSum of iid RVs\n1\n𝑛K\n$2!\n#\n𝑋$ ~𝒩(𝜇, 𝜎\"\n𝑛)\nGumbel\n(see Fisher-Tippett Gnedenko Theorem)\n\nExercises\n24",
+      "source_type": "lecture_slide",
+      "document_name": "18 clt annotated",
+      "score": 0.5940145254135132
+    },
+    {
+      "chunk_id": "cs109_13_joint_statistics_annotated_p23_6833fbfbbf",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVariance of general sum of RVs\nFor any random variables 𝑋 and 𝑌,\nVar 𝑋+ 𝑌= Var 𝑋+ 2 ⋅Cov 𝑋, 𝑌+ Var 𝑌\nProof:\nVar 𝑋+ 𝑌= Cov 𝑋+ 𝑌, 𝑋+ 𝑌\n \n= Cov 𝑋, 𝑋+ Cov 𝑋, 𝑌+ Cov 𝑌, 𝑋+ Cov 𝑌, 𝑌\n \n= Var 𝑋+ 2 ⋅Cov 𝑋, 𝑌 + Var 𝑌\nMore generally: \nVar )\n%&'\n)\n𝑋%\n= )\n%&'\n)\nVar 𝑋% + 2 )\n%&'\n)\n)\n6&78'\n)\nCov 𝑋%, 𝑋6\n24\ncovariance of\nall pairs\nVar 𝑋= Cov 𝑋, 𝑋\nSymmetry of covariance + \n Cov 𝑋, 𝑋= Var 𝑋\n(proof in extra slides)",
+      "source_type": "lecture_slide",
+      "document_name": "13 joint statistics annotated",
+      "score": 0.5931994318962097
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p0_p1_a607c63c75",
+      "text": "06: Random Variables\nJerry Cain\nApril 12th, 2024 \n1\nLecture Discussion on Ed\n\nConditional \nIndependence\n2",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.5894127488136292
+    },
+    {
+      "chunk_id": "cs109_13_joint_statistics_annotated_p24_ec7d904cb5",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStatistics of sums of RVs\nFor any random variables 𝑋 and 𝑌,\n𝐸𝑋+ 𝑌= 𝐸𝑋+ 𝐸𝑌\nVar 𝑋+ 𝑌= Var 𝑋+ 2 ⋅Cov 𝑋, 𝑌 + Var 𝑌\nFor independent 𝑋 and 𝑌,\n𝐸𝑋𝑌= 𝐸𝑋𝐸𝑌\nVar 𝑋+ 𝑌= Var 𝑋+ Var 𝑌\n25\n(Lemma: proof in extra slides)",
+      "source_type": "lecture_slide",
+      "document_name": "13 joint statistics annotated",
+      "score": 0.5880423188209534
+    },
+    {
+      "chunk_id": "cs109_18_clt_annotated_p19_8735341e58",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhat about other functions?\n20\nK\n$2!\n#\n𝑋$ ~𝒩(𝑛𝜇, 𝑛𝜎\")\n?\nSum of iid RVs\nAverage of iid RVs\nMax of iid RVs\n(sample mean)\n?\nLet 𝑋!, 𝑋\", … , 𝑋# be iid, where 𝐸𝑋$ = 𝜇, Var 𝑋$ = 𝜎\". As 𝑛→∞:",
+      "source_type": "lecture_slide",
+      "document_name": "18 clt annotated",
+      "score": 0.5831959247589111
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p21_e5d6ac499e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhy sums of random variables?\nSometimes modeling and understanding a complex RV, 𝑋, is difficult.\nBut if we can decompose 𝑋 into the sum of simpler, independent RVs,\n• We can compute distributions on 𝑋.\n• We can better understand how 𝑋 changes as its constituent RVs change.\n22\nWe’re covering the \nreverse direction for \nnow; the forward \ndirection will come \non Friday\nWhat can we model \nwith a triangular PDF?\n0\n1/2\n𝑥\n𝑓𝑥\n1/2 1\n3/2 2\n1\n0\nSum of uniforms!\n0\n1\n𝑥)\n𝑓!\" 𝑥)\n1\n0\n1\n𝑥,\n𝑓!! 𝑥,\n1\n+",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.5824341177940369
+    },
+    {
+      "chunk_id": "cs109_18_clt_annotated_p20_8f846fd27e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhat about other functions?\n21\nK\n$2!\n#\n𝑋$ ~𝒩(𝑛𝜇, 𝑛𝜎\")\n?\nAverage of iid RVs\nMax of iid RVs\n(sample mean)\n?\nLet 𝑋!, 𝑋\", … , 𝑋# be iid, where 𝐸𝑋$ = 𝜇, Var 𝑋$ = 𝜎\". As 𝑛→∞:\nSum of iid RVs",
+      "source_type": "lecture_slide",
+      "document_name": "18 clt annotated",
+      "score": 0.5750452876091003
+    },
+    {
+      "chunk_id": "cs109_05_independence_annotated_p5_bfa15e0662",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGeneralizing independence\nThree events 𝐸, 𝐹, and 𝐺\nare independent if:\n𝑛 events 𝐸#, 𝐸$, … , 𝐸% are\nindependent if:\n6\n𝑃𝐸𝐹𝐺= 𝑃𝐸𝑃𝐹𝑃𝐺, and \n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹), and \n𝑃𝐸𝐺= 𝑃𝐸𝑃(𝐺), and \n𝑃𝐹𝐺= 𝑃𝐹𝑃(𝐺) \nfor 𝑟= 1, … , 𝑛:\n \nfor every subset 𝐸(, 𝐸), … , 𝐸*: \n𝑃𝐸(𝐸) … 𝐸* = 𝑃𝐸( 𝑃𝐸) ⋯𝑃𝐸*",
+      "source_type": "lecture_slide",
+      "document_name": "05 independence annotated",
+      "score": 0.5717513561248779
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p13_c31b27f212",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSum of independent Uniforms\n14\n𝑓!'% 𝛼= $\n\"#\n#\n𝑓! 𝑥𝑓% 𝛼−𝑥𝑑𝑥\n𝑋 and 𝑌\nindependent\n+ continuous\nLet 𝑋~Uni 0,1  and 𝑌~Uni 0,1  be independent RVs.\nWhat is the distribution of 𝑋+ 𝑌, 𝑓+-, 𝛼?\n1.  𝛼≤0\n2.  𝛼= 1/2\n3.  𝛼= 1\n4.  𝛼= 3/2\n5.  𝛼≥2\n0\n1/2\n1\n1/2\n0\n𝑓+-, 𝛼= 3\n𝛼\n0 ≤𝛼≤1\n2 −𝛼\n1 ≤𝛼≤2\n0\notherwise\n0\n1/2\n𝛼\n𝑓\"#! 𝛼\n1/2\n1\n3/2\n2\n1\n0",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.5716335773468018
+    },
+    {
+      "chunk_id": "cs109_18_clt_annotated_p5_p6_8e18330175",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nQuick check\nAre 𝑋!, 𝑋\", … , 𝑋# iid with the following distributions?\n1.  𝑋$~Exp 𝜆, 𝑋$ independent\n2.  𝑋$~Exp 𝜆$ , 𝑋$ independent\n3.  𝑋$~Exp 𝜆, 𝑋! = 𝑋\" = ⋯= 𝑋#\n4.  𝑋$~Bin 𝑛$, 𝑝, 𝑋$ independent\n6\n✅\n❌ (unless 𝜆' equal)\n❌ dependent: 𝑋$ = 𝑋% = ⋯= 𝑋&\n❌ (unless 𝑛' equal)\nNote underlying Bernoulli RVs are iid!\n\nCentral Limit \nTheorem\n7\nsource",
+      "source_type": "lecture_slide",
+      "document_name": "18 clt annotated",
+      "score": 0.5681300163269043
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p9_6408d296f9",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSum of independent Uniforms\n10\n𝑓!'% 𝛼= $\n\"#\n#\n𝑓! 𝑥𝑓% 𝛼−𝑥𝑑𝑥\n𝑋 and 𝑌\nindependent\n+ continuous\nLet 𝑋~Uni 0,1  and 𝑌~Uni 0,1  be independent RVs.\nWhat is the distribution of 𝑋+ 𝑌, 𝑓+-, 𝛼?\n1.  𝛼≤0\n2.  𝛼= 1/2\n3.  𝛼= 1\n4.  𝛼= 3/2\n5.  𝛼≥2\n1/2\n0\n𝑓! 𝛼−𝑥= .1 \nif 𝛼−1 ≤𝑥≤𝛼\n0 \notherwise \n𝑓\" 𝑥= .1 \nif 0 ≤𝑥≤1\n0 \notherwise",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.5672528147697449
+    },
+    {
+      "chunk_id": "cs109_09_continuous_rv_annotated_p16_p17_9b459186b0",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\ndef An Uniform random variable 𝑋 is defined as follows:\n \nUniform Random Variable\n17\n𝑓𝑥= >\n1\n𝛽−𝛼 \nif 𝛼≤𝑥≤𝛽\n0 \notherwise\n𝑋~Uni(𝛼, 𝛽)\nSupport: 𝛼, 𝛽\n(sometimes defined \nover 𝛼, 𝛽)\nVariance  \nExpectation \n \n \nPDF\n𝐸𝑋= 𝛼+ 𝛽\n2\nVar 𝑋= 𝛽−𝛼9\n12\nOn your own!\nJust now\n𝛼\n𝛽\n𝑥\n𝑓𝑥\n1\n𝛽−𝛼\n\nExponential RV\n18",
+      "source_type": "lecture_slide",
+      "document_name": "09 continuous rv annotated",
+      "score": 0.5642795562744141
+    },
+    {
+      "chunk_id": "cs109_11_joint_rvs_annotated_p2_6accdd07e2",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNormal Random Variables\n• Used to model many real-life situations because it maximizes entropy \n(i.e., randomness) for a given mean and variance.\n• Also useful for approximating the Binomial random variable!\n3\n𝑋~𝒩(𝜇, 𝜎!)\nmean\nvariance",
+      "source_type": "lecture_slide",
+      "document_name": "11 joint rvs annotated",
+      "score": 0.56155925989151
+    },
+    {
+      "chunk_id": "cs109_12_independent_rvs_annotated_p8_d6b14416c5",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nthe convolution \nof 𝑝) and 𝑝*\nInsight into convolution\nFor independent discrete random variables 𝑋 and 𝑌:\n𝑃𝑋+ 𝑌= 𝑛= '\n!\n𝑃𝑋= 𝑘𝑃𝑌= 𝑛−𝑘\n Suppose 𝑋 and 𝑌 are independent, both with support 0, 1, … , 𝑛, … :\n9\n𝑋 \n0\n1\n2\n…\n𝑛\n𝑛+ 1\n…\n𝑌\n0\n…\n𝑛−2\n𝑛−1\n𝑛\n𝑛+ 1\n…\n✔\n✔\n✔\n✔\n…\n• ✔: event where 𝑋+ 𝑌= 𝑛\n• Each event has probability: \n𝑃𝑋= 𝑘, 𝑌= 𝑛−𝑘 \n  \n= 𝑃𝑋= 𝑘𝑃𝑌= 𝑛−𝑘\n(because 𝑋, 𝑌 are independent)\n• 𝑃𝑋+ 𝑌= 𝑛= sum of\nmutually exclusive events",
+      "source_type": "lecture_slide",
+      "document_name": "12 independent rvs annotated",
+      "score": 0.5564063191413879
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p18_3a177eef2a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIndependent continuous RVs\nTwo continuous random variables 𝑋 and 𝑌 are independent if:\n𝑃𝑋≤𝑥, 𝑌≤𝑦= 𝑃𝑋≤𝑥𝑃𝑌≤𝑦\nEquivalently:\n𝐹!,# 𝑥, 𝑦= 𝐹! 𝑥𝐹# 𝑦\n𝑓!,# 𝑥, 𝑦= 𝑓! 𝑥𝑓# 𝑦\nProof for PDF:\n19\n𝑓),* 𝑥, 𝑦=\n𝜕&\n𝜕𝑥 𝜕𝑦 𝐹),* 𝑥, 𝑦=\n𝜕&\n𝜕𝑥 𝜕𝑦 𝐹) 𝑥𝐹* 𝑦\n= 𝜕\n𝜕𝑥\n𝜕\n𝜕𝑦 𝐹) 𝑥𝐹* 𝑦\n= 𝑓) 𝑥𝑓* 𝑦\n= 𝜕\n𝜕𝑥 𝐹) 𝑥\n𝜕\n𝜕𝑦 𝐹* 𝑦\n∀𝑥, 𝑦\n∀𝑥, 𝑦",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.5561655759811401
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p3_fc9798c378",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDance, Dance, Convolution\n4\nthe convolution \nof 𝑝+ and 𝑝,\nRecall that for independent discrete random variables 𝑋 and 𝑌:\n𝑃𝑋+ 𝑌= 𝑛= '\n!\n𝑃𝑋= 𝑘𝑃𝑌= 𝑛−𝑘\nReview\n2\n3\n4\n5\n6\n7\n8\n9 10 11 12\n6/36\n0\n% + ' = )\n5/36\n4/36\n3/36\n2/36\n1/36\n. % + ' = )\n1\n2\n3\n4\n5\n6\n! = #\n$ ! = #\n1\n2\n3\n4\n5\n6\n! = #\n$ ! = #\n+\n=\nIndependent 𝑋, 𝑌",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.5481134653091431
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p19_8a91b8ca19",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIndependent continuous RVs\nTwo continuous random variables 𝑋 and 𝑌 are independent if:\n𝑃𝑋≤𝑥, 𝑌≤𝑦= 𝑃𝑋≤𝑥𝑃𝑌≤𝑦\nEquivalently:\n𝐹!,# 𝑥, 𝑦= 𝐹! 𝑥𝐹# 𝑦\n𝑓!,# 𝑥, 𝑦= 𝑓! 𝑥𝑓# 𝑦\nMore generally, 𝑋 and 𝑌 are independent if the joint PDF factors into two, \nsingle-variable marginal probability densities:\n𝑓!,# 𝑥, 𝑦= 𝑔𝑥ℎ𝑦, where −∞< 𝑥, 𝑦< ∞\n20\n∀𝑥, 𝑦\n∀𝑥, 𝑦",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.5474866628646851
+    },
+    {
+      "chunk_id": "cs109_12_independent_rvs_annotated_p2_edb164eea6",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIndependent discrete RVs\nRecall the definition of independent\nevents 𝐸 and 𝐹:\nTwo discrete random variables 𝑋 and 𝑌 are independent if:\n𝑃𝑋= 𝑥, 𝑌= 𝑦= 𝑃𝑋= 𝑥𝑃𝑌= 𝑦\n𝑝!,# 𝑥, 𝑦= 𝑝! 𝑥𝑝# 𝑦\n• Intuitively: \nknowing value of 𝑋 tells us nothing about\n \n \n \nthe distribution of 𝑌 (and vice versa)\n• If two variables are not independent, they are termed dependent.\n3\nfor all 𝑥, 𝑦:\nDifferent notation,\nsame idea:\n𝑃𝐸𝐹= 𝑃𝐸𝑃𝐹",
+      "source_type": "lecture_slide",
+      "document_name": "12 independent rvs annotated",
+      "score": 0.5467702746391296
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p15_p16_55ef09c173",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRandom variables are NOT events!\nIt is confusing that random variables and events use the same notation.\n• Random variables ≠ events.\n• We can define an event to be a particular assignment of a random \nvariable, or more generally, in terms of a random variable.\n16\nExample:\n 3 coins are flipped.\n Let 𝑋= # of heads.\n 𝑋 is a random variable.\n𝑋= 𝟏\n{(H, T, T), (T, H, T), \n(T, T, H)}\n3/8\n𝑋= 𝟐\n{(H, H, T), (H, T, H), \n(T, H, H)}\n3/8\n𝑋= 𝟑\n{(H, H, H)}\n1/8\n𝑋≥4\n{ }\n0\n𝑋= 𝑥\nSet of outcomes\n𝑃𝑋= 𝑘\n𝑋= 𝟎\n{(T, T, T)}\n1/8\n\nPMF/CDF\n17",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.5400732159614563
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p11_d65702d5f4",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRandom variables are like typed \nvariables (with uncertainty)\nint a = 5;\ndouble b = 4.2;\nbit c = 1;\n𝐴 is the number of Pokemon we \nbring to our future battle.\n𝐴∈1, 2, … , 6\n𝐵 is the amount of money we get \nafter we win a battle.\n𝐵∈ℝ,\n𝐶 is 1 if we successfully beat the \nElite Four. 0 otherwise.\n𝐶∈{0,1}\n12\nRandom variables are like typed variables\ntype\nname\nvalue\nRandom \nvariables\nCS variables",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.531103253364563
+    },
+    {
+      "chunk_id": "cs109_18_clt_annotated_p3_489bb0c574",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\ni.i.d. random variables\nConsider 𝑛 variables 𝑋!, 𝑋\", … , 𝑋#.\n𝑋!, 𝑋\", … , 𝑋# are independent and identically distributed if\n• 𝑋!, 𝑋\", … , 𝑋# are independent, and\n• All have the same PMF (if discrete) or PDF (if continuous).\n⇒ 𝐸𝑋$ = 𝜇 for 𝑖= 1, … , 𝑛\n⇒ Var 𝑋$ = 𝜎\" for 𝑖= 1, … , 𝑛\n4\nSame thing:\ni.i.d.\niid\nIID",
+      "source_type": "lecture_slide",
+      "document_name": "18 clt annotated",
+      "score": 0.5281996726989746
+    },
+    {
+      "chunk_id": "cs109_12_independent_rvs_annotated_p7_1e5f234ae3",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConvolution: Sum of independent random variables\nFor any discrete random variables 𝑋 and 𝑌:\n𝑃𝑋+ 𝑌= 𝑛= +\n3\n𝑃𝑋= 𝑘, 𝑌= 𝑛−𝑘\nIn particular, for independent discrete random variables 𝑋 and 𝑌:\n𝑃𝑋+ 𝑌= 𝑛= +\n3\n𝑃𝑋= 𝑘𝑃𝑌= 𝑛−𝑘\n8\nthe convolution of 𝑝) and 𝑝*",
+      "source_type": "lecture_slide",
+      "document_name": "12 independent rvs annotated",
+      "score": 0.5280582308769226
+    },
+    {
+      "chunk_id": "cs109_11_joint_rvs_annotated_p39_93a41618e7",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProperties of Expectation, extended to two RVs\n40\nwe’ve seen this! \nwe’ll prove momentarily.\nTrue for both independent \nand dependent random \nvariables!\n1. Linearity:\n𝐸𝑎𝑋+ 𝑏𝑌+ 𝑐= 𝑎𝐸𝑋+ 𝑏𝐸𝑌+ 𝑐\n2. Expectation of a sum = sum of expectation:\n𝐸𝑋+ 𝑌= 𝐸𝑋+ 𝐸𝑌\n3. Unconscious statistician:\n𝐸𝑔𝑋, 𝑌\n= .\n9\n.\n6\n𝑔𝑥, 𝑦𝑝5,8(𝑥, 𝑦)",
+      "source_type": "lecture_slide",
+      "document_name": "11 joint rvs annotated",
+      "score": 0.52625572681427
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p4_24afdefa9e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDance, Dance, Convolution\n5\nthe convolution \nof 𝑝+ and 𝑝,\nRecall that for independent discrete random variables 𝑋 and 𝑌:\n𝑃𝑋+ 𝑌= 𝑛= '\n!\n𝑃𝑋= 𝑘𝑃𝑌= 𝑛−𝑘\nthe convolution \nof 𝑓+ and 𝑓,\nFor independent continuous random variables 𝑋 and 𝑌:\n𝑓\"#$ 𝛼= ,\n%&\n&\n𝑓\" 𝑥𝑓$ 𝛼−𝑥𝑑𝑥\n0\n1/2\n%\n&!\"# %\n1/2\n1\n3/2\n2\n1\n0\n0\n1\n!\n\"! !\n1\n0\n1\n!\n\"! !\n1\n+\n=\n?\nIndependent 𝑋, 𝑌",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.5117086172103882
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p30_a5c68f6206",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nExpectation of Sum intuition\n𝐸𝑋+ 𝑌= 𝐸𝑋+ 𝐸𝑌\n31\nwe’ll prove this in a \nfew lectures\n𝑋\n𝑌\n𝑋+ 𝑌\n3\n6\n9\n2\n4\n6\n6\n12\n18\n10\n20\n30\n-1\n-2\n-3\n0\n0\n0\n8\n16\n24\n(\n/ (28)\nAverage:\n1\n𝑛E\n&'(\n)\n𝑥&\n1\n𝑛E\n&'(\n)\n𝑦&\n1\n𝑛E\n&'(\n)\n𝑥& + 𝑦&\nIntuition \nfor now:\n+\n=\n+\n=\n(\n/ (56)\n(\n/ (84)\n𝐸𝑋=\n$\n!:# ! $%\n𝑝𝑥⋅𝑥",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.4879678189754486
+    },
+    {
+      "chunk_id": "cs109_09_continuous_rv_annotated_p7_7e66b85479",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComputing probability\n8\n𝑓𝑥= ,\n𝑥\n2\nif 0 ≤𝑥≤2\n0\notherwise\nLet 𝑋 be a continuous RV with PDF:\n0.00\n0.50\n1.00\n0.00\n1.00\n2.00\n!(\") \n!\nWhat is 𝑃𝑋≥1 ? \nStrategy 1: Integrate\nStrategy 2: Know triangles\n𝑃1 ≤𝑋< ∞= -\n$\n%\n𝑓𝑥𝑑𝑥= -\n$\n\" 1\n2 𝑥𝑑𝑥\n= 1\n2\n1\n2 𝑥\" 2\n$\n\"\n = 1\n2 2 −1\n2 = 3\n4\n1 −1\n2\n1\n2 = 3\n4\nWait! Is this even legal?\n𝑃0 ≤𝑋< 1 = ∫&\n$ 𝑓𝑥𝑑𝑥? ? \n𝑃𝑎 ≤𝑋≤𝑏= 2\n!\n\"\n𝑓(𝑥) 𝑑𝑥",
+      "source_type": "lecture_slide",
+      "document_name": "09 continuous rv annotated",
+      "score": 0.4432186186313629
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p0_p1_6b09d696d4",
+      "text": "17: Continuous Joint \nDistributions II\nJerry Cain\nMay 8th, 2024\n1\nLecture Discussion on Ed\n\nConvolution: \nSum of \nindependent \nUniform RVs\n2",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.43927717208862305
+    }
+  ],
+  "built_at": "2026-04-28T05:13:10Z"
+}

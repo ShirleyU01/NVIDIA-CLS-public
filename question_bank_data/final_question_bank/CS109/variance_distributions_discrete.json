@@ -1,0 +1,1228 @@
+{
+  "topic_id": "variance_distributions_discrete",
+  "topic_name": "Variance and Discrete Distributions",
+  "course": "CS109",
+  "questions": [
+    {
+      "question_id": "CS109_variance_distributions_discrete_0001",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Two discrete random variables each have expectation 3. One student says that means they are 'equally concentrated around 3.' Explain why that conclusion is wrong, and describe what variance adds that expectation alone does not capture. In your answer, say how two distributions can share the same mean but still look very different.",
+      "expected_answer": "A strong answer explains that expectation only gives the balance point or long-run average, not how probability is spread around that center. Variance measures the average squared distance from the mean, so it distinguishes distributions that have the same mean but different spread or shape. The student should say that two PMFs can both average to 3, yet one can put most mass near 3 while another places substantial mass far away from 3, leading to different variances. They may also note that larger variance means outcomes are typically more dispersed from the mean.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p4_833d24ef13",
+        "cs109_07_bernoulli_binomial_annotated_p5_ec37478999",
+        "cs109_07_bernoulli_binomial_annotated_p7_p8_f3db9f2df5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that equal expectation does not imply equal spread",
+          "Explains variance as expected squared deviation from the mean",
+          "Describes qualitatively how two distributions with same mean can differ in shape/spread"
+        ],
+        "partial_credit": [
+          "Says variance measures spread but does not clearly contrast it with expectation",
+          "Gives an intuitive but incomplete explanation without mentioning distance from the mean"
+        ],
+        "common_mistakes": [
+          "Claiming the mean determines the whole distribution",
+          "Saying variance is just the average deviation instead of average squared deviation",
+          "Confusing variance with probability of extreme events only"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can two distributions have the same mean and the same variance but still be different? Explain briefly."
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I tell you only that E[X]=3, what can you actually conclude about how likely X is to equal 3?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from variance distributions discrete; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming the mean determines the whole distribution. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0002",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Let Y be the outcome of a fair six-sided die roll. Without listing all six squared deviations one by one, explain how you would compute Var(Y) using the second-moment formula, and then interpret the units of your final answer.",
+      "expected_answer": "The student should use Var(Y)=E[Y^2]-(E[Y])^2. Since E[Y]=7/2 and E[Y^2]=(1^2+2^2+3^2+4^2+5^2+6^2)/6=91/6, the variance is 91/6-(7/2)^2=35/12. They should mention that variance is measured in squared units of the original variable, so if die outcomes are unitless then variance is unitless-squared, while standard deviation would return to the original units.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p12_4d4f2547b1",
+        "cs109_07_bernoulli_binomial_annotated_p9_4e4473853b",
+        "cs109_09_continuous_rv_annotated_p14_d127787921"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses Var(Y)=E[Y^2]-(E[Y])^2 correctly",
+          "Computes or states E[Y]=7/2 and E[Y^2]=91/6",
+          "Gets Var(Y)=35/12",
+          "Interprets variance units as squared units"
+        ],
+        "partial_credit": [
+          "Correct setup but arithmetic slip",
+          "Correct numerical answer with little explanation",
+          "Understands units only partially"
+        ],
+        "common_mistakes": [
+          "Averaging absolute deviations instead of squared deviations",
+          "Forgetting to square E[Y]",
+          "Saying variance has the same units as Y"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the variance change if I defined Z=2Y-1? Please justify using a variance property rather than recomputing from scratch."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the two separate quantities in E[Y^2]-(E[Y])^2, and why are they not the same thing?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Averaging absolute deviations instead of squared deviations. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0003",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A classmate claims, 'Expectation is linear, so variance should also be linear: Var(X+Y)=Var(X)+Var(Y) for any random variables.' Respond to this claim carefully. State when such an additivity statement is valid in the binomial setting and why the general claim is too broad.",
+      "expected_answer": "The general claim is false because variance is not linear in the same way expectation is. In general, Var(X+Y)=Var(X)+Var(Y)+2Cov(X,Y), so the simple sum holds when X and Y are independent or at least uncorrelated. In the binomial setting, we write X as a sum of independent Bernoulli indicators, and then the variance of the sum is the sum of the individual variances because independence removes covariance terms. The student should emphasize that expectation of a sum always adds, but variance requires an additional assumption.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p9_4e4473853b",
+        "cs109_06_rvs_annotated_p28_8fe9b89b51",
+        "cs109_13_joint_statistics_annotated_p26_p27_3a9e4c2022"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Clearly rejects the claim that variance is always linear",
+          "States a correct condition such as independence for additivity of variance",
+          "Connects this to binomial as a sum of independent Bernoullis"
+        ],
+        "partial_credit": [
+          "Says 'only if independent' but does not explain why",
+          "Mentions covariance vaguely without connecting to the claim"
+        ],
+        "common_mistakes": [
+          "Saying variance is linear because expectation is linear",
+          "Using the binomial formula without mentioning independence",
+          "Confusing independent with mutually exclusive"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose X and Y are dependent. What extra term appears in Var(X+Y), and what does it measure qualitatively?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you think of a setting where knowing one variable makes the other more predictable, so adding variances alone would miss something?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from variance distributions discrete.",
+        "Watch out for this common trap: Saying variance is linear because expectation is linear. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0004",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "An ad is shown to 20 users independently, and each user clicks with probability 0.2. Define a natural random variable for the number of clicks, name its distribution, and then give both its expectation and variance. Finally, explain in one sentence what each of those two numbers means in context.",
+      "expected_answer": "Let X be the number of clicks among 20 independent users. Then X follows a binomial distribution with parameters n=20 and p=0.2. Its expectation is E[X]=np=4 and its variance is Var(X)=np(1-p)=20(0.2)(0.8)=3.2. The mean 4 is the long-run average number of clicks across repeated 20-user batches, and the variance 3.2 quantifies how much the click count fluctuates around that average.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p18_p19_1de0fb1b4e",
+        "cs109_07_bernoulli_binomial_annotated_p20_b50cf6c86a",
+        "cs109_07_bernoulli_binomial_annotated_p28_p29_28a8f77d8e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines X as count of successes",
+          "Identifies X~Bin(20,0.2)",
+          "Computes E[X]=4 and Var(X)=3.2",
+          "Interprets both quantities in context"
+        ],
+        "partial_credit": [
+          "Correct distribution and formulas but weak interpretation",
+          "Correct mean but incorrect variance arithmetic"
+        ],
+        "common_mistakes": [
+          "Using Bernoulli instead of binomial for the count over 20 trials",
+          "Using np^2 or n(1-p) for the variance",
+          "Interpreting variance as a probability"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What assumption in the story lets you use the binomial model, and how would your answer become questionable if that assumption failed?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the difference between a Bernoulli random variable for one user and a binomial random variable for all 20 users together?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using Bernoulli instead of binomial for the count over 20 trials. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0005",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "For X~Bin(n,p), keep n fixed and vary p. Without doing calculus, explain where the variance np(1-p) is largest and why that makes intuitive sense from the story of counting successes. Your explanation should combine the formula with a verbal interpretation of trial uncertainty.",
+      "expected_answer": "The variance is largest at p=0.5 because the factor p(1-p) is symmetric in p and 1-p and is maximized when the two factors are equal. Intuitively, each Bernoulli trial is most uncertain when success and failure are equally likely; when p is near 0 or near 1, each trial becomes more predictable. Since a binomial is the sum of n independent Bernoulli trials, total variability is greatest when each trial is maximally uncertain, which happens at p=1/2.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p20_b50cf6c86a",
+        "cs109_13_joint_statistics_annotated_p26_p27_3a9e4c2022"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the maximum occurs at p=0.5",
+          "Uses symmetry or equal factors reasoning on p(1-p)",
+          "Provides intuitive Bernoulli-trial explanation"
+        ],
+        "partial_credit": [
+          "Correctly identifies p=0.5 but explanation is formula-only or intuition-only",
+          "Mentions symmetry but not uncertainty"
+        ],
+        "common_mistakes": [
+          "Claiming variance is largest when p is near 0 or 1 because outcomes are more extreme",
+          "Confusing mean np with variance np(1-p)",
+          "Giving a calculus-based answer only without interpretation"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the maximum possible variance change if n doubled but p stayed at 0.5?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the variance when p=0 or p=1, and what does that tell you about spread?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from variance distributions discrete; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming variance is largest when p is near 0 or 1 because outcomes are more extreme. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0006",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "A random variable X has mean 10 and variance 4. Define Z=(X-10)/2. Compute E[Z] and Var(Z), but also explain why centering and scaling affect expectation and variance differently. I want the properties you use stated out loud.",
+      "expected_answer": "Using linearity of expectation, E[Z]=E[(X-10)/2]=(1/2)(E[X]-10)=0. Using the variance scaling property, Var(Z)=Var((X-10)/2)=(1/2)^2 Var(X)=1. The explanation is that adding or subtracting a constant shifts the center but does not change spread, while multiplying by a rescales spread by the square of that factor because variance uses squared deviations. So centering changes mean, not variance, and scaling changes both mean and variance according to their respective rules.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p9_4e4473853b",
+        "cs109_06_rvs_annotated_p28_8fe9b89b51",
+        "cs109_09_continuous_rv_annotated_p14_d127787921"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly computes E[Z]=0",
+          "Correctly computes Var(Z)=1",
+          "States and applies linearity of expectation and Var(aX+b)=a^2Var(X)",
+          "Explains why constants affect mean and variance differently"
+        ],
+        "partial_credit": [
+          "Correct numerical answer with limited explanation",
+          "Correct use of one property but not both"
+        ],
+        "common_mistakes": [
+          "Saying Var(aX+b)=aVar(X)",
+          "Thinking subtracting 10 changes variance",
+          "Computing E[Z] as 10/2=5"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If instead W=2X+7, what would happen to the standard deviation compared with X?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why does the constant '-10' disappear from the variance calculation but not from the expectation calculation?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Saying Var(aX+b)=aVar(X). Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0007",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A data center has 1000 disk drives, each crashing independently during a day with probability 0.001. Let X be the number of crashed drives that day. Give a binomial model for X, then compute its expectation and variance, and comment on whether the variance is larger or smaller than the mean.",
+      "expected_answer": "We model X as Bin(1000,0.001) because it counts successes across 1000 independent Bernoulli trials. Then E[X]=np=1000(0.001)=1 and Var(X)=np(1-p)=1000(0.001)(0.999)=0.999. The variance is slightly smaller than the mean because the binomial variance equals the mean times (1-p), and here 1-p=0.999 is just below 1.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p25_eb665b659c",
+        "cs109_07_bernoulli_binomial_annotated_p28_p29_28a8f77d8e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies Bin(1000,0.001)",
+          "Computes mean 1 and variance 0.999",
+          "Explains why variance is slightly below the mean"
+        ],
+        "partial_credit": [
+          "Correct setup with small arithmetic error",
+          "Correct numerical results without comparison"
+        ],
+        "common_mistakes": [
+          "Using Bernoulli instead of binomial",
+          "Computing variance as np",
+          "Claiming variance must exceed mean"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What aspect of the formula makes the mean and variance nearly equal when p is very small?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you factor np(1-p) in terms of the mean np to see how it compares?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using Bernoulli instead of binomial. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0008",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student sees X~Bin(10,0.3) and says, 'Since the expected number of successes is 3, the most likely outcome must be exactly 3, and the variance should also be 3.' Evaluate both parts of this statement. Be careful to separate what is always true from what only happens in some cases.",
+      "expected_answer": "The first part is not a universal rule: E[X]=3 means the average count is 3, but expectation does not automatically identify the most likely outcome, though for Bin(10,0.3) the mode does happen to be near 3. The second part is false because the variance is not equal to the mean for a binomial in general; Var(X)=np(1-p)=10(0.3)(0.7)=2.1. A strong answer distinguishes mean, mode, and variance, and notes that the mean summarizes center while variance summarizes spread.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p20_b50cf6c86a",
+        "cs109_07_bernoulli_binomial_annotated_p4_833d24ef13"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects the claim that the mean must equal the most likely value",
+          "Computes variance 2.1 correctly",
+          "Distinguishes mean, mode, and variance"
+        ],
+        "partial_credit": [
+          "Gets variance right but is vague about the mode issue",
+          "Explains expectation versus variance but ignores the 'most likely outcome' claim"
+        ],
+        "common_mistakes": [
+          "Saying the mean always equals the mode",
+          "Saying variance equals mean for every count model",
+          "Confusing average outcome with most probable single outcome"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example of a random variable whose expectation is not even a value the variable can take?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What number do you get if you apply the actual binomial variance formula here?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from variance distributions discrete.",
+        "Watch out for this common trap: Saying the mean always equals the mode. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0009",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Compare standard deviation and variance as summaries of spread. Why might an analyst report standard deviation when discussing temperatures, even if variance is often easier to manipulate algebraically? Use the units issue in your explanation.",
+      "expected_answer": "Variance is the expected squared deviation from the mean, so it is mathematically convenient and obeys formulas like Var(aX+b)=a^2Var(X). But its units are squared units of the original variable, such as degrees Fahrenheit squared, which can be less interpretable. Standard deviation is the square root of variance, so it returns to the original units and is easier to describe in context, for example saying temperatures typically vary by about so many degrees. A strong answer contrasts interpretability with algebraic convenience.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p5_ec37478999",
+        "cs109_07_bernoulli_binomial_annotated_p7_p8_f3db9f2df5",
+        "cs109_07_bernoulli_binomial_annotated_p9_4e4473853b"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains variance uses squared units",
+          "Explains standard deviation returns to original units",
+          "Mentions variance is often algebraically easier"
+        ],
+        "partial_credit": [
+          "Mentions units but not interpretability",
+          "Mentions square root relationship only"
+        ],
+        "common_mistakes": [
+          "Saying variance and standard deviation have the same units",
+          "Claiming standard deviation is always easier to compute algebraically",
+          "Defining SD without explaining why it may be preferred in reporting"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If a variable is rescaled from Fahrenheit to 2 times its old units, how do variance and standard deviation change?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the units of variance if X is measured in degrees Fahrenheit?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from variance distributions discrete; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying variance and standard deviation have the same units. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0010",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose X is a discrete random variable with PMF p(x), and you know only that E[X]=mu. Derive aloud the shortcut formula Var(X)=E[X^2]-mu^2 starting from the definition Var(X)=E[(X-mu)^2]. I care more about the logic than the notation.",
+      "expected_answer": "Starting from Var(X)=E[(X-mu)^2], expand the square to get E[X^2-2mu X+mu^2]. By linearity of expectation, this becomes E[X^2]-2mu E[X]+mu^2. Since E[X]=mu, the middle term is 2mu^2, so the expression simplifies to E[X^2]-mu^2. A strong answer notes that mu is a constant, which is why it can be taken outside the expectation.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p11_c8f650b04b",
+        "cs109_07_bernoulli_binomial_annotated_p9_4e4473853b"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Starts from the definition and expands the square correctly",
+          "Uses linearity of expectation correctly",
+          "Treats mu as a constant and substitutes E[X]=mu",
+          "Arrives at E[X^2]-mu^2"
+        ],
+        "partial_credit": [
+          "Correct result with incomplete derivation",
+          "Minor algebra slip with otherwise correct reasoning"
+        ],
+        "common_mistakes": [
+          "Writing E[(X-mu)^2]=E[X-mu]^2",
+          "Forgetting that expectation is linear but variance is not",
+          "Dropping the cross term incorrectly"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is this shortcut often more convenient for discrete calculations than the original definition?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When you expand (X-mu)^2, what is the middle term, and what happens to it under expectation?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Writing E[(X-mu)^2]=E[X-mu]^2. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0011",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You flip a fair coin 10 times and let X be the number of heads. Another student flips a fair coin 5 times and lets Y be the number of heads. Compare E[X] to E[Y] and Var(X) to Var(Y), and explain why the PMFs should have different spread even though both use p=0.5.",
+      "expected_answer": "For X~Bin(10,0.5), E[X]=5 and Var(X)=10(0.5)(0.5)=2.5. For Y~Bin(5,0.5), E[Y]=2.5 and Var(Y)=5(0.5)(0.5)=1.25. The spread is larger for X because it sums more independent Bernoulli trials, so there is more total variability in the count even though each individual trial has the same success probability. Also, X has support from 0 to 10 while Y has support from 0 to 5.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p28_p29_28a8f77d8e",
+        "cs109_07_bernoulli_binomial_annotated_p33_6eaaaa342e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly computes both means and variances",
+          "Explains increased spread via larger n",
+          "Mentions support or accumulation of independent trial variability"
+        ],
+        "partial_credit": [
+          "Correct calculations but weak explanation",
+          "Correct qualitative comparison only"
+        ],
+        "common_mistakes": [
+          "Assuming equal p means equal variance regardless of n",
+          "Confusing probability of heads with expected count of heads",
+          "Saying the fair-coin PMFs are identical except shifted"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If I standardized each count by subtracting its mean and dividing by its standard deviation, what aspect of the raw spread comparison would disappear?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What factor in the binomial variance formula changes when you move from 5 flips to 10 flips while keeping p fixed?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Assuming equal p means equal variance regardless of n. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0012",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says, 'Because X and Y have the same variance, they must have the same distribution.' Give a careful rebuttal. Your answer should explain what information variance preserves and what information it throws away.",
+      "expected_answer": "Equal variance only tells us the two variables have the same average squared distance from their respective means. It does not determine the shape of the distribution, the mean, skewness, support, or how probability is allocated among values. So two very different distributions can share the same variance, just as two distributions can share the same mean. Variance is one summary statistic, not a full description of the distribution.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p4_833d24ef13",
+        "cs109_07_bernoulli_binomial_annotated_p5_ec37478999"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Clearly states same variance does not imply same distribution",
+          "Explains variance captures only spread around the mean",
+          "Mentions missing features such as mean, shape, support, or skew"
+        ],
+        "partial_credit": [
+          "Says it is false but gives only one example-free sentence",
+          "Focuses on mean alone without broader explanation"
+        ],
+        "common_mistakes": [
+          "Treating variance as a complete description",
+          "Claiming same variance implies same standard deviation and therefore same distribution",
+          "Mixing up mean and variance"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would knowing both the mean and variance determine a discrete distribution? Why or why not?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you name one feature of a distribution that variance does not tell you?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from variance distributions discrete.",
+        "Watch out for this common trap: Treating variance as a complete description. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0013",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Let X be Bernoulli with parameter p, taking values 1 for success and 0 for failure. Compute Var(X) from first principles using either the definition or E[X^2]-(E[X])^2, and then explain why this same quantity appears inside the binomial variance formula.",
+      "expected_answer": "Because X only takes values 0 and 1, we have E[X]=p and also X^2=X, so E[X^2]=p. Therefore Var(X)=E[X^2]-(E[X])^2=p-p^2=p(1-p). This appears inside the binomial variance formula because a binomial count is the sum of n independent Bernoulli indicators, and each indicator contributes variance p(1-p), so the total is np(1-p).",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p18_p19_1de0fb1b4e",
+        "cs109_13_joint_statistics_annotated_p26_p27_3a9e4c2022"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes E[X]=p and E[X^2]=p using X^2=X",
+          "Derives Var(X)=p(1-p)",
+          "Connects Bernoulli variance to binomial variance via sum of independent indicators"
+        ],
+        "partial_credit": [
+          "Gets p(1-p) but does not justify X^2=X",
+          "Understands the binomial connection only vaguely"
+        ],
+        "common_mistakes": [
+          "Computing E[X^2] as p^2",
+          "Forgetting Bernoulli support is {0,1}",
+          "Claiming binomial variance is n times the mean"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What happens to the Bernoulli variance as p approaches 0 or 1, and why is that intuitive?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a 0-1 variable, what are the possible values of X^2?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Computing E[X^2] as p^2. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0014",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are shown two unlabeled binomial PMF plots with n=10: one is centered near 3 and the other near 7, and they appear to have the same spread but mirrored shapes. Identify plausible parameter values for each and explain why their variances match even though their means differ.",
+      "expected_answer": "A natural pair is Bin(10,0.3) and Bin(10,0.7). Their means are 10(0.3)=3 and 10(0.7)=7, matching the centers. Their variances are 10(0.3)(0.7)=2.1 and 10(0.7)(0.3)=2.1, so they are equal because the expression p(1-p) is symmetric under replacing p by 1-p. The mirrored appearance comes from swapping success and failure probabilities.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p32_5097a09c33",
+        "cs109_07_bernoulli_binomial_annotated_p33_6eaaaa342e",
+        "cs109_07_bernoulli_binomial_annotated_p20_b50cf6c86a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies p=0.3 and p=0.7 as plausible values",
+          "Computes means 3 and 7",
+          "Computes equal variances 2.1",
+          "Explains symmetry under p and 1-p"
+        ],
+        "partial_credit": [
+          "Correct pair but weak explanation of equal variance",
+          "Correct symmetry explanation without explicit calculations"
+        ],
+        "common_mistakes": [
+          "Assuming different means must imply different variances",
+          "Using p=0.5 for one of the plots",
+          "Not connecting the mirror image to swapping success and failure"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the two mirrored plots instead had n=5, how would the maximum x-value visible in the graph help you notice that?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What happens to np and to np(1-p) when you replace p by 1-p?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Assuming different means must imply different variances. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0015",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Explain why independence matters in the usual derivation of Var(X)=np(1-p) for a binomial random variable. I do not want just the formula; I want you to describe what breaks if the trials are no longer independent.",
+      "expected_answer": "We derive the binomial variance by writing X as a sum of n Bernoulli indicator variables, one for each trial. Independence lets us add their variances directly, because the covariance terms vanish; then each indicator contributes p(1-p), giving np(1-p). If the trials are not independent, the count may no longer be binomial and Var(X) can differ because positive or negative dependence introduces covariance terms. So the same mean np might still hold under some setups, but the standard binomial variance formula need not.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p26_p27_3a9e4c2022",
+        "cs109_07_bernoulli_binomial_annotated_p20_b50cf6c86a",
+        "cs109_midtermfall2022soln_p4_fc039a9166"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Expresses binomial count as sum of Bernoulli indicators",
+          "States independence is needed to add variances without covariance terms",
+          "Explains non-independence can preserve the mean but alter the variance and even the distribution family"
+        ],
+        "partial_credit": [
+          "Says independence is needed but does not explain what breaks",
+          "Mentions covariance without tying it to the derivation"
+        ],
+        "common_mistakes": [
+          "Claiming only the mean formula needs independence",
+          "Saying dependence never affects variance",
+          "Thinking identical marginal probabilities alone guarantee a binomial model"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you think of a counting situation where the trials are not independent, so the exact distribution is not binomial?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When you add dependent random variables, what extra kind of term beyond individual variances should you worry about?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from variance distributions discrete; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming only the mean formula needs independence. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0016",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose X has variance 9. Compute Var(3X+4) and Var(-2X+100), and explain why one transformation leaves no trace of the added constant. Then compare what happens to standard deviation in the same two cases.",
+      "expected_answer": "Using Var(aX+b)=a^2Var(X), we get Var(3X+4)=3^2\u00b79=81 and Var(-2X+100)=(-2)^2\u00b79=36. The added constants 4 and 100 do not affect variance because variance measures spread around the mean, and shifting every outcome by the same amount does not change spread. Standard deviation scales by the absolute value of the multiplier, so SD(3X+4)=3SD(X) and SD(-2X+100)=2SD(X).",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p9_4e4473853b",
+        "cs109_07_bernoulli_binomial_annotated_p13_8ee7c59548"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes 81 and 36 correctly",
+          "Explains constants do not affect spread",
+          "Explains SD scales by absolute value of multiplier"
+        ],
+        "partial_credit": [
+          "Correct variances but no interpretation",
+          "Correct idea about shift invariance with arithmetic slip"
+        ],
+        "common_mistakes": [
+          "Using a instead of a^2 in the variance formula",
+          "Letting the constant affect variance",
+          "Giving negative standard deviation for -2X+100"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why does the negative sign disappear for variance but not necessarily for expectation?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If every value of X is increased by 100, are the pairwise distances between outcomes changed?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using a instead of a^2 in the variance formula. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0017",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A simulation returns R=Y-X, where X~Bern(p) and Y~Bern(p+k), and in one construction R can only take values 0 and 1 with E[R]=k. Explain why that immediately determines Var(R), without using the general covariance formula. Then interpret what this says about the simulation's variability when k is small.",
+      "expected_answer": "If R only takes values 0 and 1 and E[R]=k, then R is Bernoulli with parameter k. Therefore Var(R)=k(1-k). The student should say that recognizing the support and the mean is enough to identify the Bernoulli distribution. When k is small, the variance is approximately k, so the output is usually 0 with occasional 1s; despite the tiny mean, the spread is governed by the rarity of those positive outcomes.",
+      "source_chunk_ids": [
+        "cs109_midtermfall2025soln_q4_f791508548",
+        "cs109_07_bernoulli_binomial_annotated_p18_p19_1de0fb1b4e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Recognizes a 0-1 variable with mean k is Bernoulli(k)",
+          "Computes Var(R)=k(1-k)",
+          "Interprets the variance for small k"
+        ],
+        "partial_credit": [
+          "Gets the variance formula but does not justify Bernoulli identification",
+          "Gives intuition but no clear derivation"
+        ],
+        "common_mistakes": [
+          "Trying to use Var(Y)-Var(X) mechanically",
+          "Missing that support {0,1} plus mean identifies Bernoulli",
+          "Saying variance is exactly k for all k"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is it useful in oral reasoning to identify a transformed variable's support before doing algebra?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a Bernoulli(q) random variable, what are the only possible values and what is its mean?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Trying to use Var(Y)-Var(X) mechanically. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0018",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student computes Var(X)=E[X-E[X]]^2 and concludes variance is always 0 because E[X-E[X]]=0. Diagnose the mistake precisely. Then give the correct formula and explain in words why the placement of the square matters.",
+      "expected_answer": "The mistake is moving the square outside too early and confusing E[(X-E[X])^2] with (E[X-E[X]])^2. It is true that E[X-E[X]]=0, but the variance is the expectation of the squared deviation, not the square of the expected deviation. The correct formula is Var(X)=E[(X-E[X])^2], equivalently E[X^2]-(E[X])^2. Squaring before averaging prevents positive and negative deviations from canceling.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p5_ec37478999",
+        "cs109_07_bernoulli_binomial_annotated_p11_c8f650b04b"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the confusion between E[(... )^2] and (E[...])^2",
+          "States the correct variance formula",
+          "Explains cancellation of signed deviations"
+        ],
+        "partial_credit": [
+          "Says the square is in the wrong place but gives little explanation",
+          "Correct formula only"
+        ],
+        "common_mistakes": [
+          "Treating expectation as if it distributes over squaring",
+          "Saying variance can be negative",
+          "Writing E[X-E[X]^2]"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What familiar quantity would (E[X-E[X]])^2 actually equal?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If deviations from the mean can be positive and negative, what problem occurs if you average them before squaring?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from variance distributions discrete.",
+        "Watch out for this common trap: Treating expectation as if it distributes over squaring. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0019",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "In the temperature example, one city had nearly the same mean high temperature as another but much larger variance. Explain how that can happen in practical terms. Then say whether a larger variance automatically means the city is 'worse' or just more variable.",
+      "expected_answer": "Two cities can have similar average temperatures over time but differ greatly in consistency. One city may be mild most days, concentrating probability near the mean, while the other swings between cold and hot days, putting more probability far from the mean and therefore having larger variance. A larger variance does not mean 'worse' in a mathematical sense; it means more variability or less predictability around the average. Whether that is preferable depends on context.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p7_p8_f3db9f2df5",
+        "cs109_07_bernoulli_binomial_annotated_p4_833d24ef13"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains same mean with different day-to-day spread",
+          "Links larger variance to less consistency around the mean",
+          "Avoids normative claims and frames variance as variability"
+        ],
+        "partial_credit": [
+          "Good intuition but weak connection to the formal meaning of variance",
+          "States only that the distributions are 'different'"
+        ],
+        "common_mistakes": [
+          "Equating mean climate with predictability",
+          "Treating larger variance as automatically bad in a mathematical sense",
+          "Ignoring spread and talking only about averages"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If you were choosing a place based on predictability rather than average warmth, which summary statistic would matter more and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can two data sets have the same average but different amounts of day-to-day fluctuation?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from variance distributions discrete; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Equating mean climate with predictability. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0020",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "You are told X is a discrete random variable with support {0,1,2} and PMF P(X=0)=a, P(X=1)=a, P(X=2)=1-2a, where 0<=a<=1/2. Compute E[X] and Var(X) in terms of a, and describe qualitatively how the spread changes as a increases.",
+      "expected_answer": "First, E[X]=0\u00b7a+1\u00b7a+2(1-2a)=2-3a. Next, E[X^2]=0^2\u00b7a+1^2\u00b7a+2^2(1-2a)=a+4-8a=4-7a. So Var(X)=E[X^2]-(E[X])^2=(4-7a)-(2-3a)^2=(4-7a)-(4-12a+9a^2)=5a-9a^2. Qualitatively, as a increases from 0, probability moves away from the single point X=2 toward smaller values, which initially increases spread, but because the support is tiny the exact behavior is captured by 5a-9a^2, an increasing then decreasing quadratic over the allowed range. A strong answer may mention the maximum occurs at a=5/18, which lies in the interval.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p9_4e4473853b",
+        "cs109_06_rvs_annotated_p28_8fe9b89b51"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes E[X]=2-3a",
+          "Computes E[X^2]=4-7a",
+          "Derives Var(X)=5a-9a^2",
+          "Provides a sensible qualitative interpretation of how spread changes"
+        ],
+        "partial_credit": [
+          "Correct moments with algebra slip in variance",
+          "Correct formula but little interpretation"
+        ],
+        "common_mistakes": [
+          "Forgetting probabilities must sum to 1",
+          "Using E[X]^2 in place of E[X^2]",
+          "Treating variance as linear in a automatically"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "At a=0, what is the distribution and why must the variance be 0?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you compute E[X^2] separately before subtracting (E[X])^2?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Forgetting probabilities must sum to 1. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0021",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A quality-control engineer records whether each manufactured chip passes a test. For one chip the result is Bernoulli, but for a batch of n chips the number of passes is binomial. Explain this relationship clearly, including the role of indicator variables, and use it to justify the formulas for the mean and variance of the batch count at a high level.",
+      "expected_answer": "For chip i, define an indicator Xi that equals 1 if the chip passes and 0 otherwise, so Xi is Bernoulli with parameter p. The total number of passes in a batch is X=X1+...+Xn, which is binomial when the chips are tested independently with the same pass probability. By linearity of expectation, E[X]=sum E[Xi]=np. By independence, Var(X)=sum Var(Xi)=n\u00b7p(1-p). This explanation shows binomial counts are built from Bernoulli indicators.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p18_p19_1de0fb1b4e",
+        "cs109_07_bernoulli_binomial_annotated_p20_b50cf6c86a",
+        "cs109_13_joint_statistics_annotated_p26_p27_3a9e4c2022"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines Bernoulli indicators for individual chips",
+          "Explains the batch count as a sum of indicators",
+          "Justifies mean via linearity of expectation",
+          "Justifies variance via independence and Bernoulli variance"
+        ],
+        "partial_credit": [
+          "Identifies Bernoulli vs binomial but does not justify formulas",
+          "Gives formulas without the indicator interpretation"
+        ],
+        "common_mistakes": [
+          "Saying the batch count is Bernoulli",
+          "Using independence for expectation even though it is unnecessary there",
+          "Forgetting the identical-p assumption for binomial"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If pass probabilities differed chip to chip, would the sum still be binomial? What part of your argument would change?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does the indicator variable Xi represent, and what values can it take?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying the batch count is Bernoulli. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0022",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Suppose someone wants to compare variability across two discrete random variables measured in different units, one in dollars and one in counts. Explain why comparing raw variances can be misleading, and connect your explanation to the fact that variance has squared units. Then suggest a more interpretable quantity from the same family if the goal is to speak in original units.",
+      "expected_answer": "Raw variances are hard to compare across different units because variance is measured in squared units: dollars squared versus counts squared are not directly commensurable. Even within one variable, variance is less interpretable because its scale is quadratic relative to the original measurements. If the goal is to talk in the original units, standard deviation is more interpretable because it is the square root of variance and therefore has the same units as the variable itself. A strong answer focuses on unit mismatch and interpretability, not just on formula manipulation.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p5_ec37478999",
+        "cs109_07_bernoulli_binomial_annotated_p9_4e4473853b"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains why squared units make raw variance comparisons misleading",
+          "Mentions that the units differ across variables",
+          "Suggests standard deviation as the original-unit alternative"
+        ],
+        "partial_credit": [
+          "Mentions squared units only vaguely",
+          "Names standard deviation but does not explain why"
+        ],
+        "common_mistakes": [
+          "Claiming variance is unit-free",
+          "Saying variance and standard deviation are interchangeable in interpretation",
+          "Ignoring the different-unit issue"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why might a theoretician still prefer variance in derivations even when a practitioner reports standard deviation?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If X is measured in dollars, what are the units of Var(X) and of SD(X)?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from variance distributions discrete; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming variance is unit-free. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0023",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Two discrete random variables both have expectation 3. A classmate says that means they are 'equally predictable' and should have about the same spread. How would you respond using the definition of variance, and can you explain why two distributions can share the same mean but still look very different? Give a concrete kind of example in words, not necessarily with full arithmetic.",
+      "expected_answer": "A strong answer should say that the mean only tells us the center, not how probability is distributed around that center. Variance measures spread through Var(X)=E[(X-E[X])^2], so it depends on how far values typically fall from the mean and how much probability is placed on those distances. Two distributions can both average to 3, but one can put most mass near 3 while another puts substantial mass far away on both sides; the second has larger variance. The student should emphasize that matching expectation does not determine shape or variability.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p4_833d24ef13",
+        "cs109_07_bernoulli_binomial_annotated_p5_ec37478999",
+        "cs109_07_bernoulli_binomial_annotated_p7_p8_f3db9f2df5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States clearly that equal means do not imply equal spread.",
+          "Uses the variance definition or equivalent interpretation involving squared distance from the mean.",
+          "Explains that probability mass farther from the mean increases variance.",
+          "Provides a sensible example or verbal comparison of concentrated versus dispersed distributions."
+        ],
+        "partial_credit": [
+          "Says variance measures spread but does not connect it to the formula or squared distance.",
+          "Gives an example without clearly explaining why the means can match.",
+          "Confuses variance with range but still recognizes that distributions with same mean can differ."
+        ],
+        "common_mistakes": [
+          "Claiming the mean determines the whole distribution.",
+          "Saying two variables with the same expected value must have the same variance.",
+          "Describing variance only as 'how big the values are' rather than distance from the mean."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If I add 10 to both random variables, what happens to their variances, and why does that fit your explanation of spread?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you construct two tiny PMFs with mean 3, one concentrated at 3 and one placing mass at values farther away, and compare their spread?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from variance distributions discrete; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming the mean determines the whole distribution. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0024",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Let Y be the outcome of a fair six-sided die roll, and define X = 2Y - 1. Without writing out the full PMF of X, compute Var(X) and explain each property you use. Then interpret why the variance changes the way it does under this transformation.",
+      "expected_answer": "The student should first recall or derive Var(Y)=35/12, for example using Var(Y)=E[Y^2]-(E[Y])^2 with E[Y]=7/2 and E[Y^2]=91/6. Then use Var(aX+b)=a^2 Var(X): here X=2Y-1, so Var(X)=4 Var(Y)=4*(35/12)=35/3. The explanation should note that subtracting 1 shifts the distribution but does not change spread, while multiplying by 2 doubles all distances from the mean, so squared distances and therefore variance are multiplied by 4.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p12_4d4f2547b1",
+        "cs109_07_bernoulli_binomial_annotated_p9_4e4473853b",
+        "cs109_09_continuous_rv_annotated_p14_d127787921"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly obtains Var(Y)=35/12 or cites it with valid justification.",
+          "Applies Var(aX+b)=a^2 Var(X) correctly to get 35/3.",
+          "Explains why the additive constant does not affect variance.",
+          "Interprets scaling in terms of distances from the mean being squared."
+        ],
+        "partial_credit": [
+          "Computes the correct final value but gives weak explanation.",
+          "Uses the right transformation rule but has arithmetic errors.",
+          "Understands that shifting does not matter but is unsure why scaling contributes a square."
+        ],
+        "common_mistakes": [
+          "Using Var(2Y-1)=2Var(Y)-1.",
+          "Confusing expectation rules with variance rules.",
+          "Forgetting that variance scales by a^2, not by a."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What would happen to the standard deviation under the same transformation, and why is that different from the variance rule?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Before transforming, can you compute Var(Y) from E[Y^2]-(E[Y])^2 and then revisit which parts of 2Y-1 affect spread?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using Var(2Y-1)=2Var(Y)-1. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0025",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A system has 1000 disk drives, and each drive crashes independently during a day with probability 0.01. One student models the number of crashes as Bin(1000, 0.01) and says the variance is 1000(0.01)(0.99). Another student says, 'variance is linear, so it should just be 1000 times the variance of one Bernoulli, and independence is irrelevant.' Evaluate both statements carefully. Which parts are right, which parts are incomplete, and where does independence matter?",
+      "expected_answer": "A strong answer should say the binomial model is appropriate because the count of successes in n independent Bernoulli trials is Bin(n,p). Therefore E[X]=np and Var(X)=np(1-p)=9.9 here. The second student gets the numerical answer right if each drive indicator Xi is Bernoulli(0.01), since Var(Xi)=p(1-p) and with X=sum Xi, independence justifies Var(sum Xi)=sum Var(Xi). But the phrase 'variance is linear' is false in general; unlike expectation, variance does not simply add without assumptions. Independence matters specifically for dropping covariance terms when moving from Var(sum Xi) to sum Var(Xi).",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p28_p29_28a8f77d8e",
+        "cs109_07_bernoulli_binomial_annotated_p9_4e4473853b",
+        "cs109_13_joint_statistics_annotated_p26_p27_3a9e4c2022",
+        "cs109_06_rvs_annotated_p28_8fe9b89b51"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the count as binomial and gives the correct variance formula.",
+          "States that variance is not generally linear, unlike expectation.",
+          "Explains that the sum-of-variances step requires independence here.",
+          "Connects the binomial proof idea to indicator variables Xi for each drive."
+        ],
+        "partial_credit": [
+          "Gets the formula right but does not explain why independence matters.",
+          "Says variance is not linear but cannot articulate the role of covariance or independence.",
+          "Recognizes the Bernoulli-sum representation but leaves the critique of the second student incomplete."
+        ],
+        "common_mistakes": [
+          "Saying independence is unnecessary for Var(sum Xi)=sum Var(Xi).",
+          "Claiming 'variance is linear' because expectation is linear.",
+          "Using np for the variance instead of np(1-p)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose crashes become positively dependent because of shared power failures. Without computing exactly, would you expect the variance of the total crashes to be larger, smaller, or unchanged relative to 9.9? Explain."
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you write the total number of crashes as a sum of 1000 indicator variables and say what extra terms appear in Var(sum Xi) if independence is not assumed?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from variance distributions discrete.",
+        "Watch out for this common trap: Saying independence is unnecessary for Var(sum Xi)=sum Var(Xi). Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0026",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You observe a random variable X with X ~ Bin(n,p), but you are only told that E[X] = 3. An engineer claims this is enough information to conclude Var(X) = 3(1-p). Do you agree? Explain what can and cannot be determined from the mean alone, and then characterize all possible binomial variances consistent with E[X]=3.",
+      "expected_answer": "The student should say that from E[X]=np=3, we know only the product np, not n and p separately. Using Var(X)=np(1-p), substitute np=3 to get Var(X)=3(1-p), so the expression is algebraically valid, but it is not numerically determined unless p is known. Because X is binomial, we also need n to be a positive integer and p=3/n, so n must be at least 3. Therefore the possible variances are 3(1-3/n) for n=3,4,5,..., which range from 0 when n=3, p=1 up toward 3 as n grows and p approaches 0. This highlights that the mean alone does not fix the spread, even within the binomial family.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p20_b50cf6c86a",
+        "cs109_07_bernoulli_binomial_annotated_p25_eb665b659c",
+        "cs109_07_bernoulli_binomial_annotated_p4_833d24ef13"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses np=3 correctly and substitutes into the variance formula.",
+          "Explains that the variance is not numerically identifiable from the mean alone because p is unknown.",
+          "Recognizes the binomial constraint p=3/n with integer n>=3.",
+          "Characterizes the family of possible variances and interprets the endpoints or trend."
+        ],
+        "partial_credit": [
+          "States that more information is needed but does not fully characterize the possibilities.",
+          "Correctly writes Var(X)=3(1-p) but misses the need for p=3/n.",
+          "Gives examples such as Bin(3,1) and Bin(6,0.5) to show different variances, even without a full general characterization."
+        ],
+        "common_mistakes": [
+          "Treating E[X]=3 as enough to determine p.",
+          "Forgetting the integer constraint on n in the binomial model.",
+          "Assuming all random variables with mean 3 have the same or similar variance."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Which binomial distribution with mean 3 has the smallest variance, and can you explain intuitively why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you give two different binomial distributions with mean 3 and compute their variances to test whether the variance is uniquely determined?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Treating E[X]=3 as enough to determine p. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_variance_distributions_discrete_0027",
+      "course": "CS109",
+      "topic_id": "variance_distributions_discrete",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A team is comparing two Monte Carlo estimators that both return a discrete random value with the same expectation. One estimator has outcomes tightly clustered near its mean, while the other occasionally makes larger deviations. Without appealing to asymptotics, explain how variance helps decide which estimator is more stable, and then distinguish that from standard deviation in terms of interpretation and units.",
+      "expected_answer": "A strong answer should say that variance quantifies average squared deviation from the mean, so the estimator with smaller variance is more stable because its outputs fluctuate less around the target on repeated runs. The student should connect this to Var(X)=E[(X-E[X])^2] or equivalently E[X^2]-(E[X])^2. They should also note that standard deviation is the square root of variance, so it measures spread on the original scale of the estimator, while variance is in squared units. Therefore both rank spread similarly, but standard deviation is often easier to interpret directly.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p5_ec37478999",
+        "cs109_07_bernoulli_binomial_annotated_p9_4e4473853b",
+        "cs109_midtermfall2025soln_q4_f791508548"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that smaller variance means less variability around the same mean and thus greater stability.",
+          "Uses the variance definition or second-moment identity appropriately.",
+          "Correctly distinguishes variance from standard deviation by square root and units.",
+          "Mentions that equal expectation alone is not enough to compare estimator reliability."
+        ],
+        "partial_credit": [
+          "Says lower variance is better but gives limited reasoning.",
+          "Correctly distinguishes SD from variance but does not connect back to estimator stability.",
+          "Discusses spread informally without using the formal definition."
+        ],
+        "common_mistakes": [
+          "Saying two estimators with the same mean are equally good regardless of variance.",
+          "Confusing variance with bias or expected value.",
+          "Ignoring the units issue and interpreting variance on the original measurement scale."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If one estimator is transformed to 10X+5, how do its mean and variance change, and what does that imply about comparing stability across different scales?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Suppose two estimators both have mean 1, but one almost always returns values near 1 and the other sometimes returns 0 or 2. Which notion of spread captures that difference?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying two estimators with the same mean are equally good regardless of variance. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    }
+  ]
+}

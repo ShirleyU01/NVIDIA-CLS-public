@@ -1,0 +1,1317 @@
+{
+  "topic_id": "statistical_inference",
+  "topic_name": "Statistical Inference",
+  "course": "CS109",
+  "model": "gpt-5.4",
+  "questions": [
+    {
+      "question_id": "CS109_statistical_inference_0001",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "In the flu Bayes net, suppose a student is an undergrad and is tired. Without using the precomputed answer, explain aloud how you would compute the probability they have the flu, and identify which hidden variable must be summed out. Then say what feature of the network makes the computation manageable.",
+      "expected_answer": "A strong answer states that we want P(F_flu=1 | U=1, T=1). By conditional probability, this is P(F_flu=1, U=1, T=1) divided by P(U=1, T=1). Because Fever is unobserved here, we marginalize over Fever: sum_y P(F_flu=1, U=1, F_fever=y, T=1) in the numerator, and sum_x sum_y P(F_flu=x, U=1, F_fever=y, T=1) in the denominator. Using the Bayes net factorization, each joint term becomes P(F_flu=x)P(U=1)P(F_fever=y|F_flu=x)P(T=1|F_flu=x,U=1). The computation is manageable because the graph factorizes the joint into local conditional probabilities, and only one hidden binary variable needs to be summed out.",
+      "source_chunk_ids": [
+        "cs109_15_general_inference_annotated_p21_6194fdc4d9",
+        "cs109_15_general_inference_annotated_p22_7b79e99754",
+        "cs109_15_general_inference_annotated_p17_p18_f18b5f576e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Sets up conditional probability correctly as numerator over denominator.",
+          "Explicitly sums over the hidden Fever node.",
+          "Uses the Bayes net factorization with the correct local terms.",
+          "Explains why factorization reduces complexity."
+        ],
+        "partial_credit": [
+          "Identifies the target conditional probability but omits one summation.",
+          "Gets the factorization mostly right but mixes up the role of Fever and Tired.",
+          "Explains conceptually that hidden variables are marginalized without fully writing the expression."
+        ],
+        "common_mistakes": [
+          "Conditioning on Fever even though it is unobserved.",
+          "Forgetting the denominator normalization.",
+          "Assuming Tired is independent of Flu once U is known, which is false in this network."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If I now additionally tell you the student has fever, how does the expression change, and do you still need to sum over Fever?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which variables are observed, which are hidden, and where exactly does the hidden variable appear in the factorization?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Conditioning on Fever even though it is unobserved. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0002",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A classmate says: 'Because 80% of students are undergrads and undergrads are often tired, observing U=1 and T=1 should make the flu probability close to 0.8.' Critique this statement using the flu network. Your answer should distinguish a prior from a posterior and explain why a common base rate cannot simply be reused as the answer.",
+      "expected_answer": "The statement confuses P(U=1)=0.8, which is a prior marginal probability about being an undergrad, with P(F_flu=1|U=1,T=1), which is a posterior probability about flu after observing evidence. Being an undergrad is common, but that does not mean flu is common. The posterior depends on how likely tiredness is with and without flu among undergrads, so we must compare weighted likelihoods under F_flu=1 and F_flu=0, then normalize. In fact, the posterior can be much smaller than 0.8 because the prior for flu is only 0.1 and tiredness is also common among undergrads without flu.",
+      "source_chunk_ids": [
+        "cs109_15_general_inference_annotated_p22_7b79e99754",
+        "cs109_15_general_inference_annotated_p17_p18_f18b5f576e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Clearly identifies the confusion between P(U=1) and P(F_flu=1|U=1,T=1).",
+          "Explains prior versus posterior correctly.",
+          "Explains that evidence must be weighted by likelihoods under competing hypotheses and normalized.",
+          "Mentions base-rate effects, especially the low prior flu probability."
+        ],
+        "partial_credit": [
+          "Says the statement is wrong but gives only an intuitive reason.",
+          "Mentions Bayes' rule or normalization without connecting it to the specific variables.",
+          "Recognizes that U=1 is not the queried event."
+        ],
+        "common_mistakes": [
+          "Saying undergrad status causes flu directly.",
+          "Ignoring the prior probability of flu.",
+          "Treating Tired as evidence only for flu and not for being an undergrad without flu."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would observing T=1 be more informative if U were unknown or if U=1 were already known? Explain using the conditional probabilities for tiredness."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the exact event whose probability equals 0.8 in this model, and why is that different from the quantity being asked?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from statistical inference.",
+        "Watch out for this common trap: Saying undergrad status causes flu directly. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0003",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are asked to estimate P(flu | undergrad, tired) by simulation rather than exact summation. Describe a rejection sampling procedure using samples from the joint distribution of the Bayes net, and explain both how the estimate is formed and when the method becomes inefficient.",
+      "expected_answer": "Sample repeatedly from the joint by drawing Flu from its prior, Undergrad from its prior, Fever conditional on Flu, and Tired conditional on Flu and Undergrad. Keep only samples where U=1 and T=1; among those accepted samples, estimate P(F_flu=1|U=1,T=1) by the fraction with Flu=1. This works because accepted samples approximate draws from the conditional distribution given the evidence. The method becomes inefficient when the evidence event is rare, because very few samples are accepted, so many joint samples are wasted and variance is high for a fixed computational budget.",
+      "source_chunk_ids": [
+        "cs109_15_general_inference_annotated_p23_p24_63310f4a9e",
+        "cs109_15_general_inference_annotated_p44_p45_4e99c07201",
+        "cs109_15_general_inference_annotated_p17_p18_f18b5f576e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Describes ancestral sampling from the joint in network order.",
+          "States the rejection criterion based on the observed evidence.",
+          "Forms the estimator as an accepted-sample frequency.",
+          "Explains inefficiency in terms of low acceptance probability for rare evidence."
+        ],
+        "partial_credit": [
+          "Describes simulation but not clearly from the joint distribution.",
+          "Explains acceptance but not how the final ratio is computed.",
+          "Mentions inefficiency vaguely without tying it to evidence rarity."
+        ],
+        "common_mistakes": [
+          "Sampling directly from the posterior without explaining how.",
+          "Counting all samples instead of accepted ones in the denominator.",
+          "Rejecting on the wrong variables or in the wrong order."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the evidence were U=0, T=1, F_fever=1 instead, would you expect rejection sampling to be more or less efficient? Justify qualitatively."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What distribution do your raw samples come from before rejection, and why does filtering on evidence change that to the conditional distribution?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Sampling directly from the posterior without explaining how. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0004",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "The lecture claims that with enough samples from the joint distribution, you can answer 'any probability inference question.' Defend that statement carefully, but also say what 'enough' really means in practice and what quantity becomes difficult when the event of interest is rare.",
+      "expected_answer": "If we can sample from the full joint distribution, then empirical frequencies approximate probabilities for any event, empirical conditional frequencies approximate conditional probabilities, and empirical averages approximate expectations. So in principle any query about events or expectations under that model can be answered from samples. In practice, 'enough' depends on variance and on the probability of the relevant event: rare events need many more samples because the number of effective observations for that event is small, making estimates noisy. So the statement is asymptotically true but computationally harder for rare evidence or tail probabilities.",
+      "source_chunk_ids": [
+        "cs109_15_general_inference_annotated_p44_p45_4e99c07201"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains how sample frequencies approximate probabilities, conditional probabilities, and expectations.",
+          "States the asymptotic nature of the claim.",
+          "Explains that sample size needs depend on rarity/variance of the queried event.",
+          "Identifies rare-event estimation as especially difficult."
+        ],
+        "partial_credit": [
+          "Repeats the claim correctly but without discussing practical limits.",
+          "Mentions law of large numbers informally without application to conditional queries.",
+          "Says 'more samples are better' without identifying what drives the required number."
+        ],
+        "common_mistakes": [
+          "Claiming a small sample can answer any query accurately.",
+          "Ignoring the denominator instability in conditional probability estimation when conditioning event is rare.",
+          "Confusing model error with Monte Carlo error."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Give an example of a query in the flu model that would be much harder to estimate accurately by naive sampling than P(U=1)."
+        },
+        {
+          "condition": "incorrect",
+          "question": "How would you estimate a conditional probability from joint samples, and what must happen to the conditioning event frequency for that estimate to stabilize?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from statistical inference; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming a small sample can answer any query accurately. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0005",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "In the SFO arrival-time distribution, let p_i be the probability a visitor arrives i hours past midnight. A student says the expected fraction arriving before noon is an average of the numbers p_0 through p_11, so it should be (1/12) times their sum. Is that right? Explain what quantity is actually being asked for and why the correct expression does or does not involve dividing by 12.",
+      "expected_answer": "That is not right. The question asks for the fraction of visitors who arrive between midnight and noon, which is simply the probability of the event {0,1,...,11}. Since p_i already represents the probability mass in hour i, we add those probabilities: sum from i=0 to 11 of p_i. Dividing by 12 would compute the average hourly probability over those 12 hours, which is a different quantity and not the fraction of visitors in that interval.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the target as a probability of a union of hour bins.",
+          "Gives the expression sum_{i=0}^{11} p_i.",
+          "Explains why dividing by 12 changes the meaning to an average of probabilities rather than total probability mass."
+        ],
+        "partial_credit": [
+          "Provides the correct summation with minimal explanation.",
+          "Recognizes that p_i are already probabilities but does not articulate the difference between total and average."
+        ],
+        "common_mistakes": [
+          "Averaging instead of summing.",
+          "Treating p_i as counts rather than probabilities.",
+          "Forgetting that the bins are mutually exclusive."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If each p_i were instead an expected count rather than a probability, how would the expression for the fraction before noon change?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does p_6 mean in words, and if you want the probability of arriving in one of several disjoint hours, what operation should you use?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Averaging instead of summing. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0006",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A distribution is X ~ Geo(p=0.8), and an instructor defines an outlier as a value x for which P(X >= x) <= 0.05. A student argues that to check whether 7 is an outlier, you should compute P(X > 7) because '7 itself is not larger than 7.' Evaluate this reasoning and state the correct tail event under the given definition.",
+      "expected_answer": "The reasoning is incorrect because the definition says 'x or larger,' which means the event is X >= x, not X > x. For x=7, the correct check is whether P(X >= 7) <= 0.05. For a geometric random variable, that can be written directly as a tail probability or as 1 minus the cumulative probability up to 6, depending on the convention for support. The key point is that the observed value 7 must be included in the tail because the definition explicitly includes x itself.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly identifies the tail event as X >= 7.",
+          "Explains that the wording '7 or larger' includes 7.",
+          "Notes that one may express it via a survival function or 1-CDF, subject to the geometric convention."
+        ],
+        "partial_credit": [
+          "Says the student is wrong but gives little explanation.",
+          "Uses the right tail event but does not discuss inclusion of 7."
+        ],
+        "common_mistakes": [
+          "Using X > 7.",
+          "Getting distracted by the exact geometric support convention and failing to answer the event-definition issue.",
+          "Confusing outlier definition with a two-sided criterion."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your setup change if the instructor had defined an outlier as a value whose two-sided tail probability is at most 0.05?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In the phrase 'x or larger,' what event notation includes the observed value itself?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from statistical inference.",
+        "Watch out for this common trap: Using X > 7. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0007",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A random sample of 20 students gives a mean course rating. The population mean is 4.5 and the population variance is 1.0. Explain how to approximate the probability that the sample mean is at least 4.7, and justify why a normal approximation is appropriate here even though individual ratings may not be normal.",
+      "expected_answer": "Let X\u0304 be the sample mean of 20 independent ratings. Its mean is 4.5 and its variance is 1.0/20, so its standard deviation is 1/sqrt(20). By the central limit theorem, X\u0304 is approximately normal for moderate sample size when observations are iid with finite variance, even if the original rating distribution is not normal. So we compute P(X\u0304 >= 4.7) approximately as 1 - Phi((4.7-4.5)/(1/sqrt(20))). The key justification is that the CLT applies to the sample mean, not necessarily to the original data points.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8",
+        "cs109_finalfall2021soln_q0_42694214da"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States mean and variance of the sample mean correctly.",
+          "Uses a normal approximation with the correct z-score.",
+          "Justifies the approximation via the CLT on the sample mean.",
+          "Distinguishes the distribution of individual ratings from the distribution of the sample mean."
+        ],
+        "partial_credit": [
+          "Sets up the z-score correctly but gives a weak CLT justification.",
+          "Knows variance shrinks by n but makes a minor algebra error.",
+          "Mentions CLT without stating the assumptions."
+        ],
+        "common_mistakes": [
+          "Using variance 1.0 instead of 1.0/20.",
+          "Saying ratings themselves must be normal for CLT to work.",
+          "Using a t distribution despite known population variance and a setup framed around CLT."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the population variance were unknown but you only had the sample variance, what approximation would you discuss next and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What happens to the variance of an average of iid variables, and where does the factor of 20 appear?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using variance 1.0 instead of 1.0/20. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0008",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "At a party, someone says: 'I have two children, and at least one is a daughter born on Tuesday.' Many people answer 1/2 for the probability that both are daughters. Give a careful oral explanation of why 1/2 is not correct, and describe the conditioning event in a way that makes the correct sample space visible.",
+      "expected_answer": "The answer is not 1/2 because we are not merely told 'at least one child is a daughter'; we are told 'at least one child is a daughter born on Tuesday,' which changes the relative number of equally likely family outcomes that survive conditioning. The correct sample space consists of all two-child combinations of gender and weekday, assumed independent across children. We condition on the event that at least one child is a girl born on Tuesday, then ask what fraction of those outcomes have two girls. This weighting favors two-girl families more than the simpler 'at least one girl' statement, leading to 13/27 rather than 1/2.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explicitly rejects 1/2 because the conditioning event is more specific.",
+          "Describes the conditional sample space in terms of gender-weekday combinations.",
+          "Explains that probabilities must be recomputed within the new sample space.",
+          "States or motivates the result 13/27."
+        ],
+        "partial_credit": [
+          "Recognizes that 1/2 is wrong and mentions conditional probability.",
+          "Explains qualitatively that Tuesday information changes the denominator but does not fully articulate the sample space.",
+          "Gives 13/27 with limited reasoning."
+        ],
+        "common_mistakes": [
+          "Arguing symmetry implies 1/2.",
+          "Conditioning only on 'at least one daughter' instead of 'at least one daughter born on Tuesday.'",
+          "Forgetting inclusion-exclusion when counting families with at least one qualifying child."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the answer change conceptually if the statement were instead 'my older child is a daughter born on Tuesday'?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What exact event are you conditioning on, and why does that event contain different numbers of one-girl and two-girl families?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Arguing symmetry implies 1/2. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0009",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "In the Van Gogh brushstroke problem, the average number of brushstrokes in a neighborhood is modeled as normal. Explain why a normal model is plausible for this average, but also give one limitation of using the central limit theorem here without further thought.",
+      "expected_answer": "A normal model is plausible because the feature is an average over many local brushstroke-neighborhood counts, and averages of many contributions often become approximately normal by the central limit theorem. The CLT supports approximate normality of the average when contributions are sufficiently numerous and not too pathologically distributed, with finite variance. A limitation is that the individual brushstroke counts may be dependent or the effective number of independent pieces may be small, so the CLT justification is heuristic unless those assumptions are reasonably met. Thus normality is plausible, not guaranteed automatically.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Connects normality to the fact that the feature is an average.",
+          "Mentions the CLT appropriately.",
+          "Notes at least one assumption or limitation, such as dependence or insufficient sample size/effective independence.",
+          "Distinguishes plausibility from certainty."
+        ],
+        "partial_credit": [
+          "States 'by CLT' without explaining why averaging matters.",
+          "Mentions that many terms are involved but not the assumptions.",
+          "Provides a generic caveat without linking it to this feature."
+        ],
+        "common_mistakes": [
+          "Saying the original brushstroke counts themselves must be normal.",
+          "Using CLT as an unconditional guarantee.",
+          "Ignoring dependence among brushstroke-level quantities."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the feature were the maximum neighborhood count instead of the average, would the same CLT argument apply?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What kind of statistic is being modeled here: a single local count or an average of many local quantities?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from statistical inference; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying the original brushstroke counts themselves must be normal. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0010",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "You have prior belief 0.75 that a discovered painting is by Van Gogh. The observed average neighborhood brushstroke count is 19, with one normal model if Van Gogh painted it and another if not. Explain how to update your belief and why you must use densities rather than probabilities at the observed value.",
+      "expected_answer": "Let Y be the event that Van Gogh is the artist. Because the observation X=19 is continuous, we use Bayes' rule with densities: P(Y|X=19) = f_{X|Y}(19|Y)P(Y) divided by f_{X|Y}(19|Y)P(Y) + f_{X|Y^c}(19|Y^c)P(Y^c). Here the two class-conditional models are normal with their respective means and variances, and the prior is 0.75 versus 0.25. We compare how plausible 19 is under each normal density, weight by the priors, and normalize. The important conceptual point is that for a continuous variable, P(X=19)=0, so point probabilities are replaced by density values in Bayes' theorem.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes or states Bayes' rule with class-conditional densities.",
+          "Uses the prior 0.75 and complement prior 0.25.",
+          "Explains why densities are used for continuous observations.",
+          "Interprets the update as likelihood times prior, then normalization."
+        ],
+        "partial_credit": [
+          "Gives the correct formula idea but says 'probability' instead of 'density.'",
+          "States that Bayes' rule applies but does not explain the continuous-observation issue.",
+          "Explains weighting by prior and likelihood qualitatively."
+        ],
+        "common_mistakes": [
+          "Using P(X=19|Y) as an ordinary probability mass.",
+          "Forgetting the normalization denominator.",
+          "Ignoring the non-Van-Gogh class in the denominator."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the observed value were much closer to 12 than to 20, what happens qualitatively to the posterior, and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a normal random variable, what is P(X=19) exactly, and what object do we use instead when applying Bayes' rule?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using P(X=19|Y) as an ordinary probability mass. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0011",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You observed 30 successes and 20 failures, and model the unknown success probability p with a Beta distribution. You want to report a claim of the form m \u00b1 b, where m is the posterior mean and b is the smallest half-width giving at least 95% posterior probability. Explain an algorithmic strategy for finding m and b, and justify why 'smallest' matters.",
+      "expected_answer": "Assuming a Beta posterior from the observed successes and failures, first compute m as the posterior expectation of that Beta distribution. To find b, we need the smallest nonnegative value such that P(m-b < p < m+b) >= 0.95 under the posterior. Algorithmically, one can start from b=0 and increase b in small steps, or use binary search over b in [0,1], each time evaluating the Beta CDF difference F(m+b)-F(m-b), with truncation to [0,1] if needed. 'Smallest' matters because many intervals centered at m achieve at least 95% mass; we want the tightest symmetric uncertainty statement around the chosen center.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies m as the posterior mean of the Beta posterior.",
+          "Defines b through a posterior probability statement centered at m.",
+          "Describes a valid search procedure, such as binary search or incremental search using the Beta CDF.",
+          "Explains why the minimal qualifying b gives the tightest symmetric interval around m."
+        ],
+        "partial_credit": [
+          "Knows m is a posterior mean but is vague on how to find b.",
+          "Suggests simulation from the Beta posterior as an approximation route.",
+          "States the 95% condition but not the minimization idea."
+        ],
+        "common_mistakes": [
+          "Using the sample proportion as the full answer without uncertainty.",
+          "Choosing any interval with 95% mass but ignoring the requirement of smallest symmetric half-width.",
+          "Confusing a frequentist confidence interval with the posterior probability interval requested."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would the equal-tailed 95% credible interval generally be the same as the smallest symmetric interval around the mean? Why or why not?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What exactly must be at least 0.95 in this problem: a sampling probability over repeated datasets, or a posterior probability over p?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using the sample proportion as the full answer without uncertainty. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0012",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "For carbon dating, a single C14 molecule has decay time T ~ Exp(lambda = 1/8267). Explain how to compute the probability that it decays within 500 years, and then interpret the complement event in words.",
+      "expected_answer": "For an exponential random variable, P(T <= 500) = 1 - e^{-lambda*500} with lambda = 1/8267. So the desired probability is 1 - exp(-500/8267). The complement event is T > 500, which means the molecule survives at least 500 years without decaying. In this context, the exponential model is appropriate because it describes waiting time to decay with a constant hazard rate.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8",
+        "cs109_finalfall2021soln_preamble_dfa36463ce"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses the exponential CDF correctly.",
+          "States the complement as survival beyond 500 years.",
+          "Interprets the event in the decay context."
+        ],
+        "partial_credit": [
+          "Writes the formula but gives little interpretation.",
+          "Gets the complement idea right without the exact expression."
+        ],
+        "common_mistakes": [
+          "Using e^{-500/8267} as the decay-within-500 probability instead of the survival probability.",
+          "Confusing the exponential waiting time with a Poisson count directly.",
+          "Misstating the rate parameter as 8267 instead of 1/8267."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why does the exponential model pair naturally with a Poisson count model for the number of decays over time?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What event does e^{-lambda t} represent for an exponential waiting time?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using e^{-500/8267} as the decay-within-500 probability instead of the survival probability. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0013",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A dead sample started with 100 independent C14 molecules. Using your result for the probability that one molecule decays within 500 years, explain why the number remaining after 500 years leads to a binomial model, and write the expression for exactly 95 molecules remaining.",
+      "expected_answer": "Each molecule independently either has decayed by 500 years or has not. If p is the probability a molecule decays within 500 years, then the number decayed is Binomial(100, p), because we have 100 independent Bernoulli trials with common success probability p. Exactly 95 remaining means exactly 5 decayed, so the probability is choose(100,5) p^5 (1-p)^95. Equivalently, one could model the number remaining directly as Binomial(100, 1-p) and ask for 95 successes.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies independent Bernoulli trials for each molecule.",
+          "Chooses a consistent binomial parameterization.",
+          "Connects '95 remaining' with either 5 decayed or 95 survived.",
+          "Writes the correct binomial probability expression."
+        ],
+        "partial_credit": [
+          "States binomial correctly but is slightly inconsistent about whether the success event is decay or survival.",
+          "Gives a binomial expression without the combinatorial factor but explains the setup well."
+        ],
+        "common_mistakes": [
+          "Using a Poisson distribution directly for the number remaining.",
+          "Forgetting independence or common probability across molecules.",
+          "Mixing up p and 1-p when switching between decayed and remaining."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the age were unknown and changed from sample to sample, which parameter of the binomial would depend on age?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For one molecule, what are the two outcomes after 500 years, and why does repeating that 100 times suggest a binomial model?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using a Poisson distribution directly for the number remaining. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0014",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You observe m = 95 surviving molecules and want a posterior distribution over the sample age A, where A can be any whole number from 500 to 600 and is otherwise impossible. Describe, in words or pseudocode, how to compute the normalized list of posterior probabilities P(A=i | M=95) for all i in that range.",
+      "expected_answer": "For each candidate age i from 500 to 600, compute the likelihood P(M=95 | A=i) using the binomial model from the decay process: first find the age-dependent decay probability for one molecule, then compute the probability that exactly 95 out of 100 remain. Multiply each likelihood by the prior P(A=i), which is uniform over 500 to 600 and zero elsewhere. This gives unnormalized posterior weights. Finally, sum those weights over all allowed ages and divide each weight by the sum so the list is normalized and adds to 1. Ages outside 500 to 600 get posterior probability 0.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes likelihood for each discrete age candidate.",
+          "Uses the stated uniform prior on 500 through 600 inclusive.",
+          "Forms unnormalized posterior weights as likelihood times prior.",
+          "Normalizes across all candidate ages to get a valid posterior distribution."
+        ],
+        "partial_credit": [
+          "Describes Bayes' rule conceptually but omits the normalization step.",
+          "Knows to loop over ages and compute likelihoods but is vague on the prior.",
+          "Uses the right support but does not explain why outside ages get zero."
+        ],
+        "common_mistakes": [
+          "Choosing the age with maximum likelihood only, instead of computing the full posterior distribution.",
+          "Forgetting to normalize the weights.",
+          "Treating age as continuous despite the problem specifying whole years."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your algorithm change if the prior over 500 to 600 were not uniform but linearly increasing with age?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "After computing likelihood times prior for each age, what must you do so that the entries become probabilities?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Choosing the age with maximum likelihood only, instead of computing the full posterior distribution. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0015",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "In a reliability model with density f(x|a) = (1/a^2) x^{a-1} exp(-x^2/a^2), you observe independent lifetimes x_1,...,x_N. Explain how maximum likelihood estimation would choose a, why we typically maximize the log-likelihood instead of the likelihood directly, and what role the derivative plays.",
+      "expected_answer": "MLE chooses the parameter value a that makes the observed data most probable under the model, so we maximize the likelihood L(a) = product over i of f(x_i|a). Because products of many terms are hard to manipulate, we usually maximize the log-likelihood, which is monotone in the likelihood and turns products into sums. After substituting the density, we differentiate the log-likelihood with respect to a, set the derivative equal to zero to find critical points, and then assess which value maximizes the objective, for example by checking the second derivative or behavior of the function. The derivative captures how the fit changes as a changes.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines MLE as maximizing likelihood over a.",
+          "Explains why log-likelihood is used and that it preserves the argmax.",
+          "States that the derivative is set to zero to locate critical points.",
+          "Mentions the need to verify a maximum, not just any critical point."
+        ],
+        "partial_credit": [
+          "Knows to maximize log-likelihood but gives only computational convenience as justification.",
+          "Mentions taking derivatives without explaining what is being optimized.",
+          "Defines MLE correctly but omits the critical-point verification step."
+        ],
+        "common_mistakes": [
+          "Thinking log changes the maximizing parameter.",
+          "Stopping after writing the likelihood without discussing optimization.",
+          "Assuming every derivative-zero point is automatically the MLE."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the derivative equation cannot be solved in closed form, what numerical strategy might you propose, and what would you monitor?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why is maximizing the product of densities equivalent to maximizing the sum of their logs?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from statistical inference; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Thinking log changes the maximizing parameter. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0016",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "True or false, with justification: if two random variables X and Y are independent, it is still possible that for some assignments x and y, the events {X=x} and {Y=y} are dependent. Your answer should address the relationship between independence of variables and independence of events generated from them.",
+      "expected_answer": "False. If X and Y are independent random variables, then for all measurable sets A and B, P(X in A, Y in B) = P(X in A)P(Y in B). In particular, the events {X=x} and {Y=y} are among those events in the discrete case, so they must also be independent for every pair x,y. Thus independence of variables implies independence of all events determined solely by each variable.",
+      "source_chunk_ids": [
+        "cs109_finalfall2021soln_preamble_dfa36463ce"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Answers false.",
+          "Explains that random-variable independence implies factorization for all events based on X and Y separately.",
+          "Applies that principle to singleton events {X=x} and {Y=y}."
+        ],
+        "partial_credit": [
+          "Answers false with a correct but informal statement like 'all such events must be independent.'",
+          "Mentions the product rule for independent variables without explicitly tying it to assignments."
+        ],
+        "common_mistakes": [
+          "Answering true because dependence can appear 'for special values.'",
+          "Confusing independence of variables with zero correlation.",
+          "Forgetting the event-level interpretation of variable independence."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can the converse fail? If some selected assignments factorize, does that guarantee the variables are independent?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What condition must hold for P(X=x, Y=y) if X and Y are independent?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from statistical inference.",
+        "Watch out for this common trap: Answering true because dependence can appear 'for special values.'. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0017",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says: 'The log-likelihood is always nonpositive, so likelihoods are always at most 1.' Use the Bernoulli example to explain why the first part can be true in that setting, but the general conclusion is false in statistics more broadly.",
+      "expected_answer": "For a Bernoulli sample, each point probability is between 0 and 1, so the likelihood, being a product of such probabilities, is also between 0 and 1. Therefore its log-likelihood is at most 0. But this reasoning relies on discrete point probabilities. In continuous models, the likelihood is based on densities evaluated at observed points, and densities can exceed 1, so the likelihood or log-likelihood need not obey the same bound. Thus 'log-likelihood is always nonpositive' is true for that Bernoulli setup but false in general.",
+      "source_chunk_ids": [
+        "cs109_finalfall2021soln_preamble_dfa36463ce"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains why Bernoulli point probabilities force log-likelihood <= 0.",
+          "Distinguishes discrete probabilities from continuous densities.",
+          "States that densities may exceed 1, so the general claim fails."
+        ],
+        "partial_credit": [
+          "Recognizes the Bernoulli-specific nature of the statement.",
+          "Mentions continuous distributions but not densities explicitly.",
+          "States the conclusion correctly with limited explanation."
+        ],
+        "common_mistakes": [
+          "Claiming all likelihoods are probabilities.",
+          "Saying densities cannot exceed 1.",
+          "Failing to distinguish model type."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example of a continuous density that exceeds 1 on part of its support?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In a continuous model, what replaces point probabilities when defining the likelihood?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from statistical inference.",
+        "Watch out for this common trap: Claiming all likelihoods are probabilities. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0018",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You compare two samples from unknown populations and, via bootstrap under a null model, obtain a p-value of 0.99 for the difference in their modes. Explain what this says and what it does not say. In particular, address the common mistake of interpreting 0.99 as a 99% probability that the null hypothesis is true.",
+      "expected_answer": "A p-value of 0.99 means that if the null model were true, a difference in modes at least as extreme as the observed one would be very common; the observed difference is not surprising under the null. So there is little evidence against the null based on this test statistic. It does not mean there is a 99% posterior probability that the null is true, because a p-value is a sampling probability under an assumed model, not a probability assigned to the hypothesis itself. The result also does not prove the distributions are identical; it only says the observed mode difference is compatible with the null mechanism used in the bootstrap test.",
+      "source_chunk_ids": [
+        "cs109_finalfall2021soln_preamble_dfa36463ce",
+        "cs109_20_mle_annotated_p6_88df05adf8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Interprets the p-value as a tail probability under the null.",
+          "States that the observed difference is not unusual under the null.",
+          "Explicitly rejects the '99% chance the null is true' interpretation.",
+          "Notes that failing to find evidence against the null is not proof of equality."
+        ],
+        "partial_credit": [
+          "Says the result is not significant but does not explain the conditioning on the null.",
+          "Identifies the posterior-probability confusion but not the rest of the interpretation.",
+          "Explains bootstrap only loosely."
+        ],
+        "common_mistakes": [
+          "Interpreting the p-value as P(null | data).",
+          "Saying a large p-value proves the null hypothesis.",
+          "Ignoring the role of the chosen test statistic."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the p-value were 0.01 instead, what precise statement would you make that still avoids overclaiming?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In the definition of a p-value, which comes first logically: assuming the null, or computing a probability that the null is true?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Interpreting the p-value as P(null | data). Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0019",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "A statement claims: if X_1,...,X_n are iid, then the sample mean tends toward a normal distribution with mean 0 and variance 0 as n grows. Give a careful critique. Your answer should separate what remains fixed, what changes with n, and what extra assumptions the central limit theorem quietly needs.",
+      "expected_answer": "The statement is false. For iid variables with finite mean mu, the sample mean always has expectation mu, not 0 unless the original variables themselves have mean 0. Its variance is sigma^2/n when the variance exists, so the variance does shrink toward 0 as n increases. The CLT says that the sample mean is approximately normal for large n after appropriate conditions, with mean mu and variance sigma^2/n, not mean 0 unless centered. Also, the CLT requires finite variance; it does not apply automatically to every iid distribution.",
+      "source_chunk_ids": [
+        "cs109_finalfall2021soln_preamble_dfa36463ce",
+        "cs109_20_mle_annotated_p17_b57564ae4a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the claim is false.",
+          "Explains that the sample mean's expectation is mu, not automatically 0.",
+          "Explains variance sigma^2/n and its shrinkage.",
+          "Notes the CLT gives approximate normality under conditions such as finite variance."
+        ],
+        "partial_credit": [
+          "Identifies the mean error or the variance behavior but not both.",
+          "Mentions CLT but not the required assumptions.",
+          "Explains the statement is false but only partially justifies why."
+        ],
+        "common_mistakes": [
+          "Saying the sample mean itself converges to N(0,0).",
+          "Confusing a standardized mean with the raw sample mean.",
+          "Ignoring finite-variance assumptions."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What transformation of the sample mean would have mean 0 and variance 1 asymptotically under the CLT?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is E[X\u0304] in terms of E[X_i], and why does that already contradict the claim?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from statistical inference; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying the sample mean itself converges to N(0,0). Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0020",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Explain why P(X=0) for X ~ Poi(lambda=5) equals P(Y>1) for Y ~ Exp(lambda=5). Give both an intuitive explanation in terms of arrivals and a short mathematical verification.",
+      "expected_answer": "Intuitively, if events occur according to a Poisson process of rate 5 per unit time, then X counts how many arrivals occur in one time unit and Y is the waiting time until the first arrival. 'No arrivals by time 1' is the same event as 'the first arrival occurs after time 1,' so P(X=0)=P(Y>1). Mathematically, P(X=0)=e^{-5}, while for the exponential waiting time P(Y>1)=e^{-5*1}=e^{-5}. So the probabilities match exactly because they describe the same underlying event in two equivalent representations of the process.",
+      "source_chunk_ids": [
+        "cs109_finalfall2021soln_preamble_dfa36463ce"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Gives the Poisson-process intuition linking zero arrivals and waiting time beyond 1.",
+          "Computes both probabilities as e^{-5}.",
+          "Explains that the equality reflects the same event viewed two ways."
+        ],
+        "partial_credit": [
+          "Provides only the mathematical verification or only the intuition.",
+          "Gets the event correspondence right but omits one formula.",
+          "Mentions memorylessness incorrectly but still lands on the right equality."
+        ],
+        "common_mistakes": [
+          "Treating Poisson and exponential as unrelated distributions here.",
+          "Using P(Y<=1) instead of P(Y>1).",
+          "Forgetting the time interval length in the exponential tail."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the equality generalize if the interval length were t instead of 1?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What event in words does X=0 represent, and what waiting-time event is equivalent to it?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from statistical inference; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Treating Poisson and exponential as unrelated distributions here. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0021",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Suppose X_1,...,X_n are not necessarily independent, but each has mean 1. Explain why it must still be true that P(X_1+...+X_n >= n) > 0. Your explanation should avoid the central limit theorem and should directly use expectation.",
+      "expected_answer": "Let S = X_1+...+X_n. By linearity of expectation, E[S] = E[X_1]+...+E[X_n] = n, regardless of dependence. If P(S >= n) were 0, then S would be strictly less than n almost surely, which would force E[S] < n. That contradicts E[S]=n. Therefore there must be positive probability that S is at least n. The key point is that expectation alone, together with the contradiction argument, is enough; no independence or CLT is needed.",
+      "source_chunk_ids": [
+        "cs109_finalfall2021soln_preamble_dfa36463ce"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines the sum S and applies linearity of expectation correctly.",
+          "Uses a contradiction: if P(S>=n)=0 then S<n almost surely.",
+          "Concludes that would imply E[S]<n, contradicting E[S]=n.",
+          "Notes independence is unnecessary."
+        ],
+        "partial_credit": [
+          "Uses linearity of expectation correctly but gives a less rigorous final step.",
+          "States the contradiction informally without clearly explaining why E[S] would then be less than n.",
+          "Mentions CLT but does not rely on it."
+        ],
+        "common_mistakes": [
+          "Invoking the CLT or large-sample normality.",
+          "Arguing each X_i must individually be at least 1 with positive probability.",
+          "Ignoring dependence issues."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is the statement only that the probability is positive, not necessarily large?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is E[X_1+...+X_n], and why would that be impossible if the sum were always below n?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from statistical inference; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Invoking the CLT or large-sample normality. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0022",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "In the A-B-C Bayes net example, A and B are independent marginally, but not independent given C=1. Explain this seeming paradox. Your answer should reference the graph structure and also describe how conditioning on a common effect can create dependence.",
+      "expected_answer": "Marginally, A and B are independent because the graph has no direct or ancestral connection between them before conditioning; the joint factorizes as P(A)P(B) times a child term involving C. But once we condition on C=1, we restrict attention to outcomes where the common effect has occurred. Then learning A gives information about how much explanatory burden remains for B, and vice versa. This is the 'explaining away' phenomenon: if one parent is known to make C=1 plausible, the other parent becomes less necessary, creating conditional dependence even though the variables were marginally independent.",
+      "source_chunk_ids": [
+        "cs109_05_section_soln_sec1_part3_d9a7c69ea6"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that A and B are marginally independent but conditionally dependent given C=1.",
+          "Explains the collider/common-effect structure.",
+          "Describes explaining away in intuitive terms.",
+          "Connects the graph structure to the conditional dependence."
+        ],
+        "partial_credit": [
+          "Recognizes conditioning can induce dependence but does not name the collider structure.",
+          "Gives only a table-based or only a graph-based explanation.",
+          "States explaining away without making it intuitive."
+        ],
+        "common_mistakes": [
+          "Assuming conditioning always preserves or increases independence.",
+          "Treating C as a common cause rather than a common effect.",
+          "Failing to distinguish marginal from conditional relationships."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would conditioning on A instead of C create dependence between A and B? Why or why not?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Is C a parent of both A and B here, or a child of both, and why does that direction matter?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from statistical inference.",
+        "Watch out for this common trap: Assuming conditioning always preserves or increases independence. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0023",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "In the Fish Sticks model, hidden demand D determines two conditionally independent Poisson counts A and B. Explain how to compute P(D=0 | A=6), and then say why observing B as well would generally change the answer even though A and B are independent given D.",
+      "expected_answer": "Use Bayes' rule: P(D=0|A=6) is proportional to P(A=6|D=0)P(D=0), with normalization by adding the corresponding term for D=1. Because A|D=0 and A|D=1 are Poisson with different rates, we compare those two Poisson likelihoods at 6 and weight by the prior on D. Observing B would generally change the posterior because A and B are only conditionally independent given D, not marginally independent. Once D is unknown, B carries additional information about D, and therefore about the posterior probability of D=0.",
+      "source_chunk_ids": [
+        "cs109_05_section_soln_sec1_part3_d9a7c69ea6"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Sets up Bayes' rule with the two class-conditional Poisson terms and priors.",
+          "Explains the normalization over D=0 and D=1.",
+          "Correctly states that A and B are conditionally independent given D.",
+          "Explains why B still informs D when D is hidden."
+        ],
+        "partial_credit": [
+          "Gets Bayes' rule idea right but is vague about the Poisson likelihoods.",
+          "Recognizes that B provides extra information without fully articulating the conditional-independence point.",
+          "Explains independence incorrectly but still reaches the right conclusion."
+        ],
+        "common_mistakes": [
+          "Claiming B is irrelevant because A and B are independent given D, forgetting D is unobserved.",
+          "Forgetting to normalize the proportional expression.",
+          "Using P(D=0|A=6)=P(A=6|D=0)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you compute P(A+B=12) in this model without simulation?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Independent given what? State the conditional independence precisely."
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Claiming B is irrelevant because A and B are independent given D, forgetting D is unobserved. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0024",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are asked to simulate P(A+B=12) in the Fish Sticks model by rejection sampling. Describe a correct simulation algorithm, then explain why this particular task does not actually require rejection in the strict conditional-evidence sense.",
+      "expected_answer": "A correct simulation draws D from its Bernoulli prior, then draws A and B independently from their Poisson distributions conditional on D, computes total=A+B, and records whether total equals 12. Repeating many times and taking the fraction of successes estimates P(A+B=12). Strictly speaking, this is plain Monte Carlo estimation from the joint, not rejection sampling for a conditional probability, because we are not conditioning on an externally observed evidence event and discarding samples until evidence matches. We simply estimate the probability of an event directly from raw samples.",
+      "source_chunk_ids": [
+        "cs109_05_section_soln_sec1_part3_d9a7c69ea6",
+        "cs109_15_general_inference_annotated_p44_p45_4e99c07201"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Describes sampling D, then A and B conditional on D, then checking A+B=12.",
+          "Forms the estimate as the fraction of trials with total 12.",
+          "Explains that no conditioning event is imposed, so this is direct Monte Carlo rather than true rejection sampling.",
+          "Shows awareness of the conceptual distinction."
+        ],
+        "partial_credit": [
+          "Gives a valid simulation algorithm but calls it rejection sampling without discussion.",
+          "Explains event-frequency estimation correctly but not the terminology issue.",
+          "Mentions that no samples are discarded unless one artificially does so."
+        ],
+        "common_mistakes": [
+          "Trying to reject on A+B=12 and then estimate a conditional probability that was never asked.",
+          "Sampling A and B marginally without reference to D.",
+          "Confusing direct estimation of an event probability with conditional inference by rejection."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What would a genuine rejection-sampling version of this problem look like in the same model?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In your procedure, are any samples discarded because they fail to match observed evidence, or are all samples used?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Trying to reject on A+B=12 and then estimate a conditional probability that was never asked. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0025",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "In the flu Bayesian network, suppose a student tells you only that they are an undergrad and they are tired. Explain how you would compute the probability they have the flu, and then say whether that probability should be larger or smaller than the prior 0.1. You do not need to multiply every decimal out fully, but you should set up the numerator and denominator clearly and justify the direction of the update.",
+      "expected_answer": "A strong answer identifies the target as P(Flu=1 | U=1, T=1). Because fever is unobserved, we sum it out. Using the Bayes net factorization, P(F=1, U=1, T=1) = P(F=1)P(U=1)\\sum_y P(Fever=y|F=1)P(T=1|F=1,U=1). Since T is independent of Fever given Flu and Undergrad in this network, the sum over fever is 1, so this becomes P(F=1)P(U=1)P(T=1|F=1,U=1). Similarly, P(U=1,T=1) = P(U=1)\\sum_x P(F=x)P(T=1|F=x,U=1). Plugging in values gives numerator 0.1\u00b70.8\u00b71.0 and denominator 0.8[(0.1)(1.0)+(0.9)(0.8)], so the conditional probability is 0.1/(0.1+0.72)=0.122 approximately. This is slightly larger than the prior 0.1 because being tired is common for undergrads even without flu, so it is only weak evidence.",
+      "source_chunk_ids": [
+        "cs109_15_general_inference_annotated_p21_6194fdc4d9",
+        "cs109_15_general_inference_annotated_p22_7b79e99754",
+        "cs109_15_general_inference_annotated_p17_p18_f18b5f576e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the correct conditional probability target P(F=1|U=1,T=1).",
+          "Uses Bayes rule or equivalent ratio of joint to marginal.",
+          "Correctly sums out the unobserved Fever variable or explains why it drops out.",
+          "Recognizes that U=1 and T=1 increase the probability only modestly, yielding about 0.122."
+        ],
+        "partial_credit": [
+          "Sets up Bayes rule correctly but forgets to marginalize Fever explicitly.",
+          "Computes the numerator correctly but is incomplete on the denominator.",
+          "Gives the right qualitative conclusion that the posterior exceeds 0.1, with reasonable justification."
+        ],
+        "common_mistakes": [
+          "Treating Tired and Flu as independent once Undergrad is known.",
+          "Conditioning on Fever even though it is unobserved.",
+          "Using P(T=1|U=1)=0.8 directly without averaging over Flu status."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the same student also reports a fever, explain without full arithmetic why the posterior should rise substantially, and identify the term in the model that causes that change."
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which variables are actually observed here, and which variable must be summed out because it is hidden?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Treating Tired and Flu as independent once Undergrad is known. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0026",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "A classmate says: 'If two variables A and B are independent, then learning C can never make them dependent.' Use the three-variable Bayes-net example with A and B marginally independent but both influencing C to evaluate this claim. Your answer should explain both the marginal independence and why conditioning on C=1 can break it.",
+      "expected_answer": "The claim is false. In the provided Bayes-net structure, A and B are marginally independent because the joint factors as P(A)P(B)P(C|A,B), so summing over C gives P(A,B)=P(A)P(B). But once we condition on C=1, the conditional distribution becomes proportional to P(A)P(B)P(C=1|A,B), and that last factor couples A and B. Intuitively this is explaining away: if C=1 is observed and A is known to be high or present, then B becomes less necessary to explain C, so knowledge of A changes beliefs about B. A correct demonstration can be verbal or numerical, for example by comparing P(B=1|A=0,C=1) with P(B=1|A=1,C=1) and noting they differ.",
+      "source_chunk_ids": [
+        "cs109_05_section_soln_sec1_part3_d9a7c69ea6"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States clearly that the claim is false.",
+          "Explains why A and B are marginally independent in the unconditioned network.",
+          "Explains that conditioning on a common effect C induces dependence.",
+          "Uses the idea of explaining away or an equivalent conditional-probability comparison."
+        ],
+        "partial_credit": [
+          "Recognizes the claim is false but gives only intuition without tying it to factorization or conditionals.",
+          "States explaining away correctly but does not explain the original marginal independence.",
+          "Provides a numerical comparison but not the conceptual reason."
+        ],
+        "common_mistakes": [
+          "Saying independence is preserved under all conditioning.",
+          "Confusing 'no edge between A and B' with conditional independence given every other variable.",
+          "Claiming C screens off A and B in this collider structure."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your answer change if the structure were A -> C -> B instead of A -> C <- B? Which conditional independence would then hold?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you compare P(B=1|A=0,C=1) and P(B=1|A=1,C=1) qualitatively? If they differ, what does that tell you?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from statistical inference; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying independence is preserved under all conditioning. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0027",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You have two samples from unknown populations and you observe a difference in their sample means. A teammate proposes estimating a p-value by pooling the data into one 'universal sample,' repeatedly resampling two groups of the original sizes, and counting how often the resampled mean difference is at least as large as the observed one. Explain what null hypothesis this procedure is approximating, why pooling is appropriate under that null, and what it would mean if the estimated p-value were 0.99.",
+      "expected_answer": "The procedure is approximating the null hypothesis that the two samples came from populations with the same mean, or more broadly that the observed difference could arise by chance from a common underlying distribution. Pooling is appropriate under the null because if there is no true group difference, then labels are exchangeable and the combined data represent that shared population. Each resampling trial simulates what kind of mean differences we would expect just from sampling variability when no real difference exists. A p-value of 0.99 means the observed difference is extremely unremarkable under the null: differences at least that large occur very frequently by chance, so we would not regard the data as evidence of a meaningful mean difference. It does not prove the populations are identical; it says the sample does not provide evidence against the null.",
+      "source_chunk_ids": [
+        "cs109_20_mle_annotated_p6_88df05adf8",
+        "cs109_finalfall2021soln_preamble_dfa36463ce"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the null as no real difference between the underlying populations in the target statistic.",
+          "Explains why pooling follows from the null and the idea of exchangeability/common source.",
+          "Describes the resampling distribution as an estimate of chance variation under the null.",
+          "Interprets p=0.99 correctly as weak evidence against the null, not proof the null is true."
+        ],
+        "partial_credit": [
+          "Describes the mechanics of bootstrapping/resampling correctly but is vague on the null hypothesis.",
+          "Interprets a large p-value as 'not significant' but without explaining why pooling is justified.",
+          "Recognizes that p=0.99 means the observed difference is common under chance."
+        ],
+        "common_mistakes": [
+          "Saying the p-value is the probability the null hypothesis is true.",
+          "Claiming p=0.99 proves the means are equal.",
+          "Ignoring the need to compare the observed statistic to a resampled null distribution."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If instead the observed p-value were 0.01, what additional caution would you mention before claiming a causal effect or a practically important difference?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why are we allowed to combine the two samples into one pool only under the assumption that there is no true difference?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying the p-value is the probability the null hypothesis is true. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0028",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "In the Van Gogh brushstroke problem, you start with prior probability 0.75 that the painting is by Van Gogh. You then observe an average neighborhood brushstroke count of 19, where the count is modeled as Normal with mean 20 and variance 9 if Van Gogh painted it, and Normal with mean 12 and variance 25 otherwise. Set up the posterior probability that the painting is by Van Gogh, and explain aloud why the answer should be quite high even before doing exact arithmetic.",
+      "expected_answer": "Let V be the event that Van Gogh painted it and X=19 be the observation. By Bayes' rule, P(V|X=19) = f_{X|V}(19)P(V) / [f_{X|V}(19)P(V) + f_{X|V^c}(19)P(V^c)]. Here P(V)=0.75 and P(V^c)=0.25. The likelihood under Van Gogh uses a Normal density centered at 20 with sd 3, and the likelihood under not-Van-Gogh uses a Normal density centered at 12 with sd 5. Since 19 is only 1 unit from 20 but 7 units from 12, the observation is far more plausible under the Van Gogh model; combined with the already large prior 0.75, the posterior should be substantially above 0.75, likely very high. A strong answer notes that densities, not probabilities of a point, appear in the formula because X is continuous.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes the correct Bayes-rule expression using normal densities.",
+          "Uses the correct priors 0.75 and 0.25.",
+          "Explains qualitatively why x=19 favors the Van Gogh model strongly.",
+          "Mentions or correctly handles the continuous-variable issue by using densities."
+        ],
+        "partial_credit": [
+          "Sets up Bayes rule correctly but writes P(X=19|V) instead of a density, while reasoning is otherwise sound.",
+          "Gets the correct qualitative conclusion without a full formula.",
+          "Recognizes that the prior and likelihood both favor Van Gogh."
+        ],
+        "common_mistakes": [
+          "Comparing only distances from the means and forgetting different variances entirely.",
+          "Using the posterior formula without the denominator normalization.",
+          "Treating density values as probabilities without acknowledging continuity."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose the same observation were 15 instead of 19. How would the change in both means and variances affect the posterior direction?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Because X is continuous, what should replace P(X=19|V) in Bayes' rule?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Comparing only distances from the means and forgetting different variances entirely. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_statistical_inference_0029",
+      "course": "CS109",
+      "topic_id": "statistical_inference",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student says: 'Since the sample mean of i.i.d. data becomes approximately normal by the central limit theorem, its mean must go to 0 and its variance must go to 0 as n grows.' Critique this statement carefully. Your answer should distinguish what stays fixed, what changes with n, and any assumptions needed for the approximation.",
+      "expected_answer": "The statement is false. For i.i.d. random variables X_1,...,X_n with finite mean mu and variance sigma^2, the sample mean \\bar X has E[\\bar X]=mu for every n, not 0 unless the underlying mean itself is 0. Its variance is Var(\\bar X)=sigma^2/n under independence, so that part does shrink to 0 as n increases. The central limit theorem says that for large n, \\bar X is approximately Normal with mean mu and variance sigma^2/n, provided the variables are i.i.d. and the variance is finite. So normality is approximate, the center is the population mean, and only the spread collapses with n.",
+      "source_chunk_ids": [
+        "cs109_finalfall2021soln_preamble_dfa36463ce",
+        "cs109_20_mle_annotated_p17_b57564ae4a",
+        "cs109_finalfall2021soln_q0_42694214da"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explicitly rejects the claim that the mean goes to 0 in general.",
+          "States E[\\bar X]=mu and Var(\\bar X)=sigma^2/n under independence.",
+          "Explains the CLT approximation as Normal(mu, sigma^2/n) for large n.",
+          "Mentions needed assumptions such as i.i.d. and finite variance."
+        ],
+        "partial_credit": [
+          "Correctly identifies only one of the two errors, such as variance shrinking but mean staying at mu.",
+          "States the CLT informally without formulas but with correct direction.",
+          "Mentions dependence or infinite-variance caveats even if details are incomplete."
+        ],
+        "common_mistakes": [
+          "Confusing convergence in distribution with convergence of the mean to 0.",
+          "Saying the CLT always applies regardless of variance assumptions.",
+          "Forgetting the factor 1/n in the variance of the sample mean."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the distribution of the difference of two independent sample means be approximated, and why does the variance add?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is E[(X_1+...+X_n)/n] in terms of E[X_i]? Can you derive it using linearity of expectation?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from statistical inference.",
+        "Watch out for this common trap: Confusing convergence in distribution with convergence of the mean to 0. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    }
+  ]
+}

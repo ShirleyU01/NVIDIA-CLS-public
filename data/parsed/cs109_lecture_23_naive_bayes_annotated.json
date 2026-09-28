@@ -1,0 +1,256 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/23_naive_bayes_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/23_naive_bayes_annotated.pdf",
+  "sha256": "94dc65d4b97078f4fb1f7479e3a83c6741de164d01ed65374fb0957b295aded6",
+  "title_guess": "23 naive bayes annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "23: Naïve Bayes\nJerry Cain\nMay 22, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 66
+    },
+    {
+      "page_index": 1,
+      "text": "Preamble: \nMachine \nLearning\n2",
+      "char_count": 30
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nParameter Estimation\nLinear\nRegression\nNaïve \nBayes\nLogistic \nRegression\nDeep Learning\nThe Path Before Us",
+      "char_count": 178
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLinear\nRegression\nNaïve \nBayes\nLogistic \nRegression\nDeep Learning\nUnbiased\nestimators\nMaximizing\nlikelihood\nBayesian \nestimation\nThe Path Before Us\n✅\n✅\n𝜃!\"#\n\"𝑋, 𝑆$ \n✅\n𝜃!%&\nnext",
+      "char_count": 249
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMachine Learning uses a lot of data.\nTask: Identify the chair\nData: All the chairs ever\nSupervised learning: A \ncategory of machine learning \nwhere you have labeled data for \nthe problem you are solving.\nMany different forms of machine learning\n◦We focus on the problem of prediction given prior observations.",
+      "char_count": 382
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nReal World Problem\nFormal Model 𝜃\nPrediction \nFunction \"𝜃\nModel the problem\nLearning Algorithm\nTesting\nData\nTraining \nData\nEvaluation\nscore\nSupervised learning",
+      "char_count": 232
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nReal World Problem\nFormal Model 𝜃\nPrediction \nFunction \"𝜃 \nModel the problem\nLearning Algorithm\nTesting\nData\nTraining \nData\nEvaluation\nscore\nSupervised learning\nNot CS109’s focus.\nCS228 is awesome.\nModeling",
+      "char_count": 279
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nReal World Problem\nFormal Model 𝜃\nPrediction \nFunction \"𝜃 \nModel the problem\nLearning Algorithm\nTesting\nData\nTraining \nData\nEvaluation\nscore\nSupervised learning\nTraining\nParameter estimation \nis a basis for learning \nfrom data.",
+      "char_count": 300
+    },
+    {
+      "page_index": 8,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nModel and dataset\nMany different forms of machine learning\n• We focus on one specific type: prediction from past observations.\nGoal \n \n \nBased on observed 𝑿, predict some unknown 𝑌\n• Features \nVector 𝑿 of 𝑚 observations (new term: feature vector)\n \n \n \n𝑿= 𝑋!, 𝑋\", … , 𝑋#\n• Output  \nVariable 𝑌 (also called class label if discrete)\nModel  \n \n(𝑌= 𝑔𝑿, a function on 𝑿\n9",
+      "char_count": 439
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTraining data\n10\n…\nFeature 1 Feature 2\nFeature 300\nOutput\nPatient 1  1 \n0 \n… \n1 \n 1 \nPatient 2  1 \n1 \n… \n0 \n 0 \n     …\nPatient 𝑛  0 \n0 \n… \n1 \n 1 \n…\n…\n𝑿= 𝑋!, 𝑋\", 𝑋#, … , 𝑋#$$",
+      "char_count": 246
+    },
+    {
+      "page_index": 10,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTraining data notation\n𝒙! , 𝑦! , 𝒙\" , 𝑦\" , …, 𝒙$ , 𝑦$\n𝑛 datapoints, assumed to be iid\n𝑖–th datapoint 𝒙% , 𝑦%\n :\n• 𝑚 features: 𝒙% = 𝑥!\n% , 𝑥\"\n% , … , 𝑥#\n%\n• A single output 𝑦%\n• Independent of all other datapoints\n11\nTraining Goal:\nUse these 𝑛 datapoints to learn a\nmodel (𝑌= 𝑔𝑿 that predicts 𝑌",
+      "char_count": 366
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nReal World Problem\nFormal Model 𝜃\nPrediction \nFunction \"𝜃 \nModel the problem\nLearning Algorithm\nTesting\nData\nTraining \nData\nEvaluation\nscore\nSupervised learning\nTesting",
+      "char_count": 241
+    },
+    {
+      "page_index": 12,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTesting data notation\n𝒙! , 𝑦! , 𝒙\" , 𝑦\" , …, 𝒙$ , 𝑦$\n𝑛&'(& other datapoints, assumed to be iid\n𝑖&) datapoint 𝒙% , 𝑦%\n :\n• Has the same structure as your training data\n13\nTesting Goal:\nLeveraging the model (𝑌= 𝑔𝑿 that you trained, \nsee how well you can predict 𝑌 on known data",
+      "char_count": 348
+    },
+    {
+      "page_index": 13,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTwo tasks we will focus on\nMany different forms of machine learning\n• We focus on the problem of prediction based on observations.\nGoal \n \n \nBased on observed 𝑿, predict some unknown 𝑌\n• Features \nVector 𝑿 of 𝑚 observations (new term: feature vector)\n \n \n \n𝑿= 𝑋!, 𝑋\", … , 𝑋#\n• Output  \nVariable 𝑌 (also called class label if discrete)\nModel  \n \n(𝑌= 𝑔𝑿, a function on 𝑿\n• Regression \nprediction when 𝑌 is continuous\n• Classification prediction when 𝑌 is discrete\n14",
+      "char_count": 537
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRegression: Predicting real numbers\n15\nTraining data: 𝒙' , 𝑦' , 𝒙$ , 𝑦$ , …, 𝒙( , 𝑦(\n…\nCO2 levels\nOutput\n…\n…\nYear 1 \n 338.8 \n0 \n… \n1 \n 0.26 \nYear 2 \n 340.0 \n1 \n… \n0 \n 0.32 \n     …\nYear 𝑛 \n 340.76 \n0 \n… \n1 \n 0.14\nFeature 𝑚\nSea\nlevel\nGlobal Land-Ocean\ntemperature",
+      "char_count": 334
+    },
+    {
+      "page_index": 15,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nClassification: Predicting class labels\n16\n…\nFeature 1 Feature 2\nFeature 300\nOutput\nPatient 1  1 \n0 \n… \n1 \n 1 \nPatient 2  1 \n1 \n… \n0 \n 0 \n     …\nPatient 𝑛  0 \n0 \n… \n1 \n 1 \n…\n…\n𝑿= 𝑋!, 𝑋\", 𝑋#, … , 𝑋#$$",
+      "char_count": 272
+    },
+    {
+      "page_index": 16,
+      "text": "Brute Force Bayes\n17",
+      "char_count": 20
+    },
+    {
+      "page_index": 17,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nClassification: Healthy hearts\nSingle feature: \nRegion of Interest (ROI) is\n \n \n \n \nhealthy (1) or unhealthy (0) \nHow can we predict whether\nheart is healthy (1) or not (0)?\n18\nPatient 1  1 \n0\nPatient 2  1 \n1\n     \nPatient 𝑛  0 \n1\nFeature 1\nOutput\n…\n…\nThe following strategy is not used in practice but \nhelps us understand how to approach classification.\n𝑿= 𝑋!",
+      "char_count": 434
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nClassification: Brute Force Bayes\n19\n(𝑌= 𝑔𝑿\nOur prediction for 𝑌 \nis a function of 𝑿\nProposed model: Choose the 𝑌 that is \nmore or most likely given 𝑿\nIf we estimate 𝑃𝑿|𝑌 and 𝑃𝑌, we can classify data points.\n= arg max\n*+ ,,!\n𝑃𝑿|𝑌𝑃𝑌\n(Bayes’ Theorem)\n(1/𝑃𝑿 is constant wrt 𝑦)\n= arg max\n*+ ,,!\n𝑃𝑌 | 𝑿\n= arg max\n*+ ,,!\n𝑃𝑿|𝑌𝑃𝑌\n𝑃𝑿",
+      "char_count": 397
+    },
+    {
+      "page_index": 19,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTraining: Estimate parameters\n20\nPatient 1  1 \n0\nPatient 2  1 \n1\n     \nPatient 𝑛  0 \n1\nFeature 1\nOutput\n…\n…\n𝑿= 𝑋!\nConditional \nprobability \ntables 1𝑃𝑿|𝑌 \n1𝑃𝑿|𝑌= 0\n1𝑃𝑿|𝑌= 1\n𝑋' = 0\n𝜃'\n𝜃)\n𝑋' = 1\n𝜃$\n𝜃*\nMarginal \nprobability \ntable 1𝑃𝑌\n1𝑃𝑌\n𝑌= 0\n𝜃+\n𝑌= 1\n𝜃,\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\nTraining \nGoal:\nUse 𝑛 datapoints to learn\n2 ⋅2 + 2 = 6 parameters.",
+      "char_count": 418
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nUse MLE or Laplace (MAP) estimate \n1𝑃𝑿|𝑌 and 1𝑃𝑌 as parameters.\nTraining: Estimate parameters !𝑃𝑿|𝑌\n21\n1𝑃𝑿|𝑌= 0\n1𝑃𝑿|𝑌= 1\n𝑋' = 0\n𝜃'\n𝜃)\n𝑋' = 1\n𝜃$\n𝜃*\n𝑿|𝑌= 0 and 𝑿|𝑌= 1\nare each multinomials with 2 outcomes!\nPatient 1  1 \n0\nPatient 2  1 \n1\n     \nPatient 𝑛  0 \n1\nFeature 1\nOutput\n…\n…\nCount:  \n \n# datapoints\n𝑋' = 0, Y = 0:  \n4\n𝑋' = 1, Y = 0:  \n6\n𝑋' = 0, Y = 1:  \n0\n𝑋' = 1, Y = 1:  \n100\nTotal:  \n \n \n110",
+      "char_count": 470
+    },
+    {
+      "page_index": 21,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTraining: MLE estimates, !𝑃𝑿|𝑌\n22\n1𝑃𝑿|𝑌= 0\n1𝑃𝑿|𝑌= 1\n𝑋' = 0\n0.4\n0.0\n𝑋' = 1\n0.6\n1.0\nMLE of 1𝑃𝑋' = 𝑥|𝑌= 𝑦= # 𝑋' = 𝑥,𝑌= 𝑦\n# 𝑌= 𝑦\nMLE\nJust count!\nPatient 1  1 \n0\nPatient 2  1 \n1\n     \nPatient 𝑛  0 \n1\nFeature 1\nOutput\n…\n…\nCount:  \n \n# datapoints\n𝑋' = 0, Y = 0:  \n4\n𝑋' = 1, Y = 0:  \n6\n𝑋' = 0, Y = 1:  \n0\n𝑋' = 1, Y = 1:  \n100\nTotal:  \n \n \n110",
+      "char_count": 407
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPatient 1  1 \n0\nPatient 2  1 \n1\n     \nPatient 𝑛  0 \n1\nTraining: Laplace (MAP) estimates, !𝑃𝑿|𝑌\n23\nFeature 1\nOutput\n…\n…\n1𝑃𝑿|𝑌= 0\n1𝑃𝑿|𝑌= 1\n𝑋' = 0\n0.4\n0.0\n𝑋' = 1\n0.6\n1.0\nMLE of 1𝑃𝑋' = 𝑥|𝑌= 𝑦= # 𝑋' = 𝑥,𝑌= 𝑦\n# 𝑌= 𝑦\nMLE\nJust count!\nJust count + add imaginary trials!\nMAP\nLaplace of 1𝑃𝑋' = 𝑥|𝑌= 𝑦= ?\nCount:  \n \n# datapoints\n𝑋' = 0, Y = 0:  \n4\n𝑋' = 1, Y = 0:  \n6\n𝑋' = 0, Y = 1:  \n0\n𝑋' = 1, Y = 1:  \n100\nTotal:  \n \n \n110",
+      "char_count": 484
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPatient 1  1 \n0\nPatient 2  1 \n1\n     \nPatient 𝑛  0 \n1\nTraining: Laplace (MAP) estimates, !𝑃𝑿|𝑌\n24\nFeature 1\nOutput\n…\n…\n1𝑃𝑿|𝑌= 0\n1𝑃𝑿|𝑌= 1\n𝑋' = 0\n0.4\n0.0\n𝑋' = 1\n0.6\n1.0\nMLE of 1𝑃𝑋' = 𝑥|𝑌= 𝑦= # 𝑋' = 𝑥,𝑌= 𝑦\n# 𝑌= 𝑦\nMLE\nJust count!\n1𝑃𝑿|𝑌= 0\n1𝑃𝑿|𝑌= 1\n𝑋' = 0\n0.42\n0.01\n𝑋' = 1\n0.58\n0.99\nJust count + add imaginary trials!\nMAP\n# 𝑋' = 𝑥,𝑌= 𝑦+ 1\n# 𝑌= 𝑦+ 2\nLaplace of 1𝑃𝑋' = 𝑥|𝑌= 𝑦=\nCount:  \n \n# datapoints\n𝑋' = 0, Y = 0:  \n4\n𝑋' = 1, Y = 0:  \n6\n𝑋' = 0, Y = 1:  \n0\n𝑋' = 1, Y = 1:  \n100\nTotal:  \n \n \n110",
+      "char_count": 561
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTesting\nNew patient has a healthy ROI (𝑋! = 1). What is your prediction, (𝑌?\n(𝑃𝑋! = 1|𝑌= 0 (𝑃𝑌= 0 = 0.58 ⋅0.09 ≈0.052\n(𝑃𝑋! = 1|𝑌= 1 (𝑃𝑌= 1 = 0.99 ⋅0.91 ≈0.901\nA.  0.052 < 0.5 \n⇒ \n(𝑌= 1\nB.  0.901 > 0.5 \n⇒ \n(𝑌= 1\nC.  0.052 < 0.901 ⇒ (𝑌= 1\n25\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n1𝑃𝑿|𝑌= 0\n1𝑃𝑿|𝑌= 1\n𝑋' = 0\n0.42\n0.01\n𝑋' = 1\n0.58\n0.99\n1𝑃𝑌\n𝑌= 0\n0.09\n𝑌= 1\n0.91\n(MAP)\n(MLE)",
+      "char_count": 428
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBrute Force Bayes classifier\n26\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n26\n(𝑃𝑋!, 𝑋\", … , 𝑋#|𝑌= 1\nTesting\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑋!, 𝑋\", … , 𝑋#|𝑌(𝑃𝑌\nTraining\n(𝑃𝑌= 1  \nEstimate these \nprobabilities—i.e.,\nlearn these parameters\nusing MLE or Laplace (MAP)\n( 1𝑃𝑌 is an estimate of 𝑃𝑌,\n 1𝑃𝑿|𝑌 is an estimate of 𝑃𝑿|𝑌)\n(𝑃𝑋!, 𝑋\", … , 𝑋#|𝑌= 0\n(𝑃𝑌= 0  \nGiven an observation 𝑿= 𝑋!, 𝑋\", … , 𝑋# , predict",
+      "char_count": 449
+    },
+    {
+      "page_index": 26,
+      "text": "Naïve Bayes\n27",
+      "char_count": 14
+    },
+    {
+      "page_index": 27,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBrute Force Bayes: 𝑚= 300 (# features)\n28\n…\nFeature 1 Feature 2\nFeature 300\nOutput\nPatient 1  1 \n0 \n… \n1 \n 1 \nPatient 2  1 \n1 \n… \n0 \n 0 \n     …\nPatient 𝑛  0 \n0 \n… \n1 \n 1 \n…\n…\nThis won’t be\n too bad, right?\n𝑿= 𝑋!, 𝑋\", 𝑋#, … , 𝑋#$$",
+      "char_count": 302
+    },
+    {
+      "page_index": 28,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBrute Force Bayes: 𝑚= 300 (# features)\n29\n…\nFeature 1 Feature 2\nFeature 300\nOutput\nPatient 1  1 \n0 \n… \n1 \n 1 \nPatient 2  1 \n1 \n… \n0 \n 0 \n     …\nPatient 𝑛  0 \n0 \n… \n1 \n 1 \n…\n…\nThis won’t be\n too bad, right?\n𝑿= 𝑋!, 𝑋\", 𝑋#, … , 𝑋#$$\nCount:  \n \n \n \n \n \n \n \n \n \n \n# datapoints\n𝑋' = 0, 𝑋$ = 0, …, 𝑋$-- = 0, 𝑋).. = 0, Y = 0: \n \n \n0\n𝑋' = 0, 𝑋$ = 0, …, 𝑋$-- = 0, 𝑋).. = 1, Y = 0: \n \n \n0\n𝑋' = 0, 𝑋$ = 0, …, 𝑋$-- = 1, 𝑋).. = 0, Y = 0: \n \n \n1\n…\n𝑋' = 0, 𝑋$ = 0, …, 𝑋$-- = 0, 𝑋).. = 0, Y = 1: \n \n \n2\n𝑋' = 0, 𝑋$ = 0, …, 𝑋$-- = 0, 𝑋).. = 1, Y = 1: \n \n \n1\n𝑋' = 0, 𝑋$ = 0, …, 𝑋$-- = 1, 𝑋).. = 0, Y = 1: \n \n \n1",
+      "char_count": 664
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBrute Force Bayes: 𝑚= 300 (# features)\n30\n•\n1𝑃𝑌= 1 | 𝒙 : estimated probability a \nheart is healthy given 𝒙\n• 𝑿= 𝑋', 𝑋$, … , 𝑋).. : whether 300 \nregions of interest (ROI) are healthy (1) \nor unhealthy (0)\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\nHow many parameters do we \nhave to learn?\nA.  2 ⋅2 \n+ 2 = 6\nB.  2 ⋅300 + 2 = 602\nC.  2 ⋅24,, + 2 = a lot\n1𝑃𝑿|𝑌\n1𝑃𝑌\nLearn parameters\nthrough MLE or MAP\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑌 | 𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑿",
+      "char_count": 510
+    },
+    {
+      "page_index": 30,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThis approach requires you to learn \n𝑂2/  parameters.\nBrute Force Bayes: 𝑚= 300 (# features)\n31\n•\n1𝑃𝑌= 1 | 𝒙 : estimated probability a \nheart is healthy given 𝒙\n• 𝑿= 𝑋', 𝑋$, … , 𝑋).. : whether 300 \nregions of interest (ROI) are healthy (1) \nor unhealthy (0)\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\nHow many parameters do we \nhave to learn?\nA.  2 ⋅2 \n+ 2 = 6\nB.  2 ⋅300 + 2 = 602\nC.  2 ⋅24,, + 2 = a lot\n1𝑃𝑿|𝑌\n1𝑃𝑌\nLearn parameters\nthrough MLE or MAP\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑌 | 𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑿",
+      "char_count": 564
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThe problem with our current classifier\n32\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑌 | 𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑋!, 𝑋\", … , 𝑋#|𝑌\nEstimating this joint conditional \ndistribution is intractable.\nWhat if we could make a simplifying assumption—even if incredibly naïve—\nto make our parameter estimation effort computationally tractable?\nChoose the 𝑌 that is \nmost likely given 𝑿\n(Bayes’ Theorem)\n(1/𝑃𝑿 is constant w.r.t. 𝑦)",
+      "char_count": 508
+    },
+    {
+      "page_index": 32,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThe Naïve Bayes assumption\n33\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑌 | 𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n= arg max\n*+ ,,!\nH\n5+!\n#\n(𝑃𝑋5|𝑌\n(𝑃𝑌\nNaïve Bayes \nAssumption\n𝑋!, … , 𝑋% are all conditionally \nindependent given 𝑌.\nAssumption:",
+      "char_count": 312
+    },
+    {
+      "page_index": 33,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n🤔\n34\nNaïve Bayes Classifier\n(𝑌= arg max\n*+ ,,!\nH\n5+!\n#\n(𝑃𝑋5|𝑌\n(𝑃𝑌\n34\nTraining\nWhat is the Big-O of # of \nparameters we need to learn?\nA.  𝑂𝑚 \nB.  𝑂2#\nC. other",
+      "char_count": 231
+    },
+    {
+      "page_index": 34,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNaïve Bayes Classifier\n35\n(𝑌= arg max\n*+ ,,!\nH\n5+!\n#\n(𝑃𝑋5|𝑌\n(𝑃𝑌\n35\nfor 𝑗= 1, … , 𝑚:\n(𝑃𝑌= 1  \n(𝑃𝑋5 = 1|𝑌= 0 ,\n(𝑃𝑋5 = 1|𝑌= 1\nTesting\n(𝑌= arg max\n*+ ,,!\nlog (𝑃𝑌+ M\n5+!\n#\nlog (𝑃𝑋5|𝑌\nTraining\nUse MLE or\nLaplace (MAP)",
+      "char_count": 284
+    },
+    {
+      "page_index": 35,
+      "text": "and Learn",
+      "char_count": 9
+    },
+    {
+      "page_index": 36,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1.\n2.\n3.\nClassification terminology check\nTraining data: 𝒙' , 𝑦' , 𝒙$ , 𝑦$ , …, 𝒙( , 𝑦(\n37\nA.  𝒙%  \nB.  𝑦%\nC.\n𝒙% , 𝑦%\nD.  𝑥5\n%\n…\nMovie 1\nMovie 2\nMovie 𝑚\nOutput\nUser 1 \n 1 \n0 \n… \n1 \n 1 \nUser 2 \n 1 \n1 \n… \n0 \n 0 \n     …\nUser 𝑛 \n 0 \n0 \n… \n1 \n 1 \n…\n…\n4.\n1: like movie\n0: dislike movie",
+      "char_count": 352
+    },
+    {
+      "page_index": 37,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPredicting user TV preferences\nWill a user like the Pokémon TV series?\n38\nObserve indicator variables 𝑿= 𝑋!, 𝑋\"  :\n𝑋! = 1:\n\"likes Star Wars\"\n𝑋\" = 1:\n\"likes Harry Potter\"\nOutput 𝑌 indicator:\n𝑌= 1:\n\"likes Pokémon\"\nPredict (𝑌= arg max\n*+ ,,!\n(𝑃𝑌 | 𝑿",
+      "char_count": 319
+    },
+    {
+      "page_index": 38,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPredicting user TV preferences\nWhich probabilities do you need to estimate?\nHow many are there?\n• Brute Force Bayes\n(strawman, without NB assumption)\n• Naïve Bayes\nDuring training, how to estimate the prob\n(𝑃𝑋! = 1, 𝑋\" = 1|𝑌= 0  with MLE? with Laplace?\n• Brute Force Bayes\n39\n6𝑌= arg max\n!\" #,%\n6𝑃𝑿|𝑌6𝑃𝑌\n𝑃𝑿|𝑌= 5\n!\"#\n$\n𝑃𝑋!|𝑌\nNaïve Bayes \nAssumption\n• Naïve Bayes",
+      "char_count": 434
+    },
+    {
+      "page_index": 39,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEx 1. Naïve Bayes Classifier (MLE)\n40\n(𝑌= arg max\n*+ ,,!\nH\n5+!\n#\n(𝑃𝑋5|𝑌\n(𝑃𝑌\n40\n∀𝑖:\n(𝑃𝑌= 1 , (𝑃𝑌= 0  \n(𝑃𝑋5 = 1|𝑌= 0 , (𝑃𝑋5 = 0|𝑌= 0 ,\n(𝑃𝑋5 = 1|𝑌= 1 , (𝑃𝑋5 = 0|𝑌= 0 ,\nTesting\n(𝑌= arg max\n*+ ,,!\nH\n5+!\n#\n(𝑃𝑋5|𝑌\n(𝑃𝑌\nTraining\nUse MLE or\nLaplace (MAP)",
+      "char_count": 317
+    },
+    {
+      "page_index": 40,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTraining: Naïve Bayes for TV shows (MLE)\nObserve indicator vars. 𝑿= 𝑋', 𝑋$ :\n• 𝑋': “likes Star Wars”\n• 𝑋$: “likes Harry Potter”\nPredict 𝑌: “likes Pokémon”\n1. How many datapoints (𝑛)\nare in our training data?\n2. Compute MLE estimates\nfor (𝑃𝑋!|𝑌:\n41\nTraining data counts\n𝑋'\n𝑌 \n0\n1\n0\n3\n10\n1\n4\n13\n𝑋$\n𝑌 \n0\n1\n0\n5\n8\n1\n7\n10\n𝑋'\n𝑌 \n0\n1\n0\n1𝑃𝑋' = 0|𝑌= 0\n1𝑃𝑋' = 1|𝑌= 0\n1\n1𝑃𝑋' = 0|𝑌= 1\n1𝑃𝑋' = 1|𝑌= 1",
+      "char_count": 458
+    },
+    {
+      "page_index": 41,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n𝑋'\n𝑌 \n0\n1\n0\n1𝑃𝑋' = 0|𝑌= 0\n1𝑃𝑋' = 1|𝑌= 0\n1\n1𝑃𝑋' = 0|𝑌= 1\n1𝑃𝑋' = 1|𝑌= 1\nTraining: Naïve Bayes for TV shows (MLE)\nObserve indicator vars. 𝑿= 𝑋', 𝑋$ :\n• 𝑋': “likes Star Wars”\n• 𝑋$: “likes Harry Potter”\nPredict 𝑌: “likes Pokémon”\n1. How many datapoints (𝑛)\nare in our training data?\n2. Compute MLE estimates\nfor (𝑃𝑋!|𝑌:\n42\nTraining data counts\n𝑋'\n𝑌 \n0\n1\n0\n3\n10\n1\n4\n13\n𝑋$\n𝑌 \n0\n1\n0\n5\n8\n1\n7\n10",
+      "char_count": 458
+    },
+    {
+      "page_index": 42,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTraining data counts\n𝑋'\n𝑌 \n0\n1\n0\n3\n10\n1\n4\n13\n𝑋$\n𝑌 \n0\n1\n0\n5\n8\n1\n7\n10\nTraining: Naïve Bayes for TV shows (MLE)\nObserve indicator vars. 𝑿= 𝑋', 𝑋$ :\n• 𝑋': “likes Star Wars”\n• 𝑋$: “likes Harry Potter”\nPredict 𝑌: “likes Pokémon”\n43\n𝑌\n0\n13/30 ≈0.43\n1\n17/30 ≈0.57\n𝑋$\n𝑌 \n0\n1\n0\n5/13 ≈0.38\n8/13 ≈0.62\n1\n7/17 ≈0.41\n10/17 ≈0.59\n𝑋'\n𝑌 \n0\n1\n0\n0.23 0.77\n1\n0.24 0.76\n(from last slide)\n𝑌\n0\n13\n1\n17",
+      "char_count": 451
+    },
+    {
+      "page_index": 43,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTraining: Naïve Bayes for TV shows (MLE)\nObserve indicator vars. 𝑿= 𝑋', 𝑋$ :\n• 𝑋': “likes Star Wars”\n• 𝑋$: “likes Harry Potter”\nPredict 𝑌: “likes Pokémon”\n44\n𝑋'\n𝑌 \n0\n1\n0\n0.23 0.77\n1\n0.24 0.76\n𝑋$\n𝑌 \n0\n1\n0\n0.38 0.62\n1\n0.41 0.59\n𝑌\n0\n0.43\n1\n0.57\nNow that we’ve trained and found parameters,\nIt’s time to classify new users!",
+      "char_count": 392
+    },
+    {
+      "page_index": 44,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEx 1. Naïve Bayes Classifier (MLE)\n45\n(𝑌= arg max\n*+ ,,!\nH\n5+!\n#\n(𝑃𝑋5|𝑌\n(𝑃𝑌\n45\n∀𝑖:\n(𝑃𝑌= 1 , (𝑃𝑌= 0  \n(𝑃𝑋5 = 1|𝑌= 0 , (𝑃𝑋5 = 0|𝑌= 0 ,\n(𝑃𝑋5 = 1|𝑌= 1 , (𝑃𝑋5 = 0|𝑌= 0 ,\nTesting\n(𝑌= arg max\n*+ ,,!\nH\n5+!\n#\n(𝑃𝑋5|𝑌\n(𝑃𝑌\nTraining\nUse MLE or\nLaplace (MAP)",
+      "char_count": 317
+    },
+    {
+      "page_index": 45,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTesting: Naïve Bayes for TV shows (MLE)\nObserve indicator vars. 𝑿= 𝑋', 𝑋$ :\n• 𝑋': “likes Star Wars”\n• 𝑋$: “likes Harry Potter”\nPredict 𝑌: “likes Pokémon”\nSuppose a new person “likes Star Wars” (𝑋' = 1) but “dislikes Harry Potter” (𝑋$ = 0).\nWill they like Pokemon? Need to predict 𝑌:\n46\n𝑋'\n𝑌 \n0\n1\n0\n0.23 0.77\n1\n0.24 0.76\n𝑋$\n𝑌 \n0\n1\n0\n0.38 0.62\n1\n0.41 0.59\n𝑌\n0\n0.43\n1\n0.57\n1𝑌= arg max\n78 .,'\n1𝑃𝑿|𝑌1𝑃𝑌\n= arg max\n78 .,'\n1𝑃𝑋'|𝑌1𝑃𝑋$|𝑌1𝑃𝑌\nIf 𝑌= 0:\n1𝑃𝑋' = 1|𝑌= 0 1𝑃𝑋$ = 0|𝑌= 0 1𝑃𝑌= 0\n= 0.77 ⋅0.38 ⋅0.43 = 0.126\nIf 𝑌= 1:\n1𝑃𝑋' = 1|𝑌= 1 1𝑃𝑋$ = 0|𝑌= 1 1𝑃𝑌= 1\n= 0.76 ⋅0.41 ⋅0.57 = 0.178\nSince term is greatest when Y = 1, predict 1𝑌= 1",
+      "char_count": 694
+    },
+    {
+      "page_index": 46,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEx 2. Naïve Bayes Classifier (MAP)\n47\n(𝑌= arg max\n*+ ,,!\nH\n5+!\n#\n(𝑃𝑋5|𝑌\n(𝑃𝑌\n47\n∀𝑖:\n(𝑃𝑌= 1 , (𝑃𝑌= 0  \n(𝑃𝑋5 = 1|𝑌= 0 , (𝑃𝑋5 = 0|𝑌= 0 ,\n(𝑃𝑋5 = 1|𝑌= 1 , (𝑃𝑋5 = 0|𝑌= 0 ,\nTesting\nTraining\nUse MLE or\nLaplace (MAP)\n(𝑌= arg max\n*+ ,,!\nH\n5+!\n#\n(𝑃𝑋5|𝑌\n(𝑃𝑌\n(note the same as before)",
+      "char_count": 343
+    },
+    {
+      "page_index": 47,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTraining: Naïve Bayes for TV shows (MAP)\nObserve indicator vars. 𝑿= 𝑋', 𝑋$ :\n• 𝑋': “likes Star Wars”\n• 𝑋$: “likes Harry Potter”\nPredict 𝑌: “likes Pokémon”\nWhat are our MAP estimates\nusing Laplace smoothing\nfor (𝑃𝑋5|𝑌?\n48\nTraining data counts\n𝑋'\n𝑌 \n0\n1\n0\n3\n10\n1\n4\n13\n𝑋$\n𝑌 \n0\n1\n0\n5\n8\n1\n7\n10\n1𝑃𝑋: = 𝑥|𝑌= 𝑦: \nA.\n# @!+A,B+*\n# B+*\nB.\n# @!+A,B+* C!\n# B+* C\"\nC.\n# @!+A,B+* C!\n# B+* CD\nD.  other",
+      "char_count": 459
+    },
+    {
+      "page_index": 48,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTraining data counts\n𝑋'\n𝑌 \n0\n1\n0\n3\n10\n1\n4\n13\n𝑋$\n𝑌 \n0\n1\n0\n5\n8\n1\n7\n10\n𝑌\n0\n13\n1\n17\nTraining: Naïve Bayes for TV shows (MAP)\nObserve indicator vars. 𝑿= 𝑋', 𝑋$ :\n• 𝑋': “likes Star Wars”\n• 𝑋$: “likes Harry Potter”\nPredict 𝑌: “likes Pokémon”\n49\n𝑋'\n𝑌 \n0\n1\n0\n0.27 0.73\n1\n0.26 0.74\n𝑋$\n𝑌 \n0\n1\n0\n0.40 0.60\n1\n0.42 0.58\n\"𝑌= arg max\n!\" #,%\n+\n&\"%\n'\n\"𝑃𝑋&|𝑌\n\"𝑃𝑌\nIn practice:\n•\nWe use Laplace for !𝑃𝑋&|𝑌 in case \nsome events 𝑋& = 𝑥& don’t appear\n•\nWe don’t use Laplace for !𝑃𝑌, \nbecause all class labels should \nappear reasonably often",
+      "char_count": 589
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:59Z"
+}

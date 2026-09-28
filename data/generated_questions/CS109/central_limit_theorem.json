@@ -1,0 +1,1224 @@
+{
+  "topic_id": "central_limit_theorem",
+  "topic_name": "Central Limit Theorem",
+  "course": "CS109",
+  "model": "gpt-5.4",
+  "questions": [
+    {
+      "question_id": "CS109_central_limit_theorem_0001",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A student says, \u201cThe Central Limit Theorem means that if I sample enough times, the original random variable itself becomes Normal.\u201d Do you agree? Explain carefully by distinguishing the distribution of the individual observations from the distribution of a sum or average of iid observations.",
+      "expected_answer": "No. The CLT does not say the original variable X_i becomes Normal. It says that for iid random variables with mean mu and variance sigma^2, the sum \\(\\sum_{i=1}^n X_i\\) is approximately Normal with mean n mu and variance n sigma^2 for large n, and equivalently the sample mean is approximately Normal with mean mu and variance sigma^2/n. The underlying population can remain Uniform, Bernoulli, or something else; it is the distribution of the aggregate statistic that approaches Normality.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p12_9711a72c0a",
+        "cs109_18_clt_annotated_p29_d317c99a72",
+        "cs109_10_normal_gaussian_annotated_p8_a2765ae76d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States clearly that CLT concerns sums/averages, not the original variable.",
+          "Mentions approximate Normal distribution of sum and/or sample mean with correct mean/variance scaling.",
+          "Explicitly contrasts population distribution with sampling distribution."
+        ],
+        "partial_credit": [
+          "Recognizes that sample mean becomes approximately Normal but gives incomplete distinction.",
+          "Gets the main idea right but omits assumptions like iid or finite variance."
+        ],
+        "common_mistakes": [
+          "Saying the histogram of raw data must become Normal as sample size grows.",
+          "Confusing Law of Large Numbers with CLT.",
+          "Claiming the sum is exactly Normal for finite n."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example of a non-Normal population for which the sample mean is approximately Normal?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If the original data are Uniform(0,1), what distribution is the individual observation, and what distribution is the sample mean approximately for large n?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from central limit theorem; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying the histogram of raw data must become Normal as sample size grows. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0002",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Let \\(X_1,\\dots,X_{10}\\) be iid Uniform(0,1), and let \\(S=\\sum_{i=1}^{10} X_i\\). Use the CLT to approximate \\(P(S\\le 10/3)\\), but talk through the setup rather than just giving a number. Why is this approximation reasonably good even though n is only 10?",
+      "expected_answer": "For Uniform(0,1), each X_i has mean 1/2 and variance 1/12. Therefore S is approximately Normal with mean 10(1/2)=5 and variance 10(1/12)=5/6. So \\(P(S\\le 10/3)\\approx \\Phi((10/3-5)/\\sqrt{5/6})\\), which is about 0.0339. The approximation is reasonably good because the summands are iid with finite variance and the Uniform distribution is bounded and symmetric, so convergence to Normality can be fairly good even for n smaller than 30.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p16_a4e40f0dc4",
+        "cs109_18_clt_annotated_p17_p18_6ff9251412"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes mean 1/2 and variance 1/12 for each Uniform.",
+          "Uses CLT to state \\(S \\approx N(5,5/6)\\).",
+          "Sets up the standardized probability correctly.",
+          "Explains why n=10 can still work reasonably well."
+        ],
+        "partial_credit": [
+          "Correct setup with minor arithmetic slip.",
+          "Correct Normal approximation but weak justification of accuracy."
+        ],
+        "common_mistakes": [
+          "Using variance 1/6 instead of 5/6 for the sum.",
+          "Using the sample mean formula when asked about the sum.",
+          "Claiming CLT cannot be used because n<30."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your setup change if I asked about the sample mean instead of the sum?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the mean and variance of one Uniform(0,1) variable, and how do those scale when summing 10 iid copies?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using variance 1/6 instead of 5/6 for the sum. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0003",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "You often hear, \u201cCLT only works once n is at least 30.\u201d Use the example of sums of Uniform(0,1) variables to evaluate that claim. I want you to argue from the evidence in the example, not just from a memorized rule.",
+      "expected_answer": "The statement is too rigid. The Uniform example shows that even at n=2, 5, and 10, the CLT approximation can already be decent, and by n=10 it is very close for the probability shown. The quality depends on the shape of the underlying distribution, especially symmetry and tail behavior, not only on whether n has passed 30. So 30 is a rough guideline, not a theorem.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p14_fa4180e53b",
+        "cs109_18_clt_annotated_p15_aac882825a",
+        "cs109_18_clt_annotated_p16_a4e40f0dc4",
+        "cs109_18_clt_annotated_p17_p18_6ff9251412"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects the hard threshold interpretation of n=30.",
+          "Uses the Uniform examples across n=2,5,10 to support the argument.",
+          "Explains that distribution shape affects convergence speed."
+        ],
+        "partial_credit": [
+          "Says 30 is a rule of thumb but gives little support from the provided example.",
+          "Mentions symmetry or boundedness without connecting to approximation quality."
+        ],
+        "common_mistakes": [
+          "Asserting CLT is invalid for n<30.",
+          "Saying CLT is always accurate for n>=30 regardless of distribution."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What kind of population shape would make you more cautious, even if n were around 30?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In the Uniform example, what happened numerically to the approximation as n increased from 2 to 10?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from central limit theorem.",
+        "Watch out for this common trap: Asserting CLT is invalid for n<30. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0004",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A website receives 100 independent visits, and each visitor converts with probability 0.5. You want an approximate probability that at least 65 convert. Explain why a Normal approximation is appropriate here, and then explain why using 65 instead of 64.5 would systematically distort the approximation.",
+      "expected_answer": "The number of conversions X is Binomial(100,0.5), which can be viewed as a sum of 100 iid Bernoulli variables. Since n is large and np(1-p)=25>10, a Normal approximation is appropriate: \\(X\\approx N(50,25)\\). For a discrete variable, we should apply continuity correction, so \\(P(X\\ge 65)\\approx P(Y\\ge 64.5)\\), not \\(P(Y\\ge 65)\\). Using 65 instead of 64.5 ignores the half-unit width of the mass at 65 and tends to undercount the probability in a right-tail event like this.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p10_bb3dcc7c7e",
+        "cs109_11_joint_rvs_annotated_p6_ed55038206",
+        "cs109_11_joint_rvs_annotated_p10_761317177f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies Binomial as sum of iid Bernoulli variables.",
+          "Justifies Normal approximation using large n and suitable np(1-p).",
+          "Explains continuity correction conceptually and applies 64.5 correctly.",
+          "Explains the direction of the approximation error if continuity correction is omitted."
+        ],
+        "partial_credit": [
+          "Uses Normal approximation correctly but gives only a procedural reason for continuity correction.",
+          "Mentions discrete-to-continuous issue without explaining 64.5."
+        ],
+        "common_mistakes": [
+          "Using Poisson approximation when p=0.5.",
+          "Using \\(P(Y\\ge 65.5)\\) or no continuity correction.",
+          "Saying continuity correction is optional but not affecting interpretation."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If p were 0.04 instead of 0.5 with n=100, which approximation would you prefer and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why is a Binomial random variable discrete, and what does the Normal model fail to represent exactly?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using Poisson approximation when p=0.5. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0005",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "State the CLT in a way that would let you compute probabilities for a sample mean. Then explain how the mean and variance of the sample mean compare to the mean and variance of the original observations, and why that variance behavior makes intuitive sense.",
+      "expected_answer": "If \\(X_1,\\dots,X_n\\) are iid with mean mu and variance sigma squared, then for large n the sample mean \\(\\bar X\\) is approximately Normal with mean mu and variance sigma squared divided by n. So the average stays centered at the population mean but becomes less variable as n increases. Intuitively, averaging independent noise causes positive and negative fluctuations to cancel, so the spread shrinks at rate 1/n in variance, or 1/sqrt(n) in standard deviation.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p29_d317c99a72",
+        "cs109_18_clt_annotated_p30_f85e6bbb1a",
+        "cs109_finalfall2021soln_q0_42694214da"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States approximate distribution of sample mean with correct parameters.",
+          "Correctly compares mean and variance of \\(\\bar X\\) to those of \\(X_i\\).",
+          "Gives intuitive explanation for variance reduction."
+        ],
+        "partial_credit": [
+          "Correct formula but weak intuition.",
+          "Explains standard error shrinkage but confuses variance and standard deviation."
+        ],
+        "common_mistakes": [
+          "Saying variance of the mean is sigma squared times n.",
+          "Saying the sample mean becomes exact Normal for any n.",
+          "Confusing mean of sample mean with n mu."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the corresponding statement look for the sum instead of the average?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you average 100 iid observations instead of 25, should the average be more or less variable, and by what factor in variance?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from central limit theorem; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying variance of the mean is sigma squared times n. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0006",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose two independent groups each have sample size 20, and each group mean is approximately Normal by the CLT with mean 0.5 and variance \\(v/20\\). Without doing numeric table lookup, derive an approximate distribution for the difference in group means \\(\\bar X_1-\\bar X_2\\), and explain how you would use it to judge whether an observed difference is unusually large in a two-sided sense.",
+      "expected_answer": "Because each sample mean is approximately \\(N(0.5,v/20)\\) and the two groups are independent, the difference \\(D=\\bar X_1-\\bar X_2\\) is approximately Normal. Its mean is \\(0.5-0.5=0\\), and its variance is \\(v/20+v/20=v/10\\), so \\(D\\approx N(0,v/10)\\). For a two-sided assessment of an observed magnitude k, I would compute \\(P(|D|\\ge k)=P(D\\le -k)+P(D\\ge k)\\), or equivalently standardize to Z and compare to a two-sided Normal tail.",
+      "source_chunk_ids": [
+        "cs109_finalfall2021soln_q0_42694214da",
+        "cs109_18_clt_annotated_p29_d317c99a72"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Derives mean 0 and variance v/10 for the difference.",
+          "Uses independence to add variances.",
+          "Explains two-sided probability through \\(|D|\\ge k\\) or equivalent."
+        ],
+        "partial_credit": [
+          "Gets Normal form right but misses two-sided interpretation.",
+          "Correct mean with variance arithmetic error."
+        ],
+        "common_mistakes": [
+          "Subtracting variances instead of adding them.",
+          "Using one-sided significance when the problem is two-sided.",
+          "Forgetting independence requirement."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your answer change if the two sample sizes were different?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If A and B are independent, what is Var(A-B), and why?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Subtracting variances instead of adding them. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0007",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You are comparing two approximations for \\(X\\sim Bin(100,0.04)\\): a Poisson approximation and a Normal approximation. Which would you choose first, and how would you justify that choice using the conditions and preferences given in the course material?",
+      "expected_answer": "I would choose the Poisson approximation first. Here n is large and p is small, so Binomial with np=4 fits the Poisson regime well. The course guidance also says use Gaussian if there is a choice, but that preference applies when the Normal approximation itself is appropriate; here p is not mid-ranged, and the Poisson is usually better in the sparse-event setting. A Normal approximation may be rougher because the distribution is skewed when the mean is only 4.",
+      "source_chunk_ids": [
+        "cs109_11_joint_rvs_annotated_p10_761317177f",
+        "cs109_08_poisson_and_more_annotated_p25_ea87f3dfd8",
+        "cs109_08_poisson_and_more_annotated_p29_1cfe0aced4"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Selects Poisson approximation.",
+          "Justifies using large n, small p, and \\(\\lambda=np=4\\).",
+          "Explains why Normal is less compelling here due to skewness and p not mid-range."
+        ],
+        "partial_credit": [
+          "Chooses Poisson with incomplete rationale.",
+          "Mentions np=4 but does not compare against Normal conditions."
+        ],
+        "common_mistakes": [
+          "Automatically choosing Normal because 'Gaussian is always best.'",
+          "Claiming both are equally justified without discussing conditions.",
+          "Using continuity correction language with Poisson choice as if it were the main issue."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Now change p to 0.5 while keeping n=100. Would your choice change?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What feature of the Binomial distribution changes when p moves from 0.5 down to 0.04?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Automatically choosing Normal because 'Gaussian is always best.'. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0008",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A classmate claims, \u201cSince a Binomial is a sum of Bernoulli variables and CLT says sums become Normal, we should approximate every Binomial by a Normal.\u201d Diagnose what is right in that statement and what is missing or wrong.",
+      "expected_answer": "The useful part is that a Binomial can indeed be written as a sum of iid Bernoulli variables, so CLT provides the basis for a Normal approximation with mean np and variance np(1-p). What is missing is that the approximation is asymptotic and its quality depends on the parameter regime. It is best when n is large and p is not too close to 0 or 1, often summarized by requiring np(1-p) to be sufficiently large. Also, because Binomial is discrete, continuity correction should be used when approximating probabilities with a continuous Normal.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p10_bb3dcc7c7e",
+        "cs109_11_joint_rvs_annotated_p10_761317177f",
+        "cs109_11_joint_rvs_annotated_p6_ed55038206"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Acknowledges Binomial-as-sum-of-Bernoulli connection.",
+          "Explains asymptotic nature and need for favorable parameter regime.",
+          "Mentions continuity correction for probability approximation."
+        ],
+        "partial_credit": [
+          "Explains condition on np(1-p) but omits continuity correction.",
+          "Gives continuity correction but not limitations of CLT."
+        ],
+        "common_mistakes": [
+          "Saying CLT guarantees exact Normality.",
+          "Ignoring skewness when p is near 0 or 1.",
+          "Forgetting that Binomial is discrete."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give a Binomial example where Poisson would be better than Normal, and explain why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the mean and variance of a Bernoulli(p), and what does that imply for Bin(n,p)?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from central limit theorem.",
+        "Watch out for this common trap: Saying CLT guarantees exact Normality. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0009",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "For \\(S_5=\\sum_{i=1}^5 X_i\\) with iid \\(X_i\\sim Uniform(0,1)\\), use the CLT to approximate \\(P(S_5\\le 5/3)\\). Then compare your approximation qualitatively to the exact value given in class and explain whether the approximation is over or under.",
+      "expected_answer": "Each Uniform(0,1) has mean 1/2 and variance 1/12, so \\(S_5\\approx N(5/2,5/12)\\). Then \\(P(S_5\\le 5/3)\\approx \\Phi((5/3-5/2)/\\sqrt{5/12})\\approx 0.0984\\). The exact value shown was about 0.1017, so the CLT approximation is slightly low, but it is already quite close.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p15_aac882825a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses correct mean and variance for the sum.",
+          "Writes the standardized Normal approximation correctly.",
+          "Compares to the exact value and notes slight underestimation."
+        ],
+        "partial_credit": [
+          "Correct setup with small arithmetic error.",
+          "Correct approximation but no comparison to exact value."
+        ],
+        "common_mistakes": [
+          "Using sample mean distribution instead of sum distribution.",
+          "Incorrect variance aggregation.",
+          "Interpreting 'close' without directional comparison."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why might the approximation improve further at n=10?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What variance do you get when you add five independent variables each with variance 1/12?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using sample mean distribution instead of sum distribution. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0010",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "The proof sketch in lecture mentioned characteristic functions and standardizing the sum. Without reproducing the proof, explain why standardization is essential and what it means that the standardized sum converges to the characteristic function of a standard Normal.",
+      "expected_answer": "Standardization is essential because the unscaled sum has mean n mu and variance n sigma squared, so its location and spread change with n and cannot converge to a fixed nondegenerate distribution. By subtracting the mean and dividing by the standard deviation, we put sums from different n on a common scale. The proof sketch shows that the characteristic function of this standardized sum converges, as n grows, to the characteristic function of \\(N(0,1)\\); that identifies the limiting distribution as standard Normal.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p13_6be30bf45c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains why raw sums cannot converge to a fixed shape without centering/scaling.",
+          "Describes subtracting mean and dividing by standard deviation.",
+          "Connects limit of characteristic functions to identification of the limiting distribution."
+        ],
+        "partial_credit": [
+          "Knows standardization is needed but gives vague reason.",
+          "Mentions characteristic functions without explaining what convergence implies."
+        ],
+        "common_mistakes": [
+          "Saying standardization is just for convenience rather than necessity.",
+          "Claiming the unstandardized sum converges to N(0,1).",
+          "Confusing characteristic function with density itself."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is the limiting Normal specifically standard Normal rather than some other Normal?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you do not subtract n mu and divide by \\(\\sqrt{n}\\sigma\\), what happens to the mean and variance of the sum as n grows?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from central limit theorem; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying standardization is just for convenience rather than necessity. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0011",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "An engineer says, \u201cOur sensor reading is the sum of many tiny independent effects, so modeling it as Normal is reasonable.\u201d Connect this statement to the CLT, but also give two reasons to stay critical instead of accepting the Normal model automatically.",
+      "expected_answer": "The statement is motivated by the CLT: sums of many independent, similarly distributed contributions often become approximately Normal, which is one reason Normal models appear so often. But we should stay critical because the effects may not really be independent or equally weighted, and the observable may not literally be a simple sum. Also, some variables are skewed or constrained, so a Normal model could be inappropriate even if it is mathematically convenient.",
+      "source_chunk_ids": [
+        "cs109_10_normal_gaussian_annotated_p8_a2765ae76d",
+        "cs109_18_clt_annotated_p12_9711a72c0a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Connects 'sum of many effects' to CLT reasoning.",
+          "Provides at least two concrete caveats about the Normal model.",
+          "Shows modeling judgment, not blind rule-following."
+        ],
+        "partial_credit": [
+          "Gives CLT connection with only one caveat.",
+          "States generic caution without linking to assumptions."
+        ],
+        "common_mistakes": [
+          "Saying CLT proves all natural phenomena are Normal.",
+          "Ignoring dependence or skewness issues.",
+          "Confusing exact Normality with practical approximation."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you name a kind of variable where a log-normal model might be more plausible than a Normal one?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What assumption about the many tiny effects is most central if you want to invoke CLT reasoning?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying CLT proves all natural phenomena are Normal. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0012",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose \\(X\\sim Bin(100,0.5)\\). Derive the Normal approximation parameters directly from Bernoulli mean and variance, rather than quoting them. Then explain why the resulting approximation is centered at 50 and has standard deviation 5.",
+      "expected_answer": "Write X as \\(\\sum_{i=1}^{100} X_i\\) where each \\(X_i\\sim Ber(0.5)\\) iid. For one Bernoulli, the mean is p=0.5 and the variance is p(1-p)=0.25. By the CLT, the sum is approximately Normal with mean 100(0.5)=50 and variance 100(0.25)=25, so standard deviation 5. The center 50 is the expected number of successes, and the spread 5 reflects accumulated Bernoulli variability across 100 independent trials.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p10_bb3dcc7c7e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Represents Binomial as sum of iid Bernoulli variables.",
+          "Correctly computes Bernoulli mean and variance.",
+          "Scales mean and variance correctly to get \\(N(50,25)\\)."
+        ],
+        "partial_credit": [
+          "Correct Normal parameters but insufficient derivation.",
+          "Minor slip in standard deviation while variance is correct."
+        ],
+        "common_mistakes": [
+          "Using variance np instead of np(1-p).",
+          "Confusing variance and standard deviation.",
+          "Stating approximation without showing Bernoulli connection."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If p changed to 0.1, what would the approximate mean and variance be?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is Var(Ber(p)) and why is it not just p?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using variance np instead of np(1-p). Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0013",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student uses the CLT for a sum of iid discrete random variables and says continuity correction is unnecessary because 'CLT already handles the approximation error.' Respond to that claim. In your answer, explain what continuity correction is trying to repair and when it matters most.",
+      "expected_answer": "I would disagree. The CLT gives a continuous Normal approximation to a discrete distribution, but continuity correction addresses the mismatch between point masses at integers and intervals on the real line. For example, \\(P(X\\ge k)\\) is better approximated by \\(P(Y\\ge k-0.5)\\) rather than \\(P(Y\\ge k)\\). It matters most when n is not extremely large or when probabilities are in tails, because the half-unit can noticeably change the approximated area.",
+      "source_chunk_ids": [
+        "cs109_11_joint_rvs_annotated_p6_ed55038206",
+        "cs109_18_clt_annotated_p29_d317c99a72"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains discrete-to-continuous mismatch clearly.",
+          "States how continuity correction shifts thresholds by 0.5.",
+          "Discusses when the correction has the biggest impact."
+        ],
+        "partial_credit": [
+          "Knows the rule but gives weak conceptual explanation.",
+          "Explains purpose generally but not specific threshold adjustment."
+        ],
+        "common_mistakes": [
+          "Treating continuity correction as only a cosmetic convention.",
+          "Applying the wrong sign to the 0.5 adjustment.",
+          "Thinking it is needed for continuous original variables."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give the corrected Normal event for approximating \\(P(X\\le 12)\\)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If X can only take integer values, why might using a continuous curve at exactly 12 be problematic?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from central limit theorem.",
+        "Watch out for this common trap: Treating continuity correction as only a cosmetic convention. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0014",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A city tracks yearly flood counts. For one floodplain, a Poisson model with a very small annual rate is used; for the number of floodplains out of 10 that experience an extreme event, a Binomial model is used. Explain why CLT is not the first tool you would use here, and then describe a situation within this story where a Normal approximation via CLT might become reasonable.",
+      "expected_answer": "For one floodplain in one year with a very small event rate, Poisson is a direct and natural model for rare counts, and for 10 floodplains the count of floodplains experiencing the event is Binomial with a tiny success probability. CLT is not the first tool because the counts are sparse, skewed, and the sample size for the Binomial is only 10. A Normal approximation via CLT might become reasonable if we aggregated many independent floodplains or many years so that we were summing a large number of iid or nearly iid contributions with a mean and variance large enough to make the resulting distribution less skewed.",
+      "source_chunk_ids": [
+        "cs109_midtermfall2017soln_q49_376e2f8f80",
+        "cs109_11_joint_rvs_annotated_p10_761317177f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains why Poisson/Binomial are more natural here than CLT.",
+          "Notes rarity/skewness/small n as reasons Normal is poor initially.",
+          "Describes a concrete large-aggregation setting where CLT could become useful."
+        ],
+        "partial_credit": [
+          "Correctly prefers Poisson/Binomial but gives limited CLT discussion.",
+          "Mentions 'many years' or 'many floodplains' without explaining why aggregation helps."
+        ],
+        "common_mistakes": [
+          "Using Normal immediately for rare-event annual counts.",
+          "Ignoring skewness of low-rate counts.",
+          "Saying CLT is always the best approximation method."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What feature of the Poisson distribution makes it a good rare-event model before any Normal approximation is considered?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If the expected annual number of events is only 0.002, would you expect the count distribution to look symmetric?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using Normal immediately for rare-event annual counts. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0015",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "In the course summary, the CLT was stated for iid random variables with finite mean and variance. Explain why the iid structure matters for the formulas \\(n\\mu\\), \\(n\\sigma^2\\), and \\(\\sigma^2/n\\), and what part of the conclusion you would be hesitant to trust if independence failed badly.",
+      "expected_answer": "Identical distribution gives a common mean mu and variance sigma squared for each term, so the sum has expected value n mu. Independence is what lets us add variances, giving n sigma squared for the sum and sigma squared over n for the mean. If independence failed badly, the variance formulas could be wrong because covariance terms appear, and the CLT approximation itself may no longer hold in the same simple form.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p29_d317c99a72",
+        "cs109_18_clt_annotated_p0_p1_3019982452"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains role of identical distribution in common mu and sigma squared.",
+          "Explains role of independence in variance addition.",
+          "Mentions covariance and possible failure of the approximation if dependence is strong."
+        ],
+        "partial_credit": [
+          "Knows independence matters but cannot explain variance formulas clearly.",
+          "Explains iid partially but not implications for CLT."
+        ],
+        "common_mistakes": [
+          "Saying expectation also requires independence.",
+          "Ignoring covariance terms under dependence.",
+          "Assuming any dependent data still satisfy the same formulas."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you think of a mild-dependence setting where an approximation might still work, even if not justified by the clean iid theorem?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If two variables are positively correlated, does the variance of their sum become larger or smaller than the independent case?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from central limit theorem; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying expectation also requires independence. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0016",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "For iid \\(X_i\\sim Uniform(0,1)\\), compare the CLT approximation quality for \\(P(\\sum_{i=1}^n X_i \\le n/3)\\) at n=2 and n=10. I am not asking for a precise error bound; instead, explain from the z-score setup and the provided class numbers why the n=10 approximation is markedly better.",
+      "expected_answer": "For both cases, the mean of the sum is n/2 and the variance is n/12, so the threshold n/3 is below the mean by n/6. After standardizing, the z-score is \\((n/3-n/2)/\\sqrt{n/12}\\), whose magnitude grows like \\(\\sqrt n\\). In class, the exact and approximate probabilities were about 0.2222 versus 0.2071 for n=2, but 0.0337 versus 0.0339 for n=10. The larger n gives a distribution of the sum that is more nearly bell-shaped, so the CLT tracks the left-tail probability much better.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p14_fa4180e53b",
+        "cs109_18_clt_annotated_p16_a4e40f0dc4",
+        "cs109_18_clt_annotated_p17_p18_6ff9251412"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Sets up mean and variance of the sum for general n.",
+          "Uses standardization and compares n=2 to n=10.",
+          "References the observed numerical closeness from class.",
+          "Explains improvement through increased Normality of the sum."
+        ],
+        "partial_credit": [
+          "Compares the class numbers correctly but with weak z-score discussion.",
+          "Has the right qualitative conclusion with some formula slips."
+        ],
+        "common_mistakes": [
+          "Claiming the threshold gets closer to the mean as n grows.",
+          "Using sample mean formulas incorrectly for the sum without adjustment.",
+          "Ignoring the class evidence and giving only a generic statement."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would you expect the approximation at n=30 to be better still, and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the mean and variance of \\(\\sum_{i=1}^n X_i\\) when each \\(X_i\\sim Uniform(0,1)\\)?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Claiming the threshold gets closer to the mean as n grows. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0017",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You collect a sample of size n from an unknown population and want to use the CLT for the sample mean. The lecture notes say the CLT still holds in real life even when we do not know the population mean and variance. Explain what the theorem gives you, what unknown quantities remain, and why data collection is still useful.",
+      "expected_answer": "The theorem tells me that for large n, the sample mean is approximately Normal, centered at the population mean and with variance equal to the population variance divided by n. What remains unknown are the actual parameters mu and sigma squared of the population. Data collection is useful because the sample lets us estimate those parameters, so we can turn the CLT statement into an operational approximation for probabilities, uncertainty, or inference.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p30_f85e6bbb1a",
+        "cs109_18_clt_annotated_p29_d317c99a72"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States what CLT says about sample mean distribution.",
+          "Identifies unknown mu and sigma squared as practical obstacles.",
+          "Explains that sample data are used to estimate these and enable inference."
+        ],
+        "partial_credit": [
+          "Knows parameters may be unknown but gives limited explanation of why CLT still matters.",
+          "States sample mean is Normal-ish but omits parameter discussion."
+        ],
+        "common_mistakes": [
+          "Saying CLT is unusable unless mu and sigma squared are known in advance.",
+          "Confusing the theorem itself with parameter estimation.",
+          "Claiming the CLT tells you the parameter values."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If your estimate of sigma is poor, which part of the Normal approximation is most directly affected: the center, the spread, or both?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When using the CLT for a sample mean, what two population quantities appear in the approximate Normal model?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying CLT is unusable unless mu and sigma squared are known in advance. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0018",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "Someone says, \u201cPoisson approximation and Normal approximation are basically the same idea because they both replace a hard distribution by an easier one.\u201d Compare them in a way that reveals an important difference in when each is appropriate.",
+      "expected_answer": "They are similar in that both are approximations, but they are used in different parameter regimes and arise from different limiting ideas. Poisson approximates Binomial when n is large and p is small so that rare events occur with mean \\(\\lambda=np\\). Normal approximates sums or Binomials when there are many contributions and the distribution is not too skewed, often requiring something like a large \\(np(1-p)\\). So the choice is not arbitrary; it depends on whether the Binomial is sparse and rare-event-like or more balanced and bell-shaped.",
+      "source_chunk_ids": [
+        "cs109_11_joint_rvs_annotated_p10_761317177f",
+        "cs109_08_poisson_and_more_annotated_p25_ea87f3dfd8",
+        "cs109_18_clt_annotated_p10_bb3dcc7c7e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that both are approximations but distinguishes their regimes.",
+          "Correctly characterizes Poisson for rare events and Normal for more balanced aggregated variation.",
+          "Explains that approximation choice depends on the shape/parameters."
+        ],
+        "partial_credit": [
+          "Identifies one regime correctly but not the other.",
+          "Gives the main contrast without naming parameter conditions clearly."
+        ],
+        "common_mistakes": [
+          "Saying both can always be used interchangeably.",
+          "Claiming Normal is always preferred regardless of p.",
+          "Ignoring the role of skewness or rarity."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "For Bin(100,0.04), which approximation would you expect to be better and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does 'rare event' mean in terms of the Binomial parameter p?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from central limit theorem.",
+        "Watch out for this common trap: Saying both can always be used interchangeably. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0019",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Why does the CLT help explain the prominence of the Normal distribution in practice, but not justify treating every bell-shaped dataset as evidence of a sum of iid effects? Give a careful answer that separates mathematical mechanism from modeling inference.",
+      "expected_answer": "The CLT provides one mathematical mechanism that generates approximate Normality: aggregation of many iid or similar independent effects with finite variance. That helps explain why Normal distributions often arise. But observing a bell-shaped dataset does not prove the data came from a sum of iid pieces; many different mechanisms can produce similar shapes, and a Normal fit can also just be a convenient approximation. So CLT is an explanation and modeling tool, not a reverse-identification theorem.",
+      "source_chunk_ids": [
+        "cs109_10_normal_gaussian_annotated_p8_a2765ae76d",
+        "cs109_18_clt_annotated_p12_9711a72c0a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains CLT as one mechanism behind approximate Normality.",
+          "Rejects reverse inference from bell shape to iid-sum mechanism.",
+          "Separates mathematical explanation from empirical model selection."
+        ],
+        "partial_credit": [
+          "States CLT explains Normality but gives weak caution against reverse inference.",
+          "Gives caution without connecting to mechanism."
+        ],
+        "common_mistakes": [
+          "Assuming Normal-looking data prove independence or additivity.",
+          "Treating model fit as proof of generative process.",
+          "Saying CLT applies backward."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What additional evidence, besides a histogram shape, would you want before asserting a sum-of-many-effects story?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Does seeing an approximate Normal histogram tell you how the data were generated, or only that a Normal model may fit reasonably well?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from central limit theorem; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Assuming Normal-looking data prove independence or additivity. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0020",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose \\(\\bar X\\) is the mean of 15 iid observations from some population with mean \\(\\mu\\) and variance \\(\\sigma^2\\). Using the CLT, describe the approximate distribution of \\(\\bar X\\), and then explain how doubling the sample size would change the spread of that distribution.",
+      "expected_answer": "By the CLT, \\(\\bar X\\) is approximately \\(N(\\mu,\\sigma^2/15)\\) when 15 is large enough for the population shape at hand. If the sample size doubles to 30, the mean stays \\(\\mu\\) but the variance becomes \\(\\sigma^2/30\\), so the standard deviation becomes \\(\\sigma/\\sqrt{30}\\). Relative to n=15, the standard deviation shrinks by a factor of \\(\\sqrt{15/30}=1/\\sqrt2\\).",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p12_9711a72c0a",
+        "cs109_18_clt_annotated_p29_d317c99a72"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States approximate distribution \\(N(\\mu,\\sigma^2/15)\\).",
+          "Correctly updates variance and standard deviation when n doubles.",
+          "Explains that the center does not change."
+        ],
+        "partial_credit": [
+          "Gets the variance scaling right but confuses variance and standard deviation.",
+          "States the form correctly with weak interpretation."
+        ],
+        "common_mistakes": [
+          "Saying variance halves and standard deviation also halves.",
+          "Using sum distribution parameters instead of mean distribution parameters.",
+          "Claiming the mean changes when sample size changes."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What does that shrinking spread mean operationally for estimates based on larger samples?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If variance is divided by n, what happens to standard deviation?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Saying variance halves and standard deviation also halves. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0021",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Imagine you are advising a team that wants to approximate a count distribution. They tell you only that the count is the sum of many Bernoulli trials. Ask them the minimum follow-up questions you would need to decide between a Normal approximation, a Poisson approximation, or neither, and explain why each question matters.",
+      "expected_answer": "I would ask at least: How large is n? What is p, or are the success probabilities varying? Are the trials independent or only approximately so? These matter because if n is large and p is mid-range so that np(1-p) is large, a Normal approximation is reasonable; if n is large and p is very small with \\(\\lambda=np\\) moderate, Poisson may be better. If independence is poor or probabilities vary substantially, either approximation may need more caution or a different model.",
+      "source_chunk_ids": [
+        "cs109_11_joint_rvs_annotated_p10_761317177f",
+        "cs109_08_poisson_and_more_annotated_p25_ea87f3dfd8",
+        "cs109_08_poisson_and_more_annotated_p29_1cfe0aced4"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Asks about n, p or probability regime, and independence/dependence.",
+          "Explains why each affects Normal vs Poisson suitability.",
+          "Acknowledges that neither approximation may be appropriate if assumptions fail."
+        ],
+        "partial_credit": [
+          "Asks about n and p but not dependence.",
+          "Explains one approximation regime well but not the other."
+        ],
+        "common_mistakes": [
+          "Choosing an approximation without asking about p.",
+          "Ignoring dependence or heterogeneous success probabilities.",
+          "Assuming CLT alone answers model choice."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the trials are only slightly dependent and p is tiny, which approximation might still be serviceable according to the notes?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why is knowing that the variable is a sum of Bernoulli trials still not enough, by itself, to choose the best approximation?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Choosing an approximation without asking about p. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0022",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student reports: 'I used the CLT for the sample mean, so I modeled \\(\\bar X\\) as \\(N(\\mu,\\sigma^2)\\).' Critique this statement. Why is it a serious mistake even if the student correctly remembered the center?",
+      "expected_answer": "The center is right but the spread is wrong. For the sample mean of n iid observations, the CLT gives \\(\\bar X\\approx N(\\mu,\\sigma^2/n)\\), not \\(N(\\mu,\\sigma^2)\\). Using the population variance instead of the reduced variance for the average badly overstates uncertainty, because averaging independent observations makes the estimator much less variable than a single observation.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p29_d317c99a72",
+        "cs109_18_clt_annotated_p30_f85e6bbb1a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the missing division by n in the variance.",
+          "Explains why averaging reduces variability.",
+          "States the practical consequence of overstating uncertainty."
+        ],
+        "partial_credit": [
+          "Corrects the formula without much explanation.",
+          "Mentions standard error but not variance explicitly."
+        ],
+        "common_mistakes": [
+          "Confusing the distribution of one observation with distribution of the sample mean.",
+          "Dividing standard deviation by n instead of sqrt(n).",
+          "Treating center as the only thing that matters."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If n=25, by what factor does the standard deviation of \\(\\bar X\\) shrink relative to a single observation?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When you average independent observations, should the result be more or less variable than one observation?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from central limit theorem.",
+        "Watch out for this common trap: Confusing the distribution of one observation with distribution of the sample mean. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0023",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A classmate says, \u201cThe Central Limit Theorem means the original random variable becomes Normal once the sample size is large.\u201d Respond to that claim using the distinction between the distribution of individual observations, the sum, and the sample mean. Then explain what assumptions are actually needed for the usual CLT statement discussed in class.",
+      "expected_answer": "The claim is false. The CLT does not say the original variable X itself becomes Normal; it says that if X1, X2, ..., Xn are iid with finite mean mu and variance sigma^2, then the sum \\u2211Xi is approximately Normal with mean n mu and variance n sigma^2, and equivalently the sample mean X-bar is approximately Normal with mean mu and variance sigma^2/n, as n grows. So the population distribution can remain Uniform, Bernoulli, skewed, or something else; what becomes approximately Normal is the distribution of the aggregate statistic. A strong answer should also mention the assumptions: independence, identical distribution in the standard version presented, and finite mean and variance.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p29_d317c99a72",
+        "cs109_18_clt_annotated_p10_bb3dcc7c7e",
+        "cs109_18_clt_annotated_p11_010fad150b",
+        "cs109_18_clt_annotated_p12_9711a72c0a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explicitly rejects the statement that the original distribution becomes Normal.",
+          "Correctly distinguishes among distribution of Xi, distribution of the sum, and distribution of the sample mean.",
+          "States the approximate Normal parameters for sum and/or mean.",
+          "Mentions key assumptions: iid or at least independence with the standard course statement, and finite mean/variance."
+        ],
+        "partial_credit": [
+          "Says CLT applies to averages or sums but does not clearly distinguish this from the original variable.",
+          "Mentions only one of sum or sample mean correctly.",
+          "Gives the right intuition but omits assumptions."
+        ],
+        "common_mistakes": [
+          "Claiming the population itself becomes Normal.",
+          "Using the wrong variance for the sample mean, such as sigma^2 instead of sigma^2/n.",
+          "Forgetting the independence assumption."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can the CLT still give a good approximation for n smaller than 30? Give a reasoned example of when that might happen."
+        },
+        {
+          "condition": "incorrect",
+          "question": "If Xi are Uniform(0,1), does each Xi become Normal when n increases, or is it the sum or mean that is approximated by a Normal?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from central limit theorem; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming the population itself becomes Normal. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0024",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose X1, ..., Xn are iid Bernoulli(p), so their sum X is Binomial(n, p). For n = 100 and p = 0.5, explain how you would approximate P(X \\u2265 65) using the CLT, including whether a continuity correction is needed and why. Then contrast that with n = 100 and p = 0.04: if you had to choose between a Normal approximation and a Poisson approximation to the Binomial, which would you choose and why?",
+      "expected_answer": "For the Binomial, write X as a sum of iid Bernoulli variables. Then by the CLT, X is approximately Normal with mean np and variance np(1-p). For n = 100 and p = 0.5, that gives mean 50 and variance 25, so standard deviation 5. Because X is discrete and the Normal is continuous, we use a continuity correction: P(X \\u2265 65) \\u2248 P(Y \\u2265 64.5) where Y ~ N(50, 25). The z-score is (64.5 - 50)/5 = 2.9, so the probability is about 1 - Phi(2.9), around 0.0018. For n = 100 and p = 0.04, both approximations might be discussed, but the course guidance says if there is a choice, prefer Gaussian, while also noting Poisson is especially natural when n is large and p is small. Here np = 4 and n p (1-p) = 3.84, so the Normal approximation is less ideal than in the p = 0.5 case, while Poisson with lambda = np = 4 is a standard approximation for rare-event Binomials. A strong answer should justify whichever choice it makes using the stated rules and the shape/regime, and note continuity correction if using Normal.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p10_bb3dcc7c7e",
+        "cs109_11_joint_rvs_annotated_p6_ed55038206",
+        "cs109_11_joint_rvs_annotated_p10_761317177f",
+        "cs109_08_poisson_and_more_annotated_p25_ea87f3dfd8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Represents Binomial as a sum of iid Bernoulli variables and invokes CLT correctly.",
+          "States mean np and variance np(1-p).",
+          "Uses the continuity correction correctly for P(X \\u2265 65) as P(Y \\u2265 64.5).",
+          "Computes or describes the z-score setup correctly.",
+          "Gives a reasoned comparison between Normal and Poisson for n = 100, p = 0.04."
+        ],
+        "partial_credit": [
+          "Gets the Normal parameters right but forgets the continuity correction.",
+          "Uses continuity correction but in the wrong direction.",
+          "Recognizes that p = 0.04 is a rare-event regime but gives only a partial justification for choosing Poisson or Normal."
+        ],
+        "common_mistakes": [
+          "Approximating P(X \\u2265 65) by P(Y \\u2265 65) instead of 64.5.",
+          "Using variance np instead of np(1-p) for the Binomial.",
+          "Saying CLT always implies Normal is best, without discussing regime or the discrete correction."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If instead the question asked for P(X = 65), how would the continuity correction change your setup?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What interval on the continuous Normal should correspond to the single discrete value X = 65?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Approximating P(X \\u2265 65) by P(Y \\u2265 65) instead of 64.5. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0025",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "In lecture, the sum of iid Uniform(0,1) variables was used to test how good the CLT approximation is. A student says, \u201cYou should not use the CLT until n is at least 30, so using it at n = 2 or n = 5 is invalid.\u201d Evaluate that statement carefully. Use the Uniform example to explain what is true, what is too rigid, and how symmetry of the underlying distribution affects the quality of the approximation.",
+      "expected_answer": "The statement is too rigid. The rule of thumb n \\u2265 30 is not a theorem; it is only a heuristic. In the Uniform(0,1) example, the exact and CLT probabilities for P(X \\u2264 n/3) were already reasonably close even at n = 2 and n = 5, and became very close by n = 10. The key idea is that CLT approximation quality depends not just on n but also on the shape of the underlying distribution; symmetric, bounded distributions such as Uniform can converge faster than highly skewed ones. So it is acceptable to use the CLT for smaller n if you justify that the approximation is likely decent, but you should recognize it is an approximation, not an exact statement.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p14_fa4180e53b",
+        "cs109_18_clt_annotated_p15_aac882825a",
+        "cs109_18_clt_annotated_p16_a4e40f0dc4",
+        "cs109_18_clt_annotated_p17_p18_6ff9251412"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that n \\u2265 30 is a rule of thumb, not a requirement of the theorem.",
+          "Uses the Uniform example to support the argument with comparative reasoning across n values.",
+          "Notes that approximation quality depends on the original distribution's shape, especially symmetry/skewness.",
+          "Distinguishes between 'allowed to approximate' and 'guaranteed exact.'"
+        ],
+        "partial_credit": [
+          "States that n = 30 is only a heuristic but does not explain why.",
+          "Mentions symmetry helps without connecting it to the Uniform example.",
+          "Describes the example qualitatively but omits the idea that CLT is still approximate."
+        ],
+        "common_mistakes": [
+          "Saying CLT is invalid for all n < 30.",
+          "Saying CLT gives exact Normality for finite n.",
+          "Ignoring the role of the underlying distribution."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you name a kind of distribution for which you would be more cautious than Uniform at the same sample size, and explain why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If the n = 10 Uniform example gives an approximation nearly identical to the exact value, what does that suggest about the 'n = 30' rule?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from central limit theorem.",
+        "Watch out for this common trap: Saying CLT is invalid for all n < 30. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0026",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are comparing two independent groups, each consisting of 20 observations drawn iid from the same population with mean 0.5 and variance v. Let X-bar_1 and X-bar_2 be the two sample means. Use the CLT to give an approximate distribution for D = X-bar_1 - X-bar_2, and then explain how you would determine a threshold k such that observing |D| \\u2265 k would be considered statistically significant at the 5% level in a two-sided sense.",
+      "expected_answer": "By the CLT, each sample mean is approximately Normal: X-bar_1 ~ N(0.5, v/20) and X-bar_2 ~ N(0.5, v/20), assuming the two groups are independent. Therefore D = X-bar_1 - X-bar_2 is approximately Normal with mean 0 and variance v/20 + v/20 = v/10. For a two-sided 5% significance threshold, we want P(|D| \\u2265 k) = 0.05, which is equivalent by symmetry to placing 2.5% in each tail, so P(D \\u2264 k) = 0.975 after standardization. Thus k = z_0.975 sqrt(v/10) \\u2248 1.96 sqrt(v/10). A strong oral answer should explain why the mean is 0, why the variances add, and why 0.975 rather than 0.95 appears.",
+      "source_chunk_ids": [
+        "cs109_finalfall2021soln_q0_42694214da",
+        "cs109_18_clt_annotated_p29_d317c99a72",
+        "cs109_18_clt_annotated_p30_f85e6bbb1a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the approximate Normal distribution of each sample mean.",
+          "Correctly derives D as approximately Normal with mean 0 and variance v/10.",
+          "Explains that independence implies variances add.",
+          "Correctly sets the two-sided significance condition and identifies the 97.5th percentile."
+        ],
+        "partial_credit": [
+          "Gets the distribution of D mostly right but makes a minor variance slip.",
+          "Recognizes that the test is two-sided but uses the wrong quantile without explanation.",
+          "States k in terms of a z critical value but does not fully justify it."
+        ],
+        "common_mistakes": [
+          "Using variance v/20 for D instead of v/10.",
+          "Using 1.645 instead of 1.96 for a two-sided 5% threshold.",
+          "Subtracting variances instead of adding them."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If each group had 80 observations instead of 20, what changes in the distribution of D and what happens to the threshold k?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why does taking the difference of two independent sample means increase uncertainty relative to one mean alone rather than decrease it?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using variance v/20 for D instead of v/10. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_central_limit_theorem_0027",
+      "course": "CS109",
+      "topic_id": "central_limit_theorem",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A data scientist says, \u201cNormal distributions are everywhere because most real variables are inherently Gaussian.\u201d Give a more careful explanation, using the CLT, of why Normal models appear so often in practice. Your answer should distinguish between modeling a raw variable directly and modeling a quantity built from many contributions or a sample average.",
+      "expected_answer": "A careful explanation is that many observed quantities are sums or averages of many small, roughly independent contributions, and the CLT says those aggregates tend to have approximately Normal distributions even when the individual contributions are not Normal. So Normality often appears for noise terms, totals, and sample means, not because every raw variable is intrinsically Gaussian, but because aggregation drives approximate Gaussian behavior. A good answer should also be cautious: sometimes a Normal model for a raw variable is just an assumption, and it may be poor if the data are strongly skewed, bounded, or better fit by something like a log-normal distribution.",
+      "source_chunk_ids": [
+        "cs109_10_normal_gaussian_annotated_p8_a2765ae76d",
+        "cs109_18_clt_annotated_p12_9711a72c0a",
+        "cs109_18_clt_annotated_p29_d317c99a72"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses CLT to explain why sums/averages often look Normal.",
+          "Distinguishes aggregate quantities from raw variables.",
+          "Mentions that Normality of a raw variable may be an assumption rather than a theorem.",
+          "Provides at least one caveat or counterexample type, such as skewed or bounded data."
+        ],
+        "partial_credit": [
+          "Mentions the CLT vaguely without connecting it to sums or means.",
+          "Says Normal is common in practice but gives limited nuance.",
+          "Provides caveats but does not tie them to the CLT explanation."
+        ],
+        "common_mistakes": [
+          "Claiming CLT proves any real-world variable is Normal.",
+          "Failing to distinguish a sample mean from the underlying population variable.",
+          "Saying Normal is always the best model regardless of context."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example of a raw variable that might not be well modeled as Normal, but whose sample mean still could be approximately Normal?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you average 100 iid skewed measurements with finite variance, what does the CLT say about the average even if each measurement is not Normal?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming CLT proves any real-world variable is Normal. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    }
+  ]
+}

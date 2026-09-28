@@ -1,0 +1,216 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/13_joint_statistics_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/13_joint_statistics_annotated.pdf",
+  "sha256": "2d853244cce5b4568e9e82f8322f9fad81faeebb412f913ac2bca7b08bd04030",
+  "title_guess": "13 joint statistics annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "13: Statistics on Multiple \nRandom Variables\nJerry Cain\nApril 29th, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 99
+    },
+    {
+      "page_index": 1,
+      "text": "Coupon \nCollecting\n2",
+      "char_count": 20
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCoupon collecting and server requests\nThe coupon collector’s problem in probability theory:\n• You buy boxes of cereal.\n• There are 𝑘 different types of coupons\n• For each box you buy, you \"collect\"\na coupon of type 𝑖.\n1. How many coupons do you expect\nafter buying 𝑛 boxes of cereal?\n3\nrequests\n𝑘 servers\nServers\nrequest to\nserver 𝑖\n* \n52% of Amazon profits\n** more profitable than Amazon’s\n \nNorth America commerce operations\nsource\nWhat is the expected number of \nservers utilized after 𝑛 requests?",
+      "char_count": 573
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComputer cluster utilization\nConsider a computer cluster with 𝑘 servers. We send 𝑛 requests.\n• Requests independently go to server 𝑖 with probability 𝑝!\n• Let 𝑋= # servers that receive ≥1 request.\nWhat is 𝐸𝑋?\n4\n𝐸\"\n!\"#\n$\n𝑋! = \"\n!\"#\n$\n𝐸𝑋!",
+      "char_count": 309
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComputer cluster utilization\nConsider a computer cluster with 𝑘 servers. We send 𝑛 requests.\n• Requests independently go to server 𝑖 with probability 𝑝!\n• Let 𝑋= # servers that receive ≥1 request.\nWhat is 𝐸𝑋?\n5\n1. Define additional\nrandom variables.\n2. Solve.\nLet: 𝐴% = event that server 𝑖\n \n \nreceives ≥1 request\n \n𝑋% = indicator for 𝐴%\n𝐸𝑋= 𝐸)\n%&'\n(\n𝑋%  = )\n%&'\n(\n𝐸𝑋% = )\n%&'\n(\n1 −1 −𝑝% )\n𝐸𝑋% = 𝑃𝐴%  = 1 −1 −𝑝% )\n= )\n%&'\n(\n1 −)\n%&'\n(\n1 −𝑝% )\n𝑃𝐴%    = 1 −𝑃no requests to 𝑖\n \n \n= 1 −1 −𝑝% )\n= 𝑘−)\n%&'\n(\n1 −𝑝% )\n𝐸\"\n!\"#\n$\n𝑋! = \"\n!\"#\n$\n𝐸𝑋!\nNote: 𝐴! are dependent!",
+      "char_count": 632
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCoupon collecting problems: Hash tables\nThe coupon collector’s problem in probability theory:\n• You buy boxes of cereal.\n• There are 𝑘 different types of coupons\n• For each box you buy, you \"collect\"\na coupon of type 𝑖.\n1. How many coupons do you expect\nafter buying 𝑛 boxes of cereal?\n2. How many boxes do you expect\nto buy until you have one of\neach coupon?\n6\nrequests\n𝑘 servers\nServers\nrequest to\nserver 𝑖\nstrings\n𝑘 buckets\nHash Tables\nhashed to\nbucket 𝑖\nWhat is the expected number of \nutilized servers after 𝑛 requests?\nWhat is the expected number of \nstrings to hash until each bucket \nhas ≥ 1 string?",
+      "char_count": 680
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nHash Tables\nConsider a hash table with 𝑘 buckets.\n• Strings are equally likely to get hashed into any bucket (independently).\n• Let 𝑌= # strings to hash until each bucket ≥1 string.\nWhat is 𝐸𝑌?\n7\n1. Define additional\nrandom variables.\n2. Solve.\nHow should we define 𝑌! such that                    ?\n𝐸\"\n!\"#\n$\n𝑋! = \"\n!\"#\n$\n𝐸𝑋!\n𝑌= -\n!\n𝑌!",
+      "char_count": 408
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nHash Tables\nConsider a hash table with 𝑘 buckets.\n• Strings are equally likely to get hashed into any bucket (independently).\n• Let 𝑌= # strings to hash until each bucket ≥1 string.\nWhat is 𝐸𝑌?\n8\n1. Define additional\nrandom variables.\n2. Solve.\n𝐸\"\n!\"#\n$\n𝑋! = \"\n!\"#\n$\n𝐸𝑋!\nLet: 𝑌% = # of trials needed to get success after 𝑖-th success\n• Success: hash string to previously empty bucket\n• If 𝑖 non-empty buckets: 𝑃success = (*%\n(  \n𝑃𝑌% = 𝑛=\n𝑖\n𝑘\n)*' 𝑘−𝑖\n𝑘\nEquivalently, 𝑌%~Geo 𝑝= (*%\n(\n𝐸𝑌% = 1\n𝑝=\n𝑘\n𝑘−𝑖",
+      "char_count": 571
+    },
+    {
+      "page_index": 8,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nHash Tables\nConsider a hash table with 𝑘 buckets.\n• Strings are equally likely to get hashed into any bucket (independently).\n• Let 𝑌= # strings to hash until each bucket ≥1 string.\nWhat is 𝐸𝑌?\n9\n1. Define additional\nrandom variables.\n2. Solve.\n𝐸\"\n!\"#\n$\n𝑋! = \"\n!\"#\n$\n𝐸𝑋!\nLet: 𝑌% = # of trials to needed get success after 𝑖-th success\n𝑌%~Geo 𝑝= 𝑘−𝑖\n𝑘\n,\n 𝐸𝑌% = 1\n𝑝=\n𝑘\n𝑘−𝑖\n𝑌= 𝑌+ + 𝑌' + ⋯+ 𝑌(*'\n𝐸𝑌= 𝐸𝑌+ + 𝐸𝑌' + ⋯+ 𝐸𝑌(*'\n= 𝑘\n𝑘+\n𝑘\n𝑘−1 +\n𝑘\n𝑘−2 + ⋯+ 𝑘\n1 = 𝑘1\n𝑘+\n1\n𝑘−1 + ⋯+ 1\n= 𝑂𝑘 log 𝑘",
+      "char_count": 550
+    },
+    {
+      "page_index": 9,
+      "text": "Covariance\n10",
+      "char_count": 13
+    },
+    {
+      "page_index": 10,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStatistics of sums of RVs\nFor any random variables 𝑋 and 𝑌,\n𝐸𝑋+ 𝑌= 𝐸𝑋+ 𝐸𝑌\nVar 𝑋+ 𝑌= ?\n11\nBut first, a new statistic!",
+      "char_count": 189
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSpot the difference\nCompare/contrast the following two distributions:\n12\nBoth distributions have the same 𝐸𝑋, 𝐸𝑌, Var 𝑋, and Var 𝑌 \nDifference: how the two variables vary with each other.\nAssume all points are \nequally likely.\n𝑃𝑋= 𝑥, 𝑌= 𝑦= 1\n𝑁",
+      "char_count": 316
+    },
+    {
+      "page_index": 12,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCovariance\nThe covariance of two variables 𝑋 and 𝑌 is:\nCov 𝑋, 𝑌= 𝐸\n𝑋−𝐸𝑋\n𝑌−𝐸𝑌\n  \n \n = 𝐸𝑋𝑌−𝐸𝑋𝐸𝑌\n13\nCov 𝑋, 𝑌= 𝐸𝑋−𝐸𝑋\n𝑌−𝐸𝑌\n = 𝐸𝑋−𝜇,\n𝑌−𝜇-\n \n \n= 𝐸𝑋𝑌−𝜇-𝑋−𝜇,𝑌+ 𝜇,𝜇-  \n \n \n= 𝐸𝑋𝑌−𝐸𝜇-𝑋−𝐸𝜇,𝑌+ 𝐸𝜇,𝜇-  \n \n \n= 𝐸𝑋𝑌−𝜇,𝜇- −𝜇,𝜇- + 𝜇,𝜇-\n \n \n= 𝐸𝑋𝑌−𝜇,𝜇- = 𝐸𝑋𝑌−𝐸𝑋𝐸𝑌\nProof of second part (rewriting 𝐸𝑋, 𝐸𝑌as 𝜇\", 𝜇# to emphasize that they’re each constants):\n(linearity of expectation)\n(𝜇!, 𝜇\" are constants)",
+      "char_count": 454
+    },
+    {
+      "page_index": 13,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCovariance\nThe covariance of two variables 𝑋 and 𝑌 is:\nCov 𝑋, 𝑌= 𝐸\n𝑋−𝐸𝑋\n𝑌−𝐸𝑌\n  \n \n = 𝐸𝑋𝑌−𝐸𝑋𝐸𝑌\nCovariance measures how one random variable varies with a second.\n• Outside temperature and utility bills have a negative covariance.\n• Handedness and musical ability have near zero covariance.\n• Product demand and price have a positive covariance.\n14",
+      "char_count": 418
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFeel the covariance\nIs the covariance positive, negative, or zero?\n15\n1. \n3. \n𝑋= 𝑥\n𝑌= 𝑦\n𝐸[𝑋]\n𝐸[𝑌]\n2. \n𝑋= 𝑥\n𝑌= 𝑦\n𝐸[𝑋]\n𝐸[𝑌]\n𝑋= 𝑥\n𝑌= 𝑦\n𝐸[𝑋]\n𝐸[𝑌]\nCov 𝑋, 𝑌= 𝐸\n𝑋−𝐸𝑋\n𝑌−𝐸𝑌\n \n= 𝐸𝑋𝑌−𝐸𝑋𝐸𝑌",
+      "char_count": 249
+    },
+    {
+      "page_index": 15,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFeel the covariance\nIs the covariance positive, negative, or zero?\n16\n1. \n3. \n𝑋= 𝑥\n𝑌= 𝑦\n𝐸[𝑋]\n𝐸[𝑌]\n2. \n𝑋= 𝑥\n𝑌= 𝑦\n𝐸[𝑋]\n𝐸[𝑌]\n𝑋= 𝑥\n𝑌= 𝑦\n𝐸[𝑋]\n𝐸[𝑌]\npositive\nnegative\nzero\nCov 𝑋, 𝑌= 𝐸\n𝑋−𝐸𝑋\n𝑌−𝐸𝑌\n \n= 𝐸𝑋𝑌−𝐸𝑋𝐸𝑌",
+      "char_count": 272
+    },
+    {
+      "page_index": 16,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCov 𝑊, 𝐻 = 𝐸𝑊𝐻−𝐸𝑊𝐸𝐻 \n \n \n \n  = 3355.83 −62.75\n52.75\n \n \n \n  = 45.77\nCovarying humans\nWhat is the covariance of weight 𝑊 and \nheight 𝐻?\n17\nWeight (kg)\nHeight (in)\nW · H\n64\n57\n3648\n71\n59\n4189\n53\n49\n2597\n67\n62\n4154\n55\n51\n2805\n58\n50\n2900\n77\n55\n4235\n57\n48\n2736\n56\n42\n2352\n51\n42\n2142\n76\n61\n4636\n68\n57\n3876\n(positive)\nCov 𝑋, 𝑌= 𝐸\n𝑋−𝐸𝑋\n𝑌−𝐸𝑌\n \n= 𝐸𝑋𝑌−𝐸𝑋𝐸𝑌\n𝐸𝑊\n= 62.75\n𝐸𝐻\n= 52.75\n𝐸𝑊𝐻\n= 3355.83\n40\n50\n60\n70\n45\n55\n65\n75\n85\nHeight ! (inches)\nWeight \" (kilograms)\nCovariance > 0: one variable ↑, other variable ↑",
+      "char_count": 569
+    },
+    {
+      "page_index": 17,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProperties of Covariance\nThe covariance of two variables 𝑋 and 𝑌 is:\nCov 𝑋, 𝑌= 𝐸\n𝑋−𝐸𝑋\n𝑌−𝐸𝑌\n  \n \n = 𝐸𝑋𝑌−𝐸𝑋𝐸𝑌\nProperties:\n1. Cov 𝑋, 𝑌= Cov 𝑌, 𝑋\n2. Var 𝑋= 𝐸𝑋0 −𝐸𝑋\n0 = 𝐸𝑋𝑋−𝐸𝑋𝐸𝑋 = Cov 𝑋, 𝑋\n3. Covariance of sums = sum of all pairwise covariances\n Cov 𝑋' + 𝑋1, 𝑌' + 𝑌1 = Cov 𝑋', 𝑌' + Cov 𝑋1, 𝑌' + Cov 𝑋', 𝑌1 + Cov 𝑋1, 𝑌1\n4. Covariance under linear transformation: Cov 𝑎𝑋+ 𝑏, 𝑌= 𝑎Cov 𝑋, 𝑌\n18\n(proof left to you)",
+      "char_count": 476
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nZero covariance does not imply independence\nLet 𝑋 take on values −1,0,1  \nwith equal probability 1/3.\nDefine 𝑌= 81 \nif 𝑋= 0\n0 otherwise\n19\nWhat is the joint PMF of 𝑋 and 𝑌?",
+      "char_count": 245
+    },
+    {
+      "page_index": 19,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nZero covariance does not imply independence\nLet 𝑋 take on values −1,0,1  \nwith equal probability 1/3.\nDefine 𝑌= 81 \nif 𝑋= 0\n0 otherwise\n20\n-1\n0\n1\n0\n1/3\n0\n1/3\n2/3\n1\n0\n1/3\n0\n1/3\n1/3\n1/3\n1/3\n𝑋\n𝑌\nMarginal PMF\nof 𝑋, 𝑝% 𝑥\nMarginal \nPMF of \n𝑌, 𝑝& 𝑦\n1.  𝐸𝑋=\n𝐸𝑌=\n3.  Cov 𝑋, 𝑌=\n4. Are 𝑋 and 𝑌 independent?\n2.  𝐸𝑋𝑌=",
+      "char_count": 377
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nZero covariance does not imply independence\nLet 𝑋 take on values −1,0,1  \nwith equal probability 1/3.\nDefine 𝑌= 81 \nif 𝑋= 0\n0 otherwise\n21\n-1\n0\n1\n0\n1/3\n0\n1/3\n2/3\n1\n0\n1/3\n0\n1/3\n1/3\n1/3\n1/3\n𝑋\n𝑌\nMarginal PMF\nof 𝑋, 𝑝% 𝑥\nMarginal \nPMF of \n𝑌, 𝑝& 𝑦\n1.  𝐸𝑋=\n𝐸𝑌=\n3.  Cov 𝑋, 𝑌=\n4. Are 𝑋 and 𝑌 independent?\n−1 1\n3 + 0 1\n3 + 1 1\n3 = 0\n0 2\n3 + 1 1\n3 = 1/3\n2.  𝐸𝑋𝑌=\n−1 ⋅0\n1\n3 + 0 ⋅1\n1\n3 + 1 ⋅0\n1\n3\n= 0\n= 0 −0 1/3 = 0\n❌\n𝑃𝑌= 0|𝑋= 1 = 1\n𝐸𝑋𝑌−𝐸𝑋𝐸𝑌\n≠ 𝑃𝑌= 0 = 2/3\n⚠\ndoes not imply \nindependence!",
+      "char_count": 547
+    },
+    {
+      "page_index": 21,
+      "text": "Variance of \nsums of RVs\n22",
+      "char_count": 27
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStatistics of sums of RVs\nFor any random variables 𝑋 and 𝑌,\n𝐸𝑋+ 𝑌= 𝐸𝑋+ 𝐸𝑌\nVar 𝑋+ 𝑌= Var 𝑋+ 2 ⋅Cov 𝑋, 𝑌+ Var 𝑌\n23",
+      "char_count": 185
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVariance of general sum of RVs\nFor any random variables 𝑋 and 𝑌,\nVar 𝑋+ 𝑌= Var 𝑋+ 2 ⋅Cov 𝑋, 𝑌+ Var 𝑌\nProof:\nVar 𝑋+ 𝑌= Cov 𝑋+ 𝑌, 𝑋+ 𝑌\n \n= Cov 𝑋, 𝑋+ Cov 𝑋, 𝑌+ Cov 𝑌, 𝑋+ Cov 𝑌, 𝑌\n \n= Var 𝑋+ 2 ⋅Cov 𝑋, 𝑌 + Var 𝑌\nMore generally: \nVar )\n%&'\n)\n𝑋%\n= )\n%&'\n)\nVar 𝑋% + 2 )\n%&'\n)\n)\n6&78'\n)\nCov 𝑋%, 𝑋6\n24\ncovariance of\nall pairs\nVar 𝑋= Cov 𝑋, 𝑋\nSymmetry of covariance + \n Cov 𝑋, 𝑋= Var 𝑋\n(proof in extra slides)",
+      "char_count": 471
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStatistics of sums of RVs\nFor any random variables 𝑋 and 𝑌,\n𝐸𝑋+ 𝑌= 𝐸𝑋+ 𝐸𝑌\nVar 𝑋+ 𝑌= Var 𝑋+ 2 ⋅Cov 𝑋, 𝑌 + Var 𝑌\nFor independent 𝑋 and 𝑌,\n𝐸𝑋𝑌= 𝐸𝑋𝐸𝑌\nVar 𝑋+ 𝑌= Var 𝑋+ Var 𝑌\n25\n(Lemma: proof in extra slides)",
+      "char_count": 275
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVariance of sum of independent RVs\nFor independent 𝑋 and 𝑌,\nVar 𝑋+ 𝑌= Var 𝑋+ Var 𝑌\nProof:\n1. Cov 𝑋, 𝑌= 𝐸𝑋𝑌−𝐸𝑋𝐸𝑌\n \n= 𝐸𝑋𝐸𝑌−𝐸𝑋𝐸𝑌 \n \n= 0 \n2. Var 𝑋+ 𝑌= Var 𝑋+ 2 ⋅Cov 𝑋, 𝑌 + Var 𝑌\n \n= Var 𝑋+ Var 𝑌\n26\n𝑋 and 𝑌 are independent\ndef. of covariance",
+      "char_count": 309
+    },
+    {
+      "page_index": 26,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProving Variance of the Binomial\n27\n𝑋~Bin(𝑛, 𝑝)\nVar 𝑋= 𝑛𝑝1 −𝑝 \nVar 𝑋= Var )\n%&'\n)\n𝑋%\n𝑋= -\n!78\n9\n𝑋!\nLet 𝑋% = 𝑖th trial is heads\n𝑋%~Ber 𝑝\nVar 𝑋% = 𝑝1 −𝑝\n= )\n%&'\n)\nVar 𝑋%\nLet\n𝑋$ are independent, \ntherefore variance of sum \n= sum of variance\n𝑋% are independent\n(by definition)\n= )\n%&'\n)\n𝑝1 −𝑝\n= 𝑛𝑝1 −𝑝\nVariance of Bernoulli",
+      "char_count": 392
+    },
+    {
+      "page_index": 27,
+      "text": "Correlation\n28",
+      "char_count": 14
+    },
+    {
+      "page_index": 28,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCovarying humans\n29\nCov 𝑋, 𝑌= 𝐸\n𝑋−𝐸𝑋\n𝑌−𝐸𝑌\n \n= 𝐸𝑋𝑌−𝐸𝑋𝐸𝑌\n40\n50\n60\n70\n45\n55\n65\n75\n85\nHeight ! (inches)\nWeight \" (kilograms)\nCov 2.20𝑊, 2.54𝐻 \n \n= 𝐸2.20𝑊⋅2.54𝐻 − 𝐸2.20𝑊𝐸2.54𝐻 \n \n= 18752.38 −138.05\n133.99\n \n= 255.06\nWhat about weight (lb) and \nheight (cm)?\nCov 𝑊, 𝐻 = 𝐸𝑊𝐻−𝐸𝑊𝐸𝐻 \n \n \n  = 3355.83 −62.75\n52.75\n \n \n  = 45.77\nWhat is the covariance of \nweight 𝑊 and height 𝐻?\n(positive)\n100\n120\n140\n160\n180\n100\n120\n140\n160\n180\nHeight ! (cm)\nWeight \" (lb)\n(positive)\n⚠\nCovariance depends\non units!\nSign of covariance (+/–) more \nmeaningful than magnitude",
+      "char_count": 616
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCorrelation\nThe correlation of two variables 𝑋and 𝑌 is:\n𝜌𝑋, 𝑌= Cov 𝑋, 𝑌\n𝜎! 𝜎\" \n• Note: −1 ≤𝜌𝑋, 𝑌≤1\n• Correlation measures the linear relationship between 𝑋 and 𝑌:\n30\n𝜌𝑋, 𝑌= 1 \n⟹𝑌= 𝑎𝑋+ 𝑏, where 𝑎= 𝜎:/𝜎;\n𝜌𝑋, 𝑌= −1 \n⟹𝑌= 𝑎𝑋+ 𝑏, where 𝑎= −𝜎:/𝜎;\n𝜌𝑋, 𝑌= 0 \n⟹ uncorrelated (absence of linear relationship)\n𝜎\"\n% = Var 𝑋,\n𝜎#\n% = Var 𝑌",
+      "char_count": 397
+    },
+    {
+      "page_index": 30,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCorrelation reps\nWhat is the correlation coefficient 𝜌𝑋, 𝑌?\n31\n1. \n2. \n3. \n4. \nA.  𝜌𝑋, 𝑌= 1 \nB.  𝜌𝑋, 𝑌= −1 \nC.  𝜌𝑋, 𝑌= 0\nD.  Other",
+      "char_count": 203
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCorrelation reps\nWhat is the correlation coefficient 𝜌𝑋, 𝑌?\n32\nA.  𝜌𝑋, 𝑌= 1 \nB.  𝜌𝑋, 𝑌= −1 \nC.  𝜌𝑋, 𝑌= 0\nD.  Other\n1. \n2. \n3. \n4. \n𝑌= −𝑎𝑋+ 𝑏\n𝑎> 0\nB. 𝜌𝑋, 𝑌= −1\n“uncorrelated”\nC. 𝜌𝑋, 𝑌= 0\n𝑌= 𝑎𝑋+ 𝑏\n𝑎> 0\nA. 𝜌𝑋, 𝑌= 1\n𝑌= 𝑋1\nC. 𝜌𝑋, 𝑌= 0\n𝑋 and 𝑌 can be nonlinearly related even if 𝜌𝑋, 𝑌= 0.",
+      "char_count": 355
+    },
+    {
+      "page_index": 32,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThrowback to CS103: Conditional statements\nStatement 𝑃→𝑄: \n \nIndependence à No correlation\nContrapositive ¬𝑄→¬𝑃: Correlation à Dependence\nInverse ¬𝑃→¬𝑄: \n \nDependence à Correlation\nConverse 𝑄→𝑃:  \n \nNo correlation à Independence\n“Correlation does not imply causation”\n33\n✅ (logically\n \nequivalent)\n❌ (not always)\n𝑌= 𝑋' \n𝜌𝑋, 𝑌= 0 \n❌ (not always)\n✅",
+      "char_count": 419
+    },
+    {
+      "page_index": 33,
+      "text": "Spurious \nCorrelation\n34",
+      "char_count": 24
+    },
+    {
+      "page_index": 34,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSpurious Correlations\n𝜌𝑋, 𝑌 is used a lot to statistically quantify the relationship b/t X and Y.\n35\nCorrelation: \n0.947091\nSpurious correlations",
+      "char_count": 218
+    },
+    {
+      "page_index": 35,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSpurious Correlations\n𝜌𝑋, 𝑌 is used a lot to statistically quantify the relationship b/t X and Y.\n36\nCorrelation: \n0.947091\nSpurious correlations",
+      "char_count": 218
+    },
+    {
+      "page_index": 36,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nhttp://www.bbc.com/news/magazine-27537142\nDivorce vs. Margarine",
+      "char_count": 136
+    },
+    {
+      "page_index": 37,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nArcade revenue vs. CS PhDs\n38\nCorrelation: \n0.947091\nSpurious correlations",
+      "char_count": 147
+    },
+    {
+      "page_index": 38,
+      "text": "Extras\n39",
+      "char_count": 9
+    },
+    {
+      "page_index": 39,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nExpectation of product of independent RVs\nIf 𝑋 and 𝑌 are \nindependent, then\n40\n𝐸𝑔𝑋ℎ𝑌\n(for continuous proof, replace \nsummations with integrals)\n𝐸𝑋𝑌= 𝐸𝑋𝐸𝑌\n𝐸𝑔𝑋ℎ𝑌\n= 𝐸𝑔𝑋𝐸ℎ𝑌\nProof:\n𝑋 and 𝑌 are independent\n= )\n;\n)\n<\n𝑔𝑥ℎ𝑦𝑝, 𝑥𝑝- 𝑦\n= )\n;\n)\n<\n𝑔𝑥ℎ𝑦𝑝,,- 𝑥, 𝑦\n= )\n;\nℎ𝑦𝑝- 𝑦)\n<\n𝑔𝑥𝑝, 𝑥\nTerms dependent on 𝑦\nare constant in integral of 𝑥\n=\n)\n<\n𝑔𝑥𝑝, 𝑥\n)\n;\nℎ𝑦𝑝- 𝑦\nSummations separate\n= 𝐸𝑔𝑋𝐸ℎ𝑌",
+      "char_count": 446
+    },
+    {
+      "page_index": 40,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVariance of Sums of Variables\nVar )\n%&'\n)\n𝑋%\n= )\n%&'\n)\nVar 𝑋% + 2 )\n%&'\n)\n)\n6&78'\n)\nCov 𝑋%, 𝑋6\n41\nProof:\ncovariance of \nall pairs\nVar 𝑋 \n= Cov 𝑋, 𝑋\nSymmetry of covariance \n Cov 𝑋, 𝑋= Var 𝑋\nVar >\n!&'\n(\n𝑋!\n= >\n!&'\n(\n>\n)&'\n(\nCov 𝑋!, 𝑋)\n= >\n!&'\n(\nVar 𝑋! + >\n!&'\n(\n>\n)&',)+!\n(\nCov 𝑋!, 𝑋)\n= >\n!&'\n(\nVar 𝑋! + 2 >\n!&'\n(\n>\n)&$,'\n(\nCov 𝑋!, 𝑋)\n= Cov >\n!&'\n(\n𝑋! , >\n!&'\n(\n𝑋!\nAdjust summation bounds",
+      "char_count": 459
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:58Z"
+}

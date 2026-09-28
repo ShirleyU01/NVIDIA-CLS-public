@@ -1,0 +1,171 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/08_poisson_and_more_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/08_poisson_and_more_annotated.pdf",
+  "sha256": "87b243717aaecc6ebe183fe25ab32e89a6bb2478bce5c83d8b824839f62473fe",
+  "title_guess": "08 poisson and more annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "08: Poisson and More\nJerry Cain\nApril 17th, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 75
+    },
+    {
+      "page_index": 1,
+      "text": "Poisson\n2",
+      "char_count": 9
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nAlgorithmic ride sharing\n3\n🙋\n🙋\n🙋\n🙋\n🙋\nProbability of 𝑘 requests from this area in the next 1 minute?\nOn average, 𝜆= 5 requests per minute\nSuppose we know:",
+      "char_count": 226
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nAlgorithmic ride sharing, approximately\nAt each second:\n• Independent Bernoulli trial\n• You get a request (1) or you don’t (0).\nLet 𝑋= # of requests in minute.\n𝐸𝑋= 𝜆= 5\n4\nProbability of 𝑘 requests from this area in the next 1 minute?\nOn average, 𝜆= 5 requests per minute\n0\n0\n1\n0\n1\n…\n0\n0\n0\n0\n1\n1\n2\n3\n4\n5\n60\n𝑋 ~ Bin 𝑛= 60, 𝑝= 5/60  \nBreak a minute down into 60 seconds:\n𝑃𝑋= 𝑘= 60\n𝑘\n5\n60\n!\n1 −5\n60\n\"#!\nBut what if there are two requests \nin the same second?",
+      "char_count": 527
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nAlgorithmic ride sharing, approximately\nAt each millisecond:\n• Independent Bernoulli trial\n• You get a request (1) or you don’t (0).\nLet 𝑋= # of requests in minute.\n𝐸𝑋= 𝜆= 5\n5\nProbability of 𝑘 requests from this area in the next 1 minute?\nOn average, 𝜆= 5 requests per minute\nBreak a minute down into 60,000 milliseconds:\n𝑃𝑋= 𝑘= 𝑛\n𝑘\n𝜆\n𝑛\n!\n1 −𝜆\n𝑛\n\"#!\n…\n1\n60,000\n𝑋 ~ Bin 𝑛= 60000, 𝑝= 𝜆/𝑛 \nBut what if there are two requests \nin the same millisecond?",
+      "char_count": 520
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nAlgorithmic ride sharing, approximately\nFor each time bucket:\n• Independent Bernoulli trial\n• You get a request (1) or you don’t (0).\nLet 𝑋= # of requests in minute.\n𝐸𝑋= 𝜆= 5\n6\nProbability of 𝑘 requests from this area in the next 1 minute?\nOn average, 𝜆= 5 requests per minute\nBreak a minute down into infinitely small buckets:\n𝑃𝑋= 𝑘= lim\n\"→%\n𝑛\n𝑘\n𝜆\n𝑛\n!\n1 −𝜆\n𝑛\n\"#!\nGnarly math incoming!\nomg so small\n1\n∞\n𝑋 ~ Bin 𝑛, 𝑝= 𝜆/𝑛",
+      "char_count": 493
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBinomial in the limit\n7\n𝑃𝑋= 𝑘= lim\n\"→%\n𝑛\n𝑘\n𝜆\n𝑛\n!\n1 −𝜆\n𝑛\n\"#!\n= lim\n\"→$\n𝑛!\n𝑘!(𝑛−𝑘)!\n𝜆%\n𝑛%\n1 −l\n𝑛\n\"\n1 −l\n𝑛\n%\nlim\n!→# 1 −𝜆\n𝑛\n!\n= 𝑒$%\n= lim\n\"→$\n𝑛!\n𝑛%(𝑛−𝑘)!\n𝜆%\n𝑘!\n1 −l\n𝑛\n\"\n1 −l\n𝑛\n%\nExpand\nRearrange\n= lim\n\"→$\n𝑛!\n𝑛%(𝑛−𝑘)!\n𝜆%\n𝑘!\n𝑒/0\n1 −l\n𝑛\n%\nDef natural \nexponent\n= lim\n\"→$\n𝑛𝑛−1 ⋯𝑛−𝑘+ 1\n𝑛%\n𝑛−𝑘!\n𝑛−𝑘!\n𝜆%\n𝑘!\n𝑒/0\n1 −l\n𝑛\n%\nExpand\n= lim\n\"→$\n𝑛%\n𝑛%\n𝜆%\n𝑘!\n𝑒/0\n1\nLimit analysis\n+ cancel\n= 𝜆%\n𝑘! 𝑒/0\nSimplify",
+      "char_count": 462
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nAlgorithmic ride sharing\n8\n🙋\n🙋\n🙋\n🙋\n🙋\nProbability of 𝑘 requests from this area in the next 1 minute?\nOn average, 𝜆= 5 requests per minute\n𝑃𝑋= 𝑘= 𝜆1\n𝑘! 𝑒23\nPoisson \ndistribution",
+      "char_count": 248
+    },
+    {
+      "page_index": 8,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider an experiment that lasts a fixed interval of time.\ndef A Poisson random variable 𝑋 is the number of successes over the \nexperiment duration, assuming the time that each success occurs is\n \nindependent and the average # of requests over time is constant.\nExamples:\n• # earthquakes per year\n• # server hits per second\n• # of emails per day\nYes, expectation == variance \nfor Poisson RV! More later!\nPoisson Random Variable\n9\n𝑃𝑋= 𝑘= 𝑒23 𝜆1\n𝑘!\n𝑋~Poi(𝜆)\nSupport: {0,1, 2, … }\nPMF\n𝐸𝑋= 𝜆 \nVar 𝑋= 𝜆 \nVariance  \nExpectation",
+      "char_count": 595
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEarthquakes\nThere are an average of 2.79 major earthquakes in the world each year, \nand major earthquakes occur independently.\nWhat is the probability of 3 major earthquakes happening next year?\n10\n𝑝𝑘= 𝑒!\" 𝜆#\n𝑘!\n1. Define RVs\n2. Solve\n0\n0.05\n0.1\n0.15\n0.2\n0.25\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n𝑃(𝑋 = 𝑘)\nNumber of earthquakes, 𝑘 \n𝑋~Poi(𝜆)\n𝐸𝑋= 𝜆",
+      "char_count": 409
+    },
+    {
+      "page_index": 10,
+      "text": "Other Discrete \nRVs\n11",
+      "char_count": 22
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGrid of random variables\n12\nNumber of \nsuccesses\nBer(𝑝)\nOne trial\nSeveral\ntrials\nInterval\nof time\nBin(𝑛, 𝑝)\nPoi(𝜆)\n(next week)\nOne success\nSeveral\nsuccesses\nInterval of time to\nfirst success\nTime until \nsuccess\n𝑛= 1",
+      "char_count": 288
+    },
+    {
+      "page_index": 12,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider an experiment: independent trials of Ber(𝑝) random variables.\ndef A Geometric random variable 𝑋 is the # of trials until the first success.\nExamples:\n• Flipping a coin (𝑃heads = 𝑝) until first heads appears\n• Generate bits with 𝑃bit = 1 = 𝑝 until first 1 generated\nGeometric RV\n13\n𝑃𝑋= 𝑘= 1 −𝑝12<𝑝\n𝑋~Geo(𝑝)\nSupport: {1, 2, … }\nPMF\n𝐸𝑋=\n3\n4 \nVar 𝑋=\n3#4\n4!  \nVariance  \nExpectation",
+      "char_count": 459
+    },
+    {
+      "page_index": 13,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider an experiment: independent trials of Ber(𝑝) random variables.\ndef A Negative Binomial random variable 𝑋 is the # of trials until \n𝑟 successes.\nExamples:\n• Flipping a coin until 𝑟45 heads appears\n• # of strings to hash into table until bucket 1 has 𝑟 entries\nNegative Binomial RV\n14\n𝑃𝑋= 𝑘= 𝑘−1\n𝑟−1\n1 −𝑝!#5𝑝5\n𝑋~NegBin(𝑟, 𝑝)\nSupport: {𝑟, 𝑟+ 1, … }\nPMF\n𝐸𝑋=\n5\n4 \nVar 𝑋=\n5 3#4\n4!\n \nVariance  \nExpectation\nGeo 𝑝= NegBin(1, 𝑝)",
+      "char_count": 500
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGrid of random variables\n15\nNumber of \nsuccesses\nBer(𝑝)\nOne trial\nSeveral\ntrials\nInterval\nof time\nBin(𝑛, 𝑝)\nPoi(𝜆)\nGeo(𝑝)\nNegBin(𝑟, 𝑝)\n(this Friday)\nOne success\nSeveral\nsuccesses\nInterval of time to\nfirst success\nTime until \nsuccess\n𝑛= 1\n𝑟= 1",
+      "char_count": 315
+    },
+    {
+      "page_index": 15,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCatching Pokemon\nWild Pokemon are captured by throwing Pokeballs at them.\n• Each ball has probability p = 0.1 of capturing the Pokemon.\n• Each ball is an independent trial.\nWhat is the probability that you catch the Pokemon on the 5th try?\n16\n1. Define events/ \nRVs & state goal\nA.  𝑋~Bin 5, 0.1\nB.  𝑋~Poi 0.5\nC.  𝑋~NegBin 5, 0.1\nD.  𝑋~NegBin 1, 0.1  \nE.  𝑋~Geo 0.1\n2. Solve\n𝑋~some distribution     \nWant: 𝑃𝑋= 5",
+      "char_count": 484
+    },
+    {
+      "page_index": 16,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWild Pokemon are captured by throwing Pokeballs at them.\n• Each ball has probability p = 0.1 of capturing the Pokemon.\n• Each ball is an independent trial.\nWhat is the probability that you catch the Pokemon on the 5th try?\nA.  𝑋~Bin 5, 0.1\nB.  𝑋~Poi 0.5\nC.  𝑋~NegBin 5, 0.1\nD.  𝑋~NegBin 1, 0.1  \nE.  𝑋~Geo 0.1\nCatching Pokemon\n17\n1. Define events/ \nRVs & state goal\n2. Solve\n𝑋~some distribution     \nWant: 𝑃𝑋= 5\n𝑋~Geo(𝑝) 𝑝𝑘= 1 −𝑝#!$𝑝",
+      "char_count": 506
+    },
+    {
+      "page_index": 17,
+      "text": "Exercises\n18\nThe hardest part of is almost always deciding what \nyou’re modeling and what random variable to use.",
+      "char_count": 113
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nKickboxing with RVs\nHow might you model the following?\n1. # of snapchats you receive in a day\n2. # of children born to the same parents \nuntil the first one with green eyes \n3. If stock went up (1) or down (0) in a day\n4. # of probability problems you try until you \nget 5 correct (if you are randomly correct)\n5. # of years between now and 2050 with \nmore than 6 Atlantic hurricanes\n19\nChoose from:\nA. Ber 𝑝\nB. Bin 𝑛, 𝑝\nC. Poi 𝜆\nD. Geo 𝑝\nE. NegBin 𝑟, 𝑝",
+      "char_count": 526
+    },
+    {
+      "page_index": 19,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nKickboxing with RVs\nHow might you model the following?\n1. # of snapchats you receive in a day\n2. # of children born to the same parents \nuntil the first one with green eyes \n3. If stock went up (1) or down (0) in a day\n4. # of probability problems you try until you \nget 5 correct (if you are randomly correct)\n5. # of years between now and 2050 with \nmore than 6 Atlantic hurricanes\n20\nE. NegBin 𝑟= 5, 𝑝\nChoose from:\nA. Ber 𝑝\nB. Bin 𝑛, 𝑝\nA. Ber 𝑝 or B. Bin 1, 𝑝\nD. Geo 𝑝 or E. NegBin 1, 𝑝\nC. Poi 𝜆\nB. Bin 𝑛= 27, 𝑝, where \n𝑝= 𝑃≥6 hurricanes in a year\ncalculated from C. Poi 𝜆\nC. Poi 𝜆\nD. Geo 𝑝\nE. NegBin 𝑟, 𝑝\nNote: These exercises are designed to build intuition; in a \nproblem statement, you’ll generally be given more detail.",
+      "char_count": 800
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPoisson Random Variable\nIn CS109, a Poisson RV 𝑋~Poi(𝜆) most often models\n1. # of successes in a fixed interval of time, where successes are independent\n𝜆= 𝐸[𝑋], average success/interval\n21\n𝑃𝑋= 𝑘= 𝑒23 𝜆1\n𝑘!\n𝑋~Poi(𝜆)\nSupport: {0,1, 2, … }\nPMF\n𝐸𝑋= 𝜆 \nVar 𝑋= 𝜆 \nVariance  \nExpectation \n \n \nReview",
+      "char_count": 366
+    },
+    {
+      "page_index": 21,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Web server load\nConsider requests to a web server in 1 second.\n• In the past, server load averages 2 hits/second, where requests arrive independently.\n• Let 𝑋 = # requests the server receives in a second.\nWhat is 𝑃𝑋< 5 ?\n22\n𝑋~Poi(𝜆)\n𝑝𝑘= 𝑒!\" 𝜆#\n𝑘!\nDefine RVs\nSolve\n𝐸𝑋= 𝜆",
+      "char_count": 345
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPoisson Random Variable\nIn CS109, a Poisson RV 𝑋~Poi(𝜆) most often models\n1. # of successes in a fixed time interval, where successes are \nindependent\n𝜆= 𝐸[𝑋], average success/interval\n2. Approximation of 𝑌~Bin(𝑛, 𝑝) where 𝑛 is large and 𝑝 is small.\n𝜆= 𝐸𝑌= 𝑛𝑝 \nApproximation works well even when trials not entirely independent. \n23\n𝑃𝑋= 𝑘= 𝑒23 𝜆1\n𝑘!\n𝑋~Poi(𝜆)\nSupport: {0,1, 2, … }\nPMF\n𝐸𝑋= 𝜆 \nVar 𝑋= 𝜆 \nVariance  \nExpectation",
+      "char_count": 497
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n2. DNA\n24\nAll the movies, images, \nemails and other digital \ndata from more than \n600 smartphones \n(10,000 GB) can be \nstored in the faint pink \nsmear of DNA at the end \nof this test tube.\nWhat is the probability \nthat DNA storage stays \nuncorrupted?",
+      "char_count": 323
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n2. DNA\nWhat is the probability that DNA storage stays uncorrupted?\n• In DNA (and real networks), we store large strings.\n• Let string length be long, e.g., 𝑛≈106\n• Probability of corruption of each base pair is very small, e.g., 𝑝= 10/7\n• Let 𝑋= # of corruptions.\nWhat is P(DNA storage is uncorrupted) = 𝑃𝑋= 0 ?\n25\n1. Approach 1:\n𝑋~Bin 𝑛= 108, 𝑝= 10#9\n𝑃𝑋= 𝑘= 𝑛\n𝑘𝑝% 1 −𝑝\"/% \n \n \n= 106\n0\n10/7⋅9 1 −10/7 :9!/9\n≈0.990049829 \n2. Approach 2:\n𝑋~Poi 𝜆= 108 ⋅10#9 = 0.01\n𝑃𝑋= 𝑘= 𝑒/0 𝜆%\n𝑘!  = 𝑒/9.9: 0.019\n0!\n                       = 𝑒/9.9:\n \n \n \n     ≈0.990049834\nunwieldy!\na good \napproximation!",
+      "char_count": 659
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhen is a Poisson approximation appropriate?\n26\n𝑃𝑋= 𝑘= lim\n\"→%\n𝑛\n𝑘\n𝜆\n𝑛\n!\n1 −𝜆\n𝑛\n\"#!\n= lim\n\"→$\n𝑛!\n𝑛%(𝑛−𝑘)!\n𝜆%\n𝑘!\n𝑒/0\n1 −l\n𝑛\n%\nDef natural \nexponent\n= lim\n\"→$\n𝑛𝑛−1 ⋯𝑛−𝑘+ 1\n𝑛%\n𝑛−𝑘!\n𝑛−𝑘!\n𝜆%\n𝑘!\n𝑒/0\n1 −l\n𝑛\n%\nExpand\n= lim\n\"→$\n𝑛%\n𝑛%\n𝜆%\n𝑘!\n𝑒/0\n1\nLimit analysis\n= 𝜆%\n𝑘! 𝑒/0\nSimplify\n= ⋯\nUnder which conditions will \n𝑋~Bin(𝑛, 𝑝) behave like \nPoi(𝜆), where 𝜆= 𝑛𝑝?\nA.\nLarge 𝑛, large 𝑝\nB.\nSmall 𝑛, small 𝑝\nC.\nLarge 𝑛, small 𝑝\nD.\nSmall 𝑛, large 𝑝\nE.\nOther",
+      "char_count": 513
+    },
+    {
+      "page_index": 26,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPoisson approximation\nPoisson approximates Binomial \nwhen 𝑛 is large, 𝑝 is small, and \n𝜆= 𝑛𝑝 is \"moderate”.\nDifferent interpretations of \n\"moderate\":\n• 𝑛> 20 and 𝑝< 0.05\n• 𝑛> 100 and 𝑝< 0.1\nPoisson is Binomial in the limit:\n• 𝜆= 𝑛𝑝, where 𝑛→∞, 𝑝→0\n27\n0\n0.05\n0.1\n0.15\n0.2\n0.25\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n𝑃(𝑋 = 𝑘)\n𝑋 = 𝑘\nBin(10,0.3)\nBin(100,0.03)\nBin(1000,0.003)\nPoi(3)\n𝑋~Poi(𝜆)\n𝐸𝑋= 𝜆 \n𝑌~Bin(𝑛, 𝑝)\n𝐸𝑌= 𝑛𝑝",
+      "char_count": 474
+    },
+    {
+      "page_index": 27,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider an experiment that lasts a fixed interval of time.\ndef A Poisson random variable 𝑋 is the number of occurrences over the \nexperiment duration.\nExamples:\n• # earthquakes per year\n• # server hits per second\n• # of emails per day\nTime to show intuition for why \nexpectation == variance!\nPoisson Random Variable\n28\n𝑃𝑋= 𝑘= 𝑒23 𝜆1\n𝑘!\n𝑋~Poi(𝜆)\nSupport: {0,1, 2, … }\nVariance  \nExpectation \n \n \nPMF\n𝐸𝑋= 𝜆 \nVar 𝑋= 𝜆",
+      "char_count": 488
+    },
+    {
+      "page_index": 28,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProperties of Poi(𝜆) with the Poisson paradigm\nRecall the Binomial:\nConsider 𝑋~Poi(𝜆), where 𝜆= 𝑛𝑝 (𝑛→∞, 𝑝→0):\n \n \n \nProof:\n𝐸𝑋= 𝑛𝑝= 𝜆\nVar 𝑋= 𝑛𝑝1 −𝑝→𝜆1 −0 = 𝜆\n29\n𝑌~Bin(𝑛, 𝑝)\nVariance  \nExpectation \n \n \n𝐸𝑌= 𝑛𝑝 \nVar 𝑌= 𝑛𝑝(1 −𝑝) \nExpectation \n \n \n𝐸𝑋= 𝜆 \nVar 𝑋= 𝜆 \n𝑋~Poi(𝜆)\nVariance",
+      "char_count": 350
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPoisson Approximation, approximately\nPoisson can still provide a good approximation of the Binomial,\neven when assumptions are \"mildly\" violated.\nYou still can apply the Poisson approximation when:\n•\n\"Successes\" in trials are almost, but not entirely independent\ne.g., # entries in each bucket in large hash table.\n•\nProbability of \"success\" in each trial varies (slightly),\nlike a small relative change in a very small p\ne.g., average # requests to web server/sec may fluctuate\n slightly due to load on network or time of day\n30\nWe won’t explore this too much, but we \nwant you to know about it anyway.",
+      "char_count": 676
+    },
+    {
+      "page_index": 30,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCan these Binomial RVs be approximated?\n31\nPoisson approximates Binomial \nwhen 𝑛 is large, 𝑝 is small, and \n𝜆= 𝑛𝑝 is \"moderate\".\nDifferent interpretations of \n\"moderate\":\n• 𝑛> 20 and 𝑝< 0.05\n• 𝑛> 100 and 𝑝< 0.1\nPoisson is Binomial in the limit:\n• 𝜆= 𝑛𝑝, where 𝑛→∞, 𝑝→0\n0\n0.05\n0.1\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n!(\" = #)\nBin(100,0.5)\n0\n0.1\n0.2\n0.3\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n!(\" = #)\nBin(100,0.04)\n0\n0.1\n0.2\n0.3\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n!(\" = #)\nBin(100,0.96)",
+      "char_count": 535
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCan these Binomial RVs be approximated?\n32\n0\n0.05\n0.1\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n𝑃(𝑋 = 𝑘)\nBin(100,0.5)\nPoi(50)\n0\n0.1\n0.2\n0.3\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n𝑃(𝑋 = 𝑘)\nBin(100,0.04)\nPoi(4)\n0\n0.1\n0.2\n0.3\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n𝑃(𝑋 = 𝑘)\nBin(100,0.96)\nPoi(4)\nCan approximate\nBin(100,1-0.96)\nPoisson approximates Binomial \nwhen 𝑛 is large, 𝑝 is small, and \n𝜆= 𝑛𝑝 is \"moderate\".\nDifferent interpretations of \n“moderate”:\n• 𝑛> 20 and 𝑝< 0.05\n• 𝑛> 100 and 𝑝< 0.1\nPoisson is Binomial in the limit:\n• 𝜆= 𝑛𝑝, where 𝑛→∞, 𝑝→0",
+      "char_count": 589
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:57Z"
+}

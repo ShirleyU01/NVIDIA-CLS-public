@@ -1,0 +1,60 @@
+.page {
+  display: grid;
+  gap: 1.2rem;
+  min-height: calc(100vh - 4.5rem);
+  align-content: center;
+  justify-items: center;
+}
+
+.centeredHeader {
+  text-align: center;
+  display: grid;
+  gap: 0.35rem;
+  justify-items: center;
+}
+
+.kicker {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.headline {
+  margin: 0;
+  font-size: 1.7rem;
+  color: var(--color-text);
+}
+
+.subHeadline {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.mainActions {
+  display: grid;
+  gap: 0.8rem;
+  max-width: 420px;
+  width: 100%;
+}
+
+.primaryAction,
+.secondaryAction {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-sm);
+}
+
+.primaryAction {
+  border-color: color-mix(in srgb, var(--color-sage-700) 35%, var(--color-border));
+}
+
+.secondaryAction {
+  border-color: color-mix(in srgb, var(--color-clay-700) 30%, var(--color-border));
+}

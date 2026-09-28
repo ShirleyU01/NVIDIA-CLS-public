@@ -1,0 +1,26 @@
+{
+  "course": "CS109",
+  "document_role": "exam",
+  "source_path": "data/raw/CS109/exams/Extra-Problems-1.pdf",
+  "relative_path": "data/raw/CS109/exams/Extra-Problems-1.pdf",
+  "sha256": "354c2b35e39dfe6ed92c0550bb0062305b7c520e57f7ab5515a5033ee0e51bcd",
+  "title_guess": "Extra-Problems-1",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "CS109 Section 1\nProblem 1\nA student is taking the computer-based GRE test. As the student answers questions, the test\nadapts its level of diﬃculty to their abilities. Let’s say that the student is in the math section,\nand the test is trying to estimate whether or not they know geometry based on whether they\nanswer the ﬁrst geometry question correctly. The test’s prior belief that the student knows\ngeometry is q. The test also knows the following: Given that a student knows geometry,\nthe probability that they solve the ﬁrst question correctly is p1. Additionally, given that a\nstudent does not know geometry, the probability that the solve the ﬁrst questions correctly\nis p2. Given that the student solves the ﬁrst question correctly, what is the probability that\nthey know geometry?\nProblem 2\nContinuing the story from Problem 1: Now the test is trying to estimate what level of\nexperience a student has with geometry. There are 4 levels: Beginner, Intermediate, Expert,\nand Euclid, and each student is in exactly 1 level. The test’s prior belief that a student is\nin a certain level is as follows: Beginner is b1, Intermediate is b2, Expert is b3, and Euclid is\nb4. The conditional probability that a student solves the ﬁrst question correctly given their\nlevel is as follows: Beginner is d1, Intermediate is d2, Expert is d3, and Euclid is d4. Find\nthe conditional probability that a student is in a certain level given that they solve the ﬁrst\nquestion correctly. Do this for each of the 4 levels.\nProblem 3\nAfter a long night of programming, you have built a powerful, but slightly buggy, email\nspam ﬁlter. When you don’t encounter the bug, the ﬁlter works very well, always marking\na spam email as SPAM and always marking a non-spam email as GOOD. Unfortunately,\nyour code contains a bug that is encountered 10% of the time when the ﬁlter is run on an\nemail. When the bug is encountered, the ﬁlter always marks the email as GOOD. As a\nresult, emails that are actually spam will be erroneously marked as GOOD when the bug\nis encountered. Let p denote the probability that an email is actually non-spam, and let\nq denote the conditional probability that an email is non-spam given that it is marked as\nGOOD by the ﬁlter. Determine q in terms of p.\n1",
+      "char_count": 2258
+    },
+    {
+      "page_index": 1,
+      "text": "CS109 Section 1 Solutions\nProblem 1\nLet C be the event that the student knows geometry. Let S be the event that the student\nsolves the ﬁrst geometry question correctly. Then P(C) = q, P(Cc) = 1 −q, P(S|C) = p1,\nand P(S|Cc) = p2. The value we need to solve for is P(C|S). We use Bayes Rule:\nP(C|S) = P(S|C)P(C)\nP(S)\nP(C|S) =\nP(S|C)P(C)\nP(S|C)P(C) + P(S|Cc)P(Cc)\nP(C|S) =\np1q\np1q + p2(1 −q)\nProblem 2\nLet S be the event the student solves the ﬁrst question correctly.\nA = the event the student is in the Beginner level\nB = the event the student is in the Intermediate level\nC = the event the student is in the Expert level\nD = the event the student is in the Euclid level\nThen P(A) = b1, P(B) = b2, P(C) = b3, P(D) = b4. And P(S|A) = d1, P(S|B) = d2,\nP(S|C) = d3, P(S|D) = d4. We want to solve for P(A|S), P(B|S), P(C|S), P(D|S). Here\nwe show the example for P(A|S). We use Bayes Rule:\nP(A|S) = P(S|A)P(A)\nP(S)\nP(A|S) =\nP(S|A)P(A)\nP(SA) + P(SB) + P(SC) + P(SD)\nP(A|S) =\nP(S|A)P(A)\nP(S|A)P(A) + P(S|B)P(B) + P(S|C)P(C) + P(S|D)P(D)\nP(A|S) =\nd1b1\nd1b1 + d2b2 + d3b3 + d4b4\nNote that we get the second equation by the law of total probability.\n1",
+      "char_count": 1140
+    },
+    {
+      "page_index": 2,
+      "text": "Problem 3\nLet event E = email is actually non-spam. Let event F = email is marked as GOOD by the\nﬁlter. We compute q as follows:\nq = P(E|F) = P(EF)\nP(F) =\nP(F|E)P(E)\nP(F|E)P(E) + P(F|Ec)P(Ec)\nNote that P(E) = p, and P(F|E) = 1 since an email that is non-spam will always be\nmarked GOOD by the ﬁlter (whether we encounter the bug or not). We also know that\nP(F|Ec) = 0.1, since a spam email is only marked as GOOD if we encounter the bug (which\nhappens 10% of the time). Thus, we have:\nq =\np\np + (0.1)(1 −p) =\np\n0.1 + 0.9p\n2",
+      "char_count": 523
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:59Z"
+}

@@ -1,0 +1,246 @@
+{
+  "course": "CS109",
+  "topic_id": "normal_distribution",
+  "topic_name": "Normal Distribution",
+  "queries_used": [
+    "Normal Distribution definition",
+    "Normal Distribution intuition",
+    "Normal Distribution worked example",
+    "Normal Distribution exam problem",
+    "gaussian distribution overview",
+    "gaussian distribution practice",
+    "normal distribution overview",
+    "normal distribution practice",
+    "standard normal overview",
+    "standard normal practice",
+    "binomial approximation to normal overview",
+    "binomial approximation to normal practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_11_joint_rvs_annotated_p10_761317177f",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. If there is a choice, use Gaussian to approximate.\n2. When using Normal to approximate a discrete RV, use a continuity correction.\nWho gets to approximate?\n11\nPoisson approximation\n𝑛 large (> 20), 𝑝 small (< 0.05)\nslight dependence okay\nNormal approximation\n𝑛 large (> 20), 𝑝 mid-ranged (𝑛𝑝1 −𝑝> 10)\nindependence\n0\n0.05\n0.1\n0.15\n0.2\n0.25\n0\n10\n!(\" = #)\n$\nBin(100,0.04)\nN(4,1.96)\nPoi(4)\n0\n0.01\n0.02\n0.03\n0.04\n0.05\n0.06\n0.07\n0.08\n0.09\n30\n40\n50\n60\n70\n!(\" = #)\n$\nBin(100,0.5)\nN(50,5)\nPoi(50)",
+      "source_type": "lecture_slide",
+      "document_name": "11 joint rvs annotated",
+      "score": 0.6270774602890015
+    },
+    {
+      "chunk_id": "cs109_08_poisson_and_more_annotated_p30_7e1affcde8",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCan these Binomial RVs be approximated?\n31\nPoisson approximates Binomial \nwhen 𝑛 is large, 𝑝 is small, and \n𝜆= 𝑛𝑝 is \"moderate\".\nDifferent interpretations of \n\"moderate\":\n• 𝑛> 20 and 𝑝< 0.05\n• 𝑛> 100 and 𝑝< 0.1\nPoisson is Binomial in the limit:\n• 𝜆= 𝑛𝑝, where 𝑛→∞, 𝑝→0\n0\n0.05\n0.1\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n!(\" = #)\nBin(100,0.5)\n0\n0.1\n0.2\n0.3\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n!(\" = #)\nBin(100,0.04)\n0\n0.1\n0.2\n0.3\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n!(\" = #)\nBin(100,0.96)",
+      "source_type": "lecture_slide",
+      "document_name": "08 poisson and more annotated",
+      "score": 0.5896695256233215
+    },
+    {
+      "chunk_id": "cs109_08_poisson_and_more_annotated_p29_1cfe0aced4",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPoisson Approximation, approximately\nPoisson can still provide a good approximation of the Binomial,\neven when assumptions are \"mildly\" violated.\nYou still can apply the Poisson approximation when:\n•\n\"Successes\" in trials are almost, but not entirely independent\ne.g., # entries in each bucket in large hash table.\n•\nProbability of \"success\" in each trial varies (slightly),\nlike a small relative change in a very small p\ne.g., average # requests to web server/sec may fluctuate\n slightly due to load on network or time of day\n30\nWe won’t explore this too much, but we \nwant you to know about it anyway.",
+      "source_type": "lecture_slide",
+      "document_name": "08 poisson and more annotated",
+      "score": 0.5892078280448914
+    },
+    {
+      "chunk_id": "cs109_08_poisson_and_more_annotated_p31_c5b48dc4ec",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCan these Binomial RVs be approximated?\n32\n0\n0.05\n0.1\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n𝑃(𝑋 = 𝑘)\nBin(100,0.5)\nPoi(50)\n0\n0.1\n0.2\n0.3\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n𝑃(𝑋 = 𝑘)\nBin(100,0.04)\nPoi(4)\n0\n0.1\n0.2\n0.3\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n𝑃(𝑋 = 𝑘)\nBin(100,0.96)\nPoi(4)\nCan approximate\nBin(100,1-0.96)\nPoisson approximates Binomial \nwhen 𝑛 is large, 𝑝 is small, and \n𝜆= 𝑛𝑝 is \"moderate\".\nDifferent interpretations of \n“moderate”:\n• 𝑛> 20 and 𝑝< 0.05\n• 𝑛> 100 and 𝑝< 0.1\nPoisson is Binomial in the limit:\n• 𝜆= 𝑛𝑝, where 𝑛→∞, 𝑝→0",
+      "source_type": "lecture_slide",
+      "document_name": "08 poisson and more annotated",
+      "score": 0.587920606136322
+    },
+    {
+      "chunk_id": "cs109_midtermfall2017soln_q49_376e2f8f80",
+      "text": "2\n)\n6\n\n3\n500 year ﬂood planes [20 points]\nThe Huffmeister ﬂoodplane in Houston has historically been estimated to ﬂood at an average rate of 1 ﬂood\nevery 500 years. A ﬂood plane with that rate of ﬂooding is called a “500 year” ﬂoodplane.\na. (4 points) What is the probability of observing at least 3 ﬂoods in 500 years?\nPoisson RV with λ = 1 (ﬂood per 500-year period)\nP(X ≥3) = 1−\n2\n∑\ni=0\nP(X = i)\n= 1−\n2\n∑\ni=0\nλ i\ni! e−λ\n= 1−5\n2e\nb. (5 points) What is the probability that a ﬂood will occur within the next 100 years?\nY ∼Exp( 1\n500)\nF(Y) = 1−e−λY\nF(100) = 1−e−100\n500 = 1−e−1\n5\n7\n\nc. (5 points) What is the expected number of years until the next ﬂood?\nE[Y] = 1\nλ = 500\nusing λ =\n1\n500 in terms of one year\nd. (6 points) Say there are 10 independent 500 year ﬂoodplanes. What is the probability that more than 2\nof them will have at least three ﬂoods in a given year?\nFirst ﬁnd the probability p∗that a single ﬂoodplane has at least 3 ﬂoods:\nX ∼Poisson( 1\n500) = number of ﬂoods in a ﬂoodplane in one year\np∗= P(X ≥3) = 1−\n2\n∑\ni=0\nλ i\ni! e−λ\np∗= 1−\n2\n∑\ni=0\n( 1\n500)i\ni!\ne−1\n500\nThen treat each ﬂoodplane as an independent trial of a binomial RV with n = 10 and p = p∗:\nY ∼Bin(10, p∗) = number of ﬂoodplanes with X ≥3\nP(Y > 2) =\n10\n∑\ni=3\n\u001210\ni\n\u0013\n(p∗)i(1−p∗)10−i\n8\n\n4\nGaussian Mixture Model [22 points]\nYou are looking at the distribution of the number of ﬂowers observed on rose bushes (a ﬂowering curve)\nand you think you have made a discovery! Based on your ﬂowering curve, you have reason to believe that\nthere are two distinct species of roses. The species look the same but have different ﬂowering patterns. The\nobserved probability density of number of ﬂowers is a “mixture”.\nYou believe that:\n• Each ﬂower is either from species A or species B.\n• There are two times as many bushes of species A than there are of species B.\n• The number of ﬂowers on a bush for species A: XA ∼N(µ = 4,σ2 = 4).\n• The number of ﬂowers on a bush for species B: XB ∼N(µ = 2,σ2 = 9)\na. (4 points) What is the probability that a rose bush from species A has more than 3 ﬂowers?\nSolution:\nNote that for both a and b, you have to use continuity correction because you are using the Gaussian\ndistribution to approximate a discrete distribution:\nP(XA > 3) = 1−P(XA <= 3)\n= 1−φ\n\u00103.5−4\n2\n\u0011\n= 1−φ(−0.25)\n= φ(0.25)\n= 0.5987\nb. (4 points) What is the probability that a rose bush from species B has more than 3 ﬂowers?\nSolution:\nP(XB > 3) = 1−P(XB <= 3)\n= 1−φ\n\u00103.5−2\n3\n\u0011\n= 1−φ(0.5)\n= 0.3085\n9\n\nc. (7 points) Without knowing which species a rose bush is from, what is the probability that a rose bush\nhas more than 3 ﬂowers? You can use pa for your answer to part (a) and pb for your answer to part (b).\nSolution:\nP(X > 3) = P(X > 3,X = A)+P(X > 3,X = B)\n= P(X > 3|X = A)P(X = A)+P(X > 3|X = B)P(X = B)\n= P(XA > 3)P(X = A)+P(XB > 3)P(X = B)\n= pa(2\n3)+ pb(1\n3)\nd. (7 points) A rosebush has 3 ﬂowers. How many times more likely is the rosebush to be from species\nB?\nP(X = B|X = 3)\nP(X = A|X = 3) = P(X = B,X = 3)\nP(X = A,X = 3)\n= P(X = 3|X = B)P(X = B)\nP(X = 3|X = A)P(X = A)\n= ε f(X = 3|X = B)P(X = B)\nε f(X = 3|X = A)P(X = A)\n=\n1\n√\n2π9e\n(3−2)2\n2·9\n· 1\n3\n1\n√\n2π4e\n(3−4)2\n2·4\n· 2\n3\n= 1\n3e−5\n72 ≈0.357\n10\n\n5\nCurse of Dimensionality [20 points]\nIn machine learning projects we often work in high dimensions, and high dimension spaces have some sur-\nprising probabilistic properties.\nA random value Xi is a Uni(0, 1).\nA random point of dimension d is a list of d random values: [X1 ...Xd].\na. (4 points) A random value Xi is close to an edge if Xi is less than 0.01 or Xi is greater than 0.99. What\nis the probability that a random value is close to an edge? Solutions:Let E be the event that a random\nvalue is close to an edge. P(E) = P(Xi < 0.01)+P(Xi > 0.99) = 0.02\nb. (4 points) A random point [X1,X2,X3] of dimension 3 is close to an edge if any of it’s values are close\nto an edge. What is the probability that a 3 dimensional point is close to an edge?\nSolutions:The event is equivalent to the complement of none of the dimensions of the point is close to\nan edge, which is: 1−(1−P(E))3 = 1−0.983\nc. (4 points) A random point [X1,...X100] of dimension 100 is close to an edge if any of it’s values are\nclose to an edge. What is the probability that a 100 dimensional point is close to an edge?\nSolutions: Similarly, it is: 1−(1−P(E))100 = 1−0.98100\n11\n\n6\nGoodbye integral, my old friend [14 points]\nWhen working with continuous random variables it can get hard to calculate probabilities by hand. For\nexample consider a random variable X that can takes on values in the range 0 ≤x ≤1, and has probability\ndensity function:\nf(x) = 1\nK ·g(x)\nWhere g(x) is some terribly nasty and non-integratable function. For your sanity I won’t even write out g. It\nis that bad. In such a situation, we can turn to the power of computers to help us (you may assume that while\ng is impossible to integrate, it is straightforward to code g as a function in a programming language). The\nkey idea that we are going to use is called Monte Carlo Integration:\nGenerate N values (X1,X2,...,XN) uniformly sampled over a range (a,b). We can approximate the\nintegral of a function h over (a,b) as:\nb\nZ\na\nh(x) dx ≈(b−a)\nN\nN\n∑\ni=1\nh(Xi)\nPretty amazing! Why did we bother with integrals at all? This question requires you to write pseudo code.\nSuch code does not have to compile, but it should be speciﬁc enough that a knowledgable programmer could\nimplement what you have described. You may use a function random(a, b) which returns a sample from\nX ∼Uni(a,b).\na. (7 points) How could you use Monte Carlo Integration to ﬁnd K? Give your answer as pseudo-code.\nsum = 0\nfor i in range(N):\nsum += g(random(0, 1))\nreturn sum / N\n12\n\nb. (7 points) Given that you know K, how could you ﬁnd P(X < 0.5)? Again, provide pseudo-code.\nsum = 0\nfor i in range(N):\nsum += g(random(0, .5))\nreturn .5 * sum / (N * K)\nThat’s the last question of the exam! We hope you had fun. Monte carlo sampling techniques (aka\nparticle ﬁlters) are an increasingly proliﬁc tool for solving more complex probability questions.\nGaussian Mixture Models are a workhorse for unsupervised clustering. The Curse of Dimensionality\nand the Wisdom of the Crowds are real world phenomena that are worth understanding.\n13\n\nStandard Normal Table\nAn entry in the table is the area under the curve to the left of z, P(Z ≤z) = Φ(z).\nZ",
+      "source_type": "exam_question",
+      "document_name": "MidtermFall2017Soln",
+      "score": 0.5653170943260193
+    },
+    {
+      "chunk_id": "cs109_finalfall2022soln_preamble_879cb11add",
+      "text": "CS109 Final Exam\nChris Piech\nCS109\nFall 2022\nThis is a closed calculator/computer exam. You are, however, allowed to use notes in the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions and\nparameter values you used, where appropriate. It is fine for your answers to include summations, products,\nfactorials, exponentials, and combinations.\nYou can leave your answer in terms of Φ (the CDF of the standard normal) or Φ−1 (the inverse CDF). For\nexample Φ\n\u0010\n3\n4\n\u0011\nis an acceptable final answer. Recall that the exam is going to be “curved” according to the\ndifficulty of the questions and as such hard questions will not translate to lower grades.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than I have in\nmy entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\nEmail (preferably your gradescope email):\n\n1\nShort Answer (22 points)\nAnswer each of the following questions. You must give a brief justification for your answer.\na. (5 points) What is the probability that a randomly chosen three-digit integer (from 0 to 999 inclusive)\nwill be divisible by 5? Note that 0 is divisible by 5.\nThere are 1000 total numbers between 0 and 999, so 1000 is our sample space. The event space is\n20 × 10 (where 20 is the number of digits divisible by 5 from 0 to 99 and there are 10 sets of 100\nbetween 0 and 999. Thus our probability is 200\n1000 = 0.2\n3cm\nb. (9 points) Suppose 𝑋is a random variable that is normally distributed with a mean of 100 and a standard\ndeviation of 15. What is the probability that a random sample of size 10 from this distribution will have\na mean between 95 and 105?\nWe know that 𝑋∼N (𝜇= 100, 𝜎= 15). The sample mean is given by:\n¯𝑋∼\nÍ10\n𝑖=1 𝑋𝑖\n𝑛\n= N (𝜇= 100, 𝜎= 15\n√\n10\n)\nNormalizing we get that:\n𝑃( 95 −100",
+      "source_type": "exam_question",
+      "document_name": "FinalFall2022Soln",
+      "score": 0.5651898980140686
+    },
+    {
+      "chunk_id": "cs109_midtermfall2022soln_p6_180472912b",
+      "text": "5\nMixing up Gaussians [20 points]\nConsider the following function:\ndef sample ():\nX = rand_bern (0.3)\n# bernoulli\nsample\nif X == 0:\nreturn\nrand_gauss(mu = -1, std = 2) # gaussian\nsample\nreturn\nrand_gauss(mu = 1, std = 1)\n# gaussian\nsample\na. (10 points) What is the probability that the function returns a value less than 0?\nLet Y be the output of the function. Then:\nP(Y < 0) = P(Y < 0|X = 0)P(X = 0)+P(Y < 0|X = 1)P(X = 1)\n= Φ(0−(−1)\n2\n)∗(1−0.3)+Φ(0−1\n1\n)∗(0.3)\n= 0.7∗Φ(0.5)+0.3∗Φ(−1)\nb. (10 points) The function returns back the value 0.1. What is the probability that X was 1?\na. Define target: Let X be the outcome of Bernoulli random variable. Let S be the output of the\nfunction.\nP(X = 1|S = 0.1)\nb. Bayes\nP(X = 1|S = 0.1) = P(S = 0.1|X = 1)P(X = 1)\nP(S = 0.1)\nc. Use law of total probability to expand denominator\nP(X = 1|S = 0.1) =\nP(S = 0.1|X = 1)P(X = 1)\nP(S = 0.1|X = 1)P(X = 1)+P(S = 0.1|X = 0)P(X = 0)\nd. Cancel out epsilons in Gaussian probabilities to be able to use PDF of Gaussian Distribution. Let\nfX=0 be the PDF of the Gaussian Distribution when X = 0 and fX=1 the PDF of the Gaussian\nDistribution when X = 1.\nP(X = 1|S = 0.1) =\nfX=1(0.1)P(X = 1)\nfX=1(0.1)P(X = 1)+ fX=0(0.1)P(X = 0)\ne. Substitute values using PDF of Gaussian Distribution\nP(X = 1|S = 0.1) =\n1\n√\n2π e−1\n2 ( 0.1−1\n1\n)2P(X = 1)\n1\n√\n2π e−1\n2 ( 0.1−1\n1\n)2P(X = 1)+\n1\n2\n√\n2π e−1\n2 ( 0.1+1\n2\n)2P(X = 0)\nf. Simplify expression\nP(X = 1|S = 0.1) =\ne−1\n2 ( 0.1−1\n1\n)2 ·0.3\ne−1\n2 ( 0.1−1\n1\n)2 ·0.3+ 1\n2e−1\n2 ( 0.1+1\n2\n)2 ·0.7\n=\ne−1\n2 (−0.9)2 ·0.3\ne−1\n2 (−0.9)2 ·0.3+ 1\n2e−1\n2 (0.55)2 ·0.7\n7",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermFall2022Soln",
+      "score": 0.5644307136535645
+    },
+    {
+      "chunk_id": "cs109_midtermspr2017_q3d_295bdfa007",
+      "text": "n\n’\ni=d\n✓n\ni\n◆✓1\n5\n◆i ✓4\n5\n◆n−i\n= 1 −\nd\n’\ni=0\n✓n\ni\n◆✓1\n5\n◆i ✓4\n5\n◆n−i\nwhere n = *2050\n2\n+ −*50\n2\n+. We accepted approximations with a normal distribution as long as it\nwas mentioned that it was an approximation, and a justiﬁcation was given for why a normal\napproximation is appropriate. We also accepted bounds beginning or ending at d + 1 instead of d.\nCommon mistakes: using Poisson or negative binomial; incorrect bounds; incorrect binomial\nform; ﬁnding the probability that a song receives exactly 1/5 of votes instead of > 1/5.",
+      "source_type": "exam_question",
+      "document_name": "MidtermSpr2017",
+      "score": 0.5643234252929688
+    },
+    {
+      "chunk_id": "cs109_10_normal_gaussian_annotated_p10_8eddb3475d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNormal Random Variable\nMatch PDF to distribution:\n1.  𝒩0, 1\n2.  𝒩(−2, 0.5)\n3.  𝒩0, 5\n4.  𝒩(0, 0.2)\n11\n0\n0.1\n0.2\n0.3\n0.4\n0.5\n0.6\n0.7\n0.8\n0.9\n1\n-5\n-4\n-3\n-2\n-1\n0\n1\n2\n3\n4\n5\n!(0,1)\n!(0,0.2)\n!(0,5)\n!(-2,0.5)\nA. \nB.\nC.\nD.\n𝑋~𝒩(𝜇, 𝜎!)\nmean\nvariance\n𝑥\n𝑓𝑥",
+      "source_type": "lecture_slide",
+      "document_name": "10 normal gaussian annotated",
+      "score": 0.5642095804214478
+    },
+    {
+      "chunk_id": "cs109_10_normal_gaussian_annotated_p6_d49a4720b4",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0\n0.05\n0.1\n0.15\n0.2\n0.25\n0\n…\n44\n48\n52\n56\n60\n64\n…\n90\n0     …     44   48   52   56    60   64    …    90  \nOkay, so why the Normal?\nPart of CS109 learning goals:\n• Translate a problem statement into a random variable\nIn other words: model real life situations with probability distributions\n7\nvalue\nHow do you model student heights?\n• Suppose you have data from one classroom.\nFits perfectly!\nBut what about in \nanother classroom?",
+      "source_type": "lecture_slide",
+      "document_name": "10 normal gaussian annotated",
+      "score": 0.5641336441040039
+    },
+    {
+      "chunk_id": "cs109_midtermfall2025soln_q0_96c40be370",
+      "text": "482 and the variance of the return for simulation 2 is 0.0099. You collect 100 samples from each.\nWhat is the distribution of the average calculated from the 100 samples from simulation 1?\n6\n\nLet ¯X = 1\nn ∑n\ni=1 Xi be the average calculated from n = 100 samples. We use CLT for averages to get\n¯X ∼N\n\u0012\nµ = 0.01,σ2 =\n1\n100 ·0.482\n\u0013\n.\nWhat is the distribution of the average calculated from the 100 samples from simulation 2?\nSimilarly,\n¯Y ∼N\n\u0012\nµ = 0.01,σ2 =\n1\n100 ·0.0099\n\u0013\n.\n7",
+      "source_type": "exam_question",
+      "document_name": "MidtermFall2025Soln",
+      "score": 0.5608691573143005
+    },
+    {
+      "chunk_id": "cs109_midtermspr2017_q6k_9949ec7b94",
+      "text": "such that the probability that you don't drop a single request in the busiest\nhour is > 0.99. Use p from part a. The expression does not have to be closed form.\n\n– 13 – \nc. (7 points) A Poisson random variable with a parameter of λ ≥ 1000, can be \napproximated by a normal. The approximating normal should match the mean and \nthe variance of the Poisson. Let X ~ Poi(1000). What is an approximation for \nP(990 < X < 1000). Give your answer to two decimal places. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nd. (6 points) The probit function, Φ-1(x) is the inverse of the CDF of a standard \nnormal. It maps from probabilities to the standard normal CDF input that would \nproduce said probability. For example, you can confirm using the Standard \nNormal Table that Φ(0.1) = 0.5398, so  Φ-1(0.5398) = 0.1. Give a closed form \nexpression, using the probit function, for an approximation of K. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nWebsites solve this problem constantly.\n\n– 14 – \nStandard Normal Table \nNote: An entry in the table is the area under the curve to the left of z, P(Z ≤ z) = Φ(z) \n \n \n \n \n \nZ",
+      "source_type": "exam_question",
+      "document_name": "MidtermSpr2017",
+      "score": 0.5605335235595703
+    },
+    {
+      "chunk_id": "cs109_midtermspr2017_q0_ef20d6de51",
+      "text": "00",
+      "source_type": "exam_question",
+      "document_name": "MidtermSpr2017",
+      "score": 0.558215856552124
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p28_4cdee69411",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSum of independent Gaussians\n29\n𝑋~𝒩𝜇$, 𝜎$\n% ,\n𝑌~𝒩𝜇%, 𝜎%\n%\n𝑋, 𝑌 independent\n𝑋+ 𝑌 ~𝒩(𝜇! + 𝜇\", 𝜎!\n\" + 𝜎\"\n\")\n(proof left to Wikipedia)\nHolds in general case:\n𝑋=~𝒩𝜇=, 𝜎=\n&\n𝑋= independent for 𝑖= 1, … , 𝑛\n;\n5+$\n6\n𝑋5 ~𝒩\n;\n5+$\n6\n𝜇5 , ;\n5+$\n6\n𝜎5\n%",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.5506244897842407
+    },
+    {
+      "chunk_id": "cs109_10_normal_gaussian_annotated_p7_3ccab4149b",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nA Gaussian maximizes entropy for a \ngiven mean and variance.\nPart of CS109 learning goals:\n• Translate a problem statement into a random variable\nIn other words: model real life situations with probability distributions\n0\n0.05\n0.1\n0.15\n0.2\n0.25\n0\n…\n44\n48\n52\n56\n60\n64\n…\n90\n0     …     44   48   52   56    60   64    …    90  \nOkay, so why the Normal?\n8\nvalue\nHow do you model student heights?\n• Suppose you have data from one classroom.\n• Same mean/var\n• Generalizes well",
+      "source_type": "lecture_slide",
+      "document_name": "10 normal gaussian annotated",
+      "score": 0.5490052103996277
+    },
+    {
+      "chunk_id": "cs109_10_normal_gaussian_annotated_p21_6dbb7ba655",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThe Standard Normal random variable 𝑍 is defined as follows:\nOther names: Unit Normal\nCDF of 𝑍 defined as:\nStandard Normal RV, 𝑍\n22\n𝑍~𝒩(0, 1)\nVariance  \nExpectation \n \n \n𝐸𝑍= 𝜇= 0\nVar 𝑍= 𝜎% = 1\n𝑃𝑍≤𝑧= Φ(𝑧)\nNote: not a new distribution; just\na special case of the Normal",
+      "source_type": "lecture_slide",
+      "document_name": "10 normal gaussian annotated",
+      "score": 0.547736406326294
+    },
+    {
+      "chunk_id": "cs109_finalwin2022soln_preamble_667e8456d8",
+      "text": "CS109 Final Exam\nChris Piech\nCS109\nWinter 2022\nThis is a closed calculator/computer exam. You are, however, allowed to use notes in the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions and\nparameter values you used, where appropriate. It is fine for your answers to include summations, products,\nfactorials, exponentials, and combinations.\nYou can leave your answer in terms of Φ (the CDF of the standard normal) or Φ−1 (the inverse CDF). For\nexample Φ\n\u0010\n3\n4\n\u0011\nis an acceptable final answer. Recall that the exam is going to be “curved\" according to the\ndifficulty of the questions and as such hard questions will not translate to lower grades.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than I have in\nmy entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\nEmail (preferably your gradescope email):\n\n1\nShort Answer (30 points)\nAnswer each of the following questions. You must give a brief justification for your answer.\na. (6 points) Google Maps stores a probability distribution of the time of day that people go to the San\nFrancisco Airport (SFO):\nLet 𝑝𝑖be the probability that a person will show up at SFO 𝑖hours past midnight (so 𝑝6 is the probability\nthat they will show up between 6a and 7a). Out of the visitors that will visit SFO on a given day, what\nfraction do you expect to show up between midnight and noon? Give an expression.\n11\n∑︁\n𝑖=0\n𝑝𝑖\nSince Í23\n𝑖=0 𝑝𝑖= 1, the following is another equivalent answer:\n11Í\n𝑖=0\n𝑝𝑖\n23Í\n𝑖=0\n𝑝𝑖\nb. (7 points) We will consider a datapoint 𝑥an “outlier” if the probability of seeing a value 𝑥or larger is\n≤0.05. Consider a distribution 𝑋∼Geo(𝑝= 0.8). Is 7 an outlier? Give an expression.\n7 is an outlier if 1 −Σ6\n𝑖=0(0.2)𝑖−1(0.8) ≤0.05\nc. (7 points) A class uses High Resolution Course Feedback. In a given week they ask a random sample\nof 20 people for a numerical rating, instead of asking everyone. Assume the population expectation of\nrating is 4.5 and the population variance of rating is 1.0. What is the probability that the sample mean\nrating from 20 students will be ≥4.7?\nTrue\nA p-value of 0.99 would occur if the difference we observed between the modes of the two datasets is\nthe kind of difference we would observe frequently by chance if the two sets of points were drawn from\ndistributions with the same mode.\nd. (10 points) You meet a person at a party who mentions that they have two children. They reveal that\nthey have a daughter who was born on a Tuesday. What is the probability that they have two daughters?\nAssume a child has a 1⁄2 chance of being a daughter and a 1⁄7 chance of being born on a Tuesday. Assume\nthat the genders of the children, and the weekdays they were born on, are all independent of one another.\n\nThe answer is 13/27.\nLet B be the event that both children are girls. Let T be the event that there is a girl born on a Tuesday.\n𝑃(𝐵|𝑇) = 𝑃(𝑇|𝐵)𝑃(𝐵)\n𝑃(𝑇)\n𝑃(𝐵) = 1/4\n𝑃(𝑇|𝐵) = 1/7 + 1/7 −1/49\n𝑃(𝑇) = 1/14 + 1/14 −1/196\nAnother explanation:\nThis is a well known paradox known as the boy-girl-paradox. Intuition says that the answer is 0.5, but\nit is not!\nFigure 1: We are conditioning on the yellow region (i.e. think of it as the \"new sample space\"). We are\nassessing the probability of the yellow region inside the \"female/female\" quadrant.\nLet the event \"there are two daughters\" be 𝐸.\nLet the event \"there is at least one daughter born on Tuesday\" be 𝐹.\n𝑃(𝐸|𝐹) = 𝑃(𝐸𝐹)\n𝑃(𝐹)\nUsing Inclusion-Exclusion Principle:\n= 𝑃(C1 Fem Tue, C2 Fem) + 𝑃(C1 Fem, C2 Fem Tue) −𝑃(C1 Fem Tue, C2 Fem Tue)\n𝑃(C1 Fem Tue) + 𝑃(C2 Fem Tue) −𝑃(C1 Fem Tue, C2 Fem Tue)\nThis turns into\n(7 + 7 −1)/142\n(14 + 14 −1)/142 = 13\n27 = 0.48148148\n.\n\n2\nQuantitative Art History (20 points)\nA Stanford alumni discovered that the “Average Number of Brushstrokes in the Neighborhood\" is very\npredictive of whether a painting has been painted by Van Gough [1].\nLet 𝑋∼𝑁(𝜇= 20, 𝜎2 = 9) be the average number of brushstrokes in the neighborhood if Van Gough is\nthe painter. Let 𝑋∼𝑁(𝜇= 12, 𝜎2 = 25) be the average number of brushstrokes in the neighborhood if Van\nGough is not the painter.\nAside: A brushstroke 𝑗is a neighbor of brushstroke 𝑖if they are at most 200 pixels apart. For each brushstroke\nwe can calculate how many other brushstrokes are neighbours. The Average Number of Brushstrokes in the\nNeighborhood is an average of these values over all brushstrokes in a painting. Here is a painting by Van\nGough (left) and the auto-identified brush strokes (right).\na. (4 points) Why is a normal distribution appropriate for the “average number of brushstrokes in the\nneighborhood\" of a painting?\nMust mention the central limit theorem.\n\nb. (16 points) A painting is discovered. Based on background information your prior belief that it was\npainted by Van Gough is 0.75. What is your updated belief after observing that the average number of\nbrushstrokes in the neighbourhood is 19?\nThis is an inference question: Let 𝑌be the event that Van gough was the artist.\n𝑃(𝑌|𝑋= 19) =\n𝑓(𝑋= 19|𝑌)𝑃(𝑌)\n𝑓(𝑋= 19|𝑌)𝑃(𝑌) + 𝑓(𝑋= 19|𝑌)𝑃(𝑌𝐶)\n\n3\nBeta ± (20 points)\nYou have observed 30 successes and 20 fails for an event with unknown probability. Based on this information\nyou can model the probability of success, 𝑋, as a Beta random variable. You want to make a claim of the\nform: \"the probability of success is 𝑚± 𝑏.\"\nSelect 𝑚to be the expectation of 𝑋. Select 𝑏to be the smallest value, rounded to two decimal places, such\nthat 𝑃(𝑚−𝑏< 𝑋< 𝑚+ 𝑏) is greater than or equal to 95%. Provide your answer as pseudocode that prints\nout the values 𝑚and 𝑏.\nIncremental solution:\n\n4\nBayesian Carbon Dating (34 points)\nWe are able to know the age of ancient artefacts using a process called carbon dating. This process involves\na lot of uncertainty! Living things have a constant proportion of a molecule called C14 in them. When living\nthings die those molecules start to decay. The time to decay in years, 𝑇, of a C14 molecule is distributed as an\nexponential. 𝑇∼Exp(𝜆= 1/8267).\na. (5 points) Consider a single C14 molecule. What is the probability that it decays within 500 years?\n𝑃(𝑇≤500) = 1 −𝑒−\n1\n8267 ∗500 = 0.05868875306\nb. (8 points) C14 molecules decay independently. A particular sample started with 100 molecules. What\nis the probability that exactly 95 are left after 500 years? Let 𝑝be your answer to part a.\nX Bin(n=100, p = 0.0586)\nP(X = 5) = scipy.stats.binom.pmf(5, 100, 0.05868)\n\nc. (6 points) Write pseudocode for a function pr_measure_given_age(m, age) which returns 𝑃(𝑀=\nm|𝐴= age), the probability that exactly m molecules are left out of the original 100 after exactly age\nnumber of years.\nd. (15 points) You observe a measurement of 95 C14 molecules in a sample. You assume that the sample\noriginally had 100 C14 molecules when it died. Write pseudocode for a function age_belief() that\nreturns a list of length 1000 where the value at index 𝑖in the list stores 𝑃(𝐴= 𝑖|𝑀= 95). Age is a\ndiscrete random variable which takes on whole numbers of years. 𝐴= 𝑖is the event that the sample\norganism died 𝑖years ago. You may use the function pr_measure_given_age(m, age) from part c.\nFor your prior belief: you know that the sample must be between 𝐴= 500 and 𝐴= 600 inclusive and\nyou assume that every year in that range is equally likely.\n\n5\nReliability engineering (23 points)\nThe “reliability distribution\" is a random variable parameterized by 𝑎with PDF:\n𝑓(𝑋= 𝑥) = 1\n𝑎2 𝑥𝑎−1𝑒−𝑥2\n𝑎2\nWe wish to model how long a particular model of phone will function before it breaks. We are going to use\na reliability distribution. To this end we collect 𝑁independent measurements of how long the type of phone\nfunctions before it breaks: 𝑥1, 𝑥2, . . . , 𝑥𝑁. Explain, in words, how you would choose parameter 𝑎using the\nmaximum likelihood estimation framework, and provide any necessary derivatives.\nFirst, we start by defining our likelihood function.\n𝐿(𝑎) =\n𝑁\nÖ\n𝑖=1\n𝑓(𝑋𝑖|𝑎)\nWe want to determine ˆ𝑎= argmax\n𝑎\n𝐿(𝑎). Since the argmax of 𝐿(𝑎) is equivalent to the argmax of the log of\n𝐿(𝑎) and logs make the math simpler we write:\n𝐿𝐿(𝑎) = log\n 𝑁\nÖ\n𝑖=1\n𝑓(𝑋𝑖|𝑎)\n!\nPlugging in the provided PDF and simplifying:\n𝐿𝐿(𝑎) = log\n 𝑁\nÖ\n𝑖=1\n1\n𝑎2 𝑥𝑎−1\n𝑖\n𝑒−\n𝑥2\n𝑖\n𝑎2\n!\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\nlog\n \n1\n𝑎2 𝑥𝑎−1\n𝑖\n𝑒−\n𝑥2\n𝑖\n𝑎2\n!#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\nlog\n\u0012 1\n𝑎2\n\u0013\n+ log\n\u0010\n𝑥𝑎−1\n𝑖\n\u0011\n+ log\n \n𝑒−\n𝑥2\n𝑖\n𝑎2\n!#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\n−2 log (𝑎) + (𝑎−1) log (𝑥𝑖) −𝑥2\n𝑖\n𝑎2 log (𝑒)\n#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n−2 log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n(𝑎−1) log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\n𝑎2 log (𝑒)\n𝐿𝐿(𝑎) = −2𝑁log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n𝑎log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) −1\n𝑎2\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\nNow we will take the partial derivative of the log likelihood with respect to the parameter of interest 𝑎:\n𝜕𝐿𝐿(𝑎)\n𝜕𝑎\n= 𝜕\n𝜕𝑎\n \n−2𝑁log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n𝑎log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) −1\n𝑎2\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\n!\n𝜕𝐿𝐿(𝑎)\n𝜕𝑎\n= −2𝑁\n𝑎+\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) + 2\n𝑎3\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\nFrom here, we would set the partial derivative equal to 0 and solve for 𝑎.\nNote: You were required to provide the necessary derivatives but you did not need to actually determine the\nvalue of 𝑎as the problem states. Any math beyond the calculation of the partial derivative was not required\nor penalized.\n\n6\nRank ordering of samples (25 points)\nA random variable 𝑋can take on three values: 1, 2 or 3 with the following probabilities:\nValue\nProbability\n1",
+      "source_type": "exam_question",
+      "document_name": "FinalWin2022Soln",
+      "score": 0.5456426739692688
+    },
+    {
+      "chunk_id": "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPoisson approximation\nPoisson approximates Binomial \nwhen 𝑛 is large, 𝑝 is small, and \n𝜆= 𝑛𝑝 is \"moderate”.\nDifferent interpretations of \n\"moderate\":\n• 𝑛> 20 and 𝑝< 0.05\n• 𝑛> 100 and 𝑝< 0.1\nPoisson is Binomial in the limit:\n• 𝜆= 𝑛𝑝, where 𝑛→∞, 𝑝→0\n27\n0\n0.05\n0.1\n0.15\n0.2\n0.25\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n𝑃(𝑋 = 𝑘)\n𝑋 = 𝑘\nBin(10,0.3)\nBin(100,0.03)\nBin(1000,0.003)\nPoi(3)\n𝑋~Poi(𝜆)\n𝐸𝑋= 𝜆 \n𝑌~Bin(𝑛, 𝑝)\n𝐸𝑌= 𝑛𝑝",
+      "source_type": "lecture_slide",
+      "document_name": "08 poisson and more annotated",
+      "score": 0.5395768880844116
+    },
+    {
+      "chunk_id": "cs109_12_independent_rvs_annotated_p15_ca11a53e52",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Approximating the sum of independent Binomial RVs\nLet 𝑋~Bin 30, 0.01  and 𝑌~Bin 50, 0.02  be independent RVs.\n• How do we compute 𝑃𝑋+ 𝑌= 2  using a Poisson approximation?\n• How do we compute 𝑃𝑋+ 𝑌= 2  exactly?\n16\n𝑃𝑋+ 𝑌= 2 = ;\n453\n\"\n𝑃𝑋= 𝑘𝑃𝑌= 2 −𝑘\n= :\n&'(\n)\n30\n𝑘\n0.01& 0.99 *(#&\n50\n2 −𝑘0.02)#&0.98+(#()#&)≈0.2327",
+      "source_type": "lecture_slide",
+      "document_name": "12 independent rvs annotated",
+      "score": 0.5370317101478577
+    },
+    {
+      "chunk_id": "cs109_10_normal_gaussian_annotated_p22_a300b3f930",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nΦ has been numerically computed\n23\nStandard Normal Table\nAn entry in the table is the area under the curve to the left of z, P(Z ≤z) = Φ(z).\nZ\n0.00\n0.01\n0.02\n0.03\n0.04\n0.05\n0.06\n0.07\n0.08\n0.09\n0.0\n0.5000\n0.5040\n0.5080\n0.5120\n0.5160\n0.5199\n0.5239\n0.5279\n0.5319\n0.5359\n0.1\n0.5398\n0.5438\n0.5478\n0.5517\n0.5557\n0.5596\n0.5636\n0.5675\n0.5714\n0.5753\n0.2\n0.5793\n0.5832\n0.5871\n0.5910\n0.5948\n0.5987\n0.6026\n0.6064\n0.6103\n0.6141\n0.3\n0.6179\n0.6217\n0.6255\n0.6293\n0.6331\n0.6368\n0.6406\n0.6443\n0.6480\n0.6517\n0.4\n0.6554\n0.6591\n0.6628\n0.6664\n0.6700\n0.6736\n0.6772\n0.6808\n0.6844\n0.6879\n0.5\n0.6915\n0.6950\n0.6985\n0.7019\n0.7054\n0.7088\n0.7123\n0.7157\n0.7190\n0.7224\n0.6\n0.7257\n0.7291\n0.7324\n0.7357\n0.7389\n0.7422\n0.7454\n0.7486\n0.7517\n0.7549\n0.7\n0.7580\n0.7611\n0.7642\n0.7673\n0.7703\n0.7734\n0.7764\n0.7793\n0.7823\n0.7852\n0.8\n0.7881\n0.7910\n0.7939\n0.7967\n0.7995\n0.8023\n0.8051\n0.8078\n0.8106\n0.8133\n0.9\n0.8159\n0.8186\n0.8212\n0.8238\n0.8264\n0.8289\n0.8315\n0.8340\n0.8365\n0.8389\n1.0\n0.8413\n0.8438\n0.8461\n0.8485\n0.8508\n0.8531\n0.8554\n0.8577\n0.8599\n0.8621\n1.1\n0.8643\n0.8665\n0.8686\n0.8708\n0.8729\n0.8749\n0.8770\n0.8790\n0.8810\n0.8830\n1.2\n0.8849\n0.8869\n0.8888\n0.8906\n0.8925\n0.8943\n0.8962\n0.8980\n0.8997\n0.9015\n1.3\n0.9032\n0.9049\n0.9066\n0.9082\n0.9099\n0.9115\n0.9131\n0.9147\n0.9162\n0.9177\n1.4\n0.9192\n0.9207\n0.9222\n0.9236\n0.9251\n0.9265\n0.9279\n0.9292\n0.9306\n0.9319\n1.5\n0.9332\n0.9345\n0.9357\n0.9370\n0.9382\n0.9394\n0.9406\n0.9418\n0.9429\n0.9441\n0\n0.1\n0.2\n0.3\n0.4\n0.5\n-3\n-2\n-1\n0\n1\n2\n3\n! = 1.31\n𝑃𝑍≤1.31 = Φ(1.31) \n𝑓𝑧\n𝑧\nΦ(𝑧)\nStandard Normal Table only has \nprobabilities Φ(𝑧) for 𝑧≥0.",
+      "source_type": "lecture_slide",
+      "document_name": "10 normal gaussian annotated",
+      "score": 0.5348462462425232
+    },
+    {
+      "chunk_id": "cs109_10_normal_gaussian_annotated_p0_p1_8de1a2eba4",
+      "text": "10: Normal Distributions\nJerry Cain\nApril 22nd, 2024\n1\nLecture Discussion on Ed\n\nNormal \nRandom \nVariables\n2",
+      "source_type": "lecture_slide",
+      "document_name": "10 normal gaussian annotated",
+      "score": 0.5311819314956665
+    },
+    {
+      "chunk_id": "cs109_10_normal_gaussian_annotated_p31_5f3ef4ac39",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGet your Gaussian On\nLet 𝑋~𝒩𝜇= 3, 𝜎% = 16 . Std deviation 𝜎= 4.\n1.  𝑃𝑋> 0\n2.  𝑃2 < 𝑋< 5\n32\n•\nIf 𝑋~𝒩𝜇, 𝜎# , then \n𝐹𝑥= Φ\n)%&\n'\n•\nSymmetry of the PDF of \nNormal RV implies  \nΦ −𝑧= 1 −Φ 𝑧",
+      "source_type": "lecture_slide",
+      "document_name": "10 normal gaussian annotated",
+      "score": 0.5306247472763062
+    },
+    {
+      "chunk_id": "cs109_18_clt_annotated_p13_6be30bf45c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProof of CLT\n14\nThe sum of 𝑛 iid random variables is normally \ndistributed with mean 𝑛𝜇 and variance 𝑛𝜎%.\n0\n'($\n&\n𝑋' ~𝒩(𝑛𝜇, 𝑛𝜎%)\n• The Fourier Transform of a PDF is its characteristic function.\n• Take the characteristic function of the probability mass of the sample \ndistance from the mean, divided by standard deviation\n• Show that this approaches an\nexponential function in the limit as 𝑛→∞: \n• This function just happens to be the characteristic function of the \nStandard Normal, 𝑍~ 𝒩(0,1).\nSketch of Proof:\n𝑓𝑥= 𝑒01!\n\"\n(the full proof is beyond the scope of CS109)\nAs 𝑛→∞",
+      "source_type": "lecture_slide",
+      "document_name": "18 clt annotated",
+      "score": 0.5272068381309509
+    },
+    {
+      "chunk_id": "cs109_10_normal_gaussian_annotated_p30_e3cf6aa184",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGet your Gaussian On\nLet 𝑋~𝒩𝜇= 3, 𝜎, = 16 .\nNote standard deviation 𝜎= 4.\nHow would you write each of the below\nprobabilities as a function of the\nstandard normal CDF, Φ?\n1.  𝑃𝑋> 0\n2.  𝑃2 < 𝑋< 5\n3.  𝑃𝑋−3 > 6\n31\n•\nIf 𝑋~𝒩𝜇, 𝜎# , then \n𝐹𝑥= Φ\n)%&\n'\n•\nSymmetry of the PDF of \nNormal RV implies  \nΦ −𝑧= 1 −Φ 𝑧",
+      "source_type": "lecture_slide",
+      "document_name": "10 normal gaussian annotated",
+      "score": 0.52640700340271
+    },
+    {
+      "chunk_id": "cs109_10_normal_gaussian_annotated_p29_e42b9f2f2b",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGet your Gaussian On\nLet 𝑋~𝒩𝜇= 3, 𝜎% = 16 . Std deviation 𝜎= 4.\n1.  𝑃𝑋> 0\n30\n•\nIf 𝑋~𝒩𝜇, 𝜎# , then \n𝐹𝑥= Φ\n)%&\n'\n•\nSymmetry of the PDF of \nNormal RV implies  \nΦ −𝑧= 1 −Φ 𝑧",
+      "source_type": "lecture_slide",
+      "document_name": "10 normal gaussian annotated",
+      "score": 0.5191543698310852
+    },
+    {
+      "chunk_id": "cs109_10_normal_gaussian_annotated_p32_98bff0ab7c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGet your Gaussian On\nLet 𝑋~𝒩𝜇= 3, 𝜎% = 16 . Std deviation 𝜎= 4.\n1.  𝑃𝑋> 0\n2.  𝑃2 < 𝑋< 5\n3.  𝑃𝑋−3 > 6\n33\nCompute 𝑧=\n\"!#\n&\n•\nIf 𝑋~𝒩𝜇, 𝜎# , then \n𝐹𝑥= Φ\n)%&\n'\n•\nSymmetry of the PDF of \nNormal RV implies  \nΦ −𝑥= 1 −Φ 𝑥\n𝑃𝑋< −3 + 𝑃𝑋> 9\n= 𝐹−3 + 1 −𝐹9\n= Φ −3 −3\n4\n+\n1 −Φ 9 −3\n4\nLook up Φ(z) in table",
+      "source_type": "lecture_slide",
+      "document_name": "10 normal gaussian annotated",
+      "score": 0.5151410102844238
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p36_63838de75b",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSum of Independent Gaussians\n37\n𝑋$~𝒩𝜇$, 𝜎$\n% ,\n𝑋%~𝒩𝜇%, 𝜎%\n%\n𝑋$, 𝑋% independent\n𝑋! + 𝑋\"~𝒩(𝜇! + 𝜇\", 𝜎!\n\" + 𝜎\"\n\")\nIs this related to linear transformations of Gaussians?\nRecall:\nIf 𝑌= 𝑎𝑋+ 𝑏, then 𝑌~𝒩𝑎𝜇! + 𝑏, 𝑎\"𝜎!\n\"",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.5117495656013489
+    },
+    {
+      "chunk_id": "cs109_10_normal_gaussian_annotated_p5_e928f0c882",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhy the Normal?\n•\nCommon for natural phenomena: \nheight, weight, etc.\n•\nMost noise in the world is Normal\n•\nOften results from the sum of many \nrandom variables\n•\nSample means are distributed normally\n6\nActually log-normal\nJust an assumption\nOnly if equally weighted\n(okay this one is true, we’ll see\nthis in 3 weeks)",
+      "source_type": "lecture_slide",
+      "document_name": "10 normal gaussian annotated",
+      "score": 0.5084553956985474
+    },
+    {
+      "chunk_id": "cs109_10_normal_gaussian_annotated_p3_f4a9422df7",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCarl Friedrich Gauss\nCarl Friedrich Gauss (1777-1855) was a remarkably influential\nGerman mathematician.\nDid not invent Normal distribution but rather popularized it.\n4\njust wow!",
+      "source_type": "lecture_slide",
+      "document_name": "10 normal gaussian annotated",
+      "score": 0.5047656297683716
+    },
+    {
+      "chunk_id": "cs109_10_normal_gaussian_annotated_p8_a2765ae76d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStay critical of how to model real-\nworld phenomena.\nWhy the Normal?\n•\nCommon for natural phenomena: \nheight, weight, etc.\n•\nMost noise in the world is Normal\n•\nOften results from the sum of many \nrandom variables\n•\nSample means are distributed normally\n9\nActually log-normal\nJust an assumption\nOnly if equally weighted\n(okay this one is true, we’ll see\nthis in 3 weeks)\nbecause it’s well understood",
+      "source_type": "lecture_slide",
+      "document_name": "10 normal gaussian annotated",
+      "score": 0.4957430958747864
+    },
+    {
+      "chunk_id": "cs109_10_normal_gaussian_annotated_p18_p19_f06b0b1b6c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nUsing symmetry of the Normal RV\n19\n1.  𝑃𝑍≤𝑧\n2.  𝑃𝑍< 𝑧\n3.  𝑃𝑍≥𝑧\n4.  𝑃𝑍≤−𝑧\n5.  𝑃𝑍≥−𝑧\n6.  𝑃(𝑦< 𝑍< 𝑧)\nA.  𝐹𝑧  \nB.  1 −𝐹(𝑧) \nC.  𝐹𝑧−𝐹(𝑦) \n= 𝐹𝑧 \n= 𝐹𝑧 \n= 1 −𝐹(𝑧) \n= 1 −𝐹(𝑧) \n= 𝐹𝑧 \n= 𝐹𝑧−𝐹(𝑦) \nSymmetry is particularly useful when \ncomputing probabilities of zero-mean \nNormal RVs.\n-3\n-2\n-1\n0\n1\n2\n3\n+\"\n−\"\n𝑧\n𝑓(𝑧)\n𝐹𝜇−𝑥= 1 −𝐹𝜇+ 𝑥\n𝜇= 0\nLet 𝑍~𝒩0,1  with CDF 𝑃𝑍≤𝑧= 𝐹𝑧.\nSuppose we only knew numeric values\nfor 𝐹𝑧 and 𝐹𝑦, for some 𝑦, 𝑧≥0.\nHow do we compute the following probabilities?\n\nNormal RV:\nComputing \nprobability\n20",
+      "source_type": "lecture_slide",
+      "document_name": "10 normal gaussian annotated",
+      "score": 0.4951915740966797
+    },
+    {
+      "chunk_id": "cs109_midtermfall2022soln_p4_fc039a9166",
+      "text": "P(X = i) =\n9\n∑\nj=0\nP(X = i|N = j)P(N = j)\n=\n9\n∑\nj=0\n\u00009\ni\n\u0001\u0000 k−9\n12−i\n\u0001\n\u0000 k\n12\n\u0001\n· 1\n10\n=\n\u00009\ni\n\u0001\u0000 k−9\n12−i\n\u0001\n\u0000 k\n12\n\u0001\nRemark 1. This is precisely a hypergeometric distribution.\nRemark 2. The binomial distribution gets very close to this solution, however, notice each of the 9 “trials”\n(corresponding to an edge incident to a node) are not independent of each other.\nd. (5 points) Let P(X = i) be the answer to the previous part. What is Var(X)?\nUsing the law of the unconscious statistician,\nVar(X) = E[X2]−E[X]2\n=\n \n9\n∑\ni=0\ni2 ·P(X = i)\n!\n−\n \n9\n∑\ni=0\ni·P(X = i)\n!2\nRemark. How might we actually compute this for the distribution in part (c)? We could break X up into\nindicator random variables X = X1 +...+X9, then using linearity of expectation we just have to compute\nE[Xi] and E[XiXj].\n5",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermFall2022Soln",
+      "score": 0.49453452229499817
+    }
+  ],
+  "built_at": "2026-04-28T05:13:09Z"
+}

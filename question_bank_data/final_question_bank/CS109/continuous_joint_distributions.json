@@ -1,0 +1,1282 @@
+{
+  "topic_id": "continuous_joint_distributions",
+  "topic_name": "Continuous Joint Distributions",
+  "course": "CS109",
+  "questions": [
+    {
+      "question_id": "CS109_continuous_joint_distributions_0001",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A classmate says: 'For continuous random variables, the probability at a point is always zero, so the joint PDF value at a point is meaningless.' Do you agree? Explain carefully using the idea of probability as volume under a surface, and comment on what information the ratio of two PDF values can still convey.",
+      "expected_answer": "A strong answer says the statement is only partly true. It is true that for jointly continuous random variables, P(X=a,Y=b)=0 for any single point, because probabilities come from integrating the joint density over regions, not evaluating it at isolated points. But the joint PDF value is still meaningful as a density: it describes how much probability mass accumulates per unit area near that point. So while f_{X,Y}(a,b) is not itself a probability, comparing densities is meaningful: if one point has twice the density of another, then for very small equal-area neighborhoods around those points, the first neighborhood has about twice the probability. This parallels the one-dimensional idea that ratios of PDF values describe relative local likelihood, even though point probabilities are zero.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p7_2034f6d1da",
+        "cs109_17_cont_joint_ii_annotated_p18_p19_653a0fdfd1",
+        "cs109_16_cont_joint_i_annotated_p6_3119f5608d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that point probability is zero for continuous variables.",
+          "Explains that joint probabilities come from double integrals over regions.",
+          "Clarifies that the PDF is a density, not a probability.",
+          "Explains the local-neighborhood or ratio interpretation of PDF values."
+        ],
+        "partial_credit": [
+          "Says PDF is not probability but gives no geometric explanation.",
+          "Mentions local likelihood informally without tying it to small regions.",
+          "Correctly rejects the statement but does not explain ratios."
+        ],
+        "common_mistakes": [
+          "Saying f_{X,Y}(a,b)=P(X=a,Y=b).",
+          "Claiming density values are meaningless because point probabilities are zero.",
+          "Confusing relative density with exact probability at a point."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you make that local-neighborhood idea precise using a small rectangle around (a,b)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If f_{X,Y}(a,b)=5, what exact probability does that assign to the single point (a,b)?"
+        }
+      ],
+      "hints": [
+        "Start by separating two ideas: a probability at exactly one point versus the height of the joint density surface at that point. In a continuous model, probabilities come from area/volume under the surface over a region, not from a single location.",
+        "Picture a tiny rectangle around \\((a,b)\\). The probability of landing in that rectangle is a double integral, and for a very small rectangle it is approximately \\(f_{X,Y}(a,b)\\times \\text{(its area)}\\).",
+        "Use that small-neighborhood approximation to judge the classmate\u2019s claim: the PDF value is not itself a probability, but it tells you how concentrated probability is locally. If two points have different density heights, compare equal-area tiny neighborhoods around them to interpret the ratio of those PDF values."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0002",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose a proposed joint density is g(x,y)=cxy on the rectangle 0<=x<=1, 0<=y<=2, and 0 elsewhere. Without rushing to the final number, explain how you would determine c, and then describe in words what the shape of this density says about where probability is concentrated.",
+      "expected_answer": "First impose the normalization condition for a joint PDF: the double integral over the whole support must equal 1. So 1 = integral from x=0 to 1 and y=0 to 2 of cxy dy dx = c times the integral of xy over that rectangle. Computing gives c times 1, so c=1. Interpreting the shape, the density increases as x increases and also as y increases, so regions near the upper-right corner of the rectangle have higher density than regions near the lower-left. That does not mean a point there has positive probability, but small rectangles there have more probability than equally sized rectangles near the origin.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p10_ca62843fb0",
+        "cs109_16_cont_joint_i_annotated_p7_2034f6d1da",
+        "cs109_09_continuous_rv_annotated_p3_0552fa72b1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Sets up normalization via a double integral over the support.",
+          "Correctly concludes c=1.",
+          "Interprets increasing density in both coordinates.",
+          "Distinguishes density concentration from point probability."
+        ],
+        "partial_credit": [
+          "Gets c=1 but gives little reasoning.",
+          "Correct setup with minor integration slip but sound method.",
+          "Gives qualitative interpretation without mentioning support."
+        ],
+        "common_mistakes": [
+          "Integrating over the wrong bounds.",
+          "Treating g(x,y) itself as a probability over the rectangle.",
+          "Forgetting that the density is zero outside the support."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Using the same density, how would you set up P(X>0.5, Y<1) without evaluating it immediately?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What condition must every valid joint PDF satisfy over its entire support?"
+        }
+      ],
+      "hints": [
+        "First check the support: the density only lives on the rectangle 0\u2264x\u22641 and 0\u2264y\u22642, so the total probability must come from integrating over exactly that region.",
+        "Use the normalization rule for a joint PDF: set \u222c g(x,y)\\,dA = 1, so here you should write \u222b_0^1 \u222b_0^2 cxy\\,dy\\,dx = 1.",
+        "When you compute, factor the integral into a product involving c and one integral in x and one in y; then interpret the shape by noticing the density gets larger as both x and y increase, so equal-size rectangles near the upper-right have more probability mass than those near the origin, even though single points still have probability 0."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0003",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "For the joint PDF f(x,y)=xy on 0<=x<=1 and 0<=y<=2, compute the marginal density of X and then use it to check whether X and Y are independent. I care more about the logic than the algebra alone, so explain what independence would require.",
+      "expected_answer": "The marginal of X is f_X(x)=integral from 0 to 2 of xy dy = x times (y^2/2 from 0 to 2)=2x for 0<=x<=1, and 0 otherwise. Similarly, f_Y(y)=integral from 0 to 1 of xy dx = y/2 for 0<=y<=2. To test independence, we check whether f_{X,Y}(x,y)=f_X(x)f_Y(y) on the support. Here f_X(x)f_Y(y)=(2x)(y/2)=xy, which matches the joint density on the rectangle, so X and Y are independent. A strong explanation mentions that matching the product on the common support is essential; having a rectangular support also aligns with independence here.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p11_p12_279fd66720",
+        "cs109_17_cont_joint_ii_annotated_p2_e760697bd1",
+        "cs109_16_cont_joint_i_annotated_p10_ca62843fb0"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes f_X(x)=2x and f_Y(y)=y/2 on correct supports.",
+          "States the criterion f_{X,Y}=f_X f_Y.",
+          "Verifies equality on the support and concludes independence.",
+          "Mentions support appropriately."
+        ],
+        "partial_credit": [
+          "Correct marginals but weak or incomplete independence check.",
+          "States independence criterion but only checks one marginal.",
+          "Minor arithmetic slip with otherwise correct logic."
+        ],
+        "common_mistakes": [
+          "Claiming dependence because the formula contains both x and y.",
+          "Forgetting to specify where the marginals are nonzero.",
+          "Checking only whether the support is rectangular, without comparing densities."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If I changed the support to 0<=x<=1 and 0<=y<=x but kept the same formula xy, would your independence conclusion survive? Why or why not?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What exact equation involving f_{X,Y}, f_X, and f_Y would you need to verify to prove independence?"
+        }
+      ],
+      "hints": [
+        "Start by finding the marginal of X: integrate the joint density with respect to y over the full y-range, and remember to state where the result is nonzero.",
+        "Then compute the marginal of Y the same way, since checking independence requires both marginals as well as the joint support on the rectangle.",
+        "Use the criterion for independence: compare f_{X,Y}(x,y) with f_X(x)f_Y(y) on the common support. A rectangular support helps, but by itself it is not enough\u2014you still need the product check."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0004",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student tries to get the marginal of X from a joint PDF by computing f_X(a)=integral from minus infinity to a of f_{X,Y}(x,y) dx. Diagnose the mistake. Then say what must happen to the other variable and why the operation for marginals differs from the operation for CDFs.",
+      "expected_answer": "The mistake is mixing up a marginal with a cumulative probability. To get f_X(a), you do not integrate x up to a; instead, you fix X at a and integrate out the other variable: f_X(a)=integral over all y of f_{X,Y}(a,y) dy. A marginal density collapses the joint distribution by removing Y. By contrast, a CDF like F_{X,Y}(a,b)=P(X<=a,Y<=b) integrates over a region in both variables up to those bounds. So marginals integrate over the unused variable; CDFs integrate over the event region.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p11_p12_279fd66720",
+        "cs109_16_cont_joint_i_annotated_p15_af3c0f3531",
+        "cs109_16_cont_joint_i_annotated_p13_3acbbb996a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies confusion between marginal density and CDF.",
+          "Gives the correct marginal formula integrating over the other variable.",
+          "Explains that the target x-value is held fixed.",
+          "Contrasts region integration for CDFs with variable-elimination for marginals."
+        ],
+        "partial_credit": [
+          "Provides correct marginal formula without diagnosing the conceptual error.",
+          "Says 'integrate over y' but does not explain why.",
+          "Mentions CDF vaguely but not the difference in bounds."
+        ],
+        "common_mistakes": [
+          "Using cumulative bounds when asked for a density.",
+          "Integrating over the same variable being marginalized.",
+          "Confusing f_X(a) with P(X<=a)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you express P(X<=a) in terms of the marginal density you just described?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you want a one-dimensional density for X, which variable should disappear from the final expression?"
+        }
+      ],
+      "hints": [
+        "Ask yourself whether f_X(a) is a density at a single x-value or a cumulative probability up to a; an upper limit of a usually signals a CDF idea.",
+        "For the marginal of X, hold x fixed at a and eliminate the other variable instead: integrate the joint over all y values in its support.",
+        "The key contrast is this: marginals integrate out an unused variable, while CDFs integrate over a region defined by inequalities such as x\u2264a or y\u2264b."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0005",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Explain how the joint CDF and joint PDF are related for jointly continuous variables. Then describe, in words, how you would recover P(a1<=X<=a2, b1<=Y<=b2) using either object, and why the two approaches must agree.",
+      "expected_answer": "For jointly continuous variables, the joint CDF is F_{X,Y}(a,b)=P(X<=a,Y<=b), which equals the double integral of the joint PDF over the lower-left quadrant up to (a,b). Conversely, the joint PDF is the mixed partial derivative of the CDF: f_{X,Y}(a,b)=partial^2 F_{X,Y}(a,b)/partial a partial b, assuming sufficient regularity. To find P(a1<=X<=a2, b1<=Y<=b2), one can integrate the PDF over that rectangle, or use inclusion-exclusion on the CDF values at the four corners. They agree because the CDF accumulates exactly the same density that the PDF assigns locally, and the Fundamental Theorem of Calculus in two dimensions connects the two representations.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p15_af3c0f3531",
+        "cs109_16_cont_joint_i_annotated_p6_3119f5608d",
+        "cs109_16_cont_joint_i_annotated_p13_3acbbb996a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines the joint CDF as a probability over a lower-left region.",
+          "States that the CDF is the double integral of the PDF.",
+          "States that the PDF is the mixed partial derivative of the CDF.",
+          "Explains rectangle probability via either double integral or corner-value inclusion-exclusion, and notes equivalence."
+        ],
+        "partial_credit": [
+          "Knows one direction, such as integrating PDF to get CDF, but not the derivative relation.",
+          "Can describe rectangle probability using only one approach.",
+          "Uses correct intuition but imprecise calculus language."
+        ],
+        "common_mistakes": [
+          "Saying the PDF is the ordinary derivative of the joint CDF in one variable only.",
+          "Forgetting that CDF is a probability and PDF is a density.",
+          "Using point evaluations of the PDF instead of region integrals."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is it not enough to know only F_X and F_Y if X and Y are not independent?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What event does F_{X,Y}(a,b) represent exactly?"
+        }
+      ],
+      "hints": [
+        "Start by separating the roles: the joint CDF gives cumulative probability up to a point \u001d(lower-left\" region), while the joint PDF gives local density spread over the plane.",
+        "For jointly continuous variables, think of the CDF as accumulating the PDF over all x and y values up to the target point; going the other way requires a mixed partial derivative with respect to both variables, not just one.",
+        "To get the probability of a rectangle, either add up density over that rectangle with a double integral, or combine the CDF values at the rectangle\u0019s four corners by inclusion-exclusion; these match because 2D calculus says accumulated density and corner differences describe the same region probability."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0006",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "Let X be the fraction of a battery charge remaining at noon and Y be the fraction remaining at 6pm. A modeler proposes a joint density that is positive only when 0<=y<=x<=1. Without doing any heavy computation, explain what this support is encoding about the relationship between X and Y, and why such a support already suggests that X and Y cannot be independent unless something degenerate happens.",
+      "expected_answer": "The support 0<=y<=x<=1 encodes a physical constraint: the later charge level Y cannot exceed the earlier charge level X, and both are between 0 and 1. So the allowed outcomes form a triangular region, not a rectangle. Independence would require the joint density to factor as f_X(x)f_Y(y) on a support that is effectively the product of the marginal supports. Here, if X can take some value and Y can take some value marginally, independence would usually imply that their combination should also be possible, but many combinations with y>x are forbidden. That structural restriction indicates dependence, except in degenerate cases where one variable is concentrated so narrowly that the issue disappears.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p6_3119f5608d",
+        "cs109_17_cont_joint_ii_annotated_p2_e760697bd1",
+        "cs109_16_cont_joint_i_annotated_p7_2034f6d1da"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Interprets the triangular support as a deterministic constraint.",
+          "Explains why the shape of support matters for independence.",
+          "Notes that independence typically corresponds to product structure over a rectangular support.",
+          "Mentions the degenerate-exception idea appropriately."
+        ],
+        "partial_credit": [
+          "Recognizes that Y<=X implies some dependence but does not connect it to support geometry.",
+          "Explains the physical meaning but not the independence implication.",
+          "Mentions triangle vs rectangle without justification."
+        ],
+        "common_mistakes": [
+          "Saying dependence can only be checked from formulas, not support.",
+          "Claiming any non-rectangular support automatically proves dependence without caveat.",
+          "Ignoring the meaning of y<=x in context."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the density were constant on that triangle after normalization, how would you set up the normalizing constant?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Under independence, if x and y are each individually possible, what usually happens to the pair (x,y)?"
+        }
+      ],
+      "hints": [
+        "Start by interpreting the inequality 0<=y<=x<=1 in the battery context: the 6pm charge cannot exceed the noon charge, and both are valid fractions. Geometrically, the possible pairs lie in a triangle under the line y=x, not across the whole unit square.",
+        "For independence, think about how the support usually behaves when a joint density factors into f_X(x)f_Y(y): if x is allowed marginally and y is allowed marginally, then the pair (x,y) should typically be allowed together. Compare that product-style idea with the fact that every pair with y>x is ruled out here.",
+        "Use the forbidden region y>x as the key test: if both X and Y each have nontrivial spread over values in [0,1], independence would tend to assign positive mass to some combinations on both sides of y=x. The only way around that is a degenerate situation where one variable is concentrated so tightly that the missing part of the rectangle no longer matters."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0007",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose f_{X,Y}(x,y)=2 on the triangle 0<y<x<1 and 0 elsewhere. Find the marginal density of X, then describe verbally how its shape reflects the geometry of the support. After that, say whether X and Y are independent and justify your answer without relying on a slogan.",
+      "expected_answer": "For fixed x in (0,1), y ranges from 0 to x, so f_X(x)=integral from 0 to x of 2 dy = 2x. This increases linearly in x, which reflects that a larger x corresponds to a taller vertical slice of the triangular support, so there is more area and hence more probability mass available. Similarly, f_Y(y)=integral from y to 1 of 2 dx = 2(1-y). X and Y are not independent because f_X(x)f_Y(y)=4x(1-y), which does not equal the joint density 2 on the triangle, and because the support excludes many combinations that the marginals separately allow.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p11_p12_279fd66720",
+        "cs109_16_cont_joint_i_annotated_p6_3119f5608d",
+        "cs109_16_cont_joint_i_annotated_p7_2034f6d1da"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly computes f_X(x)=2x on 0<x<1.",
+          "Connects the marginal shape to varying slice length in the triangle.",
+          "Correctly concludes non-independence using factorization failure or support reasoning.",
+          "Keeps support conditions clear."
+        ],
+        "partial_credit": [
+          "Correct marginal but weak geometric explanation.",
+          "States non-independence from triangular support alone.",
+          "Minor boundary omission with correct main reasoning."
+        ],
+        "common_mistakes": [
+          "Integrating y over 0 to 1 instead of 0 to x.",
+          "Forgetting the density is zero outside the triangle.",
+          "Claiming X and Y are independent because the density is constant on its support."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you compute P(Y<X/2) for this model: what region and what integral?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a fixed x, what are the possible y-values allowed by the support?"
+        }
+      ],
+      "hints": [
+        "Sketch the support: it\u2019s the triangle below the line y=x inside the unit square. For the marginal of X, fix an x and look at the vertical slice of that triangle.",
+        "Use f_X(x)=\\int f_{X,Y}(x,y)\\,dy, but make the y-limits match the support: for a given x in (0,1), y only runs from 0 up to x, and outside that x-range the marginal is 0. The slice length grows with x, which should guide your verbal description of the shape.",
+        "To test independence, first get f_Y(y) from a horizontal slice, then check whether multiplying the two marginals reproduces the joint density on the triangle. Also pay attention to the support: the marginals separately allow many (x,y) pairs that the joint density rules out because y must be less than x."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0008",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "In one dimension, students learn that F(a)=integral from minus infinity to a of f(x)dx. In two dimensions, a student says the analogous statement should be F(a,b)=integral from minus infinity to a of f_{X,Y}(x,b)dx. Explain why this is wrong, and give the correct geometric picture for the joint CDF.",
+      "expected_answer": "The proposed formula is wrong because it only accumulates along a horizontal line at y=b, whereas a CDF must capture the probability of a two-dimensional region. The correct joint CDF is F_{X,Y}(a,b)=P(X<=a,Y<=b), which means integrating the joint density over the entire lower-left rectangle extending to (a,b): double integral over x<=a and y<=b. Geometrically, the CDF is volume under the density surface above that region, not area under a one-dimensional slice. The mistake comes from carrying over the one-dimensional formula too literally without accounting for the second variable.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p15_af3c0f3531",
+        "cs109_09_continuous_rv_annotated_p24_1c53d31387",
+        "cs109_16_cont_joint_i_annotated_p7_2034f6d1da"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies that a line integral cannot produce the probability of a 2D event.",
+          "Gives the correct event for the joint CDF.",
+          "Describes the lower-left region and volume-under-surface picture.",
+          "Explains the source of the misconception from 1D analogy."
+        ],
+        "partial_credit": [
+          "Provides the correct formula but weak geometric explanation.",
+          "Says a double integral is needed without saying over what region.",
+          "Recognizes the student forgot to integrate over y."
+        ],
+        "common_mistakes": [
+          "Treating the joint CDF as a single integral.",
+          "Confusing CDF at (a,b) with marginal CDF of X evaluated at a.",
+          "Using boundary values of y instead of integrating over y<=b."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If you differentiate F_{X,Y}(a,b) with respect to only a, what kind of object do you get before differentiating with respect to b?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What exact event does the pair of inequalities X<=a and Y<=b describe in the xy-plane?"
+        }
+      ],
+      "hints": [
+        "In 1D, the CDF at a point counts probability to the left of that point. In 2D, ask yourself: does evaluating at (a,b) correspond to a single line, or to a whole region in the plane?",
+        "The integral \\(\\int_{-\\infty}^a f_{X,Y}(x,b)\\,dx\\) only looks at the horizontal slice where \\(y=b\\). A continuous probability for a joint event must accumulate over all \\(y\\)-values up to \\(b\\), not just the boundary.",
+        "Think of the event as all points with \\(x\\le a\\) and \\(y\\le b\\): the lower-left rectangle ending at \\((a,b)\\). The joint CDF is the volume under the density surface above that rectangle, so it requires integrating over both variables on that region."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0009",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "Someone claims: 'If two continuous random variables have marginals f_X and f_Y, then the joint density must be f_X(x)f_Y(y).' Give a counterargument that does not depend on a specific exotic formula. Explain what extra assumption would make the claim true.",
+      "expected_answer": "The claim is false in general because many different joint distributions can share the same marginals. Marginals tell us the separate behavior of X and Y, but not how they move together. For example, one could have a model where large X tends to occur with large Y, and another where large X tends to occur with small Y, while preserving the same one-dimensional marginals. The factorization f_{X,Y}(x,y)=f_X(x)f_Y(y) is true only under the extra assumption of independence. So marginals alone do not determine the dependence structure.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p11_p12_279fd66720",
+        "cs109_17_cont_joint_ii_annotated_p2_e760697bd1",
+        "cs109_11_joint_rvs_annotated_p17_b2c1bbbb49"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that marginals alone do not determine the joint distribution.",
+          "Explains that dependence structure is missing.",
+          "States independence as the extra assumption needed for factorization.",
+          "Uses a coherent qualitative example or comparison."
+        ],
+        "partial_credit": [
+          "Says the claim is false and mentions independence, but gives little justification.",
+          "Provides an example intuition without stating the general principle.",
+          "Confuses correlation with independence but still rejects the claim."
+        ],
+        "common_mistakes": [
+          "Assuming the product form always holds.",
+          "Saying equal marginals imply identical joint behavior.",
+          "Using independence as if it were automatic for continuous variables."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can two different joint densities have the same f_X and f_Y but different probabilities for the event X<Y? Explain."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the specific property called when the joint density equals the product of the marginals?"
+        }
+      ],
+      "hints": [
+        "Start by separating what a marginal tells you from what a joint density tells you. Marginals describe each variable alone, but not how the pair behaves together.",
+        "Try imagining two models with the same f_X and f_Y: in one, large X tends to come with large Y; in another, large X tends to come with small Y. If both keep the same one-variable distributions, then the marginals cannot uniquely force one joint formula.",
+        "Use the fact that f_{X,Y}(x,y)=f_X(x)f_Y(y) is not automatic; it is the factorization that corresponds to an extra assumption about how X and Y relate. Name that assumption and use it to explain why the original claim needs more than just the marginals."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0010",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You model the arrival times of two buses, X and Y, measured in minutes after 8am. Suppose the joint density is uniform over the square 0<=x<=10, 0<=y<=10. A student says the probability that the buses arrive within one minute of each other should be zero because that condition is 'basically a line.' Evaluate that claim carefully.",
+      "expected_answer": "The event X=Y exactly is a line and has probability zero under a continuous model. But 'within one minute' means |X-Y|<=1, which is not a line; it is a diagonal band of positive area around the line x=y inside the square. Since the density is uniform, the probability is proportional to the area of that band divided by the total area 100. So the student's statement is false because they replaced a strip of positive width with a zero-area line. A strong answer emphasizes the distinction between equality events and neighborhood events.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p6_3119f5608d",
+        "cs109_16_cont_joint_i_annotated_p7_2034f6d1da",
+        "cs109_17_cont_joint_ii_annotated_p18_p19_653a0fdfd1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Distinguishes X=Y from |X-Y|<=1.",
+          "Explains that the band has positive area while the line has zero area.",
+          "Uses uniform-density area reasoning correctly.",
+          "Highlights the continuous-model point-probability issue."
+        ],
+        "partial_credit": [
+          "Says the claim is false but does not clearly separate line vs band.",
+          "Uses geometric language without connecting to probability.",
+          "Correct intuition but no explanation of why zero probability applies only to the line."
+        ],
+        "common_mistakes": [
+          "Treating 'close to equal' as the same as 'equal.'",
+          "Claiming any event defined by an equation has positive probability automatically.",
+          "Forgetting probability under a uniform joint density is area divided by total area."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the geometry change if I asked for the probability that X and Y differ by at most 0.01 minutes?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Does the set |X-Y|<=1 contain only the line x=y, or a wider region?"
+        }
+      ],
+      "hints": [
+        "Draw the sample space as the 10 by 10 square in the xy-plane, and separate the event \u201cX=Y exactly\u201d from \u201cthe times differ by at most 1 minute.\u201d",
+        "Write the event as |X-Y|<=1. On the square, that is a diagonal band of width 1 on each side of the line x=y, not just the line itself.",
+        "Because the joint density is uniform, the probability is the band\u2019s area divided by the square\u2019s total area. A useful setup is to find that area by subtracting the two outer corner triangles from the whole square, while remembering the exact line x=y alone has zero area."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0011",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose you know the joint CDF F_{X,Y}(a,b). Describe how to compute P(X>a, Y>b) using only CDF values and logic about complements. Then explain why your formula differs from simply taking 1-F_{X,Y}(a,b).",
+      "expected_answer": "Use the complement carefully: the event {X>a, Y>b} is the complement of {X<=a or Y<=b}, not just the complement of {X<=a, Y<=b}. By inclusion-exclusion, P(X>a,Y>b)=1-P(X<=a)-P(Y<=b)+P(X<=a,Y<=b). In terms of CDFs, that is 1-F_X(a)-F_Y(b)+F_{X,Y}(a,b), where F_X and F_Y are the marginal CDFs. It is not simply 1-F_{X,Y}(a,b) because 1-F_{X,Y}(a,b) corresponds to the event that at least one of X>a or Y>b holds, which is larger than requiring both.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p15_af3c0f3531",
+        "cs109_09_continuous_rv_annotated_p27_882ef8e282",
+        "cs109_16_cont_joint_i_annotated_p11_p12_279fd66720"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly identifies the relevant complement event.",
+          "Uses inclusion-exclusion properly.",
+          "Expresses result using F_X, F_Y, and F_{X,Y}.",
+          "Explains why 1-F_{X,Y}(a,b) is too large."
+        ],
+        "partial_credit": [
+          "Knows 1-F_{X,Y} is not enough but cannot derive full formula.",
+          "Gets the right idea with set language but weak notation.",
+          "Minor sign error with otherwise solid reasoning."
+        ],
+        "common_mistakes": [
+          "Saying P(X>a,Y>b)=1-F_{X,Y}(a,b).",
+          "Forgetting marginal CDF terms.",
+          "Confusing 'and' with 'or' in the complement."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If X and Y are independent, how could you simplify your expression further?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What event does 1-F_{X,Y}(a,b) actually represent?"
+        }
+      ],
+      "hints": [
+        "Start by recalling what the joint CDF means: F_{X,Y}(a,b)=P(X\\le a,\\,Y\\le b). Ask yourself which event is the true complement of \u201cboth exceed their thresholds.\u201d",
+        "Write \\{X>a,\\,Y>b\\} as the complement of \\{X\\le a\\}\\cup\\{Y\\le b\\}, not the complement of \\{X\\le a,\\,Y\\le b\\}. Then apply inclusion-exclusion to that union.",
+        "Your expression should involve the marginal CDFs F_X(a) and F_Y(b) along with the joint term F_{X,Y}(a,b). By contrast, 1-F_{X,Y}(a,b) corresponds to \u201cX>a or Y>b,\u201d which is bigger than \u201cX>a and Y>b.\u201d"
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0012",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Give a careful oral explanation of the conditional density formula f_{X|Y}(x|y)=f_{X,Y}(x,y)/f_Y(y). Since P(Y=y)=0 for a continuous variable, why is this not nonsense? Your answer should connect the formula to conditioning on a very small interval around y.",
+      "expected_answer": "Although P(Y=y)=0, conditional density is defined through a limiting local ratio, not by dividing exact point probabilities. If Y lies in a tiny interval around y of width epsilon, then P(X in a tiny interval around x and Y in that y-interval) is approximately f_{X,Y}(x,y) times the small area, while P(Y in that y-interval) is approximately f_Y(y) times epsilon. Dividing cancels the epsilon and leaves a density in x proportional to f_{X,Y}(x,y)/f_Y(y). This produces a legitimate density, provided f_Y(y)>0, and it integrates to 1 over x. So the formula is meaningful as a limit of ordinary conditional probabilities on shrinking intervals.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p20_26738bfe99",
+        "cs109_17_cont_joint_ii_annotated_p18_p19_653a0fdfd1",
+        "cs109_09_continuous_rv_annotated_p3_0552fa72b1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that exact point conditioning is replaced by a limit over small intervals.",
+          "Uses the joint and marginal densities in the approximation.",
+          "States the requirement f_Y(y)>0.",
+          "Mentions that the resulting conditional density integrates to 1."
+        ],
+        "partial_credit": [
+          "Recites the formula correctly but gives only heuristic justification.",
+          "Says 'it is a density ratio' without explaining the small-interval logic.",
+          "Mentions P(Y=y)=0 but does not resolve the issue."
+        ],
+        "common_mistakes": [
+          "Saying we literally divide P(X=x,Y=y) by P(Y=y).",
+          "Ignoring the condition f_Y(y)>0.",
+          "Confusing conditional density with conditional probability at a point."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What goes wrong if f_Y(y)=0 at the conditioning value?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When we condition in the continuous case, are we really using an exact point event, or a limit of nearby events?"
+        }
+      ],
+      "hints": [
+        "Start by separating probability at a point from density at a point: for continuous Y, you should not think of conditioning on the exact event {Y=y} directly. Instead, picture learning that Y falls in a tiny interval around y.",
+        "Let the interval be something like [y,y+\\varepsilon]. Approximate P(X in a tiny x-interval and Y in that y-interval) using the joint density, and approximate P(Y in that y-interval) using the marginal density f_Y(y).",
+        "Now form the ordinary conditional probability given that small Y-interval and let its width shrink. The interval width cancels, leaving a function proportional to f_{X,Y}(x,y)/f_Y(y), which only makes sense when f_Y(y)>0 and should integrate to 1 over x."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0013",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Let f_{X,Y}(x,y)=2 on 0<y<x<1 and 0 elsewhere. Find f_{X|Y}(x|y), and then interpret what this says about the possible values of X once Y=y is known. Do not stop at the formula; explain the support of the conditional density.",
+      "expected_answer": "First compute f_Y(y)=integral from x=y to 1 of 2 dx = 2(1-y) for 0<y<1. Therefore f_{X|Y}(x|y)=f_{X,Y}(x,y)/f_Y(y)=2/[2(1-y)]=1/(1-y) for y<x<1, and 0 otherwise. So conditional on Y=y, X is uniform on the interval (y,1). The support matters: once Y is fixed at y, X cannot be less than or equal to y because the original joint support required y<x. This is a good example of how conditioning can change both the formula and the allowable range.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p20_26738bfe99",
+        "cs109_16_cont_joint_i_annotated_p11_p12_279fd66720",
+        "cs109_16_cont_joint_i_annotated_p6_3119f5608d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes f_Y(y)=2(1-y).",
+          "Derives f_{X|Y}(x|y)=1/(1-y) on y<x<1.",
+          "Explains that the conditional distribution is uniform on (y,1).",
+          "Emphasizes the conditional support restriction."
+        ],
+        "partial_credit": [
+          "Gets the formula but not the support.",
+          "Correct support idea with algebra slip in normalization.",
+          "States 'uniform' without computing f_Y(y)."
+        ],
+        "common_mistakes": [
+          "Using the unconditional support for X instead of conditional support.",
+          "Forgetting that x must exceed y.",
+          "Producing a conditional density that does not integrate to 1 over x."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Based on your answer, what is E[X|Y=y]?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a fixed y between 0 and 1, what x-values are even possible under the original support?"
+        }
+      ],
+      "hints": [
+        "Sketch the joint support: it\u2019s the triangle where 0<y<x<1. If you freeze Y=y, ask what x-values on that horizontal slice are still allowed.",
+        "To get the conditional density, first find the marginal of Y by integrating the joint density over x from the lower bound forced by the support up to 1. Then use f_{X|Y}(x|y)=f_{X,Y}(x,y)/f_Y(y) only on the x-range that remains possible.",
+        "After you divide, the expression should not depend on x over the allowed interval. Check that it integrates to 1 from x=y to x=1, and use that to explain why values x\\le y are impossible once Y=y is known."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0014",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student argues: 'If the joint PDF integrates to 1, then any cross-section like f_{X,Y}(x,1) must also integrate to 1 over x.' Explain why this is false, and clarify the difference between a cross-section of a joint density and a marginal or conditional density.",
+      "expected_answer": "A cross-section such as x -> f_{X,Y}(x,1) fixes y at one value and looks at the height of the joint density along a line. There is no reason for that function of x alone to integrate to 1, because it is not automatically a density for X. The marginal density integrates out y over all possible values, while the conditional density normalizes a cross-section by dividing by f_Y(1), assuming that value is positive. So a raw slice of the joint surface is just a slice; it becomes a proper density only after either integrating over the other variable to form a marginal, or normalizing appropriately to form a conditional density.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p11_p12_279fd66720",
+        "cs109_17_cont_joint_ii_annotated_p20_26738bfe99",
+        "cs109_16_cont_joint_i_annotated_p7_2034f6d1da"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that a fixed-y slice is not generally a probability density by itself.",
+          "Distinguishes cross-section from marginal and conditional density.",
+          "Mentions integration over y for marginals.",
+          "Mentions normalization by f_Y(y) for conditionals."
+        ],
+        "partial_credit": [
+          "Says the claim is false but gives only one of marginal/conditional distinctions.",
+          "Uses geometric intuition without formulas.",
+          "Correctly notes that slices need not integrate to 1."
+        ],
+        "common_mistakes": [
+          "Assuming every nonnegative function obtained from a PDF is itself a PDF.",
+          "Confusing f_{X,Y}(x,y) at fixed y with f_{X|Y}(x|y).",
+          "Thinking normalization of the full joint density forces all slices to normalize."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What exact extra step converts the slice f_{X,Y}(x,y) into the conditional density of X given Y=y?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you fix y, have you integrated out the second variable, or merely frozen it?"
+        }
+      ],
+      "hints": [
+        "Picture the joint PDF as a surface over the \u007f(x,y)\u007f-plane: integrating the whole surface to 1 does not force every horizontal or vertical slice to have area 1.",
+        "For the function \u007fx \\mapsto f_{X,Y}(x,1)\u007f, you have fixed \u007fy=1\u007f and are just looking at the height along one line. Compare that with the marginal \u007ff_X(x)=\\int f_{X,Y}(x,y)\\,dy\u007f, which integrates over all \u007fy\u007f-values.",
+        "If you want a density in \u007fx\u007f after fixing \u007fy=1\u007f, think conditional: \u007ff_{X\\mid Y}(x\\mid 1)=f_{X,Y}(x,1)/f_Y(1)\u007f when \u007ff_Y(1)>0\u007f. That normalization step is exactly what a raw cross-section is missing."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0015",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "Imagine X and Y are two measurements of a machine part taken by different sensors. The engineer only gives you the marginal densities f_X and f_Y and asks for P(X<Y). Explain why you generally cannot answer from the marginals alone, and describe two different dependence stories that could lead to different answers while keeping the same marginals.",
+      "expected_answer": "The probability P(X<Y) depends on the joint distribution, not just the marginals. The marginals tell us how each sensor behaves individually, but they do not tell us whether the sensors tend to move together, oppose one another, or behave almost independently. One story is strong positive dependence: when X is large, Y is also large, which might make X and Y close and change P(X<Y). Another story is negative dependence: large X tends to pair with small Y, which can dramatically alter P(X<Y). Since both stories can preserve the same one-dimensional marginals, the probability cannot be determined without joint information.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p11_p12_279fd66720",
+        "cs109_17_cont_joint_ii_annotated_p2_e760697bd1",
+        "cs109_11_joint_rvs_annotated_p17_b2c1bbbb49"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that P(X<Y) depends on the joint distribution.",
+          "Explains why marginals alone are insufficient.",
+          "Gives two qualitatively different dependence scenarios with same marginals.",
+          "Connects those scenarios to potentially different values of P(X<Y)."
+        ],
+        "partial_credit": [
+          "Correctly says 'need the joint' but gives limited intuition.",
+          "Provides only one dependence story.",
+          "Talks about correlation vaguely without explaining event probability."
+        ],
+        "common_mistakes": [
+          "Assuming P(X<Y) can always be found from separate distributions.",
+          "Treating same marginals as same joint distribution.",
+          "Equating lack of information with independence by default."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Under what extra assumption could you compute P(X<Y) from f_X and f_Y alone?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Does the event X<Y involve both variables together or only one variable at a time?"
+        }
+      ],
+      "hints": [
+        "Start by rewriting the event as a region in the \b(x,y)-plane: whether X<Y depends on how probability mass sits relative to the line y=x, not just on each variable separately.",
+        "The marginals f_X and f_Y only describe the x- and y-behavior one at a time; to compute P(X<Y)=\\iint_{x<y} f_{X,Y}(x,y)\\,dx\\,dy, you would need the joint density f_{X,Y}.",
+        "To show insufficiency, imagine two joint models with the same f_X and f_Y: one where X and Y tend to be close together (strong positive dependence), and another where large X tends to pair with small Y (negative dependence). Think about how those two stories would place different amounts of mass above the line y=x."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0016",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose X and Y are independent with densities f_X(x)=2x on 0<x<1 and f_Y(y)=1/2 on 0<y<2. First build the joint PDF. Then set up, and if you can compute, the probability P(Y>X). Explain any region-splitting you use.",
+      "expected_answer": "Because X and Y are independent, the joint PDF is f_{X,Y}(x,y)=f_X(x)f_Y(y)=x on the rectangle 0<x<1, 0<y<2. To find P(Y>X), integrate over the region above the line y=x within that rectangle. Since y ranges up to 2 and x only up to 1, for every x in (0,1) the y-range is from x to 2. So P(Y>X)=integral from 0 to 1 of integral from x to 2 of x dy dx. Evaluating gives integral from 0 to 1 of x(2-x) dx = 2/3. The important reasoning is identifying the support and the event region correctly.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p2_e760697bd1",
+        "cs109_16_cont_joint_i_annotated_p6_3119f5608d",
+        "cs109_16_cont_joint_i_annotated_p11_p12_279fd66720"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Forms the joint PDF as the product x on the correct support.",
+          "Sets up the region Y>X correctly.",
+          "Uses appropriate bounds and computes 2/3.",
+          "Explains why no additional split is needed here."
+        ],
+        "partial_credit": [
+          "Correct setup but incomplete computation.",
+          "Gets the product form right but uses wrong event bounds.",
+          "Correct region description without finishing arithmetic."
+        ],
+        "common_mistakes": [
+          "Multiplying supports incorrectly.",
+          "Integrating y from 0 to x instead of x to 2.",
+          "Forgetting that X is limited to (0,1), not (0,2)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the setup change if I asked for P(Y<X) instead?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Under independence, what operation combines f_X and f_Y into f_{X,Y}?"
+        }
+      ],
+      "hints": [
+        "Start by identifying the support of each variable: X lives on (0,1) and Y on (0,2). Since they are independent, the joint density is the product of the two marginals on that rectangle.",
+        "Sketch the rectangle 0<x<1, 0<y<2 and draw the line y=x. The event Y>X is the part of the rectangle above that line, so think about y running from x upward for each fixed x.",
+        "Because the rectangle extends to y=2 while x only goes to 1, the line y=x never forces a second case here. Set up a double integral with x over its full support and y from the line to the top edge, then evaluate if asked."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0017",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Compare the formulas for obtaining marginals in the discrete and continuous cases. I do not want just the formulas; explain what stays conceptually the same and what changes when sums become integrals.",
+      "expected_answer": "Conceptually, the goal is the same in both cases: to get the distribution of one variable alone, you account for all possible values of the other variable. In the discrete case, that means summing the joint PMF over the other variable: p_X(a)=sum over y of p_{X,Y}(a,y). In the continuous case, that becomes integrating the joint PDF over the other variable: f_X(a)=integral over all y of f_{X,Y}(a,y) dy. What changes is not the principle but the mathematical representation: total probability mass at countable points becomes density spread continuously across values. So sums become integrals because we are aggregating infinitesimal contributions instead of point masses.",
+      "source_chunk_ids": [
+        "cs109_11_joint_rvs_annotated_p17_b2c1bbbb49",
+        "cs109_16_cont_joint_i_annotated_p11_p12_279fd66720",
+        "cs109_17_cont_joint_ii_annotated_p2_e760697bd1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the shared idea of eliminating the other variable by aggregating over all its values.",
+          "Gives the discrete summation formula.",
+          "Gives the continuous integration formula.",
+          "Explains why sums become integrals in terms of mass vs density."
+        ],
+        "partial_credit": [
+          "Provides both formulas but little conceptual comparison.",
+          "Explains conceptually but forgets one formula.",
+          "Uses correct intuition with imprecise terminology."
+        ],
+        "common_mistakes": [
+          "Saying continuous marginals are obtained by summing.",
+          "Confusing marginalization with conditioning.",
+          "Ignoring the role of density versus probability mass."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is it valid for a continuous density to exceed 1 at some points, while a discrete probability mass cannot?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When passing from discrete to continuous, what mathematical operation replaces summation?"
+        }
+      ],
+      "hints": [
+        "Start by identifying the shared goal in both settings: you want the distribution of one variable alone, so you must account for every possible value of the other variable.",
+        "In the discrete case, write the marginal by summing the joint PMF over the other variable; in the continuous case, write the marginal by integrating the joint PDF over the other variable.",
+        "To explain the change from sums to integrals, focus on what is being aggregated: discrete probability mass at countable points versus continuous density accumulated over infinitesimal intervals."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0018",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A researcher defines T=X+Y for two independent continuous measurements. Without invoking any formula you memorized, explain how the distribution of T is obtained from the joint distribution of (X,Y). Your explanation should make clear why the set x+y=t leads to integration rather than plugging into the joint PDF at one point.",
+      "expected_answer": "To find the distribution of T=X+Y, we must combine probability from all pairs (x,y) whose sum is relevant, not look at a single pair. For example, to get the CDF P(T<=t), we integrate the joint density over the whole region x+y<=t. If X and Y are independent, the joint density is the product f_X(x)f_Y(y), so we integrate that over the region. Differentiating the CDF with respect to t yields the usual convolution form, which can also be seen as summing contributions from all pairs along the line x+y=t. The key point is that many pairs produce the same total, so the distribution of the sum comes from accumulating density over a region or along compatible pairs, not evaluating one point.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p0_p1_6b09d696d4",
+        "cs109_16_cont_joint_i_annotated_p6_3119f5608d",
+        "cs109_17_cont_joint_ii_annotated_p2_e760697bd1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that many pairs (x,y) map to the same sum.",
+          "Describes computing P(X+Y<=t) by integrating over the region x+y<=t.",
+          "Uses independence to justify product joint density when relevant.",
+          "Connects this reasoning to convolution or derivative of the CDF."
+        ],
+        "partial_credit": [
+          "Knows the word convolution but cannot explain the geometry.",
+          "Describes the region idea without linking to the sum variable.",
+          "Says 'integrate over all possibilities' without specifying the constraint x+y<=t."
+        ],
+        "common_mistakes": [
+          "Trying to compute the density of T by evaluating f_{X,Y}(t,t).",
+          "Ignoring that infinitely many pairs can have the same sum.",
+          "Confusing the line x+y=t with a single point."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your geometric region change if T were X-Y instead of X+Y?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a fixed value t, are there many pairs (x,y) with x+y=t, or just one?"
+        }
+      ],
+      "hints": [
+        "Start by picturing the \u001d(x,y)\u001d-plane: a single value of \u001dt\u001d does not correspond to one pair, but to all pairs on the line \u001dx+y=t\u001d. That is why looking at one point of the joint PDF cannot capture the distribution of \u001dT\u001d.",
+        "A clean way to build the distribution is to first write the CDF: \u001dP(T\\le t)=P(X+Y\\le t)\u001d. This means integrating the joint density over the whole region \u001dx+y\\le t\u001d, and if \u001dX,Y\u001d are independent then use \u001df_{X,Y}(x,y)=f_X(x)f_Y(y)\u001d.",
+        "Once you have the CDF as an integral over \u001dx+y\\le t\u001d, ask what happens as \u001dt\u001d increases slightly: the added probability comes from pairs near the boundary \u001dx+y=t\u001d. Differentiating that CDF viewpoint leads to the usual convolution-style expression without ever treating the line as a single point."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0019",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A classmate says: 'Because f_{X|Y}(x|y) is obtained by dividing by f_Y(y), conditioning on Y=y should become impossible whenever P(Y=y)=0.' Give a concise rebuttal that distinguishes probability from density and mentions the correct regularity condition.",
+      "expected_answer": "The rebuttal is that conditional density does not divide by the probability of the exact point event; it divides by the marginal density f_Y(y), which comes from a limiting small-interval argument. In continuous settings, P(Y=y)=0 always, but densities can still be positive and informative. The correct condition for the formula is f_Y(y)>0, not P(Y=y)>0. So conditioning is meaningful at values where the marginal density is positive, even though the exact point has zero probability.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p20_26738bfe99",
+        "cs109_09_continuous_rv_annotated_p3_0552fa72b1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Distinguishes P(Y=y) from f_Y(y).",
+          "States that the continuous conditional is based on a density ratio or limiting argument.",
+          "Gives the correct condition f_Y(y)>0.",
+          "Rejects the claim clearly."
+        ],
+        "partial_credit": [
+          "States the formula but not the conceptual distinction.",
+          "Mentions density vs probability without the condition.",
+          "Says the claim is false but gives little explanation."
+        ],
+        "common_mistakes": [
+          "Using P(Y=y) in the denominator.",
+          "Claiming conditioning on continuous values is impossible.",
+          "Failing to mention the positivity condition on f_Y(y)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why does the denominator in the conditional density need to be positive?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In the formula for f_{X|Y}(x|y), what appears in the denominator: P(Y=y) or f_Y(y)?"
+        }
+      ],
+      "hints": [
+        "In a continuous distribution, an exact point can have probability 0 even when the variable still has a well-defined density there. Start by separating point probability from density.",
+        "Recall that f_{X|Y}(x|y) is defined using the ratio f_{X,Y}(x,y)/f_Y(y), which comes from a limiting small-interval argument around y rather than requiring the event Y=y to have positive probability.",
+        "So in your rebuttal, point out that the needed regularity condition is about the marginal density being positive at y, not about P(Y=y) being positive; use that distinction to explain why the classmate's claim fails."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0020",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose the joint CDF is given by F_{X,Y}(a,b)=ab^2 for 0<a<1 and 0<b<1, with the obvious boundary extensions outside that square. Determine the joint PDF on the interior, then derive the marginals, and decide whether X and Y are independent.",
+      "expected_answer": "Differentiate the joint CDF with respect to both variables: f_{X,Y}(a,b)=partial^2/partial a partial b of ab^2, which gives 2b on 0<a<1, 0<b<1. Then f_X(a)=integral from 0 to 1 of 2b db = 1 for 0<a<1, and f_Y(b)=integral from 0 to 1 of 2b da = 2b for 0<b<1. Their product is 1 times 2b = 2b, which matches the joint PDF on the square, so X and Y are independent. An equivalent check from the CDF is that F_{X,Y}(a,b)=a\u00b7b^2=F_X(a)F_Y(b), where F_X(a)=a and F_Y(b)=b^2 on the interior.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p15_af3c0f3531",
+        "cs109_16_cont_joint_i_annotated_p11_p12_279fd66720",
+        "cs109_17_cont_joint_ii_annotated_p2_e760697bd1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly differentiates to get f_{X,Y}(a,b)=2b on the unit square.",
+          "Computes marginals f_X(a)=1 and f_Y(b)=2b on the correct supports.",
+          "Checks independence via product of marginals or product of CDFs.",
+          "Acknowledges support boundaries appropriately."
+        ],
+        "partial_credit": [
+          "Correct PDF but incomplete marginals.",
+          "Correct independence conclusion with one valid check only.",
+          "Minor derivative slip but overall reasoning is coherent."
+        ],
+        "common_mistakes": [
+          "Differentiating only once.",
+          "Forgetting that a CDF must be differentiated with respect to both variables to get the joint PDF.",
+          "Assuming dependence because the PDF does not visibly contain x."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What feature of the answer tells you X is uniform on (0,1)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "To recover a joint PDF from a joint CDF in two variables, how many derivatives do you need?"
+        }
+      ],
+      "hints": [
+        "On the interior of the unit square, the joint PDF comes from taking the mixed partial derivative of the joint CDF with respect to both variables, not just one. Also remember the density is zero outside the support implied by the boundary extensions.",
+        "After finding the joint density on 0<a<1 and 0<b<1, get each marginal by integrating out the other variable over its full support. Be careful to state the support for each marginal as part of your answer.",
+        "For independence, check whether the joint density factors as f_X(a)f_Y(b) everywhere on the square; you can also do the same check directly at the CDF level by seeing if it separates into a function of a times a function of b."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0021",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Explain why a valid joint PDF can exceed 1 in some regions without violating probability rules. Then say what condition actually matters for validity, and contrast this with what must be true for the total probability assigned to the full support.",
+      "expected_answer": "A density is not itself a probability; it is probability per unit area. So a joint PDF may exceed 1 at some points or in some regions, especially if the support is small enough, without causing any contradiction. What matters is that the density is nonnegative and its double integral over the entire plane, or over its support, equals 1. Probabilities of events are obtained by integrating the density over regions, and those resulting probabilities must lie between 0 and 1. So the local height can be above 1, but the total accumulated volume must still be exactly 1.",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p3_0552fa72b1",
+        "cs109_16_cont_joint_i_annotated_p6_3119f5608d",
+        "cs109_16_cont_joint_i_annotated_p7_2034f6d1da"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that density is not probability.",
+          "Says a valid joint PDF must be nonnegative and integrate to 1.",
+          "Explains probabilities come from integrating over regions.",
+          "Contrasts local height with total volume."
+        ],
+        "partial_credit": [
+          "Knows PDFs can exceed 1 but does not explain why.",
+          "Mentions the normalization condition only.",
+          "Uses one-dimensional intuition without adapting to area/volume."
+        ],
+        "common_mistakes": [
+          "Claiming any PDF value above 1 is invalid.",
+          "Confusing density with event probability.",
+          "Forgetting nonnegativity as a validity condition."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give a simple example of a valid one-dimensional or two-dimensional density that is larger than 1 somewhere?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If a density takes the value 2 at one point, does that mean the probability of that point is 2?"
+        }
+      ],
+      "hints": [
+        "Start by separating the idea of a density from the idea of a probability: for a continuous joint distribution, the PDF is a height over the \u007fxy-plane, not the probability of a single point or tiny region by itself.",
+        "Think about what probability of an event looks like in two variables: you get it by integrating the joint PDF over an area. That means a local value above 1 can still be fine if the region carrying that height is small enough.",
+        "The validity conditions to name are nonnegativity and total integral over the full support equal to 1. Contrast that with individual probabilities, which come from integrals over regions and therefore must end up between 0 and 1, even if the density's height is larger than 1 somewhere."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0022",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "An analyst estimates the waiting times X and Y for two independent service counters. She computes the marginals correctly but then says, 'Since they are independent, the conditional density f_{X|Y}(x|y) should equal f_Y(y).' Explain the error and state what independence really implies for conditional densities.",
+      "expected_answer": "The error is confusing the distribution of X given Y with the marginal distribution of Y. Under independence, learning Y gives no information about X, so the conditional density of X given Y=y must equal the marginal density of X, not f_Y(y). Starting from the formula f_{X|Y}(x|y)=f_{X,Y}(x,y)/f_Y(y), independence gives f_{X,Y}(x,y)=f_X(x)f_Y(y), so the f_Y(y) cancels and leaves f_X(x). Thus independence means conditioning on Y does not change the distribution of X.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p20_26738bfe99",
+        "cs109_17_cont_joint_ii_annotated_p2_e760697bd1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the variable mismatch in the student's claim.",
+          "States that under independence f_{X|Y}(x|y)=f_X(x).",
+          "Shows the cancellation argument using the factorized joint density.",
+          "Interprets the result as 'Y gives no information about X.'"
+        ],
+        "partial_credit": [
+          "Correct conclusion but weak explanation.",
+          "Uses the intuition of independence without formulas.",
+          "Recognizes that the answer cannot be f_Y(y) but does not provide the correct one."
+        ],
+        "common_mistakes": [
+          "Saying conditional density equals the other variable's marginal.",
+          "Claiming independence makes all conditional densities uniform.",
+          "Mixing up x and y throughout the formula."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would the same reasoning show that f_{Y|X}(y|x)=f_Y(y)? Why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If Y tells you nothing about X, which marginal should f_{X|Y}(x|y) reduce to?"
+        }
+      ],
+      "hints": [
+        "First check the variables: a conditional density for X given Y should be compared to a density in x, so ask whether f_Y(y) even has the right role here.",
+        "Use the definition f_{X|Y}(x|y)=f_{X,Y}(x,y)/f_Y(y) (when f_Y(y)>0), and then substitute the factorization that independence gives for the joint density.",
+        "After substitution, the f_Y(y) term cancels, leaving a density that depends only on x; interpret that as 'knowing Y does not change the distribution of X.'"
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0023",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A classmate says: \"For continuous random variables, conditioning on Y=y is impossible because P(Y=y)=0, so the expression f_{X|Y}(x|y)=f_{X,Y}(x,y)/f_Y(y) is just illegal.\" Do you agree or disagree? Explain carefully what conditional density means here, why the ratio is still meaningful when f_Y(y)>0, and what property you would check to confirm it is a valid density in x.",
+      "expected_answer": "Disagree. It is true that for a continuous random variable, P(Y=y)=0 for any exact y, so the naive discrete-style formula P(X=x|Y=y)=P(X=x,Y=y)/P(Y=y) is not appropriate. But conditional density is defined through a limiting density argument: for small intervals around y, P(x<=X<=x+dx | y<=Y<=y+dy) is approximately f_{X,Y}(x,y) dx dy divided by f_Y(y) dy, which leads to f_{X|Y}(x|y)=f_{X,Y}(x,y)/f_Y(y) whenever f_Y(y)>0. The ratio is meaningful because densities compare local probability mass per unit area and per unit length. To verify it is a valid conditional density, we check nonnegativity and that integrating over all x gives 1: integral f_{X|Y}(x|y) dx = (1/f_Y(y)) integral f_{X,Y}(x,y) dx = f_Y(y)/f_Y(y)=1.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p20_26738bfe99",
+        "cs109_17_cont_joint_ii_annotated_p18_p19_653a0fdfd1",
+        "cs109_16_cont_joint_i_annotated_p11_p12_279fd66720"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States clearly that the objection is based on confusing probabilities with densities.",
+          "Explains conditional density via local intervals or limiting argument, not by treating P(Y=y) as an ordinary denominator.",
+          "Gives the formula f_{X|Y}(x|y)=f_{X,Y}(x,y)/f_Y(y) with condition f_Y(y)>0.",
+          "Checks normalization by integrating over x and obtaining 1."
+        ],
+        "partial_credit": [
+          "Knows the formula for conditional density but gives only a vague justification.",
+          "Mentions that densities are not probabilities but does not explain the limiting idea.",
+          "Checks only that the function is nonnegative, without verifying integral 1."
+        ],
+        "common_mistakes": [
+          "Saying conditional distributions do not exist for continuous variables because point probabilities are zero.",
+          "Claiming f_{X|Y}(x|y) is itself a probability at x.",
+          "Forgetting the requirement f_Y(y)>0.",
+          "Integrating the conditional density over y instead of x."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose f_Y(y)=0 at some y. What goes wrong with the formula, and how would you phrase the existence of the conditional density at that value?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I condition on a tiny interval y<=Y<=y+dy instead of the single point Y=y, can you use that to rebuild the formula more carefully?"
+        }
+      ],
+      "hints": [
+        "Start by separating point probabilities from densities: for a continuous Y, P(Y=y)=0, but f_Y(y) describes probability mass near y, not at the single point.",
+        "Think of conditioning on a tiny interval around y, like y \\le Y \\le y+\\Delta y, and compare the local mass from the joint density to the marginal mass near y. That limiting picture motivates why f_{X|Y}(x|y) uses f_{X,Y}(x,y) divided by f_Y(y) when f_Y(y)>0.",
+        "To check that this candidate is a valid density in x, verify two things: it is nonnegative, and integrating it over all x gives the required normalization. Be careful to integrate with respect to x, not y."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0024",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Let the joint density be f_{X,Y}(x,y)=cxy on the rectangle 0<=x<=1, 0<=y<=2, and 0 elsewhere. Without skipping setup, determine c, then find the marginal density of X, and then compute P(X<=1/2, Y<=1). Finally, say whether X and Y are independent and justify your answer from the densities rather than from intuition.",
+      "expected_answer": "First normalize: 1 = integral from 0 to 1 integral from 0 to 2 cxy dy dx. Since integral_0^2 y dy = 2 and integral_0^1 x dx = 1/2, the total is c(1/2)(2)=c, so c=1. Then f_X(x)=integral_0^2 xy dy = x times 2 = 2x for 0<=x<=1. Similarly, f_Y(y)=integral_0^1 xy dx = y/2 for 0<=y<=2. Next, P(X<=1/2, Y<=1)=integral_0^{1/2} integral_0^1 xy dy dx = integral_0^{1/2} x(1/2) dx = 1/2 times 1/8 = 1/16. For independence, compare the joint with the product of marginals: f_X(x)f_Y(y)=(2x)(y/2)=xy, which equals f_{X,Y}(x,y) on the support rectangle, and the support is a Cartesian product, so X and Y are independent.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p10_ca62843fb0",
+        "cs109_16_cont_joint_i_annotated_p11_p12_279fd66720",
+        "cs109_17_cont_joint_ii_annotated_p2_e760697bd1",
+        "cs109_16_cont_joint_i_annotated_p6_3119f5608d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Normalizes correctly and obtains c=1.",
+          "Computes f_X(x) correctly with support specified.",
+          "Sets up and evaluates the rectangular probability with correct limits.",
+          "Justifies independence by showing f_{X,Y}=f_X f_Y on the support, not merely by saying the formula factorizes informally."
+        ],
+        "partial_credit": [
+          "Gets c and the marginals right but makes an arithmetic slip in the probability integral.",
+          "States independence correctly but with incomplete support discussion.",
+          "Uses the right integrals but omits support restrictions."
+        ],
+        "common_mistakes": [
+          "Using cxy directly without first normalizing.",
+          "Integrating with wrong bounds for y or x.",
+          "Concluding independence just because the density looks multiplicative, without checking marginals or support.",
+          "Confusing the joint CDF with the joint PDF."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your independence argument change if the same formula xy were given only on the triangular support 0<=y<=x<=1?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you first compute one marginal explicitly and compare its product with the joint density?"
+        }
+      ],
+      "hints": [
+        "Start by using the normalization condition for a joint density: integrate cxy over the full support rectangle 0<=x<=1, 0<=y<=2 and set the result equal to 1. The rectangular support also tells you the bounds for every later integral.",
+        "For the marginal of X, integrate the joint density with respect to y across its full range, and remember to state the support for x. For P(X<=1/2, Y<=1), integrate the joint density over the smaller rectangle x in [0,1/2], y in [0,1].",
+        "To justify independence from densities, first compute both marginals and then multiply them: check whether f_X(x)f_Y(y) matches f_{X,Y}(x,y) on the whole support. Also verify the support is a Cartesian product, since factorization alone is not enough without the support check."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0025",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "You are given a jointly continuous pair (X,Y), and someone asks for the joint CDF F_{X,Y}(a,b)=P(X<=a,Y<=b). Explain two different routes to a probability such as P(a_1<X<=a_2, b_1<Y<=b_2): one using the joint PDF and double integration, and one using the joint CDF. Then explain how, in principle, the joint PDF can be recovered from the CDF, and what regularity idea makes that recovery reasonable.",
+      "expected_answer": "Using the joint PDF, the probability of a rectangle is the double integral over that rectangle: integral from a_1 to a_2 of integral from b_1 to b_2 of f_{X,Y}(x,y) dy dx. Using the joint CDF, the same rectangle probability comes from inclusion-exclusion: F(a_2,b_2)-F(a_1,b_2)-F(a_2,b_1)+F(a_1,b_1), with attention to whether endpoints are open or closed being irrelevant for continuous variables. The CDF itself is obtained by integrating the density from minus infinity up to a and b. In principle, the density is recovered by taking the mixed partial derivative: f_{X,Y}(a,b)=partial^2 F_{X,Y}(a,b)/(partial a partial b), assuming enough smoothness so the CDF is differentiable in the appropriate sense. The key idea is the multivariable version of the Fundamental Theorem of Calculus.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p15_af3c0f3531",
+        "cs109_16_cont_joint_i_annotated_p6_3119f5608d",
+        "cs109_16_cont_joint_i_annotated_p7_2034f6d1da",
+        "cs109_16_cont_joint_i_annotated_p13_3acbbb996a",
+        "cs109_09_continuous_rv_annotated_p27_882ef8e282"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Describes the rectangle probability correctly using a double integral over the region.",
+          "Gives the inclusion-exclusion formula using the joint CDF.",
+          "States that the joint CDF is an integral of the joint PDF from -infinity in both coordinates.",
+          "Explains that the joint PDF is the mixed partial derivative of the joint CDF, with a mention of differentiability/smoothness or FTC intuition."
+        ],
+        "partial_credit": [
+          "Knows one route well but is incomplete on the other.",
+          "States the mixed derivative formula without explaining why it is reasonable.",
+          "Makes a minor sign error in the inclusion-exclusion formula but shows the right idea."
+        ],
+        "common_mistakes": [
+          "Using only F(a_2,b_2)-F(a_1,b_1) for a rectangle probability.",
+          "Taking only one derivative of the joint CDF instead of a mixed second derivative.",
+          "Treating endpoint inclusions as important for continuous variables.",
+          "Confusing marginal CDFs with the joint CDF."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the region were not a rectangle, for example {x+y<=1, x>=0, y>=0}, which route is usually more convenient and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you draw the rectangle and explain why inclusion-exclusion needs four CDF terms instead of two?"
+        }
+      ],
+      "hints": [
+        "Picture the event as a rectangle in the xy-plane. For a jointly continuous pair, probabilities come from the density over that region, and whether the edges are open or closed does not affect the value.",
+        "For the PDF route, set up a double integral over x from a1 to a2 and y from b1 to b2. For the CDF route, use inclusion-exclusion with the four corner CDF values of the rectangle, not just a simple difference of two terms.",
+        "Remember that F(a,b) is built by integrating f from -infinity up to a and b. To go in reverse, take a derivative in x and a derivative in y of the CDF; this is justified when the CDF is smooth enough, by the multivariable Fundamental Theorem of Calculus intuition."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0026",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Suppose X and Y are independent Uniform(0,1) random variables representing two independent delays, and you care about the total delay S=X+Y. Without quoting a memorized formula, derive the density of S by reasoning geometrically or via convolution, and explain why the answer changes at s=1. I want the setup and the shape, not just the final piecewise expression.",
+      "expected_answer": "Because S=X+Y, the density of S can be found by convolution: f_S(s)=integral f_X(x)f_Y(s-x) dx over x values for which both x and s-x lie in [0,1]. Since each density is 1 on [0,1], this reduces to the length of the interval of x satisfying 0<=x<=1 and 0<=s-x<=1. That means x must lie in [0,1] intersect [s-1,s]. For 0<=s<=1, this interval is [0,s], whose length is s, so f_S(s)=s. For 1<=s<=2, the interval is [s-1,1], whose length is 2-s, so f_S(s)=2-s. Outside [0,2], the density is 0. The answer changes at s=1 because before 1 the diagonal line x+y=s cuts through the unit square with increasing segment length, while after 1 the segment length decreases symmetrically.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p0_p1_6b09d696d4",
+        "cs109_17_cont_joint_ii_annotated_p2_e760697bd1",
+        "cs109_16_cont_joint_i_annotated_p7_2034f6d1da"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Sets up convolution or equivalent geometric reasoning correctly.",
+          "Identifies the support of S as [0,2].",
+          "Derives the interval for x where both uniforms are valid.",
+          "Explains the piecewise result and why the breakpoint occurs at s=1."
+        ],
+        "partial_credit": [
+          "Gives the correct triangular density but with weak derivation.",
+          "Uses geometry correctly but does not express the interval intersection clearly.",
+          "Gets the support and one branch correct but mishandles the other branch."
+        ],
+        "common_mistakes": [
+          "Multiplying densities and concluding S is uniform.",
+          "Forgetting to restrict x and s-x to [0,1].",
+          "Giving the CDF when asked for the density, or vice versa.",
+          "Missing the breakpoint and writing one formula for all s."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the derivation change if X and Y were still independent but Uniform(0,2) instead?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a fixed s, what x-values make the point (x,s-x) stay inside the unit square?"
+        }
+      ],
+      "hints": [
+        "Think of \u0000S=X+Y\u0000 as adding two independent uniform variables on the unit interval: the density comes from how much overlap is possible for pairs \u0000(x,y)\u0000 with \u0000x+y=s\u0000 inside the unit square.",
+        "If you use convolution, write \u0000f_S(s)=\\int f_X(x)f_Y(s-x)\\,dx\u0000 and then restrict to the \u0000x\u0000 values where both \u0000x\u0000 and \u0000s-x\u0000 lie in \u0000[0,1]\u0000. That means finding the intersection of \u0000[0,1]\u0000 with \u0000[s-1,s]\u0000.",
+        "Geometrically, the line \u0000x+y=s\u0000 cuts a segment through the unit square whose length increases as \u0000s\u0000 moves up to the corner-crossing point, then decreases after that. Compute that interval length in the two cases \u0000s<1\u0000 and \u0000s>1\u0000, and use it as the density since each joint density value is constant on the square."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_joint_distributions_0027",
+      "course": "CS109",
+      "topic_id": "continuous_joint_distributions",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A student says: \"If the ratio f_{X,Y}(10,3)/f_{X,Y}(5,3) equals 4, then the probability that X=10 and Y=3 is four times the probability that X=5 and Y=3.\" Critique this statement. Then salvage the correct intuition by explaining what kind of small-region comparison the ratio of joint densities does support.",
+      "expected_answer": "The statement is incorrect as written because for jointly continuous variables, both P(X=10,Y=3) and P(X=5,Y=3) are zero, so it makes no sense to say one is four times the other. A density value is not itself a probability at a point. The correct interpretation is local: for very small rectangles of the same area centered at (10,3) and (5,3), the probabilities are approximately proportional to the joint density values. More formally, P((X,Y) in small region around (10,3)) divided by P((X,Y) in equal-area small region around (5,3)) is approximately f_{X,Y}(10,3)/f_{X,Y}(5,3), provided the regions are sufficiently small and the density is well behaved there.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p18_p19_653a0fdfd1",
+        "cs109_09_continuous_rv_annotated_p3_0552fa72b1",
+        "cs109_16_cont_joint_i_annotated_p7_2034f6d1da"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explicitly states that point probabilities are zero for continuous joint variables.",
+          "Distinguishes density values from probabilities.",
+          "Explains the valid local approximation using equal small rectangles or neighborhoods.",
+          "Connects the ratio of densities to relative likelihood in nearby regions, not exact points."
+        ],
+        "partial_credit": [
+          "Recognizes that point probabilities are zero but gives only a vague replacement interpretation.",
+          "Mentions 'more likely near that point' without explaining equal-area neighborhoods.",
+          "Explains in one dimension only, without adapting to the joint setting."
+        ],
+        "common_mistakes": [
+          "Saying the student's statement is exactly correct.",
+          "Replacing the point probability with density without any caveat.",
+          "Comparing neighborhoods of different sizes, which breaks the density-ratio interpretation.",
+          "Forgetting that the statement concerns a joint density in two dimensions."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the two small neighborhoods had different areas, how would your approximation need to be modified?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is P(X=10,Y=3) for a jointly continuous pair, and why does that force us to reinterpret density ratios?"
+        }
+      ],
+      "hints": [
+        "Start by asking what P(X=10, Y=3) means when (X,Y) is jointly continuous. For continuous variables, probabilities at exact points behave differently from density values.",
+        "Remember that f_{X,Y}(x,y) is not itself a probability; probabilities come from integrating the density over a 2D region. So replace each single point with a tiny neighborhood around that point.",
+        "Compare two very small rectangles of the same area centered at (10,3) and (5,3). For a well-behaved density, each rectangle\u2019s probability is approximately density \u00d7 area, so the ratio of those nearby-region probabilities is approximately the ratio of the joint densities."
+      ]
+    }
+  ]
+}

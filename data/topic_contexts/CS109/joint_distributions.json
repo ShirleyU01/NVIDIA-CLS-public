@@ -1,0 +1,246 @@
+{
+  "course": "CS109",
+  "topic_id": "joint_distributions",
+  "topic_name": "Joint Distributions",
+  "queries_used": [
+    "Joint Distributions definition",
+    "Joint Distributions intuition",
+    "Joint Distributions worked example",
+    "Joint Distributions exam problem",
+    "joint distribution overview",
+    "joint distribution practice",
+    "joint pmf overview",
+    "joint pmf practice",
+    "joint pdf overview",
+    "joint pdf practice",
+    "marginal distribution overview",
+    "marginal distribution practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_11_joint_rvs_annotated_p0_p1_ef0bace957",
+      "text": "11: Joint (Multivariate) \nDistributions\nJerry Cain\nApril 24th, 2024\n1\nLecture Discussion on Ed\n\nNormal \nApproximation\n2",
+      "source_type": "lecture_slide",
+      "document_name": "11 joint rvs annotated",
+      "score": 0.6599928140640259
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p0_p1_37e32b5192",
+      "text": "16: Continuous Joint \nDistributions\nJerry Cain\n May 6th, 2024\n1\nLecture Discussion on Ed\n\nContinuous \nJoint \nDistributions\n2",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.6338168382644653
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p15_af3c0f3531",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nJoint cumulative distribution function\nFor two random variables 𝑋 and 𝑌, there can be a joint cumulative \ndistribution function 𝐹!,#:\n𝐹!,# 𝑎, 𝑏= 𝑃𝑋≤𝑎, 𝑌≤𝑏\n16\nFor continuous 𝑋 and 𝑌:\n𝐹!,# 𝑎, 𝑏= 1\n()\n&\n1\n()\n'\n𝑓!,# 𝑥, 𝑦𝑑𝑦𝑑𝑥\n𝑓!,# 𝑎, 𝑏=\n1\"\n1& 1' 𝐹!,# 𝑎, 𝑏\nFor discrete 𝑋 and 𝑌:\n𝐹!,# 𝑎, 𝑏= ;\n-3&\n;\n*3'\n𝑝!,#(𝑥, 𝑦)",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.6078665256500244
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p0_p1_6b09d696d4",
+      "text": "17: Continuous Joint \nDistributions II\nJerry Cain\nMay 8th, 2024\n1\nLecture Discussion on Ed\n\nConvolution: \nSum of \nindependent \nUniform RVs\n2",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.603974461555481
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p2_e760697bd1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nToday’s lecture\nTake what we’ve seen with discrete joint distributions…\n…and generalize to continuous joint distributions.\nFor the most part, this\nisn’t too bad. Examples:\nBut some concepts, while mathematically accessible given what we’ve \nlearned, are difficult to implement in practice.\nWe’ll focus on some of these today.\n3\nMarginal \ndistributions\n𝑓! 𝑎= $\n\"#\n#\n𝑓!,% 𝑎, 𝑦𝑑𝑦\nIndependent RVs\n𝑝!,% 𝑥, 𝑦= 𝑝! 𝑥𝑝% 𝑦\n𝑓!,% 𝑥, 𝑦= 𝑓! 𝑥𝑓% 𝑦\n𝑝! 𝑎= *\n&\n𝑝!,% 𝑎, 𝑦\nGoal of CS109 continuous joint \ndistributions unit: build \nmathematical maturity",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.598137378692627
+    },
+    {
+      "chunk_id": "cs109_11_joint_rvs_annotated_p17_b2c1bbbb49",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDiscrete joint distributions\nFor two discrete joint random variables 𝑋 and 𝑌,\nthe joint probability mass function is defined as:\n𝑝!,# 𝑎, 𝑏= 𝑃𝑋= 𝑎, 𝑌= 𝑏\nThe marginal distributions of the joint PMF are defined as:\n18\n𝑝5 𝑎= 𝑃𝑋= 𝑎= .\n6\n𝑝5,8 𝑎, 𝑦\n𝑝8 𝑏= 𝑃𝑌= 𝑏= .\n9\n𝑝5,8 𝑥, 𝑏\nUse marginal distributions to \nextract a 1D RV from a joint PMF.",
+      "source_type": "lecture_slide",
+      "document_name": "11 joint rvs annotated",
+      "score": 0.5840021967887878
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p12_bba99c6e2b",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nA simpler WebMD\nGreat! Just specify 2* = 16 joint \nprobabilities?\n𝑃𝐹+, = 𝑎, 𝐹\"- = 𝑏, 𝑈= 𝑐, 𝑇= 𝑑\nWhat would an infectious diseases (ID) \nexpert do?\n13\nFlu\nUnder-\ngrad\nTired\nFever\nDescribe the joint distribution using causality!",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.5618290901184082
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p10_ca62843fb0",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDouble integrals without tears\nLet 𝑋 and 𝑌 be two continuous random variables.\n• Support: 0 ≤𝑋≤1, 0 ≤𝑌≤2.\nIs 𝑔𝑥, 𝑦= 𝑥𝑦 a valid joint PDF over 𝑋 and 𝑌?\n11\n1 = $\n!\"\n\"\n$\n!\"\n\"\n𝑔𝑥, 𝑦𝑑𝑥 𝑑𝑦= $\n#$%\n&\n$\n'$%\n(\n𝑥𝑦 𝑑𝑥 𝑑𝑦\n$\n#$%\n&\n$\n'$%\n(\n𝑥𝑦 𝑑𝑥𝑑𝑦= $\n#$%\n&\n𝑦$\n'$%\n(\n𝑥 𝑑𝑥𝑑𝑦= $\n#$%\n&\n𝑦𝑥&\n2\n%\n(\n𝑑𝑦= $\n#$%\n&\n𝑦1\n2 𝑑𝑦\n$\n#$%\n&\n𝑦1\n2 𝑑𝑦= 𝑦&\n4\n#$%\n&\n= 1 −0 = 1\n1. Evaluate inside integral by treating 𝑦 as a constant:\n2. Evaluate remaining (single) integral:\nYes, 𝑔𝑥, 𝑦is a valid joint PDF\nbecause it integrates to 1.\n0. Set up integral:",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.5497517585754395
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p11_p12_279fd66720",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMarginal distributions\nSuppose 𝑋 and 𝑌 are continuous random\nvariables with joint PDF:\nThe marginal density functions—that is, the marginal PDFs—are therefore:\n𝑓! 𝑎= 1\n()\n)\n𝑓!,# 𝑎, 𝑦𝑑𝑦 \n𝑓# 𝑏= 1\n()\n)\n𝑓!,# 𝑥, 𝑏𝑑x\n12\n𝑓) 𝑥\n𝑓* 𝑦\n$\n!\"\n\"\n$\n!\"\n\"\n𝑓),* 𝑥, 𝑦𝑑𝑦𝑑𝑥= 1\n\nJoint CDFs\n13",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.5453065633773804
+    },
+    {
+      "chunk_id": "cs109_11_joint_rvs_annotated_p19_99f55c6a1c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTwo dice\nRoll two 6-sided dice, yielding values 𝑋 and 𝑌.\n1. What is the joint PMF of 𝑋 and 𝑌?\n2. What is the marginal PMF of 𝑋?\n20\n𝑝5,8 𝑎, 𝑏= 1/36\n𝑎, 𝑏∈\n1,1 , … , 6,6\n𝑝) 𝑎= 𝑃𝑋= 𝑎= D\n*\n𝑝),\" 𝑎, 𝑦= D\n*,-\n#\n1\n36 = 1\n6\n𝑎∈1, … , 6",
+      "source_type": "lecture_slide",
+      "document_name": "11 joint rvs annotated",
+      "score": 0.5428227186203003
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p9_b59eb7249c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDouble integrals without tears\nLet 𝑋 and 𝑌 be two continuous random variables.\n• Support: 0 ≤𝑋≤1, 0 ≤𝑌≤2.\nIs 𝑔𝑥, 𝑦= 𝑥𝑦 a valid joint PDF over 𝑋 and 𝑌?\nWrite down the definite double integral that\nmust integrate to 1:\n1\n*+,\n%\n1\n-+,\n$\n𝑥𝑦 𝑑𝑥𝑑𝑦= 1\nor\n1\n-+,\n$\n1\n*+,\n%\n𝑥𝑦 𝑑𝑦𝑑𝑥= 1\n(used in next slide)",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.5426551699638367
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p6_3119f5608d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nContinuous joint probability density functions\nIf two random variables 𝑋 and 𝑌 are jointly continuous, then there exists a \njoint probability density function 𝑓!,# defined over −∞< 𝑥, 𝑦< ∞ such that:\n𝑃𝑎$ ≤𝑋≤𝑎%,  𝑏$ ≤𝑌≤𝑏% = 1\n&!\n&\"\n1\n'!\n'\"\n𝑓!,# 𝑥, 𝑦𝑑𝑦𝑑𝑥 \n7",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.5381993651390076
+    },
+    {
+      "chunk_id": "cs109_09_continuous_rv_annotated_p5_fff4a9b08f",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDiscrete random variable 𝑋\nProbability mass function (PMF):\n 𝑝𝑥\nTo get probability:\n𝑃𝑋= 𝑥= 𝑝𝑥\nContinuous random variable 𝑋\nProbability density function (PDF):\n  𝑓𝑥\nTo get probability:\n𝑃𝑎≤𝑋≤𝑏= *\n,\n-\n𝑓𝑥𝑑𝑥\n6\nPMF vs PDF\nBoth are measures of how likely 𝑋 is to take \non a value or some range of values.",
+      "source_type": "lecture_slide",
+      "document_name": "09 continuous rv annotated",
+      "score": 0.5367031693458557
+    },
+    {
+      "chunk_id": "cs109_09_continuous_rv_annotated_p9_p10_b58f337cde",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDetermining valid PDFs\nWhich of the following functions are valid PDFs?\n10\n𝑓𝑥\n𝑥\n𝑥$\n𝑥\"\n-\n(%\n%\n𝑓𝑥𝑑𝑥= 0.5\n𝑔𝑥\n𝑥\n𝑥'\n𝑥)\n-\n(%\n%\n𝑔𝑥𝑑𝑥= 1\nℎ𝑥\n𝑥\n0.5\n1\n1\n2\n-\n(%\n%\nℎ𝑥𝑑𝑥= 1\n𝑤𝑥\n𝑥\n𝑥!\n𝑥#\n0\n-\n(%\n%\n𝑤𝑥𝑑𝑥= 1\n1.  \n2.  \n3.  \n4.  \n𝑃𝑎 ≤𝑋≤𝑏= 2\n!\n\"\n𝑓(𝑥) 𝑑𝑥\n\nUniform RV\n11",
+      "source_type": "lecture_slide",
+      "document_name": "09 continuous rv annotated",
+      "score": 0.536130428314209
+    },
+    {
+      "chunk_id": "cs109_14_conditional_expectation_annotated_p5_0628feb14d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDiscrete probabilities of CS109\nThe below are conditional probability \ntables for conditional PMFs\n(A) 𝑃𝑌= 𝑦|𝑇= 𝑡 and (B) 𝑃𝑇= 𝑡|𝑌= 𝑦.\n1. Which is which?\n2. What’s the missing probability?\n6\n𝑌= 1 𝑌= 2 𝑌= 3\n𝑇= −1\n.06\n.01\n.01\n𝑇= 0\n.29\n.14\n.09\n𝑇= 1\n.30\n.08\n.02\n𝑌= 1 𝑌= 2 𝑌= 3\n𝑇= −1\n.09\n.04\n.08\n𝑇= 0\n.45\n.61\n.75\n𝑇= 1\n.46\n.35\n.17\nJoint PMF\n𝑌= 1 𝑌= 2 𝑌= 3\n𝑇= −1\n.75\n.125\n?\n𝑇= 0\n.56\n.27\n.17\n𝑇= 1\n.75\n.2\n.05\n(B) 𝑃𝑇= 𝑡|𝑌= 𝑦\n(A) 𝑃𝑌= 𝑦|𝑇= 𝑡\n.30/(.06+.29+.30)\n1-.75-.125\n.125\nConditional PMFs also sum to 1 conditioned on \ndifferent events!",
+      "source_type": "lecture_slide",
+      "document_name": "14 conditional expectation annotated",
+      "score": 0.5300671458244324
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p33_6eaaaa342e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVisualizing Binomial PMFs\n34\nMatch the distribution \nof 𝑋 to the graph:\n1.  Bin 10, 0.5\n2.  Bin 10, 0.3\n3.  Bin 10, 0.7\n4.  Bin 5, 0.5\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\nC.  \nD.  \n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\nA.  \nB.  \n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑋~Bin(𝑛, 𝑝)\n𝑝𝑖= 𝑛\n𝑘𝑝# 1 −𝑝$%#\n𝐸𝑋= 𝑛𝑝",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.5287837386131287
+    },
+    {
+      "chunk_id": "cs109_14_conditional_expectation_annotated_p4_220adf4a12",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDiscrete probabilities of CS109\nThe below are conditional probability \ntables for conditional PMFs\n(A) 𝑃𝑌= 𝑦|𝑇= 𝑡 and (B) 𝑃𝑇= 𝑡|𝑌= 𝑦.\n1. Which is which?\n2. What’s the missing probability?\n5\n𝑌= 1 𝑌= 2 𝑌= 3\n𝑇= −1\n.06\n.01\n.01\n𝑇= 0\n.29\n.14\n.09\n𝑇= 1\n.30\n.08\n.02\nJoint PMF\n𝑌= 1 𝑌= 2 𝑌= 3\n𝑇= −1\n.09\n.04\n.08\n𝑇= 0\n.45\n.61\n.75\n𝑇= 1\n.46\n.35\n.17\n𝑌= 1 𝑌= 2 𝑌= 3\n𝑇= −1\n.75\n.125\n?\n𝑇= 0\n.56\n.27\n.17\n𝑇= 1\n.75\n.2\n.05",
+      "source_type": "lecture_slide",
+      "document_name": "14 conditional expectation annotated",
+      "score": 0.5262146592140198
+    },
+    {
+      "chunk_id": "cs109_11_joint_rvs_annotated_p23_23cecf9496",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0\n1\n2\n3\n0\n.16\n.12\n.07\n.04 .39\n1\n.12\n.14\n.12\n0\n.38\n2\n.07\n.12\n0\n0\n.19\n3\n.04\n0\n0\n0\n.04\n.39\n.38\n.19\n.04\nA computer (or three) in every house.\n24\n𝑋 (# Macs)\n𝑌 (# PCs)\nConsider households in Silicon Valley.\n• A household has 𝑋 Macs and 𝑌 PCs.\n• Each house has a maximum of 3 computers total (Macs + PCs).\n2. How do you compute the marginal PMF of 𝑋?\nA\nsum cols here\nB\nC\nsum rows here\nA.  𝑝),\" 𝑥, 0 = 𝑃𝑋= 𝑥, 𝑌= 0\nB.  Marginal PMF of 𝑋\nC.  Marginal PMF of 𝑌\n𝑝! 𝑥= 2\n\"\n𝑝!,$ 𝑥, 𝑦\n𝑝$ 𝑦= 2\n%\n𝑝!,$ 𝑥, 𝑦\nTo find a marginal distribution over one variable, \nsum over all other variables in the joint PMF.",
+      "source_type": "lecture_slide",
+      "document_name": "11 joint rvs annotated",
+      "score": 0.5161998867988586
+    },
+    {
+      "chunk_id": "cs109_11_joint_rvs_annotated_p18_79d9355be4",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTwo dice\nRoll two 6-sided dice, yielding values 𝑋 and 𝑌.\n1. What is the joint PMF of 𝑋 and 𝑌?\n19\n𝑝5,8 𝑎, 𝑏= 1/36\n𝑎, 𝑏∈\n1,1 , … , 6,6\n𝑋 \n1\n2\n3\n4\n5\n6\n𝑌\n1\n1/36 \n...\n...\n...\n...\n1/36 \n2\n...\n...\n...\n...\n...\n...\n3\n...\n...\n...\n...\n...\n...\n4\n...\n...\n...\n...\n...\n...\n5\n...\n...\n...\n...\n...\n...\n6\n1/36\n...\n...\n...\n...\n1/36 \nProbability table\n• All possible outcomes\nfor several discrete RVs\n• Not parametric (e.g., \nparameter 𝑝 in Ber(𝑝))\n𝑃𝑋= 4, 𝑌= 3",
+      "source_type": "lecture_slide",
+      "document_name": "11 joint rvs annotated",
+      "score": 0.5135902166366577
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p28_4003f4ca12",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConjugate distributions\nMAP\nestimator:\n29\n𝜃*+, = arg max\n-\n𝑓𝜃|𝑋', 𝑋(, … , 𝑋)\nThe mode of the\nposterior distribution of 𝜃\nDistribution parameter\nConjugate distribution\nBernoulli 𝑝\nBeta\nBinomial 𝑝\nBeta\nMultinomial 𝑝!\nDirichlet\nPoisson 𝜆\nGamma\nExponential 𝜆\nGamma\nNormal 𝜇\nNormal\nNormal 𝜎%\nInverse Gamma",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.5111962556838989
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p32_5097a09c33",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVisualizing Binomial PMFs\n33\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n𝑋~Bin(𝑛, 𝑝)\n𝑝𝑖= 𝑛\n𝑘𝑝# 1 −𝑝$%#\n𝐸𝑋= 𝑛𝑝\nC.  \nD.  \nMatch the distribution \nof 𝑋 to the graph:\n1.  Bin 10, 0.5\n2.  Bin 10, 0.3\n3.  Bin 10, 0.7\n4.  Bin 5, 0.5\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\nA.  \nB.  \n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.5062074065208435
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p10_3c72f541d9",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0\n1\n!\n1\nSum of independent Uniforms\n11\n𝑓!'% 𝛼= $\n\"#\n#\n𝑓! 𝑥𝑓% 𝛼−𝑥𝑑𝑥\n𝑋 and 𝑌\nindependent\n+ continuous\nLet 𝑋~Uni 0,1  and 𝑌~Uni 0,1  be independent RVs.\nWhat is the distribution of 𝑋+ 𝑌, 𝑓+-, 𝛼?\n1.  𝛼≤0\n2.  𝛼= 1/2\n3.  𝛼= 1\n4.  𝛼= 3/2\n5.  𝛼≥2\n1/2\n1\n𝑓% 𝛼−𝑥\n𝑓! 𝑥\n0\n𝑓! 𝛼−𝑥= .1 \nif 𝛼−1 ≤𝑥≤𝛼\n0 \notherwise \n𝑓\" 𝑥= .1 \nif 0 ≤𝑥≤1\n0 \notherwise",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.4897817373275757
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p22_242c1ca147",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMore pop quiz! (more kidding)\n𝑋 and 𝑌 have the following joint PDF:\n1. Are 𝑋 and 𝑌 independent?\n2. What is the marginal\nPDF of 𝑋? Of 𝑌?\n3. What is 𝐸𝑋+ 𝑌?\n23\n𝑓),* 𝑥, 𝑦= 3𝑒!:'\nwhere 0 < 𝑥< ∞, 1 < 𝑦< 2",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.48535603284835815
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p52_af07371a26",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the statistic on the resample\n3. You now have a distribution of your statistic\nAlgorithm in practice: Resampling\n53\n𝑃𝑋= 𝑘= # values in sample equal to 𝑘\n𝑛\n?\n[116, 76, 132, 85, ..., 78]",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.4826745390892029
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p23_6fe431b32c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMore pop quiz! (more kidding)\n 𝑋 and 𝑌 have the following joint PDF:\n1. Are 𝑋 and 𝑌 independent?\n2. What is the marginal\nPDF of 𝑋? Of 𝑌?\n3. What is 𝐸𝑋+ 𝑌?\n24\n𝑔𝑥= 3𝐶𝑒!:', 0 < 𝑥< ∞ \nℎ𝑦= 1/𝐶,  \n1 < 𝑦< 2 \n𝐶 is a \nconstant\n✅\n𝑓),* 𝑥, 𝑦= 3𝑒!:'\nwhere 0 < 𝑥< ∞, 1 < 𝑦< 2\n𝑥\n𝑦\n𝑓),* 𝑥, 𝑦",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.4809972643852234
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p24_be648dac74",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMore pop quiz! (more kidding)\n𝑋 and 𝑌 have the following joint PDF:\n1. Are 𝑋 and 𝑌 independent?\n2. What is the marginal\nPDF of 𝑋? Of 𝑌?\n3. What is 𝐸𝑋+ 𝑌?\n25\n𝑓),* 𝑥, 𝑦= 3𝑒!:'\nwhere 0 < 𝑥< ∞, 1 < 𝑦< 2\n𝑔𝑥= 3𝑒!:', 0 < 𝑥< ∞ \nℎ𝑦= 1,  \n1 < 𝑦< 2 \n✅",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.4769963324069977
+    },
+    {
+      "chunk_id": "cs109_13_joint_statistics_annotated_p11_563903f8c5",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSpot the difference\nCompare/contrast the following two distributions:\n12\nBoth distributions have the same 𝐸𝑋, 𝐸𝑌, Var 𝑋, and Var 𝑌 \nDifference: how the two variables vary with each other.\nAssume all points are \nequally likely.\n𝑃𝑋= 𝑥, 𝑌= 𝑦= 1\n𝑁",
+      "source_type": "lecture_slide",
+      "document_name": "13 joint statistics annotated",
+      "score": 0.4723534882068634
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p26_216ef00949",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeta RV with diﬀerent 𝑎, 𝑏\n27\n𝑓𝑥=\n1\n𝐵𝑎, 𝑏𝑥@A! 1 −𝑥BA!\n𝑋~Beta(𝑎, 𝑏)\nPDF\nSupport of 𝑋: 0, 1\nwhere 𝐵𝑎, 𝑏= ∫%\n#𝑥&'# 1 −𝑥('#𝑑𝑥, normalizing constant\n𝑎> 0, 𝑏> 0\nis the PDF for Beta(8, 2)!\n𝑓?|9 𝑥𝑛= 1\n𝑐 𝑥N 1 −𝑥!\n𝑐 normalizes to valid PDF\n🌟",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.45775192975997925
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p18_p19_653a0fdfd1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRatios of PDFs \nare meaningful!\nRelative probabilities of continuous random variables\n19\n𝑃𝑋= 𝑎= 𝑃𝑎−𝜀\n2 ≤𝑋≤𝑎+ 𝜀\n2\n𝑃𝑋= 10\n𝑃𝑋= 5\n= 𝑓10\n𝑓5\n𝑃𝑋= 𝑎\n𝑃𝑋= 𝑏= 𝜀𝑓𝑎\n𝜀𝑓𝑏= 𝑓𝑎\n𝑓𝑏\nTherefore\n= ?\n$%&\n'\n$#&\n'𝑓𝑥𝑑𝑥≈𝜀𝑓(𝑎)\n=\n1\n𝜎2𝜋𝑒\" )* \" + !\n,-!\n1\n𝜎2𝜋𝑒\n\" . \" + !\n,-!\n= 𝑒\" )* \")* !\n,⋅,\n𝑒\" . \" )* !\n,⋅,\n= \n𝑒(\n𝑒% ')\n*\n = 518\n5             10\n!\n\"(!)\nLet 𝑋= time to finish problem set 4.\nSuppose 𝑋~𝒩10, 2 .\nHow much more likely are you to \ncomplete in 10 hours than 5 hours?\n\nContinuous \nconditional \ndistributions\n20",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.45369619131088257
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p20_26738bfe99",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nContinuous conditional distributions\nFor continuous RVs 𝑋 and 𝑌, the conditional PDF of 𝑋 given 𝑌 is\n𝑓\"|$ 𝑥|𝑦= 𝑓\",$ 𝑥, 𝑦\n𝑓$ 𝑦\nIntuition:\nNote that conditional PDF 𝑓+|, is a \"true\" density: \n21\n𝑃𝑋= 𝑥𝑌= 𝑦= 𝑃𝑋= 𝑥, 𝑌= 𝑦\n𝑃𝑌= 𝑦\n𝑓+|, 𝑥𝑦𝜀+ = 𝑓+,, 𝑥, 𝑦𝜀+𝜀,\n𝑓, 𝑦𝜀,\n(\n./\n/\n𝑓+|, 𝑥|𝑦𝑑𝑥= (\n./\n/ 𝑓+,, 𝑥, 𝑦\n𝑓, 𝑦\n𝑑𝑥= 𝑓, 𝑦\n𝑓, 𝑦= 1\nwhere 𝑓! 𝑦> 0",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.4517984390258789
+    },
+    {
+      "chunk_id": "cs109_09_continuous_rv_annotated_p8_445992a924",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTrue/False:\n1.  𝑃𝑋= 𝑐= 0 \n2.  𝑃𝑎≤𝑋≤𝑏= 𝑃𝑎< 𝑋< 𝑏= 𝑃𝑎≤𝑋< 𝑏= 𝑃𝑎< 𝑋≤𝑏\n3.  𝑓(𝑥) is a probability\n4.  In the graphed PDF above,\n 𝑃𝑥8 ≤𝑋≤𝑥9 > 𝑃𝑥9 ≤𝑋≤𝑥:\n𝑥'\n𝑥\"\nPDF Properties\n9\n𝑃𝑎 ≤𝑋≤𝑏=  *\n,\n-\n𝑓(𝑥) 𝑑𝑥\nFor a continuous RV 𝑋 with PDF 𝑓,\n❌\nInterval width 𝑑𝑥→0\n𝑥\n𝑓𝑥\n𝑥$\nCompare area under the curve\n⭐\nsupport: values of \n𝑥 where 𝑓𝑥> 0\n⭐\nIt’s a probability density!\n⭐",
+      "source_type": "lecture_slide",
+      "document_name": "09 continuous rv annotated",
+      "score": 0.44722139835357666
+    },
+    {
+      "chunk_id": "cs109_10_normal_gaussian_annotated_p9_800a845422",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nAnatomy of a beautiful equation\nLet 𝑋~𝒩𝜇, 𝜎% .\nThe PDF of 𝑋 is defined as:\n10\n𝑓𝑥=\n1\n𝜎2𝜋\n𝑒\" $ \" % !\n!&!\nnormalizing constant\nexponential\ntail\nsymmetric\naround 𝜇\nvariance 𝜎#\nmanages spread\n0\n0.1\n0.2\n0.3\n0.4\n0.5\n-3\n-2\n-1\n0\n1\n2\n3\n!\n𝑥\n𝑓𝑥",
+      "source_type": "lecture_slide",
+      "document_name": "10 normal gaussian annotated",
+      "score": 0.44458454847335815
+    }
+  ],
+  "built_at": "2026-04-28T05:13:10Z"
+}

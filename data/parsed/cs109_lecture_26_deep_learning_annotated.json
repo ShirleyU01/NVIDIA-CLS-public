@@ -1,0 +1,231 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/26_deep_learning_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/26_deep_learning_annotated.pdf",
+  "sha256": "2d01161563f31e9644bcc7014f9a8b9efadc822e7959b9262cca0c36e9881932",
+  "title_guess": "26 deep learning annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "26: Intro to Deep \nLearning\nJerry Cain\nMay 31, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 78
+    },
+    {
+      "page_index": 1,
+      "text": "Deep Learning\n2",
+      "char_count": 15
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInnovations in deep learning\nDeep learning and neural \nnetworks are cores theories and \ntechnologies behind the current AI \nrevolution.\n3\nAlphaGO (2016)\nErrata:\n•\nCheckers is the last solved game (from game \ntheory, where perfect player outcomes can be \nfully predicted from any gameboard). \nhttps://en.wikipedia.org/wiki/Solved_game \n•\nThe first machine learning algorithm defeated a \nworld champion in Chess in 1996. \nhttps://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)",
+      "char_count": 549
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComputers making art\n4\nThe Next Rembrandt\nhttps://medium.com/@DutchDigital/the-\nnext-rembrandt-bringing-the-old-master-\nback-to-life-35dfb1653597 \nA Neural Algorithm of Artistic Style\nhttps://arxiv.org/abs/1508.06576 \nhttps://github.com/jcjohnson/neural-style \nGoogle Deep Dream\nhttps://ai.googleblog.com/2015/06/in\nceptionism-going-deeper-into-\nneural.html",
+      "char_count": 430
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDetecting skin cancer\n5\nEsteva, Andre, et al. \"Dermatologist-level classification of skin cancer with deep neural networks.\" \nNature 542.7639 (2017): 115-118.",
+      "char_count": 231
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDeep learning\ndef Deep learning is \nmaximum likelihood estimation \nwith neural networks.\n6\n[1,0, … , 1]\n𝒙, input\n(𝑦, output\n𝑃𝑌= 1|𝑿= 𝒙\n> 0.5?\nYes.\nPredict 1\nLots of Logistic \n(regressions)\nLOL\ndef A neural network is,\nat its core, many logistic \nregression units stacked on top \nof each other and daisy-\nchained together.",
+      "char_count": 394
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic Regression Model\n7\n𝜃! + #\n\"#$\n%\n𝜃\"𝑋\"\n𝑿\n\"𝑦= 𝑃𝑌= 1|𝑿\n0\n0.2\n0.4\n0.6\n0.8\n1\n-10\n-8\n-6\n-4\n-2\n0\n2\n4\n6\n8\n10\n! \"\n\"\n+\n𝒙\n\"𝑦\nLet’s focus on the \nmodel up to \"𝑦.\n)𝑌= arg max\n!\" #,%\n𝑃𝑌 | 𝑿",
+      "char_count": 256
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic Regression Model\n8\n𝜃! + #\n\"#$\n%\n𝜃\"𝑋\"\n𝑿\n\"𝑦= 𝑃𝑌= 1|𝑿\n0\n0.2\n0.4\n0.6\n0.8\n1\n-10\n-8\n-6\n-4\n-2\n0\n2\n4\n6\n8\n10\n! \"\n\"\n𝒙\n\"𝑦\nLet’s focus on the \nmodel up to \"𝑦.\n)𝑌= arg max\n!\" #,%\n𝑃𝑌 | 𝑿\n+\n…\nσ\n> 0.5?",
+      "char_count": 267
+    },
+    {
+      "page_index": 8,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nOne neuron\n9\n+\n…\nσ\n𝒙\n(𝑦\n=\n= One logistic regression",
+      "char_count": 124
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNeural network =\nmany logistic\nregressions\nBiological basis for neural networks\n10\nA neuron\nYour brain\nOne neuron =\n   one logistic\n   regression\n(or rather, someone else’s brain)\n𝑥$\n𝑥&\n𝑥'\n𝑥(\n𝜃!\n𝜃\"\n𝜃#\n𝜃$\n\"𝑦\n𝑥$\n𝑥&\n𝑥'\n𝑥(",
+      "char_count": 291
+    },
+    {
+      "page_index": 10,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDigit recognition example\n11\nInput feature vector\n𝒙(() = 0,0,0,0, … , 1,0,0,1, … , 0,0,1,0\n𝒙(() = 0,0,1,1, … , 0,1,1,0, … , 0,1,0,0\n𝑦( = 0\n𝑦( = 1\nOutput label\nInput image\nWe make feature vectors from digitized pictures of numbers.",
+      "char_count": 303
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic Regression\n12\n…\n𝒙, input features\n(𝑦, output\n+\nσ\n(pixels, on/off)\n𝑃𝑌= 1|𝑿= 𝒙",
+      "char_count": 158
+    },
+    {
+      "page_index": 12,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic Regression\n13\n…\n> 0.5?\n𝒙, input features\n(𝑦, output\nindicates logistic \nregression connection\nNo. \nPredict 0\n✅\n(pixels, on/off)\n𝑃𝑌= 1|𝑿= 𝒙",
+      "char_count": 220
+    },
+    {
+      "page_index": 13,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic Regression\n14\n…\n> 0.5?\n𝒙, input features\n(𝑦, output\nindicates logistic \nregression connection\nYes. \nPredict 1\n✅",
+      "char_count": 193
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic Regression\n15\n…\n> 0.5?\n𝒙, input features\n(𝑦, output\nindicates logistic \nregression connection\nYes. \nPredict 1\n❌\nWhat can we do to increase \ncomplexity of our model?",
+      "char_count": 246
+    },
+    {
+      "page_index": 15,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTake two big ideas from Logistic Regression\n16\n…\n𝒙, input features\n(𝑦, output\nindicates logistic \nregression connection\nBig idea #1  𝑃𝑌|𝑿= 𝒙\nModel conditional probability \n\"𝑦 of class label given input\nBig idea #2 σ θ*𝒙\nNon-linear transform of multiple \nvalues into one value, using \nparameter θ \nReview",
+      "char_count": 376
+    },
+    {
+      "page_index": 16,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIntroducing: The Neural network\n17\n…\n𝒙, input features\n(𝑦, output\n𝒉, hidden\nlayer\n> 0.5?\nNo. \nPredict 0\n✅",
+      "char_count": 178
+    },
+    {
+      "page_index": 17,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNeural network\n18\n…\n𝒙, input features\n(𝑦, output\nBig idea #1  𝑃𝑌|𝑿= 𝒙\nModel conditional probability \n\"𝑦 of class label given input\n𝒉, hidden\nlayer\n> 0.5?\nNo. \nPredict 0",
+      "char_count": 241
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFeed neurons into other neurons\n19\n…\n𝒉, hidden\nlayer\n+\nσ\nhidden\nneuron\n• Neuron = logistic regression\n𝒙, input features\n(𝑦, output\n> 0.5?\nNo. \nPredict 0\nBig idea #2 σ θ*𝒙\nNon-linear transform of multiple \nvalues into one value, using \nparameter θ",
+      "char_count": 319
+    },
+    {
+      "page_index": 19,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFeed neurons into other neurons\n20\n…\n𝒉, hidden\nlayer\n+\nσ\nanother\nhidden\nneuron\n• Neuron = logistic regression\n• Different parameters for\nevery connection\n𝒙, input features\n(𝑦, output\n> 0.5?\nNo. \nPredict 0",
+      "char_count": 277
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFeed neurons into other neurons\n21\n…\n𝒙, input features\n(𝑦, output\n𝒉, hidden\nlayer\n|𝒉| logistic \nregression \nconnections\n• Neuron = logistic regression\n• Different parameters for\nevery connection\n> 0.5?\nNo. \nPredict 0\n𝒙⋅|𝒉| \nparameters",
+      "char_count": 307
+    },
+    {
+      "page_index": 21,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFeed neurons into other neurons\n22\n…\n𝒉, hidden\nlayer\n> 0.5?\nNo. \nPredict 0\n+\nσ\noutput\nneuron\n• Neuron = logistic regression\n• Different parameters for\nevery connection\n𝒙, input features\n(𝑦, output\n|𝒉| logistic \nregression \nconnections\n𝒙⋅|𝒉| \nparameters",
+      "char_count": 325
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFeed neurons into other neurons\n23\n…\n𝒙, input features\n(𝑦, output\n𝒉, hidden\nlayer\n> 0.5?\nNo. \nPredict 0\n1 logistic \nregression \nconnection\n|𝒉| logistic \nregression \nconnections\n𝒙⋅|𝒉| \nparameters\n|𝒉| \nparameters\n• Neuron = logistic regression\n• Different parameters for\nevery connection",
+      "char_count": 358
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhy doesn’t a linear model introduce “complexity”?\nNeural network:\n1.  \n2.  \nLinear network:\n1.   \n2.  \n24\n…\n!, input features\n\"#, output\n$, hidden\nlayer\nfor 𝑗= 1, … , |𝒉|:\nℎ\" = 𝜎𝜃\"\n) *\n𝒙\n1.\n2.\nfor 𝑗= 1, … , |𝒉|:\nℎ\" = 𝜃\"\n) *\n𝒙\n,𝑦= 𝜎𝜃+, *𝒉= 𝑃𝑌= 1|𝑿= 𝒙\n,𝑦= 𝜎𝜃+, *𝒉= 𝑃𝑌= 1|𝑿= 𝒙",
+      "char_count": 347
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhy doesn’t a linear model introduce “complexity”?\nNeural network:\n1.  \n2.  \nLinear network:\n1.   \n2.  \n25\n…\n!, input features\n\"#, output\n$, hidden\nlayer\n,𝑦= 𝜎𝜃+, *𝒉= 𝑃𝑌= 1|𝑿= 𝒙\nfor 𝑗= 1, … , |𝒉|:\nℎ\" = 𝜎𝜃\"\n) *\n𝒙\n1.\n2.\nfor 𝑗= 1, … , |𝒉|:\nℎ\" = 𝜃\"\n) *\n𝒙\nThe linear model is effectively \na single logistic regression \nwith 𝒙 parameters.\n,𝑦= 𝜎𝜃+, *𝒉= 𝑃𝑌= 1|𝑿= 𝒙",
+      "char_count": 429
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNeural Networks and Numeric Digit Recognition\nhttps://adamharley.com/nn_vis/\n26",
+      "char_count": 152
+    },
+    {
+      "page_index": 26,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNeural networks\n27\nTesting/\nPrediction\nTraining\nA neural network (like logistic regression) gets intelligence from its \nparameters 𝜃.\n•\nLearn parameters 𝜃 \n•\nFind 𝜃&'( that maximizes likelihood of\ntraining data (MLE)\nFor input feature vector 𝑿= 𝒙:\n•\nUse parameters to compute (𝑦= 𝑃𝑌= 1|𝑿= 𝒙\n•\nClassify instance as:\n-1 \n(𝑦> 0.5 \n0 \notherwise",
+      "char_count": 413
+    },
+    {
+      "page_index": 27,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNeural networks\n28\nTraining\nA neural network (like logistic regression) gets intelligence from its \nparameters 𝜃.\n•\nLearn parameters 𝜃 \n•\nFind 𝜃&'( that maximizes likelihood of\ntraining data (MLE)\nHow do we learn the 𝒙⋅𝒉+ |𝒉| parameters?\nGradient ascent + chain rule!",
+      "char_count": 340
+    },
+    {
+      "page_index": 28,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Optimization\nproblem:\n2. Compute gradient\n3. Optimize\nTraining: Logistic Regression\n29\nFind |𝒙| parameters\n𝜃+,- = arg max\n.\n9\n(\"%\n/\n𝑓𝑦( | 𝒙( , 𝜃= arg max\n.\n 𝐿𝐿𝜃\n𝐿𝐿𝜃= <\n(\"%\n/\n𝑦(() log \"𝑦( + 1 −𝑦(() log 1 −\"𝑦(\nReview\n\"𝑦= 𝜎𝜃*𝒙(()\n= 𝑃𝑌= 1|𝑿= 𝒙\ninitialize params\nrepeat many times:\n  compute gradient\nparams += η * gradient\n🌟",
+      "char_count": 396
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Optimization\nproblem:\n2. Compute gradient\n3. Optimize\nTraining: Neural networks\n30\n𝜃+,- = arg max\n.\n9\n(\"%\n/\n𝑓𝑦( | 𝒙( , 𝜃= arg max\n.\n 𝐿𝐿𝜃",
+      "char_count": 212
+    },
+    {
+      "page_index": 30,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Same output !𝑦, same log conditional likelihood\n31\n𝜃+,- = arg max\n.\n9\n(\"%\n/\n𝑓𝑦( | 𝒙( , 𝜃= arg max\n.\n 𝐿𝐿𝜃\n,𝑦= 𝜎𝜃+, *𝒉= 𝑃𝑌= 1|𝑿= 𝒙\nfor 𝑗= 1, … , |𝒉|:\nℎ\" = 𝜎𝜃\"\n) *\n𝒙\n𝐿𝐿𝜃= <\n(\"%\n/\n𝑦(() log \"𝑦( + 1 −𝑦(() log 1 −\"𝑦(\n𝐿𝜃= 9\n(\"%\n/\n𝑃𝑌= 𝑦( |𝑿= 𝒙( , 𝜃\n= 9\n(\"%\n/\n\"𝑦(\n! !\n1 −\"𝑦(\n%0! !\n…\n!, input features\n\"#, output\n$, hidden\nlayer\nBinary class labels: \n𝑌∈0, 1",
+      "char_count": 422
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n(model is a little more complicated)\n32\n𝜃+,- = arg max\n.\n9\n(\"%\n/\n𝑓𝑦( | 𝒙( , 𝜃= arg max\n.\n 𝐿𝐿𝜃\n,𝑦= 𝜎𝜃+, *𝒉= 𝑃𝑌= 1|𝑿= 𝒙\nfor 𝑗= 1, … , |𝒉|:\nℎ\" = 𝜎𝜃\"\n) *\n𝒙\n…\n!, input features\n\"#, output\n$, hidden\nlayer\n𝐿𝐿𝜃= <\n(\"%\n/\n𝑦(() log \"𝑦( + 1 −𝑦(() log 1 −\"𝑦(\ndimension 𝒙\ndimension 𝒉\nTo optimize for \nlog conditional likelihood,\nwe now need to find:\nparameters\n𝒉⋅𝒙+ 𝒉",
+      "char_count": 426
+    },
+    {
+      "page_index": 32,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Optimization\nproblem:\n2. Compute gradient\n3. Optimize\n2. Compute gradient\n33\n𝜃+,- = arg max\n.\n9\n(\"%\n/\n𝑓𝑦( | 𝒙( , 𝜃= arg max\n.\n 𝐿𝐿𝜃\n𝐿𝐿𝜃= <\n(\"%\n/\n𝑦(() log \"𝑦( + 1 −𝑦(() log 1 −\"𝑦(\nℎ3 = 𝜎𝜃3\n4 *\n𝒙\n\"𝑦= 𝜎𝜃5! *𝒉\nfor 𝑗= 1, … , |𝒉|\nTake gradient with respect to all 𝜃 parameters\nCalculus refresher #1: \nDerivative(sum) =\nsum(derivative)\nCalculus refresher #2: \nChain rule 🌟 🌟 🌟",
+      "char_count": 444
+    },
+    {
+      "page_index": 33,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nℎ3 = 𝜎𝜃3\n4 *\n𝒙\n1. Optimization\nproblem:\n2. Compute gradient\n3. Optimize\n3. Optimize\n34\n𝜃+,- = arg max\n.\n9\n(\"%\n/\n𝑓𝑦( | 𝒙( , 𝜃= arg max\n.\n 𝐿𝐿𝜃\n𝐿𝐿𝜃= <\n(\"%\n/\n𝑦(() log \"𝑦( + 1 −𝑦(() log 1 −\"𝑦(\ninitialize params\nrepeat many times:\n  compute gradient\nparams += η * gradient\n\"𝑦= 𝜎𝜃5! *𝒉\nfor 𝑗= 1, … , |𝒉|\nTake gradient with respect to all 𝜃 parameters",
+      "char_count": 416
+    },
+    {
+      "page_index": 34,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nℎ3 = 𝜎𝜃3\n4 *\n𝒙\n\"𝑦= 𝜎𝜃5! *𝒉\nfor 𝑗= 1, … , |𝒉|\nTake gradient with respect to all 𝜃 parameters\n1. Optimization\nproblem:\n2. Compute gradient\n3. Optimize\nTraining a neural net\n35\n𝜃+,- = arg max\n.\n9\n(\"%\n/\n𝑓𝑦( | 𝒙( , 𝜃= arg max\n.\n 𝐿𝐿𝜃\n𝐿𝐿𝜃= <\n(\"%\n/\n𝑦(() log \"𝑦( + 1 −𝑦(() log 1 −\"𝑦(\nWait, did we just skip something difficult?\ninitialize params\nrepeat many times:\n  compute gradient\nparams += η * gradient",
+      "char_count": 470
+    },
+    {
+      "page_index": 35,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Optimization\nproblem:\n2. Compute gradient\n3. Optimize\n2. Compute gradient via backpropagation\n36\n𝜃+,- = arg max\n.\n9\n(\"%\n/\n𝑓𝑦( | 𝒙( , 𝜃= arg max\n.\n 𝐿𝐿𝜃\n𝐿𝐿𝜃= <\n(\"%\n/\n𝑦(() log \"𝑦( + 1 −𝑦(() log 1 −\"𝑦(\nℎ3 = 𝜎𝜃3\n4 *\n𝒙\n\"𝑦= 𝜎𝜃5! *𝒉\nfor 𝑗= 1, … , |𝒉|\nTake gradient with respect to all 𝜃 parameters\nLearn the tricks behind \nbackpropagation in \nCS229, CS231N, CS224N, \netc.",
+      "char_count": 439
+    },
+    {
+      "page_index": 36,
+      "text": "Beyond the \nbasics\n37",
+      "char_count": 21
+    },
+    {
+      "page_index": 37,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nShared weights?\nIt turns out if you want to force some of your weights to be shared over \ndifferent neurons, the math isn’t much harder.\nConvolution is an example of such weight-sharing and is used a lot in \ncomputer vision (Convolutional Neural Networks, CNN).\n38",
+      "char_count": 337
+    },
+    {
+      "page_index": 38,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNeural networks with multiple layers\n39\n𝒙\n𝒂\n𝒃\n𝒄\n𝒅\n𝒆\n𝒇\nJ𝒚\n𝐿𝐿",
+      "char_count": 132
+    },
+    {
+      "page_index": 39,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNeurons learn features of the dataset\n40\nLe, et al., Building high-level features using large-scale unsupervised learning. ICML 2012\nNeurons in later layers will respond strongly to high-level \nfeatures of your training data.\nIf your training data is faces, you will get lots of face neurons.\nIf your training data\nis all of YouTube…\nTop stimuli in test set\nOptimal stimulus found\nby numerical optimization\n…you get a cat \nneuron.",
+      "char_count": 503
+    },
+    {
+      "page_index": 40,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGoogLeNet (2015)\n41\n1 Trillion Artificial Neurons\n(btw human brains have 1 billion neurons)\n22 layers deep!\nMultiple,\nMulti class output\nSzegedy et al., Going Deeper With Convolutions. CVPR 2015",
+      "char_count": 267
+    },
+    {
+      "page_index": 41,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGood ML = Generalization\nOverfitting\nFitting the training data too well,\nsuch that we lose generality of\nmodel for predicting new data\nDropout\nDuring training, randomly leave out\nsome neurons each training step.\nIt will make your network more robust.\n42\nperfect fit, but bad \npredictor for new data\nmore general fit + better\npredictor for new data",
+      "char_count": 420
+    },
+    {
+      "page_index": 42,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaking decisions?\nNot everything is classification.\nDeep Reinforcement Learning\nInstead of having the output of \na model be a probability, you \nmake output an expectation.\n43\nhttp://cs.stanford.edu/people/karpathy/convnetjs/demo/rldemo.html",
+      "char_count": 313
+    },
+    {
+      "page_index": 43,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDeep Reinforcement Learning\n44\nhttp://cs.stanford.edu/people/karpathy\n/convnetjs/demo/rldemo.html\nDeep Mind Atari Games\nScore compared to best \nhuman",
+      "char_count": 222
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:59Z"
+}

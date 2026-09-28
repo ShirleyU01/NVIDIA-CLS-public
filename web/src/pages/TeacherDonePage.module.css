@@ -1,0 +1,31 @@
+.page {
+  display: grid;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 1.55rem;
+  color: var(--color-green-700);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.linkButton {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.5rem 0.95rem;
+  color: var(--color-green-700);
+  text-decoration: none;
+  font-weight: 600;
+  background: var(--color-surface);
+}
+
+.linkButton:hover {
+  border-color: color-mix(in srgb, var(--color-green-700) 35%, var(--color-border));
+}

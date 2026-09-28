@@ -1,0 +1,246 @@
+{
+  "course": "CS109",
+  "topic_id": "linear_regression",
+  "topic_name": "Linear Regression and Optimization",
+  "queries_used": [
+    "Linear Regression and Optimization definition",
+    "Linear Regression and Optimization intuition",
+    "Linear Regression and Optimization worked example",
+    "Linear Regression and Optimization exam problem",
+    "linear regression overview",
+    "linear regression practice",
+    "least squares overview",
+    "least squares practice",
+    "gradient ascent overview",
+    "gradient ascent practice",
+    "optimization overview",
+    "optimization practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_finalfall2017_q2d_35a6910b1d",
+      "text": "Gradient ascent would be good (we have a 1-d gradient):\nr↵LL(↵) = dLL\nd↵= ⌃n\ni=1(1/↵−log(1 + xi)) = n/↵−⌃n\ni=1 log(1 + xi)\nEven better is to ﬁnd the point of inﬂection directly. We do this by\nsetting dLL\nd↵= 0:\nn/↵−⌃n\ni=1 log(1 + xi) = 0 =) ↵=\nn\n⌃n\ni=1 log(1 + xi)\nTo double check that this is a maximum:\nd2↵\nd↵2 = −n\n↵2\nSince n is positive, this is negative, so we’ve found our maximum!\n1",
+      "source_type": "exam_question",
+      "document_name": "FinalFall2017",
+      "score": 0.6036378741264343
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p30_2393057340",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nGradient ascent algorithm\n31\nLet 𝑓𝑥= −𝑥\" + 4, \nwhere −2 < 𝑥< 2.\nGradient ascent algorithm:\ninitialize x\nrepeat many times:\n  compute gradient\nx += η * gradient\nWalk uphill and you’ll find a local maxima\n(if your step is small enough).\n𝑑𝑓\n𝑑𝑥= −2𝑥\nGradient at 𝑥\n1.\n2.\n(demo)",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.601525604724884
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p36_26158aebea",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTraining: Gradient Ascent\n37\ninitialize 𝜃& = 0 for 0 ≤ j ≤ m\nrepeat until convergence:\n \ngradient[j] = 0 for 0 ≤ j ≤ m\n \n// TODO: your code here\n \n// compute all gradient[j]’s\n \n// based on n training examples\n \n   𝜃& += η  * gradient[j] for all 0 ≤ j ≤ m\n𝜃\"\n&'( = 𝜃\"\n)*+ + 𝜂⋅)\n,#$\n-\n𝑦(,) −𝜎𝜃)*+!𝒙(,)\n 𝑥\"\n(,)\nGradient \nAscent Step\nfor 𝑗= 0, 1, …, 𝑚:",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.5812544226646423
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p37_c6f91e5775",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTraining: Gradient Ascent\n38\n \nfor each 0 ≤ j ≤ m:\ninitialize 𝜃& = 0 for 0 ≤ j ≤ m\nrepeat until convergence:\n \ngradient[j] = 0 for 0 ≤ j ≤ m\n \nfor each training example (𝒙,𝑦):\n \n   𝜃& += η  * gradient[j] for all 0 ≤ j ≤ m\n// update gradient[j] for\n// current (𝒙,𝑦) example\n𝜃\"\n&'( = 𝜃\"\n)*+ + 𝜂⋅)\n,#$\n-\n𝑦(,) −𝜎𝜃)*+!𝒙(,)\n 𝑥\"\n(,)\nGradient \nAscent Step\nfor 𝑗= 0, 1, …, 𝑚:\nouter loop\ninner loop\ncompute",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.581078052520752
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p38_001bce4705",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\ninitialize 𝜃& = 0 for 0 ≤ j ≤ m\nrepeat until convergence:\n \ngradient[j] = 0 for 0 ≤ j ≤ m\n \nfor each training example (𝒙,𝑦):\n \n   𝜃& += η  * gradient[j] for all 0 ≤ j ≤ m\nTraining: Gradient Ascent\n39\n \nfor each 0 ≤ j ≤ m:\n \n \n \ngradient[j] += \n𝑦−\n1\n1 + 𝑒93!𝒙 𝑥&\nSome important \ndetails…\n𝜃\"\n&'( = 𝜃\"\n)*+ + 𝜂⋅)\n,#$\n-\n𝑦(,) −𝜎𝜃)*+!𝒙(,)\n 𝑥\"\n(,)\nGradient \nAscent Step\nfor 𝑗= 0, 1, …, 𝑚:\nouter loop\ninner loop\ncompute",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.5771530866622925
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p39_ffec3f322d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\ninitialize 𝜃& = 0 for 0 ≤ j ≤ m\nrepeat until convergence:\n \ngradient[j] = 0 for 0 ≤ j ≤ m\n \nfor each training example (𝒙,𝑦):\n \n   𝜃& += η  * gradient[j] for all 0 ≤ j ≤ m\nTraining: Gradient Ascent\n40\n \nfor each 0 ≤ j ≤ m:\n \n \n \ngradient[j] += \n𝜃\"\n&'( = 𝜃\"\n)*+ + 𝜂⋅)\n,#$\n-\n𝑦(,) −𝜎𝜃)*+!𝒙(,)\n 𝑥\"\n(,)\nGradient \nAscent Step\n𝑦−\n1\n1 + 𝑒93!𝒙 𝑥&\n• Finish computing\ngradient with 𝜃;<= \nprior to any 𝜃 update",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.5766052007675171
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p45_5bd1de5e3d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n3. Gradient ascent with multiple parameters\n46\n𝜕ℎ𝜃\n𝜕𝑎\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\n𝑥%\nOptimization \nproblem:\n= arg max\n4\nℎ𝜃\narg max\n!\n−<\n\"#$\n%\n𝑦\" −𝑎𝑥\" −𝑏\n&\nGradient:\n𝜕ℎ𝜃\n𝜕𝑏\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\na, b = 0, 0  \n \n \n \n \n# initialize 𝜃\nrepeat many times:\n  gradient_a, gradient_b = 0, 0\n  for each training example (x, y):\n    diff = y – (a * x + b)\n    gradient_a += 2 * diff * x\n    gradient_b += 2 * diff\n  a += η * gradient_a    # 𝜃 += η * gradient\n  b += η * gradient_b\nFinish computing\ngradient before\nupdating any part \nof 𝜃.\n(demo)",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.5638954043388367
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p40_aed8750441",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\ninitialize 𝜃& = 0 for 0 ≤ j ≤ m\nrepeat until convergence:\n \ngradient[j] = 0 for 0 ≤ j ≤ m\n \nfor each training example (𝒙,𝑦):\n \n   𝜃& += η  * gradient[j] for all 0 ≤ j ≤ m\nTraining: Gradient Ascent\n41\n \nfor each 0 ≤ j ≤ m:\n \n \n \ngradient[j] += \n𝜃\"\n&'( = 𝜃\"\n)*+ + 𝜂⋅)\n,#$\n-\n𝑦(,) −𝜎𝜃)*+!𝒙(,)\n 𝑥\"\n(,)\nGradient \nAscent Step\n𝑦−\n1\n1 + 𝑒93!𝒙 𝑥&\n• Finish computing\ngradient with 𝜃;<= \nprior to any 𝜃 update\n• Learning rate 𝜂 is a \nconstant you set \nbefore training",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.5635718107223511
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p41_32f8a37117",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\ninitialize 𝜃& = 0 for 0 ≤ j ≤ m\nrepeat until convergence:\n \ngradient[j] = 0 for 0 ≤ j ≤ m\n \nfor each training example (𝒙,𝑦):\n \n   𝜃& += η  * gradient[j] for all 0 ≤ j ≤ m\nTraining: Gradient Ascent\n42\n \nfor each 0 ≤ j ≤ m:\n \n \n \ngradient[j] += \n𝜃\"\n&'( = 𝜃\"\n)*+ + 𝜂⋅)\n,#$\n-\n𝑦(,) −𝜎𝜃)*+!𝒙(,)\n 𝑥\"\n(,)\nGradient \nAscent Step\n𝑦−\n1\n1 + 𝑒93!𝒙 𝑥&\n• Finish computing\ngradient with 𝜃;<= \nprior to any 𝜃 update\n• Learning rate 𝜂 is a \nconstant you set \nbefore training\n• 𝑥& is the 𝑗>? feature of\ninput 𝒙= 𝑥\", … , 𝑥$",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.5458537340164185
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p14_d1b2b37a94",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRegression: Predicting real numbers\n15\nTraining data: 𝒙' , 𝑦' , 𝒙$ , 𝑦$ , …, 𝒙( , 𝑦(\n…\nCO2 levels\nOutput\n…\n…\nYear 1 \n 338.8 \n0 \n… \n1 \n 0.26 \nYear 2 \n 340.0 \n1 \n… \n0 \n 0.32 \n     …\nYear 𝑛 \n 340.76 \n0 \n… \n1 \n 0.14\nFeature 𝑚\nSea\nlevel\nGlobal Land-Ocean\ntemperature",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.5453275442123413
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p13_1b9569ac02",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nRegression: Predicting real numbers\n14\nTraining data: 𝒙# , 𝑦# , 𝒙% , 𝑦% , …, 𝒙& , 𝑦&\nCO2 levels\nOutput\n…\nYear 1 \n 338.8 \n  \n 0.26 \nYear 2 \n 340.0 \n \n 0.32 \n     …\nYear 𝑛 \n 340.76 \n \n 0.14\nGlobal Land-\nOcean\ntemperature\nReview\n𝑿= 𝑋#\n(assume one feature)\n𝑌∈ℝ\nModel:\n$𝑌= 𝑔𝑿,\nfor some parametric \nfunction 𝑔",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.5392447113990784
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p26_p27_d4d4dfc388",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nLinear Regression, MLE (next steps)\n1. Assume linear model\n(and 𝑿 is 1-D):\n2. Define maximum likelihood\nestimator:\n3. Model error, 𝑍:\n4. Pick 𝜃= 𝑎, 𝑏 that maximizes\nlikelihood of training data\n27\n$𝑌= 𝑔𝑿= 𝑎𝑋+ 𝑏\n𝜃+3- = arg max\n.\n?\n&(!\n%\nlog 𝑓𝑦& | 𝑥& , 𝜃\n𝑌= 𝑎𝑋+ 𝑏+ 𝑍, where Z~𝒩0, 𝜎!\nWe won’t find a solution analytically. \nInstead, we’ll leverage gradient ascent, an \niterative optimization algorithm.\n\nGradient \nAscent\n28",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.5257871150970459
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p12_379f3fec57",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nToday’s goals\nWe are going to learn linear regression.\n• Informally known as \"fitting data to a straight line\"\n• Linear models, admittedly, are often too simple for complex datasets\n• Many tasks in computer science call for classification, not regression\nWe still cover this topic so we can learn compelling techniques that will \nhelp us design and understand more complicated learning algorithms:\n1. How to model likelihood of training data 𝒙& , 𝑦&\n \n2. What rules of calculus and argmax are important to remember\n3. What gradient ascent is and why it is useful\n13",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.5167430639266968
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p31_815ed36bef",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nLinear Regression, MLE (so far)\nAssume linear model\n(and 𝑿 is 1-D):\nModel 𝑌 as 0𝑌+ 𝑍:\nPick 𝜃= 𝑎, 𝑏 that maximizes\nlikelihood of training data\n32\n$𝑌= 𝑔𝑿= 𝑎𝑋+ 𝑏\n𝑌= 𝑎𝑋+ 𝑏+ 𝑍, where 𝑍~𝒩0, 𝜎!\n𝜃.30 = arg max\n4\n𝐿𝐿𝜃\n(𝜃!\"# also maximizes\nlog conditional likelihood)\n= arg max\n4\nG\n-\"#\n&\nlog 𝑓𝑦- | 𝑥- , 𝜃\n= arg max\n4\nG\n-\"#\n&\nlog 𝑓𝑥- , 𝑦- , |𝜃",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.5141392946243286
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p14_p15_30812cdf9c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nLinear Regression\nAssume linear model\n(and 𝑿 is 1-D):\n15\nLearn parameters 𝜃= 𝑎, 𝑏 \nTraining data: 𝑥! , 𝑦! , 𝑥\" , 𝑦\" , …, 𝑥% , 𝑦%\nTraining\nTwo approaches:\n• Analytical solution via mean squared error\n• Iterative solution via MLE and gradient ascent\n$𝑌= 𝑔𝑿= 𝑎𝑋+ 𝑏\n\nLinear \nRegression: \nMSE\n16",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.5124475359916687
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p19_p20_ec8af6fe02",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nSummary: Linear Regression\nAssume linear model (and 𝑿 is 1-D):\n   \nIf we want to minimize the mean squared error of our prediction, \n20\nLearn parameters 𝜃= 𝑎, 𝑏 \nTraining data: 𝑥! , 𝑦! , 𝑥\" , 𝑦\" , …, 𝑥% , 𝑦%\nTraining\n$𝑌= 𝑔𝑿= 𝑎𝑋+ 𝑏\nT𝑎+,- = T𝜌𝑋, 𝑌𝑆1\n𝑆2\n,\n0𝑏+,- = V𝑌−T𝑎+,- V𝑋\n\nLinear \nRegression: \nMLE\n21",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.5117725133895874
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p28_fb50cca060",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Optimization\nproblem:\n2. Compute gradient\n3. Optimize\nTraining: Logistic Regression\n29\nFind |𝒙| parameters\n𝜃+,- = arg max\n.\n9\n(\"%\n/\n𝑓𝑦( | 𝒙( , 𝜃= arg max\n.\n 𝐿𝐿𝜃\n𝐿𝐿𝜃= <\n(\"%\n/\n𝑦(() log \"𝑦( + 1 −𝑦(() log 1 −\"𝑦(\nReview\n\"𝑦= 𝜎𝜃*𝒙(()\n= 𝑃𝑌= 1|𝑿= 𝒙\ninitialize params\nrepeat many times:\n  compute gradient\nparams += η * gradient\n🌟",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.508771538734436
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p16_da2809e7bf",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nMean Squared Error (MSE)\nFor most regressions, we generally choose a 𝑔𝑋 that minimizes MSE:\n𝜃+,- = arg min\n.\n 𝐸\n𝑌−0𝑌\n\"  = arg min\n.\n 𝐸\n𝑌−𝑔𝑋\n\"\n• 𝑌 and 0𝑌= 𝑔𝑋 are both random variables\n• Intuitively: Choose parameter 𝜃 that minimizes the expected squared \ndeviation—what can be called an error—of your 0𝑌 predictor from true 𝑌\nFor linear regression, where 0𝑌= 𝑎𝑋+ 𝑏 (so that 𝜃= 𝑎, 𝑏): \n𝐸\n𝑌−𝑎𝑋−𝑏\"\n17",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.5073441863059998
+    },
+    {
+      "chunk_id": "cs109_finalwin2025soln_q10_24aea9540d",
+      "text": "Logistic Regression Conceptual [17 points]\na. (4 points) In training a logistic regression model, why do we typically optimize the log-likelihood\ndirectly, rather than the likelihood?\nThe likelihood function is typically a large product, once we assume our datapoints are IID. Training a\nlogistic regression model requires finding the derivative of this as part of MLE, but taking a derivative\nover a big product is hard.\nBecause the log function is monotonic, if we take the log of the likelihood function, the argmax will\nnot be changed. The log of the product is the sum of the logs, so the log of the likelihood will become\na large sum instead, which will be easier to differentiate as part of gradient ascent.\nb. (4 points) Why is logistic regression a more principled model than linear regression for binary classifi-\ncation?\nLogistic regression outputs values in the range [0, 1], since the sigmoid function ”squashes” all\ninputs into this range. We can interpret these outputs as probabilities, specifically 𝑃(𝑌= 1), which\nis meaningful in binary classification because it expresses a level of confidence in our belief about a\nbinary event.\nLinear regression, on the other hand, can produce values in a continuous range outside [0, 1], so it is\nless well-suited for classification tasks. While it is possible to train a linear regression model where\n𝑦𝑖∈{0, 1} for all datapoints, this model wouldn’t be able to express 𝑃(𝑌= 1) and would also output\nnumbers way different from 0 or 1.\nAnother way of explaining this is that logistic regression tries to learn a decision boundary that divides\na space in half, putting only datapoints from one class on one side of the line. Linear regression, on the\nother hand, tries to learn a line of best fit for datapoints. While both are linear models, one makes more\nsense for classification into discrete classes.\nc. (4 points) Consider a logistic regression that predicts 𝑌from features 𝑋1, . . . , 𝑋𝑚. If 𝑌and a particular\nfeature 𝑋𝑖are independent, what would you expect for the learned coefficient 𝜃𝑖, and why?\nIf 𝑋𝑖is independent of 𝑌, we expect 𝜃𝑖≈0.\nIn the pre-sigmoid computation of the dot product for logistic regression, 𝜃0𝑋0 + 𝜃1𝑋1 + · · · + 𝜃𝑚𝑋𝑚, we\nwould like to set the 𝜃value such that 𝑋𝑖’s value will not have any impact on this computation. This is\nbecause, intuitively, the prediction of 𝑌should not depend on 𝑋𝑖if they are independent. Setting 𝜃𝑖= 0\naccomplishes this.\nPractically, when the model is trained on a finite dataset, the value may not be exactly zero, but it should\nbe close.\n\n18\nd. (5 points) Below is pseudocode for training for a logistic regression model:\n1\nthetas[j] = 0 for all j\n2\nrepeat many times:\ngradients[j] = 0 for all j\n3\nfor each training example (x, y):\nfor each parameter j:\n4\ngradients[j] += x[j]*(y - sigmoid(dot_prod(theta, x))\n5\nthetas[j] += step_size * gradients[j] for all j\nFor each line of pseudocode 1-5, explain briefly, as if teaching, what the line of code does, and why it\nis necessary.\nLine 1: First, we initialize each of our thetas (weights or parameters of the model) to zero. We start the\nthetas at zero because we need to start somewhere to do gradient ascent!\nLine 2: Then, we start the training loop – we need to repeat the theta update process many times, since\nwe will only improve the thetas slightly (taking a small step towards the optimal value) each time.\nLine 3: We iterate over each training example to calculate the gradient over all data points.\nLine 4: We then calculate the the gradient of the log-likelihood based on a single datapoint and add it\nto a building sum across all datapoints.\nLine 5: Lastly, we update the thetas by moving a little bit (according to our step size) in the direction\nof the gradient!\nThat’s all folks! Thank you for the lovely quarter. You were a wonderful class. IVF numbers are mostly real,\nbut I removed a few steps. Exponential Backoff is the true algorithm used to handle congestion for everything\nfrom radio transmissions to the internet. In 2025 the chief minister of southern India’s Tamil Nadu state\nannounced a $1m prize for anyone who can crack the Indus Valley Script. Estimating Course Sizes is (very\nclose to) the real algorithm the CS department uses. Bayesian RNA quantification is a twist on a widely used\nalgorithm called cufflinks for estimating RNA isoform proportions. Truncated Normals are super useful!\nThey have a variance parameter, a min value and a max value which I removed for exam simplicity.",
+      "source_type": "exam_question",
+      "document_name": "FinalWin2025Soln",
+      "score": 0.5020577907562256
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p23_cdce04ab1e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic regression classiﬁer\n24\n24\nTesting\n=𝑌= arg max\n4& $,!\n𝑃𝑌|𝑋\nTraining\n𝜃= 𝜃$, 𝜃!, 𝜃\", … , 𝜃#\nGiven an observation 𝑿= 𝑋!, 𝑋\", … , 𝑋# , predict\nEstimate parameters\nfrom training data\nChoose 𝜃 that optimizes some objective:\n1.\nDetermine objective function\n2.\nFind gradient with respect to each 𝜃\n3.\nSolve analytically by setting to 0, or solve\ncomputationally with gradient ascent\nWe are modeling 𝑃𝑌|𝑋 \ndirectly, so we maximize the \nconditional likelihood of \ntraining data.\n𝑃𝑌= 1|𝑿= 𝒙= 𝜎∑%&$\n#\n𝜃%𝑥% = 𝜎𝜃'𝒙 \n=𝑌= arg max\n4& $,!\n𝑃𝑌|𝑿",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.5015715956687927
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p0_p1_15966cdef5",
+      "text": "24: Linear Regression \nand Gradient Ascent\nJerry Cain and Matt Harvill\nMay 24, 2024\n1\nLecture Discussion on Ed\n\nand Learn\nnaively",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.5009368658065796
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p21_819e5f6d1c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nLinear Regression\nAssume linear model\n(and 𝑿 is 1-D, i.e., 𝑿= 𝑋):\nWe’ve seen which parameters—that is, what choices of a and b—minimize \nmean squared error: 𝑎+,- and 𝑏+,-, estimated by T𝑎+,- and 0𝑏+,-.\nWhat if we want parameters that maximize \nthe likelihood of the training data?\n22\nLearn parameters 𝜃= 𝑎, 𝑏 \nTraining data: 𝑥! , 𝑦! , 𝑥\" , 𝑦\" , …, 𝑥% , 𝑦%\nTraining\nReview\nNote: Maximizing likelihood is \ntypically an objective for \nclassification models.\n$𝑌= 𝑔𝑿= 𝑎𝑋+ 𝑏",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.4941290318965912
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p7_1451842c8c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic Regression Model\n8\n𝜃! + #\n\"#$\n%\n𝜃\"𝑋\"\n𝑿\n\"𝑦= 𝑃𝑌= 1|𝑿\n0\n0.2\n0.4\n0.6\n0.8\n1\n-10\n-8\n-6\n-4\n-2\n0\n2\n4\n6\n8\n10\n! \"\n\"\n𝒙\n\"𝑦\nLet’s focus on the \nmodel up to \"𝑦.\n)𝑌= arg max\n!\" #,%\n𝑃𝑌 | 𝑿\n+\n…\nσ\n> 0.5?",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.4875476360321045
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p24_9ec31b7cac",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nLinear Regression, MLE\n1. Assume linear model\n(and 𝑿 is 1-D):\n2. Define maximum likelihood\nestimator:\n• Drama: We have a model for 0𝑌, not 𝑌\n• Remember the MSE approach, where we minimize the squared error \nbetween 0𝑌 and 𝑌?\n• Here we model this error directly!\n25\n$𝑌= 𝑔𝑿= 𝑎𝑋+ 𝑏\n𝜃+3- = arg max\n.\n?\n&(!\n%\nlog 𝑓𝑦& | 𝑥& , 𝜃\n⚠\nerror/noise\n(also random)\n𝑌= '𝑌+ 𝑍\n= 𝑎𝑋+ 𝑏+ 𝑍",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.48050522804260254
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p32_40a28b7857",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Optimization\nproblem:\n2. Compute gradient\n3. Optimize\n2. Compute gradient\n33\n𝜃+,- = arg max\n.\n9\n(\"%\n/\n𝑓𝑦( | 𝒙( , 𝜃= arg max\n.\n 𝐿𝐿𝜃\n𝐿𝐿𝜃= <\n(\"%\n/\n𝑦(() log \"𝑦( + 1 −𝑦(() log 1 −\"𝑦(\nℎ3 = 𝜎𝜃3\n4 *\n𝒙\n\"𝑦= 𝜎𝜃5! *𝒉\nfor 𝑗= 1, … , |𝒉|\nTake gradient with respect to all 𝜃 parameters\nCalculus refresher #1: \nDerivative(sum) =\nsum(derivative)\nCalculus refresher #2: \nChain rule 🌟 🌟 🌟",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.47960445284843445
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p29_9dff5e2f07",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Optimization\nproblem:\n2. Compute gradient\n3. Optimize\nTraining: Neural networks\n30\n𝜃+,- = arg max\n.\n9\n(\"%\n/\n𝑓𝑦( | 𝒙( , 𝜃= arg max\n.\n 𝐿𝐿𝜃",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.47762781381607056
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p25_66b810ae17",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nMinimum Mean Squared Error\n𝜃+,- = arg min\n.\n𝐸\n𝑌−𝑔𝑋\n\"\n• Don’t directly model 𝑌 (or any errors)\n• Parameters are estimates of\nstatistics from training data:\n3𝑎./0 = 3𝜌𝑋, 𝑌𝑆1\n𝑆2\n 1𝑏./0 = 8𝑌−3𝑎./0 8𝑋\nMaximum Likelihood Estimation\n• Directly model error between\npredicted 1𝑌 and 𝑌 as an RV 𝑍\n𝑌= 1𝑌+ 𝑍= 𝑎𝑋+ 𝑏+ 𝑍\n26\nComparison: MSE vs MLE\n$𝑌= 𝑔𝑿= 𝑎𝑋+ 𝑏\n𝜃+3- = arg max\n.\n?\n&(!\n%\nlog 𝑓𝑦& | 𝑥& , 𝜃\nIf we assume error 𝑍~𝒩0, 𝜎% , then \nthese two estimators are equivalent.\n𝜃./0 = 𝜃.30!",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.47414344549179077
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p46_7132f37f33",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic Regression is trying to find\nthe line that separates data instances\nwhere 𝑦= 1 from those where 𝑦= 0:\n• We call such data (or functions\ngenerating that data) linearly separable.\n• Naïve Bayes is linear too, because there is \none parameter for each feature\n(and no parameters that involve multiple \nfeatures).\nLinearly separable data\n47\n𝜃'𝒙= 0\n!!\"\n0\n2𝑃𝑿|𝑌= K\n&(\"\n$\n2𝑃𝑋&|𝑌",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.47323620319366455
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p33_p34_8fde95ac62",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Optimization\nproblem:\n2. Gradient wrt 𝜃%, for 𝑗= 0, 1, … , 𝑚:\n3. Solve using gradient ascent!\n3. Solve\n34\n𝜕𝐿𝐿𝜃\n𝜕𝜃&\n= B\n%(\"\n4\n𝑦(%) −𝜎𝜃5𝒙(%)\n 𝑥&\n(%)\n𝜃012 = arg max\n3\nK\n%(\"\n4\n𝑓𝑦% | 𝒙% , 𝜃= arg max\n3\n 𝐿𝐿𝜃\n𝐿𝐿𝜃= B\n%(\"\n4\n𝑦(%) log 𝜎𝜃5𝒙(%) + 1 −𝑦(%) log 1 −𝜎𝜃5𝒙(%)\n\nTraining:\nThe details\n35",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.4729687571525574
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p9_cc3cb78341",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic Regression: Key Metaphor\n10\n𝜃 parameter",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.47142720222473145
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p52_p53_7b39319c3c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\n3b. Interpret\n53\n𝜕ℎ𝜃\n𝜕𝑎\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\n𝑥%\nOptimization \nproblem:\n= arg max\n4\nℎ𝜃\narg max\n!\n−<\n\"#$\n%\n𝑦\" −𝑎𝑥\" −𝑏\n&\nGradient:\n𝜕ℎ𝜃\n𝜕𝑏\n= <\n%&'\n(\n2 𝑦% −𝑎𝑥% −𝑏\na, b = 0, 0  \n \n \n \n \n# initialize 𝜃\nrepeat many times:\n  gradient_a, gradient_b = 0, 0\n  for each training example (x, y):     \n    prediction_error = y – (a * x + b)\n    gradient_a += 2 * prediction_error * x\n    gradient_b += 2 * prediction_error * 1\n  a += η * gradient_a    # 𝜃 += η * gradient\n  b += η * gradient_b\n0𝑌= 𝑎𝑋+ 𝑏, so\nupdate to 𝑏 just \nscales by 1\n\nExtra: \nDerivations\n54",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.46769219636917114
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p33_db5e8c68a3",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nℎ3 = 𝜎𝜃3\n4 *\n𝒙\n1. Optimization\nproblem:\n2. Compute gradient\n3. Optimize\n3. Optimize\n34\n𝜃+,- = arg max\n.\n9\n(\"%\n/\n𝑓𝑦( | 𝒙( , 𝜃= arg max\n.\n 𝐿𝐿𝜃\n𝐿𝐿𝜃= <\n(\"%\n/\n𝑦(() log \"𝑦( + 1 −𝑦(() log 1 −\"𝑦(\ninitialize params\nrepeat many times:\n  compute gradient\nparams += η * gradient\n\"𝑦= 𝜎𝜃5! *𝒉\nfor 𝑗= 1, … , |𝒉|\nTake gradient with respect to all 𝜃 parameters",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.4671792984008789
+    }
+  ],
+  "built_at": "2026-04-28T05:13:14Z"
+}

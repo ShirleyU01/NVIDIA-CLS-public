@@ -1,0 +1,1195 @@
+{
+  "topic_id": "independence",
+  "topic_name": "Independence",
+  "course": "CS109",
+  "model": "gpt-5.4",
+  "questions": [
+    {
+      "question_id": "CS109_independence_0001",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "conceptual",
+      "difficulty": "easy",
+      "question": "A student says: \"Two events are independent whenever they do not overlap.\" Explain why this statement is usually false, and contrast it with the correct intuition for independence. Then describe the one special case in which disjoint events can still be independent.",
+      "expected_answer": "The statement is false because disjointness means P(E \u2229 F) = 0, while independence requires P(E \u2229 F) = P(E)P(F). For ordinary nonzero-probability events, P(E)P(F) > 0, so disjoint events cannot be independent. The correct intuition is that knowing F occurred does not change the probability of E, equivalently P(E | F) = P(E) when P(F) > 0. The special case is when at least one event has probability 0, so both sides of P(E \u2229 F) = P(E)P(F) can equal 0.",
+      "source_chunk_ids": [
+        "cs109_05_independence_annotated_p13_a3cc199a6d",
+        "cs109_05_independence_annotated_p14_d61ad3f096",
+        "cs109_05_independence_annotated_p2_83a4f9898c",
+        "cs109_05_independence_annotated_p3_9f91220977"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that disjointness gives P(E \u2229 F)=0.",
+          "States that independence requires P(E \u2229 F)=P(E)P(F).",
+          "Explains why these conflict when both probabilities are positive.",
+          "Mentions the equivalent conditional-probability intuition P(E|F)=P(E).",
+          "Identifies the zero-probability exception."
+        ],
+        "partial_credit": [
+          "Correctly says disjoint does not imply independent but gives incomplete justification.",
+          "Uses only the conditional form or only the product form without connecting them.",
+          "Mentions the zero-probability edge case vaguely."
+        ],
+        "common_mistakes": [
+          "Saying disjoint events are independent because they 'do not affect each other.'",
+          "Confusing mutual exclusivity with independence.",
+          "Forgetting that P(E|F) is only meaningful when P(F)>0."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can two events overlap and still be independent? Give a simple example and justify it."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What equation would you check first: P(E \u2229 F)=0 or P(E \u2229 F)=P(E)P(F), and why are they testing different ideas?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from independence; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying disjoint events are independent because they 'do not affect each other.'. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0002",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "You roll a fair die twice. Let E be the event that the first roll is 1, F the event that the second roll is 6, and G the event that the two rolls sum to 7. Determine which pairs among (E,F), (E,G), and (F,G) are independent, and then decide whether E, F, and G are jointly independent. Explain your reasoning aloud rather than just listing answers.",
+      "expected_answer": "There are 36 equally likely outcomes. E has probability 1/6, F has probability 1/6, and G has probability 6/36 = 1/6. For E and F, P(E \u2229 F) = 1/36 = (1/6)(1/6), so they are independent. For E and G, E \u2229 G means first roll is 1 and sum is 7, so the only outcome is (1,6), giving probability 1/36, again equal to (1/6)(1/6), so independent. Similarly F \u2229 G means second roll is 6 and sum is 7, again only (1,6), so probability 1/36, hence independent. But E \u2229 F \u2229 G is also just (1,6), with probability 1/36, while P(E)P(F)P(G) = 1/216, so the three are not jointly independent. This shows pairwise independence is not enough for mutual independence.",
+      "source_chunk_ids": [
+        "cs109_05_independence_annotated_p7_p8_a3ce929ca3",
+        "cs109_05_independence_annotated_p5_bfa15e0662"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes P(E), P(F), P(G) correctly.",
+          "Checks all three pairwise intersections correctly.",
+          "Checks the triple intersection and compares to P(E)P(F)P(G).",
+          "Explicitly states that pairwise independence does not imply joint independence."
+        ],
+        "partial_credit": [
+          "Gets pairwise results correct but forgets to test joint independence.",
+          "States the final conclusion correctly with incomplete probability calculations.",
+          "Correctly identifies G but makes a small arithmetic slip on one intersection."
+        ],
+        "common_mistakes": [
+          "Assuming independent die rolls automatically make any derived events jointly independent.",
+          "Stopping after pairwise checks.",
+          "Computing P(G) incorrectly as 1/36 instead of 6/36."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you state the general definition of independence for three events and say exactly which conditions must all hold?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What extra condition beyond pairwise independence must be checked for three events?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Assuming independent die rolls automatically make any derived events jointly independent. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0003",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A classmate claims: \"If two trials are independent, then any events built from those trials are independent too.\" Use the two-dice setup to evaluate this claim carefully. Your answer should make clear what is true, what is false, and why the wording matters.",
+      "expected_answer": "The claim is false as stated. Independence of trials means events determined by disjoint sets of trials are independent; for example an event depending only on the first die is independent of an event depending only on the second die. But if two events both involve the same trial information, they need not be independent. In the two-dice example, E = {first roll is 1} and G = {sum is 7} are independent by coincidence, but many other choices would not be. So the correct statement is that in independent trials, an event involving one subset of trials is independent of events involving other non-overlapping subsets, not arbitrary derived events.",
+      "source_chunk_ids": [
+        "cs109_05_independence_annotated_p9_c669dce796",
+        "cs109_05_independence_annotated_p7_p8_a3ce929ca3"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Distinguishes independence of trials from independence of arbitrary events.",
+          "States the correct disjoint-subsets principle for independent trials.",
+          "Explains why the original claim is too broad.",
+          "Uses the dice example appropriately."
+        ],
+        "partial_credit": [
+          "Says the claim is false but gives a vague reason.",
+          "Mentions that some derived events can be dependent without clearly explaining the role of overlapping trial information.",
+          "Uses an example but not a general principle."
+        ],
+        "common_mistakes": [
+          "Saying any function of independent trials stays independent of any other function.",
+          "Thinking independence of underlying variables automatically transfers to all events.",
+          "Ignoring the disjoint-subsets condition."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose one event depends on the first 5 coin flips and another depends on the last 5 of 10 independent flips. Why does the disjoint-subsets idea apply here?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can two events both built from the same independent trials still be dependent? Describe how that can happen."
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from independence.",
+        "Watch out for this common trap: Saying any function of independent trials stays independent of any other function. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0004",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "For two events E and F with P(F) > 0, explain why the statements P(E \u2229 F) = P(E)P(F) and P(E | F) = P(E) are equivalent. In an oral exam, I care less about symbolic manipulation than about whether you can explain what the cancellation means and when it is allowed.",
+      "expected_answer": "Starting from independence, P(E \u2229 F) = P(E)P(F). Dividing both sides by P(F), which is allowed because P(F) > 0, gives P(E | F) = P(E). Conversely, if P(E | F) = P(E), then by the definition of conditional probability, P(E \u2229 F)/P(F) = P(E), so multiplying by P(F) gives P(E \u2229 F) = P(E)P(F). Conceptually, the product form is the formal definition, and the conditional form says that learning F happened does not change belief about E.",
+      "source_chunk_ids": [
+        "cs109_05_independence_annotated_p2_83a4f9898c",
+        "cs109_05_independence_annotated_p3_9f91220977"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Shows both directions of the equivalence.",
+          "Uses the condition P(F)>0 explicitly.",
+          "Explains the conditional-probability interpretation in words."
+        ],
+        "partial_credit": [
+          "Shows only one direction correctly.",
+          "Gives the equations but does not explain the need for P(F)>0.",
+          "States the intuition without the algebra."
+        ],
+        "common_mistakes": [
+          "Cancelling by P(F) without mentioning the positivity condition.",
+          "Treating P(E|F)=P(E) as definition in all cases without caveat.",
+          "Confusing P(E|F)=P(F|E)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would checking only P(E | F) = P(E) be enough if P(F)=0? Why or why not?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the definition of conditional probability that lets you move between these two formulas?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from independence; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Cancelling by P(F) without mentioning the positivity condition. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0005",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A streaming company models a latent preference K = 'likes international emotional comedies.' Let A be 'liked movie 1' and B be 'liked movie 2.' Explain how it is possible that A and B are dependent overall, yet conditionally independent given K. Then tell me what kind of evidence in data would make this story plausible.",
+      "expected_answer": "A and B can be dependent overall because both are influenced by the same hidden factor K. If people who have K tend to like both movies and people without K tend to like neither, then observing A gives information about K, which then gives information about B, so A and B are associated marginally. But conditional on K, once we fix whether the user has that taste profile, the remaining variation in liking movie 1 and movie 2 may factor, so P(A \u2229 B | K) = P(A | K)P(B | K), and similarly given not-K if modeled that way. In data, one would see correlation overall, but within subgroups with the same K status or a good proxy for K, that association would weaken or disappear.",
+      "source_chunk_ids": [
+        "cs109_06_rvs_annotated_p9_p10_e768695e32",
+        "cs109_06_rvs_annotated_p3_2087ff1982",
+        "cs109_06_rvs_annotated_p4_ae2b276089"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains marginal dependence via a common cause or latent variable.",
+          "Explains conditional independence using the factorization given K.",
+          "Connects observation of A to information about K and hence about B.",
+          "Describes what one would look for empirically."
+        ],
+        "partial_credit": [
+          "Correctly describes either dependence overall or conditional independence, but not both clearly.",
+          "Uses the idea of a hidden variable without articulating the mechanism.",
+          "Mentions subgroup analysis vaguely."
+        ],
+        "common_mistakes": [
+          "Saying conditioning can only reduce dependence, never create it.",
+          "Claiming dependence and conditional independence are contradictory.",
+          "Forgetting that the conditioning event creates a new sample space."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can the reverse happen\u2014independent events becoming conditionally dependent after conditioning? Give an intuitive explanation."
+        },
+        {
+          "condition": "incorrect",
+          "question": "If both A and B are caused by the same hidden preference, why might seeing A tell you something about B before conditioning on that preference?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying conditioning can only reduce dependence, never create it. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0006",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student writes, 'Conditional independence of A and B given E means P(A | B, E) = P(A).' Critique this statement carefully. If it is wrong, repair it and explain why the corrected form has to live entirely inside the conditioned-on world.",
+      "expected_answer": "The statement is wrong because once we condition on E, E becomes the new sample space, so both sides must be conditioned on E. The correct equivalent statement is P(A | B, E) = P(A | E), assuming the relevant probabilities are positive. This matches the factorization P(A \u2229 B | E) = P(A | E)P(B | E). Saying P(A | B, E) = P(A) incorrectly compares a probability inside the E-world to an unconditional probability in the original space.",
+      "source_chunk_ids": [
+        "cs109_06_rvs_annotated_p3_2087ff1982",
+        "cs109_06_rvs_annotated_p4_ae2b276089",
+        "cs109_06_rvs_annotated_p2_4797680fc1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the proposed statement as incorrect.",
+          "Repairs it to P(A | B, E)=P(A | E).",
+          "Connects this to P(A \u2229 B | E)=P(A | E)P(B | E).",
+          "Explains the 'new sample space' idea."
+        ],
+        "partial_credit": [
+          "Says the statement is wrong but gives only the factorization or only the conditional form.",
+          "Repairs the statement but gives little explanation.",
+          "Mentions conditioning on E vaguely."
+        ],
+        "common_mistakes": [
+          "Dropping the conditioning on E on one side.",
+          "Writing P(A|B,E)=P(A|B) as the conditional independence condition.",
+          "Confusing ordinary and conditional independence."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What positivity assumptions are needed for the expression P(A | B, E) to make sense?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If E is the new sample space, what should replace the unconditional probability P(A)?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from independence.",
+        "Watch out for this common trap: Dropping the conditioning on E on one side. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0007",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose X and Y are discrete random variables. I tell you that for every x and y, P(X = x, Y = y) = P(X = x)P(Y = y). Explain how you would use that statement to justify the informal claim that 'knowing X tells you nothing about Y.' Then tell me what extra condition you need before you can write P(Y = y | X = x) = P(Y = y).",
+      "expected_answer": "The factorization of the joint pmf is the definition of independence for discrete random variables. It means the joint distribution separates into a product of marginals for every pair of values, so the distribution of Y does not vary with x. To write this as a conditional statement, we need P(X = x) > 0. Then P(Y = y | X = x) = P(X = x, Y = y)/P(X = x) = P(Y = y). So the formal factorization supports the intuition that observing X does not change the distribution of Y.",
+      "source_chunk_ids": [
+        "cs109_demo_exam_q1_c290a1b3af",
+        "cs109_12_independent_rvs_annotated_p2_edb164eea6"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that factorization of the joint pmf is the definition of independence.",
+          "Explains the intuitive meaning in terms of no information gain.",
+          "Derives the conditional statement correctly.",
+          "Mentions the positivity requirement P(X=x)>0."
+        ],
+        "partial_credit": [
+          "States the factorization correctly but does not articulate the intuition.",
+          "Mentions the conditional equality but forgets the positivity condition.",
+          "Explains 'knowing X tells you nothing' only informally."
+        ],
+        "common_mistakes": [
+          "Assuming zero-probability values can be conditioned on.",
+          "Checking the factorization for only some pairs (x,y).",
+          "Confusing random-variable independence with zero covariance."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the definition change if X and Y were continuous instead of discrete?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the algebraic relationship between joint probability, marginal probability, and conditional probability that you should start from?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Assuming zero-probability values can be conditioned on. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0008",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "For three events E, F, and G, why is it not enough to verify only P(E \u2229 F \u2229 G) = P(E)P(F)P(G)? Give a verbal argument and then state the full set of checks required for independence of three events.",
+      "expected_answer": "Checking only the triple product can miss pairwise dependencies. Full independence for three events requires every nontrivial subset to factor: P(E \u2229 F)=P(E)P(F), P(E \u2229 G)=P(E)P(G), P(F \u2229 G)=P(F)P(G), and P(E \u2229 F \u2229 G)=P(E)P(F)P(G). Verbal intuition: true mutual independence means no combination of some of the events gives information about the others, so all lower-order intersections must also behave multiplicatively, not just the full intersection.",
+      "source_chunk_ids": [
+        "cs109_05_independence_annotated_p5_bfa15e0662"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that the triple-product condition alone is insufficient.",
+          "Lists the three pairwise conditions and the triple condition.",
+          "Explains why mutual independence is stronger than a single equation."
+        ],
+        "partial_credit": [
+          "Mentions pairwise checks are needed but does not state all of them.",
+          "Gives the right conclusion with limited explanation."
+        ],
+        "common_mistakes": [
+          "Equating triple-factorization with full independence.",
+          "Thinking pairwise independence automatically follows from the triple condition.",
+          "Listing only pairwise conditions and omitting the triple condition."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How does this generalize to n events? What is the principle, without listing all conditions explicitly?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you think of a situation where the triple equation holds but one pair is still dependent?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from independence; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Equating triple-factorization with full independence. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0009",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "Imagine 10 independent coin flips. Let A be the event 'the first 5 flips contain exactly 2 heads' and B be the event 'the last 5 flips contain exactly 3 heads.' Without computing the actual binomial probabilities, explain whether A and B are independent and justify your answer using the structure of the trials.",
+      "expected_answer": "A and B are independent because the coin flips are independent trials, and A depends only on the first subset of 5 flips while B depends only on the disjoint subset of the last 5 flips. In an independent-trials setting, any event determined by one subset of trials is independent of events determined by a disjoint subset. We do not need the exact probabilities to conclude independence, only the trial structure.",
+      "source_chunk_ids": [
+        "cs109_05_independence_annotated_p9_c669dce796"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies that the two events depend on disjoint subsets of independent trials.",
+          "States that this implies independence.",
+          "Explains why exact probabilities are unnecessary."
+        ],
+        "partial_credit": [
+          "States the answer correctly with minimal reasoning.",
+          "Mentions independent flips but does not explicitly note the disjoint subsets."
+        ],
+        "common_mistakes": [
+          "Thinking the fixed total of 10 flips creates dependence here.",
+          "Trying to argue from symmetry instead of the trial-structure principle.",
+          "Believing count events are automatically dependent."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What if B were instead 'the total number of heads in all 10 flips is 5'? Would the same argument still work?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which specific flips does each event depend on, and do those sets overlap?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Thinking the fixed total of 10 flips creates dependence here. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0010",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "You are given a joint density f_{X,Y}(x,y) = 4xy for 0 < x < 1 and 0 < y < 1, and 0 otherwise. Explain how you would test independence without skipping the support issue. Then contrast this with the density f_{X,Y}(x,y) = 24xy on the region 0 < x, 0 < y, x + y < 1.",
+      "expected_answer": "For the first density, the support is the full rectangle (0,1) \u00d7 (0,1). The function factors as 4xy = (2x)(2y), and those are valid marginal densities on (0,1), so X and Y are independent. For the second density, although 24xy looks multiplicatively separable, the support is triangular, not a full product set. The constraint x + y < 1 couples x and y, so the joint cannot be written as g(x)h(y) over the entire support in a way that represents independence. Independence requires factorization over a product support, not just algebraic separability of the formula inside the region.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p21_4c70615a99",
+        "cs109_18_clt_annotated_p2_b1d98f2cbe"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Checks both algebraic factorization and support shape.",
+          "Concludes independence for 4xy on the square.",
+          "Explains why the triangular-support case is not independent.",
+          "States that support constraints can destroy independence."
+        ],
+        "partial_credit": [
+          "Gets the conclusions right but underexplains the support issue.",
+          "Recognizes that the first factors into marginals.",
+          "Says the second is dependent because of x+y<1 but does not explain why that matters."
+        ],
+        "common_mistakes": [
+          "Declaring independence in the triangular case just because 24xy factors.",
+          "Ignoring the support entirely.",
+          "Thinking any factorable formula implies independence."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If a joint density factors as g(x)h(y) only on part of the plane, what additional condition must hold for independence?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why does the condition x + y < 1 mean knowing x restricts the possible values of y?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Declaring independence in the triangular case just because 24xy factors. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0011",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Give an oral explanation of the difference between pairwise independence and mutual independence for a collection of events. Your explanation should include why students often confuse them and one concrete consequence of making that mistake.",
+      "expected_answer": "Pairwise independence means each pair of events is independent when considered alone. Mutual independence is stronger: every subset of the events must have the product property. Students confuse them because for two events the notions coincide, and checking pairs feels natural, but for three or more events pairwise checks may all pass while the full collection still fails to be independent. A consequence is that one may incorrectly factor a probability such as P(E \u2229 F \u2229 G) into P(E)P(F)P(G) just because each pair appears independent.",
+      "source_chunk_ids": [
+        "cs109_05_independence_annotated_p5_bfa15e0662",
+        "cs109_05_independence_annotated_p7_p8_a3ce929ca3"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines pairwise independence correctly.",
+          "Defines mutual independence correctly.",
+          "Explains the common source of confusion.",
+          "States a concrete bad inference that can result."
+        ],
+        "partial_credit": [
+          "Knows mutual independence is stronger but does not explain subsets clearly.",
+          "Provides only an example without the definitions."
+        ],
+        "common_mistakes": [
+          "Saying pairwise independence and mutual independence are the same.",
+          "Checking only adjacent or selected pairs.",
+          "Thinking triple independence automatically implies pairwise independence without explicitly knowing the definition used."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you phrase the general definition for n events in one sentence?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For three events, which probabilities besides the three pairwise intersections must still be checked?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from independence; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying pairwise independence and mutual independence are the same. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0012",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A medical researcher says: 'Symptom A and symptom B are independent in the population, so they will remain independent after conditioning on whether the patient has disease D.' Do you agree? Explain using the idea that independence can change after conditioning, and give an intuitive mechanism either way.",
+      "expected_answer": "I do not agree in general. Independence can change after conditioning; events that are independent marginally can become conditionally dependent, and dependent events can become conditionally independent. Conditioning on D can create dependence if D acts like a selection variable or collider-like filter, or it can remove dependence if D is a common cause that explains their association. So one cannot infer conditional independence from marginal independence without further structure.",
+      "source_chunk_ids": [
+        "cs109_06_rvs_annotated_p9_p10_e768695e32",
+        "cs109_06_rvs_annotated_p3_2087ff1982"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects the blanket claim.",
+          "States that independence may change under conditioning.",
+          "Gives an intuitive mechanism for induced or removed dependence.",
+          "Shows awareness that additional assumptions are needed."
+        ],
+        "partial_credit": [
+          "States that the claim is not always true but gives only one direction.",
+          "Uses a heuristic example without clearly identifying the logical issue."
+        ],
+        "common_mistakes": [
+          "Assuming conditioning preserves independence automatically.",
+          "Claiming independence and conditional independence are interchangeable.",
+          "Thinking conditioning always reduces dependence."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What extra modeling assumption would let you conclude A and B are conditionally independent given D?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you state one explicit formula for conditional independence given D?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Assuming conditioning preserves independence automatically. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0013",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose X and Y are independent continuous random variables with CDFs F_X and F_Y. Explain why P(X < x, Y < y) = F_X(x)F_Y(y). I want you to justify both the event interpretation and the independence step, not just quote the formula.",
+      "expected_answer": "The event {X < x, Y < y} is the intersection of the two events {X < x} and {Y < y}. If X and Y are independent, then any events determined separately by X and by Y are independent, so P(X < x, Y < y) = P(X < x)P(Y < y). By definition, P(X < x) is F_X(x) and P(Y < y) is F_Y(y), so the joint probability equals F_X(x)F_Y(y).",
+      "source_chunk_ids": [
+        "cs109_finalspring2017_q5a_4ee51c29dc",
+        "cs109_18_clt_annotated_p2_b1d98f2cbe"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Recognizes the event as an intersection.",
+          "Uses independence of events induced by independent random variables.",
+          "Correctly identifies the CDF terms.",
+          "Explains rather than merely states the formula."
+        ],
+        "partial_credit": [
+          "Writes the correct formula with limited verbal explanation.",
+          "Explains only the CDF interpretation or only the independence step."
+        ],
+        "common_mistakes": [
+          "Assuming P(X < x, Y < y) always factors without independence.",
+          "Confusing CDF with density.",
+          "Using \u2264 versus < as if it mattered here without explanation."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the analogous factorization look for densities when they exist?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the two simpler events whose intersection is {X < x, Y < y}?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Assuming P(X < x, Y < y) always factors without independence. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0014",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "Someone says: 'If I know P(E | F) = P(E), then E and F are independent, no questions asked.' Is that statement always valid? Give the cleanest correction you can, including any hidden assumption that must be stated aloud in a rigorous answer.",
+      "expected_answer": "It is valid only when P(F) > 0, because conditional probability P(E | F) is defined using division by P(F). Under that assumption, P(E | F) = P(E) is equivalent to P(E \u2229 F) = P(E)P(F), so E and F are independent. Without P(F) > 0, the conditional statement is not a reliable criterion because it may be undefined.",
+      "source_chunk_ids": [
+        "cs109_05_independence_annotated_p3_9f91220977",
+        "cs109_05_independence_annotated_p2_83a4f9898c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the need for P(F)>0.",
+          "Explains the equivalence to the product definition when that holds.",
+          "Notes that otherwise the conditional statement may be undefined."
+        ],
+        "partial_credit": [
+          "Mentions a positivity assumption but does not explain it.",
+          "States the equivalence without explicitly noting the caveat."
+        ],
+        "common_mistakes": [
+          "Forgetting the definition of P(E|F) requires P(F)>0.",
+          "Thinking P(E|F)=P(E) is a universal definition with no conditions.",
+          "Treating zero-probability cases casually."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would the symmetric condition P(F | E) = P(F) need its own positivity assumption too?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "How is P(E | F) defined in terms of P(E \u2229 F) and P(F)?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from independence.",
+        "Watch out for this common trap: Forgetting the definition of P(E|F) requires P(F)>0. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0015",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "For conditionally independent random variables X_1, ..., X_n given Y, explain why the joint conditional probability can be written as a product of individual conditional probabilities. Then say why taking logs of that product can be useful conceptually, even before doing any computation.",
+      "expected_answer": "Conditional independence given Y means that once Y is fixed at a value y, the variables factor just like independent variables within that conditioned world: P(X_1=x_1, ..., X_n=x_n | Y=y) = \u220f P(X_i=x_i | Y=y). Taking logs converts the product into a sum: log P(joint | Y=y) = \u03a3 log P(X_i=x_i | Y=y). Conceptually, sums are easier to reason about and optimize than products, and this additive structure is important in many probabilistic models and inference methods.",
+      "source_chunk_ids": [
+        "cs109_15_general_inference_annotated_p10_p11_4386b25b25"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the conditional factorization correctly.",
+          "Explains that Y=y fixes the conditioning context.",
+          "Explains the log transformation from product to sum.",
+          "Gives a conceptual benefit of additivity."
+        ],
+        "partial_credit": [
+          "Writes the product formula but gives little interpretation.",
+          "Mentions logs turn products into sums without saying why that matters."
+        ],
+        "common_mistakes": [
+          "Dropping the conditioning on Y=y from one or more terms.",
+          "Confusing conditional independence with unconditional independence.",
+          "Thinking the log changes independence rather than reexpressing the same factorization."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is it dangerous to write the same factorization without conditioning on Y if you only know conditional independence?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In the phrase 'given Y,' what exactly is being held fixed when you write the product formula?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from independence; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Dropping the conditioning on Y=y from one or more terms. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0016",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A survey is sent independently to n people. Let A be the event that person 1 answers 'yes,' and let B be the event that the total number of 'yes' responses is exactly 1. Are A and B independent? Explain carefully, because many students overapply the phrase 'independent trials.'",
+      "expected_answer": "They are not independent. Although responses across people are independent trials, A depends on person 1's response while B depends on all responses, including person 1, so the events are not built from disjoint subsets of trials. In fact, if A occurs, that changes the chance that the total number of yes responses is exactly 1, because then everyone else must answer 'no.' So independent trials do not imply arbitrary events formed from them are independent.",
+      "source_chunk_ids": [
+        "cs109_05_independence_annotated_p9_c669dce796"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that A and B are not independent.",
+          "Explains the overlap in trial information.",
+          "Uses the conditional reasoning that A changes what must happen among others.",
+          "Connects this to the correct interpretation of independent trials."
+        ],
+        "partial_credit": [
+          "Gets the answer right but explains only that B uses more information.",
+          "Mentions dependent overlap without explicitly contrasting with disjoint subsets."
+        ],
+        "common_mistakes": [
+          "Saying yes because each person's response is independent.",
+          "Ignoring that B includes person 1's response.",
+          "Using the wrong principle 'functions of independent variables are independent.'"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you modify B so that A and B would become independent by the disjoint-subsets principle?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Does event B involve person 1's response? Why does that matter?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying yes because each person's response is independent. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0017",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose you want to show three events E, F, and G are independent. A student computes P(E \u2229 F) = P(E)P(F), P(E \u2229 G) = P(E)P(G), and P(F \u2229 G) = P(F)P(G), then stops. Give a rigorous critique of this argument, and explain what additional calculation is needed and why.",
+      "expected_answer": "The student has shown pairwise independence only. For mutual independence of three events, one must also verify P(E \u2229 F \u2229 G) = P(E)P(F)P(G). This extra check matters because there are examples where every pair is independent but the triple is not. So the argument is incomplete until the triple intersection is tested.",
+      "source_chunk_ids": [
+        "cs109_05_independence_annotated_p5_bfa15e0662",
+        "cs109_05_independence_annotated_p7_p8_a3ce929ca3"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the proof as incomplete.",
+          "Names pairwise independence as what has been shown.",
+          "States the missing triple-intersection condition.",
+          "Explains why the extra condition is logically necessary."
+        ],
+        "partial_credit": [
+          "Says more is needed but does not clearly specify the missing condition.",
+          "References the pairwise-vs-mutual issue without full detail."
+        ],
+        "common_mistakes": [
+          "Accepting the pairwise checks as sufficient.",
+          "Saying the triple condition follows automatically from pairwise independence.",
+          "Failing to distinguish 'independent in pairs' from 'independent as a collection.'"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you describe, without full computation, the dice example that demonstrates this failure?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What exact equation involving E \u2229 F \u2229 G would complete the proof?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Accepting the pairwise checks as sufficient. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0018",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "In the conditional paradigm, many probability rules 'still hold after conditioning on E.' Explain what that means for independence statements. Why is it dangerous to remember formulas mechanically without recognizing that conditioning changes the sample space?",
+      "expected_answer": "It means that once we condition on E, we work inside the E-world and the usual rules\u2014complements, chain rule, Bayes, and independence-style factorizations\u2014are applied consistently with E attached throughout. So conditional independence is expressed as P(A \u2229 B | E) = P(A | E)P(B | E), not by mixing conditioned and unconditioned terms. Mechanical memorization is dangerous because students may write something like P(A | B, E)=P(A), forgetting that probabilities in the conditioned world should all be relative to E.",
+      "source_chunk_ids": [
+        "cs109_06_rvs_annotated_p2_4797680fc1",
+        "cs109_06_rvs_annotated_p4_ae2b276089"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains the idea of conditioning as moving to a new sample space.",
+          "States the correct conditional independence factorization.",
+          "Warns against mixing conditional and unconditional terms.",
+          "Connects the idea to general probability rules holding under conditioning."
+        ],
+        "partial_credit": [
+          "Mentions the new sample space but gives limited detail.",
+          "States the formula correctly without the conceptual explanation."
+        ],
+        "common_mistakes": [
+          "Dropping the conditioning from one side of an equation.",
+          "Treating conditional independence as ordinary independence with an extra symbol.",
+          "Not realizing all formulas must be conditioned consistently."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give one more probability rule besides independence that remains valid when everything is conditioned on E?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If E is the new sample space, how should P(A) be rewritten when working inside that world?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from independence; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Dropping the conditioning from one side of an equation. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0019",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student says: 'If X and Y are independent random variables, then for any events involving X and Y, dependence is impossible.' Diagnose the overstatement. What is the strongest correct version of the claim you can make from the independence of X and Y?",
+      "expected_answer": "The overstatement is the phrase 'for any events.' Independence of X and Y implies that events measurable with respect to X alone are independent of events measurable with respect to Y alone, such as {X < x} and {Y < y} or {X = x} and {Y = y}. But events that mix both variables, like {X + Y < 1}, need not be independent of an event involving X alone. So the strongest safe claim is: any event determined only by X is independent of any event determined only by Y.",
+      "source_chunk_ids": [
+        "cs109_12_independent_rvs_annotated_p2_edb164eea6",
+        "cs109_finalspring2017_q5a_4ee51c29dc",
+        "cs109_18_clt_annotated_p2_b1d98f2cbe"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects the overstatement.",
+          "States the correct event-level consequence of random-variable independence.",
+          "Distinguishes X-only events, Y-only events, and mixed events.",
+          "Provides an illustrative type of event in each category."
+        ],
+        "partial_credit": [
+          "Says the claim is too strong but does not articulate the corrected version precisely.",
+          "Gives examples without a general principle."
+        ],
+        "common_mistakes": [
+          "Assuming any events derived from independent variables are independent.",
+          "Failing to distinguish single-variable events from joint events.",
+          "Thinking independence of variables is weaker than independence of their coordinate events."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is {X < x, Y < y} not an event involving only one variable, even though it factors under independence?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Would {X < 0} and {Y > 2} be covered by the correct version of the claim? Why?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from independence.",
+        "Watch out for this common trap: Assuming any events derived from independent variables are independent. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0020",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You observe two web requests sent to two different servers, and the system documentation says requests are independent trials. Let E be 'server 1 request times out' and F be 'server 2 request times out.' Then define G to be 'exactly one of the two requests times out.' Discuss which independence statements you can justify immediately and which require actual calculation or may simply be false.",
+      "expected_answer": "Because the requests are independent trials and E depends only on the first request while F depends only on the second, E and F are immediately independent. But G depends on both requests, so its relationship with E or F is not guaranteed by the trial structure. In fact, E and G need not be independent because knowing E makes G equivalent to 'F does not happen,' changing its probability. So only independence between events built from disjoint trial subsets is immediate; mixed events must be checked separately.",
+      "source_chunk_ids": [
+        "cs109_05_independence_annotated_p9_c669dce796"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly identifies E and F as immediately independent.",
+          "Explains why G is a mixed event involving both trials.",
+          "States that E with G or F with G is not automatically independent.",
+          "Uses conditional reasoning or structure to justify likely dependence."
+        ],
+        "partial_credit": [
+          "Gets the main conclusion right but with weak explanation of G.",
+          "Says G must be checked separately without explaining why."
+        ],
+        "common_mistakes": [
+          "Assuming G is independent of E because the trials are independent.",
+          "Not noticing that G is defined using both trial outcomes.",
+          "Claiming all events in independent-trial experiments are mutually independent."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If each timeout probability were p, can you verbally compare P(G) and P(G | E) without needing exact numbers?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Does event G depend on one request or both? Why does that distinction matter?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Assuming G is independent of E because the trials are independent. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0021",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose events A and B are conditionally independent given E, and P(E) > 0. Starting from P(A \u2229 B | E) = P(A | E)P(B | E), derive a formula for P(A | B, E) and interpret it verbally. Be explicit about what conditions you need to divide by something.",
+      "expected_answer": "If P(B | E) > 0, then by the definition of conditional probability within the conditioned world, P(A | B, E) = P(A \u2229 B | E) / P(B | E). Using conditional independence, this becomes [P(A | E)P(B | E)] / P(B | E) = P(A | E). Verbally: once we are already in the E-world, learning B gives no additional information about A. The key condition is that P(B | E) > 0 so the conditional probability is defined.",
+      "source_chunk_ids": [
+        "cs109_06_rvs_annotated_p3_2087ff1982",
+        "cs109_06_rvs_annotated_p2_4797680fc1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses the conditional-probability definition within the E-conditioned space.",
+          "Derives P(A | B,E)=P(A | E).",
+          "Mentions the condition P(B | E)>0.",
+          "Interprets the result verbally."
+        ],
+        "partial_credit": [
+          "Gets the algebraic result but omits the positivity assumption.",
+          "States the interpretation correctly with minimal derivation."
+        ],
+        "common_mistakes": [
+          "Cancelling P(B|E) without checking it is positive.",
+          "Concluding P(A | B,E)=P(A) instead of P(A|E).",
+          "Forgetting that all probabilities are inside the conditioned-on world."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What would be the analogous statement for B | A, E?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When conditioned on E, what quantity plays the role that P(B) plays in the ordinary identity P(A | B)=P(A \u2229 B)/P(B)?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Cancelling P(B|E) without checking it is positive. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0022",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A classmate says: \"If two events are independent, they must be disjoint, because one event has nothing to do with the other.\" Respond to that claim carefully. In your answer, explain the difference between independence and mutual exclusivity, and give a concrete probability argument showing why confusing them leads to a contradiction unless a special edge case occurs.",
+      "expected_answer": "The claim is false. Independence means P(E \u2229 F) = P(E)P(F), or equivalently, if P(F) > 0 then P(E|F) = P(E): knowing F occurred does not change the probability of E. Disjointness means E and F cannot happen together, so P(E \u2229 F) = 0. If events were both disjoint and independent, then we would need 0 = P(E)P(F), so at least one of the events must have probability 0. Therefore, for nontrivial events with positive probability, independence and mutual exclusivity are incompatible. A good verbal summary is: independence means 'co-occurrence happens at the product rate,' while disjointness means 'co-occurrence never happens.'",
+      "source_chunk_ids": [
+        "cs109_05_independence_annotated_p2_83a4f9898c",
+        "cs109_05_independence_annotated_p3_9f91220977",
+        "cs109_05_independence_annotated_p13_a3cc199a6d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States clearly that the claim is false.",
+          "Defines independence using P(E \u2229 F) = P(E)P(F) or P(E|F) = P(E).",
+          "Defines disjointness as P(E \u2229 F) = 0.",
+          "Explains that both can hold only if P(E)=0 or P(F)=0.",
+          "Articulates the intuition that independence is not the same as 'cannot happen together.'"
+        ],
+        "partial_credit": [
+          "Recognizes the claim is false but gives only an intuitive explanation.",
+          "Uses an example correctly but does not derive the general contradiction.",
+          "States one formal definition correctly but does not connect it to the other concept."
+        ],
+        "common_mistakes": [
+          "Saying independent means events do not overlap.",
+          "Confusing 'does not affect probability' with 'cannot both happen.'",
+          "Forgetting the edge case where one event has probability 0."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example of two events that are independent and overlap, and verify independence numerically?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is P(E \u2229 F) for disjoint events, and what is P(E \u2229 F) for independent events? Put those side by side."
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from independence.",
+        "Watch out for this common trap: Saying independent means events do not overlap. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0023",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Roll a fair die twice. Let E be the event that the first roll is 1, F be the event that the second roll is 6, and G be the event that the sum of the two rolls is 7. Determine which pairs among (E,F), (E,G), and (F,G) are independent, and then decide whether E, F, and G are mutually independent. Explain your reasoning aloud rather than just listing answers.",
+      "expected_answer": "There are 36 equally likely outcomes. P(E)=1/6, P(F)=1/6, and P(G)=6/36=1/6 since the sum 7 can happen in 6 ways. For E and F, only outcome (1,6) satisfies both, so P(E \u2229 F)=1/36=(1/6)(1/6), so E and F are independent. For E and G, if the first roll is 1 and the sum is 7, the second must be 6, so again P(E \u2229 G)=1/36=(1/6)(1/6), so they are independent. Similarly F and G are independent because F \u2229 G is again just (1,6), so P(F \u2229 G)=1/36=(1/6)(1/6). But for mutual independence we also need P(E \u2229 F \u2229 G)=P(E)P(F)P(G). The triple intersection is still just (1,6), so P(E \u2229 F \u2229 G)=1/36, while P(E)P(F)P(G)=1/216. These are not equal, so the three events are pairwise independent but not mutually independent.",
+      "source_chunk_ids": [
+        "cs109_05_independence_annotated_p7_p8_a3ce929ca3",
+        "cs109_05_independence_annotated_p5_bfa15e0662"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes P(E), P(F), and P(G) correctly.",
+          "Checks each pair using intersection probabilities, not just intuition.",
+          "States that all three pairs are independent.",
+          "Checks the triple intersection against P(E)P(F)P(G).",
+          "Concludes correctly that pairwise independence does not imply mutual independence."
+        ],
+        "partial_credit": [
+          "Gets the pairwise checks right but forgets the triple condition.",
+          "States the final conclusion correctly with incomplete arithmetic.",
+          "Recognizes the distinction between pairwise and mutual independence even if one probability is misstated."
+        ],
+        "common_mistakes": [
+          "Assuming pairwise independence automatically implies independence of all three events.",
+          "Computing P(G) incorrectly as 1/36 instead of 6/36.",
+          "Using only one pairwise check and generalizing."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why does this example show that the definition for independence of three events must include more than just all pairwise products?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you enumerate the outcomes in G and then identify exactly which of those also lie in E?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Assuming pairwise independence automatically implies independence of all three events. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0024",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "A student writes, \"To show A and B are conditionally independent given E, it is enough to prove P(A|B,E)=P(A).\" Evaluate that statement. If it is wrong, repair it and explain why conditioning changes the sample space in a way that affects both sides of the equation.",
+      "expected_answer": "The statement is generally wrong. Conditional independence given E means P(A \u2229 B | E) = P(A|E)P(B|E), and an equivalent form, when P(B|E) > 0, is P(A|B,E) = P(A|E), not P(A). The reason is that once we condition on E, we are working inside a new sample space restricted to E, so all relevant probabilities must be interpreted relative to E. Comparing P(A|B,E) to P(A) mixes a conditioned quantity with an unconditional one, which is not the right notion. The corrected verbal interpretation is: once E is known, learning B gives no extra information about A.",
+      "source_chunk_ids": [
+        "cs109_06_rvs_annotated_p3_2087ff1982",
+        "cs109_06_rvs_annotated_p4_ae2b276089",
+        "cs109_06_rvs_annotated_p2_4797680fc1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that the student's statement is incorrect in general.",
+          "Gives the correct condition P(A|B,E)=P(A|E) or P(A \u2229 B | E)=P(A|E)P(B|E).",
+          "Explains that conditioning on E creates a new sample space.",
+          "Explicitly notes why P(A) is the wrong comparison."
+        ],
+        "partial_credit": [
+          "Fixes the formula correctly but gives limited explanation.",
+          "Explains the new sample space idea without stating a formal criterion.",
+          "Recognizes that both sides need conditioning on E."
+        ],
+        "common_mistakes": [
+          "Dropping the conditioning on E from one side of the equation.",
+          "Claiming conditional independence is the same as ordinary independence.",
+          "Forgetting the positivity condition when using P(A|B,E)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can two events be dependent overall but conditionally independent given E? Describe a plausible mechanism or example structure."
+        },
+        {
+          "condition": "incorrect",
+          "question": "If E is known to have happened, are we still measuring probabilities on the original whole sample space or inside E?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from independence; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Dropping the conditioning on E from one side of the equation. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0025",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Suppose a streaming platform tracks whether a user clicks on three different recommended movies, call the click events C1, C2, and C3. An analyst claims the clicks are independent because 'once we know the hidden preference type K, each click is generated separately.' Critique that claim carefully: what can be concluded about conditional independence given K, what cannot be concluded about unconditional independence, and why might dependence appear again after you average over users with different K values?",
+      "expected_answer": "What the analyst can conclude is conditional independence given K: for a fixed user type K, the joint click probability may factor as P(C1, C2, C3 | K) = P(C1|K)P(C2|K)P(C3|K). But that does not imply unconditional independence. After averaging over different possible values of K, the clicks can become dependent because they share a common hidden cause. Intuitively, if some user types are much more likely to click all three movies, then seeing one click makes those high-interest types more plausible, which raises the probability of the other clicks. So dependence can arise marginally even though independence holds conditionally. A strong answer should also mention the converse phenomenon can happen too: events can be independent overall yet become conditionally dependent once we condition on another variable.",
+      "source_chunk_ids": [
+        "cs109_06_rvs_annotated_p9_p10_e768695e32",
+        "cs109_15_general_inference_annotated_p10_p11_4386b25b25",
+        "cs109_12_independent_rvs_annotated_p2_edb164eea6"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Distinguishes clearly between conditional and unconditional independence.",
+          "States the conditional factorization given K.",
+          "Explains why marginal dependence can arise from mixing over latent groups.",
+          "Uses the idea of a shared hidden cause to justify the dependence.",
+          "Optionally notes that the reverse phenomenon can also happen."
+        ],
+        "partial_credit": [
+          "States that conditional independence does not imply unconditional independence without a clear mechanism.",
+          "Gives an intuitive explanation involving user types but no formal factorization.",
+          "Recognizes the role of hidden variables but does not connect it to updated beliefs after observing one click."
+        ],
+        "common_mistakes": [
+          "Assuming independence given K automatically implies independence overall.",
+          "Confusing 'generated separately within a type' with 'generated separately in the population.'",
+          "Failing to distinguish events from random variables when discussing factorization."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If you observed that C1 and C2 are positively correlated overall, would that contradict conditional independence given K? Why or why not?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Imagine two user types: one type clicks almost everything and the other clicks almost nothing. What happens to the probability of C2 after observing C1=1?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Assuming independence given K automatically implies independence overall. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_independence_0026",
+      "course": "CS109",
+      "topic_id": "independence",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "For two continuous random variables X and Y, a student says: 'If the joint density can be written as g(x)h(y), then X and Y are independent.' Is that always true? Answer using the role of the support, and apply your reasoning to this example: f(x,y)=24xy on the region x>0, y>0, x+y<1, and 0 otherwise.",
+      "expected_answer": "The statement is not always true as stated; the factorization must hold over the entire support in a way that does not impose an additional joint constraint linking x and y. Independence requires that the support also be compatible with a Cartesian product of the supports of X and Y, or equivalently that the joint density factor as g(x)h(y) over the full region where the variables can jointly occur. In the example f(x,y)=24xy looks separable algebraically, but the support x+y<1 couples x and y. If X and Y were independent and both had positive density on intervals near positive values, then points with those x and y values should combine freely, but the triangle support excludes many such pairs. Therefore X and Y are not independent. The key idea is: algebraic factorization alone is insufficient if the support itself encodes dependence.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p21_4c70615a99",
+        "cs109_18_clt_annotated_p2_b1d98f2cbe",
+        "cs109_finalspring2017_q5a_4ee51c29dc"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that factorization alone is not enough unless it works over the entire support.",
+          "Explains the importance of the support being separable as a product set.",
+          "Applies that logic correctly to the triangular region x+y<1.",
+          "Concludes that X and Y are not independent."
+        ],
+        "partial_credit": [
+          "Gets the final answer correct but only says 'because of the support' without elaboration.",
+          "Explains the support issue generally but does not tie it clearly to the specific example.",
+          "Notes the density is algebraically separable yet still dependent."
+        ],
+        "common_mistakes": [
+          "Declaring independence solely because 24xy factors into a function of x times a function of y.",
+          "Ignoring the 0 otherwise part of the density.",
+          "Thinking independence is determined only by algebra and not by support."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your reasoning differ for a density like f(x,y)=4xy on 0<x<1, 0<y<1?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Pick a point like x=0.8 and y=0.8. Would independence allow positive density there if both marginals are positive near those values? What does the support say?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Declaring independence solely because 24xy factors into a function of x times a function of y. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    }
+  ]
+}

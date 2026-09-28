@@ -1,0 +1,13 @@
+{
+  "question_id": "cs109-probability-001",
+  "title": "Conditional probability from data",
+  "instructions": "Read the question, work it out on paper, then show your work to the camera.",
+  "question_text": "A dataset has 200 students. 80 took CS109, 60 took CS111, and 30 took both. If a student is selected at random from the dataset, what is P(CS109 | CS111)? Show your work.",
+  "rubric_items": [
+    "Uses the definition P(A|B) = P(A and B) / P(B)",
+    "Correctly identifies counts for intersection and conditioning event from the prompt",
+    "Computes P(CS109 | CS111) = 30/60 = 0.5",
+    "Includes intermediate steps (not just the final number)"
+  ]
+}
+

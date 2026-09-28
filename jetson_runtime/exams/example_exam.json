@@ -1,0 +1,26 @@
+{
+  "exam_id": "cs101_bigO",
+  "subject": "Algorithms — Big-O Complexity",
+  "system_prompt": "You are an oral exam proctor for a university computer science course. The student is being assessed on their understanding of algorithmic complexity and Big-O notation. Ask one question at a time and wait for the student's response before continuing. Generate follow-up questions based on rubric items the student has not adequately addressed. Be encouraging but rigorous. Do not provide hints or confirm whether an answer is correct mid-exam.",
+  "questions": [
+    {
+      "text": "What is Big-O notation and why is it useful when analysing algorithms?",
+      "rubric_items": [
+        "Definition: Big-O describes the upper bound / worst-case growth rate of runtime or space as input size grows",
+        "At least one concrete example (e.g. O(n), O(log n), O(n^2))",
+        "Why it matters: allows comparison of algorithms independent of hardware, predicts scaling behaviour"
+      ],
+      "max_follow_ups": 1
+    },
+    {
+      "text": "What is the difference between O(n log n) and O(n^2) sorting algorithms? Can you give an example of each?",
+      "rubric_items": [
+        "O(n log n) is asymptotically faster for large inputs than O(n^2)",
+        "Correct example of O(n log n) sort: merge sort, heap sort, or quicksort (average)",
+        "Correct example of O(n^2) sort: bubble sort, insertion sort, or selection sort",
+        "Practical implication: O(n^2) becomes unacceptably slow for large n"
+      ],
+      "max_follow_ups": 1
+    }
+  ]
+}

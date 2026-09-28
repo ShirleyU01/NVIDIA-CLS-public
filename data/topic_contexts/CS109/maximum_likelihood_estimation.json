@@ -1,0 +1,246 @@
+{
+  "course": "CS109",
+  "topic_id": "maximum_likelihood_estimation",
+  "topic_name": "Maximum Likelihood Estimation (MLE)",
+  "queries_used": [
+    "Maximum Likelihood Estimation (MLE) definition",
+    "Maximum Likelihood Estimation (MLE) intuition",
+    "Maximum Likelihood Estimation (MLE) worked example",
+    "Maximum Likelihood Estimation (MLE) exam problem",
+    "mle overview",
+    "mle practice",
+    "likelihood overview",
+    "likelihood practice",
+    "parameter estimation overview",
+    "parameter estimation practice",
+    "mle normal overview",
+    "mle normal practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_20_mle_annotated_p26_p27_f46c85cd7c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood Estimator\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#, drawn from a \ndistribution 𝑓𝑋$|𝜃.\ndef The Maximum Likelihood Estimator (MLE) of 𝜃 is the value of 𝜃 that \nmaximizes 𝐿𝜃.\n27\n𝜃!\"# = arg max\n$\n 𝐿𝜃\nthe argument 𝜃 \nthat maximizes 𝐿𝜃\n\nargmax and log \nlikelihood\n28",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.6946959495544434
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p31_p32_b09eddff70",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood Estimator\nConsider a sample of 𝑛 iid random \nvariables 𝑋!, 𝑋\", … , 𝑋#, drawn from a \ndistribution 𝑓𝑋$|𝜃.\n𝜃()* maximizes the likelihood of our \nsample, 𝐿𝜃:\n𝜃()* also maximizes the log-likelihood \nfunction, 𝐿𝐿𝜃:\n32\n𝜃!\"# = arg max\n$\n 𝐿𝐿𝜃\n𝜃()* = arg max\n+\n 𝐿𝜃\n𝐿𝐿𝜃= log 𝐿𝜃= log B\n$%!\n#\n𝑓𝑋$|𝜃\n= D\n$%!\n#\nlog 𝑓𝑋$|𝜃\n𝐿𝜃= C\n$%!\n#\n𝑓𝑋$|𝜃\n𝐿𝐿𝜃 is often easier to \ndifferentiate than 𝐿𝜃.\n\nMLE: Bernoulli\n33",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.6884472370147705
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p25_016fc6ba78",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood Estimator\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#, drawn from a \ndistribution 𝑓𝑋$|𝜃.\ndef The Maximum Likelihood Estimator (MLE) of 𝜃 is the value of 𝜃 that \nmaximizes 𝐿𝜃.\n26\n𝜃!\"# = arg max\n$\n 𝐿𝜃\n𝐿𝜃= C\n$%!\n#\n𝑓𝑋$|𝜃\nLikelihood of your sample\nFor continuous 𝑋$, 𝑓𝑋$|𝜃 is PDF, and for discrete 𝑋$, 𝑓𝑋$|𝜃 is PMF",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.6862795352935791
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p24_31bb39dbca",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood Estimator\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#, drawn from a \ndistribution 𝑓𝑋$|𝜃.\ndef The Maximum Likelihood Estimator (MLE) of 𝜃 is the value of 𝜃 that \nmaximizes 𝐿𝜃.\n25\n𝜃!\"# = arg max\n$\n 𝐿𝜃",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.6801949739456177
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p45_p46_9d7f97347a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEstimating our parameter directly\n46\nMaximum \nLikelihood \nEstimator\n(MLE)\nWhat is the parameter 𝜃\nthat maximizes the \nlikelihood\nof our observed data \n𝑥#, 𝑥%, … , 𝑥+ ?\n𝜃234 = arg max\n*\n𝑓𝑋#, 𝑋%, … , 𝑋+|𝜃\n𝐿𝜃= 𝑓𝑋#, 𝑋%, … , 𝑋+|𝜃\n= T\n!\"#\n+\n𝑓𝑋!|𝜃\n(our focus so far)\nlikelihood of data\nObservations:\n•\nMLE maximizes probability of observing data\ngiven a parameter 𝜃.  It’s fitting the curve to match the data.\n•\nIf we are estimating 𝜃, shouldn’t we maximize\nthe probability of 𝜃 directly? SAT word: adumbrate\n\nExtra: MLE: \nMultinomial \nderivation\n47",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.6699766516685486
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p51_p52_49f8ebac95",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSmall samples = problems with MLE\nMaximum Likelihood Estimator 𝜃()* :\n• Best explains the data we’ve seen \n• Does not attempt to generalize to data not yet observed.\nIn many cases, \n• Unbiased (𝐸𝜇()* = 𝜇, regardless of sample size)\nFor some cases, like Uniform:\n• Ad hoc, biased, and problematic for small sample sizes\n• Example: If 𝑛= 1, then 𝛼= 𝛽, and our estimates yield an invalid \ndistribution\n52\n𝜇()* = 1\n𝑛D\n$%!\n#\n𝑋$\nSample mean\n(MLE for Bernoulli 𝑝, \nPoisson 𝜆, Normal 𝜇)\n𝛼()* ≥𝛼,\n𝛽()* ≤𝛽\n✅\n⚠\n𝜃()* = arg max\n+\n 𝐿𝜃\n\nMLE: Gaussian\n53",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.6593878865242004
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p24_9ec31b7cac",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nLinear Regression, MLE\n1. Assume linear model\n(and 𝑿 is 1-D):\n2. Define maximum likelihood\nestimator:\n• Drama: We have a model for 0𝑌, not 𝑌\n• Remember the MSE approach, where we minimize the squared error \nbetween 0𝑌 and 𝑌?\n• Here we model this error directly!\n25\n$𝑌= 𝑔𝑿= 𝑎𝑋+ 𝑏\n𝜃+3- = arg max\n.\n?\n&(!\n%\nlog 𝑓𝑦& | 𝑥& , 𝜃\n⚠\nerror/noise\n(also random)\n𝑌= '𝑌+ 𝑍\n= 𝑎𝑋+ 𝑏+ 𝑍",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.6355575323104858
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p5_a7c599320c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nOkay, just one more MLE with the Multinomial\nConsider a sample of 𝑛 iid random variables where:\n• Each element is drawn from one of 𝑚 outcomes.\n𝑃outcome 𝑖= 𝑝!, where ∑!\"#\n$ 𝑝! = 1\n• 𝑋! = # of trials with outcome 𝑖, where ∑!\"#\n$ 𝑋! = 𝑛\n1. What is the likelihood of observing\nthe sample 𝑋#, 𝑋%, … , 𝑋$ ,\ngiven the probabilities 𝑝#, 𝑝%, … , 𝑝$?\n2. What is 𝜃+,-?\n6\n𝐿𝜃=\n𝑛!\n𝑋#! 𝑋%! ⋯𝑋$! 𝑝#\n&!𝑝%\n&\" ⋯𝑝$\n&#\n𝐿𝐿𝜃= log 𝑛! −5\n!\"#\n$\nlog 𝑋!! + 5\n!\n$\n𝑋! log 𝑝! , such that ∑!\"#\n$ 𝑝! = 1\n𝜃+,-: 𝑝. = 𝑋.\n𝑛\nIntuitively, probability\n𝑝! = proportion of outcomes\nOptimize with\nLagrange multipliers in \nextra slides",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.6305879354476929
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p33_8e65ca42d7",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComputing the MLE\nGeneral approach for finding 𝜃()* , the MLE of 𝜃:\n34\n𝜃!\"# = arg max\n$\n 𝐿𝐿𝜃\n1. Determine \nformula for 𝐿𝐿𝜃\n2. Differentiate 𝐿𝐿𝜃\nw.r.t. (each) 𝜃\n𝐿𝐿𝜃= D\n$%!\n#\nlog 𝑓𝑋$|𝜃\n𝜕𝐿𝐿𝜃\n𝜕𝜃\n3. Solve resulting\nequations\nTo maximize:\n𝜕𝐿𝐿𝜃\n𝜕𝜃\n= 0\nalgebra or\ncomputer\n𝐿𝐿𝜃 is often easier to \ndifferentiate than 𝐿𝜃.",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.57845139503479
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p20_p21_e38075bc02",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhy do we care?\nIn the real world, we don’t know the true parameters.\n• But we observe data:\ndef estimator ;𝜃: a random variable estimating the true parameter 𝜃.\nIn parameter estimation,\nWe’ll initially and often rely on point estimates—i.e., the best single value\n• Provides an understanding of why data looks the way it does\n• Can make future predictions using that model\n• Can run simulations to generate more data\n21\n# times coin comes up heads, # requests for \nRydeShare per minute, # visitors to website per \nday, offer amount for that used bike you can’t sell\n\nMaximum \nLikelihood \nEstimator\n22",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.5533570051193237
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p22_030afa298e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nLikelihood, it’s been a minute\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋%.\n• 𝑋& was drawn from some distribution with density function 𝑓𝑋&|𝜃.\n• Observed sample: 𝑋!, 𝑋\", … , 𝑋%\nLikelihood question:\nHow likely is the observed sample 𝑋!, 𝑋\", … , 𝑋%  given parameter 𝜃? \nLikelihood function, 𝐿𝜃:\n23\nThis is just a product, since 𝑋- are iid\n= 9\n&(!\n%\n𝑓𝑋&|𝜃\n𝐿𝜃= 𝑓𝑋!, 𝑋\", … , 𝑋%|𝜃\nReview",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.5223104953765869
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p20_55ab85d257",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nUse MLE or Laplace (MAP) estimate \n1𝑃𝑿|𝑌 and 1𝑃𝑌 as parameters.\nTraining: Estimate parameters !𝑃𝑿|𝑌\n21\n1𝑃𝑿|𝑌= 0\n1𝑃𝑿|𝑌= 1\n𝑋' = 0\n𝜃'\n𝜃)\n𝑋' = 1\n𝜃$\n𝜃*\n𝑿|𝑌= 0 and 𝑿|𝑌= 1\nare each multinomials with 2 outcomes!\nPatient 1  1 \n0\nPatient 2  1 \n1\n     \nPatient 𝑛  0 \n1\nFeature 1\nOutput\n…\n…\nCount:  \n \n# datapoints\n𝑋' = 0, Y = 0:  \n4\n𝑋' = 1, Y = 0:  \n6\n𝑋' = 0, Y = 1:  \n0\n𝑋' = 1, Y = 1:  \n100\nTotal:  \n \n \n110",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.5148715376853943
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p4_72e881cd9b",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nOkay, just one more MLE with the Multinomial\nConsider a sample of 𝑛 iid random variables where:\n• Each element is drawn from one of 𝑚 outcomes.\n𝑃outcome 𝑖= 𝑝!, where ∑!\"#\n$ 𝑝! = 1\n• 𝑋! = # of trials with outcome 𝑖, where ∑!\"#\n$ 𝑋! = 𝑛\n1. What is the likelihood of observing\nthe sample 𝑋#, 𝑋%, … , 𝑋$ ,\ngiven the probabilities 𝑝#, 𝑝%, … , 𝑝$?\n5\nA.  \n𝑛!\n𝑋#! 𝑋%! ⋯𝑋$! 𝑝#\n&!𝑝%\n&\" ⋯𝑝$\n&#\nB.  \n𝑝#\n&!𝑝%\n&\" ⋯𝑝$\n&#\nC.  \n𝑛!\n𝑋#! 𝑋%! ⋯𝑋$! 𝑋#\n'!𝑋%\n'\" ⋯𝑋$\n'#",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.5140774846076965
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p47_62c01bf797",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nOkay, just one more MLE with the Multinomial\nConsider a sample of 𝑛 i.i.d. random variables where\n• Each element is drawn from one of 𝑚 outcomes.\n𝑃outcome 𝑖= 𝑝!, where ∑!\"#\n$ 𝑝! = 1\n• 𝑋! = # of trials with outcome 𝑖, where ∑!\"#\n$ 𝑋! = 𝑛\n1. What is the likelihood of observing\nthe sample 𝑋#, 𝑋%, … , 𝑋$ ,\ngiven the probabilities 𝑝#, 𝑝%, … , 𝑝$?\n2. What is 𝜃+,-?\n48\n𝐿𝜃=\n𝑛!\n𝑋#! 𝑋%! ⋯𝑋$! 𝑝#\n&!𝑝%\n&\" ⋯𝑝$\n&#\n𝐿𝐿𝜃= log 𝑛! −5\n!\"#\n$\nlog 𝑋!! + 5\n!\"#\n$\n𝑋! log 𝑝! , such that ∑!\"#\n$ 𝑝! = 1\n𝜃+,-: 𝑝. = 𝑋.\n𝑛\nIntuitively, probability\n𝑝! = proportion of outcomes",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.5029488801956177
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p4_p5_7b90c4c2d9",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n3. Conditional likelihood function\nTraining data (𝑛 datapoints):\n•\n𝒙% , 𝑦%\n drawn iid from a distribution 𝑓𝑿= 𝒙% , 𝑌= 𝑦% |𝜃= 𝑓𝒙% , 𝑦% |𝜃\n5\n𝜃+,- = arg max\n.\n5\n/&!\n0\n𝑓𝑦/ | 𝒙/ , 𝜃\nconditional likelihood\nof training data\nlog conditional likelihood\n• MLE here is estimator that \nmaximizes conditional likelihood\n• log conditional likelihood is also \nwritten as 𝐿𝐿𝜃\n= arg max\n.\n,\n/&!\n0\nlog 𝑓𝑦/ | 𝒙/ , 𝜃\n= arg max\n.\n𝐿𝐿𝜃\n\nLogistic \nRegression\n6",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.4994816482067108
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p23_84b862db31",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDefining the likelihood of data\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#.\n• 𝑋$ was drawn from a distribution with density function 𝑓𝑋$|𝜃.\n• Sample: 𝑋!, 𝑋\", … , 𝑋#\nLikelihood question:\nHow likely is the sample 𝑋!, 𝑋\", … , 𝑋#  given the parameter 𝜃? \nLikelihood function, 𝐿𝜃:\n24\nThis is just a product, since the 𝑋$ are iid.\n= C\n$%!\n#\n𝑓𝑋$|𝜃\n𝐿𝜃= 𝑓𝑋!, 𝑋\", … , 𝑋#|𝜃",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.4981441795825958
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p31_1fb219e78c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThe problem with our current classifier\n32\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑌 | 𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑋!, 𝑋\", … , 𝑋#|𝑌\nEstimating this joint conditional \ndistribution is intractable.\nWhat if we could make a simplifying assumption—even if incredibly naïve—\nto make our parameter estimation effort computationally tractable?\nChoose the 𝑌 that is \nmost likely given 𝑿\n(Bayes’ Theorem)\n(1/𝑃𝑿 is constant w.r.t. 𝑦)",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.4924454689025879
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p22_17e4d190fb",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDefining the likelihood of data: Bernoulli\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#.\n• 𝑋$ was drawn from distribution 𝐹 ~ Ber 𝜃 with unknown parameter 𝜃.\n• Observed sample:\n0, 0, 1, 1, 1, 1, 1, 1, 1, 1\nHow likely is this sample if, say, 𝜃= 0.4?\n𝑃sample|𝜃= 0.4 = 0.4 & 0.6 \" = 0.000236\n23\n(𝑛= 10)\nLikelihood of data\ngiven parameter 𝜃= 0.4\nIs there a better choice for 𝜃?",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.49152451753616333
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p48_4e45d40482",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nOptimizing MLE for Multinomial\n𝜃= 𝑝!, 𝑝\", … , 𝑝3 \n𝜃+,- = arg max\n?\n𝐿𝐿𝜃 \n49\n5\n!\"#\n$\n𝑝! = 1\n, where\nUse Lagrange multipliers\nto account for constraint\n𝐴𝜃= 𝐿𝐿𝜃+ 𝜆5\n!\"#\n$\n𝑝! −1\n= 5\n!\"#\n$\n𝑋! log 𝑝! + 𝜆5\n!\"#\n$\n𝑝! −1\n(drop \nnon-𝑝! \nterms)\n𝜕𝐴𝜃\n𝜕𝑝!\n= 𝑋!\n1\n𝑝!\n+ 𝜆= 0\nDifferentiate w.r.t.\neach 𝑝!, in turn:\n⇒ 𝑝! = −𝑋!\n𝜆\nSolve for 𝜆, noting\n5\n!\"#\n$\n𝑋! = 𝑛, 5\n!\"#\n$\n𝑝! = 1:\nLagrange\nmultipliers:\n5\n!\"#\n$\n𝑝! = 5\n!\"#\n$\n−𝑋!\n𝜆= 1\n⇒1 = −𝑛\n𝜆\n⇒𝜆= −𝑛\nSubstitute 𝜆 into 𝑝!\n𝑝! = 𝑋!\n𝑛",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.4903936982154846
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p42_8ebde50750",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nComputing the MLE with gradient ascent\nGeneral approach for finding 𝜃+3- , the MLE of 𝜃:\n43\n1. Determine \nformula for 𝐿𝐿𝜃\n2. Differentiate 𝐿𝐿𝜃\nwrt (each) 𝜃\n3. Solve resulting\n(simultaneous) \nequations\n(computer)\nGradient Ascent\nlog conditional likelihood\nG\n-\"#\n&\nlog 𝑓𝑦- | 𝑥- , 𝜃\n𝜕\n𝜕𝜃!\nG\n-\"#\n&\nlog 𝑓𝑦- | 𝑥- , 𝜃\n𝜕ℎ𝜃\n𝜕𝑎\n= <\n\"#$\n%\n2 𝑦\" −𝑎𝑥\" −𝑏\n𝑥\"\n𝜕ℎ𝜃\n𝜕𝑏\n= <\n\"#$\n%\n2 𝑦\" −𝑎𝑥\" −𝑏\nℎ𝜃= −<\n%&'\n(\n𝑦% −𝑎𝑥% −𝑏\n/",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.4903845489025116
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p35_fcc0325ee9",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Bernoulli\nConsider a sample of 𝑛 iid RVs 𝑋!, 𝑋\", … , 𝑋#.\nWhat is 𝜃()* = 𝑝()*?\n36\n1. Determine \nformula for 𝐿𝐿𝜃\n• Let 𝑋$~Ber 𝑝.\n•  𝑓𝑋$|𝑝= 𝑝&! 1 −𝑝!'&!\n2. Differentiate 𝐿𝐿𝜃\nwrt (each) 𝜃, set to 0\n3. Solve resulting\nequations\n𝑓𝑋$|𝑝= 𝑝7! 1 −𝑝!87! where 𝑋$ ∈{0,1}\n• differentiable with respect to 𝑝\n• valid PMF over discrete domain\n✅\n𝑓𝑋$|𝑝= P𝑝 \nif 𝑋$ = 1\n1 −𝑝 if 𝑋$ = 0\n𝐿𝐿𝜃= D\n$%!\n#\nlog 𝑓𝑋$|𝑝",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.489531934261322
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p2_986071dea8",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nOkay, just one more MLE with the Multinomial\nConsider a sample of 𝑛 iid random variables where:\n• Each element is drawn from one of 𝑚 outcomes.\n𝑃outcome 𝑖= 𝑝!, where ∑!\"#\n$ 𝑝! = 1\n• 𝑋! = # of trials with outcome 𝑖, where ∑!\"#\n$ 𝑋! = 𝑛\n3\nLet’s give an \nexample!",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.48309987783432007
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p6_a86df2dce8",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhen MLEs attack!\nConsider a 6-sided die.\n• Roll the dice \n𝑛= 12 times.\n• Observe: \n3 ones, 2 twos, 0 threes, 3 fours, 1 fives, 3 sixes\nWhat is 𝜃+,-?\n7\nMLE for\nMultinomial:\n𝑝! = 𝑋!\n𝑛",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.48113536834716797
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p30_8d68fefd68",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThis approach requires you to learn \n𝑂2/  parameters.\nBrute Force Bayes: 𝑚= 300 (# features)\n31\n•\n1𝑃𝑌= 1 | 𝒙 : estimated probability a \nheart is healthy given 𝒙\n• 𝑿= 𝑋', 𝑋$, … , 𝑋).. : whether 300 \nregions of interest (ROI) are healthy (1) \nor unhealthy (0)\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\nHow many parameters do we \nhave to learn?\nA.  2 ⋅2 \n+ 2 = 6\nB.  2 ⋅300 + 2 = 602\nC.  2 ⋅24,, + 2 = a lot\n1𝑃𝑿|𝑌\n1𝑃𝑌\nLearn parameters\nthrough MLE or MAP\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑌 | 𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑿",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.4807586669921875
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p19_625acda203",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTraining: Estimate parameters\n20\nPatient 1  1 \n0\nPatient 2  1 \n1\n     \nPatient 𝑛  0 \n1\nFeature 1\nOutput\n…\n…\n𝑿= 𝑋!\nConditional \nprobability \ntables 1𝑃𝑿|𝑌 \n1𝑃𝑿|𝑌= 0\n1𝑃𝑿|𝑌= 1\n𝑋' = 0\n𝜃'\n𝜃)\n𝑋' = 1\n𝜃$\n𝜃*\nMarginal \nprobability \ntable 1𝑃𝑌\n1𝑃𝑌\n𝑌= 0\n𝜃+\n𝑌= 1\n𝜃,\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\nTraining \nGoal:\nUse 𝑛 datapoints to learn\n2 ⋅2 + 2 = 6 parameters.",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.4754210114479065
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p21_819e5f6d1c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nLinear Regression\nAssume linear model\n(and 𝑿 is 1-D, i.e., 𝑿= 𝑋):\nWe’ve seen which parameters—that is, what choices of a and b—minimize \nmean squared error: 𝑎+,- and 𝑏+,-, estimated by T𝑎+,- and 0𝑏+,-.\nWhat if we want parameters that maximize \nthe likelihood of the training data?\n22\nLearn parameters 𝜃= 𝑎, 𝑏 \nTraining data: 𝑥! , 𝑦! , 𝑥\" , 𝑦\" , …, 𝑥% , 𝑦%\nTraining\nReview\nNote: Maximizing likelihood is \ntypically an objective for \nclassification models.\n$𝑌= 𝑔𝑿= 𝑎𝑋+ 𝑏",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.4752732813358307
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p17_b57564ae4a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSome estimators\n𝑋!, 𝑋\", … , 𝑋# are 𝑛 iid random variables,\nwhere 𝑋$ drawn from distribution 𝐹 with 𝐸𝑋$ = 𝜇, Var 𝑋$ = 𝜎\".\nSample mean:\n18\n!𝑋= 1\n𝑛0\n$%!\n#\n𝑋$\nunbiased estimate of 𝜇 \nSample variance:\n𝑆\" =\n1\n𝑛−1 0\n$%!\n#\n𝑋$ −!𝑋\"\nunbiased estimate of 𝜎\"\npotentially useful estimates if trying to infer parameters of a Gaussian",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.4710945188999176
+    },
+    {
+      "chunk_id": "cs109_finalwin2025soln_q9_b18893b977",
+      "text": "MLE of a Truncated Normal Distribution [18 points]\nA normal distribution can allow negative values. A truncated normal is a version of the normal distribution\nthat only supports positive values of 𝑥. If 𝑋∼TruncatedNormal(𝜇) then it has the following PDF:\n𝑓(𝑋= 𝑥) =\n1\n√\n2𝜋𝑒−(𝑥−𝜇)2\n2\nΦ(𝜇)\nfor 𝑥> 0.\nWhere Φ is the Cumulative Distribution Function for the Standard Normal.\nYou have 𝑛i.i.d. samples from a TruncatedNormal: [7.923, 12.388, 9.984, 12.019, 8.725, . . . ]. Let 𝑥𝑖be the\n𝑖th value. Explain how you would use MLE to estimate parameter 𝜇and provide any necessary derivatives.\nWe first have to formulate the likelihood and log likelihood functions as follows:\n𝐿(𝜇) =\n𝑛\nÖ\n𝑖=1\n1\n√\n2𝜋𝑒−(𝑥𝑖−𝜇)2\n2\nΦ(𝜇)\n𝐿𝐿(𝜇) =\n𝑛\n∑︁\n𝑖=1\nlog(\n1\n√\n2𝜋\n) −(𝑥𝑖−𝜇)2\n2\n−log(Φ(𝜇))\nWe then take the derivative of the log likelihood w.r.t. 𝜇. We use 𝜙as the PDF of the standard normal. Notice\nthat the derivative of the CDF is the PDF, so 𝜕Φ(𝜇)\n𝜕𝜇\n= 𝜙(𝜇).\n𝜕𝐿𝐿(𝜇)\n𝜕𝜇\n=\n𝑛\n∑︁\n𝑖=1\n(𝑥𝑖−𝜇) −\n𝜕Φ(𝜇)\n𝜕𝜇\nΦ(𝜇)\n=\n𝑛\n∑︁\n𝑖=1\n(𝑥𝑖−𝜇) −\n1\n√\n2𝜋· 𝑒\n−𝜇2\n2\nΦ(𝜇)\nThere is no closed form solution when setting the derivative equal to 0, so we would continue by using gradient\nascent to get to an optimal ˆ𝜇parameter.\n\n17",
+      "source_type": "exam_question",
+      "document_name": "FinalWin2025Soln",
+      "score": 0.458313524723053
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p2_ba550d434d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nParameter Estimation\nLinear\nRegression\nNaïve \nBayes\nLogistic \nRegression\nDeep Learning\nThe Path Before Us",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.45734167098999023
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p54_f4511ed503",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Normal\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#.\n• Let 𝑋$~ 𝒩𝜇, 𝜎\" .\nWhat is 𝜃()* = 𝜇()*, 𝜎()*\n\"\n?\n55\n1. Determine \nformula for 𝐿𝐿𝜃\n3. Solve resulting\nequations\n𝐿𝐿𝜃= −D\n$%!\n#\nlog\n2𝜋𝜎−D\n$%!\n#\n𝑋$ −𝜇\"/ 2𝜎\"\n2. Differentiate 𝐿𝐿𝜃\nwrt (each) 𝜃, set to 0\n𝑓𝑋$|𝜇, 𝜎\" =\n1\n2𝜋𝜎\n𝑒' &!'2 \"/ \"4\"\n𝜕𝐿𝐿𝜃\n𝜕𝜇\n= D\n$%!\n#\n2 𝑋$ −𝜇/ 2𝜎\"\n= 1\n𝜎\" D\n$%!\n#\n𝑋$ −𝜇= 0\nwith respect to 𝜇",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.42040562629699707
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p53_0bb1111695",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Normal\n54\n𝐿𝐿𝜃= D\n$%!\n#\nlog\n1\n2𝜋𝜎\n𝑒' &!'2 \"/ \"4\"\n= D\n$%!\n#\n−log\n2𝜋𝜎−𝑋$ −𝜇\"/ 2𝜎\"\n(using natural log)\n= −D\n$%!\n#\nlog\n2𝜋𝜎−D\n$%!\n#\n𝑋$ −𝜇\"/ 2𝜎\"\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#.\n• Let 𝑋$~ 𝒩𝜇, 𝜎\" .\nWhat is 𝜃()* = 𝜇()*, 𝜎()*\n\"\n? \n1. Determine \nformula for 𝐿𝐿𝜃\n3. Solve resulting\nequations\n2. Differentiate 𝐿𝐿𝜃\nwrt (each) 𝜃, set to 0\n𝑓𝑋$|𝜇, 𝜎\" =\n1\n2𝜋𝜎\n𝑒' &!'2 \"/ \"4\"",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.4171264171600342
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p55_c453b0fc41",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Normal\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#.\n• Let 𝑋$~ 𝒩𝜇, 𝜎\" .\nWhat is 𝜃()* = 𝜇()*, 𝜎()*\n\"\n?\n56\n1. Determine \nformula for 𝐿𝐿𝜃\n3. Solve resulting\nequations\n𝐿𝐿𝜃= −D\n$%!\n#\nlog\n2𝜋𝜎−D\n$%!\n#\n𝑋$ −𝜇\"/ 2𝜎\"\n2. Differentiate 𝐿𝐿𝜃\nwrt (each) 𝜃, set to 0\n𝑓𝑋$|𝜇, 𝜎\" =\n1\n2𝜋𝜎\n𝑒' &!'2 \"/ \"4\"\n𝜕𝐿𝐿𝜃\n𝜕𝜇\n= D\n$%!\n#\n2 𝑋$ −𝜇/ 2𝜎\"\n= 1\n𝜎\" D\n$%!\n#\n𝑋$ −𝜇= 0\nwith respect to 𝜇\nwith respect to 𝜎\n𝜕𝐿𝐿𝜃\n𝜕𝜎\n= −D\n$%!\n# 1\n𝜎+ D\n$%!\n#\n2 𝑋$ −𝜇\"/ 2𝜎5\n= −𝑛\n𝜎+ 1\n𝜎5 D\n$%!\n#\n𝑋$ −𝜇\" = 0",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.41607725620269775
+    }
+  ],
+  "built_at": "2026-04-28T05:13:13Z"
+}

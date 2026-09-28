@@ -1,0 +1,122 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 13, 8, 0.58);
+  pointer-events: auto;
+}
+
+.spotlight {
+  position: fixed;
+  border-radius: 14px;
+  border: 2px solid var(--color-green-100);
+  box-shadow:
+    0 0 0 9999px rgba(7, 13, 8, 0.58),
+    0 0 0 6px rgba(231, 244, 228, 0.2);
+  transition:
+    top 160ms ease,
+    left 160ms ease,
+    width 160ms ease,
+    height 160ms ease;
+  pointer-events: none;
+}
+
+.tooltip {
+  position: fixed;
+  width: min(320px, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+  display: grid;
+  gap: 0.7rem;
+  padding: 1rem;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.32);
+  pointer-events: auto;
+}
+
+.tooltipCentered {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.stepCount {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-green-700);
+}
+
+.title {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.body,
+.fallbackHint {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.fallbackHint {
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  background: var(--color-green-100);
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.primaryButton,
+.secondaryButton {
+  border-radius: 999px;
+  padding: 0.45rem 0.8rem;
+  cursor: pointer;
+}
+
+.primaryButton {
+  border: 1px solid var(--color-green-700);
+  background: var(--color-green-700);
+  color: #fff;
+}
+
+.secondaryButton {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-green-700) 45%, transparent);
+  outline-offset: 2px;
+}
+
+.secondaryButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .tooltip {
+    inset: auto 1rem 1rem 1rem;
+    width: auto;
+    transform: none;
+  }
+}

@@ -1,0 +1,1262 @@
+{
+  "topic_id": "independent_random_variables",
+  "topic_name": "Independent Random Variables",
+  "course": "CS109",
+  "questions": [
+    {
+      "question_id": "CS109_independent_random_variables_0001",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "conceptual",
+      "difficulty": "easy",
+      "question": "A student says: 'To show two discrete random variables X and Y are independent, it is enough to check one lucky pair of values, like P(X=1,Y=2)=P(X=1)P(Y=2).' Explain why that statement is wrong, and then give the correct definition in a way that distinguishes random variables from events.",
+      "expected_answer": "The statement is wrong because independence of random variables is a global property, not something verified at one assignment. For discrete random variables, X and Y are independent if for every pair of values x and y, P(X=x, Y=y)=P(X=x)P(Y=y). It is important to phrase X=x and Y=y as events determined by the random variables; the random variables themselves are not events. A strong explanation notes that one matching product does not rule out dependence at other values.",
+      "source_chunk_ids": [
+        "cs109_demo_exam_q1_c290a1b3af",
+        "cs109_12_independent_rvs_annotated_p2_edb164eea6",
+        "cs109_06_rvs_annotated_p15_p16_55ef09c173"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the universal quantifier 'for all x,y'",
+          "Gives the factorization P(X=x,Y=y)=P(X=x)P(Y=y)",
+          "Explains that X=x and Y=y are events induced by the RVs",
+          "Explicitly rejects checking a single pair as sufficient"
+        ],
+        "partial_credit": [
+          "Mentions product form but omits 'for all x,y'",
+          "Correct intuition that knowing X gives no information about Y, without formal definition",
+          "Notes RVs are not events but does not connect to the definition"
+        ],
+        "common_mistakes": [
+          "Saying independence means only uncorrelated",
+          "Checking only one or a few value pairs",
+          "Treating X and Y themselves as events"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you adapt your definition from two discrete random variables to n discrete random variables?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If one pair (x,y) satisfies the product rule but another pair does not, would you call X and Y independent or dependent, and why?"
+        }
+      ],
+      "hints": [
+        "Ask yourself whether independence is a local check or a property of the entire joint distribution. If one pair happens to factor correctly, could other pairs still fail?",
+        "For discrete random variables, look at the events of the form {X=x} and {Y=y}. The definition should talk about probabilities of these events and compare the joint probability to a product.",
+        "Your formal statement needs a universal quantifier: the factorization must hold for all value pairs x and y, not just one chosen pair. Also be careful to distinguish the random variables X,Y from the events X=x and Y=y that they generate."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0002",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "Someone claims: 'If random variables X and Y are independent, it is still possible that the particular events X=3 and Y=5 are dependent.' Do you agree? Give a careful verbal justification rather than just saying true or false.",
+      "expected_answer": "I disagree. If X and Y are independent random variables, then every event determined by X and every event determined by Y are independent in particular assignments such as X=3 and Y=5. For discrete variables, independence gives P(X=3,Y=5)=P(X=3)P(Y=5), so those two assignment-events are independent. The key idea is that dependence cannot survive at a specific assignment if the variables themselves are independent.",
+      "source_chunk_ids": [
+        "cs109_finalfall2021soln_preamble_dfa36463ce",
+        "cs109_12_independent_rvs_annotated_p2_edb164eea6"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Answers 'disagree' or 'false'",
+          "Uses the assignment-event calculation P(X=3,Y=5)=P(X=3)P(Y=5)",
+          "Explains that independence of RVs forces independence of such value events"
+        ],
+        "partial_credit": [
+          "Gets truth value correct with incomplete justification",
+          "Says 'knowing X tells you nothing about Y' but gives no event-level explanation"
+        ],
+        "common_mistakes": [
+          "Claiming variables can be independent while some assignments are dependent",
+          "Confusing dependence of values with dependence of variables",
+          "Giving only an example instead of a general reason"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would the same reasoning apply to events like X\u22641 and Y is even? Explain informally."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does independence of random variables actually require about probabilities of joint assignments?"
+        }
+      ],
+      "hints": [
+        "Translate the statement about random variables into a statement about two events: one event is {X=3} and the other is {Y=5}. Ask what independence of random variables is supposed to imply about events built from X alone and Y alone.",
+        "For discrete random variables, value assignments like X=3 and Y=5 are exactly the kind of events you can test with probabilities. Write down the event-level independence condition involving P(X=3, Y=5), P(X=3), and P(Y=5).",
+        "Use the definition of independent random variables: every event determined by X should be independent of every event determined by Y. So check whether {X=3} and {Y=5} fit that definition, and then state what that means for the claim."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0003",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Let X and Y be independent fair six-sided die rolls. Without listing all 36 outcomes one by one, explain how to compute P(X+Y=9) using independence, and interpret why the resulting expression is a sum of products.",
+      "expected_answer": "We decompose the event X+Y=9 into mutually exclusive cases: (3,6), (4,5), (5,4), and (6,3). So P(X+Y=9)=sum over k of P(X=k, Y=9-k). Because X and Y are independent, each joint term becomes P(X=k)P(Y=9-k)=1/6\u00b71/6 for the valid pairs, giving 4\u00b71/36=4/36=1/9. It is a sum because several disjoint ways can produce the total, and each way is a product because the two rolls happen independently.",
+      "source_chunk_ids": [
+        "cs109_12_independent_rvs_annotated_p7_1e5f234ae3",
+        "cs109_12_independent_rvs_annotated_p8_d6b14416c5",
+        "cs109_17_cont_joint_ii_annotated_p3_fc9798c378"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes or explains the convolution-style sum",
+          "Uses independence to factor joint probabilities",
+          "Identifies the valid pairs summing to 9",
+          "Interprets 'sum of products' correctly"
+        ],
+        "partial_credit": [
+          "Finds correct answer by enumeration but does not connect to independence",
+          "Sets up sum correctly but makes minor arithmetic slip",
+          "Explains disjoint cases but not why product appears"
+        ],
+        "common_mistakes": [
+          "Multiplying the number of pairs by 1/6 instead of 1/36",
+          "Forgetting some valid pairs",
+          "Using independence without stating why it applies"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your setup change if the dice were not independent?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you name the disjoint cases whose union is the event X+Y=9?"
+        }
+      ],
+      "hints": [
+        "Treat the event X+Y=9 as a collection of distinct ordered-pair cases rather than all 36 outcomes. The key idea is that different pairs can make 9, and those cases do not overlap.",
+        "Set up the probability as a sum: P(X+Y=9)=\\sum P(X=k, Y=9-k), but only for values of k that make 9-k a valid die result. Identify those valid ordered pairs carefully so you don\u2019t miss any.",
+        "For each valid pair, use independence to rewrite P(X=k, Y=9-k) as P(X=k)P(Y=9-k). Then add those equal joint terms; it\u2019s a sum because the cases are disjoint, and a product because the two rolls are independent."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0004",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose X and Y are independent discrete random variables with P(X=0)=0.7, P(X=1)=0.3 and P(Y=0)=0.4, P(Y=1)=0.6. Compute the distribution of S=X+Y, but spend most of your time explaining the setup and where independence is used.",
+      "expected_answer": "The sum S can take values 0, 1, or 2. We compute P(S=0)=P(X=0,Y=0)=0.7\u00b70.4=0.28 by independence. Next P(S=1)=P(X=0,Y=1)+P(X=1,Y=0)=0.7\u00b70.6+0.3\u00b70.4=0.54. Finally P(S=2)=P(X=1,Y=1)=0.3\u00b70.6=0.18. The explanation should emphasize disjoint cases for each total and product factorization from independence.",
+      "source_chunk_ids": [
+        "cs109_12_independent_rvs_annotated_p7_1e5f234ae3",
+        "cs109_12_independent_rvs_annotated_p8_d6b14416c5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies support {0,1,2}",
+          "Computes all three probabilities correctly",
+          "Uses disjoint-case decomposition for S=1",
+          "Explicitly invokes independence in joint-to-product step"
+        ],
+        "partial_credit": [
+          "Mostly correct distribution with one arithmetic error",
+          "Correctly sets up all sums/products but incomplete final probabilities",
+          "Gets endpoints 0 and 2 correct but mishandles S=1"
+        ],
+        "common_mistakes": [
+          "Forgetting both ways to get S=1",
+          "Assuming P(S=1)=P(X=1)P(Y=1)",
+          "Not checking probabilities sum to 1"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you compute E[S] from this distribution, and how does it compare to E[X]+E[Y]?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the distinct ways the total S=1 can happen?"
+        }
+      ],
+      "hints": [
+        "Start by listing the only values X and Y can take, then infer the only possible totals for S=X+Y. This tells you what support the distribution of S must have.",
+        "For each possible total s, write the event {S=s} as the set of (X,Y) pairs that produce it. Be especially careful with the middle total: it can happen in two different, disjoint ways.",
+        "Now use independence to turn each joint probability into a product: P(X=a,Y=b)=P(X=a)P(Y=b). Multiply for each relevant pair, add the disjoint cases for the middle total, and then check that your three probabilities add to 1."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0005",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "For continuous random variables, a classmate says: 'Independence means P(X=x,Y=y)=P(X=x)P(Y=y).' Explain what is wrong with that statement and replace it with a correct definition, including an equivalent PDF-based criterion when densities exist.",
+      "expected_answer": "For continuous random variables, probabilities at exact points are zero, so point-probability statements are not the right definition. The correct statement is that X and Y are independent if for all x and y, P(X\u2264x, Y\u2264y)=P(X\u2264x)P(Y\u2264y), equivalently F_{X,Y}(x,y)=F_X(x)F_Y(y). If the joint and marginal PDFs exist, this is equivalent to f_{X,Y}(x,y)=f_X(x)f_Y(y) for all x,y. A strong answer highlights why point-mass notation works for discrete variables but not continuous ones.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p18_3a177eef2a",
+        "cs109_16_cont_joint_i_annotated_p19_8a91b8ca19",
+        "cs109_18_clt_annotated_p2_b1d98f2cbe"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains why point probabilities are inappropriate for continuous RVs",
+          "States CDF factorization definition",
+          "States equivalent PDF factorization when densities exist",
+          "Contrasts discrete and continuous cases"
+        ],
+        "partial_credit": [
+          "Gives PDF factorization but not the CDF definition",
+          "Correctly says point probabilities are zero but does not finish the definition",
+          "Uses informal 'knowing X tells nothing about Y' without formal criterion"
+        ],
+        "common_mistakes": [
+          "Using P(X=x,Y=y)=... for continuous RVs",
+          "Forgetting the 'for all x,y' condition",
+          "Confusing PDF values with probabilities"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the joint PDF factors as g(x)h(y), what must be true about X and Y?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is P(X=x) for a continuous random variable at a single exact point?"
+        }
+      ],
+      "hints": [
+        "Start by checking what happens to probabilities at a single exact point for a continuous random variable; that tells you why the classmate\u2019s formula is not the right definition here. Also note that this point-mass style does make sense in the discrete case.",
+        "Use the formal definition in terms of events of the form {X\u2264x} and {Y\u2264y}: independence requires a factorization that holds for every pair x,y. Write it using the joint CDF and the marginal CDFs.",
+        "If densities exist, translate that CDF factorization into an equivalent statement about the joint PDF and the marginal PDFs, again for all x,y. Be careful not to describe PDF values themselves as probabilities."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0006",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are told that a joint density has the form f_{X,Y}(x,y)=c\u00b7x\u00b7y on 0\u2264x\u22641 and 0\u2264y\u22641, and 0 otherwise. Explain how you would determine whether X and Y are independent. Do not stop at finding c; carry the reasoning through the factorization test.",
+      "expected_answer": "First normalize: \u222b_0^1\u222b_0^1 cxy dx dy = c(1/2)(1/2)=c/4 must equal 1, so c=4. Then f_{X,Y}(x,y)=4xy on the unit square. Compute marginals: f_X(x)=\u222b_0^1 4xy dy = 2x for 0\u2264x\u22641, and similarly f_Y(y)=2y. Their product is (2x)(2y)=4xy, matching the joint density on the support, so X and Y are independent. The key idea is that factorization after normalization is the criterion.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p19_8a91b8ca19",
+        "cs109_16_cont_joint_i_annotated_p18_3a177eef2a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Normalizes correctly to get c=4",
+          "Finds both marginals correctly",
+          "Checks product equals joint on the support",
+          "Concludes independence with justification"
+        ],
+        "partial_credit": [
+          "Finds c correctly and states factorization idea but does not compute marginals",
+          "Computes marginals with minor algebra slip",
+          "Recognizes support matters but incomplete conclusion"
+        ],
+        "common_mistakes": [
+          "Forgetting to normalize first",
+          "Claiming any separable-looking expression implies independence without checking constants/support",
+          "Ignoring that factorization must hold on the whole support"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the support were instead 0\u2264x\u2264y\u22641, with the same formula 4xy, would factorization alone still establish independence?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What condition must every valid joint PDF satisfy before we even discuss independence?"
+        }
+      ],
+      "hints": [
+        "Start by making sure this is a valid joint density: before testing independence, determine the constant by integrating over the entire unit square and setting the total probability to 1.",
+        "Once the constant is fixed, compute the marginals separately: integrate the joint density over y to get f_X(x) and over x to get f_Y(y), keeping the support 0\u2264x\u22641 and 0\u2264y\u22641 in view.",
+        "Use the factorization test carefully: multiply your two marginals and compare that product to the normalized joint density everywhere on the support (and remember the support must match too, not just the algebraic form)."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0007",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Let X and Y be independent Uniform(0,1) random variables. Explain how to derive the density of S=X+Y at a generic point \u03b1 using convolution, and then describe in words why the answer changes at \u03b1=1.",
+      "expected_answer": "Because X and Y are independent and continuous, f_S(\u03b1)=\u222b_{-\u221e}^{\u221e} f_X(x)f_Y(\u03b1-x)dx. Here f_X and f_Y are 1 on [0,1] and 0 otherwise, so the integrand is 1 exactly when x lies in the overlap of [0,1] and [\u03b1-1, \u03b1]. Thus f_S(\u03b1) equals the length of that overlap: \u03b1 for 0\u2264\u03b1\u22641, 2-\u03b1 for 1\u2264\u03b1\u22642, and 0 otherwise. The change at \u03b1=1 occurs because before 1 the overlap grows linearly, and after 1 it shrinks linearly.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p4_24afdefa9e",
+        "cs109_17_cont_joint_ii_annotated_p9_6408d296f9",
+        "cs109_17_cont_joint_ii_annotated_p13_c31b27f212",
+        "cs109_09_continuous_rv_annotated_p16_p17_9b459186b0"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Sets up convolution integral correctly",
+          "Translates the indicator constraints into overlap of intervals",
+          "Derives the triangular piecewise density",
+          "Explains geometrically why the breakpoint is at 1"
+        ],
+        "partial_credit": [
+          "States correct final density without clear derivation",
+          "Sets up convolution but struggles with interval overlap",
+          "Explains shape qualitatively but not formula"
+        ],
+        "common_mistakes": [
+          "Integrating over all x without enforcing support",
+          "Getting the two linear pieces reversed",
+          "Forgetting density is zero outside [0,2]"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you verbally check that your density integrates to 1 without doing a long integral?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For \u03b1=1/2, what x-values make both densities nonzero?"
+        }
+      ],
+      "hints": [
+        "For the sum of two independent continuous random variables, start with the convolution formula for the density of S=X+Y. Also note that each Uniform(0,1) density is just an indicator: it is nonzero only on [0,1].",
+        "In f_S(\u03b1)=\u222b f_X(x)f_Y(\u03b1-x)dx, the integrand is nonzero only when both conditions hold: x\u2208[0,1] and \u03b1-x\u2208[0,1]. Rewrite the second condition as an interval for x, then compare it with [0,1].",
+        "Once you do that, the integral becomes the length of the overlap between [0,1] and [\u03b1-1,\u03b1]. The behavior changes at \u03b1=1 because before that point the overlap interval expands as \u03b1 increases, while after that point it contracts."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0008",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A colleague says, 'If two variables are independent, then E[X+Y]=E[X]+E[Y]; otherwise that formula fails.' Respond to this claim, and contrast it with a formula that really does require independence.",
+      "expected_answer": "The claim is false. Linearity of expectation holds for any random variables, independent or dependent, so E[X+Y]=E[X]+E[Y] always. A formula that does require independence is E[XY]=E[X]E[Y], and likewise Var(X+Y)=Var(X)+Var(Y) requires zero covariance, which is guaranteed by independence. So expectation of a sum is more robust than product expectation or variance additivity.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p10_eeee2cdc0b",
+        "cs109_11_joint_rvs_annotated_p39_93a41618e7",
+        "cs109_13_joint_statistics_annotated_p24_ec7d904cb5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States linearity of expectation does not require independence",
+          "Provides a contrasting formula such as E[XY]=E[X]E[Y] or variance additivity",
+          "Explains the distinction clearly"
+        ],
+        "partial_credit": [
+          "Gets expectation statement right but no contrast",
+          "Mentions covariance vaguely without connecting to formulas",
+          "Knows one formula requiring independence but muddles expectation"
+        ],
+        "common_mistakes": [
+          "Saying expectation additivity needs independence",
+          "Confusing E[XY] with E[X+Y]",
+          "Claiming variance additivity always holds"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can dependent variables still satisfy Var(X+Y)=Var(X)+Var(Y)? What extra condition would you need?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If X=Y always, is E[X+Y] still equal to E[X]+E[Y]?"
+        }
+      ],
+      "hints": [
+        "Separate the two operations being discussed: expectation of a sum versus expectation of a product. Ask yourself which one is a linear operation by definition.",
+        "For the first claim, recall the linearity rule for expectation and whether it mentions independence at all. Then think of a different formula involving both X and Y where independence is the condition that lets you split something apart.",
+        "A strong contrast is to compare E[X+Y] with either E[XY] or Var(X+Y): one always expands additively, while the others need independence (or equivalently zero covariance for variance) to simplify in that way. Use that distinction to respond to your colleague clearly."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0009",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Explain why independence implies Cov(X,Y)=0, but the converse is not a valid definition of independence. Your answer should connect covariance formulas to what independence actually says about the joint distribution.",
+      "expected_answer": "Cov(X,Y)=E[XY]-E[X]E[Y]. If X and Y are independent, then E[XY]=E[X]E[Y], so covariance is zero. But covariance only measures one aspect of dependence, essentially linear association, while independence is a full factorization property of the joint distribution or all joint assignment probabilities. Therefore zero covariance does not guarantee that the joint distribution factors, so it is weaker than independence.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p23_6833fbfbbf",
+        "cs109_13_joint_statistics_annotated_p24_ec7d904cb5",
+        "cs109_12_independent_rvs_annotated_p2_edb164eea6"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses Cov(X,Y)=E[XY]-E[X]E[Y)",
+          "Derives zero covariance from independence",
+          "Explains why the converse fails conceptually",
+          "Contrasts one-number summary with full joint factorization"
+        ],
+        "partial_credit": [
+          "States independence implies zero covariance without formula",
+          "Says converse is false but gives weak explanation",
+          "Confuses covariance and correlation but gets main direction right"
+        ],
+        "common_mistakes": [
+          "Claiming zero covariance implies independence in general",
+          "Not distinguishing full distributional property from moment condition",
+          "Forgetting E[XY]=E[X]E[Y] comes from independence"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is 'uncorrelated' a weaker statement than 'independent'?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What quantity appears in Cov(X,Y) besides E[XY]?"
+        }
+      ],
+      "hints": [
+        "Start from the covariance identity \\(\\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]\\). Ask yourself what independence tells you about expectations of products and, more fundamentally, about the joint distribution.",
+        "Use the factorization property of independence: the joint distribution splits into marginal pieces, which leads to \\(E[XY]=E[X]E[Y]\\) when the expectations exist. Substitute that into the covariance formula to see why one direction works.",
+        "For the converse, compare what each statement means: zero covariance is just one numerical condition, while independence requires the entire joint distribution to factor for all events or values. So to explain why the converse fails, emphasize that matching this single moment condition does not rule out other kinds of dependence."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0010",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose X and Y are independent with Var(X)=4 and Var(Y)=9. Compute Var(X+Y), but then explain why the same numerical shortcut cannot be used blindly when independence is absent.",
+      "expected_answer": "If X and Y are independent, then Cov(X,Y)=0, so Var(X+Y)=Var(X)+Var(Y)=4+9=13. In general, Var(X+Y)=Var(X)+2Cov(X,Y)+Var(Y), so without independence we need the covariance term. The shortcut works here because independence removes that cross-term.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p23_6833fbfbbf",
+        "cs109_13_joint_statistics_annotated_p24_ec7d904cb5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Gives 13",
+          "States the general variance formula with covariance",
+          "Explains independence makes covariance zero"
+        ],
+        "partial_credit": [
+          "Gets 13 but no explanation",
+          "States general formula but arithmetic slip",
+          "Mentions covariance informally without formula"
+        ],
+        "common_mistakes": [
+          "Always adding variances regardless of dependence",
+          "Subtracting instead of adding covariance term",
+          "Confusing variance of sum with square of sum of standard deviations"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If Cov(X,Y)=-3 instead, what would Var(X+Y) be?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What extra term appears in the general formula for Var(X+Y)?"
+        }
+      ],
+      "hints": [
+        "For the variance of a sum, first check whether independence gives you a simplification; also be careful not to mix up variance with standard deviation.",
+        "Use the general formula Var(X+Y)=Var(X)+Var(Y)+2Cov(X,Y), then ask what independence implies about Cov(X,Y).",
+        "After removing the covariance term for the independent case, substitute the given variances; then explain that without independence, the covariance term may not be zero, so blindly adding the two variances can fail."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0011",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "You are given three random variables X, Y, Z. A student verifies that each pair is independent and concludes that the three are jointly independent. Is that logically sufficient? Explain what must actually be checked for independence of multiple random variables.",
+      "expected_answer": "No, pairwise independence is not sufficient to conclude joint independence. For three variables, one must have not only the three pairwise factorizations, but also P(X=x, Y=y, Z=z)=P(X=x)P(Y=y)P(Z=z) for all x,y,z in the discrete case, or the analogous factorization for continuous variables. More generally, independence of multiple variables requires factorization for every subset, not just pairs.",
+      "source_chunk_ids": [
+        "cs109_05_independence_annotated_p5_bfa15e0662",
+        "cs109_18_clt_annotated_p2_b1d98f2cbe"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States pairwise independence is insufficient",
+          "Describes the needed triple or all-subsets factorization",
+          "Mentions 'for all values' or all relevant subsets"
+        ],
+        "partial_credit": [
+          "Correctly rejects the claim but only vaguely says 'need more checks'",
+          "Knows there is a difference between pairwise and mutual independence but gives incomplete criterion"
+        ],
+        "common_mistakes": [
+          "Equating pairwise with joint independence",
+          "Giving only the pairwise conditions",
+          "Forgetting subset conditions in the multi-variable definition"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "For three events E,F,G, what additional condition beyond pairwise independence must hold?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If X,Y,Z were jointly independent, what formula would P(X=x,Y=y,Z=z) satisfy?"
+        }
+      ],
+      "hints": [
+        "Distinguish two notions: pairwise independence versus mutual (joint) independence. The fact that every pair behaves independently does not automatically settle how all three behave together.",
+        "Write down exactly what the student checked: the three pairwise equalities involving (X,Y), (X,Z), and (Y,Z). Then ask what additional probability involving all three variables would need to factor as well.",
+        "For three variables, look at whether the joint distribution satisfies a product rule of the form involving X, Y, and Z together for every choice of values; more generally, independence of many variables is defined through factorization over all relevant subsets, not just pairs."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0012",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A researcher says a sample X1,...,Xn is 'iid' because all variables have the same mean and variance. Explain why that is not enough, and state what iid really requires. Then say one consequence of iid that is useful when studying sums or averages.",
+      "expected_answer": "Having the same mean and variance is much weaker than being iid. iid means the variables are independent and identically distributed, so they must be independent and all share the same full PMF or PDF, not just the same first two moments. One consequence is that the sum has mean n\u03bc and variance n\u03c3\u00b2, and the sample average has mean \u03bc and variance \u03c3\u00b2/n; this underlies normal approximations via the CLT for large n.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p3_489bb0c574",
+        "cs109_18_clt_annotated_p19_8735341e58",
+        "cs109_18_clt_annotated_p22_p23_b529a32b75",
+        "cs109_18_clt_annotated_p5_p6_8e18330175"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States iid = independent + identically distributed",
+          "Says identical distribution means same PMF/PDF, not merely same mean/variance",
+          "Gives a valid consequence for sums/averages"
+        ],
+        "partial_credit": [
+          "Defines iid correctly but no consequence",
+          "Says same distribution and 'kind of independent' without precision",
+          "Gives CLT mention without explaining parameters"
+        ],
+        "common_mistakes": [
+          "Reducing iid to same mean and variance",
+          "Forgetting independence",
+          "Confusing identical distribution with equal parameter names only"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why does the example X1=X2=...=Xn with each marginal Exp(\u03bb) fail to be iid?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does the second 'i.d.' in iid stand for, beyond matching means?"
+        }
+      ],
+      "hints": [
+        "Ask yourself whether knowing only the mean and variance completely determines a random variable\u2019s distribution. Different distributions can share those two numbers.",
+        "Split the term \"iid\" into its two parts: one is about how the variables relate to each other, and the other is about each variable having the same full distribution (same PMF/PDF/CDF), not just the same first two moments.",
+        "For a useful consequence, think about sums or averages: independence makes cross/covariance terms disappear, and identical distribution means each term contributes the same mean and variance, which is exactly what supports standard sample-mean results and CLT-style reasoning."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0013",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Let X1,...,Xn be iid with mean \u03bc and variance \u03c3\u00b2. Without proving the CLT, explain how to get the mean and variance of the sample average X\u0304=(1/n)\u2211Xi, and then state the large-n normal approximation that is suggested by the lecture notes.",
+      "expected_answer": "By linearity of expectation, E[X\u0304]=(1/n)\u2211E[Xi]=(1/n)(n\u03bc)=\u03bc. Since the Xi are independent, Var(X\u0304)=(1/n\u00b2)\u2211Var(Xi)=(1/n\u00b2)(n\u03c3\u00b2)=\u03c3\u00b2/n. The large-n approximation is that X\u0304 is approximately Normal with mean \u03bc and variance \u03c3\u00b2/n. The important reasoning is that independence is needed for the variance simplification, but not for the expectation calculation.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p22_p23_b529a32b75",
+        "cs109_11_joint_rvs_annotated_p39_93a41618e7",
+        "cs109_13_joint_statistics_annotated_p24_ec7d904cb5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes E[X\u0304]=\u03bc",
+          "Computes Var(X\u0304)=\u03c3\u00b2/n",
+          "States approximate Normal(\u03bc,\u03c3\u00b2/n) for large n",
+          "Distinguishes where independence is used"
+        ],
+        "partial_credit": [
+          "Gets formulas right but no explanation",
+          "Correct mean and variance setup with minor notation issues",
+          "States CLT approximation but forgets variance scaling"
+        ],
+        "common_mistakes": [
+          "Saying the mean tends to 0",
+          "Using Var(X\u0304)=\u03c3\u00b2 instead of \u03c3\u00b2/n",
+          "Thinking independence is needed for expectation additivity"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How does the distribution of the sum \u2211Xi compare to that of the average in the CLT scaling?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When you pull out the factor 1/n from X\u0304, what happens to variance?"
+        }
+      ],
+      "hints": [
+        "Notice that the sample average is just a constant times a sum: X\u0304 = (1/n)\u2211Xi. Use linearity for the mean, but remember variance needs extra care.",
+        "Write E[X\u0304] as (1/n)\u2211E[Xi], and write Var(X\u0304) as (1/n\u00b2)Var(\u2211Xi). Independence is used only in replacing Var(\u2211Xi) by a sum of variances, not in the expectation step.",
+        "Once you simplify those expressions, match them to the lecture-note CLT pattern: for large n, the distribution of X\u0304 is approximated by a Normal centered at the population mean, with variance reduced by the averaging factor (equivalently, standard deviation shrinks like 1/\u221an)."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0014",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student says: 'As n grows, the average of iid variables becomes Normal with mean 0 and variance 0.' Critique this statement carefully. Identify what part is right, what part is wrong, and what assumptions are being used.",
+      "expected_answer": "The statement is partly wrong. For iid variables with finite mean \u03bc and variance \u03c3\u00b2, the sample average is approximately Normal for large n with mean \u03bc, not 0 in general, and variance \u03c3\u00b2/n, which does go to 0 as n grows. So the center stays at the population mean, while the spread shrinks. Also, the normal approximation relies on CLT-type assumptions such as finite variance.",
+      "source_chunk_ids": [
+        "cs109_finalfall2021soln_preamble_dfa36463ce",
+        "cs109_18_clt_annotated_p22_p23_b529a32b75",
+        "cs109_18_clt_annotated_p19_8735341e58"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies incorrect mean claim",
+          "States correct approximate mean and variance of sample average",
+          "Notes variance shrinks toward 0",
+          "Mentions assumptions like iid and finite variance"
+        ],
+        "partial_credit": [
+          "Corrects mean but not variance",
+          "Says CLT gives normality without parameters",
+          "Recognizes only that mean need not be 0"
+        ],
+        "common_mistakes": [
+          "Accepting the statement because variance goes to 0",
+          "Confusing sum and average",
+          "Saying the mean converges to 0 automatically"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If \u03bc=5, what would be the approximate mean of the sample average for large n?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Does averaging many iid variables change their common mean from \u03bc to 0?"
+        }
+      ],
+      "hints": [
+        "Separate two ideas here: the CLT describes the shape of the sample average for large n, while the Law of Large Numbers describes where it concentrates. Also check whether the student is talking about a sum or an average.",
+        "Let \\(\\bar X_n\\) be the average of iid variables with population mean \\(\\mu\\) and variance \\(\\sigma^2\\). Before using any asymptotic theorem, write down \\(E[\\bar X_n]\\) and \\(\\mathrm{Var}(\\bar X_n)\\) in terms of \\(\\mu,\\sigma^2\\), and n.",
+        "Use the CLT in standardized form: after centering at the true mean and scaling by its standard deviation, the average is approximately Normal under assumptions like iid with finite variance. Compare that with the student's claim to see which part concerns the center, which part concerns the shrinking spread, and why the mean need not be 0."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0015",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "Imagine a complicated total cost is modeled as X+Y, where X is the independent cost of materials and Y is the independent cost of shipping. Explain two distinct benefits of the independence assumption: one about distributional calculations and one about summary statistics.",
+      "expected_answer": "Distributionally, independence lets us compute the law of X+Y by convolution: for discrete variables summing products of probabilities, and for continuous variables integrating products of densities. For summary statistics, independence gives E[XY]=E[X]E[Y] and simplifies Var(X+Y) to Var(X)+Var(Y). More broadly, independence lets us analyze a complex total through simpler parts.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p21_e5d6ac499e",
+        "cs109_17_cont_joint_ii_annotated_p22_cf0d04ea8f",
+        "cs109_13_joint_statistics_annotated_p24_ec7d904cb5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Names a distributional benefit via convolution/factorization",
+          "Names a summary-statistic benefit like variance additivity",
+          "Connects these to modeling a sum of simpler independent pieces"
+        ],
+        "partial_credit": [
+          "Gives only one benefit in detail",
+          "Mentions 'easier calculations' without specifics",
+          "Gets one formula right but no interpretation"
+        ],
+        "common_mistakes": [
+          "Claiming expectation additivity needs independence",
+          "Confusing convolution with simple addition of densities pointwise",
+          "Not distinguishing distribution calculations from moments"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If X and Y were not independent, which of your two benefits would break first, and how?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What formula would you use for the distribution of X+Y in the discrete independent case?"
+        }
+      ],
+      "hints": [
+        "Separate the question into two layers: finding the entire distribution of the total cost X+Y, versus computing simpler summaries like mean or variance.",
+        "For the distributional benefit, use that independence makes the joint probability/density factor into a product, which is exactly what lets you combine X and Y through the convolution setup.",
+        "For the summary-statistic benefit, focus on formulas that simplify because independent variables have zero covariance; remember that E[X+Y] is additive even without independence, so the stronger payoff is for quantities like Var(X+Y)."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0016",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Compare the discrete and continuous independence definitions for two variables. I do not want two isolated formulas; explain the common idea behind them and why the notation changes.",
+      "expected_answer": "The common idea is factorization of the joint behavior into separate pieces for each variable, meaning knowledge of one variable does not alter the distribution of the other. In the discrete case, we can state this with point masses: P(X=x,Y=y)=P(X=x)P(Y=y) for all x,y. In the continuous case, exact points have probability zero, so we instead use the joint CDF factorization P(X\u2264x,Y\u2264y)=P(X\u2264x)P(Y\u2264y), or equivalently factorization of the joint PDF when densities exist.",
+      "source_chunk_ids": [
+        "cs109_12_independent_rvs_annotated_p2_edb164eea6",
+        "cs109_16_cont_joint_i_annotated_p18_3a177eef2a",
+        "cs109_18_clt_annotated_p2_b1d98f2cbe"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains shared factorization idea",
+          "States correct discrete formulation",
+          "States correct continuous formulation or equivalent PDF criterion",
+          "Explains why notation changes because point probabilities vanish"
+        ],
+        "partial_credit": [
+          "Gives formulas but weak comparison",
+          "Understands one case well but not the other",
+          "Uses intuition only, with no formal statement"
+        ],
+        "common_mistakes": [
+          "Treating continuous and discrete definitions as identical point-probability statements",
+          "Not mentioning the 'for all' aspect",
+          "Confusing CDF and PDF"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why can PDF values exceed 1 without contradicting probability rules?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "At a single point x, what is P(X=x) for a continuous random variable?"
+        }
+      ],
+      "hints": [
+        "Start from the shared intuition: independence means the joint behavior splits into separate pieces, so learning one variable gives no new information about the other.",
+        "In the discrete case, you can talk about the probability of a specific pair of values. In the continuous case, exact points have probability 0, so you need to describe independence using cumulative events or densities instead.",
+        "Set up the comparison as \u201cjoint = product of marginals,\u201d with the statement holding for every relevant x and y. Then explain that the notation changes from point probabilities in the discrete case to the joint CDF (or PDF, when it exists) in the continuous case because single-point probabilities vanish."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0017",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose X and Y are independent and each has mean 1. Compute E[X+Y] and explain why your reasoning would still work even if the variables were dependent. Then say what additional information independence would give you about E[XY].",
+      "expected_answer": "E[X+Y]=E[X]+E[Y]=1+1=2 by linearity of expectation. That step does not need independence, so it would still be true under dependence. Independence would additionally imply E[XY]=E[X]E[Y]=1\u00b71=1. The point is that sums of expectations are always safe, but product expectations require more structure.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p10_eeee2cdc0b",
+        "cs109_11_joint_rvs_annotated_p39_93a41618e7",
+        "cs109_13_joint_statistics_annotated_p24_ec7d904cb5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes E[X+Y]=2",
+          "States linearity does not require independence",
+          "Uses independence to compute E[XY]=1"
+        ],
+        "partial_credit": [
+          "Gets E[X+Y] correct but omits product discussion",
+          "Knows E[XY]=1 under independence but not why",
+          "Mentions dependence irrelevance vaguely"
+        ],
+        "common_mistakes": [
+          "Saying E[X+Y] requires independence",
+          "Claiming E[XY]=E[X]+E[Y]",
+          "Confusing product with sum formulas"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you write a formula for Var(X+Y) that shows exactly where dependence matters?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If X and Y were perfectly dependent with Y=X, would E[X+Y] still equal 2?"
+        }
+      ],
+      "hints": [
+        "Start with the expectation of a sum: there is a general rule that lets you split E[X+Y] into two simpler expectations. Notice that this rule does not assume independence.",
+        "Use the given means to rewrite E[X+Y] as E[X] + E[Y], then substitute the mean of each variable. For the dependence question, ask yourself whether linearity of expectation ever required a relationship between X and Y.",
+        "For E[XY], this is where independence matters: under independence, there is a product rule for expectations that is not generally true otherwise. Apply that rule using the two individual means, but keep separate in your mind the sum formula versus the product formula."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0018",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A teammate tries to justify a CLT argument on a collection of random variables that all have the same distribution but may be dependent. Explain why 'identically distributed' alone is not enough for the standard iid conclusion about sums or averages.",
+      "expected_answer": "The standard iid CLT requires both identical distribution and independence. Identical marginals alone do not control how the variables move together, and dependence can drastically change the variance and shape of the sum. For instance, if X1=...=Xn almost surely, then the average is just X1 again, so averaging does not produce the usual shrinking variance or standard normal approximation. Thus the independence part of iid is essential to the familiar sum/average formulas and CLT statement taught here.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p3_489bb0c574",
+        "cs109_18_clt_annotated_p5_p6_8e18330175",
+        "cs109_13_joint_statistics_annotated_p23_6833fbfbbf"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States identical distribution alone is insufficient",
+          "Explains dependence affects sum/average behavior",
+          "Gives an illustrative dependent example like Xi all equal",
+          "Connects to variance or CLT failure"
+        ],
+        "partial_credit": [
+          "Says independence is needed but gives no reason",
+          "Mentions covariance vaguely without example",
+          "Correct intuition but confuses CLT statement"
+        ],
+        "common_mistakes": [
+          "Claiming same distribution guarantees CLT behavior",
+          "Ignoring dependence in variance of sums",
+          "Treating iid as synonymous with same mean/variance"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "In the extreme case X1=...=Xn, what is the sample average equal to?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does the first 'i' in iid contribute that identical distribution alone does not?"
+        }
+      ],
+      "hints": [
+        "Start by separating what \u201ciid\u201d really means: identical distribution tells you about each variable individually, while independence tells you how they behave together.",
+        "Look at the sum or average through its variance: without independence, covariance terms between different variables appear, and identical marginals do not determine those terms.",
+        "Test an extreme dependent case, such as all the variables being equal almost surely; then the average just tracks one variable instead of smoothing out, which breaks the usual iid CLT intuition."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0019",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You observe that a joint continuous density factors as f_{X,Y}(x,y)=g(x)h(y) for all real x,y. Explain why that is enough to conclude independence, and clarify any hidden conditions you are implicitly using.",
+      "expected_answer": "If a valid joint PDF factors as g(x)h(y) for all x,y, then those factors act like the marginal densities up to normalization, and in the standard result this implies f_{X,Y}(x,y)=f_X(x)f_Y(y). Therefore X and Y are independent. The hidden conditions are that f_{X,Y} is a legitimate joint density and the factorization holds on the whole support, not just on a few points. A careful answer may mention the equivalent CDF definition as the underlying concept.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p19_8a91b8ca19",
+        "cs109_16_cont_joint_i_annotated_p18_3a177eef2a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States factorized joint PDF implies independence",
+          "Mentions validity of the joint PDF and support-wide factorization",
+          "Connects to marginals or equivalent independence criterion"
+        ],
+        "partial_credit": [
+          "Knows factorization matters but gives weak justification",
+          "States independence from factorization without caveats",
+          "Mentions CDF criterion only"
+        ],
+        "common_mistakes": [
+          "Checking factorization at only some points",
+          "Ignoring support issues",
+          "Confusing product of arbitrary functions with automatically normalized marginals"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why would factorization on a triangular support raise concern before concluding independence?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the continuous analogue of the discrete product rule P(X=x,Y=y)=P(X=x)P(Y=y)?"
+        }
+      ],
+      "hints": [
+        "Recall the continuous-variable test for independence: it is about the joint density matching a product of one-variable densities everywhere on the support. So first ask yourself whether the factors in f_{X,Y}(x,y)=g(x)h(y) can be interpreted as marginals.",
+        "Try integrating the factorized joint density over y to get f_X(x), and over x to get f_Y(y). Use the facts that f_{X,Y} is a valid joint PDF and integrates to 1 to see how any normalization constants are handled.",
+        "Be careful about the hidden assumptions: the factorization must hold on the whole support (with the density zero off-support), not just at a few points, and g,h must come from a legitimate joint density. Once you identify the factors with the marginals, you can invoke the standard independence criterion."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0020",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Let X and Y be any random variables with means 2 and 5. Without assuming independence, compute E[3X-2Y+7]. Then explain why this problem is easier than computing E[XY].",
+      "expected_answer": "By linearity of expectation, E[3X-2Y+7]=3E[X]-2E[Y]+7=3\u00b72-2\u00b75+7=3. This does not require independence because expectation distributes over linear combinations regardless of dependence. Computing E[XY] is harder because there is no general simplification unless we know more, such as independence, which would give E[XY]=E[X]E[Y].",
+      "source_chunk_ids": [
+        "cs109_11_joint_rvs_annotated_p39_93a41618e7"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes 3 correctly",
+          "Uses linearity of expectation explicitly",
+          "Explains why dependence is irrelevant here and relevant for E[XY]"
+        ],
+        "partial_credit": [
+          "Correct arithmetic with little explanation",
+          "Mentions linearity but not independence contrast",
+          "Explains E[XY] issue vaguely"
+        ],
+        "common_mistakes": [
+          "Trying to use independence unnecessarily",
+          "Computing 3X-2Y+7 pointwise rather than via expectation rules",
+          "Claiming E[XY]=E[X]E[Y] without assumptions"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If X and Y were independent with the same means, what would E[XY] be?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What property of expectation lets you separate 3X-2Y+7 into pieces?"
+        }
+      ],
+      "hints": [
+        "Focus on which expectation rule applies to a linear expression like 3X - 2Y + 7: you can handle each term separately.",
+        "Write E[3X - 2Y + 7] as 3E[X] - 2E[Y] + E[7], then substitute the given means and remember the expectation of a constant.",
+        "For the comparison with E[XY], notice that linearity works without any independence assumption, but products generally do not simplify unless you know something extra such as independence."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0021",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Why do probability lectures often say that many useful formulas are 'sums of products' when independence is involved? Use one discrete example and one continuous example tied to sums of random variables.",
+      "expected_answer": "When a target event can happen through several disjoint cases, probability is a sum over those cases. When the variables involved are independent, each joint case probability or density contribution factors into a product. For a discrete sum, P(X+Y=n)=\u2211_k P(X=k)P(Y=n-k). For a continuous sum, f_{X+Y}(\u03b1)=\u222b f_X(x)f_Y(\u03b1-x)dx. So independence turns joint behavior into products, and the many ways of achieving the total create the sum or integral around those products.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p22_cf0d04ea8f",
+        "cs109_12_independent_rvs_annotated_p7_1e5f234ae3",
+        "cs109_17_cont_joint_ii_annotated_p4_24afdefa9e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains both the 'sum' and the 'product' roles",
+          "Gives a correct discrete example",
+          "Gives a correct continuous example",
+          "Connects both examples to independence"
+        ],
+        "partial_credit": [
+          "Only one example in detail",
+          "Good intuition but no formula",
+          "States formulas without interpretation"
+        ],
+        "common_mistakes": [
+          "Treating convolution as just ordinary multiplication",
+          "Missing the disjoint-case reason for the sum",
+          "Forgetting independence is what creates the product"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If X and Y were dependent, which part of your 'sum of products' story would fail?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In the discrete formula for P(X+Y=n), what does the index k represent?"
+        }
+      ],
+      "hints": [
+        "Start with a sum event like \\(X+Y=n\\) or \\(X+Y=\\alpha\\): the same total can be reached in many different ways, so first think in terms of all possible pairings that produce that total.",
+        "In the discrete example, break \\(\\{X+Y=n\\}\\) into disjoint cases \\((X=k, Y=n-k)\\). Then use independence to rewrite each joint probability as a product, which shows where the \u201csum of products\u201d pattern comes from.",
+        "For the continuous example, imagine all split points \\(x\\) such that \\(y=\\alpha-x\\); instead of summing over cases, you integrate over them. Independence lets the joint density factor into \\(f_X(x)f_Y(\\alpha-x)\\), which is the key convolution setup rather than ordinary multiplication."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0022",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Suppose X1,...,Xn are random variables each with mean 1, but you are told nothing about independence. A student says you cannot conclude anything useful about the probability that X1+...+Xn is at least n. Explain why that is too pessimistic, using expectation reasoning rather than CLT.",
+      "expected_answer": "We can still conclude that P(X1+...+Xn \u2265 n) must be positive. By linearity of expectation, the sum S=X1+...+Xn has E[S]=n regardless of dependence. If P(S\u2265n)=0, then S<n almost surely, which would force E[S]<n, a contradiction. So expectation alone guarantees some positive probability of being at least the mean, even without independence. A good explanation avoids invoking the CLT because no iid or large-n assumption is given.",
+      "source_chunk_ids": [
+        "cs109_finalfall2021soln_preamble_dfa36463ce",
+        "cs109_11_joint_rvs_annotated_p39_93a41618e7"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines the sum and computes its expectation as n",
+          "Uses contradiction: if S<n almost surely then E[S]<n",
+          "Concludes P(S\u2265n)>0",
+          "Avoids unjustified CLT use"
+        ],
+        "partial_credit": [
+          "Correct conclusion with incomplete contradiction argument",
+          "Knows E[S]=n but cannot finish the probability argument",
+          "Uses intuition about averages without rigorous link"
+        ],
+        "common_mistakes": [
+          "Invoking CLT or normality without assumptions",
+          "Assuming each Xi must equal 1 sometimes",
+          "Treating dependence as making expectation unusable"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is this argument about the mean valid even when the Xi are dependent?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If a random variable is strictly less than n with probability 1, can its expectation equal n?"
+        }
+      ],
+      "hints": [
+        "Don\u2019t focus on independence first; ask what you can still say about the sum using expectation alone. Linearity of expectation works whether the variables are dependent or not.",
+        "Let S = X1 + \\cdots + Xn and compute E[S] from the given means. Then compare that expected value to what would happen if S were always strictly less than n.",
+        "Try a contradiction: assume P(S \\ge n)=0, so S<n almost surely. What would that imply about E[S], and how does that compare with the value you already found?"
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0023",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A student says: \u201cTo prove two discrete random variables X and Y are independent, it is enough to check that P(X=x,Y=y)=P(X=x)P(Y=y) for one or two representative pairs (x,y). If those work, the variables are independent.\u201d Do you agree? Explain carefully what the definition actually requires, and contrast that with the idea that a single event like {X=1} might be independent of a single event like {Y=0}.",
+      "expected_answer": "I disagree. For discrete random variables, independence means the factorization must hold for all values x and y in the support: P(X=x,Y=y)=P(X=x)P(Y=y) for every pair. Checking only one or two assignments only shows independence for those particular events, not independence of the variables themselves. A random variable is not an event; statements like X=1 and Y=0 are events induced by the variables. Variable independence means every such assignment event factors appropriately, so one or two successful checks are not sufficient unless the support is so small that all pairs have been covered.",
+      "source_chunk_ids": [
+        "cs109_demo_exam_q1_c290a1b3af",
+        "cs109_12_independent_rvs_annotated_p2_edb164eea6",
+        "cs109_06_rvs_annotated_p15_p16_55ef09c173",
+        "cs109_finalfall2021soln_preamble_dfa36463ce"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that independence of discrete RVs requires the product rule for every pair (x,y), not just selected examples.",
+          "Explains the distinction between random variables and events.",
+          "Clarifies that checking a few assignments can at most verify independence of those events, not of the variables overall."
+        ],
+        "partial_credit": [
+          "Gives the correct formula but does not emphasize 'for all' values.",
+          "Recognizes that a single check is insufficient but gives a vague explanation.",
+          "Mentions event-vs-variable distinction without connecting it to the definition."
+        ],
+        "common_mistakes": [
+          "Saying one representative pair is enough.",
+          "Confusing independence of RVs with independence of one event involving each RV.",
+          "Treating X and Y themselves as events."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose X and Y are binary, each taking only values 0 and 1. In that special case, how many joint probabilities would you need to check directly, and could you reduce that number using the fact that probabilities sum to 1?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you restate the definition using the phrase 'for all x and y'? What exactly are the events whose probabilities are being multiplied?"
+        }
+      ],
+      "hints": [
+        "Start by separating two ideas: random variables are functions, while statements like {X=1} and {Y=0} are events. Ask yourself whether independence of variables should be about just one event pair or about all value-assignment events they generate.",
+        "For discrete random variables, write down the actual definition of independence in terms of the joint pmf and the marginals. Pay close attention to the phrase 'for every pair (x,y) in the support.'",
+        "If you verify P(X=x,Y=y)=P(X=x)P(Y=y) for only one or two pairs, you have only checked independence for those particular events. To prove X and Y are independent, the factorization must hold uniformly across all possible x and y, unless your check already covers the entire support."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0024",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Let X and Y be independent Bernoulli random variables with parameters p and q. Define S=X+Y. Without listing all cases mechanically, explain how independence lets you derive the full distribution of S, and then use that distribution to compute E[S] in two different ways.",
+      "expected_answer": "Since X and Y are Bernoulli, S can be 0, 1, or 2. Using convolution for independent discrete variables, P(S=n)=sum_k P(X=k)P(Y=n-k). So P(S=0)=P(X=0)P(Y=0)=(1-p)(1-q), P(S=2)=P(X=1)P(Y=1)=pq, and P(S=1)=P(X=1)P(Y=0)+P(X=0)P(Y=1)=p(1-q)+(1-p)q. One way to compute E[S] is from this distribution: 0\u00b7P(S=0)+1\u00b7P(S=1)+2\u00b7P(S=2)=p+q. A second way uses linearity of expectation, which does not even require independence: E[S]=E[X+Y]=E[X]+E[Y]=p+q. A strong answer should also note that independence was essential for the convolution step but not for linearity of expectation.",
+      "source_chunk_ids": [
+        "cs109_12_independent_rvs_annotated_p7_1e5f234ae3",
+        "cs109_12_independent_rvs_annotated_p8_d6b14416c5",
+        "cs109_11_joint_rvs_annotated_p39_93a41618e7",
+        "cs109_13_joint_statistics_annotated_p10_eeee2cdc0b"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses the convolution idea correctly for S=X+Y.",
+          "Derives all three probabilities P(S=0), P(S=1), P(S=2) correctly.",
+          "Computes E[S] both from the PMF of S and from linearity.",
+          "Explicitly comments on where independence is needed and where it is not."
+        ],
+        "partial_credit": [
+          "Gets the PMF mostly correct but makes a small algebra mistake.",
+          "Computes E[S]=p+q correctly by only one method.",
+          "Uses case enumeration correctly but does not connect to convolution or independence."
+        ],
+        "common_mistakes": [
+          "Forgetting the two disjoint ways to obtain S=1.",
+          "Claiming linearity of expectation requires independence.",
+          "Writing P(X=1,Y=0)=p(1-q) without stating this uses independence."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Now suppose X and Y are still Bernoulli with the same marginals but are dependent. Which parts of your derivation survive unchanged, and which parts break?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For the event S=1, what are the mutually exclusive ways it can happen? How would you compute each probability under independence?"
+        }
+      ],
+      "hints": [
+        "Start by noticing that a sum of two Bernoulli variables can only take three values. Instead of making a full case table, think of the PMF of S as a discrete convolution of the PMFs of X and Y.",
+        "For each possible sum s, write P(S=s)=\\sum_k P(X=k, Y=s-k). Use independence to replace each joint probability by a product, and be careful that the middle value of S comes from two disjoint combinations.",
+        "After you have the PMF, one route is E[S]=\\sum_s s\\,P(S=s). A second route is linearity: E[X+Y]=E[X]+E[Y], and you should explicitly note that this step does not require independence even though the PMF derivation does."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0025",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A classmate argues: \u201cIf X and Y are independent, then surely X+Y and X must also be independent, because Y does not depend on X.\u201d Is that true? Answer by reasoning from events or distributions, not by appealing to a memorized theorem. A simple concrete counterexample is acceptable if you explain it fully.",
+      "expected_answer": "The claim is false in general. Even if Y is independent of X, the new variable X+Y contains X inside it, so knowing X changes the distribution of X+Y. For a concrete example, let X and Y be independent fair Bernoulli variables. Then if we know X=0, X+Y is either 0 or 1; if we know X=1, X+Y is either 1 or 2. Those conditional distributions are different, so X+Y cannot be independent of X. Equivalently, take the events {X+Y=0} and {X=1}: their intersection has probability 0, but P(X+Y=0)P(X=1) is positive, so the product rule fails.",
+      "source_chunk_ids": [
+        "cs109_12_independent_rvs_annotated_p2_edb164eea6",
+        "cs109_06_rvs_annotated_p15_p16_55ef09c173",
+        "cs109_17_cont_joint_ii_annotated_p22_cf0d04ea8f",
+        "cs109_finalfall2021soln_preamble_dfa36463ce"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States clearly that the claim is false.",
+          "Gives a valid reason based on conditioning, events, or a concrete counterexample.",
+          "Explains why dependence appears because X+Y contains information about X.",
+          "If using a counterexample, computes or compares probabilities correctly."
+        ],
+        "partial_credit": [
+          "States the claim is false but gives only intuition with no clear supporting argument.",
+          "Provides a counterexample but does not fully explain why it violates independence.",
+          "Shows that X+Y depends on X informally but without event/probability reasoning."
+        ],
+        "common_mistakes": [
+          "Saying the claim is true because Y is independent of X.",
+          "Confusing independence of X and Y with independence of any functions involving them.",
+          "Giving an example where one variable is degenerate and drawing the wrong general conclusion."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you think of any special case where X+Y could be independent of X, or is that impossible except in trivial situations? Explain your reasoning."
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I tell you X=1 exactly, does that change the possible values of X+Y? What does that say about the distribution of X+Y conditional on X?"
+        }
+      ],
+      "hints": [
+        "Notice that the random variable X+Y actually includes X inside it. Ask yourself: if you learn the value of X, does that change what values X+Y can take or how likely they are?",
+        "A simple test case is to let X and Y be independent fair Bernoulli variables (each taking 0 or 1). Compare the distribution of X+Y when you condition on X=0 versus when you condition on X=1.",
+        "Independence would require the conditional law of X+Y given X to match its unconditional law, or equivalently that event probabilities factor. In the Bernoulli example, try the event {X+Y=0} and compare what happens together with {X=1}."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0026",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "Suppose X and Y are independent continuous random variables, each uniformly distributed on [0,1]. A triangular density is proposed for T=X+Y. Explain, without doing every integral from scratch, why the density must increase on [0,1] and decrease on [1,2]. Then state the density piecewise and justify why independence matters in the setup.",
+      "expected_answer": "Because X and Y are independent and continuous, the density of T=X+Y is the convolution f_T(alpha)=\u222b f_X(x)f_Y(alpha-x) dx. Here each marginal density is 1 on [0,1] and 0 otherwise, so the integrand is 1 exactly when both x and alpha-x lie in [0,1]. Therefore f_T(alpha) is the length of the overlap interval. For 0\u2264alpha\u22641, that overlap has length alpha, so the density rises linearly. For 1\u2264alpha\u22642, the overlap has length 2-alpha, so it falls linearly. Thus f_T(alpha)=alpha for 0\u2264alpha\u22641, 2-alpha for 1\u2264alpha\u22642, and 0 otherwise. Independence matters because the convolution formula uses f_{X,Y}(x,y)=f_X(x)f_Y(y); without factorization, we could not replace the joint density by the product of marginals.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p13_c31b27f212",
+        "cs109_17_cont_joint_ii_annotated_p9_6408d296f9",
+        "cs109_17_cont_joint_ii_annotated_p4_24afdefa9e",
+        "cs109_16_cont_joint_i_annotated_p18_3a177eef2a",
+        "cs109_09_continuous_rv_annotated_p16_p17_9b459186b0"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies convolution as the correct setup for the sum of independent continuous RVs.",
+          "Explains the overlap-interval geometry or equivalent reasoning for the piecewise form.",
+          "States the correct triangular density on [0,2].",
+          "Explains that independence is what allows factorization of the joint density into marginals."
+        ],
+        "partial_credit": [
+          "States the correct density but gives weak justification.",
+          "Uses convolution correctly but does not clearly explain the changing limits/overlap.",
+          "Explains the shape qualitatively but omits the role of independence."
+        ],
+        "common_mistakes": [
+          "Assuming the sum of two uniforms is uniform.",
+          "Forgetting the support is [0,2].",
+          "Using convolution without mentioning the need for independence.",
+          "Giving the CDF or PMF instead of the PDF."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your explanation change if the uniforms were on [a,b] instead of [0,1]? I am not asking for full algebra, just the structure."
+        },
+        {
+          "condition": "incorrect",
+          "question": "At a value like alpha=1/2, what x-values make both x and alpha-x fall inside [0,1]? How long is that interval?"
+        }
+      ],
+      "hints": [
+        "For a sum of two independent continuous random variables, think of the density of T=X+Y as coming from a convolution, not from another uniform distribution. Also notice the support of T is from 0 to 2.",
+        "Since f_X and f_Y are both 1 on [0,1] and 0 elsewhere, the integrand in the convolution is nonzero only when x and t-x both lie in [0,1]. So f_T(t) is just the length of the x-values that satisfy those two interval constraints.",
+        "Write the overlap as x in [0,1] \u2229 [t-1,t]. As t moves from 0 to 1 this overlap grows linearly, and as t moves from 1 to 2 it shrinks linearly; independence is what lets you replace the joint density by f_X(x)f_Y(t-x)."
+      ]
+    },
+    {
+      "question_id": "CS109_independent_random_variables_0027",
+      "course": "CS109",
+      "topic_id": "independent_random_variables",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Consider three random variables X1, X2, X3. A student claims: \u201cIf every pair is independent, then the three variables are independent.\u201d Give an oral response to that claim. Your answer should state the correct condition for independence of multiple random variables and explain why pairwise independence is not, in general, enough.",
+      "expected_answer": "The claim is false in general. For multiple random variables, full independence requires that the joint distribution factor for all values: for discrete variables, P(X1=x1,X2=x2,X3=x3)=P(X1=x1)P(X2=x2)P(X3=x3) for every triple; equivalently for events, every subset must satisfy the product rule, including the triple intersection, not just each pair. Pairwise independence only checks conditions like P(X1=x1,X2=x2)=P(X1=x1)P(X2=x2), and similarly for the other pairs. That does not control higher-order dependence among all three together. So pairwise independence is weaker than mutual independence.",
+      "source_chunk_ids": [
+        "cs109_05_independence_annotated_p5_bfa15e0662",
+        "cs109_18_clt_annotated_p2_b1d98f2cbe"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that pairwise independence does not imply mutual independence in general.",
+          "Gives the correct full-independence condition for three or n variables.",
+          "Explains that all subsets, including the triple, must satisfy the product rule.",
+          "Clearly distinguishes pairwise from mutual independence."
+        ],
+        "partial_credit": [
+          "Says the claim is false but only vaguely mentions 'stronger condition' without stating it.",
+          "States the n-variable factorization but does not contrast it with pairwise independence.",
+          "Explains the event version or variable version correctly, but not both."
+        ],
+        "common_mistakes": [
+          "Claiming pairwise independence is sufficient.",
+          "Only checking the three pairwise products and ignoring the triple product.",
+          "Confusing 'identically distributed' with 'independent.'"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you translate your answer into the language of events rather than random variables? What subset conditions must hold?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For three events E, F, G, what additional condition beyond pairwise independence must be checked to conclude full independence?"
+        }
+      ],
+      "hints": [
+        "Start by separating two ideas: independence of each pair versus independence of the whole collection. Ask yourself what must be true when you have more than two random variables, not just two at a time.",
+        "Write down the three pairwise conditions, like P(X_i=x_i, X_j=x_j)=P(X_i=x_i)P(X_j=x_j), and then identify the additional condition you would need for all three together. The rubric wants the stronger 'all subsets' product rule, not just the three pair checks.",
+        "For full independence, you need the joint distribution to factor for every subset, especially P(X_1=x_1, X_2=x_2, X_3=x_3)=P(X_1=x_1)P(X_2=x_2)P(X_3=x_3). Use that to explain why checking only pairs leaves open the possibility of dependence that appears only in the triple interaction."
+      ]
+    }
+  ]
+}

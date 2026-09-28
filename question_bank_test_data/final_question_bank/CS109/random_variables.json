@@ -1,0 +1,84 @@
+{
+  "topic_id": "random_variables",
+  "topic_name": "Random Variables",
+  "course": "CS109",
+  "questions": [
+    {
+      "question_id": "CS109_random_variables_001",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "conceptual",
+      "difficulty": "easy",
+      "question": "What is the logit function and how does it relate to the Logit Normal distribution?",
+      "expected_answer": "The logit function is defined as log(x/(1-x)), which transforms probabilities from the range (0, 1) to the entire real line. In the context of the Logit Normal distribution, it is used to map a normally distributed random variable onto the range (0, 1).",
+      "source_chunk_ids": [
+        "cs109_midtermspr2019_p13_c76f066165"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly defines the logit function and its role in the Logit Normal distribution."
+        ],
+        "partial_credit": [
+          "Mentions the logit function but lacks clarity on its application."
+        ],
+        "common_mistakes": [
+          "Confusing the logit function with other transformations or distributions."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you explain how the CDF of the Logit Normal distribution is derived from the logit function?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What do you understand about the relationship between probabilities and the logit function?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from random variables; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Confusing the logit function with other transformations or distributions. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_002",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "computational",
+      "difficulty": "medium",
+      "question": "Under the normal assumption H1, calculate P(0.9 < X < 1.0) given that X follows Normal(\u00b5 = 0.7, s\u00b2 = 0.22).",
+      "expected_answer": "To find P(0.9 < X < 1.0), first standardize the values using Z = (X - \u00b5) / s. Then use the standard normal table to find the probabilities corresponding to the Z-scores.",
+      "source_chunk_ids": [
+        "cs109_midtermspr2019_p13_c76f066165",
+        "cs109_midtermspr2019_p15_556a0346ca"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly calculates the Z-scores and finds the corresponding probabilities."
+        ],
+        "partial_credit": [
+          "Attempts to standardize but makes arithmetic errors."
+        ],
+        "common_mistakes": [
+          "Forgetting to standardize or using incorrect values for \u00b5 and s\u00b2."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What would happen to the probability if the mean were increased to 0.8?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you walk me through your calculations step by step?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Forgetting to standardize or using incorrect values for \u00b5 and s\u00b2. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+.root {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.55;
+  color: inherit;
+}
+
+.root :global(p) {
+  margin: 0 0 0.65rem;
+}
+
+.root :global(p:last-child) {
+  margin-bottom: 0;
+}
+
+.root :global(ul),
+.root :global(ol) {
+  margin: 0.4rem 0 0.65rem;
+  padding-left: 1.35rem;
+}
+
+.root :global(li) {
+  margin: 0.2rem 0;
+}
+
+.root :global(pre) {
+  margin: 0.5rem 0;
+  padding: 0.65rem 0.75rem;
+  overflow: auto;
+  border-radius: var(--radius-sm, 6px);
+  border: 1px solid var(--color-border, #ccc);
+  background: color-mix(in srgb, var(--color-surface-2, #f4f4f4) 92%, transparent);
+  font-size: 0.95em;
+  line-height: 1.45;
+}
+
+/* Prose code: keep body typography (LLMs often use backticks for terms). */
+.root :global(:not(pre) > code) {
+  font-family: inherit;
+  font-size: 0.98em;
+  padding: 0.08em 0.28em;
+  border-radius: 4px;
+  border: 1px solid color-mix(in srgb, var(--color-border, #ccc) 70%, transparent);
+  background: color-mix(in srgb, var(--color-surface-2, #f4f4f4) 88%, transparent);
+}
+
+.root :global(pre > code) {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+  font-size: 0.88em;
+}
+
+.root :global(.katex-display) {
+  margin: 0.65rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+
+.root :global(.katex) {
+  font-size: 1.05em;
+}

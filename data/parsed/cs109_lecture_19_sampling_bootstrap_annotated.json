@@ -1,0 +1,291 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/19_sampling_bootstrap_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/19_sampling_bootstrap_annotated.pdf",
+  "sha256": "1b5fca89d9698bb943c15e9c4488690548581b59308a065caca016399818b18f",
+  "title_guess": "19 sampling bootstrap annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "19: Sampling and the \nBootstrap\nJerry Cain\nMay 13th, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 84
+    },
+    {
+      "page_index": 1,
+      "text": "Sampling \ndeﬁnitions\n2",
+      "char_count": 22
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMotivating example\nYou want to know the true mean and \nvariance of happiness in Bhutan.\n• You can’t ask everyone very easily, so..\n• You poll 200 random people.\n• Your poll data looks like this:\nHappiness = {72, 85, 79, 91, 68, …, 71}\n• The mean of all these numbers is 83.\nIs this the true average happiness of all \nBhutanese people?\n3",
+      "char_count": 409
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPopulation\n4\nThis is a population.",
+      "char_count": 107
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSample\n5\nA sample is selected from a population.",
+      "char_count": 121
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSample\n6\nA sample is selected from a population.",
+      "char_count": 121
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nReasonable Questions Starting Out\n1. In situations where we can’t obverse the entire population, what can we \nsafely infer by polling a sample drawn from that population?\n2. How large does your sample need to be before your conclusions become \ntrustworthy, and how do we express our confidence in those \nconclusions.\n3. Are there alternative ways to infer population statistics without polling \nentire populations?\n7\n𝜎",
+      "char_count": 491
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nA sample, mathematically\nConsider 𝑛 random variables 𝑋!, 𝑋\", … , 𝑋#.\nThe sequence 𝑋!, 𝑋\", … , 𝑋# is a sample from distribution 𝐹 if:\n• 𝑋$ are all independent and identically distributed (iid)\n• 𝑋$ all have same distribution function 𝐹 (the underlying distribution), \nwhere 𝐸𝑋$ = 𝜇, Var 𝑋$ = 𝜎\"\n8\n𝜇\n𝜎",
+      "char_count": 372
+    },
+    {
+      "page_index": 8,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nA sample of size 8:\n𝑋!, 𝑋\", 𝑋#, 𝑋$, 𝑋%, 𝑋&, 𝑋', 𝑋(\nThe realization of a sample of size 8:\n𝑋!, 𝑋\", 𝑋#, 𝑋$, 𝑋%, 𝑋&, 𝑋', 𝑋(\nA sample, mathematically\n9\n59 87 94 99 87 78 69 91\n2x",
+      "char_count": 247
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIf we had a distribution 𝐹 of our entire population, \nwe could compute exact statistics about happiness.\nBut we only have 200 people—or rather, a sample.\nAssuming we have just a single sample,\n• how do we report estimated statistics?\n◦We’re careful to call them estimated mean and estimated \nvariance, since they’re based on a sample\n• How do we report confidence intervals on these \nestimates?\n• How do we perform something called \nhypothesis testing? Oh, and what is it?\nA single sample\n10\nA happy\nBhutanese person",
+      "char_count": 589
+    },
+    {
+      "page_index": 10,
+      "text": "Unbiased \nestimators\n11",
+      "char_count": 23
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIf we had a distribution 𝐹 of our entire \npopulation, we could compute exact statistics \nabout happiness.\nBut we only have a sample of happiness \nscores from 200 people.\nThese population-level statistics are unknown:\n• 𝜇, the population mean\n• 𝜎\", the population variance\nA single sample\n12\nA happy\nBhutanese person",
+      "char_count": 388
+    },
+    {
+      "page_index": 12,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIf we had a distribution 𝐹 of our entire \npopulation, we could compute exact statistics \nabout happiness.\nBut we only have a sample of happiness \nscores from 200 people.\n• Using this sample, what is our best guess \nestimate of the population mean and the \npopulation variance?\n• How exactly do we define best guess \nestimate?\nA single sample\n13\nA happy\nBhutanese person",
+      "char_count": 442
+    },
+    {
+      "page_index": 13,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEstimating the population mean\nIf we only have 𝑋!, 𝑋\", … , 𝑋# :\nThe best estimate of 𝜇 is the sample mean:\n2𝑋 is an unbiased estimator of the population mean 𝜇. \n \n𝐸2𝑋= 𝜇\nIntuition: By the CLT, \n14\n2𝑋= 1\n𝑛3\n$%!\n#\n𝑋$\n1. What is our best estimate of 𝜇, the mean \nhappiness of Bhutanese people?\n)𝑋 ~ 𝒩(𝜇, 𝜎!\n𝑛)\nIf we could take multiple samples of size 𝑛:\n1. For each sample, compute sample mean\n2. On average, we would get the population mean",
+      "char_count": 513
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSample mean\n15\nEven if we can’t report 𝜇, we can report our \nsample mean of 83, which is an unbiased \nestimate of 𝜇.\n!𝑋 ~ 𝒩(𝜇, 𝜎#\n𝑛)\n𝑋$~𝐹",
+      "char_count": 210
+    },
+    {
+      "page_index": 15,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEstimating the population variance\nIf we knew the entire population 𝑥!, 𝑥\", … , 𝑥& :\n𝜎! = 𝐸\n𝑋−𝜇! = 1\n𝑁9\n\"#$\n%\n𝑥\" −𝜇!\nIf we only have one sample: 𝑋!, 𝑋\", … , 𝑋# :\n16\n2. What is 𝜎\", the variance of happiness of \nBhutanese people?\npopulation\nvariance\npopulation mean\n𝑆\" =\n1\n𝑛−1 3\n$%!\n#\n𝑋$ −2𝑋\"\nsample\nvariance\nsample mean",
+      "char_count": 391
+    },
+    {
+      "page_index": 16,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCalculating population statistics exactly \nrequires us knowing all 𝑁 datapoints.\n0\nHappiness\n𝜇\nIntuition about the sample variance, 𝑆#\n17\n𝜎\" = 1\n𝑁3\n$%!\n&\n𝑥$ −𝜇\"\npopulation\nvariance\npopulation mean\n𝑥\" −𝜇\nActual, 𝜎\"\n150\nPopulation size, 𝑁",
+      "char_count": 309
+    },
+    {
+      "page_index": 17,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIntuition about the sample variance, 𝑆#\n18\n𝑆\" =\n1\n𝑛−1 3\n$%!\n#\n𝑋$ −2𝑋\"\nsample\nvariance\nsample mean\nEstimate, 𝑆\"\n𝜎\" = 1\n𝑁3\n$%!\n&\n𝑥$ −𝜇\"\npopulation\nvariance\npopulation mean\nActual, 𝜎\"\n0\nHappiness\n𝜇\nPopulation size, 𝑁\n150",
+      "char_count": 290
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIntuition about the sample variance, 𝑆#\n19\n𝑆\" =\n1\n𝑛−1 3\n$%!\n#\n𝑋$ −2𝑋\"\n𝜎\" = 1\n𝑁3\n$%!\n&\n𝑥$ −𝜇\"\npopulation\nvariance\nsample\nvariance\npopulation mean\nsample mean\nActual, 𝜎\"\nEstimate, 𝑆\"\n0\nHappiness\n𝜇\nPopulation size, 𝑁\n$𝑋\n150",
+      "char_count": 293
+    },
+    {
+      "page_index": 19,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIntuition about the sample variance, 𝑆#\n20\n𝑆\" =\n1\n𝑛−1 3\n$%!\n#\n𝑋$ −2𝑋\"\n150\n0\nHappiness\n𝜇\n𝜎\" = 1\n𝑁3\n$%!\n&\n𝑥$ −𝜇\"\npopulation\nvariance\nsample\nvariance\npopulation mean\nsample mean\nPopulation size, 𝑁\n$𝑋\n𝑋$ −)𝑋\nActual, 𝜎\"\nEstimate, 𝑆\"",
+      "char_count": 300
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEstimating the population variance\nIf we only have a sample, 𝑋!, 𝑋\", … , 𝑋# :\nThe best estimate of 𝜎\" is the sample variance:\n𝑆\" is an unbiased estimator of the population variance, 𝜎\". \n𝐸𝑆\" = σ\"\n21\n𝑆\" =\n1\n𝑛−1 3\n$%!\n#\n𝑋$ −2𝑋\"\n2. What is 𝜎\", the variance of happiness of \nBhutanese people?",
+      "char_count": 361
+    },
+    {
+      "page_index": 21,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProof that 𝑆# is unbiased\n22\n𝐸𝑆\" = 𝜎\"\n(just for reference)\n𝐸𝑆! = 𝐸\n1\n𝑛−1 -\n\"#$\n%\n𝑋\" −/𝑋!  ⇒ \n𝑛−1 𝐸𝑆! = 𝐸-\n\"#$\n%\n𝑋\" −/𝑋!\n𝑛−1 𝐸𝑆! = 𝐸-\n\"#$\n%\n𝑋\" −𝜇+ 𝜇−/𝑋\n!\n= 𝐸-\n\"#$\n%\n𝑋\" −𝜇! + -\n\"#$\n%\n𝜇−/𝑋! + 2 -\n\"#$\n%\n𝑋\" −𝜇\n𝜇−/𝑋\n(introduce 𝜇−𝜇)\n= 𝐸-\n\"#$\n%\n𝑋\" −𝜇! + 𝑛𝜇−/𝑋! −2𝑛𝜇−/𝑋!\n2 𝜇−$𝑋 '\n!\"#\n$\n𝑋! −𝜇\n2 𝜇−$𝑋\n'\n!\"#\n$\n𝑋! −𝑛𝜇 \n2 𝜇−)𝑋𝑛)𝑋−𝜇\n−2𝑛𝜇−)𝑋!\n= 𝐸-\n\"#$\n%\n𝑋\" −𝜇! −𝑛𝜇−/𝑋! = -\n\"#$\n%\n𝐸\n𝑋\" −𝜇\n! −𝑛𝐸\n/𝑋−𝜇!\n= 𝑛𝜎! −𝑛Var /𝑋= 𝑛𝜎! −𝑛𝜎!\n𝑛= 𝑛𝜎! −𝜎! = 𝑛−1 𝜎!\nTherefore, 𝐸𝑆! = 𝜎!",
+      "char_count": 520
+    },
+    {
+      "page_index": 22,
+      "text": "Standard error\n23",
+      "char_count": 17
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEstimating population statistics\n24\n1. Collect a sample, 𝑋!, 𝑋\", … , 𝑋#.\n2. Compute sample mean, 2𝑋=\n!\n# ∑$%!\n#\n𝑋$.\n3. Compute sample deviation, 𝑋$ −2𝑋.\n4. Compute sample variance, 𝑆\" =\n!\n#6! ∑$%!\n#\n𝑋$ −2𝑋\".\nHow close are our estimates $𝑋 and 𝑆\" to the true 𝜇 and 𝜎\"?\n𝑆\" = 793\n−11, 2, −4, −4,8, −15, … , −12\n2𝑋= 83\n72, 85,79,79,91,68, … , 71\n𝑛= 200\nA particular outcome",
+      "char_count": 442
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSample mean\n25\n!𝑋 ~ 𝒩(𝜇, 𝜎#\n𝑛)\n• Var 2𝑋 is a measure of how close 2𝑋 is to 𝜇.\n• How do we estimate Var 2𝑋?\n𝑋$~𝐹",
+      "char_count": 184
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nHow close is our estimate !𝑋 to 𝜇?\ndef The standard error of the mean is an\n \nestimate of the standard deviation of 2𝑋.\n26\nVar 2𝑋= 𝜎\"\n𝑛\n𝐸$𝑋= 𝜇\n𝑆𝐸=\n𝑆\"\n𝑛\nIntuition:\n• 𝑆! is an unbiased estimate of 𝜎!\n• 𝑆!/𝑛 is an unbiased estimate of 𝜎!/𝑛= Var )𝑋\n•\n𝑆!/𝑛 is an estimate of Var )𝑋\nWe want to\nestimate this\nMore info on bias of \nstandard error: wikipedia",
+      "char_count": 422
+    },
+    {
+      "page_index": 26,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStandard error of the mean\n27\nClaim: The average happiness of Bhutan is 83,\nwith a standard error of 1.99.\n1. Mean happiness:\n83\nBhutan\nAverage Happiness\n0\n𝑆𝐸\nClosed \nform:\n𝑆𝐸=\n𝑆!\n𝑛\nthis is our estimate of \nhow close we are\nthis is our best\nestimate of 𝜇\nerror bars\nThese 2 statistics give a sense of how )𝑋—that is, \nthe sample mean random variable—behaves.",
+      "char_count": 431
+    },
+    {
+      "page_index": 27,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStandard error of variance?\n28\nClaim: The average happiness of Bhutan is 83, \nwith a standard error of 1.99.\n1. Mean happiness:\n83\nBhutan\nAverage Happiness\n0\n𝑆𝐸\nClosed \nform:\n𝑆𝐸=\n𝑆!\n𝑛\n2. Variance of happiness:\nClaim: The variance of happiness of Bhutan is 793.\nBut how close\nare we?\nthis is our best\nestimate of 𝜎!\nClosed \nform:\nNot covered\nin CS109\n⚠\nerror bars\nUp next: Compute\nstatistics with code!",
+      "char_count": 474
+    },
+    {
+      "page_index": 28,
+      "text": "Bootstrap: \nSample mean\n29",
+      "char_count": 26
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap\nThe Bootstrap:\nProbability for Computer Scientists\n30",
+      "char_count": 136
+    },
+    {
+      "page_index": 30,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComputing statistic of sample mean\nWhat is the standard deviation of the sample mean 2𝑋? (sample size 𝑛= 200)\n31\nSample \ndistribution\n(we do have this)\n𝑆𝐸= 𝑆\n𝑛= 1.992\nSimulated \nestimated statistic\n???\n𝜎\n𝑛= 1.886\nPopulation \ndistribution\n(we don’t have this)\nExact statistic\n(we don’t have this)\nEstimated statistic, \nby formula,\nstandard error\nNote: We don’t have access to the population.\nBut Doris is sharing the exact statistic with you.\n1.869\nSimulated statistic\n(we don’t have this)",
+      "char_count": 561
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap insight 1: Estimate the true distribution\n32\n≈",
+      "char_count": 129
+    },
+    {
+      "page_index": 32,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap insight 1: Estimate the true distribution\nYou can estimate the PMF of the underlying distribution, using your sample.*\n33\n≈\n𝐹≈#𝐹\nThe underlying \ndistribution\nthe sample distribution\n(aka the histogram of \nyour sample data)\n*This is just a histogram of your data!",
+      "char_count": 345
+    },
+    {
+      "page_index": 33,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap insight 2: Simulate a distribution\nApproximate the procedure of simulating a distribution of a statistic, e.g., 2𝑋.\n34\n≈\nPopulation \ndistribution\n(we don’t have this)\nSample \ndistribution\n(we do have this)\nBootstrap\nmeans\nSimulated distribution of \nsample means\nSimulated distribution of \nsample means",
+      "char_count": 384
+    },
+    {
+      "page_index": 34,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrapped sample means\n35\nEstimate the true PMF\nusing our \"PMF\" (histogram)\nof our sample.\n…generate a whole\nbunch of sample means\nusing this estimated distribution…\n…and compute the\nstandard deviation\nof this distribution.\nmeans = [84.7, 83.9, 80.6, 79.8, 90.3, …, 85.2]\nnp.std(means)\n2.003",
+      "char_count": 367
+    },
+    {
+      "page_index": 35,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComputing statistic of sample mean\nWhat is the standard deviation of the sample mean 2𝑋? (sample size 𝑛= 200)\n36\nSample \ndistribution\n(we do have this)\n𝑆𝐸= 𝑆\n𝑛= 1.992\nEstimated statistic, \nby formula,\nstandard error\nSimulated estimated \nstatistic, bootstrapped \nstandard error\n2.003\nPopulation \ndistribution\n(we don’t have this)\n𝜎\n𝑛= 1.886\nExact statistic\n(we don’t have this)\n1.869\nSimulated statistic\n(we don’t have this)",
+      "char_count": 496
+    },
+    {
+      "page_index": 36,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap algorithm\nBootstrap Algorithm (sample):\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the sample mean on the resample\n3. You now have a distribution of your sample mean \nWhat is the distribution of your sample mean?\n37\nWe’ll talk about this algorithm \nin detail with a demo!",
+      "char_count": 424
+    },
+    {
+      "page_index": 37,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap algorithm\nBootstrap Algorithm (sample):\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the statistic on the resample\n3. You now have a distribution of your statistic \nWhat is the distribution of your statistic?\n38",
+      "char_count": 362
+    },
+    {
+      "page_index": 38,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrapped sample variance\nBootstrap Algorithm (sample):\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the sample variance on the resample\n3. You now have a distribution of your sample variance \nWhat is the distribution of your sample variance?\n39\nEven without closed forms,\nwe estimate statistics of the sample variance with bootstrapping!",
+      "char_count": 482
+    },
+    {
+      "page_index": 39,
+      "text": "Bootstrap: \nSample variance\n40",
+      "char_count": 30
+    },
+    {
+      "page_index": 40,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrapped sample variance\nBootstrap Algorithm (sample):\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the sample variance on the resample\n3. You now have a distribution of your sample variance \nWhat is the distribution of your sample variance?\n41\nGoal",
+      "char_count": 394
+    },
+    {
+      "page_index": 41,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrapped variance\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the sample variance on the resample\n3. You now have a distribution of your sample variance\n42",
+      "char_count": 301
+    },
+    {
+      "page_index": 42,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrapped variance\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the sample variance on the resample\n3. You now have a distribution of your sample variance\n43",
+      "char_count": 301
+    },
+    {
+      "page_index": 43,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the sample variance on the resample\n3. You now have a distribution of your sample variance\nBootstrapped variance\n44\n[52, 38, 98, 107, ..., 94]\n⚠\nThis resampled sample is \ngenerated with replacement.\nWhy are these \nsamples different?",
+      "char_count": 418
+    },
+    {
+      "page_index": 44,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the sample variance on the resample\n3. You now have a distribution of your sample variance\nBootstrapped variance\n45\n[52, 38, 98, 107, ..., 94]\nvariances = [827.4]",
+      "char_count": 348
+    },
+    {
+      "page_index": 45,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrapped variance\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the sample variance on the resample\n3. You now have a distribution of your sample variance\n46\nvariances = [827.4]",
+      "char_count": 321
+    },
+    {
+      "page_index": 46,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the sample variance on the resample\n3. You now have a distribution of your sample variance\nBootstrapped variance\n47\n[116, 76, 132, 85, ..., 78]\nvariances = [827.4]",
+      "char_count": 349
+    },
+    {
+      "page_index": 47,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the sample variance on the resample\n3. You now have a distribution of your sample variance\nBootstrapped variance\n48\nvariances = [827.4, 846.1]\n[116, 76, 132, 85, ..., 78]",
+      "char_count": 356
+    },
+    {
+      "page_index": 48,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the sample variance on the resample\n3. You now have a distribution of your sample variance\nBootstrapped variance\n49\nvariances = [827.4, 846.1]",
+      "char_count": 328
+    },
+    {
+      "page_index": 49,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrapped variance\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the sample variance on the resample\n3. You now have a distribution of your sample variance\n50\nvariances = [827.4, 846.1, 726.0, …, 860.7]",
+      "char_count": 345
+    },
+    {
+      "page_index": 50,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrapped variance\n51\nWhat is the bootstrapped \nstandard error?\nvariances = [827.4,\n  846.1, 726.0, …,\n  860.7]\n3. You now have a distribution of your sample variance\nnp.std(variances)\nBootstrapped standard error: 66.16\n• Simulate a distribution of \nsample variances\n• Compute standard deviation",
+      "char_count": 371
+    },
+    {
+      "page_index": 51,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStandard error\n52\nClaim: The average happiness of Bhutan is 83, \nwith a standard error of 1.99.\n1. Mean happiness:\n83\nBhutan\nAverage Happiness\n0\n𝑆𝐸\nClosed \nform:\n𝑆𝐸=\n𝑆!\n𝑛\n2. Variance of happiness:\nClaim: The variance of happiness of Bhutan is 793,\nwith a bootstrapped standard error of 66.16.\n𝑆! is our best\nestimate of 𝜎!\nthis is how confident we are",
+      "char_count": 424
+    },
+    {
+      "page_index": 52,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the statistic on the resample\n3. You now have a distribution of your statistic\nAlgorithm in practice: Resampling\n53\n𝑃𝑋= 𝑘= # values in sample equal to 𝑘\n𝑛\n?\n[116, 76, 132, 85, ..., 78]",
+      "char_count": 370
+    },
+    {
+      "page_index": 53,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nAlgorithm in practice: Resampling\n54\n𝑃𝑋= 𝑘= # values in sample equal to 𝑘\n𝑛\n?\n[116, 76, 132, 85, ..., 78]\ndef resample(sample, n):\n    # estimate the PMF using the sample\n    # draw n new samples from the PMF\nreturn np.random.choice(sample, n, replace = True)\nThis resampled sample is \ngenerated with replacement.",
+      "char_count": 386
+    },
+    {
+      "page_index": 54,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTo the code!\nBootstrap provides a way to calculate probabilities of \nstatistics using code.\nBootstrapping works for any statistic*\n55\n*as long as your sample is iid and the underlying distribution does not have a long tail\nGoogle colab notebook link",
+      "char_count": 322
+    },
+    {
+      "page_index": 55,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBradley Efron\n56\n• Invented bootstrapping in 1979\n• Still a professor at Stanford\n• Won a National Science Medal\nInventor of Efron’s dice: 4 dice 𝐴, 𝐵, 𝐶, 𝐷 where:\n𝑃𝐴> 𝐵= 𝑃𝐵> 𝐶= 𝑃𝐶> 𝐷= 𝑃𝐷> 𝐴=\n\"\n7",
+      "char_count": 268
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:58Z"
+}

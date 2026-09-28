@@ -1,0 +1,7 @@
+Drop lecture PDFs in this folder (or in exams/, solutions/, review/ siblings).
+See docs/QUESTION-BANK-PIPELINE.md.
+
+Quick smoke test without PDFs:
+  cp question_bank/fixtures/sample_parsed/*.json question_bank_data/parsed/
+  pip install -r question_bank/requirements.txt
+  python -m question_bank.pipeline --course CS109 --from chunk --through export

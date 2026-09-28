@@ -1,0 +1,161 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 18px;
+  color: var(--color-ink);
+}
+
+.sectionSubtitle {
+  margin: 0;
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text);
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.summaryBody {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-text);
+  line-height: 1.45;
+}
+
+.placeholder {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.questionTitle {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.blockTitle {
+  margin: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
+}
+
+.flagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.flagItem {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--color-red-100);
+  border: 1px solid color-mix(in srgb, var(--color-red-700) 45%, var(--color-border));
+  color: var(--color-red-700);
+}
+
+.actionList {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+/* Standardized student narrative sections ------------------------------- */
+
+.studentSection {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.studentSectionTitle {
+  margin: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-sage-700);
+}
+
+.studentSectionList {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.studentSectionEmpty {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+.questionBlock {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+}
+
+.questionBlock:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.questionHeading {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.questionSummary {
+  margin: 0 0 8px;
+  font-size: 13px;
+  opacity: 0.9;
+}

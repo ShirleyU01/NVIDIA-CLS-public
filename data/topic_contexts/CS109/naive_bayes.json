@@ -1,0 +1,244 @@
+{
+  "course": "CS109",
+  "topic_id": "naive_bayes",
+  "topic_name": "Naive Bayes",
+  "queries_used": [
+    "Naive Bayes definition",
+    "Naive Bayes intuition",
+    "Naive Bayes worked example",
+    "Naive Bayes exam problem",
+    "naive bayes overview",
+    "naive bayes practice",
+    "conditional independence assumption overview",
+    "conditional independence assumption practice",
+    "classification overview",
+    "classification practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p32_0e61718cb5",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThe Naïve Bayes assumption\n33\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑌 | 𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n= arg max\n*+ ,,!\nH\n5+!\n#\n(𝑃𝑋5|𝑌\n(𝑃𝑌\nNaïve Bayes \nAssumption\n𝑋!, … , 𝑋% are all conditionally \nindependent given 𝑌.\nAssumption:",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.6126363277435303
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p8_1f8e3c24a5",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nEx 3. Naïve Bayes Classifier (𝑚, 𝑛 large)\n9\n0𝑌= arg max\n'( ),!\n9\n$(!\n#\n0𝑃𝑋$|𝑌\n0𝑃𝑌\n9\n∀𝑖:\n0𝑃𝑌= 1 , 0𝑃𝑌= 0  \n0𝑃𝑋$ = 1|𝑌= 0 , 0𝑃𝑋$ = 0|𝑌= 0 ,\n0𝑃𝑋$ = 1|𝑌= 1 , 0𝑃𝑋$ = 0|𝑌= 0 ,\nTesting\nTraining\nUse MLE or\nLaplace (MAP)\n0𝑌= arg max\n'( ),!\nlog 0𝑃𝑌+ ?\n$(!\n#\nlog 0𝑃𝑋$|𝑌\nUse sums of log-\nprobabilities for \nnumerical stability.",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.6060291528701782
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p0_p1_bc64334474",
+      "text": "23: Naïve Bayes\nJerry Cain\nMay 22, 2024\n1\nLecture Discussion on Ed\n\nPreamble: \nMachine \nLearning\n2",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.6034468412399292
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p34_p35_1cfbc7e2a2",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNaïve Bayes Classifier\n35\n(𝑌= arg max\n*+ ,,!\nH\n5+!\n#\n(𝑃𝑋5|𝑌\n(𝑃𝑌\n35\nfor 𝑗= 1, … , 𝑚:\n(𝑃𝑌= 1  \n(𝑃𝑋5 = 1|𝑌= 0 ,\n(𝑃𝑋5 = 1|𝑌= 1\nTesting\n(𝑌= arg max\n*+ ,,!\nlog (𝑃𝑌+ M\n5+!\n#\nlog (𝑃𝑋5|𝑌\nTraining\nUse MLE or\nLaplace (MAP)\n\nand Learn",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.5967789888381958
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p44_d0de35ec97",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n45\nNaïve Bayes \n \n \n     vs \nLogistic Regression\n[𝑃𝑿|𝑌[𝑃𝑌\n𝑿\n𝑌\n[𝑃𝑿, 𝑌\n[𝑌= arg max\n.# !,$\n𝑃𝑌 | 𝑿= arg max\n.# !,$\n𝑃𝑿|𝑌𝑃𝑌\n[𝑌= arg max\n.# !,$\n𝑃𝑌|𝑿\n𝜃#𝒙\n𝑿\n0\n0.2\n0.4\n0.6\n0.8\n1\n-10\n-8\n-6\n-4\n-2\n0\n2\n4\n6\n8\n10\n! \"\n\"\n𝑃𝑌= 1|𝑿\nCompare/contrast:\n1. What distributions are we modeling?\n2. After learning our parameters, could we randomly generate a new datapoint 𝒙, 𝑦?\n3. Could we model a continuous 𝑋& feature (e.g., 𝑋&~Normal, or 𝑋&~Unknown)?\n4. Could we model a non-binary discrete 𝑋& (e.g., 𝑋& ∈1,2, … , 6 )?\n𝜃",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.594916820526123
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p25_p26_b15b90b12e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBrute Force Bayes classifier\n26\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n26\n(𝑃𝑋!, 𝑋\", … , 𝑋#|𝑌= 1\nTesting\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑋!, 𝑋\", … , 𝑋#|𝑌(𝑃𝑌\nTraining\n(𝑃𝑌= 1  \nEstimate these \nprobabilities—i.e.,\nlearn these parameters\nusing MLE or Laplace (MAP)\n( 1𝑃𝑌 is an estimate of 𝑃𝑌,\n 1𝑃𝑿|𝑌 is an estimate of 𝑃𝑿|𝑌)\n(𝑃𝑋!, 𝑋\", … , 𝑋#|𝑌= 0\n(𝑃𝑌= 0  \nGiven an observation 𝑿= 𝑋!, 𝑋\", … , 𝑋# , predict\n\nNaïve Bayes\n27",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.5854312181472778
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p4_ae2b276089",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional Independence\n5\nTwo events 𝐴 and 𝐵 are defined as conditionally independent given 𝐸 if:\n𝑃𝐴𝐵|𝐸= 𝑃𝐴|𝐸𝑃(𝐵|𝐸)\nAn equivalent definition:\nA.  𝑃𝐴𝐵= 𝑃𝐴\nB.  𝑃𝐴𝐵𝐸= 𝑃𝐴\nC.  𝑃𝐴𝐵𝐸= 𝑃𝐴|𝐸\n𝑃𝐸|𝐹= 𝑃(𝐸)\n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹)\nIndependent\nevents 𝐸 and 𝐹\nE is the \"new sample space\", \nso left and right side must \nboth be conditioned on E.",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.5841767191886902
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p3_2087ff1982",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional Independence\n4\nTwo events 𝐴 and 𝐵 are defined as conditionally independent given 𝐸 if:\n𝑃𝐴𝐵|𝐸= 𝑃𝐴|𝐸𝑃(𝐵|𝐸)\nAn equivalent definition:\nA.  𝑃𝐴𝐵= 𝑃𝐴\nB.  𝑃𝐴𝐵𝐸= 𝑃𝐴\nC.  𝑃𝐴𝐵𝐸= 𝑃𝐴|𝐸\n𝑃𝐸|𝐹= 𝑃(𝐸)\n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹)\nIndependent\nevents 𝐸 and 𝐹",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.5821564197540283
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p46_749f33d4e8",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEx 2. Naïve Bayes Classifier (MAP)\n47\n(𝑌= arg max\n*+ ,,!\nH\n5+!\n#\n(𝑃𝑋5|𝑌\n(𝑃𝑌\n47\n∀𝑖:\n(𝑃𝑌= 1 , (𝑃𝑌= 0  \n(𝑃𝑋5 = 1|𝑌= 0 , (𝑃𝑋5 = 0|𝑌= 0 ,\n(𝑃𝑋5 = 1|𝑌= 1 , (𝑃𝑋5 = 0|𝑌= 0 ,\nTesting\nTraining\nUse MLE or\nLaplace (MAP)\n(𝑌= arg max\n*+ ,,!\nH\n5+!\n#\n(𝑃𝑋5|𝑌\n(𝑃𝑌\n(note the same as before)",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.5670391917228699
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p44_62eeb83eb3",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEx 1. Naïve Bayes Classifier (MLE)\n45\n(𝑌= arg max\n*+ ,,!\nH\n5+!\n#\n(𝑃𝑋5|𝑌\n(𝑃𝑌\n45\n∀𝑖:\n(𝑃𝑌= 1 , (𝑃𝑌= 0  \n(𝑃𝑋5 = 1|𝑌= 0 , (𝑃𝑋5 = 0|𝑌= 0 ,\n(𝑃𝑋5 = 1|𝑌= 1 , (𝑃𝑋5 = 0|𝑌= 0 ,\nTesting\n(𝑌= arg max\n*+ ,,!\nH\n5+!\n#\n(𝑃𝑋5|𝑌\n(𝑃𝑌\nTraining\nUse MLE or\nLaplace (MAP)",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.5652517676353455
+    },
+    {
+      "chunk_id": "cs109_finalfall2017_q5_6ce6fbd271",
+      "text": "We use ”⇡” to denote where we make our Naive Bayes assumption:\nargmax\ny\nP(Y = y|X = x1, x2) = argmax\ny\nf(X1 = x1, X2 = x2|Y = y)P(Y = y)\nf(X1 = x1, X2 = x2)\n⇡argmax\ny\nf(X1 = x1|Y = y)f(X2 = x2|Y = y)P(Y = y)\nf(X1 = x1, X2 = x2)\n= argmax\ny\nf(X1 = x1|Y = y)f(X2 = x2|Y = y)P(Y = y)\nNow note that we predict Y = 1 if:\nf(X1 = 5|Y = 1)f(X2 = 3|Y = 1)P(Y = 1) > f(X1 = 5|Y = 0)f(X2 = 3|Y = 0)P(Y = 0)\nIf I weren’t so lazy, I would plug in the values from the problem at this\npoint.",
+      "source_type": "exam_question",
+      "document_name": "FinalFall2017",
+      "score": 0.5570700168609619
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p9_21c128ee05",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nHow well does Naïve Bayes perform?\nAfter training, you can test with another set of data, called the test set.\n• Test set also has known values for 𝑌 so we can see how often\nwe were right/wrong in our predictions 0𝑌.\nTypical workflow:\n• Have a dataset of 1789 emails (1578 spam, 211 ham)\n• Train set: First 1538 emails (by time)\n• Test set:  Next 251 messages\nEvaluation criteria on test set:\n10\nprecision = # correctly predicted class 𝑌\n# predicted class 𝑌\nrecall = # correctly predicted class 𝑌\n# real class 𝑌 messages\nSpam\nNon-spam\nPrec.\nRecall\nPrec.\nRecall\nWords only\n \n97.1%\n94.3% 87.7% 93.4%\nWords +\naddtl features\n100%\n98.3% 96.2% 100%",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.5554155111312866
+    },
+    {
+      "chunk_id": "cs109_05_independence_annotated_p5_bfa15e0662",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGeneralizing independence\nThree events 𝐸, 𝐹, and 𝐺\nare independent if:\n𝑛 events 𝐸#, 𝐸$, … , 𝐸% are\nindependent if:\n6\n𝑃𝐸𝐹𝐺= 𝑃𝐸𝑃𝐹𝑃𝐺, and \n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹), and \n𝑃𝐸𝐺= 𝑃𝐸𝑃(𝐺), and \n𝑃𝐹𝐺= 𝑃𝐹𝑃(𝐺) \nfor 𝑟= 1, … , 𝑛:\n \nfor every subset 𝐸(, 𝐸), … , 𝐸*: \n𝑃𝐸(𝐸) … 𝐸* = 𝑃𝐸( 𝑃𝐸) ⋯𝑃𝐸*",
+      "source_type": "lecture_slide",
+      "document_name": "05 independence annotated",
+      "score": 0.5468050241470337
+    },
+    {
+      "chunk_id": "cs109_demo_exam_q1_c290a1b3af",
+      "text": "Define independence for two discrete random variables.",
+      "source_type": "exam_question",
+      "document_name": "Demo Exam",
+      "score": 0.5373885631561279
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p38_4c64cdb82e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPredicting user TV preferences\nWhich probabilities do you need to estimate?\nHow many are there?\n• Brute Force Bayes\n(strawman, without NB assumption)\n• Naïve Bayes\nDuring training, how to estimate the prob\n(𝑃𝑋! = 1, 𝑋\" = 1|𝑌= 0  with MLE? with Laplace?\n• Brute Force Bayes\n39\n6𝑌= arg max\n!\" #,%\n6𝑃𝑿|𝑌6𝑃𝑌\n𝑃𝑿|𝑌= 5\n!\"#\n$\n𝑃𝑋!|𝑌\nNaïve Bayes \nAssumption\n• Naïve Bayes",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.5372613668441772
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p9_p10_e768695e32",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDependent events can be conditionally independent.\n(And vice versa: Independent events can be conditionally dependent.)\nNetflix and Condition\n10\n𝐸(\n𝐸)\n𝐸*\n𝐸+\n𝐾: likes international emotional comedies\n𝐸$𝐸'𝐸(𝐸) are\ndependent\n𝐸$𝐸'𝐸(𝐸) are\nconditionally independent \ngiven 𝐾\nChallenge: How \ndo we determine \n𝐾? Stay tuned in \n6 weeks’ time!\n\nRandom \nVariables\n11",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.5365399122238159
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p10_p11_4386b25b25",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditionally Independent RVs\nRecall that two events 𝐴 and 𝐵 are\nconditionally independent given 𝐸 if:\n𝑛 discrete random variables 𝑋%, 𝑋&, … , 𝑋' are called conditionally \nindependent given 𝑌 if: \n \nfor all 𝑥%, 𝑥&, … , 𝑥', 𝑦:\n𝑃𝑋% = 𝑥%, 𝑋& = 𝑥&, … , 𝑋' = 𝑥'|𝑌= 𝑦= 6\n()%\n'\n𝑃𝑋( = 𝑥(|𝑌= 𝑦\nThis implies the following (cool to remember for later):\nlog 𝑃𝑋% = 𝑥%, 𝑋& = 𝑥&, … , 𝑋' = 𝑥'|𝑌= 𝑦= :\n()%\n'\nlog 𝑃𝑋( = 𝑥(|𝑌= 𝑦\n11\n𝑃𝐴𝐵|𝐸= 𝑃𝐴|𝐸𝑃(𝐵|𝐸)\n\nBayesian \nNetworks\n12",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.5354558229446411
+    },
+    {
+      "chunk_id": "cs109_08_section_soln_sec1_part2_c2e6d5b272",
+      "text": "– 3 –\nwe want to solve:\narg max\n𝜆\n𝑓(𝜆|𝑋= 4) = arg max\n𝜆\n𝑃(𝑋= 4|𝜆) · 𝑓(𝜆)\n𝑃(𝑋= 4)\n= arg max\n𝜆\n𝑃(𝑋= 4|𝜆) · 𝑓(𝜆)\n= arg max\n𝜆\n𝜆4 · 𝑒−𝜆\n4!\n· 𝐾· 𝜆· 𝑒−𝜆\n2\nTake log.\n𝑙𝑜𝑔(𝜆4 · 𝑒−𝜆\n4!\n· 𝐾· 𝜆· 𝑒−𝜆\n2 ) = 4𝑙𝑜𝑔(𝜆) −𝜆+ 1 + 𝑙𝑜𝑔(𝐾) + 𝑙𝑜𝑔(𝜆) −𝜆\n2\nDifferentiate with respect to 𝜆, set to 0 and solve.\n5\n𝜆−1 −1\n2 = 0\n𝜆= 10\n3\n2.2\nMulticlass Bayes\nIn this problem we are going to explore how to write Naive Bayes for multiple output classes. We\nwant to predict a single output variable Y which represents how a user feels about a book. Unlike\nin your homework, the output variable Y can take on one of the four values in the set\n{Like, Love, Haha, Sad}. We will base our predictions off of three binary feature variables\n𝑋1, 𝑋2, and 𝑋3 which are indicators of the user’s taste. All values 𝑋𝑖∈{0, 1}.\nWe have access to a dataset with 10,000 users. Each user in the dataset has a value for 𝑋1, 𝑋2, 𝑋3\nand 𝑌. You can use a special query method count that returns the number of users in the dataset\nwith the given equality constraints (and only equality constraints). Here are some example usages\nof count:\ncount(𝑋1 = 1,𝑌= Haha)\nreturns the number of users where 𝑋1 = 1 and 𝑌= Haha.\ncount(𝑌= Love)\nreturns the number of users where 𝑌= Love.\ncount(𝑋1 = 0, 𝑋3 = 0)\nreturns the number of users where 𝑋1 = 0, and 𝑋3 = 0.\nYou are given a new user with 𝑋1 = 1, 𝑋2 = 1, 𝑋3 = 0. What is the best prediction for how the user\nwill feel about the book (𝑌)? You may leave your answer in terms of an argmax function. You\nshould explain how you would calculate all probabilities used in your expression. Use Laplace\nestimation when calculating probabilities.\nWe can make the Naive Bayes assumption of independence and simplify argmax of 𝑃(𝑌|X)\nto get an expression for ˆ𝑌, the predicted output value, and evaluate it using the provided\n\n– 4 –\ncount function.\nˆ𝑌= arg max\n𝑦\n𝑃(𝑋1 = 1, 𝑋2 = 1, 𝑋3 = 0|𝑌= 𝑦)𝑃(𝑌= 𝑦)\n𝑃(𝑋1 = 1, 𝑋2 = 1, 𝑋3 = 0)\n= arg max\n𝑦\n𝑃(𝑋1 = 1, 𝑋2 = 1, 𝑋3 = 0|𝑌= 𝑦)𝑃(𝑌= 𝑦)\n= arg max\n𝑦\n𝑃(𝑋1 = 1|𝑌= 𝑦)𝑃(𝑋2 = 1|𝑌= 𝑦)𝑃(𝑋3 = 0|𝑌= 𝑦)𝑃(𝑌= 𝑦), where:\n𝑃(𝑋1 = 1|𝑌= 𝑦) = [count(𝑋1 = 1,𝑌= 𝑦) + 1]/[count(𝑌= 𝑦) + 2]\n𝑃(𝑋2 = 1|𝑌= 𝑦) = [count(𝑋2 = 1,𝑌= 𝑦) + 1]/[count(𝑌= 𝑦) + 2]\n𝑃(𝑋3 = 1|𝑌= 𝑦) = [count(𝑋3 = 1,𝑌= 𝑦) + 1]/[count(𝑌= 𝑦) + 2]\n𝑃(𝑋1 = 0|𝑌= 𝑦) = [count(𝑋1 = 0,𝑌= 𝑦) + 1]/[count(𝑌= 𝑦) + 2]\n𝑃(𝑋2 = 0|𝑌= 𝑦) = [count(𝑋2 = 0,𝑌= 𝑦) + 1]/[count(𝑌= 𝑦) + 2]\n𝑃(𝑋3 = 0|𝑌= 𝑦) = [count(𝑋3 = 0,𝑌= 𝑦) + 1]/[count(𝑌= 𝑦) + 2]\n𝑃(𝑌= 𝑦) = count(𝑌= 𝑦)/10, 000\n2.3\nGaussian Na¨ıve Bayes\nThe version of Na¨ıve Bayes that we used in class worked great when the feature values were all\nbinary. If instead they are continuous, we are going to have to rethink how we estimate of the\nprobability of the 𝑖th feature given the label, 𝑃(𝑋𝑖|𝑌). The ubiquitous solution is to make the\nGaussian Input Assumption that:\nIf 𝑌= 0, then 𝑋𝑖∼𝑁(𝜇𝑖,0, 𝜎2\n𝑖,0)\nIf 𝑌= 1, then 𝑋𝑖∼𝑁(𝜇𝑖,1, 𝜎2\n𝑖,1)\nFor each feature, there are 4 parameters (mean and variance for both class labels). There is a final\nparameter, 𝑝, which is the estimate of 𝑃(𝑌= 1). Assume that you have trained on data with two\ninput features and have already estimated all 9 parameter values, including that 𝑝= 0.6:\nFeature 𝑖\n𝜇𝑖,0\n𝜇𝑖,1\n𝜎2\n𝑖,0\n𝜎2\n𝑖,1\n1\n5\n0\n1\n1\n2\n0\n3\n1\n4\nWrite an inequality to predict whether 𝑌= 1 for input [𝑋1 = 5, 𝑋2 = 3]. Use the Na¨ıve Bayes\nassumption and the Gaussian Input Assumption. Your expression should be in terms of the\nlearned parameters (either using numbers or symbols is fine).",
+      "source_type": "review_section",
+      "document_name": "08 section soln",
+      "score": 0.5340805053710938
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p2_4797680fc1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional Paradigm\nFor any events A, B, and E, you can condition consistently on E,\nand all formulas still hold:\nAxiom 1  \n \n \n \n \n 0 ≤𝑃𝐴𝐸≤1\nCorollary 1 (complement)  \n 𝑃𝐴𝐸= 1 −𝑃𝐴!|𝐸\nTransitivity \n \n \n \n \n 𝑃𝐴𝐵𝐸= 𝑃(𝐵𝐴|𝐸)\nChain Rule  \n \n \n \n 𝑃𝐴𝐵𝐸= 𝑃(𝐵|𝐸)𝑃𝐴𝐵𝐸\nBayes’ Theorem  \n \n \n \n3\n𝑃𝐴𝐵𝐸= 𝑃𝐵𝐴𝐸𝑃𝐴|𝐸\n𝑃(𝐵|𝐸)\n‘s theorem?",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.5278959274291992
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p21_4c70615a99",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPop quiz! (just kidding)\nAre 𝑋 and 𝑌 independent in the following cases?\n22\n1.  𝑓!,# 𝑥, 𝑦= 6𝑒(4-𝑒(%*\n where 0 < 𝑥, 𝑦< ∞\n2.  𝑓!,# 𝑥, 𝑦= 4𝑥𝑦\n where 0 < 𝑥, 𝑦< 1\n3.  𝑓!,# 𝑥, 𝑦= 24𝑥𝑦\n where 0 < 𝑥+  𝑦< 1\n𝑔𝑥= 3𝑒!:'\nℎ𝑦= 2𝑒!&# \n𝑔𝑥= 2𝑥\nℎ𝑦= 2𝑦\nCannot capture constraint on 𝑥+  𝑦! \n❌\n✅\n✅\nindependent\n𝑋 and 𝑌\n𝑓!,# 𝑥, 𝑦= 𝑔𝑥ℎ𝑦,\nwhere −∞< 𝑥, 𝑦< ∞\nSeparable functions:\nSeparable functions:\nIf you can factor densities over the entire \nsupport, you have independence.",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.5227331519126892
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p5_6959ca3cce",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nEx 3. Naïve Bayes Classiﬁer (𝑚, 𝑛 large)\n6\n0𝑌= arg max\n'( ),!\n9\n$(!\n#\n0𝑃𝑋$|𝑌\n0𝑃𝑌\n6\n∀𝑗:\n0𝑃𝑌= 1 , 0𝑃𝑌= 0  \n0𝑃𝑋$ = 1|𝑌= 0 , 0𝑃𝑋$ = 0|𝑌= 0 ,\n0𝑃𝑋$ = 1|𝑌= 1 , 0𝑃𝑋$ = 0|𝑌= 0 ,\nTesting\nTraining\nUse MLE or\nLaplace (MAP)\n0𝑌= arg max\n'( ),!\n9\n$(!\n#\n0𝑃𝑋$|𝑌\n0𝑃𝑌\nLaplace (MAP) estimates avoid estimating \n0 probabilities for events that don’t occur \nin your training data.",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.506166934967041
+    },
+    {
+      "chunk_id": "cs109_18_clt_annotated_p2_b1d98f2cbe",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIndependence of multiple random variables\nWe have independence of 𝑛 discrete random variables 𝑋!, 𝑋\", … , 𝑋# if\n \nfor all 𝑥!, 𝑥\", … , 𝑥#:\nWe have independence of 𝑛 continuous random variables 𝑋!, 𝑋\", … , 𝑋# if\n \nfor all 𝑥!, 𝑥\", … , 𝑥#:\n3\nReview\n𝑝!!,!\",…,!# 𝑥$, 𝑥%, … , 𝑥& = &\n'($\n&\n𝑝!$ 𝑥'\n𝑃𝑋$ = 𝑥$, 𝑋% = 𝑥%, … , 𝑋& = 𝑥& = &\n'($\n&\n𝑃𝑋' = 𝑥'\n𝑃𝑋$ ≤𝑥$, 𝑋% ≤𝑥%, … , 𝑋& ≤𝑥& = &\n'($\n&\n𝑃𝑋' ≤𝑥'\n𝑓!!,!\",…,!# 𝑥$, 𝑥%, … , 𝑥& = &\n'($\n&\n𝑓!$ 𝑥'",
+      "source_type": "lecture_slide",
+      "document_name": "18 clt annotated",
+      "score": 0.4980038106441498
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p36_7558fa79be",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1.\n2.\n3.\nClassification terminology check\nTraining data: 𝒙' , 𝑦' , 𝒙$ , 𝑦$ , …, 𝒙( , 𝑦(\n37\nA.  𝒙%  \nB.  𝑦%\nC.\n𝒙% , 𝑦%\nD.  𝑥5\n%\n…\nMovie 1\nMovie 2\nMovie 𝑚\nOutput\nUser 1 \n 1 \n0 \n… \n1 \n 1 \nUser 2 \n 1 \n1 \n… \n0 \n 0 \n     …\nUser 𝑛 \n 0 \n0 \n… \n1 \n 1 \n…\n…\n4.\n1: like movie\n0: dislike movie",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.363179475069046
+    },
+    {
+      "chunk_id": "cs109_finalfall2017_q10_d342a69e74",
+      "text": "What is P(A|M)? You may leave your\nanswer in terms of P(A). To make your future life easier, simplify your answer as much as possible.\nd. (8 points) Using the same assumption as the previous part, calculate P(A). You may use a function\nroot(a, b, c) which returns the value of x such that ax2 +bx+c = 0.\n3\n\ne. (10 points) Prove that P(A) = P(A|MC) if people who did not respond are just as likely to vote for\nAyesha as those who did: P(A|M) = P(A|MC).\n4\n\n2\nOccupy Mt Gox [24 points]\nModern nations have such high disparity in incomes that we need to use special fat-tailed random variables\nto represent country wide distributions. Enter the ExamPareto distribution, a simpliﬁed version of the Pareto\nincome distribution. X ⇠ExamPareto(a) represents a countries distribution of incomes—in Bitcoins (￿):\nPdf:\nfX(x) =\n(\na(1+x)−(a+1)\nx ≥0\n0\nelse\nMean:\nE[X] =\n1\na−1\nCdf:\nFX(x) =\n(\n1−(1+x)−a\nx ≥0\n0\nelse\nVariance:\nVar(X) =\na\n(a−1)2(a−2)\na. (4 points) Let X ⇠ExamPareto(a = 2). What is the probability that X is greater than 4 ￿?\nb. (6 points) Let X ⇠ExamPareto(a = 3). If we sample 100 IID individual incomes from X, approximate\nthe probability that the sum of their incomes is greater than 55 ￿?\n5\n\nc. (4 points) You have samples of n IID incomes from a country (x1,x2,...,xn). Write an equation for the\nlog likelihood of the n samples.\nd. (10 points) Write pseudocode that can estimate the parameter a from the n samples. You may use any\nparameter estimation technique we talked about in class. Make sure to work out any necessary math\nﬁrst.\n6\n\n3\nTiming Attack [33 points]\nIn this problem we are going to show you how to crack a password in linear time, by measuring how long the\npassword check takes to execute (see code below). Assume that our server takes T ms to execute any line in\nthe code where T ⇠N(µ = 5,s2 = 0.5). The amount of time taken to execute a line is always independent\nof other values of T.\n# An i n s e c u r e\ns t r i n g\ncomparison\ndef\ns t r i n g E q u a l s ( guess ,\npassword ) :\nnGuess = len ( guess )\nnPassword = len ( password )\ni f\nnGuess !=\nnPassword :\nreturn\nFalse\n# 4\nl i n e s\nexecuted\nto\nget\nhere\nfor\ni\nin\nrange ( nGuess ) :\ni f\nguess [ i ]\n!=\npassword [ i ] :\nreturn\nFalse\n# 6 + 2 i\nl i n e s\nexecuted\nto\nget\nhere\nreturn\nTrue\n# 5 + 2n\nl i n e s\nexecuted\nto\nget\nhere\nOn our site all passwords are length 5 through 10 (inclusive) and are composed of lower case letters only. A\nhacker is trying to crack the root password which is “gobayes” by carefully measuring how long we take to\ntell them that her guesses are incorrect. All answers to this question may be left in terms of the Normal CDF\nfunction f.\na. (4 points) First, lets say the hacker wanted to brute force and try all passwords. How many passwords\nare there? Recall that all passwords are length 5 through 10 and composed of lower case letters only.\nb. (5 points) What is the distribution of time that it takes our server to execute k lines of code? Recall that\neach line independently takes T ⇠N(µ = 5,s2 = 0.5) ms.\n7\n\nc. (7 points) First the hacker needs to ﬁnd out the length of the password. What is the probability that the\ntime taken to test a guess of correct length (server executes 6 lines) is longer than the time taken to test\na guess of an incorrect length (server executes 4 lines)? Assume that the ﬁrst letter of the guess does\nnot match the ﬁrst letter of the password. Hint P(A > B) is the same as P(A−B > 0).\nd. (5 points) Let p be your answer to part (c). The hacker ﬁrst tries a guess of length 5, then a guess of\nlength 6, and so on up until a guess of length 10. What is the probability that the guess of length 7,\nwhich is the correct length (server executes 6 lines), takes longer than all the other guesses of incorrect\nlength (where the server executes 4 lines)?\n8\n\ne. (8 points) Now that our hacker knows the length of the password, to get the actual string she is go-\ning to try and ﬁgure out each letter one at a time, starting with the ﬁrst letter. The hacker tries the\nstring “aaaaaaa” and it takes 27s. Based on this timing, how much more probable is it that ﬁrst char-\nacter matched (server executes 8 lines) than the ﬁrst character did not match (server executes 6 lines)?\nAssume that all letters in the alphabet are equally likely to be the ﬁrst letter.\nf. (3 points) If it takes the hacker 5 guesses to ﬁnd the length of the password, and 26 guesses per letter\nto crack the password string, how many attempts must she make to crack our password, “gobayes”?\nYikes!\n9\n\n4\nLearning While Helping [30 points]\nYou are designing a randomized algorithm that delivers one of two new drugs to patients who come to your\nclinic—each patient can only receive one of the drugs. Initially you know nothing about the effectiveness of\nthe two drugs. You are simultaneously trying to learn which drug is the best and, at the same time, cure the\nmaximum number of people. To do so we will use the Thompson Sampling Algorithm.\nThompson Sampling Algorithm:\nThe algorithm we are going to use is based on sound probability.\nFor each drug we maintain a Beta distribution to represent the drug’s probability of being successful.\nInitially we assume that drug i has a probability of success qi ⇠Beta(1,1).\nWhen choosing which drug to give to the next patient we sample a value from each Beta and select\nthe drug with the largest sampled value. We administer the drug, observe if the patient was cured, and\nupdate the Beta that represents our belief about the probability of the drug being successful. Repeat for\nthe next patient.\na. (4 points) Imagine you try the ﬁrst drug on 7 patients. It cures 5 patients and has no effect on 2. What\nis your updated belief about the drug’s probability of success, q1? Your answer should be a Beta.\nb. (4 points) After running Thomspons’ Algorithm 50 times, you end up with the following Beta distribu-\ntion for the second drug: q2 ⇠Beta(16,14). What is the variance of a value sampled from the second\ndrug’s Beta?\n10\n\nMethod\nDescription\nV = sampleBeta(a, b)\nReturns a real number value in the range [0, 1] with probability deﬁned by a\nPDF of a Beta with parameters a and b.\nR = giveDrug(i)\nGives drug i to the next patient. Returns a True if the drug was successful in\ncuring the patient or False if it was not. Throws an error if i /2 {1,2}.\nI = argmax(list)\nReturns the index of the largest value in the list.\nc. (10 points) Write pseudocode to administer either of the two drugs to 100 patients using Thompson’s\nSampling Algorithm. Use functions from the table above. Your code should execute giveDrug 100\ntimes.\n11\n\nd. (4 points) After running Thomspons’ Algorithm 100 times, you end up with the following Beta distri-\nbutions:\nq1 ⇠Beta(11,11),\nq2 ⇠Beta(76,6)\nWhat is the expected probability of success for each drug?\ne. (8 points) Write pseudocode to compute the p-value for the difference in expected probability of success\nbetween drug2 and drug1 observed from the 100 samples in part (d). Ie, under the null hypothesis\nassumption that all 100 samples are identically distributed, calculate the probability of a difference in\nexpected probabilities that is greater than or equal to the one observed. Describe, don’t implement any\nhelper methods you want to use.\n12\n\n5\nExpected Maximum Uniform [12 points]\nLet X ⇠Uni(0,1) and Y ⇠Uni(0,1) be independent random variables. What is E[max(X, Y)]? Gain most of\nthe points by writing an expression that you could solve using Wolfram Alpha. Provide a numerical answer\nfor full credit.\n13\n\n6\nGaussian Na¨ıve Bayes [16 points]\nThe version of Na¨ıve Bayes that we used in class worked great when the feature values were all binary. If\ninstead they are continuous, we are going to have to rethink how we estimate of the probability of the ith\nfeature given the label, P(Xi|Y). The ubiquitous solution is to make the Gaussian Input Assumption that:\nIf Y = 0, then Xi ⇠N(µi,0,s2\ni,0)\nIf Y = 1, then Xi ⇠N(µi,1,s2\ni,1)\nFor each feature, there are 4 parameters (mean and variance for both class labels). There is a ﬁnal parameter,\np, which is the estimate of P(Y = 1). Assume that you have trained on data with two input features and have\nalready estimated all 9 parameter values:\nFeature i\nµi,0\nµi,1\ns2\ni,0\ns2\ni,1\n1\n5\n0\n1\n1\n2\n0\n3\n1\n4\np = 0.6\nWrite an inequality to predict whether Y = 1 for input [X1 = 5,X2 = 3]. Use the Na¨ıve Bayes assumption and\nthe Gaussian Input Assumption. Your expression must be in terms of the learned parameters (either using\nnumbers or symbols is ﬁne):\n14\n\n7\nThe Most Important Features [32 points]\nLet’s explore saliency, a measure of how important a feature is for classiﬁcation. We deﬁne the saliency of\nthe ith input feature for a given example (x,y) to be the absolute value of the partial derivative of the log\nlikelihood of the sample prediction, with respect to that input feature\n\"\" ∂LL\n∂xi\n\"\". In the images below, we show\nboth input images and the corresponding saliency of the input features (in this case, input features are pixels):\nFirst consider a trained logistic regression classiﬁer with weights q. Like the logistic regression classiﬁer that\nyou wrote in your homework it predicts binary class labels. In this question we allow the values of x to be\nreal numbers, which doesn’t change the algorithm (neither training nor testing).\na. (4 points) What is the Log Likelihood of a single training example (x,y) for a logistic regression\nclassiﬁer?\nb. (8 points) Calculate is the saliency of a single feature (xi) in a training example (x,y).\nc. (5 points) Show that the ratio of saliency for features i and j is the ratio of the absolute value of their\nweights |qi|\n|q j|.\n15\n\nd. (10 points) Saliency is much more interesting for deep learning networks. Consider a simple deep\nlearning network with two hidden neurons that predicts P(Y = 1|X = x) ⇡ˆy:\nh1 = s\n⇣n\nÂ\ni=1\nq (h)\ni,1 xi\n⌘\nh2 = s\n⇣n\nÂ\ni=1\nq (h)\ni,2 xi\n⌘\nˆy = s\n⇣\nq (y)\n1 h1 +q (y)\n2 h2\n⌘\nCalculate the saliency of a single feature (xi) in a training example (x,y).\ne. (5 points) Weights are not invariant to units of measurement. Imagine your logistic regression classiﬁer\nhas weight values: [q0 = 10,q1 = −4,q2 = 8]. What values do you expect for the weights in a newly\ntrained model if we change the units of the last feature (x2) to be centimeters instead of meters? That\nmeans all the values x2 will be 100x times as large.\nq0 =\nq1 =\nq2 =\n16\n\n[End of exam]\nThat’s all folks! Missing data requires probability theory to understand. Income distributions give us a way\nto measure inequality. Timing attacks are a real thing... watch your code. Thompson Sampling is a hot new\nalgorithm for N-Armed-Bandit questions, a key part of MCTS, the algorithm used in AlphaGoZero.\nGaussian Na¨ıve bayes is good times for continuous inputs and saliency is a new tool for understanding deep\nneural nets. Thank you all for the wonderful quarter.\n17\n\n.\nContinuous Random Variable Reference\nUniform\nAll intervals in the range (of the same length) are equally probable.\nNotation\nX ⇠Uni(a,b)\nRange(X):\nx 2 R, a x b\npdf:\nf(X = k) =\n1\nb−a\nE[X]:\n1\n2(a+b)\nVar(X):\n1\n12(b−a)2\nNormal\nOften used to represent real-valued random variables whose distributions are not known.\nNotation\nX ⇠N(µ,s2)\nRange(X):\nx 2 R\npdf:\nf(X = k) =\n1\np\n2ps2 e\n(k−µ)2\n2s2\ncdf:\nF(k) = f( k−µ\ns )\nE[X]:\nµ\nVar(X):\ns2\nBeta\nOften used to represent a distribution of belief of a probability.\nNotation\nX ⇠Beta(a,b)\nRange(X):\nx 2 R, 0 x 1\npdf:\nf(X = k) = x(a−1)(1−x)(b−1)\nE[X]:\na\na+b\nVar(X):\nab\n(a+b)2(a+b+1)\n18\n\nStandard Normal Table\nAn entry in the table is the area under the curve to the left of z, P(Z z) = F(z).\nZ",
+      "source_type": "exam_question",
+      "document_name": "FinalFall2017",
+      "score": 0.34696725010871887
+    },
+    {
+      "chunk_id": "cs109_midtermfall2017soln_q49_376e2f8f80",
+      "text": "2\n)\n6\n\n3\n500 year ﬂood planes [20 points]\nThe Huffmeister ﬂoodplane in Houston has historically been estimated to ﬂood at an average rate of 1 ﬂood\nevery 500 years. A ﬂood plane with that rate of ﬂooding is called a “500 year” ﬂoodplane.\na. (4 points) What is the probability of observing at least 3 ﬂoods in 500 years?\nPoisson RV with λ = 1 (ﬂood per 500-year period)\nP(X ≥3) = 1−\n2\n∑\ni=0\nP(X = i)\n= 1−\n2\n∑\ni=0\nλ i\ni! e−λ\n= 1−5\n2e\nb. (5 points) What is the probability that a ﬂood will occur within the next 100 years?\nY ∼Exp( 1\n500)\nF(Y) = 1−e−λY\nF(100) = 1−e−100\n500 = 1−e−1\n5\n7\n\nc. (5 points) What is the expected number of years until the next ﬂood?\nE[Y] = 1\nλ = 500\nusing λ =\n1\n500 in terms of one year\nd. (6 points) Say there are 10 independent 500 year ﬂoodplanes. What is the probability that more than 2\nof them will have at least three ﬂoods in a given year?\nFirst ﬁnd the probability p∗that a single ﬂoodplane has at least 3 ﬂoods:\nX ∼Poisson( 1\n500) = number of ﬂoods in a ﬂoodplane in one year\np∗= P(X ≥3) = 1−\n2\n∑\ni=0\nλ i\ni! e−λ\np∗= 1−\n2\n∑\ni=0\n( 1\n500)i\ni!\ne−1\n500\nThen treat each ﬂoodplane as an independent trial of a binomial RV with n = 10 and p = p∗:\nY ∼Bin(10, p∗) = number of ﬂoodplanes with X ≥3\nP(Y > 2) =\n10\n∑\ni=3\n\u001210\ni\n\u0013\n(p∗)i(1−p∗)10−i\n8\n\n4\nGaussian Mixture Model [22 points]\nYou are looking at the distribution of the number of ﬂowers observed on rose bushes (a ﬂowering curve)\nand you think you have made a discovery! Based on your ﬂowering curve, you have reason to believe that\nthere are two distinct species of roses. The species look the same but have different ﬂowering patterns. The\nobserved probability density of number of ﬂowers is a “mixture”.\nYou believe that:\n• Each ﬂower is either from species A or species B.\n• There are two times as many bushes of species A than there are of species B.\n• The number of ﬂowers on a bush for species A: XA ∼N(µ = 4,σ2 = 4).\n• The number of ﬂowers on a bush for species B: XB ∼N(µ = 2,σ2 = 9)\na. (4 points) What is the probability that a rose bush from species A has more than 3 ﬂowers?\nSolution:\nNote that for both a and b, you have to use continuity correction because you are using the Gaussian\ndistribution to approximate a discrete distribution:\nP(XA > 3) = 1−P(XA <= 3)\n= 1−φ\n\u00103.5−4\n2\n\u0011\n= 1−φ(−0.25)\n= φ(0.25)\n= 0.5987\nb. (4 points) What is the probability that a rose bush from species B has more than 3 ﬂowers?\nSolution:\nP(XB > 3) = 1−P(XB <= 3)\n= 1−φ\n\u00103.5−2\n3\n\u0011\n= 1−φ(0.5)\n= 0.3085\n9\n\nc. (7 points) Without knowing which species a rose bush is from, what is the probability that a rose bush\nhas more than 3 ﬂowers? You can use pa for your answer to part (a) and pb for your answer to part (b).\nSolution:\nP(X > 3) = P(X > 3,X = A)+P(X > 3,X = B)\n= P(X > 3|X = A)P(X = A)+P(X > 3|X = B)P(X = B)\n= P(XA > 3)P(X = A)+P(XB > 3)P(X = B)\n= pa(2\n3)+ pb(1\n3)\nd. (7 points) A rosebush has 3 ﬂowers. How many times more likely is the rosebush to be from species\nB?\nP(X = B|X = 3)\nP(X = A|X = 3) = P(X = B,X = 3)\nP(X = A,X = 3)\n= P(X = 3|X = B)P(X = B)\nP(X = 3|X = A)P(X = A)\n= ε f(X = 3|X = B)P(X = B)\nε f(X = 3|X = A)P(X = A)\n=\n1\n√\n2π9e\n(3−2)2\n2·9\n· 1\n3\n1\n√\n2π4e\n(3−4)2\n2·4\n· 2\n3\n= 1\n3e−5\n72 ≈0.357\n10\n\n5\nCurse of Dimensionality [20 points]\nIn machine learning projects we often work in high dimensions, and high dimension spaces have some sur-\nprising probabilistic properties.\nA random value Xi is a Uni(0, 1).\nA random point of dimension d is a list of d random values: [X1 ...Xd].\na. (4 points) A random value Xi is close to an edge if Xi is less than 0.01 or Xi is greater than 0.99. What\nis the probability that a random value is close to an edge? Solutions:Let E be the event that a random\nvalue is close to an edge. P(E) = P(Xi < 0.01)+P(Xi > 0.99) = 0.02\nb. (4 points) A random point [X1,X2,X3] of dimension 3 is close to an edge if any of it’s values are close\nto an edge. What is the probability that a 3 dimensional point is close to an edge?\nSolutions:The event is equivalent to the complement of none of the dimensions of the point is close to\nan edge, which is: 1−(1−P(E))3 = 1−0.983\nc. (4 points) A random point [X1,...X100] of dimension 100 is close to an edge if any of it’s values are\nclose to an edge. What is the probability that a 100 dimensional point is close to an edge?\nSolutions: Similarly, it is: 1−(1−P(E))100 = 1−0.98100\n11\n\n6\nGoodbye integral, my old friend [14 points]\nWhen working with continuous random variables it can get hard to calculate probabilities by hand. For\nexample consider a random variable X that can takes on values in the range 0 ≤x ≤1, and has probability\ndensity function:\nf(x) = 1\nK ·g(x)\nWhere g(x) is some terribly nasty and non-integratable function. For your sanity I won’t even write out g. It\nis that bad. In such a situation, we can turn to the power of computers to help us (you may assume that while\ng is impossible to integrate, it is straightforward to code g as a function in a programming language). The\nkey idea that we are going to use is called Monte Carlo Integration:\nGenerate N values (X1,X2,...,XN) uniformly sampled over a range (a,b). We can approximate the\nintegral of a function h over (a,b) as:\nb\nZ\na\nh(x) dx ≈(b−a)\nN\nN\n∑\ni=1\nh(Xi)\nPretty amazing! Why did we bother with integrals at all? This question requires you to write pseudo code.\nSuch code does not have to compile, but it should be speciﬁc enough that a knowledgable programmer could\nimplement what you have described. You may use a function random(a, b) which returns a sample from\nX ∼Uni(a,b).\na. (7 points) How could you use Monte Carlo Integration to ﬁnd K? Give your answer as pseudo-code.\nsum = 0\nfor i in range(N):\nsum += g(random(0, 1))\nreturn sum / N\n12\n\nb. (7 points) Given that you know K, how could you ﬁnd P(X < 0.5)? Again, provide pseudo-code.\nsum = 0\nfor i in range(N):\nsum += g(random(0, .5))\nreturn .5 * sum / (N * K)\nThat’s the last question of the exam! We hope you had fun. Monte carlo sampling techniques (aka\nparticle ﬁlters) are an increasingly proliﬁc tool for solving more complex probability questions.\nGaussian Mixture Models are a workhorse for unsupervised clustering. The Curse of Dimensionality\nand the Wisdom of the Crowds are real world phenomena that are worth understanding.\n13\n\nStandard Normal Table\nAn entry in the table is the area under the curve to the left of z, P(Z ≤z) = Φ(z).\nZ",
+      "source_type": "exam_question",
+      "document_name": "MidtermFall2017Soln",
+      "score": 0.34665748476982117
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p15_p16_ba9633216f",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nClassification: Predicting class labels\n16\n…\nFeature 1 Feature 2\nFeature 300\nOutput\nPatient 1  1 \n0 \n… \n1 \n 1 \nPatient 2  1 \n1 \n… \n0 \n 0 \n     …\nPatient 𝑛  0 \n0 \n… \n1 \n 1 \n…\n…\n𝑿= 𝑋!, 𝑋\", 𝑋#, … , 𝑋#$$\n\nBrute Force Bayes\n17",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.34516641497612
+    },
+    {
+      "chunk_id": "cs109_09_continuous_rv_annotated_p24_1c53d31387",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFor a random variable 𝑋, the cumulative distribution function (CDF) is \ndefined as\n𝐹𝑎= 𝐹R 𝑎= 𝑃𝑋≤𝑎, where −∞< 𝑎< ∞\nFor a discrete RV 𝑋, the CDF is:\n𝐹𝑎= 𝑃𝑋≤𝑎=\nI\nall JS,\n𝑝(𝑥)\nFor a continuous RV 𝑋, the CDF is:\n𝐹𝑎= 𝑃𝑋≤𝑎= *\nCT\n,\n𝑓𝑥𝑑𝑥\nCumulative Distribution Function (CDF)\n25\nCDF is a probability, \nthough PDF is not.\nIf you learn to use \nCDFs, you can avoid \nintegrating the PDF.\n𝑓𝑥\n𝑥\n𝑎\n𝐹𝑎",
+      "source_type": "lecture_slide",
+      "document_name": "09 continuous rv annotated",
+      "score": 0.3402077257633209
+    },
+    {
+      "chunk_id": "cs109_practicemidterm_preamble_638eba6eb0",
+      "text": "– 1 –\nChris Piech\nCS 109\nOct 27, 2017\nPractice Midterm Examination\nProblems by Will Monroe, Mehran Sahami and Chris Piech\nThis is a closed calculator/computer exam. You are, however, allowed to use notes or a textbook\nin the exam. The last page of the exam is a Standard Normal Table, in case you need it. You have\n2 hours (120 minutes) to take the exam. The exam is 120 points, meant to roughly correspond to\none point per minute of the exam. You may want to use the point allocation for each problem as an\nindicator for pacing yourself on the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions\nand parameter values you used, where appropriate. It is ﬁne for your answers to include summations,\nproducts, factorials, exponentials, and combinations, unless the question speciﬁcally asks for a\nnumeric quantity or closed form. Where numeric answers are required, the use of fractions is ﬁne.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than\nI have in my entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\n\n– 2 –",
+      "source_type": "exam_question",
+      "document_name": "PracticeMidterm",
+      "score": 0.3343479633331299
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p14_2dc0520d2c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSingle variable CDF, graphically\n15\nlim\n'→!\"𝐹- 𝑥= 0\nlim\n'→.\"𝐹) 𝑥= 1\n𝐹! 𝑥= 𝑃𝑋≤𝑥\n𝑓! 𝑥\nReview",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.3298380374908447
+    },
+    {
+      "chunk_id": "cs109_02_combinatorics_annotated_p37_f7088c93d7",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSummary of Combinatorics\n38\nSort objects\n(permutations)\nDistinct\n(distinguishable)\nSome\ndistinct\nDistinct\nIndistinct\nDistinct\n1 group\n𝑟 groups\nCounting tasks on 𝑛 objects\nChoose 𝑘 objects\n(combinations)\nPut objects in 𝑟 \nbuckets\n𝑛\n𝑘\n𝑛\n𝑛\", 𝑛#, ⋯, 𝑛$ \n𝑟+\n𝑛!\n𝑛!\n𝑛\"! 𝑛#! ⋯𝑛$!",
+      "source_type": "lecture_slide",
+      "document_name": "02 combinatorics annotated",
+      "score": 0.3276844024658203
+    },
+    {
+      "chunk_id": "cs109_02_combinatorics_annotated_p35_10a560e2f5",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSummary of Combinatorics\n36\nSort objects\n(permutations)\nDistinct\n(distinguishable)\nSome\ndistinct\nDistinct\nIndistinct\nDistinct\n1 group\n𝑟 groups\nCounting tasks on 𝑛 objects\nChoose 𝑘 objects\n(combinations)\nPut objects in 𝑟 \nbuckets\n𝑛\n𝑘\n𝑛\n𝑛\", 𝑛#, ⋯, 𝑛$ \n𝑛!\n𝑛!\n𝑛\"! 𝑛#! ⋯𝑛$!",
+      "source_type": "lecture_slide",
+      "document_name": "02 combinatorics annotated",
+      "score": 0.3262330889701843
+    },
+    {
+      "chunk_id": "cs109_practicemidterm_q0_58ea894b39",
+      "text": "00",
+      "source_type": "exam_question",
+      "document_name": "PracticeMidterm",
+      "score": 0.3261597752571106
+    }
+  ],
+  "built_at": "2026-04-28T05:13:14Z"
+}

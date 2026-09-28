@@ -1,0 +1,166 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/18_clt_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/18_clt_annotated.pdf",
+  "sha256": "1d00b931340a2160d7b77c90c04aa792ede6e3a469bde97f9231ba7e463ebcc6",
+  "title_guess": "18 clt annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "18: Central Limit \nTheorem\nJerry Cain\nMay 10th, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 79
+    },
+    {
+      "page_index": 1,
+      "text": "iid Random \nVariables\n2",
+      "char_count": 23
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIndependence of multiple random variables\nWe have independence of 𝑛 discrete random variables 𝑋!, 𝑋\", … , 𝑋# if\n \nfor all 𝑥!, 𝑥\", … , 𝑥#:\nWe have independence of 𝑛 continuous random variables 𝑋!, 𝑋\", … , 𝑋# if\n \nfor all 𝑥!, 𝑥\", … , 𝑥#:\n3\nReview\n𝑝!!,!\",…,!# 𝑥$, 𝑥%, … , 𝑥& = &\n'($\n&\n𝑝!$ 𝑥'\n𝑃𝑋$ = 𝑥$, 𝑋% = 𝑥%, … , 𝑋& = 𝑥& = &\n'($\n&\n𝑃𝑋' = 𝑥'\n𝑃𝑋$ ≤𝑥$, 𝑋% ≤𝑥%, … , 𝑋& ≤𝑥& = &\n'($\n&\n𝑃𝑋' ≤𝑥'\n𝑓!!,!\",…,!# 𝑥$, 𝑥%, … , 𝑥& = &\n'($\n&\n𝑓!$ 𝑥'",
+      "char_count": 501
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\ni.i.d. random variables\nConsider 𝑛 variables 𝑋!, 𝑋\", … , 𝑋#.\n𝑋!, 𝑋\", … , 𝑋# are independent and identically distributed if\n• 𝑋!, 𝑋\", … , 𝑋# are independent, and\n• All have the same PMF (if discrete) or PDF (if continuous).\n⇒ 𝐸𝑋$ = 𝜇 for 𝑖= 1, … , 𝑛\n⇒ Var 𝑋$ = 𝜎\" for 𝑖= 1, … , 𝑛\n4\nSame thing:\ni.i.d.\niid\nIID",
+      "char_count": 380
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nQuick check\nAre 𝑋!, 𝑋\", … , 𝑋# iid with the following distributions?\n1.  𝑋$~Exp 𝜆, 𝑋$ independent\n2.  𝑋$~Exp 𝜆$ , 𝑋$ independent\n3.  𝑋$~Exp 𝜆, 𝑋! = 𝑋\" = ⋯= 𝑋#\n4.  𝑋$~Bin 𝑛$, 𝑝, 𝑋$ independent\n5",
+      "char_count": 266
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nQuick check\nAre 𝑋!, 𝑋\", … , 𝑋# iid with the following distributions?\n1.  𝑋$~Exp 𝜆, 𝑋$ independent\n2.  𝑋$~Exp 𝜆$ , 𝑋$ independent\n3.  𝑋$~Exp 𝜆, 𝑋! = 𝑋\" = ⋯= 𝑋#\n4.  𝑋$~Bin 𝑛$, 𝑝, 𝑋$ independent\n6\n✅\n❌ (unless 𝜆' equal)\n❌ dependent: 𝑋$ = 𝑋% = ⋯= 𝑋&\n❌ (unless 𝑛' equal)\nNote underlying Bernoulli RVs are iid!",
+      "char_count": 376
+    },
+    {
+      "page_index": 6,
+      "text": "Central Limit \nTheorem\n7\nsource",
+      "char_count": 31
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nAs 𝑛→∞\nConsider 𝑛 independent and identically distributed (iid) variables 𝑋!, 𝑋\", … , 𝑋# \nwith 𝐸𝑋$ = 𝜇 and Var 𝑋$ = 𝜎\".\n!\n!\"#\n$\n𝑋! ~𝒩(𝑛𝜇, 𝑛𝜎%)\nThe sum of 𝑛 iid random variables is normally distributed with mean 𝑛𝜇 \nand variance 𝑛𝜎\".\nCentral Limit Theorem\n8",
+      "char_count": 329
+    },
+    {
+      "page_index": 8,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSum of dice rolls\nRoll 𝑛 independent dice. Let 𝑋$ be the outcome of roll 𝑖. 𝑋% are iid\n9\n0\n'($\n$\n𝑋'\n2\n4\n6\n8\n10\n12\n0.0\n0.1\n0.2\n1\n2\n3\n4\n5\n6\n0.0\n0.1\n0.2\n3 5 7 9 11 13 15 17\n0\n'($\n%\n𝑋'\n0\n'($\n)\n𝑋'\nSum of 1\ndie roll\nSum of 2\ndice rolls\nSum of 3\ndice rolls\nHow many ways\ncan you roll a total\nof 3 vs 11?",
+      "char_count": 369
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCLT explains a lot\n10\n0\n'($\n&\n𝑋' ~𝒩(𝑛𝜇, 𝑛𝜎%)\n0\n1\n2\n3\n4\n5\n𝑛= 5\nGalton Board, by Sir Francis Galton\n(1822-1911)\nAs 𝑛→∞\nThe sum of 𝑛 iid random variables is normally \ndistributed with mean 𝑛𝜇 and variance 𝑛𝜎%.",
+      "char_count": 279
+    },
+    {
+      "page_index": 10,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCLT explains a lot\n11\n0\n'($\n&\n𝑋' ~𝒩(𝑛𝜇, 𝑛𝜎%)\nNormal approximation of Binomial\nSum of iid Bernoulli RVs ≈ Normal\n𝑋~Bin(𝑛, 𝑝)\n𝑋= 0\n'($\n&\n𝑋'\n𝑋~𝒩𝑛𝑝, 𝑛𝑝(1 −𝑝)\nProof:\n𝑋~𝒩𝑛𝜇, 𝑛𝜎\"\nCLT, as 𝑛→∞ \n(substitute mean,\nvariance of Bernoulli) \nLet 𝑋'~Ber(𝑝) for 𝑖= 1, … , 𝑛, where 𝑋' are iid\n𝐸𝑋' = 𝑝,  Var 𝑋' = 𝑝(1 −𝑝) \nAs 𝑛→∞\nThe sum of 𝑛 iid random variables is normally \ndistributed with mean 𝑛𝜇 and variance 𝑛𝜎%.",
+      "char_count": 472
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCLT explains a lot\n12\n0\n'($\n&\n𝑋' ~𝒩(𝑛𝜇, 𝑛𝜎%)\nSample of\nsize 15,\nsum values\nDistribution of 𝑋'\nDistribution of ∑'($\n$* 𝑋'\nAs 𝑛→∞\nThe sum of 𝑛 iid random variables is normally \ndistributed with mean 𝑛𝜇 and variance 𝑛𝜎%.",
+      "char_count": 290
+    },
+    {
+      "page_index": 12,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCLT explains a lot\n13\n0\n'($\n&\n𝑋' ~𝒩(𝑛𝜇, 𝑛𝜎%)\nSample of\nsize 15,\naverage values\n(sample mean)\nDistribution of \n$\n$* ∑'($\n$* 𝑋'\nDistribution of 𝑋'\nAs 𝑛→∞\nThe sum of 𝑛 iid random variables is normally \ndistributed with mean 𝑛𝜇 and variance 𝑛𝜎%.",
+      "char_count": 314
+    },
+    {
+      "page_index": 13,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProof of CLT\n14\nThe sum of 𝑛 iid random variables is normally \ndistributed with mean 𝑛𝜇 and variance 𝑛𝜎%.\n0\n'($\n&\n𝑋' ~𝒩(𝑛𝜇, 𝑛𝜎%)\n• The Fourier Transform of a PDF is its characteristic function.\n• Take the characteristic function of the probability mass of the sample \ndistance from the mean, divided by standard deviation\n• Show that this approaches an\nexponential function in the limit as 𝑛→∞: \n• This function just happens to be the characteristic function of the \nStandard Normal, 𝑍~ 𝒩(0,1).\nSketch of Proof:\n𝑓𝑥= 𝑒01!\n\"\n(the full proof is beyond the scope of CS109)\nAs 𝑛→∞",
+      "char_count": 648
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSum of 𝑛 independent Uniform RVs\nLet 𝑋= ∑$2!\n#\n𝑋$ be sum of iid RVs, where 𝑋$~Uni 0,1 .\nFor different 𝑛, how close is the CLT approximation of 𝑃𝑋≤𝑛/3 ?\n15\n𝑛= 2:\n𝑃𝑋≤2/3 ≈0.2222\n𝑋≈𝑌~𝒩(𝑛𝜇, 𝑛𝜎\")\nExact\n𝑥\nPDF\nCLT approximation\n𝜇= 𝐸𝑋' = 1/2 \n𝜎% = Var 𝑋' = 1/12 \n⟹𝑌~𝒩(1, 1/6)\n𝑃𝑋≤2/3 ≈𝑃𝑌≤2/3\n= Φ 2/3 −1\n1/6\n≈0.2071",
+      "char_count": 378
+    },
+    {
+      "page_index": 15,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSum of 𝑛 independent Uniform RVs\nLet 𝑋= ∑$2!\n#\n𝑋$ be sum of iid RVs, where 𝑋$~Uni 0,1 .\nFor different 𝑛, how close is the CLT approximation of 𝑃𝑋≤𝑛/3 ?\n16\n𝑛= 5:\n𝑃𝑋≤5/3 ≈0.1017\n𝑋≈𝑌~𝒩(𝑛𝜇, 𝑛𝜎\")\nExact\n𝑥\nPDF\nCLT approximation\n𝜇= 𝐸𝑋' = 1/2 \n𝜎% = Var 𝑋' = 1/12 \n⟹𝑌~𝒩(5/2, 5/12)\n𝑃𝑋≤5/3 ≈𝑃𝑌≤5/3\n= Φ 5/3 −5/2\n5/12\n≈0.0984",
+      "char_count": 384
+    },
+    {
+      "page_index": 16,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSum of 𝑛 independent Uniform RVs\nLet 𝑋= ∑$2!\n#\n𝑋$ be sum of iid RVs, where 𝑋$~Uni 0,1 .\nFor different 𝑛, how close is the CLT approximation of 𝑃𝑋≤𝑛/3 ?\n17\n𝑛= 10:\n𝑃𝑋≤10/3 ≈0.0337\n𝑋≈𝑌~𝒩(𝑛𝜇, 𝑛𝜎\")\nExact\n𝑥\nPDF\nCLT approximation\n𝜇= 𝐸𝑋' = 1/2 \n𝜎% = Var 𝑋' = 1/12 \n⟹𝑌~𝒩(5, 5/6)\n𝑃𝑋≤10/3 ≈𝑃𝑌≤10/3\n= Φ 10/3 −5\n5/6\n≈0.0339",
+      "char_count": 383
+    },
+    {
+      "page_index": 17,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSum of 𝑛 independent Uniform RVs\nLet 𝑋= ∑$2!\n#\n𝑋$ be sum of iid RVs, where 𝑋$~Uni 0,1 .\nFor different 𝑛, how close is the CLT approximation of 𝑃𝑋≤𝑛/3 ?\n18\n𝑛= 10:\n𝑥\nPDF\n𝜇= 𝐸𝑋' = 1/2 \n𝜎% = Var 𝑋' = 1/12 \nMost books will tell you that CLT holds if 𝑛≥30, but it might hold for even smaller 𝑛 \ndepending on the distribution of your iid 𝑋'’s, particularly if they’re symmetric.\n𝑛= 5:\n𝑥\nPDF\n𝑛= 2:\n𝑥\nPDF",
+      "char_count": 468
+    },
+    {
+      "page_index": 18,
+      "text": "Sample \nStatistics\n19",
+      "char_count": 21
+    },
+    {
+      "page_index": 19,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhat about other functions?\n20\nK\n$2!\n#\n𝑋$ ~𝒩(𝑛𝜇, 𝑛𝜎\")\n?\nSum of iid RVs\nAverage of iid RVs\nMax of iid RVs\n(sample mean)\n?\nLet 𝑋!, 𝑋\", … , 𝑋# be iid, where 𝐸𝑋$ = 𝜇, Var 𝑋$ = 𝜎\". As 𝑛→∞:",
+      "char_count": 256
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhat about other functions?\n21\nK\n$2!\n#\n𝑋$ ~𝒩(𝑛𝜇, 𝑛𝜎\")\n?\nAverage of iid RVs\nMax of iid RVs\n(sample mean)\n?\nLet 𝑋!, 𝑋\", … , 𝑋# be iid, where 𝐸𝑋$ = 𝜇, Var 𝑋$ = 𝜎\". As 𝑛→∞:\nSum of iid RVs",
+      "char_count": 256
+    },
+    {
+      "page_index": 21,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDistribution of sample mean\nLet 𝑋!, 𝑋\", … , 𝑋# be iid, where 𝐸𝑋$ = 𝜇, Var 𝑋$ = 𝜎\". As 𝑛→∞:\nDefine:\n𝑌~𝒩𝑛𝜇, 𝑛𝜎\"  \nL𝑋=\n!\n# 𝑌 \nL𝑋~𝒩( ? , ? ) \n \n22\n3𝑋= 1\n𝑛6\n!\"#\n$\n𝑋! (sample mean)\n𝑌= 6\n!\"#\n$\n𝑋!\n(sum)\n(Linear transform of a Normal)\n(CLT, as 𝑛→∞)\n22\nThe average of iid random variables (i.e., \nsample mean) is normally distributed with \nmean 𝜇 and variance 𝜎%/𝑛.\n1\n𝑛0\n'($\n&\n𝑋' ~𝒩(𝜇, 𝜎%\n𝑛)\nDemo: http://onlinestatbook.com/stat_sim/sampling_dist/",
+      "char_count": 510
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n?\nWhat about other functions?\n23\nK\n$2!\n#\n𝑋$ ~𝒩(𝑛𝜇, 𝑛𝜎\")\nAverage of iid RVs\nMax of iid RVs\n(sample mean)\nLet 𝑋!, 𝑋\", … , 𝑋# be iid, where 𝐸𝑋$ = 𝜇, Var 𝑋$ = 𝜎\". As 𝑛→∞:\nSum of iid RVs\n1\n𝑛K\n$2!\n#\n𝑋$ ~𝒩(𝜇, 𝜎\"\n𝑛)\nGumbel\n(see Fisher-Tippett Gnedenko Theorem)",
+      "char_count": 325
+    },
+    {
+      "page_index": 23,
+      "text": "Exercises\n24",
+      "char_count": 12
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDice game\nYou will roll 10 6-sided dice 𝑋!, 𝑋\", … , 𝑋!8 .\n• Let 𝑋= 𝑋! + 𝑋\" + ⋯+ 𝑋!8, the total value of all 10 rolls.\n• You win if 𝑋≤25 or 𝑋≥45.\n25\n,\n!\"#\n$\n𝑋! ~𝒩(𝑛𝜇, 𝑛𝜎%)\nAs 𝑛→∞:\nTo the demo!",
+      "char_count": 264
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDice game\nYou will roll 10 6-sided dice 𝑋!, 𝑋\", … , 𝑋!% .\n• Let 𝑋= 𝑋! + 𝑋\" + ⋯+ 𝑋!%, the total value of all 10 rolls.\n• You win if 𝑋≤25 or 𝑋≥45.\nAnd now the truth (according to the CLT)…\n26\n,\n!\"#\n$\n𝑋! ~𝒩(𝑛𝜇, 𝑛𝜎%)\nAs 𝑛→∞:\n1. Define RVs and\nstate goal.\n2. Solve.\n𝐸𝑋' = 3.5, \nVar 𝑋' = 35/12 \nApproximate:\n𝑃𝑋≤25 or 𝑋≥45\nWant:\n?",
+      "char_count": 396
+    },
+    {
+      "page_index": 26,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDice game\nYou will roll 10 6-sided dice 𝑋!, 𝑋\", … , 𝑋!% .\n• Let 𝑋= 𝑋! + 𝑋\" + ⋯+ 𝑋!%, the total value of all 10 rolls.\n• You win if 𝑋≤25 or 𝑋≥45.\nAnd now the truth (according to the CLT)…\n27\n,\n!\"#\n$\n𝑋! ~𝒩(𝑛𝜇, 𝑛𝜎%)\nAs 𝑛→∞:\n1. Define RVs and\nstate goal.\n2. Solve.\n𝐸𝑋' = 3.5, \nVar 𝑋' = 35/12 \n𝑋≈𝑌~𝒩(10 3.5 , 10 35/12 )\nApproximate:\n𝑃𝑋≤25 or 𝑋≥45\nWant:\n1 −𝑃25.5 ≤𝑌≤44.5\nor\n𝑃𝑌≤25.5 + 𝑃𝑌≥44.5",
+      "char_count": 458
+    },
+    {
+      "page_index": 27,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDice game\nYou will roll 10 6-sided dice 𝑋!, 𝑋\", … , 𝑋!% .\n• Let 𝑋= 𝑋! + 𝑋\" + ⋯+ 𝑋!%, the total value of all 10 rolls.\n• You win if 𝑋≤25 or 𝑋≥45.\nAnd now the truth (according to the CLT)…\n28\n,\n!\"#\n$\n𝑋! ~𝒩(𝑛𝜇, 𝑛𝜎%)\nAs 𝑛→∞:\n1. Define RVs and\nstate goal.\n2. Solve.\n𝐸𝑋' = 3.5, \nVar 𝑋' = 35/12 \n𝑋≈𝑌~𝒩(10 3.5 , 10 35/12 )\nApproximate:\n𝑃𝑋≤25 or 𝑋≥45\nWant:\n𝑃𝑌≤25.5 + 𝑃𝑌≥44.5\n= Φ\n25.5 −35\n10 35/12\n+\n1 −Φ\n44.5 −35\n10 35/12\n \n≈Φ −1.76 + 1 −Φ 1.76\n ≈1 −0.9608 + 1 −0.9608  = 0.0786",
+      "char_count": 542
+    },
+    {
+      "page_index": 28,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDice game\nYou will roll 10 6-sided dice 𝑋!, 𝑋\", … , 𝑋!8 .\n• Let 𝑋= 𝑋! + 𝑋\" + ⋯+ 𝑋!8, the total value of all 10 rolls.\n• You win if 𝑋≤25 or 𝑋≥45.\nAnd now the truth (according to the CLT)…\n29\n,\n!\"#\n$\n𝑋! ~𝒩(𝑛𝜇, 𝑛𝜎%)\nAs 𝑛→∞:\n0\n0.02\n0.04\n0.06\n0.08\n10\n20\n30\n40\n50\n60\n≈𝑃𝑌≤25.5 + 𝑃𝑌≥44.5\n≈0.0786\n(via CLT)\n𝑃𝑋≤25 or 𝑋≥45 = 0.0780\n(exact, by computer)\nCheck out \nthe code!\n𝑃𝑋≤25 or 𝑋≥45 ≈0.0776\n(sampling via computer)",
+      "char_count": 481
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSummary: Working with the CLT\n30\n⚠\n If 𝑋' is discrete:\nUse the continuity \ncorrection on 𝑌!\nK\n$2!\n#\n𝑋$ ~𝒩(𝑛𝜇, 𝑛𝜎\")\n1\n𝑛K\n$2!\n#\n𝑋$ ~𝒩(𝜇, 𝜎\"\n𝑛)\nSum of iid RVs\nAverage of iid RVs\n(sample mean)\nLet 𝑋!, 𝑋\", … , 𝑋# iid, where 𝐸𝑋$ = 𝜇, Var 𝑋$ = 𝜎\". As 𝑛→∞:",
+      "char_count": 321
+    },
+    {
+      "page_index": 30,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNext time\nCentral Limit Theorem:\n• Sample mean L𝑋 ~𝒩𝜇, 𝜎\"/𝑛\n• If we know 𝜇 and 𝜎\", we can compute probabilities on\nsample mean L𝑋 of a given sample size 𝑛\nIn real life:\n• Yes, the CLT still holds. It always holds!\n• But we often don’t know 𝜇 or 𝜎\" of our original distribution\n• However, we can collect data (a sample of size 𝑛)\n• How can we estimate the values 𝜇 and 𝜎\" from our sample? And how \nreliable are those estimates?\n31\n…until next time!",
+      "char_count": 520
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:58Z"
+}

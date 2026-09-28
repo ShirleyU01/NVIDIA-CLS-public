@@ -1,0 +1,1280 @@
+{
+  "topic_id": "linear_regression",
+  "topic_name": "Linear Regression and Optimization",
+  "course": "CS109",
+  "model": "gpt-5.4",
+  "questions": [
+    {
+      "question_id": "CS109_linear_regression_0001",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Suppose you are fitting a 1-D linear regression model to predict sea level from year using the model Y = aX + b. A classmate says, \u201cIf our real goal is prediction, there is no reason to talk about likelihood or random noise at all; just fit the best line by squared error.\u201d Explain the modeling difference between the MSE view and the MLE view, and then state when they lead to the same fitted parameters.",
+      "expected_answer": "A strong answer should distinguish the objectives. In the MSE view, we directly choose a and b to minimize the expected squared error between Y and the prediction aX+b. In the MLE view, we explicitly model Y as aX+b+Z, where the error term Z is a random variable, and then choose parameters that maximize the conditional likelihood of the observed data. The student should explain that MLE requires an assumption about the noise distribution, and for linear regression the standard assumption is Gaussian noise with mean 0 and variance sigma squared. Under that Gaussian error assumption, maximizing the log-likelihood is equivalent to minimizing the sum of squared residuals, so the MLE and MSE estimators coincide.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p24_9ec31b7cac",
+        "cs109_24_gradient_ascent_annotated_p25_66b810ae17",
+        "cs109_24_gradient_ascent_annotated_p16_da2809e7bf"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains MSE as minimizing squared deviation of prediction from Y",
+          "Explains MLE as modeling Y = aX+b+Z with random noise and maximizing conditional likelihood",
+          "States the Gaussian noise assumption clearly",
+          "Concludes that under Z ~ N(0, sigma^2), MSE and MLE give the same parameters"
+        ],
+        "partial_credit": [
+          "Mentions that MSE and MLE are related but does not explain the noise model",
+          "Says Gaussian errors make them equivalent but does not justify why",
+          "Describes one approach well but the other vaguely"
+        ],
+        "common_mistakes": [
+          "Claiming MLE never needs a distributional assumption",
+          "Saying MSE always equals MLE regardless of noise model",
+          "Confusing prediction error on one point with a probabilistic model for all observations"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the noise were not Gaussian but had heavy tails, what part of your argument would break first?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you rewrite the model in a way that makes the random component explicit?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from linear regression; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming MLE never needs a distributional assumption. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0002",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "You decide to train linear regression by gradient ascent on the objective h(a,b) = -\u03a3_i (y_i - (ax_i + b))^2. Without plugging in any numbers, derive the batch gradients with respect to a and b, and explain in words why the gradient for b does not involve x_i except through the residual.",
+      "expected_answer": "The student should write the residual as diff_i = y_i - (ax_i + b). Then h(a,b) = -\u03a3 diff_i^2. Differentiating gives \u2202h/\u2202a = \u03a3 2 diff_i x_i and \u2202h/\u2202b = \u03a3 2 diff_i. The explanation is that b is the intercept, so it shifts every prediction equally by 1 unit per unit change in b; therefore each example contributes through the residual times the derivative of ax_i+b with respect to b, which is 1. By contrast, the slope a changes the prediction proportionally to x_i, so x_i appears explicitly in \u2202h/\u2202a.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p45_5bd1de5e3d",
+        "cs109_24_gradient_ascent_annotated_p52_p53_7b39319c3c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines residual or equivalent quantity",
+          "Correctly gives \u2202h/\u2202a = \u03a3 2(y_i-ax_i-b)x_i",
+          "Correctly gives \u2202h/\u2202b = \u03a3 2(y_i-ax_i-b)",
+          "Interprets derivative with respect to b as scaling by 1 because intercept affects all predictions equally"
+        ],
+        "partial_credit": [
+          "Gets one gradient right but misses a factor or sign on the other",
+          "Provides formulas without interpretation",
+          "Explains intercept idea informally but not mathematically"
+        ],
+        "common_mistakes": [
+          "Using gradient descent sign while claiming ascent",
+          "Omitting x_i from the gradient for a",
+          "Putting x_i into the derivative with respect to b"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If all x_i values were centered so their mean were zero, how would that affect your interpretation of the slope and intercept updates?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the derivative of ax_i+b with respect to b, and how does that enter the chain rule?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using gradient descent sign while claiming ascent. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0003",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A teammate implements batch gradient ascent for linear regression, but updates a immediately after computing gradient_a and then uses the new a while still computing gradient_b on the same pass through the data. They argue this should be even faster because the parameters are kept more current. Do you agree? Explain what quantity batch gradient ascent is supposed to approximate, and why mixing old and new parameter values changes the algorithm.",
+      "expected_answer": "No. In batch gradient ascent, the goal at each iteration is to compute the full gradient of the objective evaluated at a single parameter vector, say \u03b8_old, and then take one update step \u03b8_new = \u03b8_old + \u03b7\u2207h(\u03b8_old). If we update a before finishing gradient_b, then gradient_a is based on \u03b8_old but gradient_b is partly based on a newer parameter value, so the resulting pair is not the gradient of the objective at any single common point. That changes the algorithm and can distort the update direction. The correct batch procedure is to finish computing all gradient components using the old parameters, then update all parameters together.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p45_5bd1de5e3d",
+        "cs109_25_logistic_regression_annotated_p39_ffec3f322d",
+        "cs109_25_logistic_regression_annotated_p40_aed8750441"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that all gradient components should be computed at the same old parameter vector",
+          "Explains that mixing updated and non-updated parameters means the result is not the true batch gradient at one point",
+          "Connects this to why updates should happen after gradient accumulation is complete"
+        ],
+        "partial_credit": [
+          "Says it is wrong or unstable but without a precise reason",
+          "Mentions consistency of parameters but not gradient evaluation at one point"
+        ],
+        "common_mistakes": [
+          "Claiming any update order is equivalent in batch gradient methods",
+          "Confusing this with stochastic gradient methods without noting the difference",
+          "Saying the issue is only computational speed, not mathematical correctness"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you distinguish this incorrect implementation from a legitimate stochastic or coordinate-wise update scheme?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When we write \u03b8 += \u03b7\u00b7gradient, at what parameter value should that gradient have been evaluated?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from linear regression.",
+        "Watch out for this common trap: Claiming any update order is equivalent in batch gradient methods. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0004",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "In a lecture, someone says, \u201cWe use log-likelihood only because computers cannot multiply many probabilities.\u201d Give a more principled explanation for why optimization is usually done with the log-likelihood instead of the likelihood itself. Your answer should include both the argmax argument and the calculus advantage.",
+      "expected_answer": "A strong response should say that log is a strictly increasing function, so maximizing likelihood and maximizing log-likelihood give the same parameter estimate. The second key point is that the likelihood for IID data is a product across examples, while the log-likelihood turns that product into a sum. Sums are much easier to differentiate and reason about than long products, especially in gradient-based optimization. So the reason is not merely computational overflow; it is that the optimization becomes algebraically and conceptually simpler while preserving the same argmax.",
+      "source_chunk_ids": [
+        "cs109_finalwin2025soln_q10_24aea9540d",
+        "cs109_24_gradient_ascent_annotated_p31_815ed36bef"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States monotonicity of log implies same argmax",
+          "Explains product over IID datapoints becomes a sum under log",
+          "Explains that sums are easier to differentiate for gradient methods"
+        ],
+        "partial_credit": [
+          "Mentions numerical convenience only",
+          "Says log-likelihood is easier to optimize but omits why argmax is preserved"
+        ],
+        "common_mistakes": [
+          "Claiming log changes the maximizing parameter",
+          "Focusing only on underflow/overflow with no mathematical explanation",
+          "Confusing log of a sum with sum of logs"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would the same argument work if we replaced log by a non-monotone transformation? Why or why not?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If L(\u03b81) > L(\u03b82), what can you say about log L(\u03b81) versus log L(\u03b82)?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from linear regression; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming log changes the maximizing parameter. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0005",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are modeling annual environmental measurements with a linear model Y = aX + b + Z and Gaussian noise. A student claims that because the model is linear in X, there must always be a closed-form analytic MLE, so using gradient ascent is unnecessary. How would you respond using both the specific linear-regression case and the broader optimization lesson the course is trying to teach?",
+      "expected_answer": "The student should say that for ordinary linear regression with Gaussian noise, there is indeed an analytic solution, and under the Gaussian assumption it matches the least-squares estimator. However, the course still studies the MLE formulation and gradient ascent because optimization machinery generalizes to many models where analytic solutions are unavailable or inconvenient. In the linear-regression example, gradient ascent provides a concrete setting to learn how to define an objective, compute gradients, and iteratively improve parameters. So the response should separate 'there exists a closed form here' from 'iterative optimization is broadly useful and often necessary elsewhere.'",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p14_p15_30812cdf9c",
+        "cs109_24_gradient_ascent_annotated_p26_p27_d4d4dfc388",
+        "cs109_24_gradient_ascent_annotated_p12_379f3fec57"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Acknowledges analytic solution exists for standard linear regression",
+          "Explains gradient ascent is taught for general optimization beyond this case",
+          "Connects the example to defining objectives and computing gradients"
+        ],
+        "partial_credit": [
+          "Says gradient ascent is useful in general but does not reconcile that with linear regression having a closed form",
+          "Mentions analytic solution vaguely"
+        ],
+        "common_mistakes": [
+          "Claiming linear regression has no analytic solution at all",
+          "Claiming analytic solutions make optimization methods irrelevant",
+          "Failing to distinguish the specific case from the general lesson"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you name a type of model from the context where we do rely on iterative optimization rather than a simple closed-form solution?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the two training approaches for linear regression mentioned in the context?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming linear regression has no analytic solution at all. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0006",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Consider the one-parameter log-likelihood LL(\u03b1) whose derivative is n/\u03b1 - \u03a3_i log(1+x_i). Explain aloud how you would find the optimizer without running gradient ascent, and then justify that the point you find is a maximum rather than a minimum or saddle point.",
+      "expected_answer": "Set the derivative equal to zero: n/\u03b1 - \u03a3_i log(1+x_i) = 0, so \u03b1 = n / \u03a3_i log(1+x_i). Then check the second derivative, which is -n/\u03b1^2. Since n is positive and \u03b1^2 is positive wherever \u03b1 is defined, the second derivative is negative, so the objective is concave in \u03b1 and the critical point is a maximum. A strong oral answer should explicitly say that this is preferable to iterative optimization when an analytical stationary point is easy to solve for.",
+      "source_chunk_ids": [
+        "cs109_finalfall2017_q2d_35a6910b1d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Sets first derivative to zero correctly",
+          "Solves \u03b1 = n / \u03a3 log(1+x_i)",
+          "Uses second derivative test with -n/\u03b1^2 < 0",
+          "Interprets result as a maximum"
+        ],
+        "partial_credit": [
+          "Finds the stationary point but does not justify maximality",
+          "Mentions second derivative but not its sign reasoning"
+        ],
+        "common_mistakes": [
+          "Forgetting to set derivative to zero",
+          "Using gradient ascent language without solving analytically",
+          "Saying negative second derivative implies minimum"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If you did choose gradient ascent anyway, what feature of this derivative makes the problem especially simple computationally?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What equation must any interior maximizer satisfy before you even think about second derivatives?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Forgetting to set derivative to zero. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0007",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says, \u201cGradient ascent always finds the global maximum, as long as I repeat many times.\u201d Use the simple function f(x) = -x^2 + 4 to explain what is true in this example, and then carefully state what the algorithm can and cannot guarantee in general.",
+      "expected_answer": "For f(x) = -x^2 + 4, the derivative is -2x, and the function is concave with a unique maximum at x = 0. If the learning rate is small enough, gradient ascent moves uphill toward that maximum. But in general, gradient ascent is only guaranteed to move in a locally improving direction when the step size is appropriate; it does not guarantee finding the global maximum for arbitrary objectives, especially if there are multiple local maxima, saddle points, or problematic step sizes. So the example works well because the objective is especially simple and well-behaved, not because the method universally guarantees a global optimum.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p30_2393057340"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains the specific example has derivative -2x and maximum at 0",
+          "Notes small enough step size allows uphill movement",
+          "Clarifies that general objectives may have local maxima or other issues, so global optimality is not guaranteed"
+        ],
+        "partial_credit": [
+          "Says gradient ascent can fail in general but does not explain why",
+          "Analyzes the parabola but overgeneralizes from it"
+        ],
+        "common_mistakes": [
+          "Claiming repetition alone guarantees the global maximum",
+          "Ignoring dependence on learning rate",
+          "Confusing local improvement with global optimality"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What could go wrong on this same parabola if the learning rate were chosen too large?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does the sign of -2x tell you about which way to move when x is positive versus negative?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from linear regression.",
+        "Watch out for this common trap: Claiming repetition alone guarantees the global maximum. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0008",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You fit a line to data where X is year and Y is temperature anomaly. After one gradient-ascent pass, you find gradient_a is strongly positive while gradient_b is near zero. Give a plausible interpretation of this pattern in terms of the residuals and the role of x_i, and explain what kind of parameter change the algorithm will prefer next.",
+      "expected_answer": "The student should reason from the formulas. Since gradient_a = \u03a3 2(y_i-ax_i-b)x_i is strongly positive, the residuals weighted by x_i are overall positive, meaning the model tends to underpredict at larger x values or overpredict at smaller x values in a way suggesting the slope is too low. Since gradient_b = \u03a3 2(y_i-ax_i-b) is near zero, the residuals do not indicate a strong uniform upward or downward shift across all points. Therefore the next step will mainly increase a, rotating the line more than shifting it vertically.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p45_5bd1de5e3d",
+        "cs109_24_gradient_ascent_annotated_p52_p53_7b39319c3c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses weighted residual interpretation for gradient_a",
+          "Uses unweighted residual interpretation for gradient_b",
+          "Concludes slope should increase more than intercept"
+        ],
+        "partial_credit": [
+          "Correctly says slope increases but gives weak reasoning",
+          "Discusses residuals without connecting to weighting by x_i"
+        ],
+        "common_mistakes": [
+          "Treating gradient_b near zero as meaning perfect fit",
+          "Ignoring that large x values affect slope gradient more strongly",
+          "Claiming intercept must decrease because slope gradient is positive"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your interpretation change if the x values had all been rescaled by a factor of 100?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which gradient component weights each residual by x_i, and what does that tell you physically?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Treating gradient_b near zero as meaning perfect fit. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0009",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Why is it meaningful in linear regression MLE to maximize the conditional likelihood \u03a3_i log f(y_i | x_i, \u03b8) rather than the joint likelihood of x_i and y_i together? Explain what assumption about the inputs is implicit in this choice and why it is natural in supervised learning.",
+      "expected_answer": "A good answer should say that in supervised learning we are modeling Y given X, because the prediction task is to infer Y from observed features X. The parameters govern the conditional relationship between inputs and outputs, so maximizing conditional likelihood focuses the model on the distribution relevant for prediction. This effectively treats the x_i values as given or fixed rather than modeling how the inputs themselves were generated. In many learning problems that is natural because we are not trying to build a generative model for X, only a predictive model for Y|X.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p31_815ed36bef",
+        "cs109_25_logistic_regression_annotated_p23_cdce04ab1e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains focus on modeling Y|X for prediction",
+          "States that X is treated as given/fixed or not explicitly modeled",
+          "Connects this to supervised learning objectives"
+        ],
+        "partial_credit": [
+          "Says conditional likelihood is easier but not why it is conceptually appropriate",
+          "Mentions predicting Y from X without discussing the status of X"
+        ],
+        "common_mistakes": [
+          "Claiming joint and conditional likelihood are always the same objective",
+          "Saying we maximize P(X|Y) in regression",
+          "Ignoring the predictive meaning of conditioning"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If you instead wanted a full generative model of the data, what extra component would you need to specify?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In a prediction problem, which quantity are we trying to learn directly: P(Y|X) or P(X|Y)?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from linear regression; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming joint and conditional likelihood are always the same objective. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0010",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "For batch logistic regression training, the j-th gradient component is \u03a3_i (y_i - \u03c3(\u03b8^T x_i)) x_{ij}. Without doing a full derivation from scratch, explain the sign of this term. In particular, if the model predicts too low a probability on examples with large positive x_{ij} and y_i = 1, what effect does that have on \u03b8_j?",
+      "expected_answer": "If y_i = 1 and the predicted probability \u03c3(\u03b8^T x_i) is too low, then the error term y_i - \u03c3(\u03b8^T x_i) is positive. When x_{ij} is also positive and large, the contribution to the gradient component is positive and sizable. Since gradient ascent updates \u03b8_j by adding \u03b7 times that gradient, \u03b8_j will increase. Intuitively, increasing \u03b8_j raises \u03b8^T x_i for examples with positive x_{ij}, which increases the predicted probability and helps correct the underprediction.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p33_p34_8fde95ac62",
+        "cs109_25_logistic_regression_annotated_p38_001bce4705"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Interprets y_i - prediction as signed prediction error",
+          "Explains positive x_{ij} makes the contribution positive when underpredicting a positive example",
+          "States gradient ascent increases \u03b8_j",
+          "Connects that increase to higher future predicted probabilities"
+        ],
+        "partial_credit": [
+          "Gets the sign right but gives little intuition",
+          "Discusses logistic regression generally without linking to the specific gradient term"
+        ],
+        "common_mistakes": [
+          "Using descent instead of ascent sign",
+          "Saying \u03b8_j should decrease when the model underpredicts a positive case",
+          "Ignoring the role of x_{ij}"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What if x_{ij} were negative on that same underpredicted positive example?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In gradient ascent, what do we do with a positive gradient component?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using descent instead of ascent sign. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0011",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A friend tries to use linear regression for a binary classification problem with labels 0 and 1, saying, \u201cA line is simpler than a sigmoid, and I can just threshold the output at 0.5.\u201d Give a principled critique of this idea, and contrast what linear regression and logistic regression are each trying to fit.",
+      "expected_answer": "A strong answer should say that linear regression can output any real number, so its predictions are not constrained to lie in [0,1] and cannot naturally be interpreted as probabilities. Logistic regression passes a linear score through a sigmoid, so outputs are in [0,1] and represent P(Y=1|X), which is meaningful for binary classification. Conceptually, linear regression fits a line to minimize squared error to the labels, whereas logistic regression models the conditional likelihood of binary outcomes and learns a decision boundary through the linear score \u03b8^T x. Thresholding a linear-regression output is possible, but it is less principled and often mismatched to the probabilistic nature of binary labels.",
+      "source_chunk_ids": [
+        "cs109_finalwin2025soln_q10_24aea9540d",
+        "cs109_26_deep_learning_annotated_p7_1451842c8c",
+        "cs109_25_logistic_regression_annotated_p46_7132f37f33"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains why linear regression outputs are not valid probabilities",
+          "Explains logistic regression outputs probabilities in [0,1] via sigmoid",
+          "Contrasts line fitting versus conditional probability / decision boundary modeling"
+        ],
+        "partial_credit": [
+          "Says logistic regression is better for classification but gives only one reason",
+          "Mentions thresholding issue without discussing probability interpretation"
+        ],
+        "common_mistakes": [
+          "Claiming linear regression cannot be thresholded at all",
+          "Saying logistic regression is nonlinear in the features rather than nonlinear only in output transformation",
+          "Ignoring the modeling objective difference"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the classes were linearly separable, how would logistic regression express the separating boundary?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What numerical range does the sigmoid guarantee for predictions?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from linear regression.",
+        "Watch out for this common trap: Claiming linear regression cannot be thresholded at all. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0012",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "In logistic regression training code, why do we initialize gradients[j] to zero at the start of each outer iteration rather than leaving the previous iteration\u2019s values in place and continuing to add? Explain what quantity the gradient array is supposed to represent at one iteration.",
+      "expected_answer": "At each outer iteration, the gradient array is supposed to represent the gradient of the current log-likelihood evaluated at the current parameter vector \u03b8_old. That means it should be the sum of contributions from all training examples using the current \u03b8_old only. If we fail to reset gradients to zero, we mix in contributions from earlier iterations computed at different parameter values, so the array no longer equals the current gradient. Then the update direction is no longer mathematically tied to the present objective landscape.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p36_26158aebea",
+        "cs109_25_logistic_regression_annotated_p37_c6f91e5775",
+        "cs109_finalwin2025soln_q10_24aea9540d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States gradient array should equal current iteration's gradient at current \u03b8",
+          "Explains leaving old values mixes gradients from different parameter states",
+          "Connects reset-to-zero step to correct batch accumulation"
+        ],
+        "partial_credit": [
+          "Says resetting avoids double counting but without noting different \u03b8 values",
+          "Mentions implementation correctness vaguely"
+        ],
+        "common_mistakes": [
+          "Claiming accumulated old gradients help momentum automatically",
+          "Confusing the gradient array with the parameter vector",
+          "Thinking reset is only for memory reasons"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How is this different from deliberately using momentum in optimization?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "At a given iteration, should the gradient represent information from one \u03b8 or many past \u03b8 values?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from linear regression; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming accumulated old gradients help momentum automatically. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0013",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are handed a dataset with one feature X and told to fit linear regression by MLE under Gaussian noise. During the oral exam, I ask you to justify why maximizing log f(y_i | x_i, \u03b8) over all i becomes an optimization problem involving residuals y_i - (ax_i+b). Walk through that logic verbally without deriving every constant term.",
+      "expected_answer": "The student should begin from the model Y = aX + b + Z with Z ~ N(0, sigma^2). Therefore, conditional on X = x_i, Y is normally distributed with mean ax_i+b and variance sigma^2, so each conditional density f(y_i|x_i,\u03b8) is a Gaussian centered at ax_i+b. Taking the log-likelihood over iid examples gives a sum of log Gaussian terms. Up to constants and scaling by sigma^2, the only parameter-dependent part is minus the sum of squared residuals, -\u03a3_i (y_i-(ax_i+b))^2. Therefore maximizing the log-likelihood is equivalent to minimizing squared residuals.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p26_p27_d4d4dfc388",
+        "cs109_24_gradient_ascent_annotated_p24_9ec31b7cac",
+        "cs109_24_gradient_ascent_annotated_p25_66b810ae17"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Starts from Y = aX+b+Z with Gaussian noise",
+          "Identifies conditional distribution of Y|X=x_i as Gaussian with mean ax_i+b",
+          "Explains log-likelihood becomes sum over examples",
+          "States parameter-dependent part reduces to negative squared residuals and thus equivalent least squares objective"
+        ],
+        "partial_credit": [
+          "Knows Gaussian noise leads to squared error but cannot explain why",
+          "Explains residual idea but not conditioning on X"
+        ],
+        "common_mistakes": [
+          "Treating Y itself as deterministic once parameters are chosen",
+          "Forgetting the variance term is constant with respect to a and b if sigma is fixed",
+          "Confusing residual with prediction itself"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If sigma^2 were also unknown, would the same a and b still maximize the likelihood? Briefly justify."
+        },
+        {
+          "condition": "incorrect",
+          "question": "Under the Gaussian error model, where is the conditional density of Y centered for a given x_i?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Treating Y itself as deterministic once parameters are chosen. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0014",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "The summary formula for the least-squares slope in 1-D uses covariance and variance: a_hat = rho_{X,Y} S_Y / S_X and b_hat = mean(Y) - a_hat mean(X). Explain intuitively why the intercept depends on the sample means after the slope is chosen, and what geometric property of the fitted line this guarantees.",
+      "expected_answer": "Once the slope is set, the intercept should shift the line vertically so that it aligns with the overall level of the data. The formula b_hat = mean(Y) - a_hat mean(X) ensures that when X is at its mean, the fitted prediction equals the mean of Y. Geometrically, the fitted line passes through the point (mean(X), mean(Y)). This makes sense because the intercept absorbs the average offset that remains after accounting for the linear trend in the slope.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p19_p20_ec8af6fe02"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains intercept as vertical shift after slope is chosen",
+          "States the fitted line passes through (mean X, mean Y)",
+          "Connects formula to matching average level of the data"
+        ],
+        "partial_credit": [
+          "Recites formula correctly without geometric interpretation",
+          "States line goes through sample means but does not explain why"
+        ],
+        "common_mistakes": [
+          "Claiming the intercept is simply mean(Y)",
+          "Ignoring dependence on slope and mean(X)",
+          "Confusing population and sample quantities without explanation"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What happens to the intercept formula if the feature X has been centered to have mean zero?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Plug x = mean(X) into the fitted line. What value of b would make the prediction equal mean(Y)?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from linear regression; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming the intercept is simply mean(Y). Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0015",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Imagine running one batch gradient-ascent step for linear regression from a = 0, b = 0 on data where every y_i is positive and every x_i is also positive. Without exact arithmetic, determine the signs of gradient_a and gradient_b, and explain whether that sign information alone is enough to predict a good fit after one step.",
+      "expected_answer": "At a = 0 and b = 0, each residual is y_i - 0 = y_i, which is positive. Therefore gradient_b = \u03a3 2y_i is positive. Since every x_i is also positive, gradient_a = \u03a3 2y_i x_i is positive as well. So the first ascent step increases both slope and intercept. However, sign information alone is not enough to guarantee a good fit after one step, because the correct magnitude depends on the learning rate, the scale of x and y, and whether increasing both parameters overshoots or aligns well with the true pattern in the data.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p45_5bd1de5e3d",
+        "cs109_24_gradient_ascent_annotated_p52_p53_7b39319c3c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly determines both gradients are positive",
+          "Justifies with residual and residual-times-x reasoning",
+          "Explains why sign alone does not ensure quality of fit after one step"
+        ],
+        "partial_credit": [
+          "Gets the signs right but gives no caveat about magnitude",
+          "Mentions learning rate vaguely without linking to the fit"
+        ],
+        "common_mistakes": [
+          "Forgetting the residual at initialization is y_i",
+          "Claiming positive gradients imply model is already good",
+          "Ignoring the role of x_i in the slope gradient"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How could feature scaling change the relative size of the slope and intercept updates?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "At a = b = 0, what is the residual for one point, and what happens when you multiply it by a positive x_i?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Forgetting the residual at initialization is y_i. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0016",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "Someone says, \u201cBecause x_j is just the j-th feature, it is fine to update \u03b8_j immediately after processing each example while still calling the method batch gradient ascent.\u201d Is that terminology accurate? Use the loop structure in the context to distinguish batch accumulation from other update styles.",
+      "expected_answer": "That terminology is not accurate. In batch gradient ascent, the outer iteration first initializes all gradient components to zero, then loops over the full training set to accumulate all examples\u2019 contributions, and only after that updates all parameters together. If \u03b8_j is updated immediately while examples are still being processed, the algorithm is no longer using a full batch gradient computed at one common parameter vector. That is closer to an online or stochastic style update, even if only one coordinate is changed at a time.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p37_c6f91e5775",
+        "cs109_25_logistic_regression_annotated_p39_ffec3f322d",
+        "cs109_25_logistic_regression_annotated_p41_32f8a37117"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly defines batch accumulation over all examples before parameter update",
+          "Explains immediate updates during example processing are not batch gradient ascent",
+          "Uses loop structure distinction clearly"
+        ],
+        "partial_credit": [
+          "Says it is more like stochastic gradient but does not explain the batch structure",
+          "Recognizes terminology issue without tying it to common parameter vector"
+        ],
+        "common_mistakes": [
+          "Calling any repeated update 'batch' regardless of timing",
+          "Confusing feature loop with data loop",
+          "Thinking batch means updating all parameters, even if done after each example"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What advantage might an online or stochastic update have, despite not being batch?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In the batch pseudocode, when exactly do the parameter updates occur relative to the loop over training examples?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from linear regression.",
+        "Watch out for this common trap: Calling any repeated update 'batch' regardless of timing. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0017",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A colleague fits a logistic regression model and observes that one feature X_i appears empirically unrelated to Y. They conclude that the learned coefficient must be exactly zero in any trained model. Evaluate this claim carefully, both in the ideal population sense and in a finite sample.",
+      "expected_answer": "In the idealized population sense, if X_i is truly independent of Y and provides no predictive information beyond the other features, then we would expect the corresponding coefficient to be zero or close to zero, because changing that feature should not systematically affect the log-likelihood. But in a finite dataset, sampling noise can create apparent associations, so the learned coefficient need not be exactly zero. Also, dependence structure with other features matters: even if marginally unrelated, the conditional role of X_i given the others may require careful interpretation. So the right statement is that we expect a coefficient near zero under independence, not guaranteed exactly zero in a trained finite-sample model.",
+      "source_chunk_ids": [
+        "cs109_finalwin2025soln_q10_24aea9540d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Distinguishes population expectation from finite-sample estimate",
+          "States coefficient is expected near zero, not guaranteed exactly zero",
+          "Mentions that other features / conditional relationships can matter"
+        ],
+        "partial_credit": [
+          "Says 'approximately zero' but does not justify finite-sample variation",
+          "Mentions sampling noise only"
+        ],
+        "common_mistakes": [
+          "Claiming exact zero is guaranteed by training",
+          "Ignoring the role of other covariates",
+          "Confusing independence with zero observed sample correlation in one dataset"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What sort of evidence during training or evaluation would make you doubt the claim of irrelevance for that feature?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In practice, do we optimize over a population distribution or a finite dataset?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming exact zero is guaranteed by training. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0018",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Explain why regression is described in the notes as 'predicting real numbers,' and contrast that with the training target in logistic regression. Then give one reason that this distinction matters for choosing an objective function.",
+      "expected_answer": "In regression, the response variable Y takes values in the real numbers, so the model predicts continuous outputs such as temperature, sea level, or CO2. In logistic regression, the target is binary and the model predicts the probability that Y=1. This distinction matters because continuous real-valued targets naturally motivate losses like squared error, while binary targets are more naturally modeled with Bernoulli likelihood and optimized via log-likelihood. The objective should match the type of output variable being modeled.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p13_1b9569ac02",
+        "cs109_23_naive_bayes_annotated_p14_d1b2b37a94",
+        "cs109_26_deep_learning_annotated_p28_fb50cca060"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States regression predicts real-valued outputs",
+          "States logistic regression targets binary outcomes via probabilities",
+          "Explains why output type affects objective choice"
+        ],
+        "partial_credit": [
+          "Describes the two tasks but does not connect to objective functions",
+          "Mentions examples of real-valued targets only"
+        ],
+        "common_mistakes": [
+          "Saying logistic regression predicts real numbers in the same sense as linear regression",
+          "Ignoring probability interpretation",
+          "Claiming squared error is always the natural objective for classification"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Could logistic regression still be called a linear model even though it uses a sigmoid? Briefly explain."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What kind of quantity does logistic regression output before thresholding: a class label or a probability?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from linear regression; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying logistic regression predicts real numbers in the same sense as linear regression. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0019",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose you are given the logistic-regression log-likelihood LL(\u03b8) = \u03a3_i [ y_i log(\u0177_i) + (1-y_i) log(1-\u0177_i) ] with \u0177_i = \u03c3(\u03b8^T x_i). Without reproducing every chain-rule step, explain the two calculus ideas you would rely on to get the gradient with respect to each \u03b8_j, and why those ideas naturally produce a sum over training examples.",
+      "expected_answer": "The student should identify two core ideas: first, the derivative of a sum is the sum of derivatives, so the gradient of LL decomposes example-by-example. Second, because \u0177_i depends on \u03b8 through \u03b8^T x_i and then through the sigmoid, the chain rule is needed. Applying these ideas yields a gradient contribution from each datapoint that simplifies to (y_i - \u03c3(\u03b8^T x_i))x_{ij}, and summing over i gives the full batch gradient for parameter j. The explanation should emphasize structure rather than long algebra.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p32_40a28b7857",
+        "cs109_25_logistic_regression_annotated_p33_p34_8fde95ac62"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Names derivative of sum and chain rule explicitly",
+          "Explains why derivative decomposes into per-example contributions",
+          "States resulting gradient form or its structure",
+          "Connects x_{ij} to derivative of \u03b8^T x_i with respect to \u03b8_j"
+        ],
+        "partial_credit": [
+          "Mentions chain rule but not sum structure, or vice versa",
+          "Gives the final gradient formula with little reasoning"
+        ],
+        "common_mistakes": [
+          "Ignoring dependence of \u0177_i on \u03b8",
+          "Claiming product rule is the main tool here",
+          "Forgetting why the batch gradient is a sum over examples"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What part of the derivative introduces the factor x_{ij} specifically?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If LL is written as a sum over i, what basic calculus rule lets you handle one training example at a time?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Ignoring dependence of \u0177_i on \u03b8. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0020",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You are choosing a learning rate \u03b7 for gradient ascent in either linear regression or logistic regression. Explain to a new student what \u03b7 controls, what can go wrong if it is too large, and why even a correct gradient direction does not rescue a bad step size.",
+      "expected_answer": "The learning rate \u03b7 controls how far we move along the gradient direction at each update. If \u03b7 is too small, learning can be very slow. If \u03b7 is too large, the algorithm can overshoot the optimum, oscillate, or even diverge, because the local linear approximation used by the gradient is only reliable for sufficiently small steps. So having the correct gradient direction is not enough; the step size determines whether that direction is used appropriately.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p30_2393057340",
+        "cs109_25_logistic_regression_annotated_p40_aed8750441"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines \u03b7 as step size along gradient direction",
+          "Explains small \u03b7 leads to slow progress",
+          "Explains large \u03b7 can overshoot or diverge",
+          "States correct direction alone is insufficient without proper magnitude"
+        ],
+        "partial_credit": [
+          "Mentions speed/stability tradeoff but not why",
+          "Only discusses one extreme of \u03b7"
+        ],
+        "common_mistakes": [
+          "Claiming larger \u03b7 is always better because it converges faster",
+          "Treating \u03b7 as part of the gradient rather than a tuning constant",
+          "Ignoring instability from overshooting"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you explain 'walk uphill if your step is small enough' to someone who has never seen optimization before?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If the gradient points uphill, why might a very large uphill step still lower the objective on the next point?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming larger \u03b7 is always better because it converges faster. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0021",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Both linear regression and logistic regression are called linear models in the course materials, yet one predicts real values and the other predicts probabilities through a sigmoid. Reconcile that terminology precisely. In what sense are both models linear, and in what sense is logistic regression not the same as ordinary linear regression?",
+      "expected_answer": "Both are linear in the sense that they form a linear score from the features, typically \u03b8^T x or aX+b in the 1-D case. For linear regression, that linear score itself is the prediction of Y. For logistic regression, the linear score is not the final prediction; it is passed through the sigmoid to produce a number in [0,1], interpreted as P(Y=1|X). So logistic regression is linear in the decision surface or pre-sigmoid score, but nonlinear in the mapping from score to predicted probability. That is why it is still called a linear model while remaining distinct from ordinary linear regression.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p14_p15_30812cdf9c",
+        "cs109_26_deep_learning_annotated_p7_1451842c8c",
+        "cs109_25_logistic_regression_annotated_p46_7132f37f33"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains linearity of \u03b8^T x / aX+b score",
+          "States linear regression outputs that score directly",
+          "States logistic regression applies sigmoid to that score for probability",
+          "Clarifies linear boundary / linear score versus nonlinear output mapping"
+        ],
+        "partial_credit": [
+          "Says both use weighted sums but does not distinguish the output mapping",
+          "Describes sigmoid but not why logistic is still called linear"
+        ],
+        "common_mistakes": [
+          "Claiming logistic regression is not linear at all",
+          "Claiming both models optimize the same objective because both use lines",
+          "Confusing linearity in parameters with linearity of output transformation"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why does the equation \u03b8^T x = 0 appear naturally when discussing linearly separable data?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Before the sigmoid is applied in logistic regression, what expression do we compute from the features?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from linear regression; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming logistic regression is not linear at all. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0022",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student argues: \u201cSince linear regression under Gaussian noise and least squares produce the same parameters, likelihood is just unnecessary extra language.\u201d Give a response that preserves the equivalence result but defends why the likelihood perspective is still valuable.",
+      "expected_answer": "The response should acknowledge the equivalence under Gaussian noise: yes, in that special case the fitted parameters coincide. But the likelihood framework is still valuable because it makes the probabilistic assumptions explicit, clarifies what distributional model underlies the estimator, and generalizes naturally to settings like logistic regression where squared error is not the right objective. It also provides a unifying way to derive objectives and gradients across many models. So the language of likelihood is not redundant; it reveals the assumptions and extends beyond the special least-squares case.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p25_66b810ae17",
+        "cs109_24_gradient_ascent_annotated_p12_379f3fec57",
+        "cs109_26_deep_learning_annotated_p28_fb50cca060"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Acknowledges equivalence in the Gaussian linear-regression case",
+          "Explains likelihood makes probabilistic assumptions explicit",
+          "Explains generalization to other models such as logistic regression",
+          "Frames likelihood as a unifying modeling/optimization language"
+        ],
+        "partial_credit": [
+          "Defends likelihood only by saying it is more general",
+          "Mentions assumptions but not generalization"
+        ],
+        "common_mistakes": [
+          "Denying the equivalence result",
+          "Claiming likelihood matters only for classification",
+          "Failing to explain why probabilistic assumptions are useful"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give one example from the context where likelihood leads to a different-looking objective than squared error?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What specific noise assumption makes least squares and MLE coincide in linear regression?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from linear regression.",
+        "Watch out for this common trap: Denying the equivalence result. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0023",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are tutoring a student who keeps saying, \u201cThe gradient tells us the best parameters directly.\u201d Use either linear regression or logistic regression training to correct this statement. Explain what the gradient actually tells us at the current parameters, and why repeated updates are necessary.",
+      "expected_answer": "The gradient at the current parameter vector does not directly give the optimal parameters. It tells us the local direction of steepest increase of the objective at the current point, and its magnitude indicates local sensitivity. In linear regression, for example, the gradient components summarize how residuals currently push the slope and intercept; in logistic regression, they summarize current prediction errors weighted by features. Because this is only local information, we take a step, recompute the gradient at the new location, and repeat many times until the parameters settle near an optimum.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p30_2393057340",
+        "cs109_24_gradient_ascent_annotated_p45_5bd1de5e3d",
+        "cs109_25_logistic_regression_annotated_p36_26158aebea"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States gradient is local directional information, not the optimum itself",
+          "Explains repeated recomputation after each update",
+          "Uses linear or logistic regression example to ground the explanation"
+        ],
+        "partial_credit": [
+          "Says we need many iterations but does not explain locality",
+          "Defines gradient vaguely as 'how to change parameters'"
+        ],
+        "common_mistakes": [
+          "Claiming one gradient evaluation is enough to solve the problem",
+          "Confusing gradient with parameter estimate",
+          "Ignoring dependence of gradient on current parameter values"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What would it mean geometrically if the gradient were exactly zero at a point?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "After you take one update step, why might the old gradient no longer be the right direction to keep following unchanged?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming one gradient evaluation is enough to solve the problem. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0024",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You are fitting a 1-D linear regression model to predict sea level from year using the model Y = aX + b + Z, where Z is Gaussian noise. A teammate says, \"If our goal is prediction, there is no reason to talk about likelihood; just minimize squared error and move on.\" Do you agree? Explain how the MSE view and the MLE view are related here, including what extra modeling assumption makes them line up.",
+      "expected_answer": "A strong answer should say that the two approaches are different starting points but can become equivalent under a specific noise model. In the MSE approach, we choose a and b to minimize expected squared prediction error. In the MLE approach, we explicitly model Y = aX + b + Z and maximize the log-likelihood of the observed data under an assumed distribution for Z. If we assume Z is Gaussian with mean 0 and variance sigma squared, then maximizing the log-likelihood is equivalent to minimizing the sum of squared residuals, so the resulting estimator matches the MSE estimator. The student should also note that likelihood adds a probabilistic interpretation and makes the assumptions about noise explicit, which matters if the noise model changes.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p24_9ec31b7cac",
+        "cs109_24_gradient_ascent_annotated_p25_66b810ae17",
+        "cs109_24_gradient_ascent_annotated_p26_p27_d4d4dfc388",
+        "cs109_24_gradient_ascent_annotated_p16_da2809e7bf"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains MSE as minimizing squared prediction error and MLE as maximizing data likelihood under a noise model",
+          "States the Gaussian noise assumption Z ~ N(0, sigma^2)",
+          "Explains that under this assumption MLE and least squares/MSE give the same parameter estimates",
+          "Mentions why likelihood is still useful: it makes uncertainty/noise assumptions explicit"
+        ],
+        "partial_credit": [
+          "Recognizes that MSE and MLE can be related but does not state the Gaussian assumption clearly",
+          "States that both optimize 'error' but gives limited explanation of the probabilistic interpretation",
+          "Mentions Gaussian noise but does not connect it to squared residuals"
+        ],
+        "common_mistakes": [
+          "Claiming MLE and MSE are always equivalent regardless of the noise distribution",
+          "Saying likelihood is only for classification and not meaningful for regression",
+          "Confusing minimizing MSE with maximizing likelihood without discussing the noise model"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose the residuals were heavy-tailed instead of Gaussian. What part of your argument would break, and what would you expect to change about the objective?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you rewrite the regression model in the form Y = prediction + noise, and then say what distributional assumption on that noise would connect likelihood to squared error?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming MLE and MSE are always equivalent regardless of the noise distribution. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0025",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Consider batch gradient ascent for the objective h(a, b) = -\u03a3_i (y_i - ax_i - b)^2. Starting from a = 0 and b = 0, derive the expressions for the gradient with respect to a and b, and then interpret in words what each gradient is accumulating over the training set. Your answer should explain why the update for b does not multiply by x_i.",
+      "expected_answer": "The student should compute the residual or prediction error as diff_i = y_i - (ax_i + b). Then h(a, b) = -\u03a3 diff_i^2. Differentiating gives \u2202h/\u2202a = \u03a3 2 diff_i x_i and \u2202h/\u2202b = \u03a3 2 diff_i. The interpretation is that the slope gradient accumulates residuals weighted by the input value x_i, because changing a affects predictions more strongly for points with larger x_i. The intercept gradient accumulates raw residuals because changing b shifts every prediction equally by 1, so the derivative of ax_i + b with respect to b is just 1. In batch gradient ascent, we should finish summing these gradients over all examples before updating either parameter.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p45_5bd1de5e3d",
+        "cs109_24_gradient_ascent_annotated_p52_p53_7b39319c3c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly derives \u2202h/\u2202a = \u03a3 2(y_i - ax_i - b)x_i",
+          "Correctly derives \u2202h/\u2202b = \u03a3 2(y_i - ax_i - b)",
+          "Interprets the slope gradient as residuals weighted by feature size",
+          "Interprets the intercept gradient as summing residuals because the derivative with respect to b is 1",
+          "States that batch updates should occur after the full gradient is computed"
+        ],
+        "partial_credit": [
+          "Gets one gradient correct but not the other",
+          "Has the right formulas up to an overall sign or constant factor but gives a correct verbal interpretation",
+          "Explains why b uses 1 but does not connect that to the derivative"
+        ],
+        "common_mistakes": [
+          "Using gradient descent signs while claiming to do gradient ascent without noticing the objective is the negative SSE",
+          "Multiplying the b-gradient by x_i",
+          "Updating a before finishing the computation of the gradient for b in a batch method"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If all x_i values were very large in magnitude, how would that affect the relative scale of the a-gradient compared with the b-gradient, and what practical issue might that create?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the derivative of ax_i + b with respect to b? Use that to explain whether an x_i factor should appear in the b-gradient."
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using gradient descent signs while claiming to do gradient ascent without noticing the objective is the negative SSE. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0026",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student writes code for batch optimization of a two-parameter regression model, but inside the loop over training examples they immediately update a and then use that new a value when computing the contribution to the gradient for b on later examples. They argue this should only make training faster. Is that reasoning valid for the batch gradient method described in class? Explain carefully what objective their code is following and why the timing of updates matters.",
+      "expected_answer": "The reasoning is not valid for batch gradient ascent as described. In batch gradient methods, the gradient should be computed using a single fixed parameter vector\u2014the current values of a and b\u2014across all training examples. Only after finishing the full gradient computation do we update parameters. If the student updates a during the pass and then computes later contributions using the new a, the gradient components are no longer evaluated at the same parameter point, so the update is not the true batch gradient of the objective. Their procedure is closer to an online or partially stochastic method, and while such methods can sometimes work, it is not equivalent to batch gradient ascent and changes the algorithm's behavior.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p45_5bd1de5e3d",
+        "cs109_25_logistic_regression_annotated_p39_ffec3f322d",
+        "cs109_25_logistic_regression_annotated_p40_aed8750441",
+        "cs109_finalwin2025soln_q10_24aea9540d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that batch gradient computation must use one fixed parameter vector for all examples in the pass",
+          "Explains that updating parameters mid-pass means later terms are computed at different parameter values",
+          "Correctly says this is not the true batch gradient update",
+          "Recognizes that the resulting method resembles online/stochastic updating rather than batch optimization"
+        ],
+        "partial_credit": [
+          "Notices the method is different from batch but cannot articulate why the gradient is inconsistent",
+          "Says 'it may be unstable' without linking that to computing gradient terms at different parameter points",
+          "Recognizes that delaying updates matters but gives only an intuitive explanation"
+        ],
+        "common_mistakes": [
+          "Claiming any update that moves uphill is automatically the same as batch gradient ascent",
+          "Saying the order of examples never matters in any optimization method",
+          "Confusing 'faster in code' with 'same mathematical algorithm'"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "When might the student's update style still be useful in practice, and what would you call that family of methods?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Imagine computing half the gradient at one parameter value and half at another. Can that combined vector still be interpreted as the gradient of the objective at a single point?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from linear regression.",
+        "Watch out for this common trap: Claiming any update that moves uphill is automatically the same as batch gradient ascent. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0027",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "In one dimension, sometimes we can solve an optimization problem analytically by setting the derivative to zero and checking the second derivative, as in a simple log-likelihood with one parameter. For linear regression with parameters a and b under the MLE setup, the lecture instead emphasizes gradient ascent. Explain why the optimization story changes when moving from a single parameter to multiple parameters, and what role the gradient plays that a single derivative no longer does.",
+      "expected_answer": "A strong answer should explain that in one dimension, we can often find candidate optima by solving d/d\u03b1 LL(\u03b1) = 0 and use the second derivative to classify the point. With multiple parameters such as a and b, we need partial derivatives with respect to each parameter, and together they form the gradient vector. Setting all partial derivatives to zero may still be possible in principle, but it may not be easy to solve analytically, especially for more complex objectives. Gradient ascent gives an iterative alternative: at the current parameter vector, compute the gradient, which points in the direction of steepest local increase, and move a small step in that direction. The student may also mention that this same idea scales to models with many parameters, such as logistic regression or neural networks.",
+      "source_chunk_ids": [
+        "cs109_finalfall2017_q2d_35a6910b1d",
+        "cs109_24_gradient_ascent_annotated_p30_2393057340",
+        "cs109_24_gradient_ascent_annotated_p45_5bd1de5e3d",
+        "cs109_24_gradient_ascent_annotated_p26_p27_d4d4dfc388",
+        "cs109_26_deep_learning_annotated_p28_fb50cca060"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Contrasts single-variable derivative/second-derivative analysis with multi-parameter optimization",
+          "Explains that the gradient is the collection of partial derivatives",
+          "States that the gradient gives the local direction of steepest increase for ascent",
+          "Explains why iterative methods are useful when analytic solutions are difficult or unavailable",
+          "Optionally connects the idea to higher-dimensional models"
+        ],
+        "partial_credit": [
+          "States that multiple parameters make things 'harder' but does not explain the role of partial derivatives",
+          "Defines gradient as a vector but does not connect it to optimization direction",
+          "Mentions gradient ascent without comparing it to the one-dimensional derivative test"
+        ],
+        "common_mistakes": [
+          "Saying the gradient is just 'the derivative' without noting it is a vector in multiple dimensions",
+          "Claiming that setting partial derivatives to zero is never possible in multiple dimensions",
+          "Confusing gradient ascent with gradient descent or not noticing the sign depends on the objective"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the learning rate is too large, what can happen even if the gradient direction is correct?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For two parameters, what objects replace 'the derivative' and 'the second derivative' from one-variable calculus?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from linear regression; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying the gradient is just 'the derivative' without noting it is a vector in multiple dimensions. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_linear_regression_0028",
+      "course": "CS109",
+      "topic_id": "linear_regression",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You are given climate data with one real-valued target and one feature, and you choose linear regression. Another student proposes thresholding the linear regression output at 0.5 and says this makes it essentially the same kind of model as logistic regression, just simpler. Respond to this claim by comparing what each model is optimizing and what each model's output means.",
+      "expected_answer": "The claim is misleading. Linear regression is designed for predicting real-valued outputs and is typically trained by minimizing squared error or, under Gaussian noise, maximizing a regression likelihood. Its raw output aX + b can be any real number, so thresholding after the fact does not make its fitted values valid probabilities. Logistic regression, by contrast, models P(Y = 1 | X) directly using the sigmoid, so outputs are constrained to [0, 1] and have a probabilistic interpretation. It is trained by maximizing conditional log-likelihood, not by fitting a line to real-valued targets. So even if both produce a linear decision boundary in some settings, they are not optimizing the same objective and are not interchangeable conceptually.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p14_p15_30812cdf9c",
+        "cs109_23_naive_bayes_annotated_p14_d1b2b37a94",
+        "cs109_25_logistic_regression_annotated_p23_cdce04ab1e",
+        "cs109_finalwin2025soln_q10_24aea9540d",
+        "cs109_26_deep_learning_annotated_p28_fb50cca060"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that linear regression predicts real numbers and is trained with squared-error-style objectives or equivalent Gaussian MLE",
+          "Explains that logistic regression models conditional class probability using a sigmoid output in [0,1]",
+          "States that thresholding a linear regression output does not make it a probabilistic classification model",
+          "Compares the training objectives, not just the final prediction rule"
+        ],
+        "partial_credit": [
+          "Correctly says logistic outputs probabilities but gives little discussion of optimization",
+          "Notes that linear regression can predict outside [0,1] but does not explain why thresholding is insufficient",
+          "Mentions different tasks\u2014regression versus classification\u2014without connecting to model meaning"
+        ],
+        "common_mistakes": [
+          "Saying both models are the same because both can produce a linear separator",
+          "Treating any number between 0 and 1 from linear regression as a calibrated probability",
+          "Ignoring the difference between modeling Y directly and modeling P(Y=1|X)"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the true task is binary classification and you care about estimated probabilities, why is the range restriction of the sigmoid especially important?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can linear regression produce predictions like -0.4 or 1.7 on binary labels? If so, what problem does that create for interpreting the output?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying both models are the same because both can produce a linear separator. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    }
+  ]
+}

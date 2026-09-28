@@ -1,0 +1,1287 @@
+{
+  "topic_id": "joint_distributions",
+  "topic_name": "Joint Distributions",
+  "course": "CS109",
+  "questions": [
+    {
+      "question_id": "CS109_joint_distributions_0001",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A student says: \"For continuous random variables, the joint PDF at a point, f_{X,Y}(a,b), is the probability that X=a and Y=b.\" Do you agree? Explain carefully what the joint PDF does mean, and describe how you would use it to compute the probability that (X,Y) falls in a small rectangle around (a,b).",
+      "expected_answer": "A strong answer says the claim is false: for jointly continuous random variables, P(X=a,Y=b)=0. The joint PDF is not itself a probability; it is a density whose double integral over a region gives probability. For a small rectangle [a,a+\\Delta x] x [b,b+\\Delta y], the probability is approximately f_{X,Y}(a,b)\\Delta x\\Delta y when the rectangle is small and the density is smooth there. The student should explicitly distinguish point probability from area probability.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p6_3119f5608d",
+        "cs109_09_continuous_rv_annotated_p8_445992a924",
+        "cs109_17_cont_joint_ii_annotated_p18_p19_653a0fdfd1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that P(X=a,Y=b)=0 for continuous joint variables.",
+          "Explains that f_{X,Y}(a,b) is a density, not a probability.",
+          "Describes probability over a region as a double integral, or as approximately density times small area for a tiny rectangle."
+        ],
+        "partial_credit": [
+          "Says the claim is false but gives only a vague reason.",
+          "Mentions integration but does not connect it to a 2D region.",
+          "Confuses density with relative likelihood but still notes point probabilities are zero."
+        ],
+        "common_mistakes": [
+          "Saying f_{X,Y}(a,b)=P(X=a,Y=b).",
+          "Using a single integral instead of a double integral.",
+          "Claiming the PDF must be less than or equal to 1 at every point."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If f_{X,Y}(10,5) is much larger than f_{X,Y}(8,5), what meaningful comparison can you make, even though both point probabilities are zero?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the probability of hitting exactly one pre-specified point under a continuous distribution, and why does that force you to reinterpret the PDF?"
+        }
+      ],
+      "hints": [
+        "Start by separating two ideas: a probability at an exact point versus a density value at that point. In continuous settings, PDF values describe how probability is spread out, not probability mass sitting at one location.",
+        "Ask yourself how probabilities are actually computed from a joint PDF: over a 2D region, not at a single point. A single point has no area, so compare that with integrating over a rectangle in the plane.",
+        "Set up the probability of a small rectangle around (a,b) as a double integral over that rectangle. If the rectangle is tiny and the density is smooth there, treat the density as nearly constant, so the probability is approximately the density at (a,b) times the rectangle\u2019s area."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0002",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose a joint density is proposed as g(x,y)=xy on the support 0<=x<=1 and 0<=y<=2, and 0 otherwise. Without rushing to the final answer, explain the two conditions you must check for a valid joint PDF, and then verify them in this case.",
+      "expected_answer": "The two conditions are nonnegativity and total integral 1 over the support. Here g(x,y)=xy is nonnegative on 0<=x<=1, 0<=y<=2. Then compute \\int_0^1\\int_0^2 xy\\,dy\\,dx or the reverse order. Evaluating gives \\int_0^1 x[y^2/2]_0^2 dx = \\int_0^1 2x\\,dx = 1, so it is a valid joint PDF. A strong student may also note that order of integration can be swapped because the support is rectangular.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p9_b59eb7249c",
+        "cs109_16_cont_joint_i_annotated_p10_ca62843fb0"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Names nonnegativity and normalization as the two checks.",
+          "Sets up the correct double integral over the stated support.",
+          "Evaluates correctly to 1 and concludes validity."
+        ],
+        "partial_credit": [
+          "Checks only the integral but omits explicit nonnegativity.",
+          "Sets up the right integral but makes a minor arithmetic slip.",
+          "Explains the idea of integrating over the support but is imprecise about bounds."
+        ],
+        "common_mistakes": [
+          "Checking only that the function is nonnegative.",
+          "Integrating over the wrong bounds, such as y from 0 to 1.",
+          "Assuming a valid PDF must have maximum value at most 1."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Now compute the marginal density of X and say whether X is uniform on [0,1]."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does the phrase 'over the support' tell you about the integration limits here?"
+        }
+      ],
+      "hints": [
+        "For a joint PDF, you always need to check two things: the density is never negative on its support, and the total probability over the support is the required amount.",
+        "Here the support is the rectangle 0<=x<=1 and 0<=y<=2, so both variables are nonnegative there; use that to assess the sign of xy, then set up the double integral over those exact bounds.",
+        "Evaluate \u222b_0^1 \u222b_0^2 xy dy dx (or reverse the order, since the support is rectangular), and then compare that total with the normalization condition for a valid PDF."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0003",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "You roll two fair six-sided dice and define X as the first die and Y as the second. Explain how to construct the joint PMF, then derive the marginal PMF of X from it. Finally, say what feature of the setup makes the marginal simple.",
+      "expected_answer": "The sample space has 36 equally likely ordered outcomes. Therefore p_{X,Y}(a,b)=1/36 for a,b in {1,...,6}, and 0 otherwise. To get the marginal of X, sum over all possible y values: p_X(a)=\\sum_{y=1}^6 p_{X,Y}(a,y)=6\\cdot(1/36)=1/6 for each a. The setup is simple because the dice are fair and the outcomes are equally likely in a rectangular grid.",
+      "source_chunk_ids": [
+        "cs109_11_joint_rvs_annotated_p18_79d9355be4",
+        "cs109_11_joint_rvs_annotated_p19_99f55c6a1c",
+        "cs109_11_joint_rvs_annotated_p17_b2c1bbbb49"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies 36 equally likely ordered pairs.",
+          "States the correct joint PMF on the 6x6 grid.",
+          "Obtains the marginal by summing over y and gets 1/6."
+        ],
+        "partial_credit": [
+          "Gets the marginal right but does not clearly explain summing over the other variable.",
+          "States independence informally without writing the joint PMF.",
+          "Confuses ordered and unordered outcomes but still reaches the right table shape."
+        ],
+        "common_mistakes": [
+          "Using 1/21 or another value based on unordered pairs.",
+          "Averaging instead of summing to obtain the marginal.",
+          "Forgetting the support outside {1,...,6}x{1,...,6} has probability 0."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If instead I asked for the PMF of S=X+Y, why can\u2019t you just read it off from one row or one column of the joint table?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When you want the marginal of X from a joint PMF, which variable do you sum over, and why?"
+        }
+      ],
+      "hints": [
+        "Represent the outcome as an ordered pair \u0018(first die, second die)\u0019, so the joint PMF lives on a 6-by-6 grid of possible values for (X,Y).",
+        "Because both dice are fair, every ordered pair in that grid has the same probability, and anything outside the grid has probability 0. For the marginal of X, fix a value x and sum p_{X,Y}(x,y) over all possible y values \u0014 don\u0019t average them.",
+        "Think of p_X(x) as the total probability in one row of the joint PMF table. Each row has the same number of equally likely entries, which is why the marginal is especially simple in this setup."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0004",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A classmate sees a joint PMF table for the number of Macs X and PCs Y in a household, with the constraint X+Y<=3, and says: \"The marginal of X is found by summing down a column because columns correspond to X-values.\" How would you respond? Give a careful explanation that does not depend on one particular table orientation.",
+      "expected_answer": "The correct response is that the marginal of X is found by summing the joint probabilities over all possible values of Y: p_X(x)=\\sum_y p_{X,Y}(x,y). Whether that means summing across a row or down a column depends only on how the table is drawn. The underlying rule is not about rows versus columns; it is about fixing x and summing over the other variable. A strong answer should also note that the support restriction X+Y<=3 means some cells are zero or absent, but the summation idea is unchanged.",
+      "source_chunk_ids": [
+        "cs109_11_joint_rvs_annotated_p23_23cecf9496",
+        "cs109_11_joint_rvs_annotated_p17_b2c1bbbb49"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the general marginalization rule p_X(x)=sum over y of p_{X,Y}(x,y).",
+          "Explains that row/column direction depends on table layout, not probability theory.",
+          "Mentions the support restriction only changes which terms are nonzero."
+        ],
+        "partial_credit": [
+          "Says 'sum over the other variable' without making the row/column clarification.",
+          "Explains the table orientation issue but omits the formula.",
+          "Understands the idea but is confused about which variable is fixed."
+        ],
+        "common_mistakes": [
+          "Treating row/column direction as universal across all tables.",
+          "Summing over x when asked for the marginal of X.",
+          "Ignoring impossible states created by X+Y<=3."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose the table is triangular because X+Y<=3. How would you explain to someone why the marginal of X still has to sum to 1 over x?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you say the rule in words without mentioning rows or columns: to get the marginal of one variable, what do you do with the other variable?"
+        }
+      ],
+      "hints": [
+        "Start from the meaning of a marginal: for the distribution of X alone, you keep a value of X fixed and combine probabilities across the possible values of the other variable. So the real issue is not 'row versus column' but 'which variable is being held fixed.'",
+        "Check how the table is labeled before deciding whether to move across or down. Also remember the constraint X+Y<=3 means some (x,y) pairs are impossible, so those cells are missing or contribute zero.",
+        "Use the general rule p_X(x)=\\sum_y p_{X,Y}(x,y). In a table, that means collect every cell corresponding to the same x-value and sum over the allowable y-values, whatever direction those cells happen to lie in."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0005",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "For two jointly continuous random variables, define the joint CDF F_{X,Y}(a,b)=P(X<=a,Y<=b). Explain how this object differs from the joint PDF conceptually, and then describe how you would recover the joint PDF from the CDF if enough smoothness is present.",
+      "expected_answer": "The joint CDF gives accumulated probability in the lower-left rectangle extending to (a,b), so it is directly a probability. The joint PDF is a local density, not a probability, and integrating it over a region gives probability. If the CDF is sufficiently differentiable, then the joint PDF is obtained by taking the mixed partial derivative: f_{X,Y}(a,b)=\\partial^2 F_{X,Y}(a,b)/(\\partial a\\,\\partial b). A strong answer should also mention that the CDF exists for both discrete and continuous cases, while the PDF applies only in the continuous setting.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p15_af3c0f3531"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains the CDF as accumulated probability up to thresholds a and b.",
+          "Contrasts it with the PDF as a density whose integral gives probability.",
+          "States the mixed-partial relationship under appropriate smoothness."
+        ],
+        "partial_credit": [
+          "Knows one direction, such as integrating the PDF to get the CDF, but does not clearly contrast meanings.",
+          "Mentions derivatives but not that the CDF is a probability over a rectangle.",
+          "Gives a correct formula but poor conceptual explanation."
+        ],
+        "common_mistakes": [
+          "Saying the CDF and PDF are both probabilities at a point.",
+          "Using a single derivative instead of a mixed partial.",
+          "Forgetting that the CDF applies to discrete variables too."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you express P(a1<X<=a2, b1<Y<=b2) using the joint CDF alone?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I hand you F_{X,Y}(a,b), what geometric region does it measure probability over?"
+        }
+      ],
+      "hints": [
+        "Start by interpreting F_{X,Y}(a,b) geometrically: it measures accumulated probability in the lower-left rectangle up to the point (a,b), so it is itself a probability.",
+        "Contrast that with the joint PDF: a density is not the probability at a point, but something you integrate over a region to get probability. Also note that a CDF is defined even beyond the continuous case, while a PDF is specific to continuous variables.",
+        "If the joint CDF is smooth enough, recover the density by differentiating with respect to both coordinates\u2014one derivative in a and one in b. Be careful not to use only a single derivative, since this is a two-variable accumulation function."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0006",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose X and Y have joint density f_{X,Y}(x,y)=3e^{-3x} for x>0 and 1<y<2, and 0 otherwise. Determine whether X and Y are independent, but do it by reasoning through marginals rather than by assertion. Then compute E[X+Y].",
+      "expected_answer": "First compute the marginals. f_X(x)=\\int_1^2 3e^{-3x}dy = 3e^{-3x} for x>0. f_Y(y)=\\int_0^\\infty 3e^{-3x}dx = 1 for 1<y<2. Since f_X(x)f_Y(y)=3e^{-3x}\\cdot1 = f_{X,Y}(x,y) on the support, X and Y are independent. Then E[X+Y]=E[X]+E[Y]. X is exponential with rate 3, so E[X]=1/3, and Y is uniform on (1,2), so E[Y]=3/2, giving E[X+Y]=11/6.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p22_242c1ca147",
+        "cs109_16_cont_joint_i_annotated_p23_6fe431b32c",
+        "cs109_16_cont_joint_i_annotated_p24_be648dac74",
+        "cs109_17_cont_joint_ii_annotated_p2_e760697bd1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes both marginals correctly.",
+          "Uses factorization into marginals to justify independence.",
+          "Computes E[X]=1/3, E[Y]=3/2, and sums to 11/6."
+        ],
+        "partial_credit": [
+          "Correctly identifies independence by factorization but computes one expectation incorrectly.",
+          "Finds marginals but does not explicitly connect them to independence.",
+          "Gets E[Y]=3/2 by symmetry of a uniform interval but leaves E[X] vague."
+        ],
+        "common_mistakes": [
+          "Claiming independence just because the support is rectangular.",
+          "Forgetting to check normalization of f_Y(y).",
+          "Using E[XY] instead of E[X]+E[Y] for the sum."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the support for y were instead 1<y<x+2, would factorization on the formula alone still be enough for independence?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What exact equality must hold between f_{X,Y}, f_X, and f_Y in order to conclude independence for continuous variables?"
+        }
+      ],
+      "hints": [
+        "Start by finding the marginal densities from the joint: integrate over y to get f_X(x) and over x to get f_Y(y). Be careful to use the stated support x>0 and 1<y<2, not just the formula.",
+        "Once you have the marginals, check whether the joint can be written as f_X(x)f_Y(y) on the whole support. A rectangular support helps, but the key justification is the factorization itself.",
+        "For E[X+Y], use linearity: E[X+Y]=E[X]+E[Y], so you can handle the two variables separately. From the marginals, recognize the standard forms of X and Y and use their known means (or compute them directly from the marginals)."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0007",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "In a medical screening system, four binary variables are tracked: flu status, undergrad status, tiredness, and fever. A naive analyst proposes specifying all 2^4=16 joint probabilities directly. Give a reasoned argument for why that may be a poor modeling strategy, and explain how thinking in terms of causal or conditional structure can simplify the description of the joint distribution.",
+      "expected_answer": "A strong answer notes that specifying all 16 joint probabilities is possible in principle but scales badly and obscures structure. If some variables causally influence others, the joint distribution can often be represented through factors such as a prior on flu and conditional distributions for tiredness or fever given flu and perhaps undergrad status. This reduces the number of quantities to specify and often makes assumptions transparent. The student should emphasize that the full joint is still determined, but via a structured factorization rather than an unstructured table.",
+      "source_chunk_ids": [
+        "cs109_15_general_inference_annotated_p12_bba99c6e2b"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains why direct enumeration is unwieldy or nontransparent.",
+          "Describes using causal/conditional relationships to factor the joint distribution.",
+          "Makes clear that the factorized model still implies a full joint distribution."
+        ],
+        "partial_credit": [
+          "Says 'use Bayes net ideas' or 'use causality' without explaining the simplification.",
+          "Mentions conditional probabilities but not why they help.",
+          "Focuses only on computational convenience and not interpretability."
+        ],
+        "common_mistakes": [
+          "Claiming the structured model is exactly the same as assuming independence everywhere.",
+          "Thinking factorization loses information automatically.",
+          "Saying a joint distribution cannot be built from conditionals."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give one plausible factorization of the four-variable joint and justify the arrows informally?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I know P(Flu), P(Fever|Flu), and P(Tired|Flu), what kind of modeling idea am I using instead of listing every joint entry?"
+        }
+      ],
+      "hints": [
+        "Start by noticing that a flat table of 16 joint probabilities treats every combination separately, even though the variables may have meaningful relationships and the probabilities must also fit together coherently.",
+        "Ask which variables are plausibly upstream causes of others: for example, flu might influence fever and tiredness, while undergrad status might affect tiredness. That suggests describing the system with a few priors and conditional distributions instead of one unstructured list.",
+        "Use a chain-rule/Bayes-net style factorization, such as writing the joint as a product of terms like a prior for flu and conditionals for symptoms given their parents. This still determines the full joint distribution, but with fewer and more interpretable quantities than specifying every cell directly."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0008",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "For continuous random variables X and Y with joint density f_{X,Y}, explain the formula for the marginal density f_X(a). Why is it an integral over y rather than an evaluation at one y-value?",
+      "expected_answer": "The marginal density f_X(a) is obtained by collecting all joint density associated with X=a across every possible value of Y, so f_X(a)=\\int_{-\\infty}^{\\infty} f_{X,Y}(a,y)\\,dy over the support. It is an integral because Y can take a continuum of values, and each exact y-value has probability 0 in the continuous case. Conceptually, we collapse the 2D density into a 1D density by summing continuously over the other coordinate.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p2_e760697bd1",
+        "cs109_16_cont_joint_i_annotated_p11_p12_279fd66720"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the correct marginalization formula for continuous variables.",
+          "Explains that we integrate over all possible y values because Y is continuous.",
+          "Connects the integral to collapsing a 2D distribution into a 1D one."
+        ],
+        "partial_credit": [
+          "Gives the formula but little conceptual explanation.",
+          "Explains 'sum over the other variable' without adapting to continuous variables.",
+          "Understands the collapse idea but writes incorrect bounds."
+        ],
+        "common_mistakes": [
+          "Using a sum instead of an integral for continuous variables.",
+          "Evaluating at a single y instead of integrating over y.",
+          "Forgetting that the support may restrict which y values contribute."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the analogous formula look in the discrete case, and what changes conceptually?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In one sentence: when you want a distribution just for X, what do you do with Y?"
+        }
+      ],
+      "hints": [
+        "Picture the joint density as a surface over the x-y plane: to get the density of X at x = a, you gather all the density sitting above the line x = a.",
+        "Ask what contribution comes from one fixed y-value when Y is continuous: an exact y has probability 0, so looking at just one y cannot capture the marginal for X.",
+        "So the marginal is a continuous sum over all y-values in the support: f_X(a) = \u222b f_{X,Y}(a, y) dy, which collapses the 2D density down to a 1D density for X."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0009",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Let X and Y be independent Uniform(0,1) random variables, and define S=X+Y. Without quoting the known answer immediately, explain how convolution sets up f_S(\\alpha), and then describe why the answer has one form for 0<\\alpha<1 and another for 1<\\alpha<2.",
+      "expected_answer": "Because X and Y are independent and continuous, f_S(\\alpha)=\\int_{-\\infty}^{\\infty} f_X(x)f_Y(\\alpha-x)\\,dx. Here each density is 1 on [0,1] and 0 otherwise, so the integrand is 1 exactly when x is in the overlap of [0,1] and [\\alpha-1,\\alpha]. Thus the value of the integral is the length of that overlap. For 0<\\alpha<1, the overlap length is \\alpha, so f_S(\\alpha)=\\alpha. For 1<\\alpha<2, the overlap length is 2-\\alpha. Outside [0,2], the overlap is empty and the density is 0.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p10_3c72f541d9"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes or explains the convolution integral for independent continuous sums.",
+          "Translates the integrand into an interval-overlap problem.",
+          "Derives the piecewise density 0, \\alpha, 2-\\alpha, 0 on the correct ranges."
+        ],
+        "partial_credit": [
+          "Knows the triangular shape but cannot justify it from convolution.",
+          "Sets up the convolution but mishandles overlap bounds slightly.",
+          "Explains overlap qualitatively but not with enough precision."
+        ],
+        "common_mistakes": [
+          "Multiplying densities without integrating.",
+          "Forgetting that support of S is [0,2].",
+          "Giving the CDF instead of the density."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What feature of the answer reflects the fact that there are more ways to sum to 1 than to sum to 0.1 or 1.9?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a fixed \\alpha, when is f_Y(\\alpha-x) equal to 1 and when is it 0?"
+        }
+      ],
+      "hints": [
+        "Start from the convolution formula for the sum of two independent continuous random variables: write f_S(\\alpha) as an integral involving f_X(x) and f_Y(\\alpha-x). Since X and Y are Uniform(0,1), each density is only nonzero on [0,1].",
+        "Ask when the integrand equals 1: you need x to lie in [0,1] and also \\alpha-x to lie in [0,1]. Rewrite the second condition as an interval for x, then identify the overlap with [0,1].",
+        "So f_S(\\alpha) is the length of the overlap between [0,1] and [\\alpha-1,\\alpha]. That overlap grows as \\alpha moves from 0 to 1, then shrinks as \\alpha moves from 1 to 2, which is why the density has two different algebraic forms on those ranges."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0010",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says: \"If two random variables have the same E[X], E[Y], Var(X), and Var(Y), then their joint distributions are basically the same.\" Explain why that statement is false, and identify what kind of information about the pair is still missing.",
+      "expected_answer": "The statement is false because those four summaries describe each variable individually but do not fully capture how the variables vary together. Different joint distributions can share the same means and variances yet have very different dependence structures. What is missing is information about association or dependence, such as whether large values of one tend to occur with large values of the other, though even covariance alone may still not fully determine the joint distribution.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p11_563903f8c5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that equal marginal summaries do not determine the joint distribution.",
+          "Explains that dependence structure can differ dramatically.",
+          "Mentions covariance/correlation or more general dependence as missing information."
+        ],
+        "partial_credit": [
+          "Says the statement is false but gives only one vague sentence.",
+          "Mentions correlation but not that even that may not fully specify the joint distribution.",
+          "Focuses on one example without stating the general principle."
+        ],
+        "common_mistakes": [
+          "Claiming equal marginals imply equal joint distributions.",
+          "Thinking covariance alone always determines dependence.",
+          "Confusing the pair's joint behavior with the marginals."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can two joint distributions have the same marginals and the same covariance, yet still differ? What would that tell you?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What numerical summaries here describe X and Y separately, and what kind of summary would start to describe them together?"
+        }
+      ],
+      "hints": [
+        "Notice that E[X], E[Y], Var(X), and Var(Y) describe each variable on its own; ask yourself whether they say anything about how X and Y move together.",
+        "Compare \u201csame marginals\u201d versus \u201csame joint distribution.\u201d Two pairs can have identical means and variances for each component but differ in whether large values of X tend to occur with large, small, or unrelated values of Y.",
+        "The missing ingredient is the dependence/association structure between the variables\u2014often summarized partly by covariance or correlation, though that still may not completely pin down the full joint distribution."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0011",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are given a table and told it is either P(Y=y|T=t) or P(T=t|Y=y), but the labels have been erased. How can you determine which interpretation is correct just by inspecting which sets of entries sum to 1? Then explain why a conditional PMF is still a 'real' distribution once the condition is fixed.",
+      "expected_answer": "To identify the orientation, check whether each row or each column sums to 1, based on which variable is being conditioned on. If the table entries are P(Y=y|T=t), then for each fixed t the probabilities across all y must sum to 1. If the entries are P(T=t|Y=y), then for each fixed y the probabilities across all t sum to 1. A conditional PMF is a genuine distribution because once the conditioning event is fixed, the remaining variable has nonnegative probabilities that sum to 1.",
+      "source_chunk_ids": [
+        "cs109_14_conditional_expectation_annotated_p4_220adf4a12",
+        "cs109_14_conditional_expectation_annotated_p5_0628feb14d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains the row/column sum test relative to what is conditioned on.",
+          "States that conditioning fixes one event and leaves a valid PMF over the other variable.",
+          "Mentions nonnegativity and summing to 1."
+        ],
+        "partial_credit": [
+          "Knows to look for sums to 1 but is unclear about whether rows or columns correspond to the conditioned variable.",
+          "Explains only one of the two possible interpretations.",
+          "Uses intuition correctly but not formal enough."
+        ],
+        "common_mistakes": [
+          "Saying all rows and columns must both sum to 1.",
+          "Confusing the conditioned-on variable with the variable being distributed.",
+          "Treating a conditional table as not a true distribution."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If I also gave you a joint PMF, how would you compute one missing conditional probability entry?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In P(Y=y|T=t), once t is fixed, which values should add up to 1?"
+        }
+      ],
+      "hints": [
+        "Look at what a conditional PMF means: once one variable is fixed, the probabilities over the other variable should form a complete distribution. So inspect whether the entries sum to 1 across rows or across columns when one label is held constant.",
+        "Match the direction of conditioning to the summation: for a table of P(Y=y|T=t), each fixed t should have probabilities over all y that add to 1; for P(T=t|Y=y), each fixed y should have probabilities over all t that add to 1.",
+        "To justify that a conditional PMF is a 'real' distribution, imagine the condition is now fixed as given data. Then check the two PMF requirements for the remaining variable: every entry is nonnegative, and the entries over all its possible values sum to 1."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0012",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Compare the roles of a PMF and a PDF when describing random variables. Then extend your explanation to the joint case: what changes when we move from one variable to two variables, and what stays conceptually the same?",
+      "expected_answer": "For a discrete variable, a PMF assigns probabilities directly to points, so P(X=x)=p_X(x). For a continuous variable, a PDF is a density and probabilities come from integrating over intervals, not evaluating at points. In the joint case, the same distinction remains: joint PMFs assign probabilities to pairs (x,y), while joint PDFs assign density over the plane and probabilities of regions are obtained by double integration. What stays the same is that marginals are obtained by summing or integrating out the other variable, and the total mass must be 1.",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p5_fff4a9b08f",
+        "cs109_11_joint_rvs_annotated_p17_b2c1bbbb49",
+        "cs109_16_cont_joint_i_annotated_p6_3119f5608d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly distinguishes PMF from PDF in one dimension.",
+          "Extends the distinction to joint PMF versus joint PDF.",
+          "Mentions region probabilities in 2D and marginalization by sum/integral."
+        ],
+        "partial_credit": [
+          "Gets the 1D comparison right but is weak on the joint extension.",
+          "Mentions double integrals but not the key point that PDFs are densities, not probabilities.",
+          "Gives examples without articulating the conceptual commonality."
+        ],
+        "common_mistakes": [
+          "Saying PDFs give probabilities at points.",
+          "Not distinguishing discrete from continuous in the joint setting.",
+          "Forgetting the normalization requirement."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is it more natural to talk about probabilities of rectangles or regions in the continuous joint case?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a continuous variable, if not by evaluating the PDF at a point, how do you obtain an actual probability?"
+        }
+      ],
+      "hints": [
+        "Start by separating the discrete and continuous cases in one dimension: ask whether the function gives probability at a point or only a density whose probability comes from an interval.",
+        "Then mirror that idea for two variables by replacing a single value x with a pair (x,y): in the discrete case you assign probability to pairs, while in the continuous case you get probabilities from areas/regions using a double integral.",
+        "To finish the comparison, mention what stays the same in both 1D and 2D: the total mass/density sums or integrates to 1, and you recover one variable\u2019s distribution by summing or integrating out the other variable."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0013",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose F_{X,Y}(a,b)=P(X<=a,Y<=b) is known for a jointly continuous pair. How would you express P(a_1<X<=a_2, b_1<Y<=b_2) using only values of the joint CDF? Explain the inclusion-exclusion logic, not just the formula.",
+      "expected_answer": "Use the rectangle probability identity: P(a_1<X<=a_2, b_1<Y<=b_2)=F_{X,Y}(a_2,b_2)-F_{X,Y}(a_1,b_2)-F_{X,Y}(a_2,b_1)+F_{X,Y}(a_1,b_1). The logic is that F(a_2,b_2) includes the desired lower-left rectangle up to (a_2,b_2), but also includes the parts with X<=a_1 and with Y<=b_1. Subtract those two unwanted regions, then add back the overlap that was subtracted twice.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p15_af3c0f3531"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Gives the correct four-term formula.",
+          "Explains the inclusion-exclusion reasoning with the geometry of rectangles.",
+          "Uses the thresholds in the correct positions."
+        ],
+        "partial_credit": [
+          "Remembers the formula but cannot explain why it works.",
+          "Explains inclusion-exclusion conceptually but swaps one term.",
+          "Has the correct sign pattern except for the final add-back term."
+        ],
+        "common_mistakes": [
+          "Using only two terms.",
+          "Forgetting to add back the doubly subtracted corner.",
+          "Confusing upper and lower thresholds."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would this simplify if a_1 or b_1 were negative infinity?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When you subtract the left strip and the bottom strip, what region gets removed twice?"
+        }
+      ],
+      "hints": [
+        "Think of F_{X,Y}}(a,b) as the probability mass in the lower-left rectangle up to the corner (a,b). Your target event is a smaller rectangle cut out by the thresholds a_1,a_2,b_1,b_2.",
+        "Start with the largest lower-left rectangle ending at (a_2,b_2). Then identify the two unwanted parts inside it: the portion with X\\le a_1 and the portion with Y\\le b_1.",
+        "Use inclusion-exclusion: subtract those two unwanted rectangles, but notice their overlap near (a_1,b_1) gets removed twice, so add that corner back once. This gives a four-corner CDF expression with sign pattern +, -, -, +."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0014",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student argues: \"If the support of (X,Y) is a rectangle and the formula for f_{X,Y}(x,y) looks separated into a function of x times a function of y, then independence is automatic.\" Is that always safe? Give a careful answer that distinguishes what must be checked from what may merely be suggestive.",
+      "expected_answer": "The safest criterion is that f_{X,Y}(x,y)=f_X(x)f_Y(y) for all points in the support, with valid marginals. A rectangular support and an expression that appears factorized are suggestive, but one should still verify the factors are actually the marginals or at least normalize appropriately. Also, if the support is not a Cartesian product, factorization on the formula alone cannot imply independence. So the complete reasoning requires checking both the product form and compatibility with the support.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p2_e760697bd1",
+        "cs109_16_cont_joint_i_annotated_p23_6fe431b32c",
+        "cs109_16_cont_joint_i_annotated_p24_be648dac74"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the formal independence criterion f_{X,Y}=f_Xf_Y.",
+          "Explains why rectangular support helps but is not by itself enough.",
+          "Notes that non-rectangular support rules out independence in many cases even if the formula looks factorized."
+        ],
+        "partial_credit": [
+          "Says 'check marginals' but does not explain support issues.",
+          "Understands support matters but is vague about the exact criterion.",
+          "Answers yes for this specific example but not in general."
+        ],
+        "common_mistakes": [
+          "Claiming rectangular support alone proves independence.",
+          "Ignoring the need to verify normalization/marginals.",
+          "Thinking any product-looking formula implies independence regardless of support."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give a quick example of a non-rectangular support where independence is impossible?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What exact equation involving f_{X,Y}, f_X, and f_Y would let you conclude independence?"
+        }
+      ],
+      "hints": [
+        "Start from the definition, not the appearance: independence means the joint density must equal the product of the marginal densities everywhere it is allowed to be nonzero.",
+        "A rectangular support is consistent with independence, but it does not prove it by itself. If the joint looks like g(x)h(y), ask whether those factors actually produce the correct marginals after integrating and normalizing.",
+        "Also check the support carefully: if the nonzero region is not a Cartesian product, independence cannot hold even if the formula seems factorized. The safe conclusion comes only after verifying both the support and the identity f_{X,Y}(x,y)=f_X(x)f_Y(y)."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0015",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "Imagine X is study hours and Y is sleep hours over a day. A joint CDF value F_{X,Y}(5,7)=0.62 is reported. Interpret this number in plain language, and then explain one common incorrect interpretation that students make.",
+      "expected_answer": "It means there is a 0.62 probability that study hours are at most 5 and sleep hours are at most 7 simultaneously. The word 'simultaneously' matters because the joint CDF concerns both inequalities at once. A common mistake is to read it as P(X=5,Y=7) or as the probability that X<=5 or Y<=7, both of which are different events.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p15_af3c0f3531"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly interprets the two-threshold event with 'and'.",
+          "Uses non-strict inequalities appropriately.",
+          "Identifies a plausible incorrect interpretation and explains why it is wrong."
+        ],
+        "partial_credit": [
+          "Gets the idea of accumulation up to a point but omits the simultaneity.",
+          "Gives one wrong interpretation without explaining the difference.",
+          "Uses 'or' loosely but otherwise understands the region."
+        ],
+        "common_mistakes": [
+          "Interpreting the CDF as point probability.",
+          "Replacing 'and' with 'or'.",
+          "Forgetting that the event is a lower-left rectangle in the plane."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What geometric region in the x-y plane corresponds to F_{X,Y}(5,7)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Does F_{X,Y}(5,7) refer to one point, a line, or a whole region?"
+        }
+      ],
+      "hints": [
+        "Recall what a joint CDF means: it accumulates probability over a region, not at a single point. Picture the \u0010lower-left rectangle\u0011 in the \u0010(X,Y)\u0011 plane up to the thresholds given.",
+        "Write the event in probability notation using non-strict inequalities for both variables. The key word is that both conditions must hold at the same time, not just one of them.",
+        "For the incorrect interpretation, compare the true event to two common mistakes: treating the CDF value as a point probability at exactly one pair, or replacing the joint \u0010and\u0011 event with an \u0010or\u0011 event. Explain briefly why those describe different regions/events."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0016",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose X and Y are jointly continuous with density proportional to x+y on the triangular support 0<x<1, 0<y<1-x. Without computing the normalizing constant unless you need it, explain how you would obtain the marginal density of X. Your explanation should show that you understand how support affects the integration limits.",
+      "expected_answer": "To get f_X(x), fix x and integrate the joint density over all y values compatible with that x. Because the support is triangular, once x is fixed in (0,1), y ranges from 0 to 1-x, not from 0 to 1. So f_X(x)=\\int_0^{1-x} c(x+y)\\,dy for 0<x<1, where c is the normalizing constant. The key point is that the support determines the bounds, and on a non-rectangular region those bounds depend on x.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p6_3119f5608d",
+        "cs109_16_cont_joint_i_annotated_p11_p12_279fd66720"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly states that the marginal is obtained by integrating over y values allowed by the support.",
+          "Uses bounds 0 to 1-x for y when x is fixed.",
+          "Emphasizes that non-rectangular support leads to x-dependent limits."
+        ],
+        "partial_credit": [
+          "Knows to integrate but uses overly vague bounds.",
+          "Recognizes the support matters but incorrectly sets y from 0 to 1.",
+          "Focuses on normalizing constant and misses the main point about bounds."
+        ],
+        "common_mistakes": [
+          "Integrating over the full square instead of the triangle.",
+          "Treating bounds as constants when they depend on x.",
+          "Forgetting to specify the range of x itself."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If you instead wanted f_Y(y), what would change in the setup?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a fixed x=0.8, what y-values are actually possible under the support?"
+        }
+      ],
+      "hints": [
+        "For a marginal density, fix one variable and integrate the joint density over all values of the other variable that are actually allowed by the support. A quick sketch of the triangle helps you see those allowed values.",
+        "Here, once you fix an x-value, y does not run across the whole interval from 0 to 1; it stops at the slanted boundary of the triangle. First identify the x-values that appear in the support, then use the corresponding y-range for that fixed x.",
+        "Set up the marginal as f_X(x)=\\int f_{X,Y}(x,y)\\,dy with limits taken from the triangle, so the upper limit depends on x. Since the joint density is proportional to x+y, your integrand is c(x+y), and the key point is the x-dependent bound rather than computing c."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0017",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Explain why the conditional density f_{X|Y}(x|y)=f_{X,Y}(x,y)/f_Y(y) is considered a genuine density in x for each fixed y with f_Y(y)>0. Your explanation should include both intuition and the normalization check.",
+      "expected_answer": "Intuitively, conditioning on Y=y restricts attention to the slice of the joint distribution at that y-value, and dividing by f_Y(y) rescales that slice so the total mass becomes 1. Formally, for fixed y with f_Y(y)>0, \\int f_{X|Y}(x|y)dx = \\int f_{X,Y}(x,y)/f_Y(y)\\,dx = f_Y(y)/f_Y(y)=1. It is nonnegative because the joint density is nonnegative. So as a function of x, it behaves like an ordinary PDF.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p20_26738bfe99"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the formula and explains the slice-and-rescale intuition.",
+          "Performs the normalization integral correctly.",
+          "Mentions the requirement f_Y(y)>0."
+        ],
+        "partial_credit": [
+          "Gives the normalization argument but little intuition.",
+          "Provides intuition but does not show why it integrates to 1.",
+          "Forgets to mention the denominator must be positive."
+        ],
+        "common_mistakes": [
+          "Treating f_{X|Y}(x|y) as a probability at a point.",
+          "Not seeing why division by f_Y(y) is needed.",
+          "Integrating with respect to y instead of x."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you recognize from the formula that X and Y are independent using conditional densities?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What should any valid density integrate to, once the conditioned value y is fixed?"
+        }
+      ],
+      "hints": [
+        "For a fixed value of y, think of f_{X,Y}(x,y) as the 'slice' of the joint density along that horizontal line. A conditional density in x should still be nonnegative and have total area 1 over x.",
+        "Use the marginal density definition f_Y(y)=\\int f_{X,Y}(x,y)\\,dx. This shows why dividing the slice by f_Y(y) is the natural rescaling, and also why you need f_Y(y)>0.",
+        "To check it is a genuine density, integrate f_{X|Y}(x|y)=f_{X,Y}(x,y)/f_Y(y) with respect to x, not y. Pull out the constant 1/f_Y(y), use the marginalization identity, and verify the total becomes normalized."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0018",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "Someone says: \"Since probabilities must be at most 1, any valid joint PDF must also be at most 1 everywhere.\" Evaluate that statement and justify your answer using the idea of area under the density.",
+      "expected_answer": "The statement is false. A PDF is a density, not a probability, so it may exceed 1 at some points as long as the total integral over the whole support is 1 and the density is nonnegative. In two dimensions the same logic applies: the volume under the surface over the support must be 1. High density over a very small region can still correspond to a valid distribution.",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p9_p10_b58f337cde",
+        "cs109_09_continuous_rv_annotated_p5_fff4a9b08f",
+        "cs109_16_cont_joint_i_annotated_p6_3119f5608d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the claim is false.",
+          "Explains that densities can exceed 1 while integrals over regions give probabilities.",
+          "Connects validity to nonnegativity and total integral 1."
+        ],
+        "partial_credit": [
+          "Says false but gives only a 1D explanation, not connecting to the joint case.",
+          "Mentions normalization but not nonnegativity.",
+          "Uses an example idea without articulating the principle."
+        ],
+        "common_mistakes": [
+          "Confusing PDF values with probabilities.",
+          "Thinking all density values must lie in [0,1].",
+          "Forgetting the integral criterion."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you describe a qualitative shape of a valid density that is above 1 somewhere?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When you compute a probability from a PDF, what operation turns the density into an actual probability?"
+        }
+      ],
+      "hints": [
+        "Ask yourself whether a PDF value is itself a probability, or whether probabilities come from accumulating density over a region. In the joint case, think of the graph as a surface, not a single probability at a point.",
+        "Recall the two validity conditions for a joint PDF: it must be nonnegative everywhere, and its integral over the entire support must equal 1. The height of the surface at one point can be larger than 1 if the supporting region is small enough.",
+        "Use the area/volume-under-the-density idea: probability is found by integrating over a region, so a tall, narrow density can still produce total probability 1. Frame your justification by contrasting 'density height' with 'probability mass over area.'"
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0019",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Suppose a joint model for waiting time X and service score Y is known, and a manager asks for P(X<=2, Y<=4). Another analyst proposes first finding the two marginals and multiplying P(X<=2) by P(Y<=4). Under what condition is that shortcut justified, and how would you explain the danger if the condition fails?",
+      "expected_answer": "The shortcut is justified only if X and Y are independent, because then joint probabilities of product-type events factor into products of marginal probabilities. If independence fails, the marginals alone do not capture how likely the pair is to occur together. For example, if long waits tend to produce low scores, then the joint probability of both thresholds could be very different from the product of the separate probabilities. So dependence structure matters for simultaneous events.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p2_e760697bd1",
+        "cs109_16_cont_joint_i_annotated_p15_af3c0f3531"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States independence as the required condition.",
+          "Explains why product of marginals can fail without independence.",
+          "Uses a dependence-based intuition or example."
+        ],
+        "partial_credit": [
+          "Says 'if unrelated' or 'if independent' but does not explain why.",
+          "Explains dependence generally but does not connect to the specific event.",
+          "Thinks zero covariance is enough."
+        ],
+        "common_mistakes": [
+          "Multiplying marginal event probabilities without independence.",
+          "Arguing from marginal shapes alone.",
+          "Confusing independence of variables with disjoint events."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If I instead ask whether f_{X,Y}(x,y)=f_X(x)f_Y(y), what object should you compare directly in the continuous case?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does independence let you do with a probability involving both X and Y that you usually cannot do otherwise?"
+        }
+      ],
+      "hints": [
+        "Start by noticing that P(X<=2, Y<=4) is a joint probability, not just two separate one-variable questions. Ask yourself what extra information a joint model has that marginals do not.",
+        "To justify multiplying P(X<=2) and P(Y<=4), you need a condition saying the chance of Y<=4 does not change after learning X<=2. In symbols, compare P(Y<=4 | X<=2) with P(Y<=4).",
+        "The key shortcut is the independence/factorization idea: for rectangle events, the joint CDF must split into a product of the two marginal CDFs. If that fails, dependence between wait time and score can make the true simultaneous probability very different from the product of marginals."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0020",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "In the two-dice experiment, define M=max(X,Y). Explain how you would derive the distribution of M using the joint distribution of (X,Y). I am not asking for all arithmetic immediately; I want the setup and logic.",
+      "expected_answer": "A clean approach uses the joint sample space of ordered pairs. Since there are 36 equally likely outcomes, P(M<=m)=P(X<=m,Y<=m)=(m/6)^2 for m=1,...,6 because both dice must be at most m. Then obtain the PMF by differencing: P(M=m)=P(M<=m)-P(M<=m-1). Equivalently, one can count the outcomes where the maximum equals m. The key is using the joint behavior of the pair, not treating M as if it came from one die alone.",
+      "source_chunk_ids": [
+        "cs109_11_joint_rvs_annotated_p18_79d9355be4",
+        "cs109_11_joint_rvs_annotated_p19_99f55c6a1c",
+        "cs109_16_cont_joint_i_annotated_p15_af3c0f3531"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses the joint sample space or joint CDF logic correctly.",
+          "Recognizes that M<=m means both X and Y are <=m.",
+          "Derives the PMF from the CDF by differencing or by equivalent counting."
+        ],
+        "partial_credit": [
+          "Counts correctly but does not explain why the event is a square in the joint table.",
+          "Knows to use P(M<=m) but makes a minor setup slip.",
+          "Attempts counting outcomes with maximum m but is somewhat disorganized."
+        ],
+        "common_mistakes": [
+          "Using P(M=m)=1/6 by symmetry.",
+          "Forgetting ordered pairs produce 36 outcomes.",
+          "Confusing max with sum."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the same idea change if I asked for the minimum instead of the maximum?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What event in terms of X and Y is exactly equivalent to M<=m?"
+        }
+      ],
+      "hints": [
+        "Start from the joint sample space of ordered pairs (X,Y), not from a single die. A 6\u00d76 table of equally likely outcomes makes the event involving the maximum easy to visualize.",
+        "For a given m, think about what M\u2264m means: both dice must land at values at most m. In the joint table, that event is exactly the square of outcomes with X\u2264m and Y\u2264m.",
+        "Once you have the cumulative probability for M\u2264m, turn it into the distribution of M by comparing consecutive m-values. Equivalently, count the outcomes where the largest die is exactly m by looking at the new \u201cborder\u201d added when you expand from m\u22121 to m."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0021",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Why is the ratio f(10)/f(5) meaningful for a continuous random variable even though P(X=10)=P(X=5)=0? Give the local-interval interpretation that rescues the idea of 'more likely near one value than another.'",
+      "expected_answer": "For a continuous variable, point probabilities are zero, so we should compare probabilities of tiny intervals around those points. For small \\varepsilon, P(10-\\varepsilon/2 <= X <= 10+\\varepsilon/2) is approximately \\varepsilon f(10), and similarly near 5 it is approximately \\varepsilon f(5). The ratio of these approximate local probabilities is therefore about f(10)/f(5). So density ratios compare relative local likelihood, not point masses.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p18_p19_653a0fdfd1",
+        "cs109_09_continuous_rv_annotated_p8_445992a924"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that point probabilities are zero for continuous variables.",
+          "Explains the small-interval approximation around each point.",
+          "Interprets the density ratio as a ratio of local probabilities or local likelihoods."
+        ],
+        "partial_credit": [
+          "Says 'densities compare relative likelihood' but gives no interval argument.",
+          "Provides the interval argument informally but not clearly.",
+          "Confuses exact equality with approximation but has the right idea."
+        ],
+        "common_mistakes": [
+          "Treating f(10)/f(5) as P(X=10)/P(X=5).",
+          "Saying 10 is literally f(10) times as probable as 5 at a point.",
+          "Forgetting the interval widths must match for the comparison."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why do the intervals around 10 and 5 need to have the same small width in that comparison?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If point probabilities are zero, what nearby event could you compare instead of the exact points?"
+        }
+      ],
+      "hints": [
+        "For a continuous random variable, the important distinction is between a point probability and a density value. Ask yourself what event near 10 or near 5 has a nonzero probability that could be compared instead.",
+        "Compare two tiny intervals of the same width, one centered at 10 and one centered at 5. Write each probability as an integral of the density over [x-\\varepsilon/2, x+\\varepsilon/2].",
+        "When \\varepsilon is very small, each such integral is approximately \\varepsilon f(x). Using equal widths makes the ratio of these local interval probabilities line up with f(10)/f(5), which is why the density ratio has meaning."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0022",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are fitting a simulation model for two continuous measurements, and a teammate says, \"As long as I choose any nonnegative function f(x,y), it works as a joint PDF.\" Give a complete response describing what else must be true, and explain how support enters the argument.",
+      "expected_answer": "Nonnegativity alone is not enough. A valid joint PDF must also integrate to 1 over its support. The support is the set of (x,y) values where the density is positive or intended to apply, and the normalization integral must be taken over exactly that region. If the proposed support excludes some parts of the plane or has curved boundaries, the integration limits must match that geometry. So validity requires both correct sign and correct total mass over the support.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p6_3119f5608d",
+        "cs109_16_cont_joint_i_annotated_p9_b59eb7249c",
+        "cs109_16_cont_joint_i_annotated_p10_ca62843fb0"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States both nonnegativity and total integral 1 as required conditions.",
+          "Explains that normalization is performed over the support.",
+          "Mentions that support geometry determines integration limits."
+        ],
+        "partial_credit": [
+          "States the two conditions but says little about support.",
+          "Understands support but forgets one condition.",
+          "Describes normalization vaguely without region language."
+        ],
+        "common_mistakes": [
+          "Thinking any nonnegative function is automatically a PDF.",
+          "Integrating over the wrong region.",
+          "Ignoring that the function may be zero outside the support."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the total integral comes out to c not equal to 1, what simple repair is often possible?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Besides being nonnegative, what single numerical requirement must the total probability satisfy?"
+        }
+      ],
+      "hints": [
+        "Start by recalling the two defining properties of a joint PDF: being nonnegative is only one of them. Ask what must be true about the total probability over all allowed \u0018(x,y)\u0019 values.",
+        "Identify the support first: which region of the plane is the density meant to live on, and where is it zero? For a valid model, the probability mass must be accumulated over that specific region, not automatically over all of \u0018\\mathbb{R}^2\u0019.",
+        "Set up the check as a double integral over the support, with limits matching its geometry (rectangle, triangle, curved boundary, etc.). The key test is whether that integral gives the required total mass, together with nonnegativity on the support."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0023",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose you know a joint PMF p_{X,Y}(x,y) for discrete variables and are asked for P(X=2). Then someone else asks for P(X=2 | Y=1). Explain the difference in setup between these two calculations, and why students often confuse them.",
+      "expected_answer": "For the marginal probability P(X=2), sum the joint PMF over all y: P(X=2)=\\sum_y p_{X,Y}(2,y). For the conditional probability P(X=2|Y=1), restrict attention to the slice Y=1 and renormalize: P(X=2|Y=1)=p_{X,Y}(2,1)/P(Y=1), where P(Y=1)=\\sum_x p_{X,Y}(x,1). Students confuse them because both involve looking at a row or column of the joint table, but only the conditional requires dividing by the total probability of the conditioning event.",
+      "source_chunk_ids": [
+        "cs109_11_joint_rvs_annotated_p17_b2c1bbbb49",
+        "cs109_14_conditional_expectation_annotated_p5_0628feb14d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly distinguishes marginalization from conditioning.",
+          "Provides the correct formulas for both quantities.",
+          "Explains the renormalization step in the conditional case."
+        ],
+        "partial_credit": [
+          "Gets both formulas mostly right but does not explain the conceptual difference.",
+          "Understands renormalization but is shaky on which variable to sum over.",
+          "Uses row/column language correctly but without general formulas."
+        ],
+        "common_mistakes": [
+          "Treating P(X=2|Y=1) as just p_{X,Y}(2,1).",
+          "Forgetting to divide by P(Y=1).",
+          "Summing over the wrong variable for the marginal."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "In table language, what changes numerically when you go from a joint slice to a conditional distribution?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you condition on Y=1, what must the probabilities over all x-values add up to?"
+        }
+      ],
+      "hints": [
+        "Ask yourself whether you are looking for a probability about X alone, or about X after restricting attention to outcomes where Y=1. In a joint PMF table, the first uses all entries with X=2, while the second only looks inside the Y=1 slice.",
+        "For P(X=2), you need to eliminate Y by summing over every possible y. For P(X=2\\mid Y=1), first find the total probability of the event Y=1, because conditioning changes the denominator.",
+        "Use the conditional probability idea: within the Y=1 slice, compare the mass at (2,1) to the total mass of that slice. This is the step students often miss when they treat P(X=2\\mid Y=1) as just p_{X,Y}(2,1)."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0024",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A joint density is proposed on the rectangular support 0 \u0015 x \u0015 1, 0 \u0015 y \u0015 2 by f_{X,Y}(x,y)=kxy, and f_{X,Y}(x,y)=0 elsewhere. Without rushing to compute, explain how you would verify this is a valid joint PDF, find the constant k, and then derive the marginal densities of X and Y. Finally, say whether X and Y are independent and justify your answer from the formulas, not from intuition about the picture.",
+      "expected_answer": "A strong answer should begin by stating that a joint PDF must be nonnegative and integrate to 1 over its support. Since kxy is nonnegative on the given rectangle when k>0, we impose \\int_0^1 \\int_0^2 kxy\\,dy\\,dx = 1. Compute the integral: \\int_0^1 kx[ y^2/2 ]_0^2 dx = \\int_0^1 2kx\\,dx = k[x^2]_0^1 = k, so k=1. Then the marginals are f_X(x)=\\int_0^2 xy\\,dy = 2x for 0<x<1, and f_Y(y)=\\int_0^1 xy\\,dx = y/2 for 0<y<2. To test independence, compare f_{X,Y}(x,y)=xy with f_X(x)f_Y(y)=(2x)(y/2)=xy on the support; they match, so X and Y are independent.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p9_b59eb7249c",
+        "cs109_16_cont_joint_i_annotated_p10_ca62843fb0",
+        "cs109_17_cont_joint_ii_annotated_p2_e760697bd1",
+        "cs109_16_cont_joint_i_annotated_p11_p12_279fd66720"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the two validity conditions: nonnegativity and total integral 1.",
+          "Correctly sets up and evaluates the double integral to get k=1.",
+          "Correctly derives f_X(x)=2x on (0,1) and f_Y(y)=y/2 on (0,2), with 0 elsewhere.",
+          "Justifies independence by showing f_{X,Y}=f_X f_Y on the full support."
+        ],
+        "partial_credit": [
+          "Correct integral setup but arithmetic slip in solving for k.",
+          "Correct marginals but weak or incomplete support statements.",
+          "Claims independence correctly but does not explicitly verify factorization."
+        ],
+        "common_mistakes": [
+          "Forgetting the support limits when integrating.",
+          "Saying 'it looks separable so independent' without checking normalization or support.",
+          "Using point probabilities for a continuous distribution.",
+          "Computing marginals with reversed bounds or treating the density itself as a probability."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose I change the support to the triangle 0<y<x<1 but keep f_{X,Y}(x,y)=cxy. Would factorization into a function of x times a function of y still be enough to conclude independence? Why or why not?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you restate the two separate tasks: first making the function integrate to 1, and second checking whether the resulting joint density equals the product of its marginals?"
+        }
+      ],
+      "hints": [
+        "Start by checking the two PDF requirements: the density must be nonnegative on its support, and its double integral over 0\u2264x\u22641, 0\u2264y\u22642 must equal 1.",
+        "Use normalization to solve for k by setting up \u222b_0^1\u222b_0^2 kxy dy dx = 1. Then get the marginals by integrating out the other variable: f_X(x)=\u222b_0^2 f_{X,Y}(x,y)dy and f_Y(y)=\u222b_0^1 f_{X,Y}(x,y)dx, with 0 outside their supports.",
+        "For the independence check, don\u2019t rely on the picture or the fact that kxy factors. Substitute your k and compare f_{X,Y}(x,y) directly with f_X(x)f_Y(y) on the whole rectangle, and also note what happens outside the support."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0025",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student says: 'For continuous random variables, conditioning on Y=y makes no sense because P(Y=y)=0, so f_{X|Y}(x|y)=f_{X,Y}(x,y)/P(Y=y) is impossible.' Respond to this claim carefully. Explain what the correct conditional object is, when it is defined, and why it still behaves like a legitimate density in x.",
+      "expected_answer": "The student is mixing discrete and continuous conditioning formulas. For continuous variables we do not divide by P(Y=y); instead we define the conditional density by f_{X|Y}(x|y)=f_{X,Y}(x,y)/f_Y(y), provided f_Y(y)>0. The intuition is that this comes from ratios of small probabilities over tiny intervals, not from exact point probabilities. A complete answer should also say that for each fixed y with positive marginal density, f_{X|Y}(x|y) is a genuine density in x because it is nonnegative and integrates to 1: \\int f_{X|Y}(x|y)dx = \\int f_{X,Y}(x,y)/f_Y(y)\\,dx = f_Y(y)/f_Y(y)=1. So conditioning is meaningful even though P(Y=y)=0.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p20_26738bfe99",
+        "cs109_09_continuous_rv_annotated_p8_445992a924",
+        "cs109_17_cont_joint_ii_annotated_p18_p19_653a0fdfd1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explicitly identifies the error of using P(Y=y) in the continuous case.",
+          "States the correct formula f_{X|Y}(x|y)=f_{X,Y}(x,y)/f_Y(y) for f_Y(y)>0.",
+          "Explains the small-interval or density-ratio intuition.",
+          "Verifies that the conditional density integrates to 1 over x."
+        ],
+        "partial_credit": [
+          "Knows the correct formula but gives little intuition.",
+          "Explains point probabilities are zero but does not clearly contrast discrete vs continuous conditioning.",
+          "Mentions the requirement f_Y(y)>0 but does not explain why."
+        ],
+        "common_mistakes": [
+          "Saying conditioning on an event of probability zero is always impossible in continuous settings.",
+          "Using PMF language for PDFs.",
+          "Failing to note the domain restriction f_Y(y)>0.",
+          "Treating f(x) itself as a probability."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If X and Y are independent, what does your formula reduce to for f_{X|Y}(x|y), and how would you explain that orally?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What quantity replaces P(Y=y) in the continuous formula, and what property must that quantity satisfy at the chosen y?"
+        }
+      ],
+      "hints": [
+        "First separate the discrete and continuous cases: in the continuous setting, exact point probabilities like P(Y=y) are not the object you divide by. Think in terms of densities or tiny intervals around y instead.",
+        "Identify the correct conditional object as a conditional density, defined for y where the marginal density f_Y(y) is positive. Set it up using the joint density divided by the marginal density, not by a point probability.",
+        "To justify that this is a legitimate density in x, check two properties for fixed y: nonnegativity and that integrating over x gives 1. For intuition, view it as coming from a ratio of small probabilities over a narrow interval around y, then let the interval shrink."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0026",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A clinic tracks two binary symptoms, Fever F and Tired T, and a student proposes storing all four joint probabilities P(F=a,T=b) directly. Another student says it is often smarter to think in terms of causal structure and conditional distributions instead of listing every joint entry. Using this small example, explain what information a joint distribution gives you, how marginals would be extracted from it, and why a causal or conditional-factorized view can be more scalable as the number of variables grows.",
+      "expected_answer": "A strong response should say that the joint distribution is the complete probabilistic description of the pair: each entry P(F=a,T=b) gives the probability of a specific combination, and all four entries must sum to 1. From that joint table, marginals are obtained by summing over the other variable, for example P(F=a)=\\sum_b P(F=a,T=b) and P(T=b)=\\sum_a P(F=a,T=b). The factorized view is useful because the number of joint entries grows exponentially with the number of variables, while a conditional structure such as P(F)P(T|F) or a larger causal model can exploit dependence assumptions and domain knowledge. A good answer should note that the two views are mathematically connected: factorization can generate the same joint distribution, but often with fewer parameters and clearer interpretation.",
+      "source_chunk_ids": [
+        "cs109_11_joint_rvs_annotated_p17_b2c1bbbb49",
+        "cs109_15_general_inference_annotated_p12_bba99c6e2b",
+        "cs109_14_conditional_expectation_annotated_p4_220adf4a12",
+        "cs109_14_conditional_expectation_annotated_p5_0628feb14d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains the joint distribution as a complete description of the pair.",
+          "Correctly explains how to obtain marginals by summing over the other variable.",
+          "Discusses parameter growth of full joint tables and why factorization/causal structure helps.",
+          "Recognizes that conditional or causal representations and joint distributions are alternative representations of the same underlying probabilities."
+        ],
+        "partial_credit": [
+          "Understands marginals from a joint table but gives only vague comments about scalability.",
+          "Mentions factorization but does not connect it back to the full joint.",
+          "Uses the symptom example correctly but without generalizing to more variables."
+        ],
+        "common_mistakes": [
+          "Claiming marginals determine the joint without further assumptions.",
+          "Confusing conditional tables with joint tables because both contain probabilities.",
+          "Ignoring the sum-to-1 constraint on the joint table.",
+          "Saying causal structure changes the probabilities rather than representing them differently."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose you also add an 'Undergrad' variable and a hidden 'Flu' variable. Without specifying numbers, describe one plausible factorization that uses causality and explain what independence assumptions it encodes."
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I hand you a 2x2 joint table for F and T, how exactly would you compute P(F=1) from it?"
+        }
+      ],
+      "hints": [
+        "Start by viewing the four probabilities for (F,T) as a 2\u00d72 table: each cell is one symptom combination, and together the cells form the complete distribution for the pair. Remember the table has a normalization constraint.",
+        "To get a marginal from that table, hold one variable fixed and add across the possible values of the other variable. For example, think about how you would obtain the distribution of Fever alone by combining the relevant joint cells.",
+        "Now compare parameter counts: a full joint table grows rapidly as you add more binary variables, while a factorization like P(F)P(T|F) represents the same joint through conditional pieces. Emphasize that causal/conditional structure is another way to encode the same probabilities, often with fewer quantities and clearer interpretation."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0027",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Let X and Y be independent Uniform(0,1) random variables, and define S=X+Y. Rather than quoting the known answer, derive the density of S by reasoning about where both densities are nonzero in the convolution integral. I want you to explain why the formula changes at s=1 and what the density is on the different ranges of s.",
+      "expected_answer": "The correct setup is f_S(s)=\\int_{-\\infty}^{\\infty} f_X(x)f_Y(s-x)\\,dx. Since X and Y are Uniform(0,1), each density is 1 on [0,1] and 0 otherwise, so the integrand is 1 exactly when 0\\le x\\le 1 and 0\\le s-x\\le 1. The second condition means s-1\\le x\\le s. Therefore the valid x-range is the overlap of [0,1] and [s-1,s]. The length of that overlap is the value of the integral. If 0<s<1, the overlap is [0,s], so f_S(s)=s. If 1\\le s<2, the overlap is [s-1,1], so f_S(s)=2-s. If s\\le 0 or s\\ge 2, there is no overlap and the density is 0. The break at s=1 occurs because the overlap first grows with s and then shrinks after the interval [s-1,s] has slid past the midpoint.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p10_3c72f541d9",
+        "cs109_17_cont_joint_ii_annotated_p0_p1_6b09d696d4",
+        "cs109_17_cont_joint_ii_annotated_p2_e760697bd1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Sets up the convolution integral correctly.",
+          "Uses support-overlap reasoning rather than unsupported memorization.",
+          "Correctly derives the piecewise density: 0 for s\\le0, s for 0<s<1, 2-s for 1\\le s<2, 0 for s\\ge2.",
+          "Explains conceptually why the breakpoint occurs at s=1."
+        ],
+        "partial_credit": [
+          "Gets the triangular answer but cannot clearly justify the limits of integration.",
+          "Correct setup with minor endpoint or piecewise-boundary errors.",
+          "Explains overlap idea informally but not fully enough to derive all cases."
+        ],
+        "common_mistakes": [
+          "Integrating from 0 to 1 without checking when f_Y(s-x) is nonzero.",
+          "Assuming the sum of two uniforms is uniform.",
+          "Forgetting support outside [0,2].",
+          "Giving only the graph shape without a derivation."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your reasoning change if Y were Uniform(0,2) instead of Uniform(0,1)? I am not asking for every arithmetic detail, just the geometry of the overlap and the resulting shape."
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a fixed s, what two intervals must x belong to for both f_X(x) and f_Y(s-x) to be nonzero?"
+        }
+      ],
+      "hints": [
+        "Start with the convolution formula for the sum: integrate f_X(x)f_Y(s-x) over x, and remember each uniform density is only nonzero on [0,1].",
+        "The integrand is 1 only when both conditions hold: x is in [0,1] and s-x is in [0,1]. Rewrite the second condition as an interval for x, then intersect it with [0,1].",
+        "Your density is the length of the overlap between [0,1] and the sliding interval [s-1,s]. Check how that overlap behaves for s below 0, between 0 and 1, between 1 and 2, and above 2; the change at s=1 happens when the overlap stops growing and starts shrinking."
+      ]
+    },
+    {
+      "question_id": "CS109_joint_distributions_0028",
+      "course": "CS109",
+      "topic_id": "joint_distributions",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Consider the continuous joint density f_{X,Y}(x,y)=3e^{-3x} on the support x>0 and 1<y<2, with 0 elsewhere. A classmate looks at the formula and says, 'Because the expression contains both x and y in the notation f_{X,Y}(x,y), the variables must be dependent.' Explain why that reasoning is wrong, determine whether X and Y are independent, and then use your answer to compute E[X+Y] efficiently.",
+      "expected_answer": "The notation f_{X,Y}(x,y) alone says only that this is a joint density; dependence is determined by whether the joint density factors into a function of x times a function of y over the support. Here f_{X,Y}(x,y)=3e^{-3x}\\cdot 1 for x>0 and 1<y<2, so it factors as g(x)h(y). Also the support is a rectangle in x and y, which is compatible with independence. Therefore X and Y are independent, with marginal densities f_X(x)=3e^{-3x} for x>0 and f_Y(y)=1 for 1<y<2. Then E[X]=1/3 because X is Exponential with rate 3, and E[Y]=3/2 because Y is Uniform(1,2). By linearity, E[X+Y]=E[X]+E[Y]=1/3+3/2=11/6.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p22_242c1ca147",
+        "cs109_16_cont_joint_i_annotated_p23_6fe431b32c",
+        "cs109_16_cont_joint_i_annotated_p24_be648dac74",
+        "cs109_17_cont_joint_ii_annotated_p2_e760697bd1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects the misconception that dependence is inferred from notation alone.",
+          "Correctly identifies factorization and rectangular support as evidence for independence.",
+          "Derives or states the correct marginals: 3e^{-3x} on x>0 and 1 on 1<y<2.",
+          "Uses linearity to compute E[X+Y]=11/6, with correct component expectations."
+        ],
+        "partial_credit": [
+          "Correctly concludes independence but gives weak justification.",
+          "Finds marginals correctly but hesitates on one expectation.",
+          "Uses linearity correctly even if one expectation has an arithmetic slip."
+        ],
+        "common_mistakes": [
+          "Thinking any joint density involving two variables must imply dependence.",
+          "Forgetting to include support when checking independence.",
+          "Claiming E[X+Y]=E[X]E[Y].",
+          "Treating f_Y(y)=1 on (1,2) as impossible because the density equals 1 rather than being less than 1."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If I changed the support to 0<x<y<2 while keeping the same algebraic expression 3e^{-3x}, would your independence conclusion still hold? Explain using the support, not just the formula."
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you write the joint density as one function of x times one function of y on its support, and what does that suggest?"
+        }
+      ],
+      "hints": [
+        "The symbol f_{X,Y}(x,y) only tells you this is a joint density, not whether X and Y are dependent. To assess dependence, look at whether the density and its support separate cleanly into an x-part and a y-part.",
+        "Write the support as the product set {x>0}\u00d7{1<y<2}, and notice the formula can be viewed as 3e^{-3x}\u00b71 on that rectangle. From there, compute the marginals by integrating over the other variable and compare them to the factors you identified.",
+        "If the joint density matches f_X(x)f_Y(y) on a rectangular support, use that property to justify the relationship between X and Y. Then compute E[X+Y] with linearity, using the mean of an exponential distribution for X and the mean of a uniform distribution on (1,2) for Y."
+      ]
+    }
+  ]
+}

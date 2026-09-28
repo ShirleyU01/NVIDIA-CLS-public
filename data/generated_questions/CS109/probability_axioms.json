@@ -1,0 +1,1226 @@
+{
+  "topic_id": "probability_axioms",
+  "topic_name": "Axioms of Probability",
+  "course": "CS109",
+  "model": "gpt-5.4",
+  "questions": [
+    {
+      "question_id": "CS109_probability_axioms_0001",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "conceptual",
+      "difficulty": "easy",
+      "question": "A student says: \"Axiom 3 is just a special case that almost never matters, because in real problems events usually overlap.\" Do you agree? Explain by giving one reason Axiom 3 is foundational even when events are not mutually exclusive, and show how it leads to a useful formula for general unions.",
+      "expected_answer": "A strong answer should say that Axiom 3 is foundational because many more complicated formulas are built by decomposing events into disjoint pieces. For overlapping events E and F, we can write E \u222a F as E together with the part of F outside E, namely F \\ E, and those two pieces are mutually exclusive. Then P(E \u222a F) = P(E) + P(F \\ E), and since P(F) = P(F \\ E) + P(E \u2229 F), we get P(E \u222a F) = P(E) + P(F) - P(E \u2229 F). So Axiom 3 is the engine behind inclusion-exclusion, not a niche rule.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p16_p17_ba45532e31",
+        "cs109_03_probability_annotated_p32_f98bba92d1",
+        "cs109_03_probability_annotated_p35_p36_8b26957b9e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that arbitrary events can be partitioned into mutually exclusive components.",
+          "Derives or clearly motivates inclusion-exclusion from Axiom 3.",
+          "States why the axiom is analytically useful beyond the mutually exclusive case."
+        ],
+        "partial_credit": [
+          "States inclusion-exclusion correctly but does not explain the disjoint decomposition.",
+          "Says Axiom 3 is important for unions but gives only a vague justification."
+        ],
+        "common_mistakes": [
+          "Claiming P(E \u222a F) = P(E) + P(F) for all events.",
+          "Confusing mutually exclusive with independent.",
+          "Subtracting P(E \u2229 F) without explaining double counting."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you extend that same decomposition idea to explain, in words, why the law of total probability is also an application of Axiom 3?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If E and F overlap, what exactly gets counted twice when you add P(E) and P(F)?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from probability axioms; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming P(E \u222a F) = P(E) + P(F) for all events. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0002",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "In a course platform, event A is \"student watched the lecture\" and event B is \"student attempted the quiz.\" Suppose P(A) = 0.7, P(B) = 0.6, and P(A \u222a B) = 0.9. Without assuming independence, compute P(A \u2229 B), then explain whether the data are consistent with A and B being mutually exclusive.",
+      "expected_answer": "Use inclusion-exclusion: P(A \u2229 B) = P(A) + P(B) - P(A \u222a B) = 0.7 + 0.6 - 0.9 = 0.4. They cannot be mutually exclusive because mutually exclusive events have intersection probability 0, but here the intersection is 0.4. Also, the fact that P(A) + P(B) exceeds 1 already suggests overlap must exist unless the union exceeded 1, which it cannot.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p32_f98bba92d1",
+        "cs109_03_probability_annotated_p15_3b7231a7cc"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly applies inclusion-exclusion to obtain 0.4.",
+          "Explains why mutually exclusive would require zero intersection.",
+          "Interprets the result in context."
+        ],
+        "partial_credit": [
+          "Gets the intersection correct but gives only a minimal explanation.",
+          "Recognizes they are not mutually exclusive but makes a small arithmetic slip."
+        ],
+        "common_mistakes": [
+          "Computing P(A \u2229 B) as P(A)P(B) without independence.",
+          "Saying they are mutually exclusive because A \u222a B is less than 1.",
+          "Forgetting to subtract the union rather than the intersection."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Now test whether independence would hold: compare P(A \u2229 B) to P(A)P(B). What conclusion do you draw?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you write the inclusion-exclusion identity first, before plugging in numbers?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Computing P(A \u2229 B) as P(A)P(B) without independence. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0003",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A classmate argues: \"If P(E) = 0.4, then the probability of not E must also be 0.4, because one just mirrors the other.\" Respond to this claim using the axioms. Then explain what additional axiom or corollary you are implicitly using.",
+      "expected_answer": "The claim is false. The complement rule gives P(E^c) = 1 - P(E) = 0.6. The reasoning is that E and E^c are mutually exclusive and together exhaust the sample space, so E \u222a E^c = S and P(S) = 1. By Axiom 3, P(E) + P(E^c) = 1, so P(E^c) = 1 - P(E). This uses Axiom 2 and Axiom 3, or equivalently the complement corollary derived from them.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p15_3b7231a7cc",
+        "cs109_03_probability_annotated_p32_f98bba92d1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States P(E^c) = 1 - P(E).",
+          "Explains that E and E^c partition the sample space.",
+          "References Axiom 2 and Axiom 3 or the complement corollary."
+        ],
+        "partial_credit": [
+          "Gives 0.6 correctly but does not justify from axioms.",
+          "Mentions complement rule but not why it is valid."
+        ],
+        "common_mistakes": [
+          "Saying complement probabilities are equal unless P(E)=0.5.",
+          "Using symmetry language with no relation to the actual sample space.",
+          "Treating E and E^c as independent rather than disjoint and exhaustive."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If P(E) = 1, what must P(E^c) be, and how does that fit Axiom 1?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the probability of the whole sample space, and how do E and its complement relate to it?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from probability axioms.",
+        "Watch out for this common trap: Saying complement probabilities are equal unless P(E)=0.5. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0004",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A device has three mutually exclusive operating modes on startup: safe mode, normal mode, and recovery mode. You are told P(safe) = 0.1 and P(normal) = 0.85. Use the axioms to determine P(recovery), and explain what hidden assumption makes this deduction possible.",
+      "expected_answer": "Because the three modes are mutually exclusive and together form the whole sample space, their probabilities must sum to 1. So P(recovery) = 1 - 0.1 - 0.85 = 0.05. The crucial assumption is not just mutual exclusivity but also exhaustiveness: exactly one of the three modes occurs on startup.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p15_3b7231a7cc",
+        "cs109_03_probability_annotated_p16_p17_ba45532e31"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes 0.05 correctly.",
+          "Explains both mutual exclusivity and that the modes partition the sample space.",
+          "Connects the sum-to-one conclusion to the axioms."
+        ],
+        "partial_credit": [
+          "Gets 0.05 with weak explanation.",
+          "Mentions probabilities sum to 1 but does not articulate exhaustiveness."
+        ],
+        "common_mistakes": [
+          "Subtracting from something other than 1.",
+          "Assuming mutual exclusivity alone implies completeness.",
+          "Allowing overlap among operating modes."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If there were also a fourth possibility, 'failed startup,' what extra information would you need before solving?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why are you allowed to subtract the known mode probabilities from 1 at all?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Subtracting from something other than 1. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0005",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Explain why the statement \"if E is a subset of F, then P(E) \u2264 P(F)\" should be true from the axioms rather than accepted as obvious. Your explanation should explicitly use a disjoint decomposition.",
+      "expected_answer": "If E \u2286 F, then F can be split into two disjoint parts: E and F \\ E. By Axiom 3, P(F) = P(E) + P(F \\ E). Since probabilities are nonnegative by Axiom 1, P(F \\ E) \u2265 0, so P(F) \u2265 P(E). This proves monotonicity from the axioms rather than intuition alone.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p32_f98bba92d1",
+        "cs109_03_probability_annotated_p15_3b7231a7cc"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Decomposes F into E and F \\ E.",
+          "Uses mutual exclusivity and Axiom 3 to add probabilities.",
+          "Invokes nonnegativity to conclude P(E) \u2264 P(F)."
+        ],
+        "partial_credit": [
+          "States the result correctly with an intuitive explanation but no formal decomposition.",
+          "Uses a Venn diagram argument without connecting to axioms."
+        ],
+        "common_mistakes": [
+          "Claiming strict inequality must always hold.",
+          "Using independence language.",
+          "Forgetting that F \\ E might have probability 0."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "When would equality occur in your argument?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you name the extra part of F that is not in E, and say what its probability must satisfy?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from probability axioms; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming strict inequality must always hold. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0006",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose P(A) = 0.55 and P(B) = 0.65. A student claims that P(A \u2229 B) could be as small as 0.05 because intersections can always be tiny. Is that possible? Give the sharpest lower bound you can justify from the axioms and explain the reasoning aloud.",
+      "expected_answer": "It is not possible. Since P(A \u222a B) \u2264 1, inclusion-exclusion gives P(A \u2229 B) = P(A) + P(B) - P(A \u222a B) \u2265 P(A) + P(B) - 1 = 0.20. So the intersection must be at least 0.20. This is the sharp lower bound derivable from the axioms alone, and it is achieved when A \u222a B = S.",
+      "source_chunk_ids": [
+        "cs109_01_section_soln_sec1_part1_ca6b35b380",
+        "cs109_03_probability_annotated_p32_f98bba92d1",
+        "cs109_03_probability_annotated_p15_3b7231a7cc"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses P(A \u222a B) \u2264 1 together with inclusion-exclusion.",
+          "Derives the lower bound 0.20.",
+          "Explains that 0.05 is impossible."
+        ],
+        "partial_credit": [
+          "States the bound correctly but does not justify sharpness.",
+          "Recognizes 0.05 is impossible but gives an incomplete argument."
+        ],
+        "common_mistakes": [
+          "Using P(A)P(B) as the minimum intersection.",
+          "Thinking intersections can be arbitrarily small regardless of marginals.",
+          "Forgetting the union cannot exceed 1."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What is the largest possible value of P(A \u2229 B) given the same marginals, and when is it achieved?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does inclusion-exclusion say about P(A \u2229 B) in terms of P(A), P(B), and P(A \u222a B)?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using P(A)P(B) as the minimum intersection. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0007",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You roll a fair six-sided die once. Let E be the event \"the outcome is even\" and F be the event \"the outcome is at least 4.\" Compute P(E), P(F), P(E \u2229 F), and P(E \u222a F) using equally likely outcomes, and explain where Axiom 3 does and does not apply directly.",
+      "expected_answer": "The sample space is {1,2,3,4,5,6}, all equally likely. E = {2,4,6}, so P(E)=3/6=1/2. F = {4,5,6}, so P(F)=3/6=1/2. E \u2229 F = {4,6}, so P(E \u2229 F)=2/6=1/3. E \u222a F = {2,4,5,6}, so P(E \u222a F)=4/6=2/3. Axiom 3 does not apply directly to E and F because they overlap; it applies directly after splitting one event into a disjoint part such as F \\ E = {5}.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p18_b9b50386f9",
+        "cs109_03_probability_annotated_p16_p17_ba45532e31",
+        "cs109_03_probability_annotated_p32_f98bba92d1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly enumerates the sample space and relevant events.",
+          "Computes all four probabilities correctly.",
+          "Explains that direct addition fails because E and F are not mutually exclusive."
+        ],
+        "partial_credit": [
+          "Gets most probabilities right but gives a thin explanation.",
+          "Correctly computes union by counting outcomes even if the axiom discussion is partial."
+        ],
+        "common_mistakes": [
+          "Adding 1/2 + 1/2 to get 1 for the union.",
+          "Forgetting 4 and 6 are in both events.",
+          "Treating equally likely outcomes as optional rather than the basis for the count."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you compute P(E \u222a F) again using inclusion-exclusion rather than direct counting?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which die outcomes belong to both E and F?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Adding 1/2 + 1/2 to get 1 for the union. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0008",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says: \"Mutually exclusive events are a kind of strong independence, because they do not affect each other.\" Critique this statement carefully. Include the special case where both events have positive probability.",
+      "expected_answer": "The statement is false. Mutually exclusive means E \u2229 F = \u2205, so P(E \u2229 F) = 0. Independence means P(E \u2229 F) = P(E)P(F). If both events have positive probability, then P(E)P(F) > 0, which cannot equal 0, so positively probable mutually exclusive events cannot be independent. The only exception is when one event has probability 0, because then both conditions can hold.",
+      "source_chunk_ids": [
+        "cs109_05_independence_annotated_p18_04c0cf27a7",
+        "cs109_03_probability_annotated_p16_p17_ba45532e31",
+        "cs109_03_probability_annotated_p15_3b7231a7cc"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Clearly distinguishes mutually exclusive from independent.",
+          "Uses the equations P(E \u2229 F)=0 and P(E)P(F).",
+          "Notes the probability-0 exception."
+        ],
+        "partial_credit": [
+          "States they are different but gives only an intuitive explanation.",
+          "Mentions that disjoint positive-probability events cannot be independent without formal support."
+        ],
+        "common_mistakes": [
+          "Saying mutually exclusive implies independent.",
+          "Thinking 'not affecting each other' is the definition of independence without checking the product rule.",
+          "Ignoring the probability-0 edge case."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give a concrete example on a die roll of two events that are mutually exclusive and therefore not independent?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What would independence require P(E \u2229 F) to equal?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from probability axioms.",
+        "Watch out for this common trap: Saying mutually exclusive implies independent. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0009",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Imagine a randomized function returns True in one of two ways: either event M happens and then event B happens, or M does not happen and then event G happens. Explain why those two ways are mutually exclusive, and write an expression for the total probability that the function returns True. You may assume M happens with probability 0.3, B given M has probability 0.5, and G given not M has probability 0.76.",
+      "expected_answer": "Let A be the event the function returns True. The two paths are (M \u2229 B) and (M^c \u2229 G). They are mutually exclusive because the first requires M while the second requires M^c, and an event cannot simultaneously be M and not M. Therefore P(A) = P(M \u2229 B) + P(M^c \u2229 G) = P(M)P(B|M) + P(M^c)P(G|M^c) = 0.3\u00b70.5 + 0.7\u00b70.76. The key idea is splitting according to a partition of the sample space.",
+      "source_chunk_ids": [
+        "cs109_midtermfall2024soln_preamble_1a95125874",
+        "cs109_17_cont_joint_ii_annotated_p22_cf0d04ea8f",
+        "cs109_03_probability_annotated_p16_p17_ba45532e31"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the two path events correctly.",
+          "Explains mutual exclusivity via M versus M^c.",
+          "Writes the total probability expression using chain rule factors."
+        ],
+        "partial_credit": [
+          "Gets the expression mostly right but does not justify exclusivity.",
+          "Recognizes a case split but omits conditional notation."
+        ],
+        "common_mistakes": [
+          "Adding P(B|M) and P(G|M^c) directly.",
+          "Multiplying all terms together as if all must happen.",
+          "Failing to distinguish M from M^c."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you describe this as an example of the law of total probability?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can both paths happen in the same run if one requires M and the other requires not M?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Adding P(B|M) and P(G|M^c) directly. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0010",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Suppose a probability assignment on a sample space S claims P(S) = 0.9, while still keeping all event probabilities between 0 and 1 and using additivity for disjoint events. Explain why this is not considered a valid probability model under the standard axioms. Then say what kinds of derived rules would immediately break.",
+      "expected_answer": "It violates Axiom 2, which requires P(S) = 1. Without that normalization, complements no longer satisfy P(E^c)=1-P(E), and exhaustive mutually exclusive partitions would not sum to 1. Many standard interpretations also break, since probability is meant to distribute one unit of total mass over the sample space. So even if nonnegativity and disjoint additivity hold, the model is not a valid probability measure under the usual axioms.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p15_3b7231a7cc",
+        "cs109_03_probability_annotated_p32_f98bba92d1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the violation of Axiom 2.",
+          "Explains at least one corollary that fails, such as the complement rule.",
+          "Shows understanding of normalization over the whole sample space."
+        ],
+        "partial_credit": [
+          "Says it is invalid because the total should be 1 but gives little further discussion.",
+          "Mentions normalization without tying it to a specific axiom."
+        ],
+        "common_mistakes": [
+          "Arguing that any total less than 1 is fine if all other probabilities look reasonable.",
+          "Thinking Axiom 2 is just a convention rather than a defining property.",
+          "Confusing sample space with an event of probability less than 1."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Could such a 0.9-total model be repaired by rescaling? What would that accomplish?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What must the probability of the entire sample space be according to the axioms?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from probability axioms; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Arguing that any total less than 1 is fine if all other probabilities look reasonable. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0011",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A museum tracks visitors by hour. Let p_i be the probability that a randomly selected visitor arrives i hours after midnight, for i = 0 through 23. How would you express the probability that a visitor arrives before noon, and why is it legitimate to add those hourly probabilities directly?",
+      "expected_answer": "The probability is sum from i=0 to 11 of p_i. It is legitimate to add because the events 'arrives in hour i' are mutually exclusive: a visitor can arrive in exactly one hour bucket. Since the hours partition the sample space of possible arrival times over the day, Axiom 3 applies repeatedly.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8",
+        "cs109_03_probability_annotated_p16_p17_ba45532e31"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes the sum over i=0 to 11.",
+          "Explains the hourly events are mutually exclusive.",
+          "Notes that the hours form a partition of the day."
+        ],
+        "partial_credit": [
+          "Writes the correct sum but gives only minimal justification.",
+          "Explains exclusivity but not the partition idea."
+        ],
+        "common_mistakes": [
+          "Summing to 12 instead of 11 when 'before noon' excludes noon to 1 pm.",
+          "Treating hourly bins as overlapping.",
+          "Normalizing by dividing by the sum of all p_i even though it already equals 1."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your expression change for the probability of arriving between 9 am and 5 pm, inclusive of 9 but exclusive of 5?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can one visitor belong to two different hour-of-arrival events at once?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Summing to 12 instead of 11 when 'before noon' excludes noon to 1 pm. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0012",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "In a fair coin experiment with two flips, define E as \"at least one head\" and F as \"exactly one head.\" Use the equally likely outcomes idea to compute P(E), P(F), and P(E \\ F). Then explain why P(E) = P(F) + P(E \\ F) is an instance of Axiom 3.",
+      "expected_answer": "The sample space is {(H,H),(H,T),(T,H),(T,T)}, equally likely. E has outcomes {(H,H),(H,T),(T,H)}, so P(E)=3/4. F has outcomes {(H,T),(T,H)}, so P(F)=2/4=1/2. E \\ F is just {(H,H)}, so P(E \\ F)=1/4. Since F and E \\ F are disjoint and their union is E, Axiom 3 gives P(E)=P(F)+P(E \\ F)=1/2+1/4=3/4.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p18_b9b50386f9",
+        "cs109_03_probability_annotated_p16_p17_ba45532e31"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Enumerates the four equally likely outcomes.",
+          "Computes the three probabilities correctly.",
+          "Explains the disjoint decomposition E = F \u222a (E \\ F)."
+        ],
+        "partial_credit": [
+          "Gets values right but gives little explanation of the set difference.",
+          "Explains Axiom 3 correctly but makes a minor counting slip."
+        ],
+        "common_mistakes": [
+          "Counting (H,T) and (T,H) as the same outcome.",
+          "Confusing 'at least one head' with 'exactly one head'.",
+          "Forgetting that E \\ F excludes the exactly-one-head outcomes."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you now compute P(E^c) and check it against the complement rule?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What outcomes are in E but not in F?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Counting (H,T) and (T,H) as the same outcome. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0013",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student claims that for any events A and B, if P(A \u222a B) = P(A) + P(B), then A and B must be independent. Is that right? Give a careful counterargument and say what condition the equation actually implies.",
+      "expected_answer": "That claim is wrong. The equation P(A \u222a B) = P(A) + P(B) implies, by inclusion-exclusion, that P(A \u2229 B) = 0. So it means A and B are mutually exclusive, not independent in general. In fact, if both have positive probability, mutual exclusivity makes them not independent because independence would require P(A \u2229 B)=P(A)P(B)>0.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p32_f98bba92d1",
+        "cs109_05_independence_annotated_p18_04c0cf27a7",
+        "cs109_03_probability_annotated_p16_p17_ba45532e31"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses inclusion-exclusion to deduce zero intersection.",
+          "Identifies the correct implication: mutual exclusivity.",
+          "Explains why this differs from independence."
+        ],
+        "partial_credit": [
+          "Says the claim is false and mentions mutual exclusivity but does not justify well.",
+          "Provides a correct verbal distinction without the formula."
+        ],
+        "common_mistakes": [
+          "Equating 'just add' with independence.",
+          "Forgetting that independence concerns intersections, not unions directly.",
+          "Missing the positive-probability caveat."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you construct a simple die-roll example where P(A \u222a B)=P(A)+P(B) but A and B are definitely not independent?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does inclusion-exclusion become if P(A \u222a B)=P(A)+P(B)?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from probability axioms.",
+        "Watch out for this common trap: Equating 'just add' with independence. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0014",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Why does the formula P(E) = |E| / |S| require more than just knowing the sample space is finite? Give an example of a finite sample space where this formula would fail if used blindly, and state the missing assumption.",
+      "expected_answer": "The formula requires equally likely outcomes, not merely finitely many outcomes. If the sample space is finite but outcomes have different probabilities, counting outcomes is not enough. For example, with a biased coin flipped once, S = {H,T} is finite, but if P(H)=0.8 and P(T)=0.2, then using |E|/|S| would incorrectly give 1/2 for event {H}. The missing assumption is that each elementary outcome has probability 1/|S|.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p18_b9b50386f9",
+        "cs109_03_probability_annotated_p4_6c2e1bc6c8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the missing assumption of equally likely outcomes.",
+          "Gives a concrete finite counterexample such as a biased coin.",
+          "Explains why counting alone fails there."
+        ],
+        "partial_credit": [
+          "Mentions equal likelihood but gives no example.",
+          "Gives an example but does not articulate the assumption clearly."
+        ],
+        "common_mistakes": [
+          "Believing all finite sample spaces are automatically uniform.",
+          "Confusing 'possible' with 'equally probable'.",
+          "Using a continuous example when the question is about finite sample spaces."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "In the fair die case, why does Axiom 3 help justify P(E)=|E|/|S| once each outcome has probability 1/|S|?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If one outcome is more likely than another, should each outcome still count equally in the probability?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from probability axioms; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Believing all finite sample spaces are automatically uniform. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0015",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose events A, B, and C are pairwise mutually exclusive. Explain how the probability of 'exactly one of them occurs' simplifies, and contrast that with the case where they are not mutually exclusive. Then, if P(A)=0.2, P(B)=0.15, and P(C)=0.05, compute the probability in the mutually exclusive case.",
+      "expected_answer": "If A, B, and C are pairwise mutually exclusive, then 'exactly one occurs' is just A \u222a B \u222a C, because two or more cannot occur together. By repeated use of Axiom 3, P(exactly one) = P(A)+P(B)+P(C) = 0.4. If they are not mutually exclusive, 'exactly one' is more complicated because overlaps must be excluded; simple addition would overcount outcomes where multiple events occur.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p16_p17_ba45532e31",
+        "cs109_03_probability_annotated_p35_p36_8b26957b9e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains why exactly one equals the union in the mutually exclusive case.",
+          "Uses repeated additivity to compute 0.4.",
+          "Contrasts with the overlapping case conceptually."
+        ],
+        "partial_credit": [
+          "Computes 0.4 but gives little contrast with the non-exclusive case.",
+          "Correctly states repeated addition without explaining 'exactly one'."
+        ],
+        "common_mistakes": [
+          "Thinking pairwise mutually exclusive is irrelevant.",
+          "Using inclusion-exclusion terms when all intersections are zero.",
+          "Confusing 'at least one' and 'exactly one' without noticing they coincide here."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would 'at least one occurs' have the same probability here? Why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If A and B can never happen together, what does that tell you about the phrase 'exactly one'?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Thinking pairwise mutually exclusive is irrelevant. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0016",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "In a quality-control pipeline, let D be the event a part is defective. The engineer has verified P(D)=0.02. Without any other information, what can you say about the probability a part is not defective, and what can you not say about the probability it passes a second independent inspection? Explain the difference in what is and is not justified from the axioms alone.",
+      "expected_answer": "From the complement rule, P(D^c)=1-0.02=0.98. That follows directly from axioms because D and D^c partition the sample space. But without more information, we cannot infer the probability of passing a second inspection or combine it with D using multiplication, because that would require modeling the inspection event and possibly independence assumptions. The axioms alone give complements and monotonicity, not arbitrary product formulas.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p32_f98bba92d1",
+        "cs109_03_probability_annotated_p15_3b7231a7cc",
+        "cs109_05_independence_annotated_p18_04c0cf27a7"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly computes P(D^c)=0.98.",
+          "Explains this comes from complement structure.",
+          "Clearly says why no further product-type probability follows without more assumptions."
+        ],
+        "partial_credit": [
+          "Gets the complement right but only vaguely addresses the second part.",
+          "Recognizes that more information is needed without naming independence or conditioning."
+        ],
+        "common_mistakes": [
+          "Assuming a second inspection pass probability equals 0.98 automatically.",
+          "Multiplying probabilities without defining the relevant event.",
+          "Treating complements and independent repeat events as the same idea."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What extra assumption would let you multiply probabilities for repeated inspections?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What event is the complement of 'defective'?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Assuming a second inspection pass probability equals 0.98 automatically. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0017",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Give an oral proof that probabilities cannot be negative using the axioms and corollaries already available. Your argument should not simply quote Axiom 1; instead, explain how nonnegativity is used in proving other facts such as monotonicity or inclusion-exclusion bounds.",
+      "expected_answer": "A good answer should acknowledge that nonnegativity is itself one of the axioms, so it is not proved from the others here. But the student should explain how it functions in proofs: for example, if E \u2286 F, then F = E \u222a (F \\ E) disjointly, so P(F)=P(E)+P(F\\E), and nonnegativity of P(F\\E) gives P(E)\u2264P(F). Similarly, from inclusion-exclusion and P(A\u222aB)\u22641, nonnegativity helps derive P(A)+P(B)-1\u2264P(A\u2229B). So nonnegativity is fundamental because many derived inequalities depend on it.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p15_3b7231a7cc",
+        "cs109_01_section_soln_sec1_part1_ca6b35b380",
+        "cs109_03_probability_annotated_p32_f98bba92d1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Recognizes nonnegativity is an axiom, not something proved from the others in this setup.",
+          "Explains how it is used to prove at least one corollary or inequality.",
+          "Shows structural understanding rather than merely quoting formulas."
+        ],
+        "partial_credit": [
+          "States that it is an axiom but gives limited discussion of consequences.",
+          "Mentions monotonicity or bounds without a clear proof sketch."
+        ],
+        "common_mistakes": [
+          "Claiming nonnegativity can be derived from P(S)=1 alone.",
+          "Failing to distinguish axioms from corollaries.",
+          "Using undefined notions instead of event decompositions."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you name one theorem from the course that would immediately become false if negative probabilities were allowed?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Is nonnegativity one of the basic axioms, or a corollary of the others?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from probability axioms; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming nonnegativity can be derived from P(S)=1 alone. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0018",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A friend says: \"Since P(A \u2229 B) is always less than or equal to both P(A) and P(B), it follows that P(A \u2229 B) must equal the smaller of the two.\" Diagnose the mistake and give conditions under which equality does hold.",
+      "expected_answer": "The mistake is confusing an upper bound with an exact value. Because A \u2229 B \u2286 A and A \u2229 B \u2286 B, monotonicity gives P(A \u2229 B) \u2264 P(A) and P(A \u2229 B) \u2264 P(B), so it is at most the smaller one, but often strictly smaller. Equality holds if one event is contained in the other, for example if A \u2286 B then A \u2229 B = A and P(A \u2229 B)=P(A), the smaller probability.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p32_f98bba92d1",
+        "cs109_01_section_soln_sec1_part1_ca6b35b380"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the confusion between inequality and equality.",
+          "Uses subset reasoning for the upper bound.",
+          "States a correct condition for equality, such as one event contained in the other."
+        ],
+        "partial_credit": [
+          "Says the claim is false and gives an example but no general condition.",
+          "States the equality condition but weakly explains the upper bound."
+        ],
+        "common_mistakes": [
+          "Claiming equality holds whenever events overlap.",
+          "Using independence as the equality condition.",
+          "Ignoring that the intersection can be much smaller than both."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give a simple numerical example where P(A)=0.6, P(B)=0.7, but P(A\u2229B) is not 0.6?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Does 'less than or equal to' force equality in general?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from probability axioms.",
+        "Watch out for this common trap: Claiming equality holds whenever events overlap. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0019",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are told that a random visitor to a website either arrives from search, from social media, or from a direct link, and these categories are mutually exclusive and exhaustive. Later, an analyst reports P(search or social) = 0.8 and P(search) = 0.5. What is P(direct), and what additional step would let you recover P(social)? Explain carefully.",
+      "expected_answer": "Since the three categories are exhaustive and mutually exclusive, direct is the complement of search \u222a social. So P(direct)=1-0.8=0.2. Because search and social are mutually exclusive, P(search \u222a social)=P(search)+P(social), so P(social)=0.8-0.5=0.3. The extra step is recognizing direct is the complement of the reported union and then using additivity on the disjoint search and social events.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p16_p17_ba45532e31",
+        "cs109_03_probability_annotated_p32_f98bba92d1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Finds P(direct)=0.2.",
+          "Uses mutual exclusivity to find P(social)=0.3.",
+          "Explains both the complement and disjoint-addition steps."
+        ],
+        "partial_credit": [
+          "Gets one of the two probabilities right with incomplete reasoning.",
+          "Understands the partition but forgets to invoke exclusivity for search and social."
+        ],
+        "common_mistakes": [
+          "Subtracting 0.5 from 1 to get direct.",
+          "Using inclusion-exclusion with an unnecessary overlap term.",
+          "Not using the exhaustive-category information."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the analyst instead reported P(search and social)=0.1, what would that tell you about the quality of the categorization?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What event is the complement of 'search or social' under this setup?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Subtracting 0.5 from 1 to get direct. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0020",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "On a two-child family problem, let E be the event 'both children are girls' and F be the event 'at least one child is a girl born on Tuesday.' Without doing all arithmetic, explain how inclusion-exclusion appears in the setup of P(F), and why a naive answer of 1/2 for P(E|F) ignores the new sample space.",
+      "expected_answer": "To compute P(F), one natural setup is to consider the event that child 1 is a girl born on Tuesday union the event that child 2 is a girl born on Tuesday. Those two events overlap when both children are girls born on Tuesday, so inclusion-exclusion is needed: add the two probabilities and subtract the overlap. The naive 1/2 ignores conditioning; once we condition on F, we are working inside a restricted sample space where families with at least one Tuesday-born girl are weighted differently. So the problem is about redefining the sample space, not simple symmetry.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8",
+        "cs109_03_probability_annotated_p32_f98bba92d1",
+        "cs109_03_probability_annotated_p35_p36_8b26957b9e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the two subevents used to build F.",
+          "Explains why they overlap and inclusion-exclusion is required.",
+          "Explains that conditioning changes the effective sample space."
+        ],
+        "partial_credit": [
+          "Recognizes conditioning matters but does not clearly describe the overlap.",
+          "Mentions Tuesday information changes the answer without explaining why."
+        ],
+        "common_mistakes": [
+          "Saying the answer must be 1/2 because one child is known to be a girl.",
+          "Treating the two child-specific Tuesday events as disjoint.",
+          "Ignoring the role of conditional probability."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is 'there exists a Tuesday-born girl' not the same event as 'the older child is a Tuesday-born girl'?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If both children are girls born on Tuesday, would that family be counted once or twice in the naive sum for P(F)?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Saying the answer must be 1/2 because one child is known to be a girl. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0021",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "The lecture notes say that 'the challenge of probability is in defining events.' Give an example where the same real-world question can be represented by two different event decompositions, one of which makes Axiom 3 easy to use and the other of which obscures the solution. Explain your choice.",
+      "expected_answer": "A strong answer should give a concrete example, such as a function returning True through different branches, or 'at least one success' in repeated trials. One decomposition might be into disjoint cases, like first branch succeeds or second branch succeeds after the first did not, which allows direct addition via Axiom 3. A poorer decomposition might use overlapping events like 'branch 1 could lead to True' and 'branch 2 could lead to True,' which would require extra subtraction. The point is that smart event definitions convert overlap into a disjoint partition.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p35_p36_8b26957b9e",
+        "cs109_midtermfall2024soln_preamble_1a95125874",
+        "cs109_17_cont_joint_ii_annotated_p22_cf0d04ea8f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Provides a concrete example with two different decompositions.",
+          "Shows which decomposition yields disjoint events and why that helps.",
+          "Connects the idea explicitly to Axiom 3."
+        ],
+        "partial_credit": [
+          "Gives an example but only one decomposition.",
+          "States that event definition matters without a clear illustration."
+        ],
+        "common_mistakes": [
+          "Giving only abstract statements with no example.",
+          "Claiming all decompositions are equally easy.",
+          "Not distinguishing disjoint and overlapping cases."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you reformulate your example once more so that inclusion-exclusion, rather than direct additivity, becomes the natural tool?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you think of a situation where splitting into cases 'M' and 'not M' would automatically create disjoint events?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from probability axioms; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Giving only abstract statements with no example. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0022",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "For a fair six-sided die, let A be 'roll is 1 or 2 or 3 or 4' and B be 'roll is 3 or 4 or 5.' Compute P(A), P(B), P(A \u2229 B), and verify both inequalities P(A \u2229 B) \u2264 P(A \u222a B) \u2264 P(A)+P(B). Then state when each inequality would become equality in general.",
+      "expected_answer": "A={1,2,3,4}, so P(A)=4/6. B={3,4,5}, so P(B)=3/6. A \u2229 B={3,4}, so P(A\u2229B)=2/6. A \u222a B={1,2,3,4,5}, so P(A\u222aB)=5/6. Then 2/6 \u2264 5/6 \u2264 7/6, which is true. In general, P(A\u2229B)=P(A\u222aB) when A and B are the same event, and P(A\u222aB)=P(A)+P(B) when A and B are mutually exclusive.",
+      "source_chunk_ids": [
+        "cs109_01_section_soln_sec1_part1_ca6b35b380",
+        "cs109_03_probability_annotated_p18_b9b50386f9",
+        "cs109_03_probability_annotated_p32_f98bba92d1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes all four probabilities correctly.",
+          "Checks both inequalities numerically.",
+          "States correct equality conditions in general."
+        ],
+        "partial_credit": [
+          "Gets the event probabilities right but only vaguely addresses equality cases.",
+          "Verifies inequalities with a minor arithmetic slip."
+        ],
+        "common_mistakes": [
+          "Confusing intersection with union.",
+          "Forgetting that 3 and 4 belong to both A and B.",
+          "Claiming P(A\u2229B)=P(A\u222aB) whenever the events overlap at all."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you also state when the lower bound P(A)+P(B)-1 \u2264 P(A\u2229B) is tight?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which die outcomes belong to both A and B?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Confusing intersection with union. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0023",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says: \u201cIf two events cannot happen together, they are basically independent, because knowing one happened tells you the other probably did not.\u201d Evaluate that claim carefully using the axioms. In your answer, compare the formulas for mutually exclusive events and independent events, and explain whether both properties can hold at once.",
+      "expected_answer": "A strong answer distinguishes the two ideas. Mutually exclusive means A \u2229 B = \u2205, so P(A \u222a B) = P(A) + P(B) by Axiom 3 and P(A \u2229 B) = 0. Independent means P(A \u2229 B) = P(A)P(B). If events are both mutually exclusive and independent, then 0 = P(A)P(B), so at least one of the events must have probability 0. Therefore, except for degenerate cases, mutually exclusive events are not independent. The student is confusing \u2018cannot happen together\u2019 with \u2018one gives no information about the other\u2019; in fact, if A occurs, mutually exclusivity tells you B definitely did not occur, which is strong dependence.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p15_3b7231a7cc",
+        "cs109_03_probability_annotated_p32_f98bba92d1",
+        "cs109_05_independence_annotated_p18_04c0cf27a7",
+        "cs109_05_independence_annotated_p19_d0c710402d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States mutually exclusive implies P(A \u2229 B) = 0.",
+          "States independence implies P(A \u2229 B) = P(A)P(B).",
+          "Shows both can hold only if P(A)=0 or P(B)=0.",
+          "Explains verbally why mutual exclusivity usually creates dependence rather than independence."
+        ],
+        "partial_credit": [
+          "Correctly says the claim is false but gives only an intuitive explanation.",
+          "Writes one of the two formulas correctly but does not connect them.",
+          "Mentions the degenerate zero-probability exception without fully justifying it."
+        ],
+        "common_mistakes": [
+          "Saying mutually exclusive events are independent because they \u2018do not overlap\u2019.",
+          "Using P(A \u222a B) = P(A)P(B).",
+          "Forgetting that independence concerns intersections, not unions."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example of two events that are independent but not mutually exclusive, and explain it aloud?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does independence require about P(A \u2229 B), and what value does mutual exclusivity force for P(A \u2229 B)?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from probability axioms.",
+        "Watch out for this common trap: Saying mutually exclusive events are independent because they \u2018do not overlap\u2019. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0024",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "In a class of equally likely final grades, suppose the sample space is the 10 letter outcomes {A+, A, A-, B+, B, B-, C+, C, C-, D}. Let E be the event \u201cgrade is at least B\u201d and F be the event \u201cgrade is plus or minus, not a plain letter.\u201d Compute P(E), P(F), and P(E \u222a F), but do it in two different ways: first by counting equally likely outcomes, and then by using inclusion-exclusion. I care at least as much about the setup as the final number.",
+      "expected_answer": "Because outcomes are equally likely, each has probability 1/10 and probabilities can be computed as |event|/|S|. Event E = {A+, A, A-, B+, B, B-}, so P(E)=6/10. Event F = {A+, A-, B+, B-, C+, C-}, so P(F)=6/10. Their intersection is {A+, A-, B+, B-}, so P(E \u2229 F)=4/10. Counting directly, E \u222a F contains {A+, A, A-, B+, B, B-, C+, C-}, so P(E \u222a F)=8/10. Using inclusion-exclusion, P(E \u222a F)=P(E)+P(F)-P(E \u2229 F)=6/10+6/10-4/10=8/10, which matches the direct count.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p18_b9b50386f9",
+        "cs109_03_probability_annotated_p32_f98bba92d1",
+        "cs109_03_probability_annotated_p35_p36_8b26957b9e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses equally likely outcomes rule P(E)=|E|/|S|.",
+          "Correctly identifies E, F, and E \u2229 F.",
+          "Computes P(E \u222a F) both by direct counting and by inclusion-exclusion.",
+          "Notes that the two methods agree."
+        ],
+        "partial_credit": [
+          "Gets the right final probability for the union but with incomplete event descriptions.",
+          "Correctly counts E and F but makes a minor slip in the intersection.",
+          "Uses only one method correctly."
+        ],
+        "common_mistakes": [
+          "Adding P(E)+P(F) without subtracting the overlap.",
+          "Treating \u2018plus or minus\u2019 as mutually exclusive from \u2018at least B\u2019.",
+          "Counting plain A or plain B inside F."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the outcomes were no longer equally likely, which part of your argument would break, and which identity would still remain valid?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which outcomes belong to both E and F at the same time? Try listing that overlap before recomputing the union."
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Adding P(E)+P(F) without subtracting the overlap. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0025",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Without quoting it as a memorized fact, derive the monotonicity property: if E \u2286 F, then P(E) \u2264 P(F). Your derivation should start from the axioms and the idea of decomposing F into disjoint pieces. Then explain why this result is not obvious from Axiom 1 alone.",
+      "expected_answer": "Since E \u2286 F, we can write F as the disjoint union E \u222a (F \\ E). These two events are mutually exclusive, so by Axiom 3, P(F) = P(E) + P(F \\ E). By Axiom 1, probabilities are nonnegative, so P(F \\ E) \u2265 0. Therefore P(F) \u2265 P(E), which proves monotonicity. Axiom 1 alone only says each individual probability lies between 0 and 1; it does not compare probabilities of related events. The comparison comes from combining nonnegativity with additivity over disjoint events.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p15_3b7231a7cc",
+        "cs109_03_probability_annotated_p32_f98bba92d1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Represents F as E \u222a (F \\ E).",
+          "States these pieces are mutually exclusive.",
+          "Uses Axiom 3 to write P(F)=P(E)+P(F\\E).",
+          "Uses nonnegativity to conclude P(E)\u2264P(F).",
+          "Explains why Axiom 1 by itself is insufficient."
+        ],
+        "partial_credit": [
+          "States monotonicity correctly and gives the right intuition but not the full derivation.",
+          "Mentions disjoint decomposition but omits explicit use of Axiom 1 or Axiom 3.",
+          "Gives a Venn-diagram explanation without a formal algebraic argument."
+        ],
+        "common_mistakes": [
+          "Arguing only that \u2018bigger sets should have bigger probabilities\u2019 without justification.",
+          "Using inclusion-exclusion unnecessarily and incorrectly.",
+          "Forgetting to note that F \\ E has nonnegative probability."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you use the same style of reasoning to derive P(E^c)=1-P(E)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If E is contained in F, can you split F into one part equal to E and one leftover part that does not overlap E?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from probability axioms; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Arguing only that \u2018bigger sets should have bigger probabilities\u2019 without justification. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0026",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A startup classifies daily server incidents into three categories: hardware failure H, software bug S, and human error U. On a given day, exactly one of these three root causes can occur, or there may be no incident at all. You are told P(H)=0.08, P(S)=0.11, and P(U)=0.05. A teammate concludes that the probability of no incident is 1 - 0.08 - 0.11 - 0.05 = 0.76, and then says this same subtraction would still work even if incidents could have multiple causes at once. Assess both parts of that statement.",
+      "expected_answer": "Because H, S, and U are mutually exclusive and together cover all incident-causing days, the probability of any incident is P(H \u222a S \u222a U)=0.08+0.11+0.05=0.24 by Axiom 3. Therefore the probability of no incident is the complement, 1-0.24=0.76, so the first conclusion is correct. But the second claim is false in general: if multiple causes could occur together, then the events would not be mutually exclusive, so simply subtracting the sum of individual probabilities would double-count overlaps. In that case we would need inclusion-exclusion: subtract pairwise intersections and add back higher-order overlaps as appropriate.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p15_3b7231a7cc",
+        "cs109_03_probability_annotated_p16_p17_ba45532e31",
+        "cs109_03_probability_annotated_p32_f98bba92d1",
+        "cs109_03_probability_annotated_p35_p36_8b26957b9e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly uses mutual exclusivity to sum H, S, and U.",
+          "Uses the complement rule to get probability of no incident.",
+          "Separately evaluates the second statement and says it is false in the non-mutually-exclusive case.",
+          "Explains that overlap causes double-counting and motivates inclusion-exclusion."
+        ],
+        "partial_credit": [
+          "Gets 0.76 correctly but does not fully explain why the same subtraction can fail.",
+          "Recognizes the need for inclusion-exclusion but gives only a vague explanation.",
+          "Discusses complement correctly but omits mutual exclusivity."
+        ],
+        "common_mistakes": [
+          "Assuming any list of event probabilities can always be added.",
+          "Confusing \u2018exactly one can occur\u2019 with independence.",
+          "Forgetting that complement applies to the union of all incident types."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose instead H and S can overlap and P(H \u2229 S)=0.02, while U is still disjoint from both. How would you now express the probability of at least one incident?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why was it legal to add the three probabilities in the original setup? What condition from the axioms makes that step valid?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Assuming any list of event probabilities can always be added. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_axioms_0027",
+      "course": "CS109",
+      "topic_id": "probability_axioms",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "A lecturer picks one of two quiz formats at random: format A with probability 0.4 and format B with probability 0.6. Under format A, the probability a student answers a target question correctly is 0.9; under format B it is 0.5. Let C be the event the student answers correctly. Compute P(C) using a partition of the sample space, and then explain why the two cases can be added directly even though \u2018correct under A\u2019 and \u2018correct under B\u2019 sound like different events about correctness.",
+      "expected_answer": "Let A and B be the events that the lecturer chose format A or format B. These events form a partition: they are mutually exclusive and exhaustive. So C can be written as (C \u2229 A) \u222a (C \u2229 B), and those two pieces are mutually exclusive because A and B cannot both happen. Therefore P(C)=P(C \u2229 A)+P(C \u2229 B)=P(C|A)P(A)+P(C|B)P(B)=0.9(0.4)+0.5(0.6)=0.66. The addition is legal not because correctness events are inherently separate, but because we refined them by the disjoint cases A and B. This is an instance of the law of total probability built from Axiom 3 and the chain rule.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p22_cf0d04ea8f",
+        "cs109_03_probability_annotated_p16_p17_ba45532e31",
+        "cs109_05_independence_annotated_p19_d0c710402d",
+        "cs109_demo_p0_p1_9c72e6785c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies A and B as a mutually exclusive, exhaustive partition.",
+          "Writes C as (C \u2229 A) \u222a (C \u2229 B).",
+          "Uses P(C \u2229 A)=P(C|A)P(A) and similarly for B.",
+          "Computes P(C)=0.66.",
+          "Explains why the addition works through disjoint partitioning, not because of independence."
+        ],
+        "partial_credit": [
+          "Gets the numeric answer but does not justify the decomposition.",
+          "Uses the weighted-average structure correctly but cannot explain why the terms can be summed.",
+          "Recognizes law of total probability without connecting it back to disjoint events."
+        ],
+        "common_mistakes": [
+          "Adding 0.9 and 0.5 directly.",
+          "Multiplying 0.9 and 0.5 as if both formats occur together.",
+          "Saying the two correctness events are mutually exclusive without mentioning the conditioning events A and B."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If you learn the student answered correctly, how would you set up the probability that format A was used?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can the lecturer choose both formats on the same quiz? If not, how can that help you split the event \u2018correct\u2019 into disjoint cases?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Adding 0.9 and 0.5 directly. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+.page {
+  display: grid;
+  gap: 1rem;
+}
+
+.header {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.breadcrumb {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.breadcrumbLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.breadcrumbSeparator {
+  margin-inline: 0.25rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
+
+.sectionTitle {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.gradeSection {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  background: var(--color-surface);
+}
+
+.barChart {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.barRow {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.barLabel {
+  font-weight: 600;
+}
+
+.barTrack {
+  position: relative;
+  height: 0.6rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-border) 40%, transparent);
+  overflow: hidden;
+}
+
+.barFill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--color-green-700) 40%, var(--color-green-100));
+}
+
+.barValue {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.tableWrapper {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.table th,
+.table td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+}
+
+.table thead {
+  background: color-mix(in srgb, var(--color-surface) 72%, var(--color-green-100));
+}
+
+.statusCell[data-status='pending'] {
+  color: var(--color-red-700);
+}
+
+.statusCell[data-status='ready'] {
+  color: var(--color-amber-700);
+}
+
+.statusCell[data-status='reviewed'] {
+  color: var(--color-green-700);
+}
+
+.actionsCell {
+  text-align: right;
+}
+
+.linkButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  text-decoration: none;
+  font-size: 0.85rem;
+  color: var(--color-text);
+  background: var(--color-surface);
+}

@@ -1,0 +1,256 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/21_beta_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/21_beta_annotated.pdf",
+  "sha256": "8fab39830c6d249959f716e313fad247f13a5af0f37cc5089fe35ffe4ed530f6",
+  "title_guess": "21 beta annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "21: Bayesian Statistics \nand Beta\nJerry Cain\nMay 17, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 84
+    },
+    {
+      "page_index": 1,
+      "text": "MLE: \nMultinomial\n2",
+      "char_count": 19
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nOkay, just one more MLE with the Multinomial\nConsider a sample of 𝑛 iid random variables where:\n• Each element is drawn from one of 𝑚 outcomes.\n𝑃outcome 𝑖= 𝑝!, where ∑!\"#\n$ 𝑝! = 1\n• 𝑋! = # of trials with outcome 𝑖, where ∑!\"#\n$ 𝑋! = 𝑛\n3\nLet’s give an \nexample!",
+      "char_count": 333
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nOkay, just one more MLE with the Multinomial\nConsider a sample of 𝑛 iid random variables where:\n• Each element is drawn from one of 𝑚 outcomes.\n𝑃outcome 𝑖= 𝑝!, where ∑!\"#\n$ 𝑝! = 1\n• 𝑋! = # of trials with outcome 𝑖, where ∑!\"#\n$ 𝑋! = 𝑛\n4\nExample: Suppose each RV is outcome of 6-sided die.\n•\nRoll the dice \n𝑛= 12 times.\n•\nObserve data: 3 ones, 2 twos, 0 threes, 3 fours, 1 fives, 3 sixes\n𝑋! = 3, 𝑋\" = 2, 𝑋# = 0, \n𝑋$ = 3, 𝑋% = 1, 𝑋& = 3\nCheck: 𝑋! + 𝑋\" + ⋯+ 𝑋& = 12\n𝑚= 6, '\n!\"#\n$\n𝑝! = 1",
+      "char_count": 556
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nOkay, just one more MLE with the Multinomial\nConsider a sample of 𝑛 iid random variables where:\n• Each element is drawn from one of 𝑚 outcomes.\n𝑃outcome 𝑖= 𝑝!, where ∑!\"#\n$ 𝑝! = 1\n• 𝑋! = # of trials with outcome 𝑖, where ∑!\"#\n$ 𝑋! = 𝑛\n1. What is the likelihood of observing\nthe sample 𝑋#, 𝑋%, … , 𝑋$ ,\ngiven the probabilities 𝑝#, 𝑝%, … , 𝑝$?\n5\nA.  \n𝑛!\n𝑋#! 𝑋%! ⋯𝑋$! 𝑝#\n&!𝑝%\n&\" ⋯𝑝$\n&#\nB.  \n𝑝#\n&!𝑝%\n&\" ⋯𝑝$\n&#\nC.  \n𝑛!\n𝑋#! 𝑋%! ⋯𝑋$! 𝑋#\n'!𝑋%\n'\" ⋯𝑋$\n'#",
+      "char_count": 517
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nOkay, just one more MLE with the Multinomial\nConsider a sample of 𝑛 iid random variables where:\n• Each element is drawn from one of 𝑚 outcomes.\n𝑃outcome 𝑖= 𝑝!, where ∑!\"#\n$ 𝑝! = 1\n• 𝑋! = # of trials with outcome 𝑖, where ∑!\"#\n$ 𝑋! = 𝑛\n1. What is the likelihood of observing\nthe sample 𝑋#, 𝑋%, … , 𝑋$ ,\ngiven the probabilities 𝑝#, 𝑝%, … , 𝑝$?\n2. What is 𝜃+,-?\n6\n𝐿𝜃=\n𝑛!\n𝑋#! 𝑋%! ⋯𝑋$! 𝑝#\n&!𝑝%\n&\" ⋯𝑝$\n&#\n𝐿𝐿𝜃= log 𝑛! −5\n!\"#\n$\nlog 𝑋!! + 5\n!\n$\n𝑋! log 𝑝! , such that ∑!\"#\n$ 𝑝! = 1\n𝜃+,-: 𝑝. = 𝑋.\n𝑛\nIntuitively, probability\n𝑝! = proportion of outcomes\nOptimize with\nLagrange multipliers in \nextra slides",
+      "char_count": 665
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhen MLEs attack!\nConsider a 6-sided die.\n• Roll the dice \n𝑛= 12 times.\n• Observe: \n3 ones, 2 twos, 0 threes, 3 fours, 1 fives, 3 sixes\nWhat is 𝜃+,-?\n7\nMLE for\nMultinomial:\n𝑝! = 𝑋!\n𝑛",
+      "char_count": 255
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhen MLEs attack!\nConsider a 6-sided die.\n• Roll the dice \n𝑛= 12 times.\n• Observe: \n3 ones, 2 twos, 0 threes, 3 fours, 1 fives, 3 sixes\n𝜃+,-:\n8\n𝑝! = 3/12\n 𝑝\" = 2/12\n 𝑝# = 0/12\n 𝑝$ = 3/12\n 𝑝% = 1/12\n 𝑝& = 3/12\n⚠\n• MLE say you just never roll threes.\n• Do you really believe that?\n😱\nRoll more!\nprob = frequency \nin limit\nBut what if you can’t roll any more \ndice? More generally, what if you \ncan’t run enough experiments to \nrealistically observe all possible \noutcomes.\nMLE for\nMultinomial:\n𝑝! = 𝑋!\n𝑛\nFrequentist",
+      "char_count": 585
+    },
+    {
+      "page_index": 8,
+      "text": "Bayesian \nStatistics\n9",
+      "char_count": 22
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStarting Today!\nToday we are going to learn something unintuitive,\nbeautiful, and useful!\n10\nWe are going to think of probabilities as\nrandom variables.",
+      "char_count": 225
+    },
+    {
+      "page_index": 10,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nA new deﬁnition of probability\nFlip a coin 𝑛+ 𝑚 times, produce 𝑛 heads.\nWe don’t know the probability 𝜃 that the coin\ncomes up heads.\n11\nThe world’s first coin\nFrequentist\n𝜃 is a single value.\n𝜃=\nlim\n123→5\n𝑛\n𝑛+ 𝑚≈\n𝑛\n𝑛+ 𝑚\nBayesian\n𝜃 is a random variable.\n𝜃’s continuous support: (0, 1)",
+      "char_count": 357
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLet’s play a game\nRoll 2 dice. If neither roll is a 6,\nyou win (event 𝑊). Else, I win (event 𝑊6).\n• Before you play, what’s the probability that you win?\n• Play once. What’s the probability that you win?\n• Play three more times. What’s the probability that you win?\n12\nFrequentist\n𝑃𝑊= 5\n6\n\"\nBayesian\nI am constantly re-\nevaluating the situation\nBayesian statistics: Constantly update your prior beliefs.",
+      "char_count": 476
+    },
+    {
+      "page_index": 12,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBayesian probability\nBayesian statistics: Probability represents our ever-\nevolving understanding of the world.\nMixing discrete and continuous random variables, \ncombined with Bayes’ Theorem, allows us to reason about \nprobabilities as random variables.\n13",
+      "char_count": 329
+    },
+    {
+      "page_index": 13,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMixing discrete and continuous\nLet 𝑋 be a continuous random variable, and\n𝑁 be a discrete random variable.\n14\n𝑃𝑋= 𝑥𝑁= 𝑛= 𝑃𝑁= 𝑛|𝑋= 𝑥𝑃𝑋= 𝑥\n𝑃𝑁= 𝑛\nBayes’ \nTheorem:\n𝑓7|9 𝑥|𝑛= 𝑝9|7 𝑛|𝑥𝑓7 𝑥\n𝑝9 𝑛\nIntuition:\n𝑓&|) 𝑥|𝑛𝜀& = 𝑃𝑁= 𝑛|𝑋= 𝑥𝑓& 𝑥𝜀&\n𝑃𝑁= 𝑛\n𝑓&|) 𝑥|𝑛=\n𝑝)|& 𝑛|𝑥𝑓& 𝑥\n𝑝) 𝑛",
+      "char_count": 335
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBayes’ Theorem: All Flavors\nLet 𝑋, 𝑌 be continuous\nOriginal Bayes: \n \n𝑝+|9 𝑚|𝑛=\n:!|# 1|3 :# 3\n:! 1\nMix Bayes #1: \n \n𝑓7|9 𝑥𝑛=\n:!|$ 1|; <$ ;\n:! 1\nMix Bayes #2: \n \n𝑝9|7 𝑛|𝑥=\n<$|! ;|1 :! 1\n<$ ;\nAll continuous: \n \n𝑓7|= 𝑥𝑦=\n<%|$ >|; <$ ;\n<% >\n15\nand 𝑀, 𝑁 be discrete random variables.",
+      "char_count": 351
+    },
+    {
+      "page_index": 15,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMixing discrete and continuous\nLet 𝜃 be a random variable for the probability your coin comes up heads, \nand 𝑁 be the number of heads you observe in an experiment.\n𝑓!|# 𝑥|𝑛=\n𝑝#|! 𝑛|𝑥𝑓! 𝑥\n𝑝# 𝑛\n• Prior belief of parameter 𝜃  \n \n \n \n \n𝑓? 𝑥\n• Likelihood of 𝑁= 𝑛 heads, given parameter 𝜃= 𝑥.  \n𝑝9|? 𝑛|𝑥\n• Posterior updated belief of parameter 𝜃. \n \n \n𝑓?|9 𝑥|𝑛\n16\nnormalization constant\nposterior\nlikelihood\nprior",
+      "char_count": 480
+    },
+    {
+      "page_index": 16,
+      "text": "Beta RV\n17",
+      "char_count": 10
+    },
+    {
+      "page_index": 17,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeta random variable\ndef A Beta random variable 𝑋 is defined as follows:\n18\n𝑓𝑥=\n1\n𝐵𝑎, 𝑏𝑥@A! 1 −𝑥BA!\n𝑋~Beta(𝑎, 𝑏)\nVariance  \nExpectation \n \n \nPDF\n𝐸𝑋=\n𝑎\n𝑎+ 𝑏\nVar 𝑋=\n𝑎𝑏\n𝑎+ 𝑏% 𝑎+ 𝑏+ 1\nSupport of 𝑋: 0, 1\n𝑎> 0, 𝑏> 0\nwhere 𝐵𝑎, 𝑏= ∫%\n#𝑥&'# 1 −𝑥('#𝑑𝑥, normalizing constant",
+      "char_count": 336
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeta RV with different 𝑎, 𝑏\n19\n𝑓𝑥=\n1\n𝐵𝑎, 𝑏𝑥@A! 1 −𝑥BA!\n𝑋~Beta(𝑎, 𝑏)\nPDF\nSupport of 𝑋: 0, 1\nwhere 𝐵𝑎, 𝑏= ∫%\n#𝑥&'# 1 −𝑥('#𝑑𝑥, normalizing constant\n𝑎> 0, 𝑏> 0\n0.0\n1.0\n2.0\n3.0\n4.0\n5.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nBeta(0.2,0.8)\nBeta(0.8. 0.2)\nBeta(0.8,0.8)\n0.0\n1.0\n2.0\n3.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nBeta(1,2)\nBeta(2,1)\nBeta(1,1)\n+ a third case\n(next slide)\nNote: PDF symmetric when 𝑎= 𝑏\nBeta(1,1)=Uni 0,1\nSAT word: adumbrate",
+      "char_count": 485
+    },
+    {
+      "page_index": 19,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0.0\n1.0\n2.0\n3.0\n4.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nBeta RV with different 𝑎, 𝑏\nMatch PDF to distribution:\n20\nA. Beta(5,5)\nB. Beta(2,8)\nC. Beta(8,2)\n0.0\n1.0\n2.0\n3.0\n4.0\n5.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nBeta(0.2,0.8)\nBeta(0.8. 0.2)\nBeta(0.8,0.8)\n0.0\n1.0\n2.0\n3.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nBeta(1,2)\nBeta(2,1)\nBeta(1,1)\nA. Beta(5,5)\nB. Beta(2,8)\nC. Beta(8,2)\n𝑋~Beta(𝑎, 𝑏)\nIn CS109, we focus on Beta functions \nwhere 𝑎, 𝑏 are both positive integers.",
+      "char_count": 503
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeta random variable\ndef A Beta random variable 𝑋 is defined as follows:\n21\n𝑓𝑥=\n1\n𝐵𝑎, 𝑏𝑥@A! 1 −𝑥BA!\n𝑋~Beta(𝑎, 𝑏)\nVariance  \nExpectation \n \n \nPDF\n𝐸𝑋=\n𝑎\n𝑎+ 𝑏\nVar 𝑋=\n𝑎𝑏\n𝑎+ 𝑏% 𝑎+ 𝑏+ 1\nSupport of 𝑋: 0, 1\n𝑎> 0, 𝑏> 0\nBeta can be a distribution of probabilities.\nwhere 𝐵𝑎, 𝑏= ∫%\n#𝑥&'# 1 −𝑥('#𝑑𝑥, normalizing constant",
+      "char_count": 381
+    },
+    {
+      "page_index": 21,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0.0\n1.0\n2.0\n3.0\n4.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nBeta can be a distribution of probabilities.\n22\nBeta parameters 𝑎, 𝑏 are \ndetermined by the outcome \nof an experiment.\nBut which experiment?\n𝑋~Beta(𝑎, 𝑏)\nBeta(5,5)\nBeta(2,8)\nBeta(8,2)",
+      "char_count": 300
+    },
+    {
+      "page_index": 22,
+      "text": "Flipping a coin \nwith unknown \nprobability\n23",
+      "char_count": 45
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFlip a coin with unknown probability\nFlip a coin 𝑛+ 𝑚 times, observe 𝑛 heads.\n• Before our experiment, 𝜃 (the probability that the coin\ncomes up heads) is equally like to be any probability in (0, 1).\n• Let 𝑁= number of heads.\n• Given 𝜃= 𝑥, coin flips are independent.\nWhat is our updated belief of 𝜃 after we observe 𝑁= 𝑛?\n24\nWhat are reasonable distributions of the following?\n1.  𝜃\n2.  𝑁|𝜃= 𝑥\n3.  𝜃|𝑁= 𝑛\nBayesian prior 𝜃~Uni 0,1\nLikelihood 𝑁|𝜃= 𝑥~Bin(𝑛+ 𝑚, 𝑥)\nBayesian posterior. Use Bayes’!",
+      "char_count": 567
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFlip a coin with unknown probability\nFlip a coin 𝑛+ 𝑚 times, observe 𝑛 heads.\n• Before our experiment, 𝜃 (the probability that the coin\ncomes up heads) is equally like to be any probability in (0, 1).\n• Let 𝑁= number of heads.\n• Given 𝜃= 𝑥, coin flips are independent.\nWhat is our updated belief of 𝜃 after we observe 𝑁= 𝑛?\n25\nPosterior: 𝑓*|) 𝜃𝑛\nLikelihood:\n𝑁|𝜃= 𝑥~Bin(𝑛+ 𝑚, 𝑥)\nPrior:\n 𝜃~Uni 0,1\n𝑓?|9 𝑥𝑛=\n𝑝9|? 𝑛|𝑥𝑓? 𝑥\n𝑝9 𝑛\n=\n𝑛+ 𝑚\n𝑛\n𝑥+ 1 −𝑥$ ⋅1\n𝑝) 𝑛\n=\n𝑛+ 𝑚\n𝑛\n𝑝) 𝑛\n𝑥+ 1 −𝑥$\nconstant with respect to 𝑥,\ndoesn’t depend on 𝑥\n= 1\n𝑐 𝑥+ 1 −𝑥$,  where 𝑐= F\n-\n#\n𝑥+ 1 −𝑥$𝑑𝑥",
+      "char_count": 635
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLet’s try it out\n1. Start with a 𝜃~Uni 0,1  over \nprobability that a coin lands heads.\n2. Flip a coin 8 times. Observe 𝑛= 7 \nheads and 𝑚= 1 tail\n3. What is our posterior belief of the \nprobability 𝜃?\n26\n0.0\n1.0\n2.0\n3.0\n4.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\n!! \"\nPrior belief, #\n\"\n𝑓?|9 𝑥𝑛= 1\n𝑐 𝑥N 1 −𝑥!\n𝑐 normalizes to valid PDF\nWait a minute! #looksbetalike\ntail\n👇\nPrior belief, 𝜃",
+      "char_count": 443
+    },
+    {
+      "page_index": 26,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeta RV with diﬀerent 𝑎, 𝑏\n27\n𝑓𝑥=\n1\n𝐵𝑎, 𝑏𝑥@A! 1 −𝑥BA!\n𝑋~Beta(𝑎, 𝑏)\nPDF\nSupport of 𝑋: 0, 1\nwhere 𝐵𝑎, 𝑏= ∫%\n#𝑥&'# 1 −𝑥('#𝑑𝑥, normalizing constant\n𝑎> 0, 𝑏> 0\nis the PDF for Beta(8, 2)!\n𝑓?|9 𝑥𝑛= 1\n𝑐 𝑥N 1 −𝑥!\n𝑐 normalizes to valid PDF\n🌟",
+      "char_count": 304
+    },
+    {
+      "page_index": 27,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLet’s try it out\n1. Start with a 𝜃~Uni 0,1  over \nprobability that a coin lands heads.\n2. Flip a coin 8 times. Observe 𝑛= 7 \nheads and 𝑚= 1 tail\n3. What is our posterior belief of the \nprobability 𝜃?\n28\n𝑓?|9 𝑥𝑛= 1\n𝑐 𝑥N 1 −𝑥!\n𝑐 normalizes to valid PDF\n0.0\n1.0\n2.0\n3.0\n4.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\n!! \"\nPrior belief, #\n\"\nBeta 8,2\ntail\n👇\nPrior belief, 𝜃",
+      "char_count": 422
+    },
+    {
+      "page_index": 28,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0.0\n1.0\n2.0\n3.0\n4.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\n3. What is our posterior belief of the probability 𝜃?\n• Start with a 𝜃~Uni 0,1  over probability\n• Observe 𝑛= 7 successes and 𝑚= 1 failures\n• Your new belief about the probability of 𝜃 is:\n𝑓?|9 𝑥𝑛= 1\n𝑐 𝑥N 1 −𝑥!, where 𝑐= K\nP\n!\n𝑥N 1 −𝑥!𝑑𝑥\n29\n𝑓*|) 𝑥|𝑛\nPosterior belief, 𝜃|𝑁\n𝑥\nPosterior belief, 𝜃|𝑁:\nBeta(𝑎= 8, 𝑏= 2)\nBeta(𝑎= 𝑛+ 1, 𝑏= 𝑚+ 1)\n𝑓?|9 𝑥𝑛= 1\n𝑐 𝑥QA! 1 −𝑥\"A!",
+      "char_count": 479
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0.0\n1.0\n2.0\n3.0\n4.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nCS109 focus: Beta where 𝑎, 𝑏 both positive integers\n30\nBeta parameters 𝑎, 𝑏 are \ndetermined by the outcome \nof an experiment.\n𝑎=  “successes” + 1\n𝑏=  “failures” + 1\n𝑋~Beta(𝑎, 𝑏)\nBeta(5,5)\nBeta(2,8)\nBeta(8,2)\n• Beta can model the randomness of the probability \nof experiment success.\n• Beta parameters depend on our data and our prior.",
+      "char_count": 451
+    },
+    {
+      "page_index": 30,
+      "text": "Conjugate \ndistributions\n31",
+      "char_count": 27
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nA note about our prior\n1. Start with a 𝜃~Uni 0,1  over \nprobability that a coin lands heads.\n2. Flip a coin 8 times. Observe 𝑛= 7 \nheads and 𝑚= 1 tail\n3. What is our posterior belief of the \nprobability 𝜃?\n32\n0.0\n1.0\n2.0\n3.0\n4.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\n!! \"\nPrior belief, #\n\"\nokay\n𝑓?|9 𝑥𝑛= 1\n𝑐 𝑥N 1 −𝑥!\n𝑐 normalizes to valid PDF\nWait another minute!\nBeta 8,2\nPrior belief, 𝜃",
+      "char_count": 447
+    },
+    {
+      "page_index": 32,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeta RV with diﬀerent 𝑎, 𝑏\n33\n𝑓𝑥=\n1\n𝐵𝑎, 𝑏𝑥@A! 1 −𝑥BA!\n𝑋~Beta(𝑎, 𝑏)\nPDF\nSupport of 𝑋: 0, 1\nwhere 𝐵𝑎, 𝑏= ∫%\n#𝑥&'# 1 −𝑥('#𝑑𝑥, normalizing constant\n𝑎> 0, 𝑏> 0\n0.0\n1.0\n2.0\n3.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nBeta(1,2)\nBeta(2,1)\nBeta(1,1)\nNote: PDF symmetric when 𝑎= 𝑏\nBeta(1,1)=Uni 0,1\nReview",
+      "char_count": 352
+    },
+    {
+      "page_index": 33,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nA note about our prior\n1. Start with a 𝜃~Uni 0,1  over \nprobability that a coin lands heads.\n2. Flip a coin 8 times. Observe 𝑛= 7 \nheads and 𝑚= 1 tail\n3. What is our posterior belief of the \nprobability 𝜃?\n34\n0.0\n1.0\n2.0\n3.0\n4.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\n!! \"\nPrior belief, #\n\"\nCheck this out. Beta 𝑎= 1, 𝑏= 1 :\n𝑓𝑥=\n1\n𝐵𝑎, 𝑏𝑥./# 1 −𝑥0/#\nwhere 0 < 𝑥< 1\n=\n1\n∫-\n# 1𝑑𝑥\n= 1\nBeta 8,2\nBeta 1,1\nPrior belief, 𝜃",
+      "char_count": 472
+    },
+    {
+      "page_index": 34,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeta is a conjugate distribution for Bernoulli\nBeta is a conjugate distribution for Bernoulli, meaning:\n• Prior and posterior parametric forms are the same\n35\n(proof on next slide)",
+      "char_count": 253
+    },
+    {
+      "page_index": 35,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeta is a conjugate distribution for Bernoulli\nBeta is a conjugate distribution for Bernoulli, meaning:\n1. If our prior belief of the parameter is Beta, and\n2. Our experiment is Bernoulli, then\n3. Our posterior is also Beta.\n36\nProof:\n𝜃~Beta(𝑎, 𝑏)\n𝑁|𝜃~Bin(𝑛+ 𝑚, 𝑥)\n𝑓?|9 𝑥𝑛=\n𝑝9|? 𝑛|𝑥𝑓? 𝑥\n𝑝9 𝑛\n=\n𝑛+ 𝑚\n𝑚\n𝑥+ 1 −𝑥$ ⋅\n1\n𝐵𝑎, 𝑏𝑥./# 1 −𝑥0/#\n𝑝) 𝑛\n= 𝐶⋅𝑥1 1 −𝑥3 ⋅𝑥@A! 1 −𝑥BA!\nconstants that \ndon’t depend on 𝑥\n= 𝐶⋅𝑥12@A! 1 −𝑥32BA! ✅\n(observe 𝑛 successes, 𝑚 failures)",
+      "char_count": 527
+    },
+    {
+      "page_index": 36,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeta is a conjugate distribution for Bernoulli\nBeta is a conjugate distribution for Bernoulli, meaning:\n• Prior and posterior parametric forms are the same\n• Practically, conjugate means easy update:\n \n \nAdd number of “heads” and “tails” seen to Beta parameters.\nYou can invent a prior to express how biased you believe the coin is a \npriori:\n• 𝜃~Beta(𝑎, 𝑏): pretend you’ve conducted 𝑎+ 𝑏−2  imaginary trials, where\n \n \n \n𝑎−1  trials produced a head and 𝑏−1  produced a tail\n• Choosing Beta 1, 1 = Uni(0, 1) means you don’t hold any prior beliefs\n37\nThis is the main \ntakeaway of Beta.\nPrior\nPosterior\nExperiment\nObserve 𝑛 successes and 𝑚 failures\nBeta(𝑎= 𝑛!$.1 + 1, 𝑏= 𝑚!$.1 + 1) \nBeta 𝑎= 𝑛!$.1 + 𝑛+ 1, 𝑏= 𝑚!$.1 + 𝑚+ 1",
+      "char_count": 792
+    },
+    {
+      "page_index": 37,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMedicinal Beta\n• Before being tested, a medicine is believed to \"work\" 80% of the time.\n• The medicine is administered to 20 patients.\n• It \"works\" for 14, \"doesn’t work\" for 6.\nWhat is your new belief that the drug \"works\"?\n38\nFrequentist\nLet 𝑝 be the probability\nyour drug works.\n𝑝≈14\n20 = 0.7\nBayesian\nA frequentist view will not incorporate \nprior/expert belief about probability.",
+      "char_count": 457
+    },
+    {
+      "page_index": 38,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMedicinal Beta\n• Before being tested, a medicine is believed to \"work\" 80% of the time.\n• The medicine is administered to 20 patients.\n• It \"works\" for 14, \"doesn’t work\" for 6.\nWhat is your new belief that the drug \"works\"?\n39\nFrequentist\nLet 𝑝 be the probability\nyour drug works.\n𝑝≈14\n20 = 0.7\nBayesian\nLet 𝜃 be the probability\nyour drug works.\n𝜃 is a random variable.",
+      "char_count": 443
+    },
+    {
+      "page_index": 39,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMedicinal Beta\n• Before being tested, a medicine is believed to \"work\" 80% of the time.\n• The medicine is administered to 20 patients.\n• It \"works\" for 14, \"doesn’t work\" for 6.\nWhat is your new belief that the drug \"works\"?\n40\nWhat is the prior distribution of 𝜃? (select all that apply)\nA.  𝜃~Beta 1, 1 = Uni 0, 1\nB.  𝜃~Beta 81, 101\nC.  𝜃~Beta 80, 20\nD.  𝜃~Beta 81, 21\nE.  𝜃~Beta 5, 2\nBeta(𝑎= 𝑛!)&* + 1, 𝑏= 𝑚!)&* + 1)\nPrior\nBeta(𝑎= 𝑛!)&* + 𝑛+ 1, 𝑏= 𝑚!)&* + 𝑚+ 1)\nPosterior\n(Bayesian interpretation)\n🤔",
+      "char_count": 575
+    },
+    {
+      "page_index": 40,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMedicinal Beta\n• Before being tested, a medicine is believed to \"work\" 80% of the time.\n• The medicine is administered to 20 patients.\n• It \"works\" for 14, \"doesn’t work\" for 6.\nWhat is your new belief that the drug \"works\"?\n41\nWhat is the prior distribution of 𝜃? (select all that apply)\nA.  𝜃~Beta 1, 1 = Uni 0, 1\nB.  𝜃~Beta 81, 101\nC.  𝜃~Beta 80, 20\nD.  𝜃~Beta 81, 21\nE.  𝜃~Beta 5, 2\nBeta(𝑎= 𝑛!)&* + 1, 𝑏= 𝑚!)&* + 1)\nPrior\nBeta(𝑎= 𝑛!)&* + 𝑛+ 1, 𝑏= 𝑚!)&* + 𝑚+ 1)\nPosterior\n(Bayesian interpretation)\nInterpretation: 80 successes / 100 imaginary trials\n(you can choose either based on how strongly you believe in prior data. \nWe choose E on next slide)",
+      "char_count": 725
+    },
+    {
+      "page_index": 41,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMedicinal Beta\n• Before being tested, a medicine is believed to \"work\" 80% of the time.\n• The medicine is administered to 20 patients.\n• It \"works\" for 14, \"doesn’t work\" for 6.\nWhat is your new belief that the drug \"works\"?\n42\nPrior:  \n𝜃~Beta 𝑎= 5, 𝑏= 2  \nPosterior: \n𝜃~Beta 𝑎= 5 + 14, 𝑏= 2 + 6\n                       ~Beta 𝑎= 19, 𝑏= 8\nBeta(𝑎= 𝑛!)&* + 1, 𝑏= 𝑚!)&* + 1)\nPrior\nBeta(𝑎= 𝑛!)&* + 𝑛+ 1, 𝑏= 𝑚!)&* + 𝑚+ 1)\nPosterior\n(Bayesian interpretation)\n0.0\n1.0\n2.0\n3.0\n4.0\n5.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nPosterior\nPrior\n𝑥",
+      "char_count": 589
+    },
+    {
+      "page_index": 42,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMedicinal Beta\n• Before being tested, a medicine is believed to \"work\" 80% of the time.\n• The medicine is administered to 20 patients.\n• It \"works\" for 14, \"doesn’t work\" for 6.\nWhat is your new belief that the drug \"works\"?\n43\nPrior:  \n𝜃~Beta 𝑎= 5, 𝑏= 2  \nPosterior: \n𝜃~Beta 𝑎= 5 + 14, 𝑏= 2 + 6\n                       ~Beta 𝑎= 19, 𝑏= 8\nBeta(𝑎= 𝑛!)&* + 1, 𝑏= 𝑚!)&* + 1)\nPrior\nBeta(𝑎= 𝑛!)&* + 𝑛+ 1, 𝑏= 𝑚!)&* + 𝑚+ 1)\nPosterior\n(Bayesian interpretation)\nWhat do you report to pharmacists?\nA. Expectation of posterior\nB. Mode of posterior\nC. Distribution of posterior\nD. Nothing\n0.0\n1.0\n2.0\n3.0\n4.0\n5.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nPosterior\nPrior\n𝑥\nmode\n🤔",
+      "char_count": 720
+    },
+    {
+      "page_index": 43,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMedicinal Beta\n• Before being tested, a medicine is believed to \"work\" 80% of the time.\n• The medicine is administered to 20 patients.\n• It \"works\" for 14, \"doesn’t work\" for 6.\nWhat is your new belief that the drug \"works\"?\n44\nPrior:  \n𝜃~Beta 𝑎= 5, 𝑏= 2  \nPosterior: \n𝜃~Beta 𝑎= 5 + 14, 𝑏= 2 + 6\n                       ~Beta 𝑎= 19, 𝑏= 8\nBeta(𝑎= 𝑛!)&* + 1, 𝑏= 𝑚!)&* + 1)\nPrior\nBeta(𝑎= 𝑛!)&* + 𝑛+ 1, 𝑏= 𝑚!)&* + 𝑚+ 1)\nPosterior\n(Bayesian interpretation)\nWhat do you report to pharmacists?\n0.0\n1.0\n2.0\n3.0\n4.0\n5.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nPosterior\nPrior\n𝑥\nmode\nIn CS109, we report the mode: The \n\"most likely\" parameter given the data.\n𝐸𝜃=\n𝑎\n𝑎+ 𝑏=\n19\n19 + 8 ≈0.70\nmode 𝜃=\n𝑎−1\n𝑎+ 𝑏−2 =\n18\n18 + 7 ≈0.72",
+      "char_count": 769
+    },
+    {
+      "page_index": 44,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFood for thought\n45\n𝑋~Ber 𝑝\nIn this lecture:\nIf nothing is known about the parameter 𝑝,\nBayesian statisticians will:\n•\nTreat the parameter as a random variable 𝜃 \nwith a Beta prior distribution\n•\nConduct experiments\n•\nBased on the outcomes of those experiments, \nupdate the posterior distribution of 𝜃\nFood for thought:\nAny parameter for a “parameterized” \nrandom variable can be thought of as \na random variable.\n𝑌~𝒩𝜇, 𝜎!\n👉",
+      "char_count": 497
+    },
+    {
+      "page_index": 45,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEstimating our parameter directly\n46\nMaximum \nLikelihood \nEstimator\n(MLE)\nWhat is the parameter 𝜃\nthat maximizes the \nlikelihood\nof our observed data \n𝑥#, 𝑥%, … , 𝑥+ ?\n𝜃234 = arg max\n*\n𝑓𝑋#, 𝑋%, … , 𝑋+|𝜃\n𝐿𝜃= 𝑓𝑋#, 𝑋%, … , 𝑋+|𝜃\n= T\n!\"#\n+\n𝑓𝑋!|𝜃\n(our focus so far)\nlikelihood of data\nObservations:\n•\nMLE maximizes probability of observing data\ngiven a parameter 𝜃.  It’s fitting the curve to match the data.\n•\nIf we are estimating 𝜃, shouldn’t we maximize\nthe probability of 𝜃 directly? SAT word: adumbrate",
+      "char_count": 574
+    },
+    {
+      "page_index": 46,
+      "text": "Extra: MLE: \nMultinomial \nderivation\n47",
+      "char_count": 39
+    },
+    {
+      "page_index": 47,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nOkay, just one more MLE with the Multinomial\nConsider a sample of 𝑛 i.i.d. random variables where\n• Each element is drawn from one of 𝑚 outcomes.\n𝑃outcome 𝑖= 𝑝!, where ∑!\"#\n$ 𝑝! = 1\n• 𝑋! = # of trials with outcome 𝑖, where ∑!\"#\n$ 𝑋! = 𝑛\n1. What is the likelihood of observing\nthe sample 𝑋#, 𝑋%, … , 𝑋$ ,\ngiven the probabilities 𝑝#, 𝑝%, … , 𝑝$?\n2. What is 𝜃+,-?\n48\n𝐿𝜃=\n𝑛!\n𝑋#! 𝑋%! ⋯𝑋$! 𝑝#\n&!𝑝%\n&\" ⋯𝑝$\n&#\n𝐿𝐿𝜃= log 𝑛! −5\n!\"#\n$\nlog 𝑋!! + 5\n!\"#\n$\n𝑋! log 𝑝! , such that ∑!\"#\n$ 𝑝! = 1\n𝜃+,-: 𝑝. = 𝑋.\n𝑛\nIntuitively, probability\n𝑝! = proportion of outcomes",
+      "char_count": 618
+    },
+    {
+      "page_index": 48,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nOptimizing MLE for Multinomial\n𝜃= 𝑝!, 𝑝\", … , 𝑝3 \n𝜃+,- = arg max\n?\n𝐿𝐿𝜃 \n49\n5\n!\"#\n$\n𝑝! = 1\n, where\nUse Lagrange multipliers\nto account for constraint\n𝐴𝜃= 𝐿𝐿𝜃+ 𝜆5\n!\"#\n$\n𝑝! −1\n= 5\n!\"#\n$\n𝑋! log 𝑝! + 𝜆5\n!\"#\n$\n𝑝! −1\n(drop \nnon-𝑝! \nterms)\n𝜕𝐴𝜃\n𝜕𝑝!\n= 𝑋!\n1\n𝑝!\n+ 𝜆= 0\nDifferentiate w.r.t.\neach 𝑝!, in turn:\n⇒ 𝑝! = −𝑋!\n𝜆\nSolve for 𝜆, noting\n5\n!\"#\n$\n𝑋! = 𝑛, 5\n!\"#\n$\n𝑝! = 1:\nLagrange\nmultipliers:\n5\n!\"#\n$\n𝑝! = 5\n!\"#\n$\n−𝑋!\n𝜆= 1\n⇒1 = −𝑛\n𝜆\n⇒𝜆= −𝑛\nSubstitute 𝜆 into 𝑝!\n𝑝! = 𝑋!\n𝑛",
+      "char_count": 533
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:59Z"
+}

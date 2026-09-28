@@ -1,0 +1,201 @@
+{
+  "course": "CS109",
+  "document_role": "exam",
+  "source_path": "data/raw/CS109/exams/FinalFall2017.pdf",
+  "relative_path": "data/raw/CS109/exams/FinalFall2017.pdf",
+  "sha256": "03ad945980df967bf4e01380f5188f69fca638e0723353d2d5a13c465d108026",
+  "title_guess": "FinalFall2017",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "CS109 Final Exam\nChris Piech\nCS109\nFall Quarter\nDec 14th, 2017\nThis is a closed calculator/computer exam. You are, however, allowed to use notes in the exam. The last\npage of the exam is a Standard Normal Table, in case you need it. The penultimate page has some common\nrandom variables. You have 3 hours (180 minutes) to take the exam. The exam is 180 points, meant to\nroughly correspond to one point per minute of the exam. You may want to use the point allocation for each\nproblem as an indicator for pacing yourself on the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions and\nparameter values you used, where appropriate. It is ﬁne for your answers to include summations, products,\nfactorials, exponentials, and combinations, unless the question speciﬁcally asks for a numeric quantity or\nclosed form. Where numeric answers are required, the use of fractions is ﬁne.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than I have in\nmy entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\nEmail (preferably your gradescope email):",
+      "char_count": 1252
+    },
+    {
+      "page_index": 1,
+      "text": "1\nMissing Not at Random [34 points]\nYou collect data on whether or not people intend to vote for Ayesha, a candidate in an upcoming election.\nYou send an electronic poll to 100 randomly chosen people. You assume all 100 responses are IID.\nUser Response\nCount\nResponded that they will vote for Ayesha\n40\nResponded that they will not vote for Ayesha\n45\nDid not respond\n15\nLet A be the event that a person says they will vote for Ayesha. Let M be the event that a user did not respond\nto the poll. We are interested in estimating P(A), however that is hard given the 15 users who did not respond.\na. (3 points) What is the fraction of users that responded to the poll, P(MC)?\nb. (5 points) What is the probability that a user said they will vote for Ayesha, given that they responded\nto the poll P(A|MC)?\n2",
+      "char_count": 803
+    },
+    {
+      "page_index": 2,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 3,
+      "text": "c. (8 points) You estimate that P(M|A) = 1\n5 and that P(M|AC) = 1\n10. What is P(A|M)? You may leave your\nanswer in terms of P(A). To make your future life easier, simplify your answer as much as possible.\nd. (8 points) Using the same assumption as the previous part, calculate P(A). You may use a function\nroot(a, b, c) which returns the value of x such that ax2 +bx+c = 0.\n3",
+      "char_count": 375
+    },
+    {
+      "page_index": 4,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 5,
+      "text": "e. (10 points) Prove that P(A) = P(A|MC) if people who did not respond are just as likely to vote for\nAyesha as those who did: P(A|M) = P(A|MC).\n4",
+      "char_count": 146
+    },
+    {
+      "page_index": 6,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 7,
+      "text": "2\nOccupy Mt Gox [24 points]\nModern nations have such high disparity in incomes that we need to use special fat-tailed random variables\nto represent country wide distributions. Enter the ExamPareto distribution, a simpliﬁed version of the Pareto\nincome distribution. X ⇠ExamPareto(a) represents a countries distribution of incomes—in Bitcoins (￿):\nPdf:\nfX(x) =\n(\na(1+x)−(a+1)\nx ≥0\n0\nelse\nMean:\nE[X] =\n1\na−1\nCdf:\nFX(x) =\n(\n1−(1+x)−a\nx ≥0\n0\nelse\nVariance:\nVar(X) =\na\n(a−1)2(a−2)\na. (4 points) Let X ⇠ExamPareto(a = 2). What is the probability that X is greater than 4 ￿?\nb. (6 points) Let X ⇠ExamPareto(a = 3). If we sample 100 IID individual incomes from X, approximate\nthe probability that the sum of their incomes is greater than 55 ￿?\n5",
+      "char_count": 737
+    },
+    {
+      "page_index": 8,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 9,
+      "text": "c. (4 points) You have samples of n IID incomes from a country (x1,x2,...,xn). Write an equation for the\nlog likelihood of the n samples.\nd. (10 points) Write pseudocode that can estimate the parameter a from the n samples. You may use any\nparameter estimation technique we talked about in class. Make sure to work out any necessary math\nﬁrst.\n6",
+      "char_count": 345
+    },
+    {
+      "page_index": 10,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 11,
+      "text": "3\nTiming Attack [33 points]\nIn this problem we are going to show you how to crack a password in linear time, by measuring how long the\npassword check takes to execute (see code below). Assume that our server takes T ms to execute any line in\nthe code where T ⇠N(µ = 5,s2 = 0.5). The amount of time taken to execute a line is always independent\nof other values of T.\n# An i n s e c u r e\ns t r i n g\ncomparison\ndef\ns t r i n g E q u a l s ( guess ,\npassword ) :\nnGuess = len ( guess )\nnPassword = len ( password )\ni f\nnGuess !=\nnPassword :\nreturn\nFalse\n# 4\nl i n e s\nexecuted\nto\nget\nhere\nfor\ni\nin\nrange ( nGuess ) :\ni f\nguess [ i ]\n!=\npassword [ i ] :\nreturn\nFalse\n# 6 + 2 i\nl i n e s\nexecuted\nto\nget\nhere\nreturn\nTrue\n# 5 + 2n\nl i n e s\nexecuted\nto\nget\nhere\nOn our site all passwords are length 5 through 10 (inclusive) and are composed of lower case letters only. A\nhacker is trying to crack the root password which is “gobayes” by carefully measuring how long we take to\ntell them that her guesses are incorrect. All answers to this question may be left in terms of the Normal CDF\nfunction f.\na. (4 points) First, lets say the hacker wanted to brute force and try all passwords. How many passwords\nare there? Recall that all passwords are length 5 through 10 and composed of lower case letters only.\nb. (5 points) What is the distribution of time that it takes our server to execute k lines of code? Recall that\neach line independently takes T ⇠N(µ = 5,s2 = 0.5) ms.\n7",
+      "char_count": 1469
+    },
+    {
+      "page_index": 12,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 13,
+      "text": "c. (7 points) First the hacker needs to ﬁnd out the length of the password. What is the probability that the\ntime taken to test a guess of correct length (server executes 6 lines) is longer than the time taken to test\na guess of an incorrect length (server executes 4 lines)? Assume that the ﬁrst letter of the guess does\nnot match the ﬁrst letter of the password. Hint P(A > B) is the same as P(A−B > 0).\nd. (5 points) Let p be your answer to part (c). The hacker ﬁrst tries a guess of length 5, then a guess of\nlength 6, and so on up until a guess of length 10. What is the probability that the guess of length 7,\nwhich is the correct length (server executes 6 lines), takes longer than all the other guesses of incorrect\nlength (where the server executes 4 lines)?\n8",
+      "char_count": 769
+    },
+    {
+      "page_index": 14,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 15,
+      "text": "e. (8 points) Now that our hacker knows the length of the password, to get the actual string she is go-\ning to try and ﬁgure out each letter one at a time, starting with the ﬁrst letter. The hacker tries the\nstring “aaaaaaa” and it takes 27s. Based on this timing, how much more probable is it that ﬁrst char-\nacter matched (server executes 8 lines) than the ﬁrst character did not match (server executes 6 lines)?\nAssume that all letters in the alphabet are equally likely to be the ﬁrst letter.\nf. (3 points) If it takes the hacker 5 guesses to ﬁnd the length of the password, and 26 guesses per letter\nto crack the password string, how many attempts must she make to crack our password, “gobayes”?\nYikes!\n9",
+      "char_count": 709
+    },
+    {
+      "page_index": 16,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 17,
+      "text": "4\nLearning While Helping [30 points]\nYou are designing a randomized algorithm that delivers one of two new drugs to patients who come to your\nclinic—each patient can only receive one of the drugs. Initially you know nothing about the effectiveness of\nthe two drugs. You are simultaneously trying to learn which drug is the best and, at the same time, cure the\nmaximum number of people. To do so we will use the Thompson Sampling Algorithm.\nThompson Sampling Algorithm:\nThe algorithm we are going to use is based on sound probability.\nFor each drug we maintain a Beta distribution to represent the drug’s probability of being successful.\nInitially we assume that drug i has a probability of success qi ⇠Beta(1,1).\nWhen choosing which drug to give to the next patient we sample a value from each Beta and select\nthe drug with the largest sampled value. We administer the drug, observe if the patient was cured, and\nupdate the Beta that represents our belief about the probability of the drug being successful. Repeat for\nthe next patient.\na. (4 points) Imagine you try the ﬁrst drug on 7 patients. It cures 5 patients and has no effect on 2. What\nis your updated belief about the drug’s probability of success, q1? Your answer should be a Beta.\nb. (4 points) After running Thomspons’ Algorithm 50 times, you end up with the following Beta distribu-\ntion for the second drug: q2 ⇠Beta(16,14). What is the variance of a value sampled from the second\ndrug’s Beta?\n10",
+      "char_count": 1461
+    },
+    {
+      "page_index": 18,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 19,
+      "text": "Method\nDescription\nV = sampleBeta(a, b)\nReturns a real number value in the range [0, 1] with probability deﬁned by a\nPDF of a Beta with parameters a and b.\nR = giveDrug(i)\nGives drug i to the next patient. Returns a True if the drug was successful in\ncuring the patient or False if it was not. Throws an error if i /2 {1,2}.\nI = argmax(list)\nReturns the index of the largest value in the list.\nc. (10 points) Write pseudocode to administer either of the two drugs to 100 patients using Thompson’s\nSampling Algorithm. Use functions from the table above. Your code should execute giveDrug 100\ntimes.\n11",
+      "char_count": 600
+    },
+    {
+      "page_index": 20,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 21,
+      "text": "d. (4 points) After running Thomspons’ Algorithm 100 times, you end up with the following Beta distri-\nbutions:\nq1 ⇠Beta(11,11),\nq2 ⇠Beta(76,6)\nWhat is the expected probability of success for each drug?\ne. (8 points) Write pseudocode to compute the p-value for the difference in expected probability of success\nbetween drug2 and drug1 observed from the 100 samples in part (d). Ie, under the null hypothesis\nassumption that all 100 samples are identically distributed, calculate the probability of a difference in\nexpected probabilities that is greater than or equal to the one observed. Describe, don’t implement any\nhelper methods you want to use.\n12",
+      "char_count": 652
+    },
+    {
+      "page_index": 22,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 23,
+      "text": "5\nExpected Maximum Uniform [12 points]\nLet X ⇠Uni(0,1) and Y ⇠Uni(0,1) be independent random variables. What is E[max(X, Y)]? Gain most of\nthe points by writing an expression that you could solve using Wolfram Alpha. Provide a numerical answer\nfor full credit.\n13",
+      "char_count": 263
+    },
+    {
+      "page_index": 24,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 25,
+      "text": "6\nGaussian Na¨ıve Bayes [16 points]\nThe version of Na¨ıve Bayes that we used in class worked great when the feature values were all binary. If\ninstead they are continuous, we are going to have to rethink how we estimate of the probability of the ith\nfeature given the label, P(Xi|Y). The ubiquitous solution is to make the Gaussian Input Assumption that:\nIf Y = 0, then Xi ⇠N(µi,0,s2\ni,0)\nIf Y = 1, then Xi ⇠N(µi,1,s2\ni,1)\nFor each feature, there are 4 parameters (mean and variance for both class labels). There is a ﬁnal parameter,\np, which is the estimate of P(Y = 1). Assume that you have trained on data with two input features and have\nalready estimated all 9 parameter values:\nFeature i\nµi,0\nµi,1\ns2\ni,0\ns2\ni,1\n1\n5\n0\n1\n1\n2\n0\n3\n1\n4\np = 0.6\nWrite an inequality to predict whether Y = 1 for input [X1 = 5,X2 = 3]. Use the Na¨ıve Bayes assumption and\nthe Gaussian Input Assumption. Your expression must be in terms of the learned parameters (either using\nnumbers or symbols is ﬁne):\n14",
+      "char_count": 988
+    },
+    {
+      "page_index": 26,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 27,
+      "text": "7\nThe Most Important Features [32 points]\nLet’s explore saliency, a measure of how important a feature is for classiﬁcation. We deﬁne the saliency of\nthe ith input feature for a given example (x,y) to be the absolute value of the partial derivative of the log\nlikelihood of the sample prediction, with respect to that input feature\n\"\" ∂LL\n∂xi\n\"\". In the images below, we show\nboth input images and the corresponding saliency of the input features (in this case, input features are pixels):\nFirst consider a trained logistic regression classiﬁer with weights q. Like the logistic regression classiﬁer that\nyou wrote in your homework it predicts binary class labels. In this question we allow the values of x to be\nreal numbers, which doesn’t change the algorithm (neither training nor testing).\na. (4 points) What is the Log Likelihood of a single training example (x,y) for a logistic regression\nclassiﬁer?\nb. (8 points) Calculate is the saliency of a single feature (xi) in a training example (x,y).\nc. (5 points) Show that the ratio of saliency for features i and j is the ratio of the absolute value of their\nweights |qi|\n|q j|.\n15",
+      "char_count": 1134
+    },
+    {
+      "page_index": 28,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 29,
+      "text": "d. (10 points) Saliency is much more interesting for deep learning networks. Consider a simple deep\nlearning network with two hidden neurons that predicts P(Y = 1|X = x) ⇡ˆy:\nh1 = s\n⇣n\nÂ\ni=1\nq (h)\ni,1 xi\n⌘\nh2 = s\n⇣n\nÂ\ni=1\nq (h)\ni,2 xi\n⌘\nˆy = s\n⇣\nq (y)\n1 h1 +q (y)\n2 h2\n⌘\nCalculate the saliency of a single feature (xi) in a training example (x,y).\ne. (5 points) Weights are not invariant to units of measurement. Imagine your logistic regression classiﬁer\nhas weight values: [q0 = 10,q1 = −4,q2 = 8]. What values do you expect for the weights in a newly\ntrained model if we change the units of the last feature (x2) to be centimeters instead of meters? That\nmeans all the values x2 will be 100x times as large.\nq0 =\nq1 =\nq2 =\n16",
+      "char_count": 728
+    },
+    {
+      "page_index": 30,
+      "text": "[End of exam]\nThat’s all folks! Missing data requires probability theory to understand. Income distributions give us a way\nto measure inequality. Timing attacks are a real thing... watch your code. Thompson Sampling is a hot new\nalgorithm for N-Armed-Bandit questions, a key part of MCTS, the algorithm used in AlphaGoZero.\nGaussian Na¨ıve bayes is good times for continuous inputs and saliency is a new tool for understanding deep\nneural nets. Thank you all for the wonderful quarter.\n17",
+      "char_count": 488
+    },
+    {
+      "page_index": 31,
+      "text": ".\nContinuous Random Variable Reference\nUniform\nAll intervals in the range (of the same length) are equally probable.\nNotation\nX ⇠Uni(a,b)\nRange(X):\nx 2 R, a x b\npdf:\nf(X = k) =\n1\nb−a\nE[X]:\n1\n2(a+b)\nVar(X):\n1\n12(b−a)2\nNormal\nOften used to represent real-valued random variables whose distributions are not known.\nNotation\nX ⇠N(µ,s2)\nRange(X):\nx 2 R\npdf:\nf(X = k) =\n1\np\n2ps2 e\n(k−µ)2\n2s2\ncdf:\nF(k) = f( k−µ\ns )\nE[X]:\nµ\nVar(X):\ns2\nBeta\nOften used to represent a distribution of belief of a probability.\nNotation\nX ⇠Beta(a,b)\nRange(X):\nx 2 R, 0 x 1\npdf:\nf(X = k) = x(a−1)(1−x)(b−1)\nE[X]:\na\na+b\nVar(X):\nab\n(a+b)2(a+b+1)\n18",
+      "char_count": 621
+    },
+    {
+      "page_index": 32,
+      "text": "Standard Normal Table\nAn entry in the table is the area under the curve to the left of z, P(Z z) = F(z).\nZ\n0.00\n0.01\n0.02\n0.03\n0.04\n0.05\n0.06\n0.07\n0.08\n0.09\n0.0\n0.5000\n0.5040\n0.5080\n0.5120\n0.5160\n0.5199\n0.5239\n0.5279\n0.5319\n0.5359\n0.1\n0.5398\n0.5438\n0.5478\n0.5517\n0.5557\n0.5596\n0.5636\n0.5675\n0.5714\n0.5753\n0.2\n0.5793\n0.5832\n0.5871\n0.5910\n0.5948\n0.5987\n0.6026\n0.6064\n0.6103\n0.6141\n0.3\n0.6179\n0.6217\n0.6255\n0.6293\n0.6331\n0.6368\n0.6406\n0.6443\n0.6480\n0.6517\n0.4\n0.6554\n0.6591\n0.6628\n0.6664\n0.6700\n0.6736\n0.6772\n0.6808\n0.6844\n0.6879\n0.5\n0.6915\n0.6950\n0.6985\n0.7019\n0.7054\n0.7088\n0.7123\n0.7157\n0.7190\n0.7224\n0.6\n0.7257\n0.7291\n0.7324\n0.7357\n0.7389\n0.7422\n0.7454\n0.7486\n0.7517\n0.7549\n0.7\n0.7580\n0.7611\n0.7642\n0.7673\n0.7703\n0.7734\n0.7764\n0.7793\n0.7823\n0.7852\n0.8\n0.7881\n0.7910\n0.7939\n0.7967\n0.7995\n0.8023\n0.8051\n0.8078\n0.8106\n0.8133\n0.9\n0.8159\n0.8186\n0.8212\n0.8238\n0.8264\n0.8289\n0.8315\n0.8340\n0.8365\n0.8389\n1.0\n0.8413\n0.8438\n0.8461\n0.8485\n0.8508\n0.8531\n0.8554\n0.8577\n0.8599\n0.8621\n1.1\n0.8643\n0.8665\n0.8686\n0.8708\n0.8729\n0.8749\n0.8770\n0.8790\n0.8810\n0.8830\n1.2\n0.8849\n0.8869\n0.8888\n0.8906\n0.8925\n0.8943\n0.8962\n0.8980\n0.8997\n0.9015\n1.3\n0.9032\n0.9049\n0.9066\n0.9082\n0.9099\n0.9115\n0.9131\n0.9147\n0.9162\n0.9177\n1.4\n0.9192\n0.9207\n0.9222\n0.9236\n0.9251\n0.9265\n0.9279\n0.9292\n0.9306\n0.9319\n1.5\n0.9332\n0.9345\n0.9357\n0.9370\n0.9382\n0.9394\n0.9406\n0.9418\n0.9429\n0.9441\n1.6\n0.9452\n0.9463\n0.9474\n0.9484\n0.9495\n0.9505\n0.9515\n0.9525\n0.9535\n0.9545\n1.7\n0.9554\n0.9564\n0.9573\n0.9582\n0.9591\n0.9599\n0.9608\n0.9616\n0.9625\n0.9633\n1.8\n0.9641\n0.9649\n0.9656\n0.9664\n0.9671\n0.9678\n0.9686\n0.9693\n0.9699\n0.9706\n1.9\n0.9713\n0.9719\n0.9726\n0.9732\n0.9738\n0.9744\n0.9750\n0.9756\n0.9761\n0.9767\n2.0\n0.9772\n0.9778\n0.9783\n0.9788\n0.9793\n0.9798\n0.9803\n0.9808\n0.9812\n0.9817\n2.1\n0.9821\n0.9826\n0.9830\n0.9834\n0.9838\n0.9842\n0.9846\n0.9850\n0.9854\n0.9857\n2.2\n0.9861\n0.9864\n0.9868\n0.9871\n0.9875\n0.9878\n0.9881\n0.9884\n0.9887\n0.9890\n2.3\n0.9893\n0.9896\n0.9898\n0.9901\n0.9904\n0.9906\n0.9909\n0.9911\n0.9913\n0.9916\n2.4\n0.9918\n0.9920\n0.9922\n0.9925\n0.9927\n0.9929\n0.9931\n0.9932\n0.9934\n0.9936\n2.5\n0.9938\n0.9940\n0.9941\n0.9943\n0.9945\n0.9946\n0.9948\n0.9949\n0.9951\n0.9952\n2.6\n0.9953\n0.9955\n0.9956\n0.9957\n0.9959\n0.9960\n0.9961\n0.9962\n0.9963\n0.9964\n2.7\n0.9965\n0.9966\n0.9967\n0.9968\n0.9969\n0.9970\n0.9971\n0.9972\n0.9973\n0.9974\n2.8\n0.9974\n0.9975\n0.9976\n0.9977\n0.9977\n0.9978\n0.9979\n0.9979\n0.9980\n0.9981\n2.9\n0.9981\n0.9982\n0.9982\n0.9983\n0.9984\n0.9984\n0.9985\n0.9985\n0.9986\n0.9986\n3.0\n0.9987\n0.9987\n0.9987\n0.9988\n0.9988\n0.9989\n0.9989\n0.9989\n0.9990\n0.9990\n3.1\n0.9990\n0.9991\n0.9991\n0.9991\n0.9992\n0.9992\n0.9992\n0.9992\n0.9993\n0.9993\n3.2\n0.9993\n0.9993\n0.9994\n0.9994\n0.9994\n0.9994\n0.9994\n0.9995\n0.9995\n0.9995\n3.3\n0.9995\n0.9995\n0.9995\n0.9996\n0.9996\n0.9996\n0.9996\n0.9996\n0.9996\n0.9997\n3.4\n0.9997\n0.9997\n0.9997\n0.9997\n0.9997\n0.9997\n0.9997\n0.9997\n0.9997\n0.9998\n3.5\n0.9998\n0.9998\n0.9998\n0.9998\n0.9998\n0.9998\n0.9998\n0.9998\n0.9998\n0.9998\n19",
+      "char_count": 2824
+    },
+    {
+      "page_index": 33,
+      "text": "Filler\n20",
+      "char_count": 9
+    },
+    {
+      "page_index": 34,
+      "text": "Final Fall 2017 Solution\nNoah Arthurs\nJune 5, 2019\nDisclaimer:\nThese solutions are not super verbose or complete. They’re\njust meant to give you an idea of how to do each problem. Feel free to start\ndiscussions on Piazza if you’re confused.\n1. for a-d, see section 2 problem 4. For e:\nP(A) = P(A|M)P(M)+P(A|M C)P(M C) = P(A|M C)(P(M)+P(M C)) = P(A|M C)\n2.\n(a) P(X > 4) = 1 −P(X < 4) = 1 −FX(4) = 1 −(1 −(1 + 4)−2) = 1/25\n(b) E[X] = 0.5, V ar(X) = 0.75\nLet Y be sum of samples. Therefore by CLT, Y ⇠N(50, 75).\nP(Y > 55) = 1 −P(Y < 55) = 1 −Φ((55 −50)/\np\n75)\n(c) Assume each xi is drawn from X ⇠ExamPareto(↵):\nLL(↵) = log ⇧n\ni=1fX(xi) = ⌃n\ni=1 log(↵(1+xi)−(↵+1)) = ⌃n\ni=1(log(↵)−(↵+1) log(1+xi))\n(d) Gradient ascent would be good (we have a 1-d gradient):\nr↵LL(↵) = dLL\nd↵= ⌃n\ni=1(1/↵−log(1 + xi)) = n/↵−⌃n\ni=1 log(1 + xi)\nEven better is to ﬁnd the point of inﬂection directly. We do this by\nsetting dLL\nd↵= 0:\nn/↵−⌃n\ni=1 log(1 + xi) = 0 =) ↵=\nn\n⌃n\ni=1 log(1 + xi)\nTo double check that this is a maximum:\nd2↵\nd↵2 = −n\n↵2\nSince n is positive, this is negative, so we’ve found our maximum!\n1",
+      "char_count": 1087
+    },
+    {
+      "page_index": 35,
+      "text": "(a) Number of passwords of length k is given by 26k.\nNumber of passwords of length 5-10 is given by ⌃10\nk=526k\n(b) See solution to Section 5 Problem 3 Part a.\n(c) See solution to Section 5 Problem 3 Part b.\n(d) I suspect that the answer they were looking for was p5, as you need\neach of 5 incorrect-length (4 line) runs to be slower than the correct-\nlength (6 line) run. However, this is not right! Because there is only\none length of the correct run, the incorrect run lengths are depen-\ndent! As an intuition, if 4 out of 5 incorrect runs are slower than\nthe correct run, that would make us think that the correct run was\nunusually fast and thus believe that the 5th incorrect run has a good\nchance of being slower as well. So let’s do it better!\nWe need the probability that each of 5 incorrect-length runs is less\nthan the length of the correct-length run. Let A be the length of the\ncorrect-length run and B1, ..., B5 be the length of each incorrect run.\nNow, let’s say we condition on A = a. We then have:\nP(A > Bi|A = a) = P(Bi < a) = Φ\n✓a −20\np\n2\n◆\nNow, the important thing is that conditioned on A = a, whether or\nnot each Bi is greater than A is independent, so now we can multiply\nthe probabilities:\nP(A > B1, ..., B5|A = a) = Φ\n✓a −20\np\n2\n◆5\nOk, so the last step is to marginalize out a:\nP(A > B1, ..., B5) =\nZ 1\na=−1\nfA(a)Φ\n✓a −20\np\n2\n◆5\nda\nwhere fA(a) is the pdf of A ⇠N(30, 3).\nBecause this solution is so nasty and doesn’t use p, I think they were\nlooking for p5 even though it’s wrong.\n(e) See solution to Section 5 Problem 3 Part c.\n(f) See solution to Section 5 Problem 3 Part d.\n3. For parts a, c, and d, see PS5 #8 solutions. For part b, use deﬁnition of\nBeta to get 0.008.\n2",
+      "char_count": 1697
+    },
+    {
+      "page_index": 36,
+      "text": "For part e:\nWe’ve observed 10 successes and 10 fails from drug 1 (0.5 success rate),\n75 successes and 5 fails from drug 2 (0.94 success rate). Under null hy-\npothesis, we have one distribution from which we’ve observed 85 successes\nand 15 fails (0.85 success rate). To do our p-test, repeatedly draw one\nsample of size 20 and one sample of size 80 from Bernoulli(0.85) and see\nhow often the di↵erence in success rates is at lest 0.44. (See Corgi problem\nfrom section 6 if you’re confused).\n4. Let Z = max(X, Y ). There are two nice ways to solve for the PDF of Z:\n1. (X or Y must equal z, the other must be no higher): fZ(z) = fX(z)P(Y \nz) + fY (z)P(X z) = 1 ⇤z + 1 ⇤z = 2z\n2. (Find CDF, take derivative): FZ(z) = P(X < z, Y < z) = P(X <\nz)P(Y < z) = z2 =) fZ(z) = dFZ(z)\ndz\n= 2z\nWe can then use our expectation formula:\nE[Z] =\nZ 1\nz=0\nzfZ(z) =\nZ 1\nz=0\n2z2 =\n2z3\n3\n%1\n0\n= 2\n3\n5. We use ”⇡” to denote where we make our Naive Bayes assumption:\nargmax\ny\nP(Y = y|X = x1, x2) = argmax\ny\nf(X1 = x1, X2 = x2|Y = y)P(Y = y)\nf(X1 = x1, X2 = x2)\n⇡argmax\ny\nf(X1 = x1|Y = y)f(X2 = x2|Y = y)P(Y = y)\nf(X1 = x1, X2 = x2)\n= argmax\ny\nf(X1 = x1|Y = y)f(X2 = x2|Y = y)P(Y = y)\nNow note that we predict Y = 1 if:\nf(X1 = 5|Y = 1)f(X2 = 3|Y = 1)P(Y = 1) > f(X1 = 5|Y = 0)f(X2 = 3|Y = 0)P(Y = 0)\nIf I weren’t so lazy, I would plug in the values from the problem at this\npoint.\n6. abc: See Section 8 Problem 3.\nFor d:\n3",
+      "char_count": 1399
+    },
+    {
+      "page_index": 37,
+      "text": "Let z1 = ✓(y)\n1 h1, z2 = ✓(y)\n2 h2, and z = z1 + z2 so that ˆy = σ(z):\n&&&&\ndLL\ndxi\n&&&& =\n&&&&\ndLL\nˆy\ndˆy\ndz\ndz\ndxi\n&&&&\n=\n&&&&\ndLL\nˆy\ndˆy\ndz\n✓dz1\ndh1\ndh1\ndxi\n+ dz2\ndh2\ndh2\ndxi\n◆&&&&\n=\n&&&&\n✓y\nˆy −1 −y\n1 −ˆy\n◆\nˆy(1 −ˆy)\n⇣\n✓(y)\n1 (h1(1 −h1)✓(h)\ni,1 ) + ✓(y)\n2 (h2(1 −h2)✓(h)\ni,2 )\n⌘&&&&\ne:\nDivide ✓2 by 100. This makes the outputs of the dot products the same\nas before.\n4",
+      "char_count": 372
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:59Z"
+}

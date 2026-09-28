@@ -1,0 +1,244 @@
+{
+  "course": "CS109",
+  "topic_id": "logistic_regression",
+  "topic_name": "Logistic Regression",
+  "queries_used": [
+    "Logistic Regression definition",
+    "Logistic Regression intuition",
+    "Logistic Regression worked example",
+    "Logistic Regression exam problem",
+    "logistic regression overview",
+    "logistic regression practice",
+    "sigmoid overview",
+    "sigmoid practice",
+    "classification probability overview",
+    "classification probability practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p7_1bfac4b3e1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic Regression\nLogistic Regression Model:\nPredict =𝑌 as the more likely 𝑌 \ngiven our observation 𝑿= 𝒙:\n• Since 𝑌∈0,1 ,  \n𝑃𝑌= 0|𝑿= 𝒙= 1 −𝜎𝜃$ + ∑%&!\n#\n𝜃%𝑥%\n• Sigmoid function also known as logit function\n8\n𝜃! + 3\n\"#$\n%\n𝜃\"𝑋\"\n𝑿\n𝑃𝑌= 1|𝑿\n=𝑌= arg max\n4& $,!\n𝑃𝑌 | 𝑿\n𝑃𝑌= 1|𝑿= 𝒙= 𝜎\n𝜃$ + ,\n%&!\n#\n𝜃%𝑥%\nsigmoid function\n𝜎𝑧=\n1\n1 + 𝑒!\"\n𝑧",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.6198294162750244
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p7_1451842c8c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic Regression Model\n8\n𝜃! + #\n\"#$\n%\n𝜃\"𝑋\"\n𝑿\n\"𝑦= 𝑃𝑌= 1|𝑿\n0\n0.2\n0.4\n0.6\n0.8\n1\n-10\n-8\n-6\n-4\n-2\n0\n2\n4\n6\n8\n10\n! \"\n\"\n𝒙\n\"𝑦\nLet’s focus on the \nmodel up to \"𝑦.\n)𝑌= arg max\n!\" #,%\n𝑃𝑌 | 𝑿\n+\n…\nσ\n> 0.5?",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.6050254702568054
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p10_b9b0e94093",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic Regression: Key Metaphor\n11\n𝑃𝑌= 1|𝑿= 𝒙= 𝜎\n𝜃! + B\n&(\"\n$\n𝜃&𝑥&\n+\nx0\nx1\nx2\nx3\n✓0\n✓1\n✓2\n✓3\n𝑧\n𝜎𝑧\n𝑃𝑌= 1|𝒙",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.6010284423828125
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p11_c210d13fa7",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic Regression: Key Metaphor\n12\n𝑿, input features\n0,1,1\n=𝑌, output\n𝑃𝑌= 1|𝑿= 𝒙= 𝜎\n𝜃! + B\n&(\"\n$\n𝜃&𝑥&\n+\nx0\nx1\nx2\nx3\n✓0\n✓1\n✓2\n✓3\n𝑧\n𝜎𝑧\n𝑃𝑌= 1|𝒙",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.6005010604858398
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p6_2cf2d8c0e9",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic Regression Model\n7\n𝜃! + #\n\"#$\n%\n𝜃\"𝑋\"\n𝑿\n\"𝑦= 𝑃𝑌= 1|𝑿\n0\n0.2\n0.4\n0.6\n0.8\n1\n-10\n-8\n-6\n-4\n-2\n0\n2\n4\n6\n8\n10\n! \"\n\"\n+\n𝒙\n\"𝑦\nLet’s focus on the \nmodel up to \"𝑦.\n)𝑌= arg max\n!\" #,%\n𝑃𝑌 | 𝑿",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.6004434823989868
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p9_cc3cb78341",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic Regression: Key Metaphor\n10\n𝜃 parameter",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.6001800298690796
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p0_p1_b09b83658b",
+      "text": "25: Logistic Regression\nJerry Cain\nMay 29, 2024\n1\nLecture Discussion on Ed\n\nLinear to \nLogical: \nPreamble\n2",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.5970371961593628
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p14_d170d33ca5",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComponents of Logistic Regression\n15\n+\nx0\nx1\nx2\nx3\n✓0\n✓1\n✓2\n✓3\n𝑃𝑌= 1|𝑿= 𝒙= 𝜎\n𝜃! + B\n&(\"\n$\n𝜃&𝑥&\n𝑧\n𝜎𝑧\nsquashing function\nbetween 0 and 1\n𝑃𝑌= 1|𝒙",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.5837023258209229
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p23_cdce04ab1e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic regression classiﬁer\n24\n24\nTesting\n=𝑌= arg max\n4& $,!\n𝑃𝑌|𝑋\nTraining\n𝜃= 𝜃$, 𝜃!, 𝜃\", … , 𝜃#\nGiven an observation 𝑿= 𝑋!, 𝑋\", … , 𝑋# , predict\nEstimate parameters\nfrom training data\nChoose 𝜃 that optimizes some objective:\n1.\nDetermine objective function\n2.\nFind gradient with respect to each 𝜃\n3.\nSolve analytically by setting to 0, or solve\ncomputationally with gradient ascent\nWe are modeling 𝑃𝑌|𝑋 \ndirectly, so we maximize the \nconditional likelihood of \ntraining data.\n𝑃𝑌= 1|𝑿= 𝒙= 𝜎∑%&$\n#\n𝜃%𝑥% = 𝜎𝜃'𝒙 \n=𝑌= arg max\n4& $,!\n𝑃𝑌|𝑿",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.5813850164413452
+    },
+    {
+      "chunk_id": "cs109_finalwin2025soln_q10_24aea9540d",
+      "text": "Logistic Regression Conceptual [17 points]\na. (4 points) In training a logistic regression model, why do we typically optimize the log-likelihood\ndirectly, rather than the likelihood?\nThe likelihood function is typically a large product, once we assume our datapoints are IID. Training a\nlogistic regression model requires finding the derivative of this as part of MLE, but taking a derivative\nover a big product is hard.\nBecause the log function is monotonic, if we take the log of the likelihood function, the argmax will\nnot be changed. The log of the product is the sum of the logs, so the log of the likelihood will become\na large sum instead, which will be easier to differentiate as part of gradient ascent.\nb. (4 points) Why is logistic regression a more principled model than linear regression for binary classifi-\ncation?\nLogistic regression outputs values in the range [0, 1], since the sigmoid function ”squashes” all\ninputs into this range. We can interpret these outputs as probabilities, specifically 𝑃(𝑌= 1), which\nis meaningful in binary classification because it expresses a level of confidence in our belief about a\nbinary event.\nLinear regression, on the other hand, can produce values in a continuous range outside [0, 1], so it is\nless well-suited for classification tasks. While it is possible to train a linear regression model where\n𝑦𝑖∈{0, 1} for all datapoints, this model wouldn’t be able to express 𝑃(𝑌= 1) and would also output\nnumbers way different from 0 or 1.\nAnother way of explaining this is that logistic regression tries to learn a decision boundary that divides\na space in half, putting only datapoints from one class on one side of the line. Linear regression, on the\nother hand, tries to learn a line of best fit for datapoints. While both are linear models, one makes more\nsense for classification into discrete classes.\nc. (4 points) Consider a logistic regression that predicts 𝑌from features 𝑋1, . . . , 𝑋𝑚. If 𝑌and a particular\nfeature 𝑋𝑖are independent, what would you expect for the learned coefficient 𝜃𝑖, and why?\nIf 𝑋𝑖is independent of 𝑌, we expect 𝜃𝑖≈0.\nIn the pre-sigmoid computation of the dot product for logistic regression, 𝜃0𝑋0 + 𝜃1𝑋1 + · · · + 𝜃𝑚𝑋𝑚, we\nwould like to set the 𝜃value such that 𝑋𝑖’s value will not have any impact on this computation. This is\nbecause, intuitively, the prediction of 𝑌should not depend on 𝑋𝑖if they are independent. Setting 𝜃𝑖= 0\naccomplishes this.\nPractically, when the model is trained on a finite dataset, the value may not be exactly zero, but it should\nbe close.\n\n18\nd. (5 points) Below is pseudocode for training for a logistic regression model:\n1\nthetas[j] = 0 for all j\n2\nrepeat many times:\ngradients[j] = 0 for all j\n3\nfor each training example (x, y):\nfor each parameter j:\n4\ngradients[j] += x[j]*(y - sigmoid(dot_prod(theta, x))\n5\nthetas[j] += step_size * gradients[j] for all j\nFor each line of pseudocode 1-5, explain briefly, as if teaching, what the line of code does, and why it\nis necessary.\nLine 1: First, we initialize each of our thetas (weights or parameters of the model) to zero. We start the\nthetas at zero because we need to start somewhere to do gradient ascent!\nLine 2: Then, we start the training loop – we need to repeat the theta update process many times, since\nwe will only improve the thetas slightly (taking a small step towards the optimal value) each time.\nLine 3: We iterate over each training example to calculate the gradient over all data points.\nLine 4: We then calculate the the gradient of the log-likelihood based on a single datapoint and add it\nto a building sum across all datapoints.\nLine 5: Lastly, we update the thetas by moving a little bit (according to our step size) in the direction\nof the gradient!\nThat’s all folks! Thank you for the lovely quarter. You were a wonderful class. IVF numbers are mostly real,\nbut I removed a few steps. Exponential Backoff is the true algorithm used to handle congestion for everything\nfrom radio transmissions to the internet. In 2025 the chief minister of southern India’s Tamil Nadu state\nannounced a $1m prize for anyone who can crack the Indus Valley Script. Estimating Course Sizes is (very\nclose to) the real algorithm the CS department uses. Bayesian RNA quantification is a twist on a widely used\nalgorithm called cufflinks for estimating RNA isoform proportions. Truncated Normals are super useful!\nThey have a variance parameter, a min value and a max value which I removed for exam simplicity.",
+      "source_type": "exam_question",
+      "document_name": "FinalWin2025Soln",
+      "score": 0.5789899826049805
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p13_35ed5d52f7",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComponents of Logistic Regression\n14\n+\nx0\nx1\nx2\nx3\n✓0\n✓1\n✓2\n✓3\n𝑃𝑌= 1|𝑿= 𝒙= 𝜎\n𝜃! + B\n&(\"\n$\n𝜃&𝑥&\n𝑧\n𝜎𝑧\nweighted sum\n𝑃𝑌= 1|𝒙",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.5740782022476196
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p44_d0de35ec97",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n45\nNaïve Bayes \n \n \n     vs \nLogistic Regression\n[𝑃𝑿|𝑌[𝑃𝑌\n𝑿\n𝑌\n[𝑃𝑿, 𝑌\n[𝑌= arg max\n.# !,$\n𝑃𝑌 | 𝑿= arg max\n.# !,$\n𝑃𝑿|𝑌𝑃𝑌\n[𝑌= arg max\n.# !,$\n𝑃𝑌|𝑿\n𝜃#𝒙\n𝑿\n0\n0.2\n0.4\n0.6\n0.8\n1\n-10\n-8\n-6\n-4\n-2\n0\n2\n4\n6\n8\n10\n! \"\n\"\n𝑃𝑌= 1|𝑿\nCompare/contrast:\n1. What distributions are we modeling?\n2. After learning our parameters, could we randomly generate a new datapoint 𝒙, 𝑦?\n3. Could we model a continuous 𝑋& feature (e.g., 𝑋&~Normal, or 𝑋&~Unknown)?\n4. Could we model a non-binary discrete 𝑋& (e.g., 𝑋& ∈1,2, … , 6 )?\n𝜃",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.5739580988883972
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p15_315bafad24",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTake two big ideas from Logistic Regression\n16\n…\n𝒙, input features\n(𝑦, output\nindicates logistic \nregression connection\nBig idea #1  𝑃𝑌|𝑿= 𝒙\nModel conditional probability \n\"𝑦 of class label given input\nBig idea #2 σ θ*𝒙\nNon-linear transform of multiple \nvalues into one value, using \nparameter θ \nReview",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.5705637335777283
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p46_7132f37f33",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic Regression is trying to find\nthe line that separates data instances\nwhere 𝑦= 1 from those where 𝑦= 0:\n• We call such data (or functions\ngenerating that data) linearly separable.\n• Naïve Bayes is linear too, because there is \none parameter for each feature\n(and no parameters that involve multiple \nfeatures).\nLinearly separable data\n47\n𝜃'𝒙= 0\n!!\"\n0\n2𝑃𝑿|𝑌= K\n&(\"\n$\n2𝑃𝑋&|𝑌",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.5488772392272949
+    },
+    {
+      "chunk_id": "cs109_finalwin2022soln_preamble_667e8456d8",
+      "text": "CS109 Final Exam\nChris Piech\nCS109\nWinter 2022\nThis is a closed calculator/computer exam. You are, however, allowed to use notes in the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions and\nparameter values you used, where appropriate. It is fine for your answers to include summations, products,\nfactorials, exponentials, and combinations.\nYou can leave your answer in terms of Φ (the CDF of the standard normal) or Φ−1 (the inverse CDF). For\nexample Φ\n\u0010\n3\n4\n\u0011\nis an acceptable final answer. Recall that the exam is going to be “curved\" according to the\ndifficulty of the questions and as such hard questions will not translate to lower grades.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than I have in\nmy entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\nEmail (preferably your gradescope email):\n\n1\nShort Answer (30 points)\nAnswer each of the following questions. You must give a brief justification for your answer.\na. (6 points) Google Maps stores a probability distribution of the time of day that people go to the San\nFrancisco Airport (SFO):\nLet 𝑝𝑖be the probability that a person will show up at SFO 𝑖hours past midnight (so 𝑝6 is the probability\nthat they will show up between 6a and 7a). Out of the visitors that will visit SFO on a given day, what\nfraction do you expect to show up between midnight and noon? Give an expression.\n11\n∑︁\n𝑖=0\n𝑝𝑖\nSince Í23\n𝑖=0 𝑝𝑖= 1, the following is another equivalent answer:\n11Í\n𝑖=0\n𝑝𝑖\n23Í\n𝑖=0\n𝑝𝑖\nb. (7 points) We will consider a datapoint 𝑥an “outlier” if the probability of seeing a value 𝑥or larger is\n≤0.05. Consider a distribution 𝑋∼Geo(𝑝= 0.8). Is 7 an outlier? Give an expression.\n7 is an outlier if 1 −Σ6\n𝑖=0(0.2)𝑖−1(0.8) ≤0.05\nc. (7 points) A class uses High Resolution Course Feedback. In a given week they ask a random sample\nof 20 people for a numerical rating, instead of asking everyone. Assume the population expectation of\nrating is 4.5 and the population variance of rating is 1.0. What is the probability that the sample mean\nrating from 20 students will be ≥4.7?\nTrue\nA p-value of 0.99 would occur if the difference we observed between the modes of the two datasets is\nthe kind of difference we would observe frequently by chance if the two sets of points were drawn from\ndistributions with the same mode.\nd. (10 points) You meet a person at a party who mentions that they have two children. They reveal that\nthey have a daughter who was born on a Tuesday. What is the probability that they have two daughters?\nAssume a child has a 1⁄2 chance of being a daughter and a 1⁄7 chance of being born on a Tuesday. Assume\nthat the genders of the children, and the weekdays they were born on, are all independent of one another.\n\nThe answer is 13/27.\nLet B be the event that both children are girls. Let T be the event that there is a girl born on a Tuesday.\n𝑃(𝐵|𝑇) = 𝑃(𝑇|𝐵)𝑃(𝐵)\n𝑃(𝑇)\n𝑃(𝐵) = 1/4\n𝑃(𝑇|𝐵) = 1/7 + 1/7 −1/49\n𝑃(𝑇) = 1/14 + 1/14 −1/196\nAnother explanation:\nThis is a well known paradox known as the boy-girl-paradox. Intuition says that the answer is 0.5, but\nit is not!\nFigure 1: We are conditioning on the yellow region (i.e. think of it as the \"new sample space\"). We are\nassessing the probability of the yellow region inside the \"female/female\" quadrant.\nLet the event \"there are two daughters\" be 𝐸.\nLet the event \"there is at least one daughter born on Tuesday\" be 𝐹.\n𝑃(𝐸|𝐹) = 𝑃(𝐸𝐹)\n𝑃(𝐹)\nUsing Inclusion-Exclusion Principle:\n= 𝑃(C1 Fem Tue, C2 Fem) + 𝑃(C1 Fem, C2 Fem Tue) −𝑃(C1 Fem Tue, C2 Fem Tue)\n𝑃(C1 Fem Tue) + 𝑃(C2 Fem Tue) −𝑃(C1 Fem Tue, C2 Fem Tue)\nThis turns into\n(7 + 7 −1)/142\n(14 + 14 −1)/142 = 13\n27 = 0.48148148\n.\n\n2\nQuantitative Art History (20 points)\nA Stanford alumni discovered that the “Average Number of Brushstrokes in the Neighborhood\" is very\npredictive of whether a painting has been painted by Van Gough [1].\nLet 𝑋∼𝑁(𝜇= 20, 𝜎2 = 9) be the average number of brushstrokes in the neighborhood if Van Gough is\nthe painter. Let 𝑋∼𝑁(𝜇= 12, 𝜎2 = 25) be the average number of brushstrokes in the neighborhood if Van\nGough is not the painter.\nAside: A brushstroke 𝑗is a neighbor of brushstroke 𝑖if they are at most 200 pixels apart. For each brushstroke\nwe can calculate how many other brushstrokes are neighbours. The Average Number of Brushstrokes in the\nNeighborhood is an average of these values over all brushstrokes in a painting. Here is a painting by Van\nGough (left) and the auto-identified brush strokes (right).\na. (4 points) Why is a normal distribution appropriate for the “average number of brushstrokes in the\nneighborhood\" of a painting?\nMust mention the central limit theorem.\n\nb. (16 points) A painting is discovered. Based on background information your prior belief that it was\npainted by Van Gough is 0.75. What is your updated belief after observing that the average number of\nbrushstrokes in the neighbourhood is 19?\nThis is an inference question: Let 𝑌be the event that Van gough was the artist.\n𝑃(𝑌|𝑋= 19) =\n𝑓(𝑋= 19|𝑌)𝑃(𝑌)\n𝑓(𝑋= 19|𝑌)𝑃(𝑌) + 𝑓(𝑋= 19|𝑌)𝑃(𝑌𝐶)\n\n3\nBeta ± (20 points)\nYou have observed 30 successes and 20 fails for an event with unknown probability. Based on this information\nyou can model the probability of success, 𝑋, as a Beta random variable. You want to make a claim of the\nform: \"the probability of success is 𝑚± 𝑏.\"\nSelect 𝑚to be the expectation of 𝑋. Select 𝑏to be the smallest value, rounded to two decimal places, such\nthat 𝑃(𝑚−𝑏< 𝑋< 𝑚+ 𝑏) is greater than or equal to 95%. Provide your answer as pseudocode that prints\nout the values 𝑚and 𝑏.\nIncremental solution:\n\n4\nBayesian Carbon Dating (34 points)\nWe are able to know the age of ancient artefacts using a process called carbon dating. This process involves\na lot of uncertainty! Living things have a constant proportion of a molecule called C14 in them. When living\nthings die those molecules start to decay. The time to decay in years, 𝑇, of a C14 molecule is distributed as an\nexponential. 𝑇∼Exp(𝜆= 1/8267).\na. (5 points) Consider a single C14 molecule. What is the probability that it decays within 500 years?\n𝑃(𝑇≤500) = 1 −𝑒−\n1\n8267 ∗500 = 0.05868875306\nb. (8 points) C14 molecules decay independently. A particular sample started with 100 molecules. What\nis the probability that exactly 95 are left after 500 years? Let 𝑝be your answer to part a.\nX Bin(n=100, p = 0.0586)\nP(X = 5) = scipy.stats.binom.pmf(5, 100, 0.05868)\n\nc. (6 points) Write pseudocode for a function pr_measure_given_age(m, age) which returns 𝑃(𝑀=\nm|𝐴= age), the probability that exactly m molecules are left out of the original 100 after exactly age\nnumber of years.\nd. (15 points) You observe a measurement of 95 C14 molecules in a sample. You assume that the sample\noriginally had 100 C14 molecules when it died. Write pseudocode for a function age_belief() that\nreturns a list of length 1000 where the value at index 𝑖in the list stores 𝑃(𝐴= 𝑖|𝑀= 95). Age is a\ndiscrete random variable which takes on whole numbers of years. 𝐴= 𝑖is the event that the sample\norganism died 𝑖years ago. You may use the function pr_measure_given_age(m, age) from part c.\nFor your prior belief: you know that the sample must be between 𝐴= 500 and 𝐴= 600 inclusive and\nyou assume that every year in that range is equally likely.\n\n5\nReliability engineering (23 points)\nThe “reliability distribution\" is a random variable parameterized by 𝑎with PDF:\n𝑓(𝑋= 𝑥) = 1\n𝑎2 𝑥𝑎−1𝑒−𝑥2\n𝑎2\nWe wish to model how long a particular model of phone will function before it breaks. We are going to use\na reliability distribution. To this end we collect 𝑁independent measurements of how long the type of phone\nfunctions before it breaks: 𝑥1, 𝑥2, . . . , 𝑥𝑁. Explain, in words, how you would choose parameter 𝑎using the\nmaximum likelihood estimation framework, and provide any necessary derivatives.\nFirst, we start by defining our likelihood function.\n𝐿(𝑎) =\n𝑁\nÖ\n𝑖=1\n𝑓(𝑋𝑖|𝑎)\nWe want to determine ˆ𝑎= argmax\n𝑎\n𝐿(𝑎). Since the argmax of 𝐿(𝑎) is equivalent to the argmax of the log of\n𝐿(𝑎) and logs make the math simpler we write:\n𝐿𝐿(𝑎) = log\n 𝑁\nÖ\n𝑖=1\n𝑓(𝑋𝑖|𝑎)\n!\nPlugging in the provided PDF and simplifying:\n𝐿𝐿(𝑎) = log\n 𝑁\nÖ\n𝑖=1\n1\n𝑎2 𝑥𝑎−1\n𝑖\n𝑒−\n𝑥2\n𝑖\n𝑎2\n!\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\nlog\n \n1\n𝑎2 𝑥𝑎−1\n𝑖\n𝑒−\n𝑥2\n𝑖\n𝑎2\n!#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\nlog\n\u0012 1\n𝑎2\n\u0013\n+ log\n\u0010\n𝑥𝑎−1\n𝑖\n\u0011\n+ log\n \n𝑒−\n𝑥2\n𝑖\n𝑎2\n!#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\n−2 log (𝑎) + (𝑎−1) log (𝑥𝑖) −𝑥2\n𝑖\n𝑎2 log (𝑒)\n#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n−2 log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n(𝑎−1) log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\n𝑎2 log (𝑒)\n𝐿𝐿(𝑎) = −2𝑁log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n𝑎log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) −1\n𝑎2\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\nNow we will take the partial derivative of the log likelihood with respect to the parameter of interest 𝑎:\n𝜕𝐿𝐿(𝑎)\n𝜕𝑎\n= 𝜕\n𝜕𝑎\n \n−2𝑁log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n𝑎log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) −1\n𝑎2\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\n!\n𝜕𝐿𝐿(𝑎)\n𝜕𝑎\n= −2𝑁\n𝑎+\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) + 2\n𝑎3\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\nFrom here, we would set the partial derivative equal to 0 and solve for 𝑎.\nNote: You were required to provide the necessary derivatives but you did not need to actually determine the\nvalue of 𝑎as the problem states. Any math beyond the calculation of the partial derivative was not required\nor penalized.\n\n6\nRank ordering of samples (25 points)\nA random variable 𝑋can take on three values: 1, 2 or 3 with the following probabilities:\nValue\nProbability\n1",
+      "source_type": "exam_question",
+      "document_name": "FinalWin2022Soln",
+      "score": 0.5421132445335388
+    },
+    {
+      "chunk_id": "cs109_01_section_soln_sec1_part1_ca6b35b380",
+      "text": "CS109\nApril 11, 2024\nSection 1 Solution: Combinatorics and Probability\nChris Piech, Mehran Sahami, Jerry Cain, Lisa Yan, and numerous CS109 CA’s.\nOverview of Section Materials\nThe warm-up questions provided will help students practice concepts introduced in lectures. The section prob-\nlems are meant to apply these concepts in more complex scenarios similar to what you will see in problem sets\nand exams. In fact, many of them are old exam questions.\nBefore you leave lab, make sure you click here so that you’re marked as having attended this week’s section. The\nCA leading your discussion section can enter the password needed once you’ve submitted.\nWarm-ups\n1. Equality versus Inequality\nShow that for any events 𝐴and 𝐵that\n𝑃(𝐴) + 𝑃(𝐵) −1 ≤𝑃(𝐴∩𝐵) ≤𝑃(𝐴∪𝐵) ≤𝑃(𝐴) + 𝑃(𝐵)\nFor each of the three inequalities, describe sets 𝐴and 𝐵that would result in equality.\nWe’ll show each of the three to be true, one by one.\n• The Inclusion-Exclusion Principle is clear that 𝑃(𝐴∪𝐵) = 𝑃(𝐴) + 𝑃(𝐵) −𝑃(𝐴∩𝐵). Because all\nprobabilities, including those of intersections, are greater than or equal to 0, we have that 𝑃(𝐴∪𝐵) =\n𝑃(𝐴) + 𝑃(𝐵) −𝑃(𝐴∩𝐵) ≤𝑃(𝐴) + 𝑃(𝐵). When does the equality hold? When 𝐴and 𝐵are mutually\nexclusive events so that the probability that both events occur is 0.\n• 𝑃(𝐴∩𝐵) ≤𝑃(𝐴∪𝐵) is true simply because 𝐴∩𝐵⊆𝐴∪𝐵. Equality holds when 𝐴and 𝐵are the same\nevent.\n• Inclusion-Exclusion states that 𝑃(𝐴∪𝐵) = 𝑃(𝐴) + 𝑃(𝐵) −𝑃(𝐴∩𝐵) so that 𝑃(𝐴∪𝐵) + 𝑃(𝐴∩𝐵) = 𝑃(𝐴) +\n𝑃(𝐵). Because all probabilities are at most 1, we have 𝑃(𝐴) +𝑃(𝐵) = 𝑃(𝐴∩𝐵) +𝑃(𝐴∪𝐵) ≤𝑃(𝐴∩𝐵) +1,\nso that 𝑃(𝐴) + 𝑃(𝐵) −1 ≤𝑃(𝐴∩𝐵). Equality holds when the union of 𝐴and 𝐵is the full sample space 𝑆.\n2. Fish Pond\nSuppose there are 7 blue fish, 4 red fish, and 8 green fish in a large fishing tank. You drop a net into it and end up\nwith 2 fish. What is the probability you get 2 blue fish?",
+      "source_type": "review_section",
+      "document_name": "01 section soln",
+      "score": 0.5412280559539795
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p12_0082dc2f01",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComponents of Logistic Regression\n13\n+\nx0\nx1\nx2\nx3\n✓0\n✓1\n✓2\n✓3\n𝑃𝑌= 1|𝑿= 𝒙= 𝜎\n𝜃! + B\n&(\"\n$\n𝜃&𝑥&\n𝑧\n𝜎𝑧\n𝜃 weights\n(aka parameters)\n𝑃𝑌= 1|𝒙",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.5403594970703125
+    },
+    {
+      "chunk_id": "cs109_01_intros_and_counting_annotated_p0_p1_412fad0414",
+      "text": "CS109: Probability for \nComputer Scientists\nJerry Cain\nApril 1, 2024\n1\nLecture Discussion on Ed\n\nWelcome to \nCS109!\n2",
+      "source_type": "lecture_slide",
+      "document_name": "01 intros and counting annotated",
+      "score": 0.5328146815299988
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p31_1fb219e78c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThe problem with our current classifier\n32\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑌 | 𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑋!, 𝑋\", … , 𝑋#|𝑌\nEstimating this joint conditional \ndistribution is intractable.\nWhat if we could make a simplifying assumption—even if incredibly naïve—\nto make our parameter estimation effort computationally tractable?\nChoose the 𝑌 that is \nmost likely given 𝑿\n(Bayes’ Theorem)\n(1/𝑃𝑿 is constant w.r.t. 𝑦)",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.5268285870552063
+    },
+    {
+      "chunk_id": "cs109_09_continuous_rv_annotated_p7_7e66b85479",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComputing probability\n8\n𝑓𝑥= ,\n𝑥\n2\nif 0 ≤𝑥≤2\n0\notherwise\nLet 𝑋 be a continuous RV with PDF:\n0.00\n0.50\n1.00\n0.00\n1.00\n2.00\n!(\") \n!\nWhat is 𝑃𝑋≥1 ? \nStrategy 1: Integrate\nStrategy 2: Know triangles\n𝑃1 ≤𝑋< ∞= -\n$\n%\n𝑓𝑥𝑑𝑥= -\n$\n\" 1\n2 𝑥𝑑𝑥\n= 1\n2\n1\n2 𝑥\" 2\n$\n\"\n = 1\n2 2 −1\n2 = 3\n4\n1 −1\n2\n1\n2 = 3\n4\nWait! Is this even legal?\n𝑃0 ≤𝑋< 1 = ∫&\n$ 𝑓𝑥𝑑𝑥? ? \n𝑃𝑎 ≤𝑋≤𝑏= 2\n!\n\"\n𝑓(𝑥) 𝑑𝑥",
+      "source_type": "lecture_slide",
+      "document_name": "09 continuous rv annotated",
+      "score": 0.5225537419319153
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional probability and Bayes’ Theorem\n24\n𝑃𝐹|𝐸= 𝑃𝐹𝑃𝐸|𝐹\n𝑃𝐸\n𝑃𝐹|𝐸= 𝑃𝐸∩𝐹\n𝑃𝐸\nDefinition\nBayes’ Theorem\nPrior: some prob. of event 𝐹\nPosterior: prob. of \n𝐹 knowing that 𝐸 \nhappened\nLikelihood\nScaling to the correct sample space\nScaling to the correct sample space\nIndependence\n𝑃𝐹|𝐸= 𝑃𝐹\nSample space doesn’t need\nto be scaled\n𝐸, 𝐹 independent",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.5208625793457031
+    },
+    {
+      "chunk_id": "cs109_finalfall2021soln_q0_42694214da",
+      "text": "5 = 𝑛\n𝑛0.5 = 0.5\n𝑉𝑎𝑟(𝑋) = 𝑉𝑎𝑟\n \n1\n𝑛\n𝑛\n∑︁\n𝑖=1\n𝑍𝑖\n!\n= 1\n𝑛2𝑉𝑎𝑟\n 𝑛\n∑︁\n𝑖=1\n𝑍𝑖\n!\n= 1\n𝑛2\n𝑛\n∑︁\n𝑖=1\n𝑉𝑎𝑟(𝑍𝑖) = 1\n𝑛2\n𝑛\n∑︁\n𝑖=1\n𝑣= 𝑛\n𝑛2 𝑣= 𝑣\n𝑛= 𝑣\n20\nUsing CLT, 𝑋∼𝑁\u0000𝜇= 0.5, 𝜎2 = 𝑣\n20\n\u0001\nd. (6 points) What is an approximation for the distribution of the mean from one population minus the\nmean from another population? Note: this value may be negative if the first population has a smaller\nmean than the second.\nLet 𝑋1 and 𝑋2 be the means of the populations. 𝑋1 ∼𝑁(𝜇= 0.5, 𝜎2 = 𝑣\n20), 𝑋2 ∼𝑁(𝜇= 0.5, 𝜎2 = 𝑣\n20)\n𝐸[𝑋1 −𝑋2] = 𝐸[𝑋1] −𝐸[𝑋2] = 0\n𝑉𝑎𝑟(𝑋1 −𝑋2) = 𝑉𝑎𝑟(𝑋1) + 𝑉𝑎𝑟(𝑋2) = 𝑣\n10\nThe sum (or difference) of independent normals is still normal: 𝑌∼𝑁(𝜇= 0, 𝜎2 = 𝑣\n10)\ne. (8 points) What is the smallest difference in means, 𝑘, that would look statistically significant if there\nwere only two populations? In other words, the probability of seeing a difference in means of 𝑘or\ngreater is < 0.05.\nOne tricky part of this problem is to recognize the double sidedness to distance. We would consider it\na significant distance if 𝑃(𝑌< −𝑘) or 𝑃(𝑌> 𝑘).\n𝑃(𝑌< −𝑘) + 𝑃(𝑌> 𝑘) = 0.05\n𝐹𝑌(−𝑘) + (1 −𝐹𝑌(𝑘)) = 0.05\n(1 −𝐹𝑌(𝑘)) + (1 −𝐹𝑌(𝑘)) = 0.05\n2 −2𝐹𝑌(𝑘) = 0.05\n𝐹𝑌(𝑘) = 0.975\nNow we need the inverse Φ to get the value of 𝑘out.",
+      "source_type": "exam_question",
+      "document_name": "FinalFall2021Soln",
+      "score": 0.5189372301101685
+    },
+    {
+      "chunk_id": "cs109_11_joint_rvs_annotated_p7_0f2f856200",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nContinuity correction\nIf 𝑌~𝒩𝑛𝑝, 𝑛𝑝(1 −𝑝)  approximates 𝑋~Bin(𝑛, 𝑝), how do we approximate \nthe following probabilities?\n8\nDiscrete (e.g., Binomial) \nprobability question\nContinuous (Normal) \nprobability question\n𝑃𝑋= 6\n𝑃𝑋≥6\n𝑃𝑋> 6\n𝑃𝑋< 6\n𝑃𝑋≤6\n…  5 6 7 …",
+      "source_type": "lecture_slide",
+      "document_name": "11 joint rvs annotated",
+      "score": 0.518418550491333
+    },
+    {
+      "chunk_id": "cs109_demo_p0_p1_9c72e6785c",
+      "text": "Introduction to probability: sample space, events, and the axioms of probability.\n\nConditional probability P(A|B) and Bayes rule connect prior, likelihood, and posterior.",
+      "source_type": "lecture_slide",
+      "document_name": "Demo Lecture",
+      "score": 0.5128786563873291
+    },
+    {
+      "chunk_id": "cs109_04_cond_bayes_annotated_p7_p8_8ddf92746a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional probability in general\nGeneral definition of conditional probability:\n𝑃𝐸|𝐹= 𝑃𝐸𝐹\n𝑃(𝐹)\nThe Chain Rule (aka Product rule):\n𝑃𝐸𝐹= 𝑃𝐹𝑃𝐸𝐹\n8\nThese properties hold even when \noutcomes are not equally likely.\n\nand Learn",
+      "source_type": "lecture_slide",
+      "document_name": "04 cond bayes annotated",
+      "score": 0.5083150267601013
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p22_17e4d190fb",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDefining the likelihood of data: Bernoulli\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#.\n• 𝑋$ was drawn from distribution 𝐹 ~ Ber 𝜃 with unknown parameter 𝜃.\n• Observed sample:\n0, 0, 1, 1, 1, 1, 1, 1, 1, 1\nHow likely is this sample if, say, 𝜃= 0.4?\n𝑃sample|𝜃= 0.4 = 0.4 & 0.6 \" = 0.000236\n23\n(𝑛= 10)\nLikelihood of data\ngiven parameter 𝜃= 0.4\nIs there a better choice for 𝜃?",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.504694402217865
+    },
+    {
+      "chunk_id": "cs109_finalwin2025soln_q0_7ae5c17be7",
+      "text": "7 · 0.1\n(0.7 · 0.1) + (0.2 · 0.9)\n= 0.07",
+      "source_type": "exam_question",
+      "document_name": "FinalWin2025Soln",
+      "score": 0.4006113111972809
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p35_bb96797170",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n= 𝜃%\nSTU + 𝜂⋅,\n/&!\n0\n𝑦(/) −𝜎𝜃STU'𝒙(/)\n 𝑥%\n(/)\nTraining: Gradient ascent step\n36\n𝜕𝐿𝐿𝜃\n𝜕𝜃&\n= B\n%(\"\n4\n𝑦(%) −𝜎𝜃5𝒙(%)\n 𝑥&\n(%)\n𝜃%\nXYZ = 𝜃%\nSTU + 𝜂⋅𝜕𝐿𝐿𝜃STU\n𝜕𝜃%\nSTU\nfor all thetas:\nWhat does \nthis look like \nin code?\nrepeat until convergence:\nfor 𝑗= 0, 1, … , 𝑚",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.3995169401168823
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p3_9375157b91",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n2. Sigmoid function 𝜎𝑧\n• The sigmoid function:\n• Sigmoid squashes 𝑧 to\na number between 0 and 1.\n• Recall definition of probability:\nA number between 0 and 1 that \nexpresses a belief that something is true.\n4\n0\n0.2\n0.4\n0.6\n0.8\n1\n-10\n-8\n-6\n-4\n-2\n0\n2\n4\n6\n8\n10\n𝜎𝑧=\n1\n1 + 𝑒!\"\n𝜎𝑧\n𝑧\n𝝈𝒛 can represent \na probability.",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.39735525846481323
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p16_p17_0992de2b3d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nJoint CDF, graphically\n17\nlim\n',#→!\"𝐹),* 𝑥, 𝑦= 0\nlim\n',#→.\"𝐹),* 𝑥, 𝑦= 1\n𝐹!,# 𝑥, 𝑦= 𝑃𝑋≤𝑥, 𝑌≤𝑦\n𝑓!,# 𝑥, y\n\nIndependent \nContinuous RVs\n18",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.39706993103027344
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p11_0c25152259",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nQuick review of sets\n12\nReview\nE\nF\nS\n𝐸 and 𝐹 are events in 𝑆.\nExperiment:\n \nDie roll\n \n𝑆= 1, 2, 3, 4, 5, 6  \n \nLet 𝐸= 1, 2 , and 𝐹= 2,3",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.3907596468925476
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p12_9738bf0347",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTesting data notation\n𝒙! , 𝑦! , 𝒙\" , 𝑦\" , …, 𝒙$ , 𝑦$\n𝑛&'(& other datapoints, assumed to be iid\n𝑖&) datapoint 𝒙% , 𝑦%\n :\n• Has the same structure as your training data\n13\nTesting Goal:\nLeveraging the model (𝑌= 𝑔𝑿 that you trained, \nsee how well you can predict 𝑌 on known data",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.39016956090927124
+    }
+  ],
+  "built_at": "2026-04-28T05:13:15Z"
+}

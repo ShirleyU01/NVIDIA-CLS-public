@@ -1,0 +1,1187 @@
+{
+  "topic_id": "random_variables",
+  "topic_name": "Random Variables",
+  "course": "CS109",
+  "model": "gpt-5.4",
+  "questions": [
+    {
+      "question_id": "CS109_random_variables_0001",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "conceptual",
+      "difficulty": "easy",
+      "question": "A student says: \u201cIf X and Y are discrete random variables, independence just means P(X=2 and Y=5)=P(X=2)P(Y=5).\u201d Do you agree? Explain carefully what the full definition requires, and why checking only one pair of values is not enough.",
+      "expected_answer": "A strong answer says the statement is insufficient. For two discrete random variables, independence means that for every pair of values x and y in their support, P(X=x, Y=y)=P(X=x)P(Y=y). Checking a single pair like (2,5) does not guarantee the factorization holds for all other pairs, so it cannot establish independence.",
+      "source_chunk_ids": [
+        "cs109_demo_exam_q1_c290a1b3af",
+        "cs109_18_clt_annotated_p2_b1d98f2cbe"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the universal quantifier: the equality must hold for all x,y.",
+          "Distinguishes a single event from independence of random variables.",
+          "Explains why one matching product does not imply full independence."
+        ],
+        "partial_credit": [
+          "Gives the correct formula but forgets to say it must hold for all values.",
+          "Says 'not enough' without explaining why."
+        ],
+        "common_mistakes": [
+          "Treating independence as something that can be checked from one pair of values.",
+          "Confusing X and Y with events rather than random variables."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the analogous definition be written for continuous random variables?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you give an example where the equality holds for one pair of values but X and Y are still not independent?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from random variables; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Treating independence as something that can be checked from one pair of values. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0002",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "Suppose X is the number of heads in 3 fair coin flips. A classmate says \u201cX=2 is a random variable.\u201d Explain what is wrong with that sentence, and then state what X is, what the event X=2 is, and what probability would be attached to that event.",
+      "expected_answer": "The student should explain that X itself is the random variable: a real-valued function on the sample space assigning each outcome its number of heads. The statement X=2 is not a random variable; it is an event, meaning the set of outcomes with exactly two heads: {(H,H,T),(H,T,H),(T,H,H)}. The probability attached to that event is P(X=2)=3/8.",
+      "source_chunk_ids": [
+        "cs109_06_rvs_annotated_p15_p16_55ef09c173",
+        "cs109_06_rvs_annotated_p12_6dd4ea7252",
+        "cs109_06_rvs_annotated_p14_dbc1095be1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Clearly distinguishes random variable from event.",
+          "Identifies the event X=2 as a set of outcomes.",
+          "States or derives P(X=2)=3/8."
+        ],
+        "partial_credit": [
+          "Knows X=2 is an event but does not describe the sample-space set.",
+          "Gets the event right but not the probability."
+        ],
+        "common_mistakes": [
+          "Saying X=2 is a random variable value rather than an event.",
+          "Confusing the probability P(X=2) with the event X=2 itself."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What would the event X\u22654 be in this experiment, and what probability does it have?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I write P(X=2), what kind of object is that: a set, a function, or a number?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from random variables.",
+        "Watch out for this common trap: Saying X=2 is a random variable value rather than an event. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0003",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You generate 10 independent values from Uniform(0,1). Let I be the indicator that the first generated value is less than 0.3, and let N be the number of the remaining 9 values that are less than 0.3. First identify the distributions of I and N. Then say whether I and N are independent, and justify your answer from the sampling process.",
+      "expected_answer": "I is Bernoulli with parameter 0.3, because the first uniform draw falls below 0.3 with probability 0.3. N is Binomial(9,0.3), since among the other 9 independent draws each is below 0.3 with probability 0.3. I and N are independent because they are functions of disjoint sets of independent underlying draws: the first draw determines I, while the remaining 9 determine N.",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p16_p17_9b459186b0",
+        "cs109_07_bernoulli_binomial_annotated_p28_p29_28a8f77d8e",
+        "cs109_18_clt_annotated_p5_p6_8e18330175",
+        "cs109_finalfall2024soln_q7_599ef664f1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly identifies I as Bernoulli(0.3).",
+          "Correctly identifies N as Binomial(9,0.3).",
+          "Justifies independence using independent underlying draws, not just 'they look unrelated.'"
+        ],
+        "partial_credit": [
+          "Gets the distributions right but gives weak justification for independence.",
+          "States independence without connecting it to disjoint independent samples."
+        ],
+        "common_mistakes": [
+          "Calling N geometric.",
+          "Thinking I and N cannot be independent because both refer to the same threshold 0.3.",
+          "Forgetting that uniform probabilities come from interval length."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would I still be independent of the total count of all 10 values below 0.3? Why or why not?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which random draw or draws determine I, and which determine N?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Calling N geometric. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0004",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A server makes 8 independent requests to a backup service. Each request succeeds with probability 0.9. Let X be the total number of successes. Give the distribution of X, then express the probability that the first failure occurs on request 4. Finally, explain why these are modeled by different random variables even though they come from the same underlying Bernoulli trials.",
+      "expected_answer": "X is Binomial(8,0.9) because it counts successes in a fixed number of independent Bernoulli trials. The event 'first failure occurs on request 4' is geometric-style reasoning on failures: the first three requests succeed and the fourth fails, so the probability is (0.9)^3(0.1). These are different because one random variable counts total successes in a fixed horizon, while the other describes waiting time until the first failure.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p28_p29_28a8f77d8e",
+        "cs109_08_poisson_and_more_annotated_p12_9b046c9837"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies X~Bin(8,0.9).",
+          "Correctly gives probability of first failure on request 4 as 0.9^3*0.1.",
+          "Explains count-vs-waiting-time distinction."
+        ],
+        "partial_credit": [
+          "Gets the formula but not the interpretation.",
+          "Correct intuition but uses incorrect RV name for the waiting-time event."
+        ],
+        "common_mistakes": [
+          "Using Binomial for the first-failure timing event without conditioning on order.",
+          "Writing 0.1^3*0.9.",
+          "Forgetting that geometric counts trial number until first success/failure."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If Y is the trial number of the first failure, what support does Y have in this finite 8-request experiment?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the difference between 'how many successes in 8 trials' and 'when does the first failure happen'?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using Binomial for the first-failure timing event without conditioning on order. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0005",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Two students debate the statement: \u201cIf Cov(X,Y)=0, then X and Y must be independent.\u201d Give a response that addresses both directions: when independence does imply something about covariance, and why the converse fails in general. If you can, give or describe a concrete counterexample.",
+      "expected_answer": "Independence implies Cov(X,Y)=0, assuming the relevant expectations exist, because E[XY]=E[X]E[Y]. But zero covariance does not imply independence in general; covariance only captures linear association. A standard counterexample is Y=X^2 with X symmetric around 0, such as X~N(0,1): then Cov(X,Y)=Cov(X,X^2)=E[X^3]-E[X]E[X^2]=0, yet Y is completely determined by X, so they are not independent.",
+      "source_chunk_ids": [
+        "cs109_05_section_soln_sec1_part1_a4104a7e17"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States independence implies zero covariance.",
+          "States converse is false in general.",
+          "Provides a valid counterexample or explains nonlinear dependence."
+        ],
+        "partial_credit": [
+          "Gets the true/false status right but lacks explanation.",
+          "Mentions dependence can be nonlinear without a concrete example."
+        ],
+        "common_mistakes": [
+          "Claiming zero covariance is equivalent to independence.",
+          "Using correlation 0 as if it proved independence."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why does the example Y=X^2 make the dependence obvious even if covariance is zero?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What quantity would you compute under independence to show Cov(X,Y)=0?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from random variables; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming zero covariance is equivalent to independence. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0006",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A museum stores a prior belief that a newly found painting is by Artist V with probability 0.7. If it is by V, a measured feature X is Normal with mean 20 and variance 9; otherwise X is Normal with mean 12 and variance 25. You observe X=19. Without doing all the arithmetic, explain how to set up the posterior probability that the painting is by V, and say qualitatively whether the posterior should be above or below 0.7.",
+      "expected_answer": "Let V be the event the painting is by Artist V. By Bayes' rule, P(V|X=19)=f_{X|V}(19)P(V)/[f_{X|V}(19)P(V)+f_{X|V^c}(19)P(V^c)]. The densities are the normal pdfs with the given means and variances. Since 19 is much closer to 20 than to 12 and also lies in a relatively concentrated distribution when V is true, the likelihood under V should exceed the likelihood under not-V, so the posterior should be larger than the prior 0.7.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8",
+        "cs109_11_joint_rvs_annotated_p2_6accdd07e2"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes Bayes rule using densities, not point probabilities for a continuous RV.",
+          "Uses the correct priors 0.7 and 0.3.",
+          "Correctly argues posterior should increase above 0.7."
+        ],
+        "partial_credit": [
+          "Has the right Bayes structure but uses probability notation loosely for X=19.",
+          "Qualitative direction correct but no justification from likelihoods."
+        ],
+        "common_mistakes": [
+          "Using P(X=19|V) for a continuous variable without clarifying density.",
+          "Ignoring the prior.",
+          "Assuming the posterior must equal whichever mean is closer without Bayes structure."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is it acceptable here to compare densities at 19 even though P(X=19)=0 for a continuous variable?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a continuous observation, what replaces P(X=19|V) in Bayes' rule?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using P(X=19|V) for a continuous variable without clarifying density. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0007",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Let X be Uniform(a,b). A student claims that P(X is between the midpoint and b) depends on the length b\u2212a. Is that right? Explain using the pdf or geometry of the interval, and then give the probability.",
+      "expected_answer": "The claim is wrong. For a uniform random variable on [a,b], probability over a subinterval is proportional to its length because the density is constant at 1/(b-a). The midpoint to b has length (b-a)/2, so the probability is ((b-a)/2)/(b-a)=1/2 regardless of the actual interval length.",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p16_p17_9b459186b0"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses constant density or interval-length argument.",
+          "Shows dependence cancels out.",
+          "States probability is 1/2."
+        ],
+        "partial_credit": [
+          "Correct answer 1/2 with weak justification.",
+          "Mentions symmetry but does not connect to uniform density."
+        ],
+        "common_mistakes": [
+          "Thinking a wider interval changes the fraction.",
+          "Using discrete reasoning for a continuous interval."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your answer change if the interval were from a to a+0.1 instead?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What fraction of the total interval length is the upper half [ (a+b)/2 , b ]?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Thinking a wider interval changes the fraction. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0008",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "Consider random variables X1, X2, ..., Xn. Someone says, \u201cThey are iid because each Xi is exponential.\u201d Give at least two distinct reasons why that statement may fail, and contrast iid with merely independent or merely identically distributed.",
+      "expected_answer": "Being iid requires both identical distribution and independence. The statement may fail if the exponentials have different rate parameters, so they are not identically distributed, or if the variables are perfectly linked, such as X1=X2=...=Xn, so they are not independent. 'Independent' alone does not force the same distribution, and 'identically distributed' alone does not force independence.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p5_p6_8e18330175"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States iid means both independent and identically distributed.",
+          "Gives a non-identical-parameter example.",
+          "Gives a dependent example such as Xi all equal."
+        ],
+        "partial_credit": [
+          "Defines iid correctly but gives only one failure mode.",
+          "Explains independent vs identical but not both."
+        ],
+        "common_mistakes": [
+          "Saying same family of distributions automatically means identical.",
+          "Forgetting dependence can occur even when each marginal is exponential."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If Xi~Exp(\u03bb) and they are independent, what extra information is still needed to conclude iid?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does the second 'i' in iid stand for, and what does the 'd' stand for?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from random variables.",
+        "Watch out for this common trap: Saying same family of distributions automatically means identical. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0009",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A parent says, \u201cI have two children, and at least one is a daughter born on Tuesday.\u201d Many people immediately answer that the probability both children are daughters is 1/2. Explain why conditioning changes the sample space, and outline a correct method for finding the conditional probability.",
+      "expected_answer": "The answer is not 1/2 because the information 'at least one daughter born on Tuesday' does not single out a specific child uniformly; it changes the set of possible family outcomes. One correct method is to define B='both children are girls' and T='at least one daughter born on Tuesday' and compute P(B|T)=P(B\u2229T)/P(T). Using independence of gender and weekday, count or compute the relevant probabilities via inclusion-exclusion; this gives 13/27.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that the conditioning event changes the sample space.",
+          "Sets up P(B|T)=P(B\u2229T)/P(T).",
+          "Mentions inclusion-exclusion or an equivalent careful counting argument.",
+          "Recognizes the result is not 1/2."
+        ],
+        "partial_credit": [
+          "Knows it is not 1/2 and invokes Bayes/conditional probability, but explanation is incomplete.",
+          "Describes the sample-space change informally without a formal setup."
+        ],
+        "common_mistakes": [
+          "Treating 'at least one daughter born on Tuesday' as equivalent to 'one specified child is a daughter.'",
+          "Answering 1/2 by symmetry without conditioning correctly."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the problem simplify if the parent had instead said, 'My older child is a daughter'?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What exact event are we conditioning on here: 'exactly one daughter born on Tuesday' or 'at least one daughter born on Tuesday'?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Treating 'at least one daughter born on Tuesday' as equivalent to 'one specified child is a daughter.'. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0010",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "You repeatedly flip a biased coin with P(H)=0.2 until the first head appears. Let T be the trial number of the first head. Write the pmf of T and then explain in words why the support starts at 1 rather than 0.",
+      "expected_answer": "T is geometric with parameter 0.2, so P(T=k)=(0.8)^(k-1)(0.2) for k=1,2,3,.... The support starts at 1 because at least one trial must occur before the first head can happen. Trial number 0 would mean the first success happened before any flips, which is impossible in this setup.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p12_9b046c9837"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Gives the correct geometric pmf.",
+          "States support is {1,2,...}.",
+          "Explains why 0 is impossible."
+        ],
+        "partial_credit": [
+          "Correct formula but vague about support.",
+          "Knows support starts at 1 but does not explain."
+        ],
+        "common_mistakes": [
+          "Using k starting at 0.",
+          "Using p^(k-1)(1-p) instead of (1-p)^(k-1)p."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What is P(T>3), and how would you explain it without summing the pmf?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For T=4, how many tails must occur before the first head?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using k starting at 0. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0011",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Why is a normal model often reasonable for an average of many small contributions, even if the individual contributions are not normal? Give a concrete explanation rather than just naming a theorem, and state any assumptions you need.",
+      "expected_answer": "The key idea is the Central Limit Theorem: when an observed quantity is an average or sum of many independent or weakly dependent contributions with the same finite mean and variance, the standardized sum tends to be approximately normal. So even if individual pieces are skewed or discrete, the aggregate smooths out and is often well approximated by a normal distribution. The assumptions typically include many terms, comparable distributions, and finite variance.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8",
+        "cs109_11_joint_rvs_annotated_p2_6accdd07e2"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains averaging/summing many contributions leads to approximate normality.",
+          "Mentions assumptions such as independence and finite variance.",
+          "Connects to a real aggregate measurement rather than pure theorem citation."
+        ],
+        "partial_credit": [
+          "Names CLT correctly but gives little intuition.",
+          "Mentions sums become normal without assumptions."
+        ],
+        "common_mistakes": [
+          "Claiming each individual variable must be normal.",
+          "Ignoring the role of aggregation."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example of a quantity in data science or science that is naturally an average and hence approximately normal?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I average many independent coin-flip indicators, would you expect the result to be exactly normal or approximately normal?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from random variables; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming each individual variable must be normal. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0012",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Let N be a nonnegative integer-valued random variable, independent of iid random variables X1, X2, ... each with mean \u03bc. Define S = X1 + X2 + ... + XN. Before doing algebra, say what you think E[S] should be, and then justify it using conditional expectation.",
+      "expected_answer": "Intuitively, if there are on average E[N] terms and each contributes average \u03bc, then E[S] should be \u03bcE[N]. Formally, E[S]=E[E[S|N]]. Conditional on N=n, S is the sum of n iid variables, so E[S|N=n]=n\u03bc. Therefore E[S]=E[N\u03bc]=\u03bcE[N]. Independence of N from the Xi ensures conditioning on N=n does not change the Xi means.",
+      "source_chunk_ids": [
+        "cs109_05_section_soln_sec1_part1_a4104a7e17"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States E[S]=\u03bcE[N].",
+          "Uses E[S]=E[E[S|N]].",
+          "Explains why E[S|N=n]=n\u03bc and notes the independence role."
+        ],
+        "partial_credit": [
+          "Gets \u03bcE[N] with heuristic explanation only.",
+          "Uses summation reasoning but omits the conditioning step."
+        ],
+        "common_mistakes": [
+          "Assuming S has mean E[N]+\u03bc.",
+          "Forgetting that random upper limits require conditioning carefully."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What part of your argument would fail if N were not independent of the Xi?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If N were fixed at n, what would the expected value of X1+...+Xn be?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Assuming S has mean E[N]+\u03bc. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0013",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A random variable X takes values 1,2,3,... with pmf p(x). What is one quick validity check you should always perform on a proposed pmf, and why does that check matter before doing any further calculations with X?",
+      "expected_answer": "A proposed pmf must assign nonnegative probabilities and the probabilities must sum to 1 over the support. The sum-to-1 check matters because otherwise the function does not define a valid probability distribution, so expectations, variances, and event probabilities computed from it would be meaningless or inconsistent.",
+      "source_chunk_ids": [
+        "cs109_06_rvs_annotated_p20_5062a356d6"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States nonnegativity and total probability 1.",
+          "Explains why validity matters before computing other quantities."
+        ],
+        "partial_credit": [
+          "Mentions only that probabilities sum to 1.",
+          "Gives the check but no explanation."
+        ],
+        "common_mistakes": [
+          "Only checking that each probability is less than 1.",
+          "Forgetting nonnegativity."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the probabilities sum to 1.2, can you still use the function after renormalizing automatically? What would you need to justify?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What should the total probability across all possible values of a discrete random variable equal?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Only checking that each probability is less than 1. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0014",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A registrar models the counts of freshmen, sophomores, juniors, and seniors in a class of 600 chosen uniformly from 7000 students without replacement. A student calls this multinomial. Do you agree? Explain what feature of the sampling design breaks the multinomial assumption, and what the correct style of joint probability expression looks like.",
+      "expected_answer": "It is not multinomial in the usual sense because multinomial arises from independent category assignments across trials, effectively sampling with replacement or from fixed category probabilities. Here students are selected without replacement, so selections are dependent: choosing one freshman slightly changes the chance the next chosen student is a freshman. The correct joint mass uses a multivariate hypergeometric form, proportional to combinations from each class year divided by the total combinations of choosing 600 students.",
+      "source_chunk_ids": [
+        "cs109_05_section_soln_sec1_part1_a4104a7e17"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States it is not multinomial.",
+          "Explains dependence caused by sampling without replacement.",
+          "Identifies the correct structure as multivariate hypergeometric / combination ratio."
+        ],
+        "partial_credit": [
+          "Knows without replacement breaks independence but cannot name the distribution family.",
+          "Says 'not multinomial' without explaining why."
+        ],
+        "common_mistakes": [
+          "Calling every count-across-categories problem multinomial.",
+          "Saying large population size makes it exactly multinomial rather than approximately."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "In what practical regime might a multinomial be a good approximation anyway?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you remove one freshman from the population, does that affect the chance the next selected student is a freshman?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from random variables.",
+        "Watch out for this common trap: Calling every count-across-categories problem multinomial. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0015",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A function returns the sum of 1000 independent Uniform(0,1) samples. Without computing a final numerical probability, explain how you would approximate P(sum > 501), including the mean and variance you would use and why a normal approximation is appropriate.",
+      "expected_answer": "Let Xi~Uniform(0,1), independent, and S=\u03a3Xi. Each Xi has mean 1/2 and variance 1/12, so S has mean 1000\u00b71/2=500 and variance 1000\u00b7(1/12)=1000/12. Because S is a sum of many independent identically distributed variables with finite variance, the CLT says S is approximately normal. So we would standardize 501 using mean 500 and standard deviation sqrt(1000/12), then evaluate the corresponding normal tail probability.",
+      "source_chunk_ids": [
+        "cs109_finalfall2023soln_p1_9925d52f61",
+        "cs109_09_continuous_rv_annotated_p16_p17_9b459186b0",
+        "cs109_18_clt_annotated_p5_p6_8e18330175"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the sum of iid uniforms.",
+          "Uses mean 500 and variance 1000/12.",
+          "Explains CLT justification and standardization step."
+        ],
+        "partial_credit": [
+          "Gets CLT idea but misses mean or variance.",
+          "States normal approximation without parameter derivation."
+        ],
+        "common_mistakes": [
+          "Using variance of one uniform as 1/2.",
+          "Forgetting variances add for independent sums.",
+          "Using exact uniform support endpoints as if S were uniform."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would you expect P(S>501) to be larger or smaller than 0.5, and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the mean and variance of one Uniform(0,1) draw?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using variance of one uniform as 1/2. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0016",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Why are random variables often more useful than event-only descriptions when analyzing repeated experiments? Give an answer that compares what each framework makes easy or hard.",
+      "expected_answer": "Events are binary and are good for asking whether something happened, but they become cumbersome when many related outcomes must be tracked separately. A random variable bundles related events into one numeric object, like 'number of heads' instead of separate events for 0,1,2,3 heads. Once we have a PMF or density, we can compute summaries like expectation and variance and do algebra more systematically than with many separate event statements.",
+      "source_chunk_ids": [
+        "cs109_06_rvs_annotated_p33_dd831876d1",
+        "cs109_06_rvs_annotated_p11_d65702d5f4"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Contrasts binary events with numeric random variables.",
+          "Explains how RVs unify many related events.",
+          "Mentions useful summaries like mean/variance or easier algebra."
+        ],
+        "partial_credit": [
+          "Says RVs are 'more general' without concretely comparing frameworks.",
+          "Gives an example but no conceptual comparison."
+        ],
+        "common_mistakes": [
+          "Saying events and random variables are the same thing.",
+          "Focusing only on notation, not analytic advantages."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give a simple experiment where using a random variable is clearly cleaner than listing all relevant events?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I care about the number of heads in 10 flips, would one event capture all possibilities naturally?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from random variables; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying events and random variables are the same thing. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0017",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose X and Y are independent Binomial random variables with X~Bin(10,0.5) and Y~Bin(10,0.5). Without deriving the full pmf from scratch, explain why X+Y has a simple named distribution, and state it. Then say which assumption is essential for that conclusion.",
+      "expected_answer": "Because X and Y count successes from disjoint sets of independent Bernoulli trials with the same success probability 0.5, their sum counts total successes across 20 independent Bernoulli(0.5) trials. Therefore X+Y~Bin(20,0.5). The essential assumption is independence together with the same success probability p; if the p values differed, the sum would not in general be Binomial with a single p.",
+      "source_chunk_ids": [
+        "cs109_05_section_soln_sec1_part1_a4104a7e17",
+        "cs109_07_bernoulli_binomial_annotated_p28_p29_28a8f77d8e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States X+Y~Bin(20,0.5).",
+          "Explains the interpretation as 20 Bernoulli trials.",
+          "Identifies equal p and independence as essential."
+        ],
+        "partial_credit": [
+          "Gets the result but weak explanation.",
+          "Mentions only independence but not equal p."
+        ],
+        "common_mistakes": [
+          "Adding variances or means and assuming that alone proves the distribution.",
+          "Claiming any two binomials add to a binomial regardless of parameters."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If Y~Bin(10,0.3) instead, what part of your reasoning breaks?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does a Binomial random variable count?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Adding variances or means and assuming that alone proves the distribution. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0018",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You observe 30 successes and 20 failures for an unknown success probability p, and someone models p itself as a Beta random variable. They want to report an estimate in the form m \u00b1 b, where m is the expectation of p and b is the smallest half-width giving at least 95% posterior probability. Explain how you would describe m and how you would find b in words or pseudocode, even if you do not know closed forms for the interval endpoints.",
+      "expected_answer": "After observing 30 successes and 20 failures, the posterior for p is modeled as a Beta distribution with updated parameters determined by the prior choice; under a uniform prior this would be Beta(31,21). The mean m is the Beta expectation \u03b1/(\u03b1+\u03b2). To find b, start at 0 and increase b until P(m-b < p < m+b) \u2265 0.95, or equivalently search numerically using the Beta CDF; choose the smallest such b, then round as required.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains m as posterior mean of the Beta.",
+          "Describes numerical search or inverse-CDF style method for the smallest b with central mass at least 95%.",
+          "Recognizes this is about posterior uncertainty in p, not sample proportion alone."
+        ],
+        "partial_credit": [
+          "Knows mean formula idea but not how to find b.",
+          "Describes a 95% interval without emphasizing smallest symmetric half-width around m."
+        ],
+        "common_mistakes": [
+          "Using a normal approximation without justification as the only method.",
+          "Confusing the random variable p with future counts.",
+          "Reporting m=30/50 without explaining the Beta posterior context."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why might the shortest 95% interval around the mean differ from equal-tailed 2.5% and 97.5% quantiles?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In this problem, what random quantity follows the Beta distribution: the number of successes, or the unknown success probability?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using a normal approximation without justification as the only method. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0019",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "For multiple random variables X1, X2, ..., Xn, what does mutual independence require? Explain why pairwise independence alone is a weaker statement, and say how the definition differs in the discrete and continuous cases.",
+      "expected_answer": "Mutual independence requires factorization across all variables simultaneously. In the discrete case, for all values x1,...,xn, P(X1=x1,...,Xn=xn)=\u03a0 P(Xi=xi). In the continuous case, the joint density must factor: f(x1,...,xn)=\u03a0 fi(xi), equivalently the joint CDF factorizes. Pairwise independence only checks each pair and does not guarantee the whole joint factors; variables can be pairwise independent but not mutually independent.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p2_b1d98f2cbe"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the all-variables factorization definition.",
+          "Distinguishes pairwise from mutual independence.",
+          "Notes discrete uses probabilities / pmf, continuous uses density or CDF."
+        ],
+        "partial_credit": [
+          "Gives pairwise definition only.",
+          "States 'all combinations' vaguely without formulas."
+        ],
+        "common_mistakes": [
+          "Assuming pairwise independence implies mutual independence.",
+          "Using pmf notation for continuous variables without qualification."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is checking every pair not enough to establish full independence among three variables?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For three discrete variables, what would the factorization for P(X,Y,Z) look like under mutual independence?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from random variables; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Assuming pairwise independence implies mutual independence. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0020",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Let Z be exponential with rate 1/8267, representing the lifetime of one C14 molecule in years. In a sample of 100 independent molecules, define M as the number that have decayed by time t. Derive the distribution of M in terms of t and explain each step from the single-molecule model to the 100-molecule model.",
+      "expected_answer": "For one molecule, P(decays by time t)=P(Z\u2264t)=1-e^{-t/8267} from the exponential CDF. Call this p(t). Because molecules decay independently, each molecule is a Bernoulli trial with success meaning 'decayed by time t' and success probability p(t). Therefore M~Binomial(100, p(t)), so P(M=m)=C(100,m)p(t)^m(1-p(t))^(100-m) for m=0,...,100.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8",
+        "cs109_07_bernoulli_binomial_annotated_p28_p29_28a8f77d8e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes single-molecule decay probability as 1-exp(-t/8267).",
+          "Defines Bernoulli success clearly.",
+          "Uses independence to conclude M is Binomial(100,p(t))."
+        ],
+        "partial_credit": [
+          "Gets Binomial structure but not the exact p(t).",
+          "Computes p(t) correctly but does not connect to Binomial reasoning."
+        ],
+        "common_mistakes": [
+          "Using p(t)=exp(-t/8267) for 'decayed' instead of 'survived'.",
+          "Forgetting independence across molecules.",
+          "Using Poisson without justification."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If instead you defined L as the number left after time t, how would its parameter relate to p(t)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For one molecule, what is the difference between 'decayed by time t' and 'still present at time t'?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using p(t)=exp(-t/8267) for 'decayed' instead of 'survived'. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0021",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "Someone says, \u201cIf two random variables each have marginal distribution N(0,1), then their correlation must be 1 because they look the same.\u201d Respond to this claim, and separate the ideas of sharing the same marginal distribution, being perfectly correlated, and being independent.",
+      "expected_answer": "Having the same marginal distribution says only that each variable individually follows N(0,1); it says nothing by itself about how they move together. Correlation 1 means an exact positive linear relationship almost surely, like Y=aX+b with a>0 after standardization. Independence is different again: two N(0,1) variables can be independent, positively correlated, negatively correlated, or even perfectly correlated, depending on the joint distribution.",
+      "source_chunk_ids": [
+        "cs109_05_section_soln_sec1_part1_a4104a7e17",
+        "cs109_11_joint_rvs_annotated_p2_6accdd07e2"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects the claim clearly.",
+          "Distinguishes marginals from joint dependence structure.",
+          "Explains what correlation 1 actually means."
+        ],
+        "partial_credit": [
+          "Says the claim is false but explanation is vague.",
+          "Mentions independence and correlation are different without defining either."
+        ],
+        "common_mistakes": [
+          "Thinking identical marginals determine the joint relationship.",
+          "Confusing same distribution with perfect dependence."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you describe two different joint relationships that both have N(0,1) marginals?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If X and Y both have mean 0 and variance 1, do you know Cov(X,Y) from that information alone?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from random variables.",
+        "Watch out for this common trap: Thinking identical marginals determine the joint relationship. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0022",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A phone lifetime model has density f(x|a)=(1/a^2) x^{a-1} e^{-x^2/a^2} for observed lifetimes x1,...,xN assumed independent. Explain how maximum likelihood estimation would choose a, and why people usually maximize the log-likelihood instead of the likelihood directly. You do not need to solve for a numerically, but you should describe the derivative step.",
+      "expected_answer": "MLE chooses the value a-hat that maximizes the likelihood L(a)=\u03a0 f(xi|a). Because products are cumbersome, we maximize the log-likelihood instead; the logarithm is monotone, so it preserves the maximizer while turning products into sums. After substituting the density, we simplify the log-likelihood, differentiate with respect to a, set the derivative equal to zero, and solve or use numerical methods. The derivative includes terms from -2N log a, from \u03a3(a-1)log xi, and from the exponential term involving \u03a3 xi^2 / a^2.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines likelihood as product over independent observations.",
+          "Explains why log-likelihood is used and why maximizer is unchanged.",
+          "Describes differentiate-set-to-zero procedure and identifies main terms."
+        ],
+        "partial_credit": [
+          "Understands MLE qualitatively but omits the derivative step.",
+          "Mentions log-likelihood for convenience only, without monotonicity argument."
+        ],
+        "common_mistakes": [
+          "Adding densities instead of multiplying.",
+          "Thinking MLE matches sample mean by default.",
+          "Forgetting independence in the likelihood product."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What would you do if the derivative equation could not be solved in closed form?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If observations are independent, how do you combine their densities to form the likelihood?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Adding densities instead of multiplying. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0023",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A student says: \u201cIf two discrete random variables X and Y are independent, then once I know X=x, that itself is an event, so X and Y stop being random variables and independence no longer matters.\u201d Respond to this claim carefully. In your answer, distinguish random variables from events, state the correct definition of independence for discrete random variables, and explain what independence implies about P(Y=y | X=x).",
+      "expected_answer": "A strong answer should first reject the claim that random variables and events are the same thing. X and Y are random variables; statements like X=x and Y=y are events. For discrete random variables, independence means that for all values x and y, P(X=x, Y=y)=P(X=x)P(Y=y). From that, whenever P(X=x)>0, we get P(Y=y | X=x)=P(X=x,Y=y)/P(X=x)=P(Y=y). So observing the event X=x does not make Y lose its randomness; it means the conditional distribution of Y is unchanged if X and Y are independent.",
+      "source_chunk_ids": [
+        "cs109_demo_exam_q1_c290a1b3af",
+        "cs109_06_rvs_annotated_p15_p16_55ef09c173",
+        "cs109_06_rvs_annotated_p14_dbc1095be1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Clearly distinguishes random variables from events such as X=x.",
+          "States the discrete independence condition P(X=x,Y=y)=P(X=x)P(Y=y) for all x,y.",
+          "Derives or explains that P(Y=y | X=x)=P(Y=y) when P(X=x)>0.",
+          "Addresses the misconception that conditioning on an event makes variables 'stop being random'."
+        ],
+        "partial_credit": [
+          "Gives the correct independence definition but does not explain the event-vs-variable distinction.",
+          "Explains event-vs-variable distinction but gives only an informal definition of independence.",
+          "States conditional equality without showing how it follows from independence."
+        ],
+        "common_mistakes": [
+          "Saying 'X is an event' instead of 'X=x is an event'.",
+          "Claiming independence means P(X=x | Y=y)=P(X=x,Y=y).",
+          "Forgetting the condition P(X=x)>0 when writing conditional probabilities."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you extend your definition from two discrete random variables to n discrete random variables?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you give one example of a random variable and one example of an event defined in terms of that random variable?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from random variables; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying 'X is an event' instead of 'X=x is an event'. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0024",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Ten i.i.d. random values are sampled from Uniform(0,1), and let M be their maximum. Without doing heavy integration, derive the CDF of M and then use it to compute P(M < 0.8). Explain exactly where independence enters your argument.",
+      "expected_answer": "Let X1,...,X10 be i.i.d. Uniform(0,1), and M=max(X1,...,X10). For any m in [0,1], the event M<m means every sample is less than m, so P(M<m)=P(X1<m,...,X10<m). By independence this becomes product_i P(Xi<m)=m^10, because each Xi has CDF m on [0,1]. Therefore the CDF of M is 0 for m<0, m^10 for 0<=m<=1, and 1 for m>1. In particular, P(M<0.8)=0.8^10. Independence is essential for multiplying the 10 probabilities; without it, the max CDF would not generally factor this way.",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p16_p17_9b459186b0",
+        "cs109_18_clt_annotated_p2_b1d98f2cbe",
+        "cs109_finalfall2024soln_q7_599ef664f1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines M as the maximum and recognizes M<m iff all Xi<m.",
+          "Uses independence to factor the joint probability into a product.",
+          "Uses the Uniform(0,1) CDF P(Xi<m)=m on [0,1].",
+          "Gives the piecewise CDF and computes P(M<0.8)=0.8^10.",
+          "Comments on the role of independence."
+        ],
+        "partial_credit": [
+          "Gets P(M<0.8)=0.8^10 with limited explanation.",
+          "Correct reasoning on [0,1] but omits piecewise behavior outside the support.",
+          "Uses <= instead of < without discussing that it makes no difference for a continuous distribution."
+        ],
+        "common_mistakes": [
+          "Using 10\u00b70.8 instead of 0.8^10.",
+          "Confusing the maximum with the number of samples below 0.8.",
+          "Failing to mention that independence justifies the product."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What would the CDF of the minimum of the 10 samples be, and how would you derive it aloud?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What event involving X1 through X10 is exactly equivalent to 'the maximum is less than 0.8'?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using 10\u00b70.8 instead of 0.8^10. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0025",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A classmate claims: \u201cIf Cov(X,Y)=0, then X and Y must be independent, because zero covariance means no relationship.\u201d Give a careful response. Your answer should say what implication is true, which converse fails, and provide a concrete counterexample using a random variable X and a transformed variable Y.",
+      "expected_answer": "The correct one-way implication is that if X and Y are independent, then Cov(X,Y)=0, assuming the covariance is defined. The converse is false: zero covariance does not guarantee independence. A standard counterexample is to let X have a distribution symmetric about 0, for example X~N(0,1), and define Y=X^2. Then Y is completely determined by X, so X and Y are certainly not independent. But Cov(X,Y)=Cov(X,X^2)=E[X^3]-E[X]E[X^2]=0 for a symmetric zero-mean distribution like the standard normal, because E[X^3]=0 and E[X]=0. So zero covariance only rules out linear association, not all dependence.",
+      "source_chunk_ids": [
+        "cs109_05_section_soln_sec1_part1_a4104a7e17",
+        "cs109_11_joint_rvs_annotated_p2_6accdd07e2"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the true implication independence => covariance 0.",
+          "Explicitly says the converse covariance 0 => independence is false.",
+          "Provides a valid counterexample such as X~N(0,1), Y=X^2.",
+          "Explains why the variables are dependent and why covariance is nevertheless zero."
+        ],
+        "partial_credit": [
+          "Correctly says the converse is false but gives only an informal counterexample.",
+          "Gives a counterexample idea but does not justify why covariance is zero.",
+          "States only that covariance measures linear relationship without tying it to the formal claim."
+        ],
+        "common_mistakes": [
+          "Claiming normality alone makes zero covariance imply independence without specifying a jointly normal setting.",
+          "Using Y=3X as a counterexample for zero covariance.",
+          "Saying 'uncorrelated means independent' with no qualification."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Under what stronger condition would zero covariance actually imply independence, or at least make that statement more plausible?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you think of a variable Y that is completely determined by X, so independence should definitely fail?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from random variables.",
+        "Watch out for this common trap: Claiming normality alone makes zero covariance imply independence without specifying a jointly normal setting. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0026",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A call center receives a random number N of customers in an hour, and conditional on N=n, the waiting times X1,...,Xn of those customers are i.i.d. with mean 4 minutes. Assume N is independent of the sequence X1,X2,.... Let T=\u03a3_{i=1}^N Xi be the total waiting time accumulated in that hour. What is E[T], and explain your reasoning in a way that makes clear why the independence assumption matters.",
+      "expected_answer": "The expected total waiting time is E[T]=E[E[T|N]]. Conditional on N=n, T is the sum of n i.i.d. waiting times, so E[T|N=n]=n\u00b74. Therefore E[T]=E[4N]=4E[N]. The independence assumption matters because it lets the distribution, and hence mean, of each Xi stay the same after conditioning on N. If the Xi depended on N, then E[T|N=n] might not be 4n; for example, busier hours could have systematically longer waits.",
+      "source_chunk_ids": [
+        "cs109_05_section_soln_sec1_part1_a4104a7e17"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Introduces conditioning on N or an equivalent argument.",
+          "States E[T|N=n]=4n and therefore E[T]=4E[N].",
+          "Explains that independence of N from the Xi ensures the conditional mean of each Xi remains 4.",
+          "Mentions what could go wrong without independence."
+        ],
+        "partial_credit": [
+          "Gets 4E[N] but with minimal explanation.",
+          "Uses linearity of expectation correctly but does not discuss conditioning or independence.",
+          "Explains the idea informally without clear notation."
+        ],
+        "common_mistakes": [
+          "Treating N as a constant instead of a random variable.",
+          "Writing E[T]=E[N]+E[X].",
+          "Assuming independence is unnecessary without explaining why E[Xi|N]=4 still holds."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If each Xi had variance 9 as well, would that be enough to determine Var(T) immediately? What extra ideas would you need?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Suppose N were fixed at 5. What would the expected total waiting time be in that simpler case?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Treating N as a constant instead of a random variable. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_random_variables_0027",
+      "course": "CS109",
+      "topic_id": "random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "You repeatedly flip a biased coin with probability p of heads until the first heads appears. Let G be the trial on which the first heads occurs. A student models G as Binomial because 'we are counting successes.' Explain why that model is wrong, identify the correct random variable, and derive P(G>7) in words and notation.",
+      "expected_answer": "The Binomial counts how many successes occur in a fixed number of independent trials, but here the number of trials is random and the variable records the waiting time until the first success. So G is Geometric(p), supported on {1,2,...}. The event G>7 means there is no success in the first 7 flips, so the first 7 must all be tails. By independence, P(G>7)=(1-p)^7. Equivalently, using the geometric PMF, one could sum from k=8 onward, but the tail argument is simpler and more revealing.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p12_9b046c9837",
+        "cs109_07_bernoulli_binomial_annotated_p28_p29_28a8f77d8e",
+        "cs109_18_clt_annotated_p5_p6_8e18330175"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains why Binomial is inappropriate: fixed number of trials versus waiting time to first success.",
+          "Identifies G as Geometric(p).",
+          "Interprets G>7 as seven consecutive failures before the first success.",
+          "Derives P(G>7)=(1-p)^7 using independence."
+        ],
+        "partial_credit": [
+          "Names the Geometric distribution correctly but does not clearly contrast it with Binomial.",
+          "Gets the right probability with limited explanation.",
+          "Explains the event verbally but omits notation."
+        ],
+        "common_mistakes": [
+          "Using Binomial with n=7 and saying P(G>7)=P(X=0) without connecting it to the waiting-time variable.",
+          "Using support starting at 0 without clarifying the convention.",
+          "Writing P(G>7)=1-p^7."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you express P(G=7), and how is it different conceptually from P(G>7)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In a Binomial model, what would be fixed in advance that is not fixed in this coin-flipping-until-heads experiment?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using Binomial with n=7 and saying P(G>7)=P(X=0) without connecting it to the waiting-time variable. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    }
+  ]
+}

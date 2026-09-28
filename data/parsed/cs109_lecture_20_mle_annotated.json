@@ -1,0 +1,301 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/20_mle_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/20_mle_annotated.pdf",
+  "sha256": "0b8ba22b22ce5a9ff97d15bf0cc1f32653ac6b3f41a84b59bf226adb27a7008d",
+  "title_guess": "20 mle annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "20: Maximum \nLikelihood Estimation\nJerry Cain\nMay 15th, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 87
+    },
+    {
+      "page_index": 1,
+      "text": "Bootstrap:\np-value\n2",
+      "char_count": 20
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNull hypothesis test\n3\nNepal\nHappiness\n4.45\n2.45\n6.37\n2.07\n…\n1.63\nBhutan\nHappiness\n0.91\n0.34\n1.91\n1.61\n…\n1.08\n!𝑋! = 3.1\n!𝑋\" = 2.4\nClaim: The difference in mean happiness between Nepal and \nBhutan is 0.7 happiness points, and this is statistically \nsignificant.",
+      "char_count": 333
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nExample:\n• Flip some coin 100 times.\n• Flip some coin 150 times.\n• Compute fraction of heads in both groups.\n• There is a possibility we’ll see the observed difference\nin these fractions even if we used the same coin\nNull hypothesis test\n4\ndef null hypothesis – It’s possible the two distributions are essentially \nthe same, and your claim looks significant but really is not.\ndef p-value – What is the probability that the observed difference occurs \nunder the null hypothesis?\nNull hypothesis assumes \nwe use the same coin\np-value\nA significant p-value (< 0.05) means we reject the null hypothesis.",
+      "char_count": 673
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nUniversal sample\n5\n(this is what the null \nhypothesis assumes)\n!𝑋! = 3.1\n!𝑋\" = 2.4\nWant p-value: probability !𝑋! −!𝑋\" ≥3.1 −2.4  happens under null hypothesis",
+      "char_count": 231
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap for p-values\n1. Create a universal sample using\nyour two samples\n6\ni.e., recreate the \nnull hypothesis\n+\n=\n≈",
+      "char_count": 191
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap for p-values\n1. Create a universal sample using\nyour two samples\n2. Repeat 10,000 times: \na. Resample both samples\nb. Recalculate the mean difference\nbetween the resamples\n3. p-value =\n7\nProbability\nthat observed \ndifference arose \nby chance\n# (mean diffs >= observed diff)\nn\nbhutan_sample\nnepal_sample",
+      "char_count": 385
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap for p-values\ndef pvalue_boot(bhutan_sample, nepal_sample):\n    N = size of the bhutan_sample\n    M = size of the nepal_sample \n    observed_diff = |mean of bhutan_sample – mean of nepal_sample|\n    uni_sample = combine bhutan_sample and nepal_sample \n    count = 0 \n    \n    repeat 10,000 times:\n        bhutan_resample = draw N resamples from the uni_sample \n        nepal_resample = draw M resamples from the uni_sample\n        muBhutan = sample mean of the bhutan_resample\n        muNepal = sample mean of the nepal_resample \n        diff = |muNepal - muBhutan|\n        if diff >= observed_diff: \n            count += 1\npValue = count / 10,000 \n8",
+      "char_count": 732
+    },
+    {
+      "page_index": 8,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap for p-values\ndef pvalue_boot(bhutan_sample, nepal_sample):\n    N = size of the bhutan_sample\n    M = size of the nepal_sample \n    observed_diff = |mean of bhutan_sample – mean of nepal_sample|\n    uni_sample = combine bhutan_sample and nepal_sample \n    count = 0 \n    \n    repeat 10,000 times:\n        bhutan_resample = draw N resamples from the uni_sample \n        nepal_resample = draw M resamples from the uni_sample\n        muBhutan = sample mean of the bhutan_resample\n        muNepal = sample mean of the nepal_resample \n        diff = |muNepal - muBhutan|\n        if diff >= observed_diff: \n            count += 1\npValue = count / 10,000 \n9\n1. Create a universal \nsample using\nyour two samples",
+      "char_count": 785
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap for p-values\ndef pvalue_boot(bhutan_sample, nepal_sample):\n    N = size of the bhutan_sample\n    M = size of the nepal_sample \n    observed_diff = |mean of bhutan_sample – mean of nepal_sample|\n    uni_sample = combine bhutan_sample and nepal_sample \n    count = 0 \n    \n    repeat 10,000 times:\n        bhutan_resample = draw N resamples from the uni_sample \n        nepal_resample = draw M resamples from the uni_sample\n        muBhutan = sample mean of the bhutan_resample\n        muNepal = sample mean of the nepal_resample \n        diff = |muNepal - muBhutan|\n        if diff >= observed_diff: \n            count += 1\npValue = count / 10,000 \n10\n2. a. Resample both samples",
+      "char_count": 761
+    },
+    {
+      "page_index": 10,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap for p-values\ndef pvalue_boot(bhutan_sample, nepal_sample):\n    N = size of the bhutan_sample\n    M = size of the nepal_sample \n    observed_diff = |mean of bhutan_sample – mean of nepal_sample|\n    uni_sample = combine bhutan_sample and nepal_sample \n    count = 0 \n    \n    repeat 10,000 times:\n        bhutan_resample = draw N resamples from the uni_sample \n        nepal_resample = draw M resamples from the uni_sample\n        muBhutan = sample mean of the bhutan_resample\n        muNepal = sample mean of the nepal_resample \n        diff = |muNepal - muBhutan|\n        if diff >= observed_diff: \n            count += 1\npValue = count / 10,000 \n11\n2. b. Recalculate the mean \ndifference b/t resamples",
+      "char_count": 786
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap for p-values\ndef pvalue_boot(bhutan_sample, nepal_sample):\n    N = size of the bhutan_sample\n    M = size of the nepal_sample \n    observed_diff = |mean of bhutan_sample – mean of nepal_sample|\n    uni_sample = combine bhutan_sample and nepal_sample \n    count = 0 \n    \n    repeat 10,000 times:\n        bhutan_resample = draw N resamples from the uni_sample \n        nepal_resample = draw M resamples from the uni_sample\n        muBhutan = sample mean of the bhutan_resample\n        muNepal = sample mean of the nepal_resample \n        diff = |muNepal - muBhutan|\n        if diff >= observed_diff: \n            count += 1\n    pValue = count / 10,000 \n12\n3.\np-value =\n# (mean diffs > observed diff)\nn",
+      "char_count": 783
+    },
+    {
+      "page_index": 12,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap for p-values\ndef pvalue_boot(bhutan_sample, nepal_sample):\n    N = size of the bhutan_sample\n    M = size of the nepal_sample \n    observed_diff = |mean of bhutan_sample – mean of nepal_sample|\n    uni_sample = combine bhutan_sample and nepal_sample \n    count = 0 \n    \n    repeat 10,000 times:\n        bhutan_resample = draw N resamples from the uni_sample \n        nepal_resample = draw M resamples from the uni_sample\n        muBhutan = sample mean of the bhutan_resample\n        muNepal = sample mean of the nepal_resample \n        diff = |muNepal - muBhutan|\n        if diff >= observed_diff: \n            count += 1\npValue = count / 10,000 \n13\nwith replacement!",
+      "char_count": 751
+    },
+    {
+      "page_index": 13,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap\n14\nLet’s go try it!\nGoogle colab notebook link",
+      "char_count": 129
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNull hypothesis test\n15\nNepal\nHappiness\n4.45\n2.45\n6.37\n2.07\n…\n1.63\nBhutan\nHappiness\n0.91\n0.34\n1.91\n1.61\n…\n1.08\n!𝑋! = 3.1\n!𝑋\" = 2.4\nRedux: The happiness of Nepal and Bhutan have a 0.7 difference \nof means, and this is statistically significant (p < 0.05).",
+      "char_count": 327
+    },
+    {
+      "page_index": 15,
+      "text": "Parameter \nEstimation\n16",
+      "char_count": 24
+    },
+    {
+      "page_index": 16,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStory so far\nAt this point:\nWhen provided with a model and\nall the necessary parameters, we \ncan make predictions!\nCan we infer parameters for a given model when provided with some data?\nWhat if you want to learn the structure of the model, too?\nMachine Learning\n17\nGlimpse: Week 10\n𝑌 ~ Exp 1\n5\n𝑋!, … , 𝑋# iid\n𝑋$~Ber 0.2 ,\n𝑋= ∑$%!\n#\n𝑋$",
+      "char_count": 408
+    },
+    {
+      "page_index": 17,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSome estimators\n𝑋!, 𝑋\", … , 𝑋# are 𝑛 iid random variables,\nwhere 𝑋$ drawn from distribution 𝐹 with 𝐸𝑋$ = 𝜇, Var 𝑋$ = 𝜎\".\nSample mean:\n18\n!𝑋= 1\n𝑛0\n$%!\n#\n𝑋$\nunbiased estimate of 𝜇 \nSample variance:\n𝑆\" =\n1\n𝑛−1 0\n$%!\n#\n𝑋$ −!𝑋\"\nunbiased estimate of 𝜎\"\npotentially useful estimates if trying to infer parameters of a Gaussian",
+      "char_count": 392
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhat are parameters?\ndef Most random variables we’ve seen thus far are parametric models:\nDistribution = model + parameter 𝜃\nex The distribution Ber 0.2\nFor each of the distributions below, what is the parameter 𝜃?\n1.  Ber 𝑝\n2.  Poi 𝜆\n3.  Uni 𝛼, 𝛽\n4.  𝒩(𝜇, 𝜎!)\n5.  𝑌= 𝑚𝑋+ 𝑏\n19\n𝜃= 𝑝\n→ model is Bernoulli, parameter is 𝜃= 0.2.",
+      "char_count": 397
+    },
+    {
+      "page_index": 19,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhat are parameters?\ndef Most random variables we’ve seen thus far are parametric models:\nDistribution = model + parameter 𝜃\nex The distribution Ber 0.2\nFor each of the distributions below, what is the parameter 𝜃?\n1.  Ber 𝑝\n2.  Poi 𝜆\n3.  Uni 𝛼, 𝛽\n4.  𝒩(𝜇, 𝜎!)\n5.  𝑌= 𝑚𝑋+ 𝑏\n20\n𝜃= 𝑝\n𝜃= 𝜆\n𝜃= 𝛼, 𝛽\n𝜃= 𝑚, 𝑏\n𝜃= 𝜇, 𝜎\"\n𝜃 is the parameter of a distribution.\n𝜃 can be a vector.\n→ model is Bernoulli, parameter is 𝜃= 0.2.",
+      "char_count": 484
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhy do we care?\nIn the real world, we don’t know the true parameters.\n• But we observe data:\ndef estimator ;𝜃: a random variable estimating the true parameter 𝜃.\nIn parameter estimation,\nWe’ll initially and often rely on point estimates—i.e., the best single value\n• Provides an understanding of why data looks the way it does\n• Can make future predictions using that model\n• Can run simulations to generate more data\n21\n# times coin comes up heads, # requests for \nRydeShare per minute, # visitors to website per \nday, offer amount for that used bike you can’t sell",
+      "char_count": 639
+    },
+    {
+      "page_index": 21,
+      "text": "Maximum \nLikelihood \nEstimator\n22",
+      "char_count": 33
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDefining the likelihood of data: Bernoulli\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#.\n• 𝑋$ was drawn from distribution 𝐹 ~ Ber 𝜃 with unknown parameter 𝜃.\n• Observed sample:\n0, 0, 1, 1, 1, 1, 1, 1, 1, 1\nHow likely is this sample if, say, 𝜃= 0.4?\n𝑃sample|𝜃= 0.4 = 0.4 & 0.6 \" = 0.000236\n23\n(𝑛= 10)\nLikelihood of data\ngiven parameter 𝜃= 0.4\nIs there a better choice for 𝜃?",
+      "char_count": 460
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDefining the likelihood of data\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#.\n• 𝑋$ was drawn from a distribution with density function 𝑓𝑋$|𝜃.\n• Sample: 𝑋!, 𝑋\", … , 𝑋#\nLikelihood question:\nHow likely is the sample 𝑋!, 𝑋\", … , 𝑋#  given the parameter 𝜃? \nLikelihood function, 𝐿𝜃:\n24\nThis is just a product, since the 𝑋$ are iid.\n= C\n$%!\n#\n𝑓𝑋$|𝜃\n𝐿𝜃= 𝑓𝑋!, 𝑋\", … , 𝑋#|𝜃",
+      "char_count": 451
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood Estimator\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#, drawn from a \ndistribution 𝑓𝑋$|𝜃.\ndef The Maximum Likelihood Estimator (MLE) of 𝜃 is the value of 𝜃 that \nmaximizes 𝐿𝜃.\n25\n𝜃!\"# = arg max\n$\n 𝐿𝜃",
+      "char_count": 305
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood Estimator\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#, drawn from a \ndistribution 𝑓𝑋$|𝜃.\ndef The Maximum Likelihood Estimator (MLE) of 𝜃 is the value of 𝜃 that \nmaximizes 𝐿𝜃.\n26\n𝜃!\"# = arg max\n$\n 𝐿𝜃\n𝐿𝜃= C\n$%!\n#\n𝑓𝑋$|𝜃\nLikelihood of your sample\nFor continuous 𝑋$, 𝑓𝑋$|𝜃 is PDF, and for discrete 𝑋$, 𝑓𝑋$|𝜃 is PMF",
+      "char_count": 416
+    },
+    {
+      "page_index": 26,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood Estimator\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#, drawn from a \ndistribution 𝑓𝑋$|𝜃.\ndef The Maximum Likelihood Estimator (MLE) of 𝜃 is the value of 𝜃 that \nmaximizes 𝐿𝜃.\n27\n𝜃!\"# = arg max\n$\n 𝐿𝜃\nthe argument 𝜃 \nthat maximizes 𝐿𝜃",
+      "char_count": 339
+    },
+    {
+      "page_index": 27,
+      "text": "argmax and log \nlikelihood\n28",
+      "char_count": 29
+    },
+    {
+      "page_index": 28,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNew function: arg max\n1.  max\n'\n 𝑓𝑥?\n2.  arg max\n'\n 𝑓𝑥?\n29\narg max\n%\n 𝑓𝑥\nThe argument 𝑥 that\nmaximizes the function 𝑓𝑥.\nLet 𝑓𝑥= −𝑥\" + 4, \nwhere −2 < 𝑥< 2.\n0\n1\n2\n3\n4\n-2\n-1\n0\n1\n2\n𝑓𝑥\n𝑥\n= 4\n= 0",
+      "char_count": 262
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nArgmax properties\n30\narg max\n%\n 𝑓𝑥\n= arg max\n%\n log 𝑓𝑥 \n(log is an increasing function: \n𝑥< 𝑦⟺log 𝑥< log 𝑦) \n= arg max\n%\n𝑐log 𝑓𝑥\n \nfor any positive constant 𝑐\n(𝑥< 𝑦⟺𝑐log 𝑥< 𝑐log 𝑦)\nThe argument 𝑥 that\nmaximizes the function 𝑓𝑥.",
+      "char_count": 300
+    },
+    {
+      "page_index": 30,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFinding the argmax with calculus\n31\n/𝑥= arg max\n%\n 𝑓𝑥\nLet 𝑓𝑥= −𝑥\" + 4, \nwhere −2 < 𝑥< 2.\n0\n1\n2\n3\n4\n-2\n-1\n0\n1\n2\n𝑓𝑥\n𝑥\n𝑑\n𝑑𝑥𝑓𝑥= 𝑑\n𝑑𝑥𝑥\" + 4\n= 2𝑥\nDifferentiate w.r.t.\nargmax’s argument\nSet to 0 and solve\n2𝑥= 0\n⇒ \nO𝑥= 0\nMake sure ?𝑥\nis a maximum\n• Check 𝑓?𝑥± 𝜖< 𝑓?𝑥\n• Often ignored in expository derivations\n• We’ll ignore it as well (and we won’t require it in \nclass or on problem sets and exams)",
+      "char_count": 464
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood Estimator\nConsider a sample of 𝑛 iid random \nvariables 𝑋!, 𝑋\", … , 𝑋#, drawn from a \ndistribution 𝑓𝑋$|𝜃.\n𝜃()* maximizes the likelihood of our \nsample, 𝐿𝜃:\n𝜃()* also maximizes the log-likelihood \nfunction, 𝐿𝐿𝜃:\n32\n𝜃!\"# = arg max\n$\n 𝐿𝐿𝜃\n𝜃()* = arg max\n+\n 𝐿𝜃\n𝐿𝐿𝜃= log 𝐿𝜃= log B\n$%!\n#\n𝑓𝑋$|𝜃\n= D\n$%!\n#\nlog 𝑓𝑋$|𝜃\n𝐿𝜃= C\n$%!\n#\n𝑓𝑋$|𝜃\n𝐿𝐿𝜃 is often easier to \ndifferentiate than 𝐿𝜃.",
+      "char_count": 463
+    },
+    {
+      "page_index": 32,
+      "text": "MLE: Bernoulli\n33",
+      "char_count": 17
+    },
+    {
+      "page_index": 33,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComputing the MLE\nGeneral approach for finding 𝜃()* , the MLE of 𝜃:\n34\n𝜃!\"# = arg max\n$\n 𝐿𝐿𝜃\n1. Determine \nformula for 𝐿𝐿𝜃\n2. Differentiate 𝐿𝐿𝜃\nw.r.t. (each) 𝜃\n𝐿𝐿𝜃= D\n$%!\n#\nlog 𝑓𝑋$|𝜃\n𝜕𝐿𝐿𝜃\n𝜕𝜃\n3. Solve resulting\nequations\nTo maximize:\n𝜕𝐿𝐿𝜃\n𝜕𝜃\n= 0\nalgebra or\ncomputer\n𝐿𝐿𝜃 is often easier to \ndifferentiate than 𝐿𝜃.",
+      "char_count": 384
+    },
+    {
+      "page_index": 34,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Bernoulli\nConsider a sample of 𝑛 iid RVs 𝑋!, 𝑋\", … , 𝑋#.\nWhat is 𝜃()* = 𝑝()*?\n35\n1. Determine \nformula for 𝐿𝐿𝜃\n• Let 𝑋$~Ber 𝑝.\n2. Differentiate 𝐿𝐿𝜃\nwrt (each) 𝜃, set to 0\n3. Solve resulting\nequations\n𝑓𝑋$|𝑝= P𝑝 \nif 𝑋$ = 1\n1 −𝑝 if 𝑋$ = 0\n?\n𝐿𝐿𝜃= D\n$%!\n#\nlog 𝑓𝑋$|𝑝",
+      "char_count": 357
+    },
+    {
+      "page_index": 35,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Bernoulli\nConsider a sample of 𝑛 iid RVs 𝑋!, 𝑋\", … , 𝑋#.\nWhat is 𝜃()* = 𝑝()*?\n36\n1. Determine \nformula for 𝐿𝐿𝜃\n• Let 𝑋$~Ber 𝑝.\n•  𝑓𝑋$|𝑝= 𝑝&! 1 −𝑝!'&!\n2. Differentiate 𝐿𝐿𝜃\nwrt (each) 𝜃, set to 0\n3. Solve resulting\nequations\n𝑓𝑋$|𝑝= 𝑝7! 1 −𝑝!87! where 𝑋$ ∈{0,1}\n• differentiable with respect to 𝑝\n• valid PMF over discrete domain\n✅\n𝑓𝑋$|𝑝= P𝑝 \nif 𝑋$ = 1\n1 −𝑝 if 𝑋$ = 0\n𝐿𝐿𝜃= D\n$%!\n#\nlog 𝑓𝑋$|𝑝",
+      "char_count": 484
+    },
+    {
+      "page_index": 36,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n𝐿𝐿𝜃= D\n$%!\n#\nlog 𝑓𝑋$|𝑝\nMaximum Likelihood with Bernoulli\nConsider a sample of 𝑛 iid RVs 𝑋!, 𝑋\", … , 𝑋#.\nWhat is 𝜃()* = 𝑝()*?\n37\n1. Determine \nformula for 𝐿𝐿𝜃\n• Let 𝑋$~Ber 𝑝.\n•  𝑓𝑋$|𝑝= 𝑝&! 1 −𝑝!'&!\n2. Differentiate 𝐿𝐿𝜃\nwrt (each) 𝜃, set to 0\n3. Solve resulting\nequations\n= D\n$%!\n#\nlog 𝑝&! 1 −𝑝!'&!\n𝑌= D\n$%!\n#\n𝑋$\n= D\n$%!\n#\n𝑋$ log 𝑝+ 1 −𝑋$ log 1 −𝑝\n= 𝑌log 𝑝+ 𝑛−𝑌log 1 −𝑝, where",
+      "char_count": 447
+    },
+    {
+      "page_index": 37,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Bernoulli\nConsider a sample of 𝑛 iid RVs 𝑋!, 𝑋\", … , 𝑋#.\nWhat is 𝜃()* = 𝑝()*?\n38\n1. Determine \nformula for 𝐿𝐿𝜃\n• Let 𝑋$~Ber 𝑝.\n•  𝑓𝑋$|𝑝= 𝑝&! 1 −𝑝!'&!\n2. Differentiate 𝐿𝐿𝜃\nwrt (each) 𝜃, set to 0\n3. Solve resulting\nequations\n= 𝑌log 𝑝+ 𝑛−𝑌log 1 −𝑝, where 𝑌= D\n$%!\n#\n𝑋$\n𝐿𝐿𝜃= D\n$%!\n#\n𝑋$ log 𝑝+ 1 −𝑋$ log 1 −𝑝\n𝜕𝐿𝐿𝜃\n𝜕𝑝\n= 𝑌1\n𝑝+ 𝑛−𝑌\n−1\n1 −𝑝= 0",
+      "char_count": 431
+    },
+    {
+      "page_index": 38,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Bernoulli\nConsider a sample of 𝑛 iid RVs 𝑋!, 𝑋\", … , 𝑋#.\nWhat is 𝜃()* = 𝑝()*?\n39\n1. Determine \nformula for 𝐿𝐿𝜃\n• Let 𝑋$~Ber 𝑝.\n•  𝑓𝑋$|𝑝= 𝑝&! 1 −𝑝!'&!\n2. Differentiate 𝐿𝐿𝜃\nwrt (each) 𝜃, set to 0\n3. Solve resulting\nequations\n= 𝑌log 𝑝+ 𝑛−𝑌log 1 −𝑝, where 𝑌= D\n$%!\n#\n𝑋$\n𝐿𝐿𝜃= D\n$%!\n#\n𝑋$ log 𝑝+ 1 −𝑋$ log 1 −𝑝\n𝜕𝐿𝐿𝜃\n𝜕𝑝\n= 𝑌1\n𝑝+ 𝑛−𝑌\n−1\n1 −𝑝= 0",
+      "char_count": 431
+    },
+    {
+      "page_index": 39,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Bernoulli\nConsider a sample of 𝑛 iid RVs 𝑋!, 𝑋\", … , 𝑋#.\nWhat is 𝜃()* = 𝑝()*?\n40\n1. Determine \nformula for 𝐿𝐿𝜃\n• Let 𝑋$~Ber 𝑝.\n•  𝑓𝑋$|𝑝= 𝑝&! 1 −𝑝!'&!\n2. Differentiate 𝐿𝐿𝜃\nwrt (each) 𝜃, set to 0\n3. Solve resulting\nequations\n= 𝑌log 𝑝+ 𝑛−𝑌log 1 −𝑝, where 𝑌= D\n$%!\n#\n𝑋$\n𝐿𝐿𝜃= D\n$%!\n#\n𝑋$ log 𝑝+ 1 −𝑋$ log 1 −𝑝\n𝜕𝐿𝐿𝜃\n𝜕𝑝\n= 𝑌1\n𝑝+ 𝑛−𝑌\n−1\n1 −𝑝= 0\n𝑝()* = 1\n𝑛𝑌= 1\n𝑛D\n$%!\n#\n𝑋$\nMLE of the Bernoulli parameter, 𝑝()*, \nis the sample mean, !𝑋, which is an \nunbiased estimator of the true mean.",
+      "char_count": 571
+    },
+    {
+      "page_index": 40,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nQuick check\n• You draw 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋# from the distribution 𝐹,\nyielding the following sample:\n0, 0, 1, 1, 1, 1, 1, 1, 1, 1\n• Suppose distribution 𝐹 = Ber 𝑝 with unknown parameter 𝑝.\n41\n(𝑛= 10)\nA. 1.0\nB. 0.5\nC. 0.8\nD. 0.2\nE. None/other\n1. What is 𝑝()*, the MLE of the parameter 𝑝?\n𝑝()* = !𝑋= 1\n𝑛D\n$%!\n#\n𝑋$",
+      "char_count": 400
+    },
+    {
+      "page_index": 41,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nQuick check\n• You draw 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋# from the distribution 𝐹, \nyielding the following sample:\n0, 0, 1, 1, 1, 1, 1, 1, 1, 1\n• Suppose distribution 𝐹 = Ber 𝑝 with unknown parameter 𝑝.\n42\nC. 0.8\n𝐿𝜃= B\n$%!\n#\n𝑓𝑋$|𝑝\n1. What is 𝑝()*, the MLE of the parameter 𝑝?\n2. What is the likelihood 𝐿𝜃 of this specific sample?\n𝑓𝑋$|𝑝= 𝑝&! 1 −𝑝!'&! where 𝑋$ ∈{0,1}\n= 𝑝+ 1 −𝑝\" = 0.8+0.2\" = 0.0067\nwhere 𝜃= 𝑝\n(𝑛= 10)",
+      "char_count": 491
+    },
+    {
+      "page_index": 42,
+      "text": "MLE: Poisson \nand Uniform\n43",
+      "char_count": 28
+    },
+    {
+      "page_index": 43,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Poisson\nConsider a sample of 𝑛 iid RVs 𝑋!, 𝑋\", … , 𝑋#.\nWhat is 𝜃()* = 𝜆()*?\n44\n1. Determine \nformula for 𝐿𝐿𝜃\n𝐿𝐿𝜃= $\n%&'\n(\nlog 𝑒)*𝜆+!\n𝑋%!\n= −𝑛𝜆+ log 𝜆$\n%&'\n(\n𝑋% −$\n%&'\n(\nlog 𝑋%!\n= $\n%&'\n(\n−𝜆log 𝑒+ 𝑋% log 𝜆−log 𝑋%!\nusing natural log, \ni.e., ln 𝑒= 1\n𝑓𝑋$|𝜆= 𝑒',𝜆&!\n𝑋$!\n• Let 𝑋$~Poi 𝜆.\n• PMF:",
+      "char_count": 384
+    },
+    {
+      "page_index": 44,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Poisson\nConsider a sample of 𝑛 iid RVs 𝑋!, 𝑋\", … , 𝑋#.\nWhat is 𝜃()* = 𝜆()*?\n45\n1. Determine \nformula for 𝐿𝐿𝜃\n𝐿𝐿𝜃= $\n%&'\n(\nlog 𝑒)*𝜆+!\n𝑋%!\n= −𝑛𝜆+ log 𝜆$\n%&'\n(\n𝑋% −$\n%&'\n(\nlog 𝑋%!\n= $\n%&'\n(\n−𝜆log 𝑒+ 𝑋% log 𝜆−log 𝑋%!\n𝑓𝑋$|𝜆= 𝑒',𝜆&!\n𝑋$!\n• Let 𝑋$~Poi 𝜆.\n• PMF: \n2. Differentiate 𝐿𝐿𝜃\nw.r.t. (each) 𝜃, set to 0\n−𝑛+ 1\n𝜆A\n%&'\n(\n𝑋% + 𝑛log 𝜆−A\n%&'\n(\n1\n𝑋%! ⋅𝜕𝑋%!\n𝜕𝑋%\n−𝑛+ 1\n𝜆D\n$%!\n#\n𝑋$\nA.  \nB.  \nC.  Stop trying\n🤔\n𝜕𝐿𝐿𝜃\n𝜕𝜆\n= ?\nusing natural log, \ni.e., ln 𝑒= 1",
+      "char_count": 541
+    },
+    {
+      "page_index": 45,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Poisson\nConsider a sample of 𝑛 iid RVs 𝑋!, 𝑋\", … , 𝑋#.\nWhat is 𝜃()* = 𝜆()*?\n46\n1. Determine \nformula for 𝐿𝐿𝜃\n𝐿𝐿𝜃= $\n%&'\n(\nlog 𝑒)*𝜆+!\n𝑋%!\n= −𝑛𝜆+ log 𝜆$\n%&'\n(\n𝑋% −$\n%&'\n(\nlog 𝑋%!\n= $\n%&'\n(\n−𝜆log 𝑒+ 𝑋% log 𝜆−log 𝑋%!\n𝑓𝑋$|𝜆= 𝑒',𝜆&!\n𝑋$!\n• Let 𝑋$~Poi 𝜆.\n• PMF: \n2. Differentiate 𝐿𝐿𝜃\nw.r.t. (each) 𝜃, set to 0\n𝜕𝐿𝐿𝜃\n𝜕𝜆\n= −𝑛+ 1\n𝜆D\n$%!\n#\n𝑋$ = 0\n3. Solve resulting\nequations\n𝜆()* = 1\n𝑛D\n$%!\n#\n𝑋$\nMLE of the Poisson parameter, \n𝜆()*, is the sample mean, !𝑋, \nwhich is an unbiased estimator of \nthe true mean.\nusing natural log, \ni.e., ln 𝑒= 1",
+      "char_count": 626
+    },
+    {
+      "page_index": 46,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nQuick Review\n1. A particular experiment can be modeled as a \nPoisson RV with parameter 𝜆, in terms of \nevents/minute.\nCollect data: observe 53 events over the next \n10 minutes. What is 𝜆()*?\n2. Is the Bernoulli MLE an unbiased estimator of \nthe Bernoulli parameter 𝑝?\n3. Is the Poisson MLE an unbiased estimator of \nthe Poisson variance?\n4. What does unbiased mean?\n47\n𝜆()* = 1\n𝑛D\n$%!\n#\n𝑋$\n✅\n✅\n𝐸estimator = the truth\nUnbiased: If you repeat your \nexperiment multiple times, on average, \nyou’ll get what you are looking for.",
+      "char_count": 596
+    },
+    {
+      "page_index": 47,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Uniform\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#.\nLet 𝑋$~Uni 𝛼, 𝛽.\n48\n𝑓𝑋$|𝛼, 𝛽= T\n1\n𝛽−𝛼 \nif 𝛼≤𝑥$ ≤𝛽 \n0 \notherwise\n1. Determine \nformula for 𝐿𝜃\n2. Differentiate 𝐿𝜃\nwrt each 𝜃, set to 0\n𝐿𝜃= V\n1\n𝛽−𝛼\n#\n \nif 𝛼≤𝑥!, 𝑥\", … , 𝑥# ≤𝛽 \n0 \notherwise\nA. Great, let’s do it\nB. Use 𝐿𝐿𝜃 instead\nC. Constraint 𝛼≤𝑥!, 𝑥\", … , 𝑥# ≤𝛽\nmakes differentiation hard\n🤔",
+      "char_count": 455
+    },
+    {
+      "page_index": 48,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Uniform: Sample\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#.\nLet 𝑋$~Uni 𝛼, 𝛽.\n49\n𝐿𝜃= V\n1\n𝛽−𝛼\n#\n \nif 𝛼≤𝑥!, 𝑥\", … , 𝑥# ≤𝛽 \n0 \notherwise \nA. Uni 𝛼= 0.00, 𝛽= 1.00\nB. Uni 𝛼= 0.15, 𝛽= 0.75\nC. Uni 𝛼= 0.15, 𝛽= 0.70\nUnderlying 𝑋$ ~ Uni 0,1  \nYou observe data:\n0.15, 0.20, 0.30, 0.40, 0.65, 0.70, 0.75\n🤔\nWhich parameters\nmaximize 𝐿𝜃?",
+      "char_count": 435
+    },
+    {
+      "page_index": 49,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Uniform: Sample\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#.\nLet 𝑋$~Uni 𝛼, 𝛽.\n50\nA. Uni 𝛼= 0.00, 𝛽= 1.00\nB. Uni 𝛼= 0.15, 𝛽= 0.75\nC. Uni 𝛼= 0.15, 𝛽= 0.70\n0.15, 0.20, 0.30, 0.40, 0.65, 0.70, 0.75\n!\n-.//\n0\n⋅0 = 0 \n1 1 = 1\n!\n-.0\n1\n= 59.5 \n⚠\nOriginal parameters may not yield maximum likelihood.\n𝐿𝜃= V\n1\n𝛽−𝛼\n#\n \nif 𝛼≤𝑥!, 𝑥\", … , 𝑥# ≤𝛽 \n0 \notherwise \nUnderlying 𝑋$ ~ Uni 0,1\nYou observe data:\nWhich parameters\nmaximize 𝐿𝜃?",
+      "char_count": 528
+    },
+    {
+      "page_index": 50,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Uniform\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#.\nLet 𝑋$~Uni 𝛼, 𝛽.\n51\n𝜃()*: 𝛼()* = min 𝑥!, 𝑥\", … , 𝑥#   \n \n𝛽()* = max 𝑥!, 𝑥\", … , 𝑥#\nIntuition:\n• Want interval size 𝛽−𝛼 to be as narrow\nas possible to maximize likelihood function.\n• Need to ensure all datapoints are included \nin interval. Otherwise, 𝐿𝜃= 0.\n(demo)\n𝐿𝜃= V\n1\n𝛽−𝛼\n#\n \nif 𝛼≤𝑥!, 𝑥\", … , 𝑥# ≤𝛽 \n0 \notherwise",
+      "char_count": 481
+    },
+    {
+      "page_index": 51,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSmall samples = problems with MLE\nMaximum Likelihood Estimator 𝜃()* :\n• Best explains the data we’ve seen \n• Does not attempt to generalize to data not yet observed.\nIn many cases, \n• Unbiased (𝐸𝜇()* = 𝜇, regardless of sample size)\nFor some cases, like Uniform:\n• Ad hoc, biased, and problematic for small sample sizes\n• Example: If 𝑛= 1, then 𝛼= 𝛽, and our estimates yield an invalid \ndistribution\n52\n𝜇()* = 1\n𝑛D\n$%!\n#\n𝑋$\nSample mean\n(MLE for Bernoulli 𝑝, \nPoisson 𝜆, Normal 𝜇)\n𝛼()* ≥𝛼,\n𝛽()* ≤𝛽\n✅\n⚠\n𝜃()* = arg max\n+\n 𝐿𝜃",
+      "char_count": 593
+    },
+    {
+      "page_index": 52,
+      "text": "MLE: Gaussian\n53",
+      "char_count": 16
+    },
+    {
+      "page_index": 53,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Normal\n54\n𝐿𝐿𝜃= D\n$%!\n#\nlog\n1\n2𝜋𝜎\n𝑒' &!'2 \"/ \"4\"\n= D\n$%!\n#\n−log\n2𝜋𝜎−𝑋$ −𝜇\"/ 2𝜎\"\n(using natural log)\n= −D\n$%!\n#\nlog\n2𝜋𝜎−D\n$%!\n#\n𝑋$ −𝜇\"/ 2𝜎\"\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#.\n• Let 𝑋$~ 𝒩𝜇, 𝜎\" .\nWhat is 𝜃()* = 𝜇()*, 𝜎()*\n\"\n? \n1. Determine \nformula for 𝐿𝐿𝜃\n3. Solve resulting\nequations\n2. Differentiate 𝐿𝐿𝜃\nwrt (each) 𝜃, set to 0\n𝑓𝑋$|𝜇, 𝜎\" =\n1\n2𝜋𝜎\n𝑒' &!'2 \"/ \"4\"",
+      "char_count": 480
+    },
+    {
+      "page_index": 54,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Normal\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#.\n• Let 𝑋$~ 𝒩𝜇, 𝜎\" .\nWhat is 𝜃()* = 𝜇()*, 𝜎()*\n\"\n?\n55\n1. Determine \nformula for 𝐿𝐿𝜃\n3. Solve resulting\nequations\n𝐿𝐿𝜃= −D\n$%!\n#\nlog\n2𝜋𝜎−D\n$%!\n#\n𝑋$ −𝜇\"/ 2𝜎\"\n2. Differentiate 𝐿𝐿𝜃\nwrt (each) 𝜃, set to 0\n𝑓𝑋$|𝜇, 𝜎\" =\n1\n2𝜋𝜎\n𝑒' &!'2 \"/ \"4\"\n𝜕𝐿𝐿𝜃\n𝜕𝜇\n= D\n$%!\n#\n2 𝑋$ −𝜇/ 2𝜎\"\n= 1\n𝜎\" D\n$%!\n#\n𝑋$ −𝜇= 0\nwith respect to 𝜇",
+      "char_count": 466
+    },
+    {
+      "page_index": 55,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Normal\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#.\n• Let 𝑋$~ 𝒩𝜇, 𝜎\" .\nWhat is 𝜃()* = 𝜇()*, 𝜎()*\n\"\n?\n56\n1. Determine \nformula for 𝐿𝐿𝜃\n3. Solve resulting\nequations\n𝐿𝐿𝜃= −D\n$%!\n#\nlog\n2𝜋𝜎−D\n$%!\n#\n𝑋$ −𝜇\"/ 2𝜎\"\n2. Differentiate 𝐿𝐿𝜃\nwrt (each) 𝜃, set to 0\n𝑓𝑋$|𝜇, 𝜎\" =\n1\n2𝜋𝜎\n𝑒' &!'2 \"/ \"4\"\n𝜕𝐿𝐿𝜃\n𝜕𝜇\n= D\n$%!\n#\n2 𝑋$ −𝜇/ 2𝜎\"\n= 1\n𝜎\" D\n$%!\n#\n𝑋$ −𝜇= 0\nwith respect to 𝜇\nwith respect to 𝜎\n𝜕𝐿𝐿𝜃\n𝜕𝜎\n= −D\n$%!\n# 1\n𝜎+ D\n$%!\n#\n2 𝑋$ −𝜇\"/ 2𝜎5\n= −𝑛\n𝜎+ 1\n𝜎5 D\n$%!\n#\n𝑋$ −𝜇\" = 0",
+      "char_count": 562
+    },
+    {
+      "page_index": 56,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Normal\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#.\n• Let 𝑋$~ 𝒩𝜇, 𝜎\" .\nWhat is 𝜃()* = 𝜇()*, 𝜎()*\n\"\n?\n57\n3. Solve resulting\nequations\n𝑓𝑋$|𝜇, 𝜎\" =\n1\n2𝜋𝜎\n𝑒' &!'2 \"/ \"4\"\n1\n𝜎\" D\n$%!\n#\n𝑋$ −𝜇= 0\nTwo equations, \ntwo unknowns:\nFirst, solve\nfor 𝜇()*:\n1\n𝜎\" D\n$%!\n#\n𝑋$ −1\n𝜎\" D\n$%!\n#\n𝜇= 0\n⇒ D\n$%!\n#\n𝑋$ = 𝑛𝜇\n⇒ 𝜇()* = 1\n𝑛D\n$%!\n#\n𝑋$\nunbiased\n−𝑛\n𝜎+ 1\n𝜎5 D\n$%!\n#\n𝑋$ −𝜇\" = 0",
+      "char_count": 467
+    },
+    {
+      "page_index": 57,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum Likelihood with Normal\nConsider a sample of 𝑛 iid random variables 𝑋!, 𝑋\", … , 𝑋#.\n• Let 𝑋$~ 𝒩𝜇, 𝜎\" .\nWhat is 𝜃()* = 𝜇()*, 𝜎()*\n\"\n?\n58\n3. Solve resulting\nequations\n𝑓𝑋$|𝜇, 𝜎\" =\n1\n2𝜋𝜎\n𝑒' &!'2 \"/ \"4\"\n−𝑛\n𝜎+ 1\n𝜎5 D\n$%!\n#\n𝑋$ −𝜇\" = 0\nTwo equations, \ntwo unknowns:\n1\n𝜎\" D\n$%!\n#\n𝑋$ −1\n𝜎\" D\n$%!\n#\n𝜇= 0\n⇒ D\n$%!\n#\n𝑋$ = 𝑛𝜇\n⇒ 𝜇()* = 1\n𝑛D\n$%!\n#\n𝑋$\nNext, solve\nfor 𝜎()*:\n1\n𝜎5 D\n$%!\n#\n𝑋$ −𝜇\" = 𝑛\n𝜎\n⇒D\n$%!\n#\n𝑋$ −𝜇\" = 𝜎\"𝑛⇒𝜎()*\n\"\n= 1\n𝑛D\n$%!\n#\n𝑋$ −𝜇()* \"\nbiased\nunbiased\nFirst, solve\nfor 𝜇()*:\n1\n𝜎\" D\n$%!\n#\n𝑋$ −𝜇= 0",
+      "char_count": 575
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:59Z"
+}

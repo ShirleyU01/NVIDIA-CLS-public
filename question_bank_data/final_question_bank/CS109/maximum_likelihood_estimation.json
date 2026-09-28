@@ -1,0 +1,1252 @@
+{
+  "topic_id": "maximum_likelihood_estimation",
+  "topic_name": "Maximum Likelihood Estimation (MLE)",
+  "course": "CS109",
+  "questions": [
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0001",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A student says, \"MLE just picks the parameter value that makes the observed data most probable, so it is really maximizing the probability of the parameter itself.\" Do you agree? Explain carefully what quantity is being maximized, what is treated as fixed versus variable, and why this distinction matters.",
+      "expected_answer": "A strong answer should say that in MLE, the observed data are fixed after we collect them, and the parameter is treated as the variable inside the likelihood function. The likelihood is L(\u03b8)=f(x1,...,xn|\u03b8), viewed as a function of \u03b8 for the observed sample. It is not the same as the probability of the parameter itself; that would require a prior or posterior framework. So MLE maximizes how well a parameter explains the observed data, not P(\u03b8).",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p45_p46_9d7f97347a",
+        "cs109_20_mle_annotated_p23_84b862db31",
+        "cs109_20_mle_annotated_p20_p21_e38075bc02"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that likelihood is f(data|\u03b8) viewed as a function of \u03b8.",
+          "Explains that data are fixed/observed and \u03b8 varies during optimization.",
+          "Distinguishes likelihood from a probability distribution over \u03b8.",
+          "Notes that probability of \u03b8 would arise in Bayesian inference, not plain MLE."
+        ],
+        "partial_credit": [
+          "Says MLE chooses \u03b8 that best explains the data but is vague about fixed vs variable.",
+          "Mentions likelihood and probability are different without clearly explaining why."
+        ],
+        "common_mistakes": [
+          "Saying MLE maximizes P(\u03b8).",
+          "Claiming likelihood must sum or integrate to 1 over \u03b8.",
+          "Confusing posterior maximization with likelihood maximization."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If you did want to maximize a quantity proportional to the probability of the parameter after seeing data, what additional ingredient would you need?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For one observed sample x, can you write L(\u03b8) explicitly and say which symbol is fixed and which one changes?"
+        }
+      ],
+      "hints": [
+        "Start by separating two viewpoints of the same expression: a probability model for data given a parameter, versus a function of the parameter after the data have been observed.",
+        "Write the likelihood as L(\u03b8)=f(x1,\u2026,xn|\u03b8) for the observed sample, and ask: once x1,\u2026,xn are fixed, what is the variable being optimized? Also check whether this function has to behave like a probability distribution over \u03b8.",
+        "To discuss a probability of the parameter itself, you would need a framework that puts a distribution on \u03b8 (such as using a prior and posterior). Use that contrast to explain why MLE maximizes fit to the observed data, not P(\u03b8)."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0002",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "You observe 10 iid Bernoulli trials with sample 0,0,1,1,1,1,1,1,1,1. Without fully expanding every step numerically, set up the likelihood and log-likelihood for p, and explain how you would determine whether p=0.4 is plausible compared with the MLE.",
+      "expected_answer": "The student should note there are 8 ones and 2 zeros. The likelihood is L(p)=p^8(1-p)^2. The log-likelihood is LL(p)=8 log p + 2 log(1-p). To find the MLE, differentiate: dLL/dp = 8/p - 2/(1-p), set equal to 0, giving 8(1-p)=2p so p=0.8. Then compare p=0.4 by noting LL(0.8)>LL(0.4), or equivalently L(0.8)>L(0.4), so p=0.8 explains the sample better.",
+      "source_chunk_ids": [
+        "cs109_20_mle_annotated_p22_17e4d190fb",
+        "cs109_20_mle_annotated_p35_fcc0325ee9",
+        "cs109_20_mle_annotated_p31_p32_b09eddff70",
+        "cs109_20_mle_annotated_p33_8e65ca42d7"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes L(p)=p^8(1-p)^2 or equivalent.",
+          "Writes LL(p)=8 log p + 2 log(1-p).",
+          "Differentiates correctly and solves for p\u0302=0.8.",
+          "Interprets that p=0.8 is more plausible under MLE than p=0.4 for this sample."
+        ],
+        "partial_credit": [
+          "Gets the likelihood form right but does not derive the MLE cleanly.",
+          "States p\u0302 equals sample proportion without showing why.",
+          "Compares 0.4 and 0.8 qualitatively but without linking to likelihood."
+        ],
+        "common_mistakes": [
+          "Using p^10 or (1-p)^10.",
+          "Maximizing probability of heads rather than probability of the full sample.",
+          "Forgetting the log turns products into sums."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is it legitimate to maximize the log-likelihood instead of the likelihood here?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "How many ones and zeros are in the sample, and how should each contribute to the product in the Bernoulli likelihood?"
+        }
+      ],
+      "hints": [
+        "For iid Bernoulli data, write the likelihood as a product of one factor per trial: \\(\\prod_i p^{x_i}(1-p)^{1-x_i}\\). First count how many 1s and how many 0s appear in the sample.",
+        "Once you have the counts, combine the product into powers of \\(p\\) and \\((1-p)\\), then take logs so the product becomes a sum. Your log-likelihood should have one term involving the number of 1s times \\(\\log p\\) and one involving the number of 0s times \\(\\log(1-p)\\).",
+        "To assess plausibility relative to the MLE, find the maximizing \\(p\\) by differentiating the log-likelihood and setting the derivative to 0 (equivalently, use that the Bernoulli MLE is the sample proportion). Then compare the log-likelihood at \\(p=0.4\\) to the log-likelihood at that maximizing value; the larger one fits the observed sample better."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0003",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A classmate claims that because each Xi is discrete in the Bernoulli example, you cannot differentiate anything when doing MLE. Evaluate that claim. What exactly is discrete, what is continuous, and what function are you differentiating?",
+      "expected_answer": "The correct response is that Xi takes discrete values 0 or 1, but the Bernoulli parameter p lies in a continuous interval [0,1]. For MLE we write the PMF as f(xi|p)=p^xi(1-p)^(1-xi), which is a differentiable function of p for fixed observed xi. We are not differentiating with respect to xi; we differentiate the log-likelihood with respect to p. So discreteness of the sample space does not prevent calculus on the parameter.",
+      "source_chunk_ids": [
+        "cs109_20_mle_annotated_p25_016fc6ba78",
+        "cs109_20_mle_annotated_p35_fcc0325ee9",
+        "cs109_20_mle_annotated_p33_8e65ca42d7"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains Xi is discrete but p is the optimization variable.",
+          "States the PMF is used for discrete Xi and is differentiable in p.",
+          "Clarifies differentiation is with respect to the parameter, not the observations."
+        ],
+        "partial_credit": [
+          "Says you can still differentiate because p is continuous, but gives little detail.",
+          "Mentions PMF vs PDF correctly without linking to the derivative."
+        ],
+        "common_mistakes": [
+          "Saying MLE only works for continuous data.",
+          "Saying PMFs cannot be differentiated.",
+          "Differentiating with respect to xi."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give another discrete-data example where the parameter is still estimated by calculus on the log-likelihood?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In f(x|p)=p^x(1-p)^(1-x), which symbol is the observed data point and which symbol is the unknown parameter?"
+        }
+      ],
+      "hints": [
+        "Separate the roles of the random variable and the parameter: in a Bernoulli model, the observed Xi takes only a few values, but ask yourself which symbol MLE is actually trying to optimize.",
+        "For discrete data you use a PMF, not a PDF. Write the Bernoulli model as a function of p with xi treated as fixed observed numbers, and notice that p ranges over a continuous interval.",
+        "The derivative in MLE is taken with respect to the parameter (often after taking logs), not with respect to Xi. So focus on whether the likelihood or log-likelihood is differentiable as a function of p for fixed xi values."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0004",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose X1,...,Xn are iid Normal with both \u03bc and \u03c3^2 unknown. Walk through the MLE setup: write the log-likelihood up to constants, differentiate with respect to \u03bc and \u03c3, and explain what estimates you obtain and how they compare to the familiar sample mean and sample variance formulas.",
+      "expected_answer": "A strong answer starts from the normal density and writes LL(\u03bc,\u03c3)= -n log(\u03c3) - (1/(2\u03c3^2))\u2211(xi-\u03bc)^2 plus constants. Differentiating with respect to \u03bc gives (1/\u03c3^2)\u2211(xi-\u03bc)=0, so \u03bc\u0302_MLE = x\u0304. Differentiating with respect to \u03c3 gives -n/\u03c3 + (1/\u03c3^3)\u2211(xi-\u03bc)^2 = 0, so \u03c3\u0302^2_MLE = (1/n)\u2211(xi-x\u0304)^2. This differs from the unbiased sample variance, which uses 1/(n-1), so the MLE variance is generally biased downward for finite n.",
+      "source_chunk_ids": [
+        "cs109_20_mle_annotated_p53_0bb1111695",
+        "cs109_20_mle_annotated_p54_f4511ed503",
+        "cs109_20_mle_annotated_p55_c453b0fc41",
+        "cs109_20_mle_annotated_p17_b57564ae4a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes the correct log-likelihood form up to additive constants.",
+          "Derives \u03bc\u0302=x\u0304.",
+          "Derives \u03c3\u0302^2=(1/n)\u2211(xi-x\u0304)^2.",
+          "Explains difference between MLE variance and unbiased sample variance using n vs n-1."
+        ],
+        "partial_credit": [
+          "Gets \u03bc\u0302 correctly but is shaky on \u03c3\u0302.",
+          "States the final formulas without adequate derivation.",
+          "Mentions bias difference without connecting to the formulas."
+        ],
+        "common_mistakes": [
+          "Using 1/(n-1) for the MLE variance.",
+          "Forgetting \u03bc should be replaced by x\u0304 when solving for \u03c3\u0302^2.",
+          "Differentiating with respect to \u03c3^2 but then reporting the wrong estimator."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is the mean estimator simultaneously the MLE here and also an unbiased estimator?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If \u03bc were known, what part of the derivative with respect to \u03bc would disappear, and what estimate for \u03c3^2 would remain?"
+        }
+      ],
+      "hints": [
+        "Start from the joint density of iid Normal observations and take logs, dropping any additive constants that do not depend on the parameters. Notice that the parameter for spread appears both inside a logarithm and in the denominator of the squared-error term.",
+        "Differentiate the log-likelihood with respect to \u03bc first, treating \u03c3 as fixed. Use that d/d\u03bc of \u2211(xi\u2212\u03bc)^2 turns the score equation into a simple condition involving \u2211(xi\u2212\u03bc).",
+        "Once you solve the \u03bc score equation, substitute that result into the derivative with respect to \u03c3 (or \u03c3\u00b2) and rearrange to isolate the spread estimate. Then compare its denominator to the familiar sample variance formula to explain why the MLE version differs from the unbiased one."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0005",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A company tracks which of 4 customer support categories each complaint falls into. Over n=200 complaints, the counts are 80, 50, 30, and 40. Explain how to set up the multinomial likelihood, why a constraint is needed, and what the MLE is for the category probabilities.",
+      "expected_answer": "The counts follow a multinomial model with probabilities p1,...,p4 satisfying p1+p2+p3+p4=1. The likelihood is L(p)= 200!/(80!50!30!40!) p1^80 p2^50 p3^30 p4^40. The constraint is necessary because probabilities must sum to 1, so unconstrained maximization would be invalid. Using either intuition or Lagrange multipliers on the log-likelihood, the MLE is p\u0302i=Xi/n, so (0.4,0.25,0.15,0.2).",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p5_a7c599320c",
+        "cs109_21_beta_annotated_p47_62c01bf797",
+        "cs109_21_beta_annotated_p48_4e45d40482"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes the multinomial likelihood including the combinatorial coefficient.",
+          "States and uses the constraint \u2211pi=1.",
+          "Gives p\u0302i=Xi/n and the numerical values.",
+          "Explains why constrained optimization is needed."
+        ],
+        "partial_credit": [
+          "Provides the correct estimator by intuition but omits the likelihood form.",
+          "Writes the likelihood but ignores the constraint until prompted."
+        ],
+        "common_mistakes": [
+          "Forgetting the probabilities must sum to 1.",
+          "Using Xi themselves as probabilities.",
+          "Thinking the factorial term affects the argmax over p in a nontrivial way."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why can the factorial coefficient be dropped when maximizing over p even though it belongs in the likelihood?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If your estimated probabilities must form a valid distribution, what equation must they satisfy?"
+        }
+      ],
+      "hints": [
+        "Treat the 4 category counts as one multinomial outcome with parameters p1, p2, p3, p4 rather than as separate independent binomials. The key object is the likelihood for observing counts that add up to n=200.",
+        "Write L(p1,p2,p3,p4) as the multinomial coefficient times p1^80 p2^50 p3^30 p4^40. Remember you cannot maximize over arbitrary p_i: they must be valid probabilities, so p_i \\ge 0 and p1+p2+p3+p4=1.",
+        "Take logs and maximize the log-likelihood subject to the sum-to-1 constraint, for example with a Lagrange multiplier. This leads to the usual multinomial MLE form: each estimated category probability equals its observed count divided by the total count."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0006",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Why is the log-likelihood typically preferred over the likelihood in MLE derivations? Give two reasons: one algebraic and one conceptual or computational. Also explain why taking logs does not change the argmax.",
+      "expected_answer": "Algebraically, the likelihood for iid data is a product of many terms, while the log-likelihood turns that product into a sum, which is much easier to differentiate. Computationally, products of many small probabilities can underflow numerically, while sums of logs are stable. The argmax is unchanged because the log function is strictly increasing, so the value of \u03b8 that maximizes L(\u03b8) also maximizes log L(\u03b8).",
+      "source_chunk_ids": [
+        "cs109_20_mle_annotated_p31_p32_b09eddff70",
+        "cs109_20_mle_annotated_p33_8e65ca42d7"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States product-to-sum simplification.",
+          "States numerical stability or easier computation as a second reason.",
+          "Explains monotonicity of log preserves the argmax."
+        ],
+        "partial_credit": [
+          "Says it is easier to differentiate but does not explain why.",
+          "Mentions logs do not change the answer without justifying monotonicity."
+        ],
+        "common_mistakes": [
+          "Saying logs only approximately preserve the maximum.",
+          "Claiming log-likelihood is a different objective with a potentially different optimizer.",
+          "Ignoring iid product structure."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you think of any transformation besides log that would preserve the argmax? What property would it need?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If a>b>0, what can you say about log a and log b? How does that help with maximization?"
+        }
+      ],
+      "hints": [
+        "Start by thinking about the form of the likelihood for iid data: it is usually a product over observations. Ask what a logarithm does to that product.",
+        "For the algebraic reason, compare how hard it is to differentiate a long product versus a sum. For the computational/conceptual reason, think about what happens when you multiply many very small probabilities on a computer.",
+        "To justify why the optimizer stays the same, use the fact that log is strictly increasing on positive numbers: if one likelihood value is larger than another, its log is also larger. So the ranking of parameter values is unchanged after taking logs."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0007",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are fitting a simple linear regression by maximum likelihood. The model is Y = aX + b + Z, and your training criterion is the conditional log-likelihood of yi given xi and parameters. Explain why this is a conditional likelihood rather than the joint likelihood of (X,Y), and describe in words how the gradient with respect to a and b would be used to learn the parameters.",
+      "expected_answer": "The student should say that in regression we often condition on the observed inputs xi and model only the randomness in yi through the noise term Z, so the objective is \u2211 log f(yi|xi,\u03b8). We are not modeling the distribution of X itself in this setup. To learn a and b, compute the partial derivatives of the log conditional likelihood with respect to a and b, then either set them to zero if solvable or use gradient ascent to iteratively update parameters in the direction that increases the log-likelihood. Under Gaussian noise this corresponds to minimizing squared error.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p24_9ec31b7cac",
+        "cs109_25_logistic_regression_annotated_p4_p5_7b90c4c2d9",
+        "cs109_24_gradient_ascent_annotated_p42_8ebde50750",
+        "cs109_24_gradient_ascent_annotated_p21_819e5f6d1c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains why conditioning on X is appropriate and what randomness remains.",
+          "Identifies the objective as \u2211 log f(yi|xi,\u03b8).",
+          "Describes computing gradients with respect to a and b and using them in optimization.",
+          "Mentions that with Gaussian noise this aligns with squared-error fitting."
+        ],
+        "partial_credit": [
+          "Recognizes conditional likelihood but cannot explain why X is treated as fixed.",
+          "Mentions gradient ascent generally without tying it to the regression objective."
+        ],
+        "common_mistakes": [
+          "Treating X as necessarily random in the objective being optimized here.",
+          "Saying MLE always requires a closed-form solution.",
+          "Confusing gradient ascent with gradient descent without accounting for the sign of the objective."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If instead you modeled the distribution of X as well, what likelihood object would you maximize?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In this regression setup, which variable are we explicitly assigning a distribution to: X, Y given X, or both?"
+        }
+      ],
+      "hints": [
+        "In this regression setup, the inputs x_i are usually treated as observed/fixed, and the randomness comes from the noise term affecting y_i once x_i is known. So first think about whether you are modeling uncertainty in Y given X, or in both X and Y together.",
+        "Try writing the objective as a sum over training points of log f(y_i | x_i, a, b). To make it a joint likelihood of (X,Y), you would also need a probabilistic model for the x_i themselves, which is not part of this setup.",
+        "For learning, compute the partial derivatives of the conditional log-likelihood with respect to a and b, then update the parameters in the direction that increases that objective. If the noise is Gaussian, this connects directly to the same criterion used in squared-error linear regression."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0008",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student argues: \"The MLE is always unbiased because it uses the data optimally.\" Use examples from the material to assess this statement. Your answer should distinguish what is sometimes true from what is definitely false.",
+      "expected_answer": "The claim is false in general. In some common models, like Bernoulli p, Poisson \u03bb, and Normal \u03bc, the MLE coincides with the sample mean and is unbiased. But MLEs are not automatically unbiased for every model or parameter. The material specifically notes problematic cases such as Uniform bounds, where the MLE can be ad hoc, biased, and poor for small samples. So MLE is a general optimization principle, not a guarantee of unbiasedness.",
+      "source_chunk_ids": [
+        "cs109_20_mle_annotated_p51_p52_49f8ebac95",
+        "cs109_20_mle_annotated_p17_b57564ae4a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States clearly that MLE is not always unbiased.",
+          "Gives examples where MLE is unbiased or coincides with sample mean.",
+          "Mentions counterexample behavior such as Uniform parameters and small-sample issues.",
+          "Explains that 'optimal' in the likelihood sense does not imply unbiasedness."
+        ],
+        "partial_credit": [
+          "Says the claim is false and gives one example, but with limited explanation.",
+          "Mentions bias but confuses it with variance or consistency."
+        ],
+        "common_mistakes": [
+          "Claiming all MLEs are unbiased.",
+          "Equating maximum likelihood with minimum bias.",
+          "Giving only examples where MLE works and not addressing the counterexample."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can an estimator be biased and still be useful? What other criterion might justify it?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Do you know one model in the notes where the MLE equals the sample mean? Start there and compare with a case where MLE behaves badly."
+        }
+      ],
+      "hints": [
+        "Separate two ideas: an estimator can maximize the likelihood for the observed sample without having its average value equal the true parameter over repeated samples.",
+        "Use examples from class where the MLE matches the sample mean (such as Bernoulli, Poisson, or Normal mean), and ask whether that coincidence is what makes those cases behave nicely.",
+        "To assess the student's claim, pair those examples with a counterexample like a Uniform endpoint MLE: compare \u201clikelihood-optimal for this dataset\u201d with \u201cunbiased across repeated datasets,\u201d especially in small samples."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0009",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "For a 6-sided die rolled 12 times, the observed counts are 3 ones, 2 twos, 0 threes, 3 fours, 1 five, and 3 sixes. State the multinomial MLE and then address a subtlety: does the zero count force the true probability of rolling a 3 to be zero, or only the MLE estimate to be zero? Explain.",
+      "expected_answer": "The multinomial MLE is the vector of empirical proportions: (3/12, 2/12, 0/12, 3/12, 1/12, 3/12). The zero count implies the MLE for p3 is 0 because that maximizes the observed-data likelihood under plain MLE. But it does not prove the true probability is zero; with only 12 rolls, a positive probability could still produce zero threes by chance. This reveals that MLE can be extreme in sparse data settings.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p6_a86df2dce8",
+        "cs109_21_beta_annotated_p47_62c01bf797",
+        "cs109_23_naive_bayes_annotated_p20_55ab85d257"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Gives the empirical-proportion MLE correctly.",
+          "Explains that zero observed count leads to zero MLE for that category under multinomial MLE.",
+          "Distinguishes estimate from truth and mentions sampling variability or sparse-data extremeness."
+        ],
+        "partial_credit": [
+          "Computes the proportions correctly but gives a weak interpretation of the zero count.",
+          "Says 'not necessarily true' without explaining why."
+        ],
+        "common_mistakes": [
+          "Claiming a zero count proves zero true probability.",
+          "Smoothing automatically without acknowledging plain MLE first.",
+          "Forgetting probabilities must sum to 1."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What practical problem could this create in a classifier that multiplies estimated probabilities?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If an outcome appears 3 times out of 12, what does the multinomial MLE assign to its probability? Apply that same rule to the category with count 0."
+        }
+      ],
+      "hints": [
+        "For a multinomial model, start by representing the die with a probability vector \\((p_1,\\dots,p_6)\\) where the entries are nonnegative and add to 1. The plain MLE for this model is tied to the observed relative frequencies.",
+        "Let the observed counts be \\(x_1,\\dots,x_6\\) with total \\(n=12\\). When you maximize the multinomial likelihood subject to \\(\\sum_i p_i=1\\), each estimate takes the form \\(\\hat p_i=x_i/n\\), so pay close attention to the category with count 0.",
+        "Now separate the estimator from the underlying truth: the likelihood is maximized at a boundary value for the zero-count category, but that does not by itself rule out a positive true probability. Ask whether seeing zero occurrences in only 12 rolls could still happen by chance if the true probability of a 3 were greater than 0."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0010",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Walk me through the generic three-step recipe for computing an MLE from iid data, and then say one reason why each step can fail or become nontrivial in practice.",
+      "expected_answer": "The standard recipe is: first write the likelihood or more often the log-likelihood using the iid factorization; second differentiate with respect to each parameter; third solve the resulting equations and check the solution respects constraints or boundaries. Difficulties include writing the correct likelihood when there are constraints or truncation, derivatives that are messy or nonexistent in closed form, and equations that require numerical methods rather than algebra. Also, one must verify the solution is a maximum and in the valid parameter space.",
+      "source_chunk_ids": [
+        "cs109_20_mle_annotated_p33_8e65ca42d7",
+        "cs109_24_gradient_ascent_annotated_p42_8ebde50750",
+        "cs109_finalwin2025soln_q9_b18893b977"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the write-differentiate-solve workflow.",
+          "Mentions iid factorization and/or log-likelihood simplification.",
+          "Identifies practical difficulties such as constraints, no closed form, boundary issues, or need for numerical optimization.",
+          "Notes that validity/maximization must be checked."
+        ],
+        "partial_credit": [
+          "Lists the steps but not the possible complications.",
+          "Mentions numerical optimization vaguely without connecting to the steps."
+        ],
+        "common_mistakes": [
+          "Assuming solving derivative-equals-zero is always enough.",
+          "Ignoring parameter constraints.",
+          "Forgetting that some models need numerical methods."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you name a model from the material where the third step requires numerical optimization rather than a closed-form solution?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Once you have the log-likelihood, what do you do next with respect to the unknown parameter?"
+        }
+      ],
+      "hints": [
+        "Start by thinking of the standard optimization pattern for iid data: express how the sample probability depends on the parameter, usually as a product, and then make it easier to work with.",
+        "Try organizing your answer around three action words: write, differentiate, solve. In the first step, mention iid factorization and why taking logs turns a product into a sum before you take derivatives with respect to each parameter.",
+        "For the last part, don\u2019t stop at setting derivatives equal to zero: note that you still have to check constraints, boundaries, and whether you actually found a maximum. Also give one obstacle for each step, such as a tricky likelihood, derivatives that are hard to compute, or equations that need numerical optimization instead of algebra."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0011",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Suppose your data come from a positive-only truncated normal distribution with density proportional to exp(-(x-\u03bc)^2/2)/\u03a6(\u03bc) for x>0. Explain why the likelihood is not just the ordinary normal likelihood with negative observations removed, and derive the score equation for \u03bc. What would you do when the equation cannot be solved in closed form?",
+      "expected_answer": "Because truncation changes the normalizing constant, each density term includes division by \u03a6(\u03bc), so the likelihood contains an extra \u03bc-dependent factor that would be absent in an ordinary normal model. The log-likelihood is a sum of terms like constant minus (xi-\u03bc)^2/2 minus log \u03a6(\u03bc). Differentiating gives \u2202LL/\u2202\u03bc = \u2211(xi-\u03bc) - n \u03c6(\u03bc)/\u03a6(\u03bc), depending on notation and whether the n is absorbed in the sum expression. Setting this equal to zero generally does not yield a closed-form solution, so one would use numerical optimization such as gradient ascent.",
+      "source_chunk_ids": [
+        "cs109_finalwin2025soln_q9_b18893b977",
+        "cs109_20_mle_annotated_p31_p32_b09eddff70",
+        "cs109_24_gradient_ascent_annotated_p42_8ebde50750"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that truncation changes the density via a \u03bc-dependent normalization term.",
+          "Writes the log-likelihood structure correctly.",
+          "Derives the score involving both \u2211(xi-\u03bc) and \u03c6(\u03bc)/\u03a6(\u03bc).",
+          "States that numerical optimization is needed when no closed form exists."
+        ],
+        "partial_credit": [
+          "Recognizes the extra \u03a6(\u03bc) term but makes a minor derivative error.",
+          "Says 'use gradient ascent' without explaining the score equation."
+        ],
+        "common_mistakes": [
+          "Treating the truncated model as an ordinary normal fit to positive samples only.",
+          "Forgetting the derivative of log \u03a6(\u03bc) is \u03c6(\u03bc)/\u03a6(\u03bc).",
+          "Dropping the normalization factor because it looks constant in x."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Conceptually, how does the extra term involving \u03a6(\u03bc) alter the estimate relative to simply using the sample mean?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If a density is truncated and then renormalized, can the normalization depend on \u03bc even if it does not depend on x?"
+        }
+      ],
+      "hints": [
+        "Treat this as a conditional distribution: observing only x>0 changes the density, not just the sample. The missing piece is the truncation normalizer, and it depends on \u03bc.",
+        "Write the likelihood for x1,...,xn>0 as a product of the truncated density terms, then take logs. You should get the usual quadratic normal part plus an extra term involving -n log \u03a6(\u03bc).",
+        "Differentiate the log-likelihood term-by-term: the quadratic part gives a sum like \u2211(xi-\u03bc), and the truncation part uses d/d\u03bc log \u03a6(\u03bc)=\u03c6(\u03bc)/\u03a6(\u03bc). Set that score to zero, and if it does not solve explicitly for \u03bc, use a numerical root-finder/optimizer such as Newton\u2013Raphson or gradient ascent."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0012",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "In a multinomial likelihood, a student insists the combinatorial term n!/(X1!\u22efXm!) can be ignored because 'constants never matter.' Is that statement always correct? Answer carefully, distinguishing between maximizing over p and writing the actual likelihood.",
+      "expected_answer": "It is only partly correct. When maximizing over the probability vector p with observed counts fixed, the combinatorial term does not depend on p, so it can be omitted for finding the argmax. But it still belongs in the actual likelihood as a function of the observed data and parameters, and it would matter if one were comparing different count vectors or computing actual likelihood values. So it is ignorable for the optimization over p, not because it is universally irrelevant.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p4_72e881cd9b",
+        "cs109_21_beta_annotated_p5_a7c599320c",
+        "cs109_21_beta_annotated_p47_62c01bf797"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Distinguishes between the full likelihood expression and the optimization problem.",
+          "Explains why the combinatorial term can be dropped for argmax over p.",
+          "Explains why it is still part of the actual likelihood value."
+        ],
+        "partial_credit": [
+          "Says the term is constant in p and can be ignored, but does not clarify the context.",
+          "Recognizes it belongs in the likelihood but not why it can be omitted in optimization."
+        ],
+        "common_mistakes": [
+          "Saying constants never matter in any statistical calculation.",
+          "Omitting the term even when asked for the actual likelihood.",
+          "Thinking the term depends on p."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would the same 'drop constants' logic apply after taking logs? Why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What quantity is being optimized in multinomial MLE: the observed counts or the probability parameters?"
+        }
+      ],
+      "hints": [
+        "First separate the roles of the observed counts and the parameter vector p: after the data are observed, which quantities are fixed and which are being optimized?",
+        "Write the multinomial likelihood in full as a combinatorial factor times a product of p_i raised to the observed counts. Then ask: which part depends on p, and which part is still needed if you want the actual likelihood expression?",
+        "Remember that multiplying an objective by a positive constant that does not depend on p does not change the argmax. But that does not mean the constant disappears from the full likelihood when you care about its numerical value or compare across different observed count vectors."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0013",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Consider Bernoulli data with n observations and s successes. Derive the MLE p\u0302 from first principles using the log-likelihood, and then explain how the boundary cases s=0 and s=n fit into the argument.",
+      "expected_answer": "For Bernoulli data, L(p)=p^s(1-p)^(n-s), so LL(p)=s log p + (n-s) log(1-p). For 0<s<n, differentiating gives s/p - (n-s)/(1-p)=0, which solves to p\u0302=s/n. For the boundary cases, if s=0 then LL(p)=n log(1-p), which is maximized at p=0; if s=n then LL(p)=n log p, maximized at p=1. So the formula p\u0302=s/n still matches the boundaries.",
+      "source_chunk_ids": [
+        "cs109_20_mle_annotated_p35_fcc0325ee9",
+        "cs109_20_mle_annotated_p31_p32_b09eddff70",
+        "cs109_20_mle_annotated_p33_8e65ca42d7"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Derives LL(p)=s log p+(n-s) log(1-p).",
+          "Solves the interior critical point to get s/n.",
+          "Addresses both boundary cases explicitly and correctly.",
+          "Notes that the general formula remains valid at s=0 and s=n."
+        ],
+        "partial_credit": [
+          "Gets p\u0302=s/n for interior cases but ignores boundaries.",
+          "States the answer from memory without derivation."
+        ],
+        "common_mistakes": [
+          "Dividing by n-1.",
+          "Assuming derivative-equals-zero must handle s=0 or s=n directly.",
+          "Forgetting p must lie in [0,1]."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you justify that the critical point is a maximum and not a minimum?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If there are s successes, how many failures are there, and how do those contribute to the likelihood?"
+        }
+      ],
+      "hints": [
+        "Start by writing the Bernoulli likelihood using only the sufficient summary: s successes and n-s failures. Then take logs so the product becomes a sum.",
+        "For 0<s<n, use \u2113(p)=s log p+(n-s) log(1-p) with p restricted to [0,1]. Differentiate, set the derivative equal to 0, and check that the second derivative is negative for an interior maximum.",
+        "Be careful: the derivative-based critical-point step assumes 0<p<1. For s=0 and s=n, simplify the log-likelihood separately and see which endpoint of [0,1] makes it largest; then compare that with the general formula you found."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0014",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "In a medical classifier, you estimate conditional probability tables by MLE. For one binary feature among patients with Y=1, you observe X'=0 exactly 0 times and X'=1 exactly 100 times. What is the MLE for P(X'=0|Y=1), and why can that be problematic when the classifier later multiplies many such probabilities together?",
+      "expected_answer": "The MLE is the observed proportion within the Y=1 group, so P\u0302(X'=0|Y=1)=0 and P\u0302(X'=1|Y=1)=1. This is problematic because in a Naive Bayes style classifier, multiplying by a zero conditional probability makes the entire class likelihood zero for any future example containing that feature value, even if the true probability is just small rather than exactly zero. The issue comes from sparse data and the extremeness of plain MLE.",
+      "source_chunk_ids": [
+        "cs109_23_naive_bayes_annotated_p20_55ab85d257",
+        "cs109_23_naive_bayes_annotated_p19_625acda203",
+        "cs109_21_beta_annotated_p47_62c01bf797"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes the MLE as 0 and 1 from observed counts.",
+          "Explains the zero-probability problem in multiplicative classifiers.",
+          "Connects the issue to sparse data and extreme MLE estimates."
+        ],
+        "partial_credit": [
+          "States the estimate correctly but gives only a vague reason it is problematic.",
+          "Recognizes a zero in the product is bad without tying it to future prediction."
+        ],
+        "common_mistakes": [
+          "Claiming the true conditional probability must be zero.",
+          "Discussing smoothing methods without first stating the plain MLE.",
+          "Forgetting conditioning on Y=1 restricts which data are counted."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why does this problem not mean MLE is mathematically wrong, only potentially brittle in practice?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Among the Y=1 patients, what fraction had X'=0? How does multinomial or Bernoulli MLE use that fraction?"
+        }
+      ],
+      "hints": [
+        "Look only at the training cases with Y=1. For a conditional probability table estimated by MLE, each entry is just the empirical proportion within that group.",
+        "Set up \\(\\hat P(X'=0\\mid Y=1)\\) as \\(\\#\\{X'=0, Y=1\\}/\\#\\{Y=1\\}\\). Ask yourself what plain MLE gives when a feature value is never observed in that class.",
+        "In a Naive Bayes-style classifier, class likelihoods are products of many conditional probabilities. If one factor for a class is estimated from an unseen event, that factor can force the whole product to vanish, which is especially risky with sparse data."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0015",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Explain why the iid assumption is so convenient in MLE derivations. Then tell me what part of the derivation would break if the observations were dependent, even if each marginal distribution looked the same.",
+      "expected_answer": "The iid assumption lets us factor the joint likelihood into a product of individual terms, L(\u03b8)=\u220f f(xi|\u03b8), which then becomes a sum under logs. If observations are dependent, that factorization is generally invalid, so the log-likelihood is not just a sum of per-observation contributions. One would need the correct joint distribution or conditional structure for the dependent data; using the iid product would give the wrong likelihood and potentially the wrong estimator.",
+      "source_chunk_ids": [
+        "cs109_20_mle_annotated_p23_84b862db31",
+        "cs109_24_gradient_ascent_annotated_p22_030afa298e",
+        "cs109_21_beta_annotated_p45_p46_9d7f97347a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the iid product factorization clearly.",
+          "Explains that logs turn the product into a sum.",
+          "Describes what fails under dependence: the factorization and hence the derivation.",
+          "Mentions the need for a correct joint or conditional model under dependence."
+        ],
+        "partial_credit": [
+          "Mentions independence helps simplify multiplication but does not explain the consequence if it fails.",
+          "Says dependence 'makes it harder' without stating the mathematical issue."
+        ],
+        "common_mistakes": [
+          "Thinking identical marginals alone are enough for product factorization.",
+          "Saying MLE cannot be done with dependent data at all.",
+          "Ignoring the role of the joint distribution."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the data formed a time series, what kind of replacement for the iid product might you write?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why are we allowed to multiply individual densities or PMFs in the iid case?"
+        }
+      ],
+      "hints": [
+        "Start by writing the likelihood for the entire dataset, not just one observation. Ask what the iid assumption lets you do to the joint density or probability of all observations together.",
+        "Under independence, the joint likelihood can be separated into one factor per observation, and taking logs turns that product into a sum. That is why MLE derivations often become simple sums of repeated terms.",
+        "Now imagine the observations have the same marginals but are dependent: which step above is no longer justified? The part that breaks is replacing the true joint model with a product of marginals, so you would need the correct joint or conditional distribution instead."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0016",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "For the normal model with unknown \u03bc and \u03c3^2, explain why solving the \u03bc equation first simplifies the \u03c3 equation. In other words, why is it natural to plug \u03bc\u0302=x\u0304 into the likelihood before solving for \u03c3\u0302^2?",
+      "expected_answer": "Differentiating with respect to \u03bc yields \u03bc\u0302=x\u0304 independently of the remaining \u03c3 optimization. Once we know the maximizing \u03bc for a given sample, the term \u2211(xi-\u03bc)^2 is minimized at \u03bc=x\u0304, so plugging in \u03bc\u0302 simplifies the log-likelihood to a function of \u03c3 alone based on squared deviations from the sample mean. Then the \u03c3 derivative has a clean form and solves to \u03c3\u0302^2=(1/n)\u2211(xi-x\u0304)^2. This is both algebraically convenient and conceptually consistent with profiling out \u03bc.",
+      "source_chunk_ids": [
+        "cs109_20_mle_annotated_p54_f4511ed503",
+        "cs109_20_mle_annotated_p55_c453b0fc41"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that \u03bc\u0302=x\u0304 comes from the first-order condition.",
+          "Explains why replacing \u03bc by x\u0304 simplifies the squared-error term.",
+          "Derives or states the resulting \u03c3\u0302^2 formula correctly.",
+          "Shows understanding that one parameter can be solved and substituted into the other optimization."
+        ],
+        "partial_credit": [
+          "States 'plug in x\u0304' as a procedure but does not justify it.",
+          "Gets the final \u03c3\u0302^2 formula right with limited reasoning."
+        ],
+        "common_mistakes": [
+          "Treating \u03bc and \u03c3 as completely independent without explanation.",
+          "Plugging in the unbiased variance formula instead of the MLE.",
+          "Not recognizing that \u2211(xi-\u03bc)^2 depends on \u03bc."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would the same idea of solving one parameter conditionally and substituting extend to more complicated models?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "At what value of \u03bc is the sum of squared deviations \u2211(xi-\u03bc)^2 minimized?"
+        }
+      ],
+      "hints": [
+        "Start from the log-likelihood and notice that \u03bc only appears inside the quadratic term \u2211(x_i-\u03bc)^2, while \u03c3^2 also appears outside it. That means finding the best \u03bc first can simplify the rest of the expression.",
+        "Take the derivative with respect to \u03bc and set it equal to zero before touching the \u03c3^2 derivative. This gives the \u03bc value that maximizes the likelihood for the observed sample and turns the quadratic into deviations from the sample center.",
+        "After substituting that \u03bc optimizer back in, you are using a profiled likelihood: the term \u2211(x_i-\u03bc)^2 becomes as small and as simple as possible. Then the \u03c3^2 equation is just a one-parameter optimization in terms of squared deviations from x\u0304."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0017",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "Someone says, \"Since likelihoods can be bigger than 1 for continuous models, they are not meaningful.\" How would you respond, using the distinction between density and probability and the role of likelihood in MLE?",
+      "expected_answer": "For continuous data, f(x|\u03b8) is a density, not a probability of observing exactly x, so it can exceed 1 without violating any rule. Likelihood uses these densities evaluated at the observed sample and compares parameter values; it does not need to be a probability distribution over \u03b8 or even be bounded by 1. What matters for MLE is which \u03b8 makes the observed data relatively more plausible under the model.",
+      "source_chunk_ids": [
+        "cs109_20_mle_annotated_p25_016fc6ba78",
+        "cs109_20_mle_annotated_p23_84b862db31"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains density versus probability correctly.",
+          "States that likelihood need not be a probability distribution over \u03b8.",
+          "Explains that MLE uses relative comparison of \u03b8 values."
+        ],
+        "partial_credit": [
+          "Says densities can exceed 1 but does not connect this to likelihood.",
+          "States likelihood is meaningful for comparison without clarifying density/probability."
+        ],
+        "common_mistakes": [
+          "Insisting all likelihood values must lie in [0,1].",
+          "Confusing PDF values with probabilities of points.",
+          "Claiming continuous-model MLE is invalid."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why doesn't this issue arise in exactly the same way for Bernoulli likelihoods?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a continuous random variable, what is the probability of observing exactly one prespecified value x?"
+        }
+      ],
+      "hints": [
+        "Start by separating two ideas: in a continuous model, the PDF value at a point is a density, not the probability of that exact point. A density can be greater than 1 as long as the total area under the curve is 1.",
+        "Ask what likelihood is treating as fixed and what it varies. In MLE, the observed data are fixed, and you compare different parameter values by evaluating the model\u2019s density at that data.",
+        "Use that distinction to answer the objection: likelihood in continuous models is not required to be a probability distribution over \u03b8 or to stay below 1. Its role is to rank which \u03b8 makes the observed sample relatively more plausible under the model."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0018",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are given a likelihood optimization problem with a parameter constraint, and a student tries to differentiate the unconstrained log-likelihood and solve independently for each parameter. Use the multinomial example to explain why that can fail and how Lagrange multipliers repair the issue.",
+      "expected_answer": "In the multinomial model, the parameters p1,...,pm are not free because they must satisfy \u2211pi=1. If you ignored the constraint and differentiated \u2211Xi log pi independently, there would be no valid interior solution because increasing one pi helps without accounting for the required decrease elsewhere. Lagrange multipliers incorporate the constraint by optimizing A(p,\u03bb)=\u2211Xi log pi + \u03bb(\u2211pi-1), leading to Xi/pi + \u03bb=0 and ultimately pi=Xi/n. So the method enforces validity while still finding the MLE.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p48_4e45d40482",
+        "cs109_21_beta_annotated_p47_62c01bf797"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains why the parameters are constrained and not independently free.",
+          "Describes the failure of naive unconstrained differentiation.",
+          "Sets up the Lagrangian correctly in words or formulas.",
+          "Obtains or explains the solution pi=Xi/n."
+        ],
+        "partial_credit": [
+          "Mentions the sum-to-one constraint and Lagrange multipliers but not why ignoring the constraint fails.",
+          "States the final answer without showing the role of \u03bb."
+        ],
+        "common_mistakes": [
+          "Differentiating as if each pi could increase independently.",
+          "Using a separate normalization afterward without justification.",
+          "Forgetting \u03bb or the sum-to-one constraint."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If one count Xi is zero, what does the Lagrange-multiplier solution assign to the corresponding pi?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What equation must any valid probability vector satisfy before we even start optimizing?"
+        }
+      ],
+      "hints": [
+        "In a multinomial model, the probabilities are not independent free variables: they must all stay nonnegative and add up to 1. So changing one component necessarily affects the others.",
+        "If you differentiate the log-likelihood term-by-term as though each p_i could vary on its own, you ignore that coupling and can get a condition that does not correspond to any valid probability vector. Explain why \u201coptimize first, normalize later\u201d is not justified here.",
+        "Introduce the constraint directly with a Lagrangian, for example L(p,\u03bb)=\u2211 X_i log p_i + \u03bb(\u2211 p_i-1). Then the first-order conditions give a common \u03bb linking all coordinates via X_i/p_i + \u03bb = 0, and the sum-to-one condition finishes the argument."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0020",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Imagine two candidate Bernoulli parameters, p=0.5 and p=0.8, for the same sample with 8 successes and 2 failures. Without multiplying out large decimals, explain how you would compare them efficiently and why your method is preferable.",
+      "expected_answer": "I would compare their log-likelihoods: LL(p)=8 log p + 2 log(1-p). Then LL(0.8)=8 log 0.8 + 2 log 0.2 and LL(0.5)=10 log 0.5. This is preferable because it turns products into sums and avoids numerical underflow or tedious arithmetic. Since 0.8 matches the sample proportion, it will have the larger log-likelihood.",
+      "source_chunk_ids": [
+        "cs109_20_mle_annotated_p31_p32_b09eddff70",
+        "cs109_20_mle_annotated_p22_17e4d190fb"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes the correct log-likelihood comparison.",
+          "Explains why logs simplify the comparison.",
+          "Concludes correctly that p=0.8 is preferred."
+        ],
+        "partial_credit": [
+          "Compares using the likelihoods directly but explains the same logic correctly.",
+          "States 0.8 is better because it matches the sample proportion but does not write the objective."
+        ],
+        "common_mistakes": [
+          "Comparing only p values to the sample proportion without mentioning the likelihood.",
+          "Using 8 log(1-p)+2 log p.",
+          "Claiming logs could change which parameter is better."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would this same comparison strategy work for a normal model with many observations? Why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the exponents on p and on (1-p) when there are 8 successes and 2 failures?"
+        }
+      ],
+      "hints": [
+        "For Bernoulli data with 8 successes and 2 failures, write the likelihood in terms of powers of p and 1-p rather than multiplying ten factors one by one.",
+        "To compare candidates efficiently, take logs: the log-likelihood becomes a sum involving 8 log p and 2 log(1-p). Set this up for p=0.5 and p=0.8.",
+        "Use that the logarithm is increasing, so the larger log-likelihood corresponds to the larger likelihood. This avoids messy products/very small decimals and lets you compare the two candidates by simple sums instead."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0021",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Suppose you are handed a black-box optimization problem for MLE where the score equations are too messy to solve by hand. Describe how gradient ascent fits into the standard MLE workflow, what quantity it updates, and one thing you would monitor to know whether it is working.",
+      "expected_answer": "Gradient ascent comes after defining the log-likelihood and taking derivatives with respect to the parameters. Instead of solving the score equations analytically, you iteratively update \u03b8 in the direction of the gradient of the log-likelihood, because that direction locally increases the objective. I would monitor whether the log-likelihood increases over iterations, whether the gradient norm shrinks, and whether the iterates stay in the valid parameter space. This is exactly the numerical version of the usual MLE recipe when closed forms are unavailable.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p42_8ebde50750",
+        "cs109_20_mle_annotated_p33_8e65ca42d7",
+        "cs109_finalwin2025soln_q9_b18893b977"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Places gradient ascent correctly within the MLE workflow.",
+          "States that parameters are updated using the gradient of the log-likelihood.",
+          "Explains why ascent rather than descent is used here.",
+          "Mentions a sensible diagnostic such as increasing log-likelihood, shrinking gradient, or parameter validity."
+        ],
+        "partial_credit": [
+          "Describes iterative optimization generally but not specifically for maximizing log-likelihood.",
+          "Mentions gradient ascent but not what is being updated or monitored."
+        ],
+        "common_mistakes": [
+          "Using gradient descent on the log-likelihood without changing the sign.",
+          "Saying numerical optimization replaces the need to define a likelihood.",
+          "Not considering parameter constraints during updates."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If you instead minimized negative log-likelihood, what algorithmic change in naming or sign would occur?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Are we trying to move parameters toward larger or smaller log-likelihood values in MLE?"
+        }
+      ],
+      "hints": [
+        "Start from the usual MLE recipe: first define the likelihood (or log-likelihood) for the parameter vector, then ask what to do when the score equations cannot be solved analytically.",
+        "Think of gradient ascent as the numerical replacement for solving those equations by hand: it repeatedly updates the current parameter estimate \\(\\theta\\) using the gradient of the log-likelihood, since the goal is maximization.",
+        "For a check that the method is behaving well, track something tied to optimization progress\u2014such as whether the log-likelihood keeps increasing, whether the gradient is getting small, or whether the iterates remain in the allowed parameter space."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0022",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student says, \"Because the sample mean is the MLE for Bernoulli p, Poisson \u03bb, and Normal \u03bc, the sample mean must be the MLE for any one-parameter distribution.\" Critique this claim and give a principled reason why it fails.",
+      "expected_answer": "The claim is false because the form of the likelihood depends on the model, and the MLE is the parameter value that maximizes that specific likelihood. In several important families, the score equations happen to reduce to the sample mean, but this is not universal. The notes explicitly mention Uniform as a case where MLE behaves differently and can be problematic. So matching the sample mean is a model-specific consequence, not a general theorem for one-parameter families.",
+      "source_chunk_ids": [
+        "cs109_20_mle_annotated_p51_p52_49f8ebac95",
+        "cs109_20_mle_annotated_p17_b57564ae4a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects the generalization clearly.",
+          "Explains that MLE depends on the full likelihood form of the chosen model.",
+          "Uses the sample-mean examples as special cases rather than a universal rule.",
+          "Mentions a contrasting family such as Uniform."
+        ],
+        "partial_credit": [
+          "Says it is false and names a counterexample but gives little principled explanation.",
+          "Explains model dependence vaguely without a concrete contrast."
+        ],
+        "common_mistakes": [
+          "Treating one-parameter families as automatically mean-parameterized.",
+          "Assuming MLE must equal a familiar summary statistic.",
+          "Failing to provide a reason beyond 'because the notes say so.'"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What property of a model might make the sample mean emerge naturally from the score equation?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you think of a parameter, such as a support boundary, that would not naturally be estimated by averaging the data?"
+        }
+      ],
+      "hints": [
+        "Start by separating two ideas: \u201cone parameter\u201d does not mean \u201cthe parameter is the mean,\u201d and MLE is defined by maximizing the model\u2019s likelihood, not by choosing a familiar statistic.",
+        "Ask what quantity the likelihood actually depends on for a given family. In Bernoulli, Poisson, and Normal with known variance, the score happens to involve the sample mean, but that is a special feature of those likelihoods.",
+        "To critique the claim, bring in a contrasting one-parameter family such as Uniform. There, the likelihood is driven by the sample extremes/support constraint rather than an average, which shows the MLE is model-specific rather than universally the sample mean."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0023",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "If I tell you that MLE 'fits the curve to match the data,' what is a more mathematically precise version of that statement? Answer using the language of observed data, a parametric family, and an optimization problem.",
+      "expected_answer": "A precise statement is: given observed data x1,...,xn and a parametric family f(x|\u03b8), MLE chooses the parameter value \u03b8\u0302 that maximizes the likelihood L(\u03b8)=f(x1,...,xn|\u03b8), or equivalently the log-likelihood. Under iid assumptions, this is the same as maximizing the product of per-observation densities or PMFs. So 'fit the curve' means selecting the member of the model family under which the observed sample is most likely.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p45_p46_9d7f97347a",
+        "cs109_20_mle_annotated_p24_31bb39dbca",
+        "cs109_24_gradient_ascent_annotated_p22_030afa298e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines the parametric family and observed data setup.",
+          "States the optimization problem \u03b8\u0302=argmax L(\u03b8) or argmax LL(\u03b8).",
+          "Uses iid factorization if appropriate.",
+          "Translates the informal phrase into mathematical language about model fitting."
+        ],
+        "partial_credit": [
+          "Gives the argmax idea but omits the role of the model family or observed sample.",
+          "Uses informal language with only partial mathematical precision."
+        ],
+        "common_mistakes": [
+          "Saying MLE maximizes the probability of \u03b8.",
+          "Failing to specify that the optimization is over parameter values.",
+          "Ignoring the observed-data conditioning."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would this wording change in a conditional model such as logistic regression?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What object appears inside the argmax when we define the MLE?"
+        }
+      ],
+      "hints": [
+        "Start by separating the fixed observed sample \\(x_1,\\dots,x_n\\) from the model family \\(f(x\\mid \\theta)\\): the data are held fixed, and the parameter is what varies.",
+        "Write the likelihood as a function of \\(\\theta\\) for the observed data, not as a probability of \\(\\theta\\). If the observations are iid, express it using a product of per-observation PMFs/densities, or equivalently a sum in the log-likelihood.",
+        "Translate \u201cfit the curve\u201d into an optimization statement: choose the member of the parametric family whose parameter value makes the observed sample most likely, i.e. an \\(\\arg\\max\\) over \\(\\theta\\). Be explicit that the optimization is over parameter values within the family."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0024",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says: \"For a Bernoulli sample with 8 ones and 2 zeros, the likelihood is the probability that p equals 0.8, so MLE tells us the most probable value of the parameter.\" Explain carefully what is wrong with that statement, then use the sample to describe what the likelihood function actually is and why its maximizer is p-hat = 0.8.",
+      "expected_answer": "A strong answer distinguishes likelihood from probability of the parameter. In frequentist MLE, p is not treated as a random variable, so we do not compute P(p=0.8 | data). Instead, for each fixed candidate p in [0,1], we evaluate how compatible the observed sample is with that p through the likelihood L(p)=product_i f(x_i|p). For 8 ones and 2 zeros from iid Bernoulli trials, L(p)=p^8(1-p)^2, or equivalently the log-likelihood is 8 log p + 2 log(1-p). Differentiating and setting to zero gives 8/p - 2/(1-p)=0, so p=0.8. The student should also note that maximizing the log-likelihood gives the same argmax because log is strictly increasing.",
+      "source_chunk_ids": [
+        "cs109_20_mle_annotated_p22_17e4d190fb",
+        "cs109_20_mle_annotated_p31_p32_b09eddff70",
+        "cs109_20_mle_annotated_p35_fcc0325ee9",
+        "cs109_21_beta_annotated_p45_p46_9d7f97347a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explicitly states that MLE does not maximize the probability of the parameter itself in the frequentist setup.",
+          "Writes the Bernoulli likelihood or log-likelihood correctly for 8 ones and 2 zeros.",
+          "Explains why log-likelihood can be used instead of likelihood.",
+          "Derives or justifies p-hat = 0.8 and interprets it as the parameter making the observed data most likely."
+        ],
+        "partial_credit": [
+          "Recognizes the difference between likelihood and posterior probability but explains it imprecisely.",
+          "States p-hat = 0.8 from intuition without showing the likelihood setup.",
+          "Uses the sample proportion correctly but does not explain the role of log-likelihood."
+        ],
+        "common_mistakes": [
+          "Saying MLE computes P(p|data) rather than maximizing L(p).",
+          "Treating the likelihood as p^10 or as 0.8^8 0.2^2 without keeping p variable.",
+          "Claiming likelihood values across different models are probabilities that sum to 1 over p."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If all 10 observations had been ones, where would the MLE occur, and why is that an example where the maximizer is on the boundary rather than from an interior derivative equation?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you rewrite the sample likelihood as a function of a variable p, not as a number, and then tell me what quantity is being maximized?"
+        }
+      ],
+      "hints": [
+        "First separate likelihood from probability: in frequentist MLE, the parameter p is fixed but unknown, so you are not finding the probability that p equals some value given the data.",
+        "Hold the observed sample fixed and let p vary. For 8 Bernoulli successes and 2 failures, the likelihood is the product of the Bernoulli terms, which simplifies to L(p)=p^8(1-p)^2; equivalently use the log-likelihood 8 log p + 2 log(1-p).",
+        "To explain why the MLE has its value, maximize L(p) or the log-likelihood since log is strictly increasing. Differentiate, set the derivative to zero, and check that the interior critical point matches the sample proportion of successes rather than treating likelihood as a probability distribution over p."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0025",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "You observe iid counts from a 6-sided die rolled 12 times: 3 ones, 2 twos, 0 threes, 3 fours, 1 five, and 3 sixes. Derive the multinomial MLE for the face probabilities using the constraint that the probabilities sum to 1, and explain why the combinatorial coefficient does not affect the optimizer. Then interpret what the zero count does to the MLE.",
+      "expected_answer": "The likelihood is L(p_1,...,p_6)=12!/(3!2!0!3!1!3!) p_1^3 p_2^2 p_3^0 p_4^3 p_5^1 p_6^3 subject to sum_i p_i=1. The multinomial coefficient depends only on the observed counts, not on the parameters, so it is constant with respect to optimization and can be dropped. The log-likelihood, up to constants, is 3 log p_1 + 2 log p_2 + 0 log p_3 + 3 log p_4 + log p_5 + 3 log p_6. Using a Lagrangian A = sum_i X_i log p_i + lambda(sum_i p_i - 1), differentiating gives X_i/p_i + lambda = 0, so p_i = -X_i/lambda. Summing over i and using sum_i X_i = n = 12 gives lambda = -12, hence p_i-hat = X_i/12. Therefore the MLE is (3/12, 2/12, 0/12, 3/12, 1/12, 3/12). The zero count gives p_3-hat = 0 under plain MLE, which is mathematically valid here but may be problematic for prediction because it assigns impossible probability to an unobserved outcome in small samples.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p4_72e881cd9b",
+        "cs109_21_beta_annotated_p5_a7c599320c",
+        "cs109_21_beta_annotated_p47_62c01bf797",
+        "cs109_21_beta_annotated_p48_4e45d40482",
+        "cs109_21_beta_annotated_p6_a86df2dce8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes the multinomial likelihood correctly with the sum-to-one constraint.",
+          "Explains that the multinomial coefficient is constant in the parameters and therefore irrelevant to the argmax.",
+          "Uses Lagrange multipliers or an equivalent constrained optimization argument to derive p_i-hat = X_i/n.",
+          "Interprets the zero-count category correctly as yielding an MLE of zero and comments on its practical implication."
+        ],
+        "partial_credit": [
+          "Gets the final estimator p_i-hat = X_i/n from intuition without a clear derivation.",
+          "States that the coefficient can be ignored but does not explain why.",
+          "Identifies the zero-count issue but does not connect it to small-sample behavior."
+        ],
+        "common_mistakes": [
+          "Forgetting the sum-to-one constraint.",
+          "Treating X_i as probabilities instead of counts.",
+          "Claiming the combinatorial factor changes the maximizer.",
+          "Being uncomfortable with p_3-hat = 0 because 0! appears in the coefficient; 0! is just 1."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose you were building a classifier and assigning zero probability to an unseen category caused downstream problems. Without doing a full Bayesian derivation, what concern would that raise about plain MLE on small samples?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I removed the multinomial coefficient entirely, would the location of the maximum in parameter space change? Why or why not?"
+        }
+      ],
+      "hints": [
+        "Start by writing the multinomial likelihood for counts \u0012(3,2,0,3,1,3)\u0013 with parameters \u0012(p_1,\\dots,p_6)\u0013, and keep the constraint \\(\\sum_i p_i=1\\) in view. Ask yourself which factors actually depend on the unknown probabilities.",
+        "Take logs so the product becomes a sum, then use a Lagrangian with one multiplier for the sum-to-one constraint. Differentiate with respect to each \\(p_i\\) to get equations involving the observed count for that face.",
+        "The multinomial coefficient contains only the observed counts, so it is a constant with respect to \\((p_i)\\) and cannot change the argmax. From the first-order conditions you should find each \\(p_i\\) is proportional to its count; for the face with count 0, its log term vanishes, so the optimum occurs on the boundary for that coordinate rather than in the interior."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0026",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "In a simple linear regression setting, you model Y = aX + b + Z and decide to estimate a and b by maximum likelihood through the conditional likelihood of y given x. Explain what additional assumption about the noise Z is needed to recover the same objective as minimizing mean squared error, and then show verbally how the log-likelihood turns into an expression involving squared residuals.",
+      "expected_answer": "The key extra assumption is that the noise terms Z_i are iid Gaussian with mean 0 and a common variance sigma^2, so Y_i | X_i=x_i is Normal(a x_i + b, sigma^2). Under that model, the conditional likelihood is product_i f(y_i | x_i, a, b, sigma^2), and the log-likelihood becomes a sum of terms of the form -log(sigma) - (y_i - (a x_i + b))^2/(2 sigma^2) plus constants. If sigma^2 is fixed, maximizing the log-likelihood with respect to a and b is equivalent to minimizing the sum of squared residuals because the only part depending on a and b is the negative squared-error term. So MLE and least squares align only under this Gaussian-noise assumption; without it, MSE is not automatically the same as MLE.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p21_819e5f6d1c",
+        "cs109_24_gradient_ascent_annotated_p24_9ec31b7cac",
+        "cs109_24_gradient_ascent_annotated_p42_8ebde50750"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the iid Gaussian noise assumption with mean 0 and common variance.",
+          "Connects the conditional density of Y|X to a normal centered at ax+b.",
+          "Explains how the log-likelihood becomes constants minus a scaled sum of squared residuals.",
+          "Concludes clearly that maximizing likelihood is equivalent to minimizing squared error only under that model assumption."
+        ],
+        "partial_credit": [
+          "Mentions 'normal errors' but does not write or explain the conditional likelihood clearly.",
+          "Says MLE equals MSE in linear regression without emphasizing the needed assumptions.",
+          "Recognizes squared residuals appear in the log-likelihood but does not explain why constants and sigma matter."
+        ],
+        "common_mistakes": [
+          "Claiming MLE always equals least squares regardless of noise model.",
+          "Maximizing likelihood of predicted values rather than conditional likelihood of observed y given x.",
+          "Ignoring the iid assumption on the noise terms."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the noise were not Gaussian but still centered at zero, would least squares necessarily remain the MLE? Give a brief reason."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the random quantity whose density we maximize here: the parameters, the x-values, or the observed y-values conditional on x?"
+        }
+      ],
+      "hints": [
+        "Start by asking: for which noise model does the conditional density of each observed y_i given x_i naturally involve the residual y_i-(a x_i+b)? Think about an iid distribution centered at 0 with one shared spread parameter.",
+        "Write the model as Y_i\\mid X_i=x_i having a density centered at a x_i+b, and form the conditional likelihood as a product over i. Then take logs so the product becomes a sum, and separate the terms that depend on a,b from the ones that do not.",
+        "For a Gaussian error model, each log-density has a constant part and a term proportional to -\\big(y_i-(a x_i+b)\\big)^2. If the variance is treated as common (or fixed), maximizing the log-likelihood in a,b is the same next move as minimizing the total squared residual term."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0027",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "For iid Normal data with both mean and variance unknown, explain how the MLE for the mean is obtained from the log-likelihood, and then compare that result to the sample mean as an estimator you may already know. Why is this an example where MLE behaves nicely, in contrast to some small-sample problems mentioned for other families?",
+      "expected_answer": "For X_i iid Normal(mu, sigma^2), the log-likelihood is a sum of terms that can be written as a constant minus n log sigma minus (1/(2 sigma^2)) sum_i (X_i - mu)^2. Differentiating with respect to mu gives (1/sigma^2) sum_i (X_i - mu) = 0, so mu-hat_MLE = X-bar. This matches the familiar sample mean estimator. A good explanation also notes that in this setting the sample mean is unbiased for mu and behaves stably, whereas in some other families, such as certain uniform-parameter problems, the MLE can be biased or even produce awkward boundary-based estimates in small samples. So Normal mean estimation is a 'nice' case where MLE coincides with a standard estimator and has good properties.",
+      "source_chunk_ids": [
+        "cs109_20_mle_annotated_p53_0bb1111695",
+        "cs109_20_mle_annotated_p54_f4511ed503",
+        "cs109_20_mle_annotated_p55_c453b0fc41",
+        "cs109_20_mle_annotated_p17_b57564ae4a",
+        "cs109_20_mle_annotated_p51_p52_49f8ebac95"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes or describes the Normal log-likelihood in terms of sum of squared deviations.",
+          "Differentiates with respect to mu and obtains mu-hat = X-bar.",
+          "Compares the result to the known sample mean estimator and notes that it is unbiased.",
+          "Contrasts this with small-sample pathologies in less well-behaved MLE settings."
+        ],
+        "partial_credit": [
+          "States mu-hat = X-bar correctly but with limited derivation.",
+          "Mentions unbiasedness of X-bar but does not connect it to the likelihood derivation.",
+          "Notes that some MLEs can be problematic without giving a meaningful contrast."
+        ],
+        "common_mistakes": [
+          "Confusing the MLE of variance with the unbiased sample variance and mixing denominators without being asked.",
+          "Differentiating incorrectly and concluding mu-hat depends on sigma in a more complicated way.",
+          "Claiming all MLEs are unbiased because this one is."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you respond if someone concluded from this example that MLE is always unbiased?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you focus only on the mu-dependent part of the Normal log-likelihood and tell me what derivative you get with respect to mu?"
+        }
+      ],
+      "hints": [
+        "Start by writing the Normal log-likelihood and notice that all the \u0003bc-dependence is inside the quadratic term involving \\(\\sum (X_i-\\mu)^2\\). Treat \\(\\sigma^2\\) as an unknown constant when differentiating with respect to \\(\\mu\\).",
+        "Take the derivative of the log-likelihood with respect to \\(\\mu\\) and set the score equal to zero. The resulting equation should simplify to something involving the sum of deviations from \\(\\mu\\).",
+        "Solve that score equation for \\(\\mu\\), then compare the expression you get to the estimator you already know from introductory statistics. To explain why this is a \"nice\" MLE case, note that the optimum is not coming from a boundary or small-sample quirk, unlike some families where MLEs can be biased or awkward."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_likelihood_estimation_0028",
+      "course": "CS109",
+      "topic_id": "maximum_likelihood_estimation",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are given positive-valued data that are modeled as iid from a truncated normal with density proportional to exp(-(x-mu)^2/2) for x>0, normalized by Phi(mu). Explain how MLE changes compared with the ordinary Normal case, derive the score equation with respect to mu, and say why a closed-form estimator is not generally available.",
+      "expected_answer": "Unlike the ordinary Normal case, the density includes a normalization term Phi(mu) because probability mass below 0 is removed and the distribution is renormalized on x>0. For observations x_1,...,x_n, the log-likelihood is sum_i [constant - (x_i-mu)^2/2 - log Phi(mu)]. Differentiating gives d/dmu LL(mu) = sum_i (x_i - mu) - n phi(mu)/Phi(mu), where phi is the standard normal pdf and Phi is the cdf. Setting this equal to zero yields sum_i (x_i - mu) = n phi(mu)/Phi(mu), which is not algebraically solvable for mu in closed form because mu appears both linearly and inside the ratio phi(mu)/Phi(mu). Therefore one would typically use a numerical optimizer such as gradient ascent to find the MLE. A strong answer may also note that the truncated case differs conceptually because the support restriction affects the likelihood through the normalization factor, not just through the quadratic term.",
+      "source_chunk_ids": [
+        "cs109_finalwin2025soln_q9_b18893b977",
+        "cs109_20_mle_annotated_p31_p32_b09eddff70",
+        "cs109_20_mle_annotated_p33_8e65ca42d7",
+        "cs109_24_gradient_ascent_annotated_p42_8ebde50750"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains the role of the truncation-induced normalizing factor Phi(mu).",
+          "Writes the log-likelihood and differentiates it correctly to obtain the score involving phi(mu)/Phi(mu).",
+          "States clearly why no closed-form solution is generally available.",
+          "Mentions a numerical optimization method such as gradient ascent or another iterative solver."
+        ],
+        "partial_credit": [
+          "Recognizes that truncation changes the likelihood but does not derive the derivative fully.",
+          "Writes the ordinary Normal score and forgets the Phi(mu) term, but notices some extra correction is needed.",
+          "Says 'use numerical methods' without explaining the source of the difficulty."
+        ],
+        "common_mistakes": [
+          "Treating the truncated normal exactly like an untruncated normal and setting mu-hat equal to the sample mean.",
+          "Forgetting that d/dmu log Phi(mu) = phi(mu)/Phi(mu).",
+          "Missing the factor n in front of the truncation term when summing over observations."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the sample mean of the positive observations is large, do you expect the truncation correction term phi(mu)/Phi(mu) to matter more or less than when mu is near zero? Explain qualitatively."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What extra mu-dependent term appears in the truncated model that was absent in the ordinary Normal likelihood?"
+        }
+      ],
+      "hints": [
+        "This is not the ordinary Normal likelihood: truncating to x>0 means the density must be renormalized, and that normalizing factor depends on \u03bc through \u03a6(\u03bc).",
+        "For iid data, write the log-likelihood as the usual quadratic sum in \u03bc plus an extra term of the form -n log \u03a6(\u03bc), ignoring constants. When differentiating, remember that d/d\u03bc log \u03a6(\u03bc)=\u03c6(\u03bc)/\u03a6(\u03bc).",
+        "After taking the derivative, set the Gaussian part\u2019s linear term equal to the truncation correction term involving \u03c6(\u03bc)/\u03a6(\u03bc). Unlike the untruncated case, \u03bc appears both linearly and inside that ratio, so you should expect a numerical root-finding/optimization step rather than a sample-mean formula."
+      ]
+    }
+  ]
+}

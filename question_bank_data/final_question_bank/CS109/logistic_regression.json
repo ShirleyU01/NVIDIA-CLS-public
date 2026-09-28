@@ -1,0 +1,1226 @@
+{
+  "topic_id": "logistic_regression",
+  "topic_name": "Logistic Regression",
+  "course": "CS109",
+  "questions": [
+    {
+      "question_id": "CS109_logistic_regression_0001",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "conceptual",
+      "difficulty": "easy",
+      "question": "A student says, 'Logistic regression is just linear regression with outputs rounded to 0 or 1.' Do you agree? Explain by comparing what each model is trying to represent, what range of values it outputs before prediction, and why one is more principled for binary classification.",
+      "expected_answer": "A strong answer says the statement is not correct. Logistic regression models the conditional probability P(Y=1|X=x) as a sigmoid of a weighted sum, so its output is always in [0,1] and can be interpreted as a probability. Linear regression outputs any real number and is trying to fit a best-fit line for a numeric response, not directly a probability for a binary label. For classification, logistic regression is more principled because it produces meaningful probabilities and then classifies by comparing them, often to 0.5, whereas linear regression can give impossible values like 1.3 or -0.2.",
+      "source_chunk_ids": [
+        "cs109_finalwin2025soln_q10_24aea9540d",
+        "cs109_25_logistic_regression_annotated_p3_9375157b91",
+        "cs109_26_deep_learning_annotated_p7_1451842c8c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects the claim that logistic regression is just rounded linear regression",
+          "Explains that logistic regression models P(Y=1|X) directly via sigmoid of a linear score",
+          "Explains linear regression can output values outside [0,1]",
+          "Connects the [0,1] range to probability interpretation and classification"
+        ],
+        "partial_credit": [
+          "Mentions sigmoid and [0,1] range but does not clearly compare objectives",
+          "Says logistic regression is better for classification without explaining why",
+          "Mentions thresholding at 0.5 but not probability interpretation"
+        ],
+        "common_mistakes": [
+          "Saying the sigmoid is applied only after rounding",
+          "Claiming linear regression outputs probabilities if labels are 0/1",
+          "Confusing the linear score z with the probability itself"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If two models induce the same separating line in feature space, why can logistic regression still be preferable when you need decision confidence?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What value range can linear regression produce, and why is that a problem if you want to interpret the output as P(Y=1|X)?"
+        }
+      ],
+      "hints": [
+        "Start by separating the goals of the two models: one is built to predict a numeric response, while the other is built to model the chance of a binary outcome.",
+        "Compare the raw outputs before any decision rule: linear regression produces any real number, but logistic regression applies a sigmoid to a linear score so the result stays between 0 and 1.",
+        "For the 'more principled' part, focus on interpretation: a binary classifier should ideally output something that can be treated as a probability, then converted to a class by thresholding, rather than relying on rounded values that may fall outside the valid probability range."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0002",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose a logistic regression for admission uses features x1 = test score and x2 = interview score, with model P(Y=1|x)=sigma(theta0 + theta1 x1 + theta2 x2). For one applicant, the linear score z = theta0 + theta1 x1 + theta2 x2 is 0. For another, z = 2. Without doing heavy arithmetic, explain the predicted class for each under a 0.5 threshold and interpret what the difference in z means.",
+      "expected_answer": "The student should say that sigma(0)=0.5, so at z=0 the model is exactly on the decision boundary; depending on the rule, it is tied at 0.5 or classified as class 1 only if the convention is >=0.5. For z=2, sigma(2) is greater than 0.5, so the prediction is class 1. The difference in z matters because the sigmoid is monotone: larger z means larger P(Y=1|X), so moving from 0 to 2 increases confidence in class 1 even though both may be on the same side of the boundary if z>0.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p7_1451842c8c",
+        "cs109_25_logistic_regression_annotated_p7_1bfac4b3e1",
+        "cs109_25_logistic_regression_annotated_p46_7132f37f33"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies z=0 as the boundary because sigma(0)=0.5",
+          "States z=2 implies probability >0.5 and predicts class 1",
+          "Explains monotonicity of sigmoid and interprets larger z as stronger confidence"
+        ],
+        "partial_credit": [
+          "Gets class predictions right but does not explain why z=0 matters",
+          "Mentions the threshold but not the role of monotonicity"
+        ],
+        "common_mistakes": [
+          "Saying z=0 implies probability 0",
+          "Thinking the threshold applies to z=0.5 rather than sigma(z)=0.5 or equivalently z=0",
+          "Confusing the linear score with the label"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why does the decision boundary in logistic regression correspond to theta^T x = 0 when the threshold is 0.5?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is sigma(0), and how does that connect to a 0.5 classification threshold?"
+        }
+      ],
+      "hints": [
+        "Treat the model as a two-step map: first compute the linear score z, then pass z through the sigmoid. For a 0.5 decision threshold, it helps to reason about where z sits relative to the sigmoid\u2019s midpoint.",
+        "Ask yourself: for logistic regression, which z-value makes the sigmoid output exactly the cutoff probability? One applicant\u2019s score is exactly at that point, while the other has a larger positive score.",
+        "Use that the sigmoid is strictly increasing: moving from z=0 to z=2 raises the predicted probability, so the second applicant is on the same or more favorable side of the boundary, with stronger confidence toward admission."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0003",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You are building a spam filter with binary label Y in {0,1}. A teammate says, 'Since the training likelihood is a product over all emails, let's maximize the likelihood directly; taking logs changes the problem.' Explain whether that is right, and justify your answer in terms of both optimization and mathematics.",
+      "expected_answer": "The teammate is wrong. Because the log function is strictly increasing, maximizing the likelihood and maximizing the log-likelihood produce the same argmax. Taking logs turns a product of many probabilities into a sum, which is much easier to differentiate and numerically more stable. In logistic regression, we therefore usually optimize the conditional log-likelihood of the training labels given the features.",
+      "source_chunk_ids": [
+        "cs109_finalwin2025soln_q10_24aea9540d",
+        "cs109_25_logistic_regression_annotated_p23_cdce04ab1e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that log preserves the argmax because it is monotone increasing",
+          "Explains product becomes sum, simplifying derivatives",
+          "Connects this to maximizing conditional log-likelihood in logistic regression"
+        ],
+        "partial_credit": [
+          "Says logs make things easier but does not justify why the optimum is unchanged",
+          "Mentions numerical convenience only"
+        ],
+        "common_mistakes": [
+          "Claiming log changes which parameter value maximizes the objective",
+          "Talking about minimizing squared error instead of likelihood",
+          "Failing to mention the IID product structure"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is the likelihood naturally a product across training examples in this setting?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If a function is strictly increasing, what happens to the location of an argmax after applying it?"
+        }
+      ],
+      "hints": [
+        "Start by asking whether applying a strictly increasing function to an objective can change which parameter value maximizes it. The key property of the log function matters more than the specific model here.",
+        "Write the training likelihood for IID emails as a product over examples, then take the log and see what algebraic simplification happens. Think about why sums are easier than products for derivatives and numerical stability.",
+        "For logistic regression, the usual objective is the conditional likelihood of labels given features: compare argmax_theta L(theta) with argmax_theta log L(theta). Use the monotonicity of log to justify whether the optimizer changes, then mention why this form is preferred in practice."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0004",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student claims: 'If a feature Xi is independent of Y, then logistic regression must learn exactly theta_i = 0.' Evaluate this claim carefully. In your answer, distinguish between the population-level intuition and what you might actually see after fitting on a finite dataset.",
+      "expected_answer": "A careful answer says the intuition is that if Xi truly carries no information about Y, then the ideal coefficient should be 0 or close to 0 because changing Xi should not systematically affect the log-odds or probability. But it is too strong to say the learned coefficient must be exactly 0 in a finite sample. Random sampling variation, correlation with other features, optimization details, or regularization can lead to a small nonzero estimate even when the feature is uninformative in the population.",
+      "source_chunk_ids": [
+        "cs109_finalwin2025soln_q10_24aea9540d",
+        "cs109_25_logistic_regression_annotated_p12_0082dc2f01"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains the population intuition that an independent feature should have no predictive effect",
+          "States that in practice the estimated coefficient may be near but not exactly zero",
+          "Gives at least one reason such as finite sample noise or dependence with other features"
+        ],
+        "partial_credit": [
+          "Says theta_i should be small without discussing exactness",
+          "Recognizes finite sample noise but not the modeling intuition"
+        ],
+        "common_mistakes": [
+          "Insisting exact zero is guaranteed",
+          "Saying independence implies a large coefficient is acceptable with no caveat",
+          "Ignoring interaction with other features or estimation noise"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If theta_i is near zero, what does that mean for the contribution of x_i inside theta^T x?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can random variation in a finite sample create an apparent relationship even when the population relationship is absent?"
+        }
+      ],
+      "hints": [
+        "Start by separating two ideas: what the coefficient would mean in the underlying population versus what an algorithm estimates from one finite sample. Independence suggests no systematic change in the response as that feature varies.",
+        "Think about logistic regression\u2019s interpretation of a coefficient: it measures how changing Xi affects the log-odds of Y, holding other features fixed. If Xi truly adds no information about Y, what should that effect look like in the ideal population model?",
+        "Be careful with the word \"exactly.\" On a finite dataset, sampling noise, correlations with other predictors, and choices like regularization or optimization can make the fitted coefficient slightly nonzero even when the population-level effect is absent."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0005",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Consider one training example (x,y) for logistic regression, and focus on parameter theta_j. The gradient contribution is x_j times (y - sigmoid(theta^T x)). Explain the sign of this contribution in each of the following cases: y=1 with current prediction 0.2, and y=0 with current prediction 0.8. Then explain what that sign means for the update under gradient ascent when x_j is positive.",
+      "expected_answer": "For y=1 and prediction 0.2, the term y - sigmoid(theta^T x) is positive, namely 1 - 0.2 = 0.8, so if x_j>0 the gradient contribution is positive. Under gradient ascent, theta_j increases, which tends to raise the score theta^T x and therefore increase the predicted probability on that example. For y=0 and prediction 0.8, the term is negative, 0 - 0.8 = -0.8, so if x_j>0 the contribution is negative. Then gradient ascent decreases theta_j, pushing the score and predicted probability down for that example.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p35_bb96797170",
+        "cs109_finalwin2025soln_q10_24aea9540d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes the signs of both residual terms correctly",
+          "Connects positive x_j and gradient sign to the direction of theta_j update",
+          "Interprets the update as increasing or decreasing predicted probability"
+        ],
+        "partial_credit": [
+          "Gets the signs right but does not connect to gradient ascent",
+          "Describes update direction without discussing the role of x_j"
+        ],
+        "common_mistakes": [
+          "Using gradient descent language without adjusting the sign",
+          "Forgetting that the update depends on x_j",
+          "Claiming a negative gradient always means worse performance rather than a direction of parameter change"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What changes if x_j were negative instead of positive?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In gradient ascent, do we add or subtract the gradient, and how does that affect the sign reasoning?"
+        }
+      ],
+      "hints": [
+        "Focus on the factor y - sigmoid(theta^T x): its sign tells you whether this example is asking the model to push the predicted probability up or down.",
+        "For each case, compare the current prediction to the true label first; then note that if x_j is positive, multiplying by x_j keeps the same sign as the residual term.",
+        "Under gradient ascent, follow that sign: a positive contribution nudges theta_j upward and tends to raise theta^T x, while a negative contribution nudges theta_j downward and tends to lower the predicted probability on this example."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0006",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Describe logistic regression using the 'weighted sum then squashing' metaphor. If you were explaining the model aloud to someone who knows only linear combinations, what are the two main components, and what role does each play in turning features into a probability?",
+      "expected_answer": "The explanation should identify two components. First, logistic regression computes a weighted sum z = theta0 + sum_j theta_j x_j, where the weights indicate how strongly each feature pushes the score up or down. Second, it applies the sigmoid function sigma(z), which squashes any real-valued score into the interval [0,1]. The first part aggregates evidence from features; the second turns that evidence into a probability-like quantity interpretable as P(Y=1|X=x).",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p13_35ed5d52f7",
+        "cs109_25_logistic_regression_annotated_p14_d170d33ca5",
+        "cs109_25_logistic_regression_annotated_p10_b9b0e94093"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Names the weighted sum z and the sigmoid transformation",
+          "Explains the role of weights in combining feature effects",
+          "Explains the sigmoid as mapping real numbers to [0,1] for probability interpretation"
+        ],
+        "partial_credit": [
+          "Mentions sigmoid and weighted sum but not their distinct purposes",
+          "Describes the formula without interpretation"
+        ],
+        "common_mistakes": [
+          "Calling the weighted sum itself a probability",
+          "Failing to mention the intercept/bias term",
+          "Saying the sigmoid makes the model linear"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is it useful that the first step is linear even though the final mapping to probability is nonlinear?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can the weighted sum z ever be outside [0,1], and if so which part of the model fixes that?"
+        }
+      ],
+      "hints": [
+        "Think of logistic regression as a two-step pipeline: first it builds a single score from the features, then it transforms that score into something interpretable as a probability.",
+        "In the first step, name the linear combination explicitly: an intercept/bias term plus feature values multiplied by weights. Those weights tell you how each feature pushes the score up or down before any probability is formed.",
+        "For the second step, identify the squashing function used on that score and its job: it takes any real-valued input and maps it into the 0-to-1 range. Emphasize that the weighted sum aggregates evidence, while the squashing step is what makes a probability-like output possible."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0007",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Imagine a medical screening model with two features: x1 is age and x2 is a lab value. You are told the fitted logistic regression predicts P(Y=1|x)=sigma(theta0 + theta1 x1 + theta2 x2), and theta2 is large and positive. Without computing exact probabilities, explain how increasing x2 while holding age fixed changes both the linear score and the predicted class, and whether that effect is always equally large in probability terms.",
+      "expected_answer": "A strong answer says that increasing x2 raises the linear score z because theta2 is positive, so it increases P(Y=1|x) since the sigmoid is increasing. If the probability crosses the 0.5 threshold, the predicted class can switch from 0 to 1; otherwise the class stays the same but confidence changes. The effect is not equally large everywhere in probability terms because the sigmoid is nonlinear: a fixed increase in z can change probability more around the middle than near the extremes where the sigmoid saturates.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p7_1bfac4b3e1",
+        "cs109_26_deep_learning_annotated_p6_2cf2d8c0e9",
+        "cs109_25_logistic_regression_annotated_p3_9375157b91"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that positive theta2 increases z and therefore increases probability",
+          "Connects this to possible class changes under thresholding",
+          "Explains that equal changes in z need not mean equal changes in probability because of sigmoid shape"
+        ],
+        "partial_credit": [
+          "Explains direction of effect on probability but not the nonlinearity",
+          "Mentions thresholding but not holding other features fixed"
+        ],
+        "common_mistakes": [
+          "Assuming a positive coefficient always flips the class",
+          "Saying the effect on probability is constant for every x2 increase",
+          "Ignoring the monotonicity of the sigmoid"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Where on the sigmoid curve would a small change in z produce the largest change in probability?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If sigma is increasing, what must happen to P(Y=1|x) when z increases?"
+        }
+      ],
+      "hints": [
+        "Start by separating the model into the linear score z = theta0 + theta1 x1 + theta2 x2 and the sigmoid applied to it. Ask what happens to z when x2 increases while x1 stays fixed and theta2 is positive.",
+        "If x2 goes up by some amount, the score changes by theta2 times that amount, so a large positive theta2 pushes the score upward. Then think about the classification rule: raising the probability may or may not change the predicted label unless you cross the decision threshold.",
+        "The sigmoid is increasing but not linear, so the same increase in z does not produce the same increase in probability everywhere. Compare being near the middle of the sigmoid versus already near 0 or 1, where the curve flattens and probability changes less."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0008",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "Someone says, 'Because logistic regression is called regression, it is fundamentally solving the same problem as ordinary least squares, just with a fancy output transform.' Give a nuanced response that addresses what quantity is modeled directly and how prediction is made at test time.",
+      "expected_answer": "The model name can be misleading. Logistic regression directly models the conditional probability P(Y|X), usually P(Y=1|X=x), rather than fitting a continuous response with squared error. At test time, it computes this probability and predicts the more likely label, typically by taking argmax over Y in {0,1}, or equivalently by thresholding the probability at 0.5 for the binary case. So although both models use linear combinations of features, they target different kinds of outputs and different probabilistic interpretations.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p23_cdce04ab1e",
+        "cs109_26_deep_learning_annotated_p15_315bafad24"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that logistic regression models P(Y|X) directly",
+          "Contrasts this with ordinary least squares fitting a continuous response",
+          "Explains test-time prediction via more likely class / thresholding"
+        ],
+        "partial_credit": [
+          "Mentions probability modeling but not test-time rule",
+          "Says they are different objectives without specifying conditional probability"
+        ],
+        "common_mistakes": [
+          "Claiming the only difference is thresholding",
+          "Confusing P(X|Y) with P(Y|X)",
+          "Describing logistic regression as generative"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How does this conditional-probability viewpoint differ from a model like Naive Bayes?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In logistic regression, are we modeling P(Y|X) or P(X|Y), and why does that matter?"
+        }
+      ],
+      "hints": [
+        "Start by asking: what quantity does each method model directly? Logistic regression is about class probabilities, while ordinary least squares is about a numeric response.",
+        "Use the conditional form carefully: logistic regression targets something like P(Y=1|X=x) (more generally P(Y|X)), not a transformed version of an OLS fit. Also make sure you are not switching this to P(X|Y).",
+        "For prediction, think in two steps: logistic regression computes a probability for each class from the features, then outputs the label with the higher probability. That is different from saying the only change from OLS is a fancy output transform."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0009",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose your training algorithm initializes all thetas to zero and then repeatedly accumulates gradients over the training set before updating. Explain, line by line in words, why initialization, repeated passes, gradient accumulation, and the final update are all necessary. Your answer should sound like you are teaching the pseudocode to a classmate.",
+      "expected_answer": "A good answer explains that initialization gives the optimization a starting point. Repeating many times is necessary because one update does not usually reach the optimum; iterative improvement gradually moves the parameters toward better values. For each training example, the algorithm computes that example's contribution to the gradient, and gradient accumulation sums those contributions over the dataset to approximate the full log-likelihood gradient. The final update adds step_size times the gradient to each parameter because we are doing gradient ascent on log-likelihood, moving in the direction that increases the objective.",
+      "source_chunk_ids": [
+        "cs109_finalwin2025soln_q10_24aea9540d",
+        "cs109_25_logistic_regression_annotated_p35_bb96797170"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains purpose of zero initialization or starting point",
+          "Explains need for repeated iterations",
+          "Explains per-example gradient contribution and accumulation",
+          "Explains update as gradient ascent on log-likelihood"
+        ],
+        "partial_credit": [
+          "Describes the mechanics of the loop but not why each part is needed",
+          "Explains update direction but omits accumulation"
+        ],
+        "common_mistakes": [
+          "Calling the update gradient descent without changing sign",
+          "Saying accumulation is unnecessary even in batch training",
+          "Treating initialization as determining the correct answer directly"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why might a very large step size be problematic even if the gradient direction is correct?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If we are maximizing log-likelihood, should the update move with the gradient or against it?"
+        }
+      ],
+      "hints": [
+        "Break the pseudocode into four jobs: choose a starting point, improve it over many rounds, collect information from all training examples, then change the parameters. For each line, explain why that job is needed rather than just what it does.",
+        "In the inner loop, think of one training example contributing one small piece of the overall log-likelihood gradient. The accumulator exists so batch training can sum those pieces into a full-dataset direction before any theta is changed.",
+        "For the update line, focus on the objective: if the algorithm is maximizing log-likelihood, the parameters should move in the direction of the accumulated gradient, scaled by the step size. Be careful not to describe this as descent unless you also flip the sign."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0010",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You are shown a fitted logistic regression with three binary features x1, x2, x3 and an intercept. For a particular data point x=(1,0,1), explain aloud how the model forms P(Y=1|x). Do not just state the formula; interpret which weights matter for this example and which do not.",
+      "expected_answer": "The model forms the linear score z by starting with the intercept theta0, then adding theta1 times 1, theta2 times 0, and theta3 times 1. So for this example only the intercept, theta1, and theta3 contribute; theta2 has no effect because x2=0. Then the sigmoid of that score produces P(Y=1|x). Interpreting it verbally: the active features present in the example contribute their weighted evidence, inactive binary features contribute nothing, and the sigmoid converts the total evidence into a probability.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p11_c210d13fa7",
+        "cs109_25_logistic_regression_annotated_p10_b9b0e94093",
+        "cs109_25_logistic_regression_annotated_p14_d170d33ca5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly identifies active and inactive feature contributions",
+          "Includes the intercept term",
+          "Explains the final sigmoid step and interpretation"
+        ],
+        "partial_credit": [
+          "Writes the formula but does not interpret the zero feature contribution",
+          "Mentions active features but omits intercept"
+        ],
+        "common_mistakes": [
+          "Saying every theta matters equally regardless of x",
+          "Forgetting the sigmoid step",
+          "Ignoring the intercept"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If x2 changed from 0 to 1, what would be the new qualitative effect of theta2 on the probability?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What happens to the term theta2 x2 when x2=0?"
+        }
+      ],
+      "hints": [
+        "Start by separating the model into two stages: a linear score from the intercept and feature-weight terms, then a squashing step that turns that score into a probability.",
+        "For x=(1,0,1), check which binary features are 'on' and which are 'off'. Only weights attached to features with value 1 contribute to the score; a feature with value 0 adds nothing, but the intercept still matters.",
+        "Write the score as the intercept plus the contributions from the active features, and notice the weight on x2 is multiplied by 0 here. Then explain in words that the sigmoid maps this total evidence into P(Y=1|x)."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0011",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Compare logistic regression and Naive Bayes from the perspective of what distribution is being modeled. Then explain one practical consequence of that difference: after fitting the model, which one naturally supports randomly generating a full new datapoint (x,y), and why?",
+      "expected_answer": "Logistic regression is a discriminative model: it directly models the conditional probability P(Y|X), not the full joint distribution of features and labels. Naive Bayes is generative: it models P(X|Y) together with P(Y), which determines the joint distribution P(X,Y). Because of that, Naive Bayes naturally supports generating a label Y from P(Y) and then generating features X from P(X|Y). Logistic regression alone does not specify a distribution for X, so it does not by itself naturally generate full new datapoints.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p44_d0de35ec97",
+        "cs109_26_deep_learning_annotated_p15_315bafad24"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that logistic regression models P(Y|X) and Naive Bayes models P(X|Y) and P(Y)",
+          "Identifies logistic regression as discriminative and Naive Bayes as generative",
+          "Explains why Naive Bayes can generate (x,y) and logistic regression cannot by itself"
+        ],
+        "partial_credit": [
+          "Gets the distributions right but does not connect to generation",
+          "Explains generation informally without specifying the modeled distributions"
+        ],
+        "common_mistakes": [
+          "Claiming logistic regression models the joint distribution",
+          "Saying both can equally generate x without extra assumptions",
+          "Confusing test-time classification with data generation"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How can both models still be used to classify a new x even though they model different distributions?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "To generate a new feature vector x, do you need a model for P(X) or P(X|Y), and does logistic regression provide that?"
+        }
+      ],
+      "hints": [
+        "Start by asking: does each method model the label given the features, or the features together with the label? That viewpoint is the key distinction here.",
+        "Write the distributions explicitly: logistic regression is built around a conditional probability for the class given x, while Naive Bayes specifies a class prior and a feature model within each class.",
+        "To generate a full new (x,y), you need a recipe for sampling both y and x. A model that includes how x is distributed given y can do this directly; a model that only gives probabilities of y after seeing x cannot by itself sample x."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0012",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A colleague wants to use logistic regression for a dataset with one continuous feature and one six-sided die feature taking values in {1,2,3,4,5,6}. They ask whether logistic regression can handle such features. Give a careful answer that distinguishes 'can use as input features' from 'models a distribution over X'.",
+      "expected_answer": "A careful answer says logistic regression can absolutely use continuous or non-binary discrete variables as inputs inside the weighted sum, as long as you decide on an encoding for those features. What logistic regression does not do is model the distribution of X itself. So the question is different from generative modeling: logistic regression can condition on continuous or multicategory features to model P(Y|X), but it does not specify how those X values are distributed in the population.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p44_d0de35ec97",
+        "cs109_25_logistic_regression_annotated_p23_cdce04ab1e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Says logistic regression can use continuous and non-binary discrete inputs",
+          "Distinguishes feature representation from modeling P(X)",
+          "States that logistic regression models P(Y|X), not a distribution over X"
+        ],
+        "partial_credit": [
+          "Says yes it can handle them but does not explain the distinction",
+          "Mentions encoding without clarifying the probabilistic modeling point"
+        ],
+        "common_mistakes": [
+          "Claiming logistic regression cannot use non-binary discrete features at all",
+          "Saying it models the feature distribution automatically",
+          "Confusing input flexibility with generative assumptions"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is this distinction important when comparing logistic regression to Naive Bayes?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If a model only gives P(Y|X), does that automatically tell you how likely a particular X value is?"
+        }
+      ],
+      "hints": [
+        "Start by separating two ideas: what kinds of variables can appear on the right-hand side of the model, versus what probability distribution the model is trying to learn.",
+        "For the feature side, think about the logistic model's linear predictor: it can take a continuous value directly, and a die-valued feature can be included once you choose a representation (for example, numeric or an indicator encoding depending on meaning).",
+        "The key distinction is conditional vs. generative modeling: logistic regression specifies how to get a probability for Y given X, but it does not by itself assign probabilities to the possible X values or describe how the die outcomes are distributed."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0013",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student sees the decision rule 'predict Y=1 if sigma(theta^T x) > 0.5' and says, 'So the decision boundary is sigma(theta^T x)=0.5, which must be curved because sigmoid is nonlinear.' Diagnose the mistake and state what the boundary looks like in feature space.",
+      "expected_answer": "The mistake is stopping at the nonlinear output layer instead of using the monotonicity of the sigmoid. Since sigma(z)=0.5 exactly when z=0, the condition sigma(theta^T x)=0.5 is equivalent to theta^T x=0. That equation is linear in the features, so the decision boundary is a line in 2D, a plane in 3D, or more generally a hyperplane in feature space.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p7_1451842c8c",
+        "cs109_25_logistic_regression_annotated_p46_7132f37f33"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the equivalence sigma(z)=0.5 iff z=0",
+          "Explains that the resulting decision boundary is linear/hyperplane",
+          "Diagnoses why the student's 'curved boundary' conclusion is mistaken"
+        ],
+        "partial_credit": [
+          "States the boundary is linear but does not justify with sigma(0)=0.5",
+          "Mentions hyperplane without discussing monotonicity"
+        ],
+        "common_mistakes": [
+          "Saying the boundary is curved because sigmoid is nonlinear",
+          "Confusing the probability curve in one dimension with the boundary in feature space",
+          "Placing the boundary at theta^T x=0.5"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If you changed the threshold from 0.5 to some other value, would the boundary still be linear?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For what value of z does sigma(z) equal 0.5?"
+        }
+      ],
+      "hints": [
+        "Focus on the quantity the sigmoid is applied to: the boundary is defined by a threshold on the model score before you think about the sigmoid\u2019s shape.",
+        "Use that the sigmoid is monotone increasing, so thresholding its output at 0.5 is equivalent to asking which input value to the sigmoid gives 0.5.",
+        "Set z = theta^T x and solve sigma(z) = 0.5 first; then interpret the equation for x geometrically as a constant-value set of a linear form, not the curved sigmoid graph itself."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0014",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "For binary classification, explain why choosing the more likely Y given X is equivalent to predicting class 1 whenever P(Y=1|X=x) exceeds 0.5. Then say what happens exactly at 0.5.",
+      "expected_answer": "Because Y can only be 0 or 1, the two conditional probabilities must sum to 1. Therefore class 1 is more likely than class 0 exactly when P(Y=1|X=x) > P(Y=0|X=x) = 1 - P(Y=1|X=x), which reduces to P(Y=1|X=x) > 0.5. At exactly 0.5 the model is indifferent between the two classes; a prediction rule must choose a tie-breaking convention such as predicting 1 for >=0.5 or using some other consistent policy.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p7_1bfac4b3e1",
+        "cs109_26_deep_learning_annotated_p6_2cf2d8c0e9"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses the fact that P(Y=0|X)=1-P(Y=1|X)",
+          "Derives the 0.5 threshold from comparing the two classes",
+          "Explains the tie case at 0.5"
+        ],
+        "partial_credit": [
+          "States the 0.5 rule correctly without derivation",
+          "Mentions a tie but not why it occurs"
+        ],
+        "common_mistakes": [
+          "Using 0 as the probability threshold rather than 0.5",
+          "Saying both classes can simultaneously be more likely",
+          "Forgetting that the probabilities sum to 1"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How does this probability threshold translate into a threshold on the linear score z?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If there are only two classes, what is P(Y=0|X=x) in terms of P(Y=1|X=x)?"
+        }
+      ],
+      "hints": [
+        "Since this is binary classification, once you know P(Y=1|X=x), the probability of class 0 is determined automatically. Start by writing the two conditional probabilities as a pair that must add to 1.",
+        "Let p = P(Y=1|X=x). Then the rule \u201cchoose the more likely class\u201d means comparing p to P(Y=0|X=x), which you should rewrite in terms of p.",
+        "Set up the inequality for when class 1 is preferred: p > 1 - p, and simplify it to find the cutoff. Then check the equality case p = 1 - p to explain why a tie-breaking rule is needed."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0015",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "In a high-dimensional setting, someone says, 'Logistic regression is nonlinear because of the sigmoid, so it can capture arbitrary complicated class boundaries.' Give a balanced response that separates nonlinearity in the probability map from linearity of the boundary in the original features.",
+      "expected_answer": "The balanced answer is that logistic regression is nonlinear as a function from the linear score z to probability because it uses the sigmoid, so the probability changes nonlinearly with z. However, with the original features entering only through theta^T x, the decision boundary for a fixed threshold such as 0.5 is still linear in feature space: theta^T x = 0. Therefore plain logistic regression does not capture arbitrary complicated boundaries unless you first expand the feature representation with nonlinear features or transformations.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p46_7132f37f33",
+        "cs109_25_logistic_regression_annotated_p3_9375157b91",
+        "cs109_26_deep_learning_annotated_p15_315bafad24"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Distinguishes nonlinear probability mapping from linear boundary in original feature space",
+          "States that plain logistic regression gives a hyperplane boundary",
+          "Notes that richer boundaries require transformed/features beyond the plain model"
+        ],
+        "partial_credit": [
+          "Says the boundary is linear but does not discuss the nonlinear sigmoid",
+          "Notes feature engineering could help but not why"
+        ],
+        "common_mistakes": [
+          "Claiming sigmoid alone makes the boundary arbitrarily complex",
+          "Saying logistic regression is fully linear in every sense",
+          "Ignoring the role of feature representation"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example of how feature engineering could let logistic regression model a nonlinear boundary?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Does a nonlinear output function automatically imply a nonlinear boundary in the original input coordinates?"
+        }
+      ],
+      "hints": [
+        "Separate two ideas: the sigmoid makes the predicted probability a nonlinear function of the score, but ask whether that alone changes the shape of the decision boundary in the original input space.",
+        "Write the model as \\(p(y=1\\mid x)=\\sigma(\\theta^T x)\\). For the usual 0.5 classification threshold, identify what condition on \\(\\theta^T x\\) defines the boundary.",
+        "Once you see the boundary depends only on a linear score in the original features, think about what shape that gives in high dimensions. Then ask how the story changes if you first replace \\(x\\) with nonlinear features or transformations before applying logistic regression."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0016",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You train a logistic regression and notice one feature has a strongly negative coefficient. In an oral explanation to a stakeholder, how would you describe the effect of increasing that feature while holding the others fixed? Include both the effect on the linear score and on P(Y=1|X).",
+      "expected_answer": "I would say that holding the other inputs fixed, increasing a feature with a negative coefficient decreases the weighted sum z = theta^T x. Because the sigmoid is increasing, lowering z lowers P(Y=1|X). So larger values of that feature are associated with evidence against class 1 and in favor of class 0, all else equal. If the change is large enough to cross the decision boundary, it can also change the predicted class.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p13_35ed5d52f7",
+        "cs109_25_logistic_regression_annotated_p3_9375157b91"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that increasing the feature decreases z when coefficient is negative",
+          "Explains monotonic decrease in P(Y=1|X)",
+          "Mentions the all-else-equal nature of the interpretation"
+        ],
+        "partial_credit": [
+          "States it lowers probability but does not connect through z",
+          "Mentions class effect without discussing probability"
+        ],
+        "common_mistakes": [
+          "Saying a negative coefficient lowers P(Y=0|X)",
+          "Ignoring the hold-others-fixed condition",
+          "Assuming class must always flip"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is the phrase 'all else equal' important when interpreting a coefficient?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If sigma is increasing and z goes down, what must happen to sigma(z)?"
+        }
+      ],
+      "hints": [
+        "Start by interpreting the coefficient in the linear score \\(z=\\theta^T x\\): what happens to \\(z\\) if you increase one feature whose coefficient is negative, while all other features stay fixed?",
+        "Then connect that change in \\(z\\) to the predicted probability using the logistic sigmoid. Remember the sigmoid is monotone increasing, so whatever direction \\(z\\) moves, \\(P(Y=1\\mid X)\\) moves the same way.",
+        "Frame your explanation in two steps: increasing that feature provides evidence against class 1 because it lowers the linear score, and therefore lowers \\(P(Y=1\\mid X)\\), all else equal. Avoid claiming the class must change unless the score crosses the decision threshold."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0017",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose all parameters are initialized at zero. For a single positive example with y=1 and a feature vector x that includes an intercept x0=1 and all other features nonnegative, what can you say about the sign of the first gradient update for each parameter? Explain your reasoning from the model, not just from the formula.",
+      "expected_answer": "At initialization, theta^T x = 0, so the current predicted probability is sigma(0)=0.5. For a positive example, y - prediction = 1 - 0.5 = 0.5, which is positive. Therefore each gradient contribution x_j times 0.5 has the same sign as x_j. With x0=1 and other features nonnegative, the first update under gradient ascent is nonnegative for every parameter, and strictly positive for any parameter whose corresponding feature value is positive. Intuitively, the model is underpredicting a positive example, so it moves weights in a direction that raises the score for similar inputs.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p35_bb96797170",
+        "cs109_25_logistic_regression_annotated_p3_9375157b91"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses zero initialization to infer prediction 0.5",
+          "Determines residual is positive for y=1",
+          "Connects nonnegative x_j values to nonnegative or positive updates",
+          "Provides intuitive interpretation of raising the score for a positive example"
+        ],
+        "partial_credit": [
+          "Gets the sign reasoning right for some parameters but omits intercept",
+          "Uses formula correctly without intuitive explanation"
+        ],
+        "common_mistakes": [
+          "Forgetting sigma(0)=0.5",
+          "Saying all updates are positive even when some x_j could be zero",
+          "Mixing up ascent and descent signs"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the sign pattern change for a negative example y=0 at the same zero initialization?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What probability does logistic regression predict when theta^T x=0?"
+        }
+      ],
+      "hints": [
+        "Start from the model itself: with all parameters at zero, what is the linear score \\(\\theta^T x\\), and what kind of probability does the sigmoid assign to that score?",
+        "Now compare that initial prediction to the true label \\(y=1\\): is the model underpredicting or overpredicting this example? For gradient ascent, the update should move the weights in whatever direction makes this positive example receive a higher score next time.",
+        "Use the per-parameter gradient factor \\(x_j\\) together with that error direction: each parameter\u2019s first update has the same sign behavior as its feature value. Be careful to separate the intercept \\(x_0=1\\), features with \\(x_j>0\\), and any feature that could be exactly zero."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0018",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A teammate argues, 'Because Naive Bayes uses Bayes' rule and logistic regression models P(Y|X) directly, Naive Bayes should always outperform logistic regression for classification.' Give a careful rebuttal based only on what each model assumes and estimates.",
+      "expected_answer": "A careful rebuttal is that modeling P(X|Y) and P(Y) does not automatically mean better classification. Naive Bayes relies on simplifying assumptions, especially conditional independence among features given Y, to make estimation tractable. Logistic regression instead models P(Y|X) directly without needing to model the feature distribution. Which performs better depends on how appropriate the assumptions are and how well the chosen model fits the problem; neither dominates automatically just because of Bayes' rule.",
+      "source_chunk_ids": [
+        "cs109_23_naive_bayes_annotated_p31_1fb219e78c",
+        "cs109_25_logistic_regression_annotated_p44_d0de35ec97",
+        "cs109_25_logistic_regression_annotated_p23_cdce04ab1e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that Bayes' rule alone does not guarantee superior classification",
+          "Explains Naive Bayes requires assumptions about P(X|Y), especially independence",
+          "Explains logistic regression models P(Y|X) directly",
+          "Concludes performance depends on assumptions and fit, not the name of the theorem"
+        ],
+        "partial_credit": [
+          "Says neither is always better but gives weak justification",
+          "Mentions assumptions without specifying what they are about"
+        ],
+        "common_mistakes": [
+          "Claiming Naive Bayes is always better because it uses more probabilities",
+          "Saying logistic regression uses Bayes' rule in the same way",
+          "Ignoring the role of modeling assumptions"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why might direct modeling of P(Y|X) be attractive when the feature distribution is complicated?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Does invoking Bayes' rule remove the need to make assumptions about P(X|Y)?"
+        }
+      ],
+      "hints": [
+        "Start by separating the two questions: what distribution each model tries to estimate, and whether using Bayes' rule by itself says anything about accuracy. The theorem is just a relationship, not a guarantee of better classification.",
+        "Be explicit about the assumptions: Naive Bayes estimates P(X|Y) and P(Y), usually with a conditional-independence assumption among features given Y, while logistic regression estimates P(Y|X) directly without modeling the feature distribution.",
+        "To rebut the claim, focus on model fit: if Naive Bayes' assumptions about P(X|Y) are poor (for example, correlated features given Y), its classifier can suffer, whereas logistic regression may fit better. Compare performance in terms of assumptions and estimation targets, not the fact that one invokes Bayes' rule."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0019",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Explain why the sigmoid is a natural choice in logistic regression for turning a weighted sum into something interpretable as a probability. Your answer should mention both its range and the fact that it preserves ordering of the underlying score.",
+      "expected_answer": "The sigmoid is natural because it maps any real-valued weighted sum z to a number strictly between 0 and 1, matching the range required of a probability. It is also monotone increasing, so if one example has a larger score z than another, it also gets a larger predicted probability. That means the linear score can represent relative evidence, while the sigmoid converts that evidence into a calibrated probability-like quantity without changing the ranking induced by z.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p3_9375157b91",
+        "cs109_25_logistic_regression_annotated_p14_d170d33ca5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Mentions mapping from all real numbers to [0,1] or (0,1)",
+          "Explains monotonicity / order preservation",
+          "Connects these properties to probability interpretation of the weighted sum"
+        ],
+        "partial_credit": [
+          "Mentions only the [0,1] range",
+          "States it is smooth or curved without saying why that matters"
+        ],
+        "common_mistakes": [
+          "Calling the sigmoid the probability distribution over X",
+          "Saying the sigmoid can output values less than 0 or greater than 1",
+          "Ignoring the monotonicity property"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is order preservation useful for classification decisions?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can two scores z1<z2 ever produce sigma(z1)>sigma(z2)?"
+        }
+      ],
+      "hints": [
+        "Start by comparing the raw linear score z=w^Tx+b with what a probability is allowed to be. A natural link function should turn any real-valued score into something in the probability range.",
+        "Identify the key range property of the sigmoid: no matter how large or small z is, its output stays between 0 and 1. That is what makes the transformed score interpretable as a probability-like quantity.",
+        "Also check how the sigmoid behaves as z increases: it is monotone increasing, so a larger weighted sum gets a larger output. Use that to argue that converting z with the sigmoid keeps the same ranking of examples while making the values probability-compatible."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0020",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are given linearly separable training data, and a lecturer says, 'Logistic regression is trying to find the line that separates y=1 from y=0.' Explain what this means geometrically, and then give one important caution about confusing that geometric picture with the probability outputs.",
+      "expected_answer": "Geometrically, the model uses a hyperplane defined by theta^T x = 0 as the decision boundary when using a 0.5 threshold. Points on one side have positive score and therefore predicted probability above 0.5; points on the other side have negative score and probability below 0.5. The caution is that many different parameter vectors can define the same or similar separating geometry while giving different probability magnitudes, and more generally the probability output is not just the boundary itself: it comes from the sigmoid of the signed distance-like score, so confidence changes continuously away from the boundary.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p46_7132f37f33",
+        "cs109_26_deep_learning_annotated_p6_2cf2d8c0e9"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains the hyperplane boundary theta^T x=0",
+          "Describes which side corresponds to which class under 0.5 threshold",
+          "Gives a caution separating geometric classification from probabilistic output/confidence"
+        ],
+        "partial_credit": [
+          "Explains the separating line idea but not the caution",
+          "Mentions confidence vaguely without linking to sigmoid"
+        ],
+        "common_mistakes": [
+          "Equating the boundary with the full probability model",
+          "Saying every point on the same side has the same probability",
+          "Ignoring threshold dependence"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What aspect of the model determines how rapidly the probability changes as you move away from the boundary?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If a point lies exactly on the boundary, what probability does the model assign to class 1?"
+        }
+      ],
+      "hints": [
+        "Think of logistic regression in feature space first: it builds a linear score \\(\\theta^T x\\), and the set of points where that score is zero forms a line/hyperplane.",
+        "To explain the geometry, identify what happens on each side of \\(\\theta^T x=0\\) when you use the usual probability cutoff for prediction: the sign of the score tells you which class is predicted.",
+        "For the caution, separate the decision boundary from the probability model itself: probabilities come from applying the sigmoid to the score, so confidence changes continuously with the score and is not determined by the boundary alone."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0021",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose for a particular x, a logistic model gives P(Y=1|x)=0.7. Without additional computation, what is P(Y=0|x), and how would the test-time argmax rule classify the point? Then explain why this complements, rather than duplicates, the probability statement.",
+      "expected_answer": "Because Y is binary, P(Y=0|x)=1-0.7=0.3. The argmax rule chooses the more likely class, so the model predicts Y=1. This classification statement complements the probability by compressing uncertainty into a hard decision. The probability says how confident the model is, while the argmax decision says which label is chosen for action.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p7_1bfac4b3e1",
+        "cs109_25_logistic_regression_annotated_p23_cdce04ab1e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes P(Y=0|x)=0.3",
+          "Predicts class 1 by argmax",
+          "Explains difference between probability output and hard classification"
+        ],
+        "partial_credit": [
+          "Gets the numeric complement and class correct but offers little interpretation",
+          "Explains hard decision without explicitly using binary complement"
+        ],
+        "common_mistakes": [
+          "Thinking P(Y=0|x) could also be 0.7",
+          "Choosing class 0 because 0.3 is nonzero",
+          "Treating the class label as the same object as the probability"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why might two points both be classified as class 1 even though one has probability 0.51 and the other 0.99?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When there are only two classes, what must the two conditional probabilities sum to?"
+        }
+      ],
+      "hints": [
+        "Since the response is binary, the two conditional probabilities for this same x must add up to 1. Start by using the given probability for Y=1 to infer the other one.",
+        "For the predicted label at test time, apply the argmax rule: compare P(Y=1|x) and P(Y=0|x) and choose the class with the larger conditional probability. You do not need any new model computation beyond the complement from the first step.",
+        "To explain the interpretation, separate the model\u2019s soft output from its hard decision: the probability expresses uncertainty/confidence, while argmax compresses that information into a single label for action. So the class prediction summarizes the probability rather than repeating it."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0022",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Summarize the two 'big ideas' of logistic regression highlighted in the course: what is being modeled, and what structural form maps inputs to that quantity? Then explain why these ideas later connect naturally to more complex models in machine learning.",
+      "expected_answer": "The two big ideas are: first, logistic regression models the conditional probability of the class label given the input, P(Y|X=x). Second, it computes that quantity by applying a nonlinear transform, the sigmoid, to a parameterized combination of multiple input features, namely theta^T x. These ideas matter beyond logistic regression because many later models keep the same pattern: combine features with learned parameters to form a score, then apply a nonlinear transformation to represent a probability or activation. So logistic regression is a simple example of conditional probabilistic modeling with learned feature weighting and nonlinearity.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p15_315bafad24",
+        "cs109_25_logistic_regression_annotated_p13_35ed5d52f7"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies conditional probability modeling P(Y|X=x)",
+          "Identifies nonlinear transform of a parameterized feature combination",
+          "Explains the broader connection to later machine learning models"
+        ],
+        "partial_credit": [
+          "States the two ideas but does not explain why they matter later",
+          "Mentions neural networks vaguely without linking structure"
+        ],
+        "common_mistakes": [
+          "Saying logistic regression models P(X|Y)",
+          "Ignoring the nonlinear transformation",
+          "Treating the broader connection as only about classification thresholds"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What is preserved from logistic regression when moving to deeper models, and what becomes more flexible?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In logistic regression, is the model trying to learn P(Y|X) or P(X|Y)?"
+        }
+      ],
+      "hints": [
+        "For the first big idea, focus on which probability logistic regression is trying to predict from features: think about the label conditioned on the input, not the other way around.",
+        "For the second idea, identify the two-step structure: combine features with learned weights into a single score, then pass that score through a nonlinear function that turns it into something interpretable as a probability.",
+        "To explain the later ML connection, look for the reusable template: many models still build a weighted feature score and then apply a nonlinearity, so logistic regression is an early example of that general architecture rather than just a rule about classification thresholds."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0023",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A hospital wants to predict whether a patient will be readmitted within 30 days, where Y=1 means readmitted and Y=0 means not readmitted. A student proposes using a linear model \\(\\hat y = \\theta^T x\\) and then calling anything above 0.5 a readmission, while another student proposes logistic regression \\(P(Y=1\\mid X=x)=\\sigma(\\theta^T x)\\). Explain, aloud, why logistic regression is the more principled model here, and be explicit about both what the model outputs and how the final class prediction is obtained.",
+      "expected_answer": "A strong answer should say that for binary classification we want to model a probability of class 1 given the features. Logistic regression does this directly by computing a weighted sum \\(z=\\theta^T x\\), applying the sigmoid \\(\\sigma(z)=1/(1+e^{-z})\\), and producing a value in [0,1], which can be interpreted as \\(P(Y=1\\mid X=x)\\). The final prediction is then made by choosing the more likely class, equivalently predicting 1 when that probability exceeds 0.5 and 0 otherwise. In contrast, linear regression can output values below 0 or above 1, so its outputs are not valid probabilities, and it is fitting a line to numeric targets rather than directly modeling a conditional Bernoulli probability.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p7_1bfac4b3e1",
+        "cs109_26_deep_learning_annotated_p7_1451842c8c",
+        "cs109_finalwin2025soln_q10_24aea9540d",
+        "cs109_25_logistic_regression_annotated_p14_d170d33ca5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that logistic regression models \\(P(Y=1\\mid X=x)\\) directly.",
+          "Explains that sigmoid maps any real-valued score to [0,1].",
+          "Explains how classification is made from the probability, e.g. threshold at 0.5 or argmax over classes.",
+          "Contrasts with linear regression by noting outputs may fall outside [0,1] and are not principled probabilities."
+        ],
+        "partial_credit": [
+          "Says logistic regression is better for binary classification but gives only one justification.",
+          "Mentions sigmoid squashes outputs but does not connect to probability interpretation.",
+          "Mentions thresholding at 0.5 without explaining why that corresponds to choosing the more likely class."
+        ],
+        "common_mistakes": [
+          "Calling the sigmoid itself the classifier rather than the probability model plus decision rule.",
+          "Saying linear regression cannot be used at all, instead of saying it is less principled for binary outcomes.",
+          "Confusing \\(\\theta^T x\\) with the probability directly."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the hospital changes its policy and now predicts readmission only when the estimated probability exceeds 0.8, what changes in the model and what changes only in the decision rule?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you explain why a number like 1.3 or -0.2 is a problem if we want to interpret the output as \\(P(Y=1\\mid X=x)\\)?"
+        }
+      ],
+      "hints": [
+        "Since the target is binary, start by asking which model naturally represents uncertainty about class 1 rather than just producing an unrestricted numeric score.",
+        "Write the logistic setup in two steps: first form the linear score z=\u03b8^T x, then pass it through the sigmoid so the output lies in [0,1] and can be interpreted as a probability. Compare that to \u03b8^T x by itself, which can fall below 0 or above 1.",
+        "Be explicit that the model output is a probability estimate P(Y=1|X=x), and the classifier is a separate decision rule applied afterward\u2014predict class 1 when that probability is above the chosen threshold (such as 0.5), otherwise class 0."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0024",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Consider a logistic regression with intercept, so \\(x_0=1\\). Suppose the learned parameters are \\(\\theta_0=-1\\), \\(\\theta_1=0.8\\), and \\(\\theta_2=-0.4\\). For a datapoint with \\((x_1,x_2)=(2,1)\\), compute the pre-sigmoid score, state whether the predicted class is 0 or 1, and interpret in words how each feature is pushing the prediction.",
+      "expected_answer": "The student should first compute the weighted sum: \\(z=\\theta_0+\\theta_1x_1+\\theta_2x_2=-1+0.8\\cdot 2-0.4\\cdot 1=0.2\\). Then \\(P(Y=1\\mid X=x)=\\sigma(0.2)\\approx 0.55\\), so the predicted class is 1 if we use the usual 0.5 threshold. In words, the intercept starts the score at -1, feature 1 contributes positively by +1.6 and pushes toward class 1, and feature 2 contributes negatively by -0.4 and pushes toward class 0. The student may also note that because \\(z>0\\), the sigmoid output is above 0.5, so one can determine the class even without numerically evaluating the sigmoid exactly.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p13_35ed5d52f7",
+        "cs109_25_logistic_regression_annotated_p14_d170d33ca5",
+        "cs109_26_deep_learning_annotated_p6_2cf2d8c0e9",
+        "cs109_25_logistic_regression_annotated_p7_1bfac4b3e1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly forms \\(z=\\theta^T x\\) including the intercept.",
+          "Determines that \\(z=0.2\\) and therefore \\(\\sigma(z)>0.5\\).",
+          "Predicts class 1 under the standard threshold.",
+          "Interprets the sign and contribution of each feature to the score."
+        ],
+        "partial_credit": [
+          "Computes the score correctly but does not interpret features.",
+          "Understands that positive \\(z\\) implies class 1 but does not mention the actual probability.",
+          "Makes a small arithmetic slip but shows the correct setup and reasoning."
+        ],
+        "common_mistakes": [
+          "Applying the sigmoid to each term separately instead of after summing.",
+          "Forgetting the intercept term.",
+          "Thinking the larger-magnitude coefficient always dominates without multiplying by feature value.",
+          "Predicting class from whether \\(z\\) is bigger than 0.5 instead of whether \\(\\sigma(z)\\) is bigger than 0.5, though here they are equivalent because the threshold corresponds to \\(z=0\\)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Without computing a decimal approximation, explain why thresholding at probability 0.5 is equivalent to checking whether \\(\\theta^T x\\) is positive."
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you separate the model into two stages for me: first the weighted sum \\(z\\), then the sigmoid \\(\\sigma(z)\\)? Which stage did you apply incorrectly?"
+        }
+      ],
+      "hints": [
+        "Start with the linear score before the sigmoid: \\(z=\\theta_0x_0+\\theta_1x_1+\\theta_2x_2\\) with \\(x_0=1\\). In logistic regression, you sum these contributions first and apply \\(\\sigma(\\cdot)\\) only once at the end.",
+        "Substitute \\((x_1,x_2)=(2,1)\\) and compute each term separately. Treat the intercept as the baseline, then note that the \\(x_1\\) term pushes the score up while the \\(x_2\\) term pushes it down because of its negative coefficient.",
+        "Once you have the total \\(z\\), you do not need the exact sigmoid value to decide the class: use whether \\(z\\) is above or below 0, since that matches whether \\(\\sigma(z)\\) is above or below 0.5. Then describe each feature\u2019s effect in words using the sign and size of its contribution to the score."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0025",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A classmate says: 'If a feature \\(X_i\\) is independent of the label \\(Y\\), then in a trained logistic regression the coefficient must be exactly zero.' Do you agree? Give a careful answer that distinguishes the ideal population statement from what may happen with a finite training sample, and explain the intuition using the pre-sigmoid weighted sum.",
+      "expected_answer": "The best answer is: in the ideal population-level sense, if \\(X_i\\) truly provides no information about \\(Y\\) after considering the model setup, then we would expect the learned coefficient to be 0 or very close to 0, because that feature should not affect the score \\(\\theta^T x\\). Setting \\(\\theta_i=0\\) removes that feature's contribution from the weighted sum, matching the idea that the prediction should not depend on it. But in a finite dataset, due to sampling noise, correlation with other features, optimization issues, or model misspecification, the estimated coefficient need not be exactly zero. So the principled expectation is approximately zero, not guaranteed exactly zero in practice.",
+      "source_chunk_ids": [
+        "cs109_finalwin2025soln_q10_24aea9540d",
+        "cs109_25_logistic_regression_annotated_p13_35ed5d52f7",
+        "cs109_25_logistic_regression_annotated_p12_0082dc2f01"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects the claim that the coefficient must be exactly zero in practice.",
+          "Explains the population intuition: an uninformative feature should not influence \\(\\theta^T x\\).",
+          "States that with finite data the coefficient may be near zero rather than exactly zero.",
+          "Mentions at least one practical reason for nonzero estimates, such as sampling variation or dependence with other features."
+        ],
+        "partial_credit": [
+          "Says 'approximately zero' but does not explain why.",
+          "Explains the weighted-sum intuition but ignores the finite-sample distinction.",
+          "States that coefficients can vary due to noise but does not connect to independence."
+        ],
+        "common_mistakes": [
+          "Claiming independence guarantees an exactly zero estimate on any dataset.",
+          "Confusing independence of \\(X_i\\) and \\(Y\\) with small numerical value of the feature itself.",
+          "Ignoring that coefficients are estimated from data, not set by a theorem on one finite sample."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your answer change if \\(X_i\\) were marginally independent of \\(Y\\) but highly correlated with another feature that is predictive?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you trained on a tiny random dataset and got \\(\\hat\\theta_i=0.12\\), would that alone prove the feature is informative? Why or why not?"
+        }
+      ],
+      "hints": [
+        "Start by separating two settings: the true population relationship versus the coefficient estimated from one finite training set. Ask what it means for a feature to contribute no information to the model\u2019s pre-sigmoid score.",
+        "Write the logistic model as a weighted sum before the sigmoid, \\(\\theta^T x\\). If \\(X_i\\) is truly uninformative, what role should the term \\(\\theta_i x_i\\) play in that score in the idealized population picture?",
+        "Now think about estimation from data: coefficients are fit from a sample, not handed to you by the population. Even if the population effect is absent, what could make the fitted \\(\\theta_i\\) come out slightly nonzero, especially when features are correlated or the sample is noisy?"
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0026",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "When training logistic regression on iid examples, we usually maximize the log-likelihood rather than the raw likelihood. Explain why this does not change the optimizer, and then explain why it is computationally and conceptually convenient for deriving gradient-ascent updates. Your explanation should connect the iid assumption to products and sums.",
+      "expected_answer": "A strong answer should say that under the iid assumption, the likelihood of the training set is a product over examples of the conditional probabilities assigned by the model. Taking logs turns that product into a sum of per-example terms. Because the logarithm is strictly increasing, the value of \\(\\theta\\) that maximizes likelihood is the same value that maximizes log-likelihood, so the optimizer does not change. This is computationally convenient because sums are much easier to differentiate and reason about than large products, which leads directly to a gradient that itself is a sum over datapoints and therefore to a simple gradient-ascent update rule. A good answer may also mention numerical stability: multiplying many small probabilities can underflow, while summing logs is more stable.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p23_cdce04ab1e",
+        "cs109_finalwin2025soln_q10_24aea9540d",
+        "cs109_20_mle_annotated_p22_17e4d190fb",
+        "cs109_25_logistic_regression_annotated_p35_bb96797170"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that iid data makes the likelihood a product across datapoints.",
+          "Explains that log is monotone, so argmax is unchanged.",
+          "Explains that the log converts products to sums, making derivatives easier.",
+          "Connects this to gradient ascent and/or numerical stability."
+        ],
+        "partial_credit": [
+          "Mentions easier differentiation but not why the optimizer is unchanged.",
+          "Mentions monotonicity of log but does not connect to iid products.",
+          "Gives a mostly correct explanation without tying it to training updates."
+        ],
+        "common_mistakes": [
+          "Saying the log-likelihood is a different objective with a different maximizer.",
+          "Forgetting the iid assumption behind the product form.",
+          "Claiming we use log-likelihood only for convenience, without acknowledging the identical argmax."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose the examples were not independent. Which step of your reasoning would need to be reconsidered?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you write, in words, what the full-data likelihood looks like before taking logs: is it a sum or a product over training examples?"
+        }
+      ],
+      "hints": [
+        "Start by writing the training-set likelihood under the iid assumption: each example contributes a factor, so the whole objective is a product over datapoints.",
+        "Ask what happens when you apply a strictly increasing function like log to an objective: does the parameter value that gives the maximum move, or only the scale of the objective?",
+        "Use log of a product equals sum of logs to rewrite the objective as per-example terms; then notice the gradient becomes a sum rather than a messy product, which is easier for gradient ascent and also avoids multiplying many tiny probabilities."
+      ]
+    },
+    {
+      "question_id": "CS109_logistic_regression_0027",
+      "course": "CS109",
+      "topic_id": "logistic_regression",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are comparing Naive Bayes and logistic regression for a spam filter. A teammate asks four things: which one models \\(P(Y\\mid X)\\) directly, which one could naturally generate a new full datapoint \\((x,y)\\) after training, and how the two differ philosophically in what distributions they learn. Answer these questions and use that comparison to explain one practical consequence for modeling input features.",
+      "expected_answer": "The student should say that logistic regression models the conditional probability \\(P(Y\\mid X)\\) directly: it is a discriminative model. Naive Bayes instead models the joint structure through \\(P(X\\mid Y)P(Y)\\), which can then be converted to \\(P(Y\\mid X)\\) with Bayes' rule, so it is a generative model. Because Naive Bayes has a model for \\(P(X\\mid Y)\\) and for \\(P(Y)\\), after training it can in principle sample a class label \\(Y\\) and then sample features \\(X\\) from the class-conditional distribution, thereby generating a new datapoint; standard logistic regression cannot naturally generate \\(X\\) because it does not model a distribution over features. A practical consequence is that Naive Bayes requires us to specify or assume feature distributions, which can be convenient or restrictive depending on whether features are continuous, discrete, or awkwardly distributed, while logistic regression avoids modeling feature distributions directly and focuses only on prediction of labels from observed features.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p44_d0de35ec97",
+        "cs109_23_naive_bayes_annotated_p31_1fb219e78c",
+        "cs109_26_deep_learning_annotated_p15_315bafad24"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly identifies logistic regression as modeling \\(P(Y\\mid X)\\) directly.",
+          "Correctly identifies Naive Bayes as modeling \\(P(X\\mid Y)\\) and \\(P(Y)\\), hence the joint structure.",
+          "Explains that Naive Bayes can generate \\((x,y)\\) after training, while logistic regression cannot naturally generate \\(x\\).",
+          "States one practical implication for feature modeling, such as needing distributional assumptions in Naive Bayes."
+        ],
+        "partial_credit": [
+          "Gets the discriminative vs generative distinction right but does not discuss generation of new datapoints.",
+          "Mentions Bayes' rule but does not clearly say what each model learns.",
+          "Gives a practical consequence vaguely without connecting it to feature distributions."
+        ],
+        "common_mistakes": [
+          "Saying logistic regression models \\(P(X\\mid Y)\\).",
+          "Claiming both models can equally generate full datapoints after training.",
+          "Confusing the decision boundary being linear with the model being generative."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If one input feature is continuous and another is a six-sided categorical count, why might the distributional assumptions matter more for Naive Bayes than for logistic regression?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which model has to say something explicit about how features are distributed within each class: logistic regression or Naive Bayes?"
+        }
+      ],
+      "hints": [
+        "Start by sorting the models into the two big categories: one is discriminative and the other is generative. That distinction tells you whether the model focuses directly on labels given features or on how the data are produced.",
+        "Write down the probability form each model learns: one targets a conditional like P(Y|X), while the other learns pieces of the joint structure, P(X|Y) and P(Y), and then uses Bayes\u2019 rule. Use those expressions to answer the \u201cwhat distribution is being learned?\u201d part.",
+        "For the generation question, ask which model has an explicit probability model for X itself. If a method can sample a class label and then sample features from a class-conditional distribution, it can produce a full (x,y); this also explains why one method needs feature-distribution assumptions and the other does not."
+      ]
+    }
+  ]
+}

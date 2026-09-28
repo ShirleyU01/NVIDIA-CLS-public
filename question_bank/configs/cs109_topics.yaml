@@ -1,0 +1,200 @@
+course: CS109
+embedding_model: text-embedding-3-small
+generation_model: gpt-5.4
+retrieve:
+  top_k_per_query: 8
+  max_chunks_per_topic: 32
+default_query_templates:
+  - "{name} definition"
+  - "{name} intuition"
+  - "{name} worked example"
+  - "{name} exam problem"
+topics:
+  - id: counting_combinatorics
+    name: Counting and Combinatorics
+    aliases:
+      - counting
+      - permutations
+      - combinations
+      - combinatorics
+      - counting principles
+
+  - id: probability_axioms
+    name: Axioms of Probability
+    aliases:
+      - probability axioms
+      - sample space
+      - events
+      - probability rules
+      - equally likely outcomes
+
+  - id: conditional_probability
+    name: Conditional Probability and Bayes Rule
+    aliases:
+      - conditional probability
+      - bayes rule
+      - bayes theorem
+      - law of total probability
+
+  - id: independence
+    name: Independence
+    aliases:
+      - independence
+      - independent events
+      - conditional independence
+
+  - id: random_variables
+    name: Random Variables
+    aliases:
+      - random variable
+      - discrete random variable
+      - pmf
+      - expectation
+
+  - id: variance_distributions_discrete
+    name: Variance and Discrete Distributions
+    aliases:
+      - variance
+      - bernoulli distribution
+      - binomial distribution
+      - expectation properties
+
+  - id: poisson_approximation
+    name: Poisson Distribution and Approximations
+    aliases:
+      - poisson distribution
+      - poisson approximation
+      - rare events
+
+  - id: continuous_random_variables
+    name: Continuous Random Variables
+    aliases:
+      - continuous random variable
+      - pdf
+      - cdf continuous
+      - density function
+
+  - id: normal_distribution
+    name: Normal Distribution
+    aliases:
+      - gaussian distribution
+      - normal distribution
+      - standard normal
+      - binomial approximation to normal
+
+  - id: joint_distributions
+    name: Joint Distributions
+    aliases:
+      - joint distribution
+      - joint pmf
+      - joint pdf
+      - marginal distribution
+
+  - id: independent_random_variables
+    name: Independent Random Variables
+    aliases:
+      - independence of random variables
+      - sum of random variables
+      - convolution intuition
+
+  - id: covariance_correlation
+    name: Covariance and Correlation
+    aliases:
+      - covariance
+      - correlation
+      - dependence between variables
+
+  - id: conditional_expectation
+    name: Conditional Expectation
+    aliases:
+      - conditional expectation
+      - expectation given event
+      - law of total expectation
+
+  - id: statistical_inference
+    name: Statistical Inference
+    aliases:
+      - inference
+      - estimation
+      - population vs sample
+
+  - id: continuous_joint_distributions
+    name: Continuous Joint Distributions
+    aliases:
+      - joint continuous distribution
+      - joint pdf continuous
+      - multivariate distributions
+
+  - id: central_limit_theorem
+    name: Central Limit Theorem
+    aliases:
+      - clt
+      - central limit theorem
+      - normal approximation
+
+  - id: sampling_bootstrapping
+    name: Sampling and Bootstrapping
+    aliases:
+      - sampling
+      - bootstrap
+      - resampling
+      - empirical distribution
+
+  - id: maximum_likelihood_estimation
+    name: Maximum Likelihood Estimation (MLE)
+    aliases:
+      - mle
+      - likelihood
+      - parameter estimation
+      - mle normal
+
+  - id: beta_distribution
+    name: Beta Distribution
+    aliases:
+      - beta distribution
+      - conjugate prior
+      - beta-binomial
+
+  - id: maximum_a_posteriori
+    name: Maximum a Posteriori (MAP)
+    aliases:
+      - map estimation
+      - bayesian estimation
+      - prior and posterior
+
+  - id: naive_bayes
+    name: Naive Bayes
+    aliases:
+      - naive bayes
+      - conditional independence assumption
+      - classification
+
+  - id: linear_regression
+    name: Linear Regression and Optimization
+    aliases:
+      - linear regression
+      - least squares
+      - gradient ascent
+      - optimization
+
+  - id: logistic_regression
+    name: Logistic Regression
+    aliases:
+      - logistic regression
+      - sigmoid
+      - classification probability
+
+  - id: deep_learning_intro
+    name: Introduction to Deep Learning
+    aliases:
+      - neural networks
+      - deep learning
+      - classification models
+
+  - id: ethics_ai
+    name: Ethics in Probability and AI
+    aliases:
+      - ai ethics
+      - bias
+      - fairness
+      - ethical considerations

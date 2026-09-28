@@ -1,0 +1,239 @@
+{
+  "course": "CS109",
+  "topic_id": "conditional_probability",
+  "topic_name": "Conditional Probability and Bayes Rule",
+  "queries_used": [
+    "Conditional Probability and Bayes Rule definition",
+    "Conditional Probability and Bayes Rule intuition",
+    "Conditional Probability and Bayes Rule worked example",
+    "Conditional Probability and Bayes Rule exam problem",
+    "conditional probability overview",
+    "conditional probability practice",
+    "bayes rule overview",
+    "bayes rule practice",
+    "bayes theorem overview",
+    "bayes theorem practice",
+    "law of total probability overview",
+    "law of total probability practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_04_cond_bayes_annotated_p0_p1_363461d81a",
+      "text": "04: Conditional \nProbability and Bayes\nJerry Cain\nApril 8th, 2024\n1\nLecture Discussion on Ed\n\nConditional \nProbability\n2",
+      "source_type": "lecture_slide",
+      "document_name": "04 cond bayes annotated",
+      "score": 0.6694387793540955
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional probability and Bayes’ Theorem\n24\n𝑃𝐹|𝐸= 𝑃𝐹𝑃𝐸|𝐹\n𝑃𝐸\n𝑃𝐹|𝐸= 𝑃𝐸∩𝐹\n𝑃𝐸\nDefinition\nBayes’ Theorem\nPrior: some prob. of event 𝐹\nPosterior: prob. of \n𝐹 knowing that 𝐸 \nhappened\nLikelihood\nScaling to the correct sample space\nScaling to the correct sample space\nIndependence\n𝑃𝐹|𝐸= 𝑃𝐹\nSample space doesn’t need\nto be scaled\n𝐸, 𝐹 independent",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.6374829411506653
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p22_cf0d04ea8f",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEverything* in probability is a sum or a product (or both)\n23\nSum of values that can \nbe considered separately \n(possibly weighted by \nprob. of happening)\nProduct of values that \ncan each be considered \nin sequence\n𝐸𝑋|𝑌= 𝑦= (\n./\n/\n𝑥𝑓+|, 𝑥|𝑦𝑑𝑥\n𝐸𝑋= ;\n:\n𝑥𝑝𝑥\nLaw of Total Probability\n𝑃(𝐸) = ;\n;<=\n>\n𝑃𝐸|𝐹; 𝑃𝐹;\nweight\nweight\nweight\nAxiom 3, 𝐸= 𝐸+ ∪⋯∪𝐸,\n𝑃𝐸= ;\n;<=\n>\n𝑃𝐸;\nChain Rule\n𝑃(𝐸∩𝐹∩𝐺) = 𝑃𝐸𝑃𝐹|𝐸𝑃𝐺|𝐸𝐹\n𝑓+,, 𝑥, 𝑦= 𝑓+ 𝑥𝑓, 𝑦\nIndependent cont. RVs \n*except conditional probability (a ratio)\n𝑃𝑋+ 𝑌= 𝑛= *\n0\n𝑃𝑋= 𝑘𝑃𝑌= 𝑛−𝑘\nSum of indep. discrete RVs \n(convolution)",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.6322237253189087
+    },
+    {
+      "chunk_id": "cs109_04_cond_bayes_annotated_p22_f25b261e45",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBayes’ Theorem\n23\nThm For any events 𝐸 and 𝐹 where 𝑃𝐸> 0 and 𝑃𝐹> 0,\n𝑃𝐹𝐸= 𝑃𝐸𝐹𝑃𝐹\n𝑃𝐸\nProof\n \n2 steps!\nExpanded form:\n𝑃𝐹𝐸=\n𝑃𝐸𝐹𝑃𝐹\n𝑃𝐸|𝐹𝑃𝐹+ 𝑃𝐸𝐹! 𝑃(𝐹!)\n𝑃𝐹|𝐸\n𝑃𝐸|𝐹\nProof\n \n1 more step!",
+      "source_type": "lecture_slide",
+      "document_name": "04 cond bayes annotated",
+      "score": 0.6272934675216675
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p24_p25_78ee9a2e6b",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMultiple Bayes’ Theorems\n25\n𝑝!|# 𝑦|𝑥=\n𝑝! 𝑦𝑝#|! 𝑥|𝑦\n𝑝# 𝑥\n𝑃𝐹|𝐸= 𝑃𝐹𝑃𝐸|𝐹\n𝑃𝐸\n𝑓!|# 𝑦|𝑥=\n𝑓! 𝑦𝑓#|! 𝑥|𝑦\n𝑓# 𝑥\nwith \nevents\nwith\ndiscrete RVs\nwith\ncontinuous RVs\nReally all the \nsame idea!\nYou are given \nthis value…\n…so this is just a scalar\n\nIntense\nExercise\n26",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.6224187016487122
+    },
+    {
+      "chunk_id": "cs109_04_cond_bayes_annotated_p7_p8_8ddf92746a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional probability in general\nGeneral definition of conditional probability:\n𝑃𝐸|𝐹= 𝑃𝐸𝐹\n𝑃(𝐹)\nThe Chain Rule (aka Product rule):\n𝑃𝐸𝐹= 𝑃𝐹𝑃𝐸𝐹\n8\nThese properties hold even when \noutcomes are not equally likely.\n\nand Learn",
+      "source_type": "lecture_slide",
+      "document_name": "04 cond bayes annotated",
+      "score": 0.6184316873550415
+    },
+    {
+      "chunk_id": "cs109_04_cond_bayes_annotated_p16_0709e8c976",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGeneral Law of Total Probability\nThm \nFor mutually exclusive events 𝐹!, 𝐹\", …, 𝐹)\n \nsuch that 𝐹! ∪𝐹\" ∪⋯∪𝐹) = 𝑆,\n17\n𝑃(𝐸) = A\n/0!\n)\n𝑃𝐸|𝐹/ 𝑃𝐹/",
+      "source_type": "lecture_slide",
+      "document_name": "04 cond bayes annotated",
+      "score": 0.6179001331329346
+    },
+    {
+      "chunk_id": "cs109_finalwin2025soln_q1_1fe9fb8c08",
+      "text": "Short Answer [23 points]\na. (5 points) Let 𝑋∼Exp(𝜆= 0.2). What is the probability that 𝑋is between 5 and 10?\nWe can solve this problem using either the CDF or the integral of the PDF for the Exponential.\nCDF:\n𝑃(5 < 𝑋< 10) = 𝑃(𝑋< 10) −𝑃(𝑋< 5)\n= 1 −𝑒−0.2·10 −\n\u0010\n1 −𝑒−0.2·5\u0011\n= 1 −𝑒−2 −1 + 𝑒−1\n= 𝑒−1 −𝑒−2\nIntegral of PDF:\n𝑃(5 < 𝑋< 10) =\n∫10\n5\n𝜆𝑒−𝜆𝑥𝑑𝑥\n=\n\u0002\n−0.2 · 5 · 𝑒−0.2𝑥\u000310\n𝑥=5\n= −𝑒−0.2·10 + 𝑒−0.2·5\n= 𝑒−1 −𝑒−2\n\n3\nb. (6 points) When it rains in the morning, your neighbor’s dog has a 70% chance of being mucky. On\nmornings without rain, their dog is mucky only 20% of the time. Each day has a 10% chance of rain in\nthe morning. Today, their dog was mucky. What is the probability it was raining in the morning?\nLet M be the event the dog is mucky and R being the event it’s raining. Using Bayes’ Theorem:\n𝑃(𝑅|𝑀) = 𝑃(𝑀|𝑅)𝑃(𝑅)\n𝑃(𝑀)\n=\n𝑃(𝑀|𝑅)𝑃(𝑅)\n𝑃(𝑀|𝑅)𝑃(𝑅) + 𝑃(𝑀|𝑅𝐶)𝑃(𝑅𝐶)\n=",
+      "source_type": "exam_question",
+      "document_name": "FinalWin2025Soln",
+      "score": 0.6104347705841064
+    },
+    {
+      "chunk_id": "cs109_demo_p0_p1_9c72e6785c",
+      "text": "Introduction to probability: sample space, events, and the axioms of probability.\n\nConditional probability P(A|B) and Bayes rule connect prior, likelihood, and posterior.",
+      "source_type": "lecture_slide",
+      "document_name": "Demo Lecture",
+      "score": 0.6064952611923218
+    },
+    {
+      "chunk_id": "cs109_04_cond_bayes_annotated_p15_ae4b655a54",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLaw of Total Probability\nThm \nLet 𝐹 be an event where 𝑃𝐹> 0. For any event 𝐸,\n \n𝑃(𝐸) = 𝑃𝐸|𝐹𝑃𝐹+ 𝑃𝐸|𝐹! 𝑃𝐹!  \nProof\n \n1. 𝐹, 𝐹(are disjoint such that 𝐹∪𝐹( = S \nDef. of complement\n \n2. 𝐸= 𝐸𝐹∪(𝐸𝐹()  \n \n \n \n(see diagram)\n \n3. 𝑃(𝐸) = 𝑃𝐸𝐹+ 𝑃(𝐸𝐹()  \n \n \nAdditivity axiom\n \n4. 𝑃(𝐸) = 𝑃𝐸|𝐹𝑃𝐹+ 𝑃𝐸|𝐹( 𝑃𝐹(  \nChain rule (product rule)\n16\nNote: disjoint sets are, by definition, mutually exclusive events",
+      "source_type": "lecture_slide",
+      "document_name": "04 cond bayes annotated",
+      "score": 0.6035694479942322
+    },
+    {
+      "chunk_id": "cs109_04_cond_bayes_annotated_p24_p25_db149ab3a8",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBayes’ Theorem terminology\n𝑃𝐹𝐸= 𝑃𝐸𝐹𝑃𝐹\n𝑃𝐸\n25\nposterior\nlikelihood\nprior\n𝑃𝐹\n 𝑃𝐸|𝐹\n 𝑃𝐸|𝐹(\nWant: 𝑃𝐹|𝐸\nnormalization constant\n• 60% of all email in 2016 is spam.\n• 20% of spam has the word \"Dear\"\n• 1% of non-spam (aka ham) has the word \"Dear\"\nYou get an email with the word \"Dear\" in it.\nWhat is the probability that the email is spam?\n\nBayes’ Theorem II\n26",
+      "source_type": "lecture_slide",
+      "document_name": "04 cond bayes annotated",
+      "score": 0.5979905128479004
+    },
+    {
+      "chunk_id": "cs109_04_cond_bayes_annotated_p20_3869dc7466",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nToday’s tasks\n21\n𝑃𝐸\n𝑃𝐸|𝐹\n𝑃𝐹|𝐸\nLaw of Total\nProbability\nBayes’\nTheorem\nDefinition of\nconditional probability\nChain rule\n(Product rule)\n𝑃𝐸𝐹\nRev. Thomas Bayes (~1701-1761):\nBritish mathematician and Presbyterian minister",
+      "source_type": "lecture_slide",
+      "document_name": "04 cond bayes annotated",
+      "score": 0.5916531682014465
+    },
+    {
+      "chunk_id": "cs109_14_conditional_expectation_annotated_p16_d1adb0751a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProof of Law of Total Expectation\n17\n𝐸𝑋= 𝐸𝐸𝑋|𝑌\n𝐸𝐸𝑋|𝑌\n= 𝐸𝑔𝑌\n= )\n\"\n𝑃𝑌= 𝑦𝐸𝑋|𝑌= 𝑦\n(LOTUS, 𝑔𝑌= 𝐸𝑋|𝑌)\n= )\n\"\n𝑃𝑌= 𝑦)\n!\n𝑥𝑃𝑋= 𝑥|𝑌= 𝑦\n(def of \nconditional \nexpectation)\n= )\n\"\n)\n!\n𝑥𝑃𝑋= 𝑥|𝑌= 𝑦𝑃𝑌= 𝑦\n= )\n\"\n)\n!\n𝑥𝑃𝑋= 𝑥, 𝑌= 𝑦\n(chain rule)\n= )\n!\n)\n\"\n𝑥𝑃𝑋= 𝑥, 𝑌= 𝑦\n= )\n!\n𝑥)\n\"\n𝑃𝑋= 𝑥, 𝑌= 𝑦\n(switch order of \nsummations)\n= )\n!\n𝑥𝑃𝑋= 𝑥\n(marginalization)\n= 𝐸𝑋",
+      "source_type": "lecture_slide",
+      "document_name": "14 conditional expectation annotated",
+      "score": 0.5874876976013184
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p2_4797680fc1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional Paradigm\nFor any events A, B, and E, you can condition consistently on E,\nand all formulas still hold:\nAxiom 1  \n \n \n \n \n 0 ≤𝑃𝐴𝐸≤1\nCorollary 1 (complement)  \n 𝑃𝐴𝐸= 1 −𝑃𝐴!|𝐸\nTransitivity \n \n \n \n \n 𝑃𝐴𝐵𝐸= 𝑃(𝐵𝐴|𝐸)\nChain Rule  \n \n \n \n 𝑃𝐴𝐵𝐸= 𝑃(𝐵|𝐸)𝑃𝐴𝐵𝐸\nBayes’ Theorem  \n \n \n \n3\n𝑃𝐴𝐵𝐸= 𝑃𝐵𝐴𝐸𝑃𝐴|𝐸\n𝑃(𝐵|𝐸)\n‘s theorem?",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.579802930355072
+    },
+    {
+      "chunk_id": "cs109_04_cond_bayes_annotated_p27_08be1e5795",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMathematically:\n  \n \n \n \n \n \n𝑃𝐸𝐹→𝑃𝐹|𝐸\nReal-life application:  \n \n \n \n \n \n \nGiven new evidence 𝐸, update belief of fact 𝐹 \n \n \n \n \n \n \nPrior belief → Posterior belief\n \n \n \n \n \n \n𝑃𝐹→𝑃𝐹|𝐸\nBayes’ Theorem\n28\nposterior\nlikelihood\nprior\nReview\n𝑃𝐹𝐸= 𝑃𝐸𝐹𝑃𝐹\n𝑃𝐸",
+      "source_type": "lecture_slide",
+      "document_name": "04 cond bayes annotated",
+      "score": 0.5766353607177734
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p18_p19_653a0fdfd1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRatios of PDFs \nare meaningful!\nRelative probabilities of continuous random variables\n19\n𝑃𝑋= 𝑎= 𝑃𝑎−𝜀\n2 ≤𝑋≤𝑎+ 𝜀\n2\n𝑃𝑋= 10\n𝑃𝑋= 5\n= 𝑓10\n𝑓5\n𝑃𝑋= 𝑎\n𝑃𝑋= 𝑏= 𝜀𝑓𝑎\n𝜀𝑓𝑏= 𝑓𝑎\n𝑓𝑏\nTherefore\n= ?\n$%&\n'\n$#&\n'𝑓𝑥𝑑𝑥≈𝜀𝑓(𝑎)\n=\n1\n𝜎2𝜋𝑒\" )* \" + !\n,-!\n1\n𝜎2𝜋𝑒\n\" . \" + !\n,-!\n= 𝑒\" )* \")* !\n,⋅,\n𝑒\" . \" )* !\n,⋅,\n= \n𝑒(\n𝑒% ')\n*\n = 518\n5             10\n!\n\"(!)\nLet 𝑋= time to finish problem set 4.\nSuppose 𝑋~𝒩10, 2 .\nHow much more likely are you to \ncomplete in 10 hours than 5 hours?\n\nContinuous \nconditional \ndistributions\n20",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.5705146789550781
+    },
+    {
+      "chunk_id": "cs109_04_cond_bayes_annotated_p17_4f3ffa1457",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFinding 𝑃𝐸 from  𝑃𝐸|𝐹 \nLaw of Total\nProbability\n• Flip a fair coin.\n• If heads: roll a fair 6-sided die.\n• Else: roll a fair 3-sided die.\nYou win if you roll a 6. What is P(winning)?\n18\n𝑃𝐸= 𝑃𝐸|𝐹𝑃𝐹+ 𝑃𝐸|𝐹! 𝑃𝐹!",
+      "source_type": "lecture_slide",
+      "document_name": "04 cond bayes annotated",
+      "score": 0.5699443221092224
+    },
+    {
+      "chunk_id": "cs109_04_cond_bayes_annotated_p14_a3b7e6fdf9",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nToday’s tasks\n15\n𝑃𝐸\n𝑃𝐸|𝐹\nLaw of Total\nProbability\nDefinition of\nconditional probability\nChain rule\n(Product rule)\n𝑃𝐸𝐹",
+      "source_type": "lecture_slide",
+      "document_name": "04 cond bayes annotated",
+      "score": 0.5678497552871704
+    },
+    {
+      "chunk_id": "cs109_14_conditional_expectation_annotated_p5_0628feb14d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDiscrete probabilities of CS109\nThe below are conditional probability \ntables for conditional PMFs\n(A) 𝑃𝑌= 𝑦|𝑇= 𝑡 and (B) 𝑃𝑇= 𝑡|𝑌= 𝑦.\n1. Which is which?\n2. What’s the missing probability?\n6\n𝑌= 1 𝑌= 2 𝑌= 3\n𝑇= −1\n.06\n.01\n.01\n𝑇= 0\n.29\n.14\n.09\n𝑇= 1\n.30\n.08\n.02\n𝑌= 1 𝑌= 2 𝑌= 3\n𝑇= −1\n.09\n.04\n.08\n𝑇= 0\n.45\n.61\n.75\n𝑇= 1\n.46\n.35\n.17\nJoint PMF\n𝑌= 1 𝑌= 2 𝑌= 3\n𝑇= −1\n.75\n.125\n?\n𝑇= 0\n.56\n.27\n.17\n𝑇= 1\n.75\n.2\n.05\n(B) 𝑃𝑇= 𝑡|𝑌= 𝑦\n(A) 𝑃𝑌= 𝑦|𝑇= 𝑡\n.30/(.06+.29+.30)\n1-.75-.125\n.125\nConditional PMFs also sum to 1 conditioned on \ndifferent events!",
+      "source_type": "lecture_slide",
+      "document_name": "14 conditional expectation annotated",
+      "score": 0.567275881767273
+    },
+    {
+      "chunk_id": "cs109_04_cond_bayes_annotated_p4_08eb1a3d3d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional Probability, equally likely outcomes\nThe conditional probability of 𝐸 given 𝐹 is the probability that 𝐸 occurs \ngiven that F has already occurred. This is known as conditioning on F.\nWith equally likely outcomes:\n𝑃𝐸𝐹= # of outcomes in E consistent with F\n# of outcomes in S consistent with F = |𝐸∩𝐹|\n|𝑆∩𝐹| = |𝐸∩𝐹|\n|𝐹|\n5\n𝑃𝐸𝐹= |𝐸𝐹|\n|𝐹|\n𝑃𝐸𝐹= 3\n14 ≈0.21\n𝑃𝐸= 8\n50 ≈0.16",
+      "source_type": "lecture_slide",
+      "document_name": "04 cond bayes annotated",
+      "score": 0.566390335559845
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p14_f31b05e7ec",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBayes’ Theorem: All Flavors\nLet 𝑋, 𝑌 be continuous\nOriginal Bayes: \n \n𝑝+|9 𝑚|𝑛=\n:!|# 1|3 :# 3\n:! 1\nMix Bayes #1: \n \n𝑓7|9 𝑥𝑛=\n:!|$ 1|; <$ ;\n:! 1\nMix Bayes #2: \n \n𝑝9|7 𝑛|𝑥=\n<$|! ;|1 :! 1\n<$ ;\nAll continuous: \n \n𝑓7|= 𝑥𝑦=\n<%|$ >|; <$ ;\n<% >\n15\nand 𝑀, 𝑁 be discrete random variables.",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.563834547996521
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p25_p26_b15b90b12e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBrute Force Bayes classifier\n26\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n26\n(𝑃𝑋!, 𝑋\", … , 𝑋#|𝑌= 1\nTesting\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑋!, 𝑋\", … , 𝑋#|𝑌(𝑃𝑌\nTraining\n(𝑃𝑌= 1  \nEstimate these \nprobabilities—i.e.,\nlearn these parameters\nusing MLE or Laplace (MAP)\n( 1𝑃𝑌 is an estimate of 𝑃𝑌,\n 1𝑃𝑿|𝑌 is an estimate of 𝑃𝑿|𝑌)\n(𝑃𝑋!, 𝑋\", … , 𝑋#|𝑌= 0\n(𝑃𝑌= 0  \nGiven an observation 𝑿= 𝑋!, 𝑋\", … , 𝑋# , predict\n\nNaïve Bayes\n27",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.5609569549560547
+    },
+    {
+      "chunk_id": "cs109_04_cond_bayes_annotated_p33_4c0a52aac2",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBayes’ Theorem intuition\n34\nOriginal question:\nWhat is the likelihood \nyou have Zika if you \ntest positive for the \ndisease?\nPeople who test positive\nPeople with Zika\nThe space\nof facts\nAll People",
+      "source_type": "lecture_slide",
+      "document_name": "04 cond bayes annotated",
+      "score": 0.5607835054397583
+    },
+    {
+      "chunk_id": "cs109_04_cond_bayes_annotated_p3_e28a5b5ae2",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional Probability\nThe conditional probability of 𝐸 given 𝐹 is the probability that 𝐸 occurs \ngiven that F has already occurred. This is known as conditioning on F.\nWritten as: \n \n \n𝑃(𝐸|𝐹)\nMeans:  \n \n \n\"𝑃𝐸, knowing 𝐹 already observed \"\nSample space à  \nall possible outcomes in 𝐹\nEvent à \n \n \nall possible outcomes in 𝐸∩𝐹\n4",
+      "source_type": "lecture_slide",
+      "document_name": "04 cond bayes annotated",
+      "score": 0.5546249151229858
+    },
+    {
+      "chunk_id": "cs109_14_conditional_expectation_annotated_p0_p1_3cd749a47e",
+      "text": "14: Conditional \nExpectation\nJerry Cain\nMay 1st, 2024\nLecture Discussion on Ed\n\nDiscrete \nconditional \ndistributions\n2",
+      "source_type": "lecture_slide",
+      "document_name": "14 conditional expectation annotated",
+      "score": 0.5539273619651794
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p15_3b7231a7cc",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThree Axioms of Probability\nDefinition of probability: \n𝑃𝐸= lim\n\"→$\n\"(&)\n\"\nAxiom 1: \n \n \n \n0 ≤𝑃𝐸≤1\nAxiom 2: \n \n \n \n𝑃𝑆= 1\nAxiom 3: \n \n \n \nIf 𝐸 and 𝐹 are mutually exclusive (𝐸∩𝐹= ∅),\n \n \n \n \n \n \nthen 𝑃𝐸∪𝐹= 𝑃𝐸+ 𝑃𝐹\n16",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.5490871667861938
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p32_f98bba92d1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n3 Corollaries of Axioms of Probability\nCorollary 1:  \n \n𝑃𝐸! = 1 −𝑃(𝐸)\nCorollary 2:  \n \nIf 𝐸⊆𝐹, then 𝑃𝐸≤𝑃(𝐹)\nCorollary 3:  \n \n𝑃𝐸∪𝐹= 𝑃𝐸+ 𝑃𝐹−𝑃𝐸𝐹\n  \n \n \n \n \n(Inclusion-Exclusion Principle for Probability)\n33",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.5425105690956116
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p9_p10_e8e8715fe6",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhat is a probability?\n𝑃𝐸= lim\n!→#\n𝑛(𝐸)\n𝑛\n𝑛 = # of total trials\n𝑛(𝐸) = # trials where 𝐸 occurs\n10\nLet 𝐸 = the set of outcomes\n \nwhere you hit the target.\n𝑃𝐸≈0.458\n\nAxioms of \nProbability\n11",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.5345330834388733
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p31_1fb219e78c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThe problem with our current classifier\n32\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑌 | 𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑋!, 𝑋\", … , 𝑋#|𝑌\nEstimating this joint conditional \ndistribution is intractable.\nWhat if we could make a simplifying assumption—even if incredibly naïve—\nto make our parameter estimation effort computationally tractable?\nChoose the 𝑌 that is \nmost likely given 𝑿\n(Bayes’ Theorem)\n(1/𝑃𝑿 is constant w.r.t. 𝑦)",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.5232073068618774
+    },
+    {
+      "chunk_id": "cs109_midtermfall2022soln_p8_5422ee91d1",
+      "text": "a binomial with n = 100000 and p =\ni\n1000000, with\nλ = np = 100000·\ni\n1000000 = i\n10\nSo X can be written as\nX ∼Poi(λ = i\n10)\nNow we can rewrite our Bayes Rule equation (equation 2) as\n= P(X = 1)P(viral load = i)\nP(observed count of\n1\n100000)\nWe can now use the Poisson PMF and our given prior to get:\n=\ni\n10 e\n−i\n10\n1!\n·prior[i]\nP(observed count of\n1\n100000)\n(3)\nWe now need to expand our denominator. We can use the General Law of Total Probability to expand\nP(observed count of\n1\n100000) =\n99\n∑\nj=0\nP(observed count of\n1\n100000|viral load = i)P(viral load = i)\nWe can rewrite this as\n=\n99\n∑\nj=0\nj\n10e\n−j\n10\n1!\n·prior[j]\n=\n99\n∑\nj=0\nj\n10e\n−j\n10 ·prior[j]\nAnd finally, we can plug this into Equation 3 to get\ni\n10e\n−i\n10 ·prior[i]\n∑99\nj=0\nj\n10e\n−j\n10 ·prior[j]\n.\n9",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermFall2022Soln",
+      "score": 0.5216705203056335
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p8_1f8e3c24a5",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nEx 3. Naïve Bayes Classifier (𝑚, 𝑛 large)\n9\n0𝑌= arg max\n'( ),!\n9\n$(!\n#\n0𝑃𝑋$|𝑌\n0𝑃𝑌\n9\n∀𝑖:\n0𝑃𝑌= 1 , 0𝑃𝑌= 0  \n0𝑃𝑋$ = 1|𝑌= 0 , 0𝑃𝑋$ = 0|𝑌= 0 ,\n0𝑃𝑋$ = 1|𝑌= 1 , 0𝑃𝑋$ = 0|𝑌= 0 ,\nTesting\nTraining\nUse MLE or\nLaplace (MAP)\n0𝑌= arg max\n'( ),!\nlog 0𝑃𝑌+ ?\n$(!\n#\nlog 0𝑃𝑋$|𝑌\nUse sums of log-\nprobabilities for \nnumerical stability.",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.5207306146621704
+    }
+  ],
+  "built_at": "2026-04-28T05:13:06Z"
+}

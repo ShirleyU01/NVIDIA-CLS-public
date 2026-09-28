@@ -1,0 +1,174 @@
+{
+  "course": "CS109",
+  "topic_id": "independence",
+  "topic_name": "Independence",
+  "queries_used": [
+    "Independence definition",
+    "Independence intuition",
+    "Independence worked example",
+    "Independence exam problem",
+    "independence overview",
+    "independence practice",
+    "independent events overview",
+    "independent events practice",
+    "conditional independence overview",
+    "conditional independence practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p3_2087ff1982",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional Independence\n4\nTwo events 𝐴 and 𝐵 are defined as conditionally independent given 𝐸 if:\n𝑃𝐴𝐵|𝐸= 𝑃𝐴|𝐸𝑃(𝐵|𝐸)\nAn equivalent definition:\nA.  𝑃𝐴𝐵= 𝑃𝐴\nB.  𝑃𝐴𝐵𝐸= 𝑃𝐴\nC.  𝑃𝐴𝐵𝐸= 𝑃𝐴|𝐸\n𝑃𝐸|𝐹= 𝑃(𝐸)\n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹)\nIndependent\nevents 𝐸 and 𝐹",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.6040898561477661
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p4_ae2b276089",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional Independence\n5\nTwo events 𝐴 and 𝐵 are defined as conditionally independent given 𝐸 if:\n𝑃𝐴𝐵|𝐸= 𝑃𝐴|𝐸𝑃(𝐵|𝐸)\nAn equivalent definition:\nA.  𝑃𝐴𝐵= 𝑃𝐴\nB.  𝑃𝐴𝐵𝐸= 𝑃𝐴\nC.  𝑃𝐴𝐵𝐸= 𝑃𝐴|𝐸\n𝑃𝐸|𝐹= 𝑃(𝐸)\n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹)\nIndependent\nevents 𝐸 and 𝐹\nE is the \"new sample space\", \nso left and right side must \nboth be conditioned on E.",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.6023614406585693
+    },
+    {
+      "chunk_id": "cs109_05_independence_annotated_p5_bfa15e0662",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGeneralizing independence\nThree events 𝐸, 𝐹, and 𝐺\nare independent if:\n𝑛 events 𝐸#, 𝐸$, … , 𝐸% are\nindependent if:\n6\n𝑃𝐸𝐹𝐺= 𝑃𝐸𝑃𝐹𝑃𝐺, and \n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹), and \n𝑃𝐸𝐺= 𝑃𝐸𝑃(𝐺), and \n𝑃𝐹𝐺= 𝑃𝐹𝑃(𝐺) \nfor 𝑟= 1, … , 𝑛:\n \nfor every subset 𝐸(, 𝐸), … , 𝐸*: \n𝑃𝐸(𝐸) … 𝐸* = 𝑃𝐸( 𝑃𝐸) ⋯𝑃𝐸*",
+      "source_type": "lecture_slide",
+      "document_name": "05 independence annotated",
+      "score": 0.5694827437400818
+    },
+    {
+      "chunk_id": "cs109_05_independence_annotated_p2_83a4f9898c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIndependence\nTwo events 𝐸 and 𝐹 are defined as independent if:\n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹)\nOtherwise 𝐸 and 𝐹 are called dependent events.\nIf 𝐸 and 𝐹 are independent, then:\n𝑃𝐸𝐹= 𝑃(𝐸)\n3",
+      "source_type": "lecture_slide",
+      "document_name": "05 independence annotated",
+      "score": 0.5646018981933594
+    },
+    {
+      "chunk_id": "cs109_05_independence_annotated_p0_p1_5e7562aab8",
+      "text": "05: Independence\nJerry Cain\nApril 10th, 2024\n1\nLecture Discussion on Ed\n\nIndependence I\n2",
+      "source_type": "lecture_slide",
+      "document_name": "05 independence annotated",
+      "score": 0.5562865138053894
+    },
+    {
+      "chunk_id": "cs109_05_independence_annotated_p9_c669dce796",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIndependent trials\nWe often are interested in experiments consisting of 𝑛 independent trials.\n• 𝑛 trials, each with the same set of possible outcomes\n• 𝑛-way independence: an event in one subset of trials is independent of \nevents in other subsets of trials \nExamples:\n• Flip a coin 𝑛 times\n• Roll a die 𝑛 times\n• Send a multiple-choice survey to 𝑛 people\n• Send 𝑛 web requests to 𝑘 different servers\n10",
+      "source_type": "lecture_slide",
+      "document_name": "05 independence annotated",
+      "score": 0.5531704425811768
+    },
+    {
+      "chunk_id": "cs109_demo_exam_q1_c290a1b3af",
+      "text": "Define independence for two discrete random variables.",
+      "source_type": "exam_question",
+      "document_name": "Demo Exam",
+      "score": 0.5435501337051392
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p9_p10_e768695e32",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDependent events can be conditionally independent.\n(And vice versa: Independent events can be conditionally dependent.)\nNetflix and Condition\n10\n𝐸(\n𝐸)\n𝐸*\n𝐸+\n𝐾: likes international emotional comedies\n𝐸$𝐸'𝐸(𝐸) are\ndependent\n𝐸$𝐸'𝐸(𝐸) are\nconditionally independent \ngiven 𝐾\nChallenge: How \ndo we determine \n𝐾? Stay tuned in \n6 weeks’ time!\n\nRandom \nVariables\n11",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.5406132936477661
+    },
+    {
+      "chunk_id": "cs109_05_independence_annotated_p14_d61ad3f096",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIndependence?\n1. True or False? Two events 𝐸 and 𝐹 are independent if:\nA. Knowing that 𝐹 happens means that 𝐸 can’t happen.\nB. Knowing that 𝐹 happens doesn’t change probability that 𝐸 happened.\n2. Are 𝐸 and 𝐹 independent in the following pictures?\n15\nS\nF\nE\nS\nE\nF\nA.  \nB.  \n1/4\n2/9\n1/9\n4/9\n1/4\n𝑃𝐸|𝐹= 𝑃(𝐸)\n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹)\nIndependent\nevents 𝐸 and 𝐹",
+      "source_type": "lecture_slide",
+      "document_name": "05 independence annotated",
+      "score": 0.5382868051528931
+    },
+    {
+      "chunk_id": "cs109_05_independence_annotated_p13_a3cc199a6d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIndependence?\n1. True or False? Two events 𝐸 and 𝐹 are independent if:\nA. Knowing that 𝐹 happens means that 𝐸 can’t happen.\nB. Knowing that 𝐹 happens doesn’t change probability that 𝐸 happened.\n2. Are 𝐸 and 𝐹 independent in the following pictures?\n14\nS\nF\nE\nS\nE\nF\nA.  \nB.  \n1/4\n2/9\n1/9\n4/9\n1/4\n𝑃𝐸|𝐹= 𝑃(𝐸)\n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹)\nIndependent\nevents 𝐸 and 𝐹",
+      "source_type": "lecture_slide",
+      "document_name": "05 independence annotated",
+      "score": 0.5380125045776367
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p10_p11_4386b25b25",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditionally Independent RVs\nRecall that two events 𝐴 and 𝐵 are\nconditionally independent given 𝐸 if:\n𝑛 discrete random variables 𝑋%, 𝑋&, … , 𝑋' are called conditionally \nindependent given 𝑌 if: \n \nfor all 𝑥%, 𝑥&, … , 𝑥', 𝑦:\n𝑃𝑋% = 𝑥%, 𝑋& = 𝑥&, … , 𝑋' = 𝑥'|𝑌= 𝑦= 6\n()%\n'\n𝑃𝑋( = 𝑥(|𝑌= 𝑦\nThis implies the following (cool to remember for later):\nlog 𝑃𝑋% = 𝑥%, 𝑋& = 𝑥&, … , 𝑋' = 𝑥'|𝑌= 𝑦= :\n()%\n'\nlog 𝑃𝑋( = 𝑥(|𝑌= 𝑦\n11\n𝑃𝐴𝐵|𝐸= 𝑃𝐴|𝐸𝑃(𝐵|𝐸)\n\nBayesian \nNetworks\n12",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.5343641638755798
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p2_4797680fc1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional Paradigm\nFor any events A, B, and E, you can condition consistently on E,\nand all formulas still hold:\nAxiom 1  \n \n \n \n \n 0 ≤𝑃𝐴𝐸≤1\nCorollary 1 (complement)  \n 𝑃𝐴𝐸= 1 −𝑃𝐴!|𝐸\nTransitivity \n \n \n \n \n 𝑃𝐴𝐵𝐸= 𝑃(𝐵𝐴|𝐸)\nChain Rule  \n \n \n \n 𝑃𝐴𝐵𝐸= 𝑃(𝐵|𝐸)𝑃𝐴𝐵𝐸\nBayes’ Theorem  \n \n \n \n3\n𝑃𝐴𝐵𝐸= 𝑃𝐵𝐴𝐸𝑃𝐴|𝐸\n𝑃(𝐵|𝐸)\n‘s theorem?",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.5250088572502136
+    },
+    {
+      "chunk_id": "cs109_18_clt_annotated_p2_b1d98f2cbe",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIndependence of multiple random variables\nWe have independence of 𝑛 discrete random variables 𝑋!, 𝑋\", … , 𝑋# if\n \nfor all 𝑥!, 𝑥\", … , 𝑥#:\nWe have independence of 𝑛 continuous random variables 𝑋!, 𝑋\", … , 𝑋# if\n \nfor all 𝑥!, 𝑥\", … , 𝑥#:\n3\nReview\n𝑝!!,!\",…,!# 𝑥$, 𝑥%, … , 𝑥& = &\n'($\n&\n𝑝!$ 𝑥'\n𝑃𝑋$ = 𝑥$, 𝑋% = 𝑥%, … , 𝑋& = 𝑥& = &\n'($\n&\n𝑃𝑋' = 𝑥'\n𝑃𝑋$ ≤𝑥$, 𝑋% ≤𝑥%, … , 𝑋& ≤𝑥& = &\n'($\n&\n𝑃𝑋' ≤𝑥'\n𝑓!!,!\",…,!# 𝑥$, 𝑥%, … , 𝑥& = &\n'($\n&\n𝑓!$ 𝑥'",
+      "source_type": "lecture_slide",
+      "document_name": "18 clt annotated",
+      "score": 0.5249231457710266
+    },
+    {
+      "chunk_id": "cs109_05_independence_annotated_p7_p8_a3ce929ca3",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDice, increasingly misunderstood (still our friends)\n• Each roll of a 6-sided die is an independent trial.\n• Two rolls: 𝐷# and 𝐷$.\n• Let event 𝐸: \n𝐷# = 1\n \n event 𝐹: \n𝐷$ = 6\n \n event 𝐺: \n𝐷# + 𝐷$ = 7\n8\n1. Are 𝐸 and 𝐹 \nindependent?\n2. Are 𝐸 and 𝐺 \nindependent?\n3. Are 𝐹 and 𝐺 \nindependent?\n4. Are 𝐸, 𝐹, 𝐺 \nindependent?\n❌\n✅\n✅\n✅\n𝐺= { 1,6 , 2,5 , 3,4 , 4,3 , 5,2 , 6,1 } \nPairwise independence is not sufficient to prove independence of 3 or more events!\n𝑃𝐸𝐹= 1/36\n\nIndependence II\n9",
+      "source_type": "lecture_slide",
+      "document_name": "05 independence annotated",
+      "score": 0.5181993246078491
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p21_4c70615a99",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPop quiz! (just kidding)\nAre 𝑋 and 𝑌 independent in the following cases?\n22\n1.  𝑓!,# 𝑥, 𝑦= 6𝑒(4-𝑒(%*\n where 0 < 𝑥, 𝑦< ∞\n2.  𝑓!,# 𝑥, 𝑦= 4𝑥𝑦\n where 0 < 𝑥, 𝑦< 1\n3.  𝑓!,# 𝑥, 𝑦= 24𝑥𝑦\n where 0 < 𝑥+  𝑦< 1\n𝑔𝑥= 3𝑒!:'\nℎ𝑦= 2𝑒!&# \n𝑔𝑥= 2𝑥\nℎ𝑦= 2𝑦\nCannot capture constraint on 𝑥+  𝑦! \n❌\n✅\n✅\nindependent\n𝑋 and 𝑌\n𝑓!,# 𝑥, 𝑦= 𝑔𝑥ℎ𝑦,\nwhere −∞< 𝑥, 𝑦< ∞\nSeparable functions:\nSeparable functions:\nIf you can factor densities over the entire \nsupport, you have independence.",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.5168170928955078
+    },
+    {
+      "chunk_id": "cs109_12_independent_rvs_annotated_p2_edb164eea6",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIndependent discrete RVs\nRecall the definition of independent\nevents 𝐸 and 𝐹:\nTwo discrete random variables 𝑋 and 𝑌 are independent if:\n𝑃𝑋= 𝑥, 𝑌= 𝑦= 𝑃𝑋= 𝑥𝑃𝑌= 𝑦\n𝑝!,# 𝑥, 𝑦= 𝑝! 𝑥𝑝# 𝑦\n• Intuitively: \nknowing value of 𝑋 tells us nothing about\n \n \n \nthe distribution of 𝑌 (and vice versa)\n• If two variables are not independent, they are termed dependent.\n3\nfor all 𝑥, 𝑦:\nDifferent notation,\nsame idea:\n𝑃𝐸𝐹= 𝑃𝐸𝑃𝐹",
+      "source_type": "lecture_slide",
+      "document_name": "12 independent rvs annotated",
+      "score": 0.5145934224128723
+    },
+    {
+      "chunk_id": "cs109_05_independence_annotated_p3_9f91220977",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIntuition through proof\nStatement:\nIf 𝐸 and 𝐹 are independent, then 𝑃𝐸𝐹= 𝑃𝐸.\nProof: \n \n \n \n \n \n \n \n \n \n \nDefinition of\n \n \n \n \n \n \n \n \nconditional probability\n \n \n \n \n \n \n \n \nIndependence of 𝐸 and 𝐹\n \n \n \n \n \n \n \n \nTaking the bus to cancellation city\n4\n𝑃𝐸𝐹= 𝑃𝐸𝐹\n𝑃(𝐹)\n= 𝑃𝐸𝑃𝐹\n𝑃(𝐹)\n= 𝑃(𝐸)\nKnowing that 𝐹 happened does not \nchange our belief that 𝐸 happened.\n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹)\nIndependent\nevents 𝐸 and 𝐹",
+      "source_type": "lecture_slide",
+      "document_name": "05 independence annotated",
+      "score": 0.5101767778396606
+    },
+    {
+      "chunk_id": "cs109_midtermspr2016_preamble_3f6dfd6a13",
+      "text": "Chris Piech \n      May 3rd, 2016 \nCS109 \n \nMidterm Examination \n \nThis is a closed calculator/computer exam.  You are, \nhowever, allowed to use notes and your textbook in the \nexam.  The last page of the exam is a Standard Normal \nTable, in case you need it. \n \nYou have 2 hours (120 minutes) to take the exam.  The \nexam is 120 points, meant to roughly correspond to one \npoint per minute of the exam.  You may want to use the \npoint allocation for each problem as an indicator for pacing \nyourself on the exam. \n \nIn the event of an incorrect answer, any explanation you \nprovide of how you obtained your answer can potentially \nallow us to give you partial credit for a problem.  For \nexample, describe the distributions and parameter values \nyou used, where appropriate.  It is fine for your answers to \ninclude summations, products, factorials, exponentials, and \ncombinations, unless the question specifically asks for a \nnumeric quantity or closed form.  Where numeric answers \nare required, the use of fractions is fine. \n \n \nTHE STANFORD UNIVERSITY HONOR CODE \n \nA.! The Honor Code is an undertaking of the students, individually and collectively: \n \n(1)! That they will not give or receive aid in examinations; that they will not give or receive \nunpermitted aid in class work, in the preparation of reports, or in any other work that is to be \nused by the instructor as the basis of grading; \n \n(2)! That they will do their share and take an active part in seeing to it that others as well as \nthemselves uphold the spirit and letter of the Honor Code. \n \nB.! The faculty on its part manifests its confidence in the honor of its students by refraining from \nproctoring examinations and from taking unusual and unreasonable precautions to prevent the \nforms of dishonesty mentioned above.  The faculty will also avoid as far as practicable, academic \nprocedures that create temptations to violate the Honor Code. \n \nC.! While the faculty alone has the right and obligation to set academic requirements, the students and \nfaculty will work together to create optimal conditions for honorable academic work. \n \nI acknowledge and accept the letter and spirit of the honor code: \n \nSignature:  \n \n \n \n \n \n \n \n \n \n \nNAME (print):  \n \n \n \n \n \n \n \n \n \nProblem \nScore \n1  (24 pts) \n \n2  (20 pts) \n \n3  (20 pts) \n \n4  (20 pts) \n \n5  (12 pts) \n \n6  (24 pts) \n \nTotal (120 pts)\n\n– 2 –",
+      "source_type": "exam_question",
+      "document_name": "MidtermSpr2016",
+      "score": 0.4745189845561981
+    },
+    {
+      "chunk_id": "cs109_midtermspr2017_preamble_23e64c737a",
+      "text": "Chris Piech \n \nMay 9, 2017 \n \n \nCS109 Midterm Examination \n \nThis is a closed calculator/computer exam.  You are, \nhowever, allowed to use notes in the exam. The last page of \nthe exam is a Standard Normal Table, in case you need it. \n \nYou have 2 hours (120 minutes) to take the exam.  The \nexam is 120 points, meant to roughly correspond to one \npoint per minute of the exam.  You may want to use the \npoint allocation for each problem as an indicator for pacing \nyourself on the exam. \n \nIn the event of an incorrect answer, any explanation you \nprovide of how you obtained your answer can potentially \nallow us to give you partial credit for a problem.  For \nexample, describe the distributions and parameter values \nyou used, where appropriate.  It is fine for your answers to \ninclude summations, products, factorials, exponentials, and \ncombinations, unless the question specifically asks for a \nnumeric quantity or closed form.  Where numeric answers \nare required, the use of fractions is fine. \n \n \nTHE STANFORD UNIVERSITY HONOR CODE \n \nA. The Honor Code is an undertaking of the students, individually and collectively: \n \n(1) that they will not give or receive aid in examinations; that  they will not give or receive \nunpermitted aid in class work, in  the preparation of reports, or in any other work that is to be \nused by the instructor as the basis of grading; \n \n(2) that they will do their share and take an active part in seeing to it that others as well as \nthemselves uphold the spirit and letter of the Honor Code. \n \nB. The faculty on its part manifests its confidence in the honor of its students by refraining from \nproctoring examinations and from taking unusual and unreasonable precautions to prevent the \nforms of dishonesty mentioned above.  The faculty will also avoid as far as practicable, academic \nprocedures that create temptations to violate the Honor Code. \n \nC. While the faculty alone has the right and obligation to set academic requirements, the students and \nfaculty will work together to create optimal conditions for honorable academic work. \n \nI acknowledge and accept the letter and spirit of the honor code: \n \nSignature:  \n \n \n \n \n \n \n \n \n \n \n \nName (print):   \n \n \n \n \n \n \n \n \n \nProblem \nScore \n1  (17 pts) \n \n2  (16 pts) \n \n3  (26 pts) \n \n4  (20 pts) \n \n5  (16 pts) \n \n6  (25 pts) \n \nTotal (120 pts)\n\n– 2 –",
+      "source_type": "exam_question",
+      "document_name": "MidtermSpr2017",
+      "score": 0.4707108736038208
+    },
+    {
+      "chunk_id": "cs109_practicemidterm_preamble_638eba6eb0",
+      "text": "– 1 –\nChris Piech\nCS 109\nOct 27, 2017\nPractice Midterm Examination\nProblems by Will Monroe, Mehran Sahami and Chris Piech\nThis is a closed calculator/computer exam. You are, however, allowed to use notes or a textbook\nin the exam. The last page of the exam is a Standard Normal Table, in case you need it. You have\n2 hours (120 minutes) to take the exam. The exam is 120 points, meant to roughly correspond to\none point per minute of the exam. You may want to use the point allocation for each problem as an\nindicator for pacing yourself on the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions\nand parameter values you used, where appropriate. It is ﬁne for your answers to include summations,\nproducts, factorials, exponentials, and combinations, unless the question speciﬁcally asks for a\nnumeric quantity or closed form. Where numeric answers are required, the use of fractions is ﬁne.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than\nI have in my entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\n\n– 2 –",
+      "source_type": "exam_question",
+      "document_name": "PracticeMidterm",
+      "score": 0.46752405166625977
+    },
+    {
+      "chunk_id": "cs109_finalspring2017_q5a_4ee51c29dc",
+      "text": "Using independence:\nP(X < x, Y < y) = P(X < x)P(Y < y) = FX(x)FY (y) = Φ(x/2)Φ(y/2)",
+      "source_type": "exam_question",
+      "document_name": "FinalSpring2017",
+      "score": 0.42217618227005005
+    },
+    {
+      "chunk_id": "cs109_12_independent_rvs_annotated_p0_p1_5896e0ff57",
+      "text": "12: Independent RVs\nJerry Cain\nApril 26th, 2024\n1\nLecture Discussion on Ed\n\nSums of \nindependent \nBinomial RVs\n2",
+      "source_type": "lecture_slide",
+      "document_name": "12 independent rvs annotated",
+      "score": 0.37307727336883545
+    }
+  ],
+  "built_at": "2026-04-28T05:13:06Z"
+}

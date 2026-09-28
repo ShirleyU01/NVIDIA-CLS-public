@@ -1,0 +1,246 @@
+{
+  "course": "CS109",
+  "topic_id": "variance_distributions_discrete",
+  "topic_name": "Variance and Discrete Distributions",
+  "queries_used": [
+    "Variance and Discrete Distributions definition",
+    "Variance and Discrete Distributions intuition",
+    "Variance and Discrete Distributions worked example",
+    "Variance and Discrete Distributions exam problem",
+    "variance overview",
+    "variance practice",
+    "bernoulli distribution overview",
+    "bernoulli distribution practice",
+    "binomial distribution overview",
+    "binomial distribution practice",
+    "expectation properties overview",
+    "expectation properties practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p4_833d24ef13",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVariance = measure of \"spread\"\nConsider the following three distributions (PMFs):\n• Expectation: 𝐸𝑋= 3 for all distributions\n• But the shape and spread across distributions are very different!\n• Variance, Var 𝑋 : a formal quantification of spread\n5",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.6095123291015625
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p28_p29_28a8f77d8e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider an experiment: 𝑛 independent trials of Ber(𝑝) random variables.\ndef A Binomial random variable 𝑋 is the number of successes in 𝑛 trials.\nExamples:\n• # heads in n coin flips\n• # of 1’s in randomly generated length n bit string\n• # of disk drives crashed in 1000 computer cluster\n(assuming disks crash independently)\nBinomial Random Variable\n29\n𝑋~Bin(𝑛, 𝑝)\nRange: {0,1, … , 𝑛}\nPMF\n𝐸𝑋= 𝑛𝑝 \nVar 𝑋= 𝑛𝑝(1 −𝑝) \nWe’ll prove \nthis later in \nthe course.\nVariance  \nExpectation \n \n \n𝑘= 0, 1, … , 𝑛:\n𝑃𝑋= 𝑘= 𝑝𝑘= 𝑛\n𝑘𝑝! 1 −𝑝\"#!\n\nExercises\n30",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.6004847288131714
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p25_eb665b659c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider an experiment: 𝑛 independent trials of Ber(𝑝) random variables.\ndef A Binomial random variable 𝑋 is the number of successes in 𝑛 trials.\nExamples:\n• # heads in n coin flips\n• # of 1’s in randomly generated length n bit string\n• # of disk drives crashed in 1000 computer cluster\n(assuming disks crash independently)\nBinomial Random Variable\n26\n𝑋~Bin(𝑛, 𝑝)\nRange: {0,1, … , 𝑛}\nVariance  \nExpectation \n \n \nPMF\n𝐸𝑋= 𝑛𝑝 \nVar 𝑋= 𝑛𝑝(1 −𝑝) \n𝑘= 0, 1, … , 𝑛:\n𝑃𝑋= 𝑘= 𝑝𝑘= 𝑛\n𝑘𝑝! 1 −𝑝\"#!",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.5975701808929443
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p20_b50cf6c86a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider an experiment: 𝑛 independent Ber(𝑝) trials.\ndef A Binomial random variable 𝑋 counts the successes across 𝑛 trials.\nExamples:\n• # heads in n coin flips\n• # of 1’s in randomly generated length n bit string\n• # of disk drives crashed in 1000 computer cluster\n(assuming disks crash independently)\nBinomial Random Variable\n21\n𝑘= 0, 1, … , 𝑛:\n𝑃𝑋= 𝑘= 𝑝𝑘= 𝑛\n𝑘𝑝! 1 −𝑝\"#!\n𝑋~Bin(𝑛, 𝑝)\nSupport: {0,1, … , 𝑛}\nPMF\n𝐸𝑋= 𝑛𝑝 \nVar 𝑋= 𝑛𝑝(1 −𝑝) \nVariance  \nExpectation",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.5972685813903809
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p9_4e4473853b",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProperties of variance\nDefinition \n \n \n \n Var 𝑋= 𝐸\n𝑋−𝐸𝑋\n!\ndef standard deviation \nSD 𝑋=\nVar 𝑋\nProperty 1 \n \nVar 𝑋= 𝐸𝑋!  −𝐸𝑋\n!\nProperty 2 \n \nVar 𝑎𝑋+ 𝑏= 𝑎!Var 𝑋\n10\nUnits of 𝑋!\nUnits of 𝑋\n• Property 1 is often easier to manipulate than the original definition\n• Unlike expectation, variance is not linear",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.5894792079925537
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p0_p1_f0c22ce079",
+      "text": "07: Variance, \nBernoulli, Binomial\nJerry Cain\nApril 15th, 2024\n1\nLecture Discussion on Ed\n\nVariance\n2",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.5877219438552856
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p27_6cc4987b35",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider an experiment: 𝑛 independent trials of Ber(𝑝) random variables.\ndef A Binomial random variable 𝑋 is the number of successes in 𝑛 trials.\nExamples:\n• # heads in n coin flips\n• # of 1’s in randomly generated length n bit string\n• # of disk drives crashed in 1000 computer cluster\n(assuming disks crash independently)\nBinomial Random Variable\n28\n𝑋~Bin(𝑛, 𝑝)\nRange: {0,1, … , 𝑛}\n𝐸𝑋= 𝑛𝑝 \nVar 𝑋= 𝑛𝑝(1 −𝑝) \nVariance  \nExpectation \n \n \nPMF\n𝑘= 0, 1, … , 𝑛:\n𝑃𝑋= 𝑘= 𝑝𝑘= 𝑛\n𝑘𝑝! 1 −𝑝\"#!",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.5868650674819946
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p7_p8_f3db9f2df5",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStanford, CA\n𝐸high = 68°F\nWashington, DC\n𝐸high = 67°F\n8\nComparing variance\n0\n0.1\n0.2\n0.3\n0.4\n0\n0.1\n0.2\n0.3\n0.4\n𝑃𝑋= 𝑥\n𝑃𝑋= 𝑥\nStanford high temps\nWashington high temps\n35             50            65           80     90\n35             50            65           80     90\nVar 𝑋= 39 °F !\nVar 𝑋= 248 °F !\nVariance\nof 𝑋\nVar 𝑋= 𝐸\n𝑋−𝐸𝑋\n!\n68°F\n67°F\n\nProperties of \nVariance\n9",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.5774406790733337
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p33_6eaaaa342e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVisualizing Binomial PMFs\n34\nMatch the distribution \nof 𝑋 to the graph:\n1.  Bin 10, 0.5\n2.  Bin 10, 0.3\n3.  Bin 10, 0.7\n4.  Bin 5, 0.5\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\nC.  \nD.  \n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\nA.  \nB.  \n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑋~Bin(𝑛, 𝑝)\n𝑝𝑖= 𝑛\n𝑘𝑝# 1 −𝑝$%#\n𝐸𝑋= 𝑛𝑝",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.5729305744171143
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p28_8fe9b89b51",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nImportant properties of expectation\n1. Linearity:\n𝐸𝑎𝑋+ 𝑏= 𝑎𝐸𝑋+ 𝑏\n2. Expectation of a sum = sum of expectation:\n𝐸𝑋+ 𝑌= 𝐸𝑋+ 𝐸𝑌\n3. Unconscious statistician:\n𝐸𝑔𝑋\n= )\n$\n𝑔𝑥𝑝(𝑥)\n29\n• Let 𝑋= 6-sided dice roll,\n      𝑌= 2𝑋−1.\n• 𝐸𝑋= 3.5\n• 𝐸𝑌= 6\nSum of two dice rolls:\n• Let 𝑋= roll of die 1\n      𝑌= roll of die 2\n• 𝐸𝑋+ 𝑌= 3.5 + 3.5 = 7\nThese properties let you avoid \ndefining difficult PMFs.",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.5698815584182739
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p32_5097a09c33",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVisualizing Binomial PMFs\n33\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n𝑋~Bin(𝑛, 𝑝)\n𝑝𝑖= 𝑛\n𝑘𝑝# 1 −𝑝$%#\n𝐸𝑋= 𝑛𝑝\nC.  \nD.  \nMatch the distribution \nof 𝑋 to the graph:\n1.  Bin 10, 0.5\n2.  Bin 10, 0.3\n3.  Bin 10, 0.7\n4.  Bin 5, 0.5\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\nA.  \nB.  \n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.5679462552070618
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p11_c8f650b04b",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComputing variance, a proof\n12\nVar 𝑋= 𝐸\n𝑋−𝐸𝑋\n!\n= 𝐸𝑋! −𝐸𝑋\n!\n= 𝐸𝑋! −𝜇!\n= 𝐸𝑋! −2𝜇! + 𝜇!\n= 𝐸𝑋! −2𝜇𝐸𝑋+ 𝜇!\n= 𝐸\n𝑋−𝜇!\nLet 𝐸𝑋= 𝜇\nEveryone, \nplease \nwelcome the \nsecond \nmoment!\nVariance\nof 𝑋\nVar 𝑋= 𝐸\n𝑋−𝐸𝑋\n!\n= 𝐸𝑋!  −𝐸𝑋\n!\n= ,\n\"\n𝑥−𝜇!𝑝𝑥\n= ,\n\"\n𝑥! −2𝜇𝑥+ 𝜇! 𝑝𝑥\n= ,\n\"\n𝑥!𝑝𝑥−2𝜇,\n\"\n𝑥𝑝𝑥+ 𝜇! ,\n\"\n𝑝𝑥\n⋅1",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.5638468265533447
+    },
+    {
+      "chunk_id": "cs109_demo_exam_q1_c290a1b3af",
+      "text": "Define independence for two discrete random variables.",
+      "source_type": "exam_question",
+      "document_name": "Demo Exam",
+      "score": 0.5618799328804016
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p35_2d17b1a76f",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeta is a conjugate distribution for Bernoulli\nBeta is a conjugate distribution for Bernoulli, meaning:\n1. If our prior belief of the parameter is Beta, and\n2. Our experiment is Bernoulli, then\n3. Our posterior is also Beta.\n36\nProof:\n𝜃~Beta(𝑎, 𝑏)\n𝑁|𝜃~Bin(𝑛+ 𝑚, 𝑥)\n𝑓?|9 𝑥𝑛=\n𝑝9|? 𝑛|𝑥𝑓? 𝑥\n𝑝9 𝑛\n=\n𝑛+ 𝑚\n𝑚\n𝑥+ 1 −𝑥$ ⋅\n1\n𝐵𝑎, 𝑏𝑥./# 1 −𝑥0/#\n𝑝) 𝑛\n= 𝐶⋅𝑥1 1 −𝑥3 ⋅𝑥@A! 1 −𝑥BA!\nconstants that \ndon’t depend on 𝑥\n= 𝐶⋅𝑥12@A! 1 −𝑥32BA! ✅\n(observe 𝑛 successes, 𝑚 failures)",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.5618191957473755
+    },
+    {
+      "chunk_id": "cs109_midtermspr2017_q0_ef20d6de51",
+      "text": "00",
+      "source_type": "exam_question",
+      "document_name": "MidtermSpr2017",
+      "score": 0.5616672039031982
+    },
+    {
+      "chunk_id": "cs109_09_continuous_rv_annotated_p14_d127787921",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nExpectation and Variance\nDiscrete RV 𝑋\n15\n𝐸𝑋= C\n*\n𝑥𝑝𝑥\n𝐸𝑔(𝑋) = C\n*\n𝑔(𝑥) 𝑝𝑥\n𝐸𝑋= -\n(%\n%\n𝑥𝑓𝑥𝑑𝑥\n𝐸𝑔(𝑋) = -\n(%\n%\n𝑔𝑥𝑓𝑥𝑑𝑥\nContinuous RV 𝑋\nBoth continuous and discrete RVs\n𝐸𝑎𝑋+ 𝑏= 𝑎𝐸𝑋+ 𝑏\nVar(𝑋) = 𝐸(𝑋 −𝐸[𝑋])9  = 𝐸𝑋9  −(𝐸[𝑋])9\nVar(𝑎𝑋+ 𝑏) = 𝑎9Var(𝑋)\nLinearity of \nExpectation\nProperties of \nvariance\nTL;DR: ∑*+,\n-\n⇒∫,\n-",
+      "source_type": "lecture_slide",
+      "document_name": "09 continuous rv annotated",
+      "score": 0.5567325353622437
+    },
+    {
+      "chunk_id": "cs109_11_joint_rvs_annotated_p39_93a41618e7",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProperties of Expectation, extended to two RVs\n40\nwe’ve seen this! \nwe’ll prove momentarily.\nTrue for both independent \nand dependent random \nvariables!\n1. Linearity:\n𝐸𝑎𝑋+ 𝑏𝑌+ 𝑐= 𝑎𝐸𝑋+ 𝑏𝐸𝑌+ 𝑐\n2. Expectation of a sum = sum of expectation:\n𝐸𝑋+ 𝑌= 𝐸𝑋+ 𝐸𝑌\n3. Unconscious statistician:\n𝐸𝑔𝑋, 𝑌\n= .\n9\n.\n6\n𝑔𝑥, 𝑦𝑝5,8(𝑥, 𝑦)",
+      "source_type": "lecture_slide",
+      "document_name": "11 joint rvs annotated",
+      "score": 0.5564538836479187
+    },
+    {
+      "chunk_id": "cs109_14_conditional_expectation_annotated_p15_5248b39f66",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProperties of conditional expectation\n16\n1. LOTUS:\n𝐸𝑔𝑋|𝑌= 𝑦= )\n!\n𝑔𝑥𝑝#|%(𝑥|𝑦)\n2. Linearity of conditional expectation:\n𝐸)\n120\n3\n𝑋1 | 𝑌= 𝑦= )\n120\n3\n𝐸𝑋1|𝑌= 𝑦\n3. Law of total expectation:\n𝐸𝑋= 𝐸𝐸𝑋|𝑌\nwhat?",
+      "source_type": "lecture_slide",
+      "document_name": "14 conditional expectation annotated",
+      "score": 0.5555710792541504
+    },
+    {
+      "chunk_id": "cs109_14_conditional_expectation_annotated_p11_f1e0126251",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProperties of conditional expectation\n12\n1. LOTUS:\n𝐸𝑔𝑋|𝑌= 𝑦= )\n!\n𝑔𝑥𝑝#|%(𝑥|𝑦)\n2. Linearity of conditional expectation:\n𝐸)\n120\n3\n𝑋1 | 𝑌= 𝑦= )\n120\n3\n𝐸𝑋1|𝑌= 𝑦\n3. Law of total expectation (in, like, three slides)",
+      "source_type": "lecture_slide",
+      "document_name": "14 conditional expectation annotated",
+      "score": 0.5546653270721436
+    },
+    {
+      "chunk_id": "cs109_13_joint_statistics_annotated_p26_p27_3a9e4c2022",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProving Variance of the Binomial\n27\n𝑋~Bin(𝑛, 𝑝)\nVar 𝑋= 𝑛𝑝1 −𝑝 \nVar 𝑋= Var )\n%&'\n)\n𝑋%\n𝑋= -\n!78\n9\n𝑋!\nLet 𝑋% = 𝑖th trial is heads\n𝑋%~Ber 𝑝\nVar 𝑋% = 𝑝1 −𝑝\n= )\n%&'\n)\nVar 𝑋%\nLet\n𝑋$ are independent, \ntherefore variance of sum \n= sum of variance\n𝑋% are independent\n(by definition)\n= )\n%&'\n)\n𝑝1 −𝑝\n= 𝑛𝑝1 −𝑝\nVariance of Bernoulli\n\nCorrelation\n28",
+      "source_type": "lecture_slide",
+      "document_name": "13 joint statistics annotated",
+      "score": 0.5540220737457275
+    },
+    {
+      "chunk_id": "cs109_midtermfall2022soln_p4_fc039a9166",
+      "text": "P(X = i) =\n9\n∑\nj=0\nP(X = i|N = j)P(N = j)\n=\n9\n∑\nj=0\n\u00009\ni\n\u0001\u0000 k−9\n12−i\n\u0001\n\u0000 k\n12\n\u0001\n· 1\n10\n=\n\u00009\ni\n\u0001\u0000 k−9\n12−i\n\u0001\n\u0000 k\n12\n\u0001\nRemark 1. This is precisely a hypergeometric distribution.\nRemark 2. The binomial distribution gets very close to this solution, however, notice each of the 9 “trials”\n(corresponding to an edge incident to a node) are not independent of each other.\nd. (5 points) Let P(X = i) be the answer to the previous part. What is Var(X)?\nUsing the law of the unconscious statistician,\nVar(X) = E[X2]−E[X]2\n=\n \n9\n∑\ni=0\ni2 ·P(X = i)\n!\n−\n \n9\n∑\ni=0\ni·P(X = i)\n!2\nRemark. How might we actually compute this for the distribution in part (c)? We could break X up into\nindicator random variables X = X1 +...+X9, then using linearity of expectation we just have to compute\nE[Xi] and E[XiXj].\n5",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermFall2022Soln",
+      "score": 0.5512769222259521
+    },
+    {
+      "chunk_id": "cs109_finalfall2024soln_q0_226fab78aa",
+      "text": "5\n3-4 years",
+      "source_type": "exam_question",
+      "document_name": "FinalFall2024Soln",
+      "score": 0.5512405037879944
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p5_ec37478999",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVariance\nThe variance of a random variable 𝑋 with mean 𝐸𝑋= 𝜇 is\nVar 𝑋= 𝐸𝑋−𝜇(\n• Also written as: 𝐸\n𝑋−𝐸𝑋\n!\n• Note: Var(X) ≥ 0\n• Other names: 2nd central moment, or square of the standard deviation\n  \n \n \n \n \n \nVar 𝑋\ndef standard deviation \nSD 𝑋=\nVar 𝑋\n6\nUnits of 𝑋!\nUnits of 𝑋",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.5482913851737976
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p13_8ee7c59548",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProperties of variance\nDefinition \n \n \n \n Var 𝑋= 𝐸\n𝑋−𝐸𝑋\n!\ndef standard deviation \nSD 𝑋=\nVar 𝑋\nProperty 1 \n \nVar 𝑋= 𝐸𝑋!  −𝐸𝑋\n!\nProperty 2 \n \nVar 𝑎𝑋+ 𝑏= 𝑎!Var 𝑋\n14\nUnits of 𝑋!\nUnits of 𝑋",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.5418726205825806
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p12_4d4f2547b1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLet Y = outcome of a single die roll. Recall 𝐸𝑌= 7/2 .\nCalculate the variance of Y. \n13\nVariance of a 6-sided die\nVariance\nof 𝑋\nVar 𝑋= 𝐸\n𝑋−𝐸𝑋\n!\n= 𝐸𝑋!  −𝐸𝑋\n!\n1.  Approach #1: Definition\nVar 𝑌= \n1\n6 1 −7\n2\n!\n+ 1\n6 2 −7\n2\n!\n \n+ 1\n6 3 −7\n2\n!\n+ 1\n6 4 −7\n2\n!\n \n+ 1\n6 5 −7\n2\n!\n+ 1\n6 6 −7\n2\n!\n2.  Approach #2: A property\n𝐸𝑌! = 1\n6 1! + 2! + 3! + 4! + 5! + 6!\n= 91/6\nVar 𝑌= E 𝑌! −E Y ! = 91/6 −7/2 !\n= 35/12\n= 35/12\n2nd moment",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.5414824485778809
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p34_ef1f381b2e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeta is a conjugate distribution for Bernoulli\nBeta is a conjugate distribution for Bernoulli, meaning:\n• Prior and posterior parametric forms are the same\n35\n(proof on next slide)",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.5409273505210876
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p10_6e01c3a3e7",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProperties of variance\nDefinition \n \n \n \n Var 𝑋= 𝐸\n𝑋−𝐸𝑋\n!\ndef standard deviation \nSD 𝑋=\nVar 𝑋\nProperty 1 \n \nVar 𝑋= 𝐸𝑋!  −𝐸𝑋\n!\nProperty 2 \n \nVar 𝑎𝑋+ 𝑏= 𝑎!Var 𝑋\n11\nUnits of 𝑋!\nUnits of 𝑋",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.5407001972198486
+    },
+    {
+      "chunk_id": "cs109_midtermfall2025soln_q4_f791508548",
+      "text": "Variance Reduction Sampling [22 points]\nThis toy problem is a gentle introduction to variance reduction sampling. We will show how different sam-\npling strategies can be used to estimate the same expected value, while having very different variances. We\nwant to estimate E[Y −X] where X ∼Bern(p) and Y ∼Bern(p + k) where p = 0.4 and k = 0.01. For this\nlearning experience we are going to think about two different sampling strategies:\ndef simulation_1(p=0.4, k=0.01):\nX = bern(p)\n# samples a bernoulli with given probability\nY = bern(p+k)\n# independent sample\nreturn Y - X\ndef simulation_2(p=0.4, k=0.01):\nX = bern(p)\nif X == 1:\nY = 1\nelse:\nY = bern(k/(1-p))\nreturn Y - X\na. (5 points) In simulation 2, based on the code, what is the probability that Y = 1? Show your work.\nIn simulation 2, the value of Y depends on the value of X. Therefore, we can use LOTP as follows:\nP(Y = 1) = P(Y = 1 | X = 0)P(X = 0)+P(Y = 1 | X = 1)P(X = 1)\n=\nk\n1−p ·(1−p)+1· p\n= p+k\n= 0.41.\nb. (7 points) Show that the expectation of the value returned in simulation 2 is the same as the expectation\nof the value returned in simulation 1.\nWe use linearity of expectation. For both simulations i = 1,2,\nE[simulation i] = E[Y −X]\n= E[Y]−E[X].\nFrom the code, we know X ∼Bern(p), and from part a, we know Y ∼Bern(p + k) for both simulations.\nThus, E[X] = p and E[Y] = p+k and so\nE[simulation i] = (p+k)−p = k = 0.01\nfor both i = 1,2.\n5\n\nc. (7 points) What is the variance of the value returned from simulation 2?\nSolution 1: In simulation 2, X and Y are not independent, so we cannot simply add their individual\nvariances. Instead, we can calculate the variance from scratch using the formula\nVar(A) = ∑\na\n(a−µA)2 ·P(A = a).\nThe possible values of Y −X are 0 (when X = Y) and 1 (when X = 0,Y = 1). Moreover, from part b,\nµY−X = k. Thus, we have\nVar(Y −X) = (0−k)2 ·(P(X = 0,Y = 0)+P(X = 1,Y = 1)+(1−k)2 ·P(X = 0,Y = 1)\n= k2 ·\n\u0012\n(1−p)\n\u0012\n1−\nk\n1−p\n\u0013\n+ p·1\n\u0013\n+(1−k)2 ·(1−p)\n\u0012\nk\n1−p\n\u0013\n= k2 ·(1−k)+(1−k)2 ·k\n= k(1−k)·[k +(1−k)]\n= k(1−k)\n= k −k2\n= 0.0099.\nSolution 2: Alternatively, we could use the formula\nVar(A) = E[A2]−E[A]2.\nFrom part b, E[Y −X] = k. Moreover,\nE[(Y −X)2] = 02 ·P(X = Y)+12 ·P(Y −X = 1)\n= 0·P(X = Y)+1·P(Y −X = 1)\n= E[Y −X]\n= k.\nThus, the variance is\nVar(Y −X) = k −k2 = 0.0099.\nSolution 3: Finally, Y −X is actually a Bernoulli random variable because it only takes on values 0 or 1.\nThus,\nY −X ∼Bern(k).\nUsing the variance formula for Bernoulli,\nVar(Y −X) = k(1−k) = k −k2 = 0.0099.\nd. (3 points) The expected return for both functions is 0.01. The variance of the return for simulation 1 is",
+      "source_type": "exam_question",
+      "document_name": "MidtermFall2025Soln",
+      "score": 0.5400552749633789
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p36_5a0c1842e3",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeta is a conjugate distribution for Bernoulli\nBeta is a conjugate distribution for Bernoulli, meaning:\n• Prior and posterior parametric forms are the same\n• Practically, conjugate means easy update:\n \n \nAdd number of “heads” and “tails” seen to Beta parameters.\nYou can invent a prior to express how biased you believe the coin is a \npriori:\n• 𝜃~Beta(𝑎, 𝑏): pretend you’ve conducted 𝑎+ 𝑏−2  imaginary trials, where\n \n \n \n𝑎−1  trials produced a head and 𝑏−1  produced a tail\n• Choosing Beta 1, 1 = Uni(0, 1) means you don’t hold any prior beliefs\n37\nThis is the main \ntakeaway of Beta.\nPrior\nPosterior\nExperiment\nObserve 𝑛 successes and 𝑚 failures\nBeta(𝑎= 𝑛!$.1 + 1, 𝑏= 𝑚!$.1 + 1) \nBeta 𝑎= 𝑛!$.1 + 𝑛+ 1, 𝑏= 𝑚!$.1 + 𝑚+ 1",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.5395000576972961
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p29_682bba6c10",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMultinomial is Multiple times the fun\nDirichlet 𝑎', 𝑎(, … , 𝑎L  is a conjugate for Multinomial.\n• Generalizes Beta in the\nsame way Multinomial\ngeneralizes Binomial:\nPrior \n Dirichlet 𝑎', 𝑎(, … , 𝑎L\n  \n Saw ∑MN'\nL 𝑎M −𝑚 imaginary trials, with 𝑎M −1 of outcome 𝑖\nExperiment  Observe 𝑛' + 𝑛( + ⋯+ 𝑛L new trials, with 𝑛M of outcome 𝑖\nPosterior \n Dirichlet 𝑎' + 𝑛', 𝑎( + 𝑛(, … , 𝑎L + 𝑛L\n30\nMAP:\n𝑝* =\n𝑎* + 𝑛* −1\n∑*+!\n3 𝑎* + ∑*+!\n3 𝑛* −𝑚\n𝑓𝑥!, 𝑥\", … , 𝑥3 =\n1\n𝐵𝑎!, 𝑎\", … , 𝑎3\n2\n*+!\n3\n𝑥*\n4\"-!\nm",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.534691333770752
+    },
+    {
+      "chunk_id": "cs109_midtermspr2017_q6k_9949ec7b94",
+      "text": "such that the probability that you don't drop a single request in the busiest\nhour is > 0.99. Use p from part a. The expression does not have to be closed form.\n\n– 13 – \nc. (7 points) A Poisson random variable with a parameter of λ ≥ 1000, can be \napproximated by a normal. The approximating normal should match the mean and \nthe variance of the Poisson. Let X ~ Poi(1000). What is an approximation for \nP(990 < X < 1000). Give your answer to two decimal places. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nd. (6 points) The probit function, Φ-1(x) is the inverse of the CDF of a standard \nnormal. It maps from probabilities to the standard normal CDF input that would \nproduce said probability. For example, you can confirm using the Standard \nNormal Table that Φ(0.1) = 0.5398, so  Φ-1(0.5398) = 0.1. Give a closed form \nexpression, using the probit function, for an approximation of K. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nWebsites solve this problem constantly.\n\n– 14 – \nStandard Normal Table \nNote: An entry in the table is the area under the curve to the left of z, P(Z ≤ z) = Φ(z) \n \n \n \n \n \nZ",
+      "source_type": "exam_question",
+      "document_name": "MidtermSpr2017",
+      "score": 0.5286098122596741
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p18_p19_1de0fb1b4e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDefining Bernoulli RVs\n19\nServe an ad.\n• User clicks w.p. 0.2\n• Ignores otherwise\nLet 𝑋: 1 if clicked\n𝑋~Ber(___)\n𝑃𝑋= 1 =  ___\n𝑃𝑋= 0 =  ___\nRoll two dice.\n• Success: roll a 10\n• Failure: anything else\nLet 𝑋 : 1 if success\n𝑋~Ber(___)\n𝐸𝑋= ___\n𝑋~Ber(𝑝)\n𝑝\" 1 = 𝑝 \n𝑝\" 0 = 1 −𝑝 \n𝐸𝑋= 𝑝 \nRun a program\n• Crashes w.p. 𝑝\n• Works w.p. 1 −𝑝\nLet 𝑋: 1 if crash\n𝑋~Ber(𝑝)\n𝑃𝑋= 1 = 𝑝\n𝑃𝑋= 0 = 1 −𝑝\n\nBinomial RV\n20",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.527186393737793
+    }
+  ],
+  "built_at": "2026-04-28T05:13:08Z"
+}

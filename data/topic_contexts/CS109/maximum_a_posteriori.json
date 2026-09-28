@@ -1,0 +1,244 @@
+{
+  "course": "CS109",
+  "topic_id": "maximum_a_posteriori",
+  "topic_name": "Maximum a Posteriori (MAP)",
+  "queries_used": [
+    "Maximum a Posteriori (MAP) definition",
+    "Maximum a Posteriori (MAP) intuition",
+    "Maximum a Posteriori (MAP) worked example",
+    "Maximum a Posteriori (MAP) exam problem",
+    "map estimation overview",
+    "map estimation practice",
+    "bayesian estimation overview",
+    "bayesian estimation practice",
+    "prior and posterior overview",
+    "prior and posterior practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_22_map_annotated_p3_79cca40980",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum A Posteriori (MAP) Estimator\nConsider a sample of 𝑛 iid random variables 𝑋', 𝑋(, … , 𝑋).\ndef The Maximum a Posteriori (MAP) Estimator of 𝜃 is the value of 𝜃 that \nmaximizes the posterior distribution of 𝜃.\n4\n𝜃*+, = arg max\n-\n𝑓𝜃|𝑋', 𝑋(, … , 𝑋)\nIntuition with Bayes’ Theorem:\nposterior\nlikelihood prior\n𝑃𝜃data =  𝑃data 𝜃𝑃𝜃 \n𝑃data\n𝐿𝜃, probability of data \ngiven parameter 𝜃\nBefore seeing data,\nprior belief of 𝜃\nAfter seeing \ndata, posterior \nbelief of 𝜃",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.6727383136749268
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p2_7bb5f93925",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum A Posteriori (MAP) Estimator\n3\nMaximum \nLikelihood \nEstimator\n(MLE)\nWhat parameter 𝜃\nmaximizes the likelihood\nof our observed data \n𝑋!, 𝑋\", … , 𝑋# ?\n𝜃$%& = arg max\n'\n𝑓𝑋!, 𝑋\", … , 𝑋#|𝜃\n𝐿𝜃= 𝑓𝑋!, 𝑋\", … , 𝑋#|𝜃\n= \"\n!\"#\n$\n𝑓𝑋!|𝜃\nMaximum\na Posteriori\n(MAP) \nEstimator\nGiven the sample data \n𝑋!, 𝑋\", … , 𝑋# ,\nwhat is the most probable \nparameter 𝜃?\n𝜃$() = arg max\n'\n 𝑓𝜃|𝑋!, 𝑋\", … , 𝑋#\nlikelihood of data\nposterior distribution\nof 𝜃\nConsider a sample of 𝑛 iid random variables 𝑋', 𝑋(, … , 𝑋).",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.6646299958229065
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p0_p1_230e5abd19",
+      "text": "22: Maximum a \nPosteriori \nJerry Cain\nMay 20, 2024\n1\nLecture Discussion on Ed\n\nMaximum a \nPosteriori \nEstimator\n2",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.6401038765907288
+    },
+    {
+      "chunk_id": "cs109_08_section_soln_sec1_part1_d1268b16a2",
+      "text": "– 1 –\nCS109\nMay 30, 2024\nMaximum A Posteriori and Na¨ıve Bayes Solution\nBefore you leave lab, make sure you click here so that you’re marked as having attended this\nweek’s section. The CA leading your discussion section can enter the password needed once\nyou’ve submitted.\n1\nWarmups\n1.1\nMaximum A Posteriori\na. Intuitively, what is MAP? What problem is it trying to solve? How does it differ from MLE?\nb. Given a 6-sided die (possibly unfair), you roll the die 𝑁times and observe the counts for\neach of the 6 outcomes as 𝑛1, ..., 𝑛6. What is the maximum a posteriori estimate of this\ndistribution, using Laplace smoothing? Recall that the die rolls themselves follow a\nmultinomial distribution.\na. From the course notes: The paradigm of MAP is that we should choose the value for\nour parameters that is the most likely given the data. At first blush this might seem\nthe same as MLE; however, remember that MLE chooses the value of parameters that\nmakes the data most likely. One of the disadvantages of MLE is that it best explains\ndata we have seen and makes no attempt to generalize to unseen data. In MAP, we\nincorporate prior belief about our parameters, and then we update our posterior belief\nof the parameters based on the data we have seen.\nb. Using a prior which represents one imagined observation of each outcome is called\n“Laplace smoothing” and it guarantees that none of your probabilities are 0 or 1. The\nLaplace estimate for a Multinomial RV is 𝑝𝑖= 𝑛𝑖+1\n𝑁+6 for 𝑖= 1, ..., 6.\n1.2\nNaive Bayes Review\nRecall the classification setting: we have data vectors of the form 𝑋= (𝑋1, . . . , 𝑋𝑚) and we want\nto predict a label 𝑌∈{0, 1}.\na. Recall in Naive Bayes, given a data point 𝑥, we compute 𝑃(𝑌= 1|𝑋= 𝑥) and predict 𝑌= 1\nprovided this quantity is ≥0.5, and otherwise we predict 𝑌= 0. Decompose\n𝑃(𝑌= 1|𝑋= 𝑥) into smaller terms, and state where the Naive Bayes assumption is used.\nb. Suppose we are given example vectors with labels provided. Give a formula to estimate\n(using maximum likelihood) each quantity 𝑃(𝑋𝑖= 𝑥𝑖|𝑌= 𝑦) above, for 𝑖∈{1, . . . , 𝑚} and\n𝑦∈{0, 1}. You can assume there is a function count which takes in any number of boolean\nconditions and returns a count over the data of the number of examples in which they are\ntrue. For example, count(𝑋3 = 2, 𝑋5 = 7) returns the number of examples where 𝑋3 = 2 and\n𝑋5 = 7.\n\n– 2 –\na.\n𝑃(𝑌= 1|𝑋= 𝑥) =\n𝑃(𝑌= 1)𝑃(𝑋= 𝑥|𝑌= 1)\n𝑃(𝑌= 1)𝑃(𝑋= 𝑥|𝑌= 1) + 𝑃(𝑌= 0)𝑃(𝑋= 𝑥|𝑌= 0)\n(Bayes+LTP)\n=\n𝑃(𝑌= 1) Î𝑚\n𝑖=1 𝑃(𝑋𝑖= 𝑥𝑖|𝑌= 1)\n𝑃(𝑌= 1) Î𝑚\n𝑖=1 𝑃(𝑋𝑖= 𝑥𝑖|𝑌= 1) + 𝑃(𝑌= 0) Î𝑚\n𝑖=1 𝑃(𝑋𝑖= 𝑥𝑖|𝑌= 0)\n(NB Assumption)\nb. 𝑃(𝑋𝑖= 𝑥𝑖|𝑌= 𝑦) = count(𝑋𝑖= 𝑥𝑖,𝑌= 𝑦)\ncount(𝑌= 𝑦)\n2\nProblems\n2.1\nWhy Boba Cares About MAP\nYou don’t understand why there’s no boba place within walking distance around campus, so you\ndecide to start one. In order to estimate the amount of ingredients needed and the time you will\nspend in the business (you still need to study), you want to estimate how many orders you will\nreceive per hour. After taking CS109, you are pretty confident that incoming orders can be\nconsidered as independent events and the process can be modeled with a Poisson.\nNow the question is - what is the 𝜆parameter of the Poisson? In the first hour of your soft opening,\nyou are visited by 4 curious students, each of whom made an order. You have a prior belief that\n𝑓(Λ = 𝜆) = 𝐾· 𝜆· 𝑒−𝜆\n2 . What is the MLE estimate? What is inference of 𝜆given the observation?\nWhat is the Maximum a Posteriori (MAP) estimate of 𝜆? Through your process try to identify\nwhat is a point-estimate, and what is a distribution.\nTo find the MLE, we start from finding the likelihood function (i.e. joint probability of\nobserved events) and find the 𝜆that maximizes the likelihood function.\n𝐿(𝜆) = 𝜆4 · 𝑒−𝜆\n4!\n𝐿𝐿(𝜆) = 4 log(𝜆) −𝜆−log(4!)\n𝜕𝐿𝐿\n𝜕𝜆= 4\n𝜆−1\nSet 𝜕𝐿𝐿\n𝜕𝜆to 0 and solve for 𝜆.\n𝜆= 4\nInference of 𝜆given the observation:\n𝑓(𝜆|𝑋= 4) = 𝑃(𝑋= 4|𝜆) · 𝑓(𝜆)\n𝑃(𝑋= 4)\nMAP estimate of 𝜆: we find the 𝜆that maximizes the inference given the observation, i.e.",
+      "source_type": "review_section",
+      "document_name": "08 section soln",
+      "score": 0.6287760734558105
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p9_ab0d975983",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nHow does MAP work? (for Bernoulli)\n10\nChoose model\nBernoulli 𝑝\nObserve data\nChoose prior on 𝜃\nFind  𝜃$() = \n  arg max\n'\n 𝑓𝜃|𝑋!, 𝑋\", … , 𝑋#\n𝑛 heads, 𝑚 tails\n(some 𝑔𝜃)\nMAP depends on what \n𝑔𝜃 we choose.\nmaximize\nlog prior + log-likelihood\nlog 𝑔𝜃+ 6\n*+!\n#\nlog 𝑓𝑋*|𝜃\n• Differentiate, set to 0\n• Solve",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.6256366968154907
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p14_8d04f0ef1d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nHow does MAP work? (for Bernoulli)\n15\nChoose model\nBernoulli 𝑝\nObserve data\nChoose prior on 𝜃\nFind  𝜃$() = \n  arg max\n'\n 𝑓𝜃|𝑋!, 𝑋\", … , 𝑋#\n𝑛 heads, 𝑚 tails\n(some 𝑔𝜃)\n(choose conjugate\ndistribution)\n⭐\nmaximize\nlog prior + log-likelihood\nlog 𝑔𝜃+ 6\n*+!\n#\nlog 𝑓𝑋*|𝜃\n• Differentiate, set to 0\n• Solve\nMode of posterior \ndistribution of 𝜃\n(posterior is also\nconjugate)",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.5974793434143066
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p17_ffafcf950c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMAP in practice\n• Flip a coin 8 times. Observe 𝑛= 7 heads and 𝑚= 1 tail.\n• What is the MAP estimator of the Bernoulli parameter 𝑝,\nif we assume a prior on 𝑝 of Beta 2, 2 ?\n18\n1. Choose a prior\n2. Determine posterior\n3. Compute MAP\n𝜃~Beta 2,2 .\nPosterior distribution of 𝜃 given observed data is Beta 9, 3\n𝜃$() = 8\n10\nBefore flipping the coin, \nwe imagined 2 trials:\n1 imaginary head, 1 \nimaginary tail. \nAfter the experiment, we saw 10 trials: \n8 heads (imaginary and real),\n2 tails (imaginary and real).",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.5938128232955933
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p31_1fb219e78c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThe problem with our current classifier\n32\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑌 | 𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑋!, 𝑋\", … , 𝑋#|𝑌\nEstimating this joint conditional \ndistribution is intractable.\nWhat if we could make a simplifying assumption—even if incredibly naïve—\nto make our parameter estimation effort computationally tractable?\nChoose the 𝑌 that is \nmost likely given 𝑿\n(Bayes’ Theorem)\n(1/𝑃𝑿 is constant w.r.t. 𝑦)",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.5755740404129028
+    },
+    {
+      "chunk_id": "cs109_finalfall2023soln_p10_33e8fea6fa",
+      "text": "11\n6\nLogistic Regression Priors (28 points)\nWe are going to train a logistic regression model – but we don’t have very much training data. As such, we\nwould like to use MAP, instead of MLE (the parameter estimation method we used on pset6). We are going\nto use a simplified logistic regression model that has a single parameter 𝜃, for a single feature 𝑥. Specifically\nwe assume: 𝑃(𝑌= 1|𝑋= 𝑥) = 𝜎(𝜃· 𝑥) where 𝑥and 𝜃are each numbers, not lists, and there is no bias\nterm. Our prior belief is that 𝜃is standard normal, 𝑁(𝜇= 0, 𝜎= 1). Our training data is a list of 𝑛tuples:\n[(𝑥1, 𝑦1), (𝑥2, 𝑦2), . . . , (𝑥𝑛, 𝑦𝑛)]\na. (8 points) Based only on your prior belief of 𝜃, how many times larger is the probability density that\n𝜃= 0, compared to the probability density that 𝜃= 2?\nb. (10 points) The MAP objective for this simplified logistic regression is to choose the 𝜃value that is\nmost likely given the values of 𝑦in our training data: 𝜃MAP = argmax\n𝜃\n𝑓(𝜃|𝑦1, . . . , 𝑦𝑛). Write out and\nexplain, step by step, how to derive:\n𝜃MAP = argmax\n𝜃\n[log( 𝑓(𝜃)) +\n𝑛\n∑︁\n𝑖=1\nlog( 𝑓(𝑦𝑖|𝜃))]",
+      "source_type": "lecture_slide",
+      "document_name": "FinalFall2023Soln",
+      "score": 0.5727665424346924
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p20_p21_e38075bc02",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhy do we care?\nIn the real world, we don’t know the true parameters.\n• But we observe data:\ndef estimator ;𝜃: a random variable estimating the true parameter 𝜃.\nIn parameter estimation,\nWe’ll initially and often rely on point estimates—i.e., the best single value\n• Provides an understanding of why data looks the way it does\n• Can make future predictions using that model\n• Can run simulations to generate more data\n21\n# times coin comes up heads, # requests for \nRydeShare per minute, # visitors to website per \nday, offer amount for that used bike you can’t sell\n\nMaximum \nLikelihood \nEstimator\n22",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.5724219083786011
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p0_p1_c0e41e71ea",
+      "text": "21: Bayesian Statistics \nand Beta\nJerry Cain\nMay 17, 2024\n1\nLecture Discussion on Ed\n\nMLE: \nMultinomial\n2",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.567611813545227
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p16_3e87d646a7",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConstructing a Bayesian Network\nWhat would an ID expert do?\n1. Describe the joint distribution using \ncausality.\n2. Assume conditional independence.\n3. Provide 𝑃values|parents  for each \nrandom variable\nWhat conditional probabilities\nshould our expert specify?\n17\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑈= 1 = 0.8\n𝑃𝑇= 1|𝐹!\" = 0, 𝑈= 0\n𝑃𝑇= 1|𝐹!\" = 0, 𝑈= 1\n𝑃𝑇= 1|𝐹!\" = 1, 𝑈= 0\n𝑃𝑇= 1|𝐹!\" = 1, 𝑈= 1",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.5669376850128174
+    },
+    {
+      "chunk_id": "cs109_04_cond_bayes_annotated_p27_08be1e5795",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMathematically:\n  \n \n \n \n \n \n𝑃𝐸𝐹→𝑃𝐹|𝐸\nReal-life application:  \n \n \n \n \n \n \nGiven new evidence 𝐸, update belief of fact 𝐹 \n \n \n \n \n \n \nPrior belief → Posterior belief\n \n \n \n \n \n \n𝑃𝐹→𝑃𝐹|𝐸\nBayes’ Theorem\n28\nposterior\nlikelihood\nprior\nReview\n𝑃𝐹𝐸= 𝑃𝐸𝐹𝑃𝐹\n𝑃𝐸",
+      "source_type": "lecture_slide",
+      "document_name": "04 cond bayes annotated",
+      "score": 0.555323600769043
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p24_p25_78ee9a2e6b",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMultiple Bayes’ Theorems\n25\n𝑝!|# 𝑦|𝑥=\n𝑝! 𝑦𝑝#|! 𝑥|𝑦\n𝑝# 𝑥\n𝑃𝐹|𝐸= 𝑃𝐹𝑃𝐸|𝐹\n𝑃𝐸\n𝑓!|# 𝑦|𝑥=\n𝑓! 𝑦𝑓#|! 𝑥|𝑦\n𝑓# 𝑥\nwith \nevents\nwith\ndiscrete RVs\nwith\ncontinuous RVs\nReally all the \nsame idea!\nYou are given \nthis value…\n…so this is just a scalar\n\nIntense\nExercise\n26",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.5527803301811218
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p24_f8314943fc",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTesting\nNew patient has a healthy ROI (𝑋! = 1). What is your prediction, (𝑌?\n(𝑃𝑋! = 1|𝑌= 0 (𝑃𝑌= 0 = 0.58 ⋅0.09 ≈0.052\n(𝑃𝑋! = 1|𝑌= 1 (𝑃𝑌= 1 = 0.99 ⋅0.91 ≈0.901\nA.  0.052 < 0.5 \n⇒ \n(𝑌= 1\nB.  0.901 > 0.5 \n⇒ \n(𝑌= 1\nC.  0.052 < 0.901 ⇒ (𝑌= 1\n25\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n1𝑃𝑿|𝑌= 0\n1𝑃𝑿|𝑌= 1\n𝑋' = 0\n0.42\n0.01\n𝑋' = 1\n0.58\n0.99\n1𝑃𝑌\n𝑌= 0\n0.09\n𝑌= 1\n0.91\n(MAP)\n(MLE)",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.5522697567939758
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p15_63ca878329",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConstructing a Bayesian Network\nWhat would an ID expert do?\n1. Describe the joint distribution using \ncausality.\n2. Assume conditional independence.\n3. Provide 𝑃values|parents  for each \nrandom variable\nWhat conditional probabilities\nshould our expert specify?\n16\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑈= 1 = 0.8\n✅",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.5501031875610352
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p25_p26_b15b90b12e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBrute Force Bayes classifier\n26\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n26\n(𝑃𝑋!, 𝑋\", … , 𝑋#|𝑌= 1\nTesting\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑋!, 𝑋\", … , 𝑋#|𝑌(𝑃𝑌\nTraining\n(𝑃𝑌= 1  \nEstimate these \nprobabilities—i.e.,\nlearn these parameters\nusing MLE or Laplace (MAP)\n( 1𝑃𝑌 is an estimate of 𝑃𝑌,\n 1𝑃𝑿|𝑌 is an estimate of 𝑃𝑿|𝑌)\n(𝑃𝑋!, 𝑋\", … , 𝑋#|𝑌= 0\n(𝑃𝑌= 0  \nGiven an observation 𝑿= 𝑋!, 𝑋\", … , 𝑋# , predict\n\nNaïve Bayes\n27",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.5465762615203857
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p20_p21_aec5fb5719",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMAP for Bernoulli, conjugate prior (from ﬁrst principles)\n• Flip a coin 8 times. Observe 𝑛= 7 heads and 𝑚= 1 tail.\n• Choose a prior on 𝜃. What is 𝜃$()?\nSuppose we pick a prior 𝜃~Beta 𝑎, 𝑏. 𝑔𝜃= !\n6 𝑝4-! 1 −𝑝7-!\n21\n3. Solve for 𝑝\nnormalizing \nconstant, 𝛽\n𝑎−1\n𝑝\n+ 𝑛\n𝑝−𝑏−1\n1 −𝑝−\n𝑚\n1 −𝑝= 0\n𝜃$() =\n𝑎+ 𝑛−1\n𝑎+ 𝑛+ 𝑏+ 𝑚−2\nThe mode of the posterior,\nBeta 𝑎+ 𝑛, 𝑏+ 𝑚!\nIf we choose a conjugate prior, we avoid calculus \nwith MAP, and we can simply report mode of \nposterior.\n✅\n(from previous slide)\n𝑎+ 𝑛−1\n𝑝\n−𝑏+ 𝑚−1\n1 −𝑝\n= 0\n⟹\n𝑎+ 𝑛−1 −𝑎+ 𝑛−1 𝑝= 𝑏+ 𝑚−1 𝑝\n⟹\n𝑝𝑎+ 𝑛+ 𝑏+ 𝑚−2 = 𝑎+ 𝑛−1\n⟹\n\nChoosing \nhyperparameters \nfor conjugate \nprior\n22",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.544728696346283
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p12_dfb20dfb00",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBayesian probability\nBayesian statistics: Probability represents our ever-\nevolving understanding of the world.\nMixing discrete and continuous random variables, \ncombined with Bayes’ Theorem, allows us to reason about \nprobabilities as random variables.\n13",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.5300043821334839
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p35_dfab351b05",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTracking in 2-D space\nWhat is your updated (posterior) belief of the 2-D location of the object \nafter observing the measurement?\n36\n𝑓\",$|M 𝑋= 𝑥, 𝑌= 𝑦|𝐷= 4\n=\n𝑓M|\",$ 𝐷= 4|𝑋= 𝑥, 𝑌= 𝑦𝑓\",$ 𝑥, 𝑦\n𝑓(𝐷= 4)\nBayes’\nTheorem\n= 𝐾E ⋅𝑒.\nM. :!-H! !\nE\n⋅𝐾= ⋅ 𝑒. \n:.G !- H.G !\nN\n𝑓(𝐷= 4)\nlikelihood of 𝐷= 4 \nprior belief\n= 𝐾G ⋅𝑒.\nM. :!-H! !\nE\n -\n:.G !- H.G !\nN\n \n𝑓(𝐷= 4)\n= 𝐾M ⋅𝑒.\n(# \"!%&!\n!\n!\n -\n\"#$ !% &#$ !\n'\nKey: Once we know the \npart dependent on 𝑥, 𝑦, we \ncan computationally \napproximate 𝐾M so that \n𝑓+,,|I is a valid PDF.",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.5242720246315002
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p28_f49accb886",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTracking in 2-D space\n• You hold some prior beliefs about the 2-D location of an object, 𝑋, 𝑌.\n• You observe a noisy distance measurement, 𝐷= 4.\n• How do you update your beliefs about the 2-D location of the object after \nthat noisy measurement?\n29\nposterior\nbelief\nlikelihood\n(of evidence)\nprior\nbelief\nnormalization constant\nRecall Bayes \nterminology:\n𝑓#,!|% 𝑥, 𝑦|𝑑=\n𝑓%|#,! 𝑑|𝑥, 𝑦𝑓#,! 𝑥, 𝑦\n𝑓% 𝑑",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.5232297778129578
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p27_ccd094cf73",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n• Before measuring, we have some \nprior belief about the 2-D location\nof an object, 𝑋, 𝑌.\n• We observe some noisy \nmeasurement 𝐷= 4, the Euclidean \ndistance of the object to a satellite.\n• After the measurement, what is our \nupdated (posterior) belief of the 2-\nD location of the object?\n28\nTracking in 2-D space\nTop-down view\nSatellite at (0, 0)\n?\n𝐷= 4",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.4925802946090698
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p36_28c4716126",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWith this continuous version of Bayes’ \ntheorem, we can explore new domains.\n• Before measuring, you hold some \nprior beliefs about the 2-D location of \nan object, 𝑋, 𝑌.\n• You observe a noisy distance \nmeasurement, 𝐷=4.\n• After the measurement, do you \nupdate your beliefs about the 2-D \nlocation of the object after that \nnoisy measurement.\n37\nTracking in 2-D space\nTop-down view\n!\n3-D view\n\"\nTop-down view\n3-D view\n0.08     \n0.04",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.4903006851673126
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p46_749f33d4e8",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEx 2. Naïve Bayes Classifier (MAP)\n47\n(𝑌= arg max\n*+ ,,!\nH\n5+!\n#\n(𝑃𝑋5|𝑌\n(𝑃𝑌\n47\n∀𝑖:\n(𝑃𝑌= 1 , (𝑃𝑌= 0  \n(𝑃𝑋5 = 1|𝑌= 0 , (𝑃𝑋5 = 0|𝑌= 0 ,\n(𝑃𝑋5 = 1|𝑌= 1 , (𝑃𝑋5 = 0|𝑌= 0 ,\nTesting\nTraining\nUse MLE or\nLaplace (MAP)\n(𝑌= arg max\n*+ ,,!\nH\n5+!\n#\n(𝑃𝑋5|𝑌\n(𝑃𝑌\n(note the same as before)",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.4828689694404602
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p16_ded504b10b",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMAP in practice\n• Flip a coin 8 times. Observe 𝑛= 7 heads and 𝑚= 1 tail.\n• What is the MAP estimator of the Bernoulli parameter 𝑝,\nif we assume a prior on 𝑝 of Beta 2, 2 ?\n17",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.4751816987991333
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p37_fabc7a103a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTracking in 2-D space: Posterior belief\n38\n𝑓+,, 𝑥, 𝑦= 𝐾= ⋅ 𝑒. \n\"#$ !% &#$ !\n'\nPrior belief\nPosterior belief\nTop-down view\n𝑦\n3-D view\n𝑥\n𝑦\n𝑥\nTop-down view\n3-D view\n𝑓+,,|I 𝑥, 𝑦|4 = \n \n𝐾M⋅𝑒.\nM. :!-H! !\nE\n -\n:.G !- H.G !\nN\n0.08     \n0.04",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.4274320602416992
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p42_407f400c78",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMedicinal Beta\n• Before being tested, a medicine is believed to \"work\" 80% of the time.\n• The medicine is administered to 20 patients.\n• It \"works\" for 14, \"doesn’t work\" for 6.\nWhat is your new belief that the drug \"works\"?\n43\nPrior:  \n𝜃~Beta 𝑎= 5, 𝑏= 2  \nPosterior: \n𝜃~Beta 𝑎= 5 + 14, 𝑏= 2 + 6\n                       ~Beta 𝑎= 19, 𝑏= 8\nBeta(𝑎= 𝑛!)&* + 1, 𝑏= 𝑚!)&* + 1)\nPrior\nBeta(𝑎= 𝑛!)&* + 𝑛+ 1, 𝑏= 𝑚!)&* + 𝑚+ 1)\nPosterior\n(Bayesian interpretation)\nWhat do you report to pharmacists?\nA. Expectation of posterior\nB. Mode of posterior\nC. Distribution of posterior\nD. Nothing\n0.0\n1.0\n2.0\n3.0\n4.0\n5.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nPosterior\nPrior\n𝑥\nmode\n🤔",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.41272038221359253
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p29_fff893986e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTop-down view\n1. Define prior\nYou have a prior belief about the 2-D location of an object, 𝑋, 𝑌.\n30\nLet 𝑋, 𝑌= object’s 2-D location, \nassuming satellite is at (0,0)\nSuppose the prior distribution is a\nsymmetric bivariate normal distribution:\n𝑥\n𝑦\n𝑓!,% 𝑥, 𝑦\n3-D view\n𝑓+,, 𝑥, 𝑦=\n1\n2𝜋2E 𝑒\n. \n:.G !- H.G !\nE E!\nnormalizing constant\n= 𝐾5 ⋅ 𝑒% \n#$% &' ($% &\n)\n𝑓!,%|2 𝑥, 𝑦|𝑑=\n𝑓2|!,% 𝑑|𝑥, 𝑦 𝑓!,% 𝑥, 𝑦\n𝑓2 𝑑",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.41249531507492065
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p23_382b2c609c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhere’d you get them priors?\n• Let 𝜃 be the probability a coin turns up heads.\n• Model 𝜃 with 2 different priors:\n◦Prior 1: Beta(3,8): 2 imaginary heads,\n \n7 imaginary tails\n◦Prior 2: Beta(7,4): 6 imaginary heads,\n \n3 imaginary tails\nNow flip 100 coins and get 58 heads and 42 tails.\n24\nmode: \"\n9\nmode: :\n9\nprior\nposterior\nPosterior 1: Beta(61,50)\nmode: :/\n!/9\nmode: :;\n!/9\nPosterior 2: Beta(65,46)\nProvided we collect enough data, posteriors will converge to \nthe true value and choice of prior will matter less.",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.3939521312713623
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p33_35de4987d6",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n3. Compute posterior\nWhat is your updated (posterior) belief of the 2-D location of the object \nafter observing the measurement?\n34\n𝑓\",$|M 𝑥, 𝑦|4 = 𝑓\",$|M 𝑋= 𝑥, 𝑌= 𝑦|𝐷= 4\nPosterior\nbelief\nCompute:\n𝑓!,%|2 𝑥, 𝑦|𝑑=\n𝑓2|!,% 𝑑|𝑥, 𝑦 𝑓!,% 𝑥, 𝑦\n𝑓2 𝑑",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.3806079924106598
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p40_c62ffaf649",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMedicinal Beta\n• Before being tested, a medicine is believed to \"work\" 80% of the time.\n• The medicine is administered to 20 patients.\n• It \"works\" for 14, \"doesn’t work\" for 6.\nWhat is your new belief that the drug \"works\"?\n41\nWhat is the prior distribution of 𝜃? (select all that apply)\nA.  𝜃~Beta 1, 1 = Uni 0, 1\nB.  𝜃~Beta 81, 101\nC.  𝜃~Beta 80, 20\nD.  𝜃~Beta 81, 21\nE.  𝜃~Beta 5, 2\nBeta(𝑎= 𝑛!)&* + 1, 𝑏= 𝑚!)&* + 1)\nPrior\nBeta(𝑎= 𝑛!)&* + 𝑛+ 1, 𝑏= 𝑚!)&* + 𝑚+ 1)\nPosterior\n(Bayesian interpretation)\nInterpretation: 80 successes / 100 imaginary trials\n(you can choose either based on how strongly you believe in prior data. \nWe choose E on next slide)",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.3787829577922821
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p34_4af7861017",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n3. Compute posterior\nWhat is your updated (posterior) belief of the 2-D location of the object \nafter observing the measurement?\n35\n𝑓\",$|M 𝑥, 𝑦|4 = 𝑓\",$|M 𝑋= 𝑥, 𝑌= 𝑦|𝐷= 4\nPosterior\nbelief\nCompute:\nTips\n• Use Bayes’ Theorem!\n• 𝑓I 4  is just a scaling constant. Why?\n• How can we approximate the final \nscaling constant with a computer?\n𝑓-|\",! 𝑑|𝑥, 𝑦= 𝐾' ⋅𝑒%+\n' 0% 13#23 3\nKnow:\nPrior \nbelief\nObservation \nlikelihood\n𝑓!,% 𝑥, 𝑦= 𝐾) ⋅ 𝑒. \n\"#$ !% &#$ !\n'\n𝑓!,%|2 𝑥, 𝑦|𝑑=\n𝑓2|!,% 𝑑|𝑥, 𝑦 𝑓!,% 𝑥, 𝑦\n𝑓2 𝑑",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.3760222792625427
+    }
+  ],
+  "built_at": "2026-04-28T05:13:14Z"
+}

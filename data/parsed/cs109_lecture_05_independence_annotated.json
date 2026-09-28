@@ -1,0 +1,141 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/05_independence_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/05_independence_annotated.pdf",
+  "sha256": "8412a08f572bddb01ea92824a9acfe3a59e01e4fa671c4370fa32e75dd330fae",
+  "title_guess": "05 independence annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "05: Independence\nJerry Cain\nApril 10th, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 71
+    },
+    {
+      "page_index": 1,
+      "text": "Independence I\n2",
+      "char_count": 16
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIndependence\nTwo events 𝐸 and 𝐹 are defined as independent if:\n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹)\nOtherwise 𝐸 and 𝐹 are called dependent events.\nIf 𝐸 and 𝐹 are independent, then:\n𝑃𝐸𝐹= 𝑃(𝐸)\n3",
+      "char_count": 240
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIntuition through proof\nStatement:\nIf 𝐸 and 𝐹 are independent, then 𝑃𝐸𝐹= 𝑃𝐸.\nProof: \n \n \n \n \n \n \n \n \n \n \nDefinition of\n \n \n \n \n \n \n \n \nconditional probability\n \n \n \n \n \n \n \n \nIndependence of 𝐸 and 𝐹\n \n \n \n \n \n \n \n \nTaking the bus to cancellation city\n4\n𝑃𝐸𝐹= 𝑃𝐸𝐹\n𝑃(𝐹)\n= 𝑃𝐸𝑃𝐹\n𝑃(𝐹)\n= 𝑃(𝐸)\nKnowing that 𝐹 happened does not \nchange our belief that 𝐸 happened.\n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹)\nIndependent\nevents 𝐸 and 𝐹",
+      "char_count": 466
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDice, our misunderstood friends\n• Roll two 6-sided dice, yielding values 𝐷# and 𝐷$.\n• Let event 𝐸: \n𝐷# = 1\n \n event 𝐹: \n𝐷$ = 6\n \n event 𝐺: \n𝐷# + 𝐷$ = 5\n5\n1. Are 𝐸 and 𝐹 independent?\n2. Are 𝐸 and 𝐺 independent?\n❌ dependent\n✅ independent\n𝑃𝐸= 1/6 \n𝑃𝐹= 1/6 \n𝑃𝐸𝐹= 1/36 \n𝐺= { 1,4 , 2,3 , 3,2 , 4,1 } \n𝑃𝐸= 1/6 \n𝑃𝐺= 4/36 = 1/9 \n𝑃𝐸𝐺= 1/36 ≠𝑃𝐸𝑃(𝐺) \n𝑃𝐸|𝐹= 𝑃(𝐸)\n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹)\nIndependent\nevents 𝐸 and 𝐹",
+      "char_count": 461
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGeneralizing independence\nThree events 𝐸, 𝐹, and 𝐺\nare independent if:\n𝑛 events 𝐸#, 𝐸$, … , 𝐸% are\nindependent if:\n6\n𝑃𝐸𝐹𝐺= 𝑃𝐸𝑃𝐹𝑃𝐺, and \n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹), and \n𝑃𝐸𝐺= 𝑃𝐸𝑃(𝐺), and \n𝑃𝐹𝐺= 𝑃𝐹𝑃(𝐺) \nfor 𝑟= 1, … , 𝑛:\n \nfor every subset 𝐸(, 𝐸), … , 𝐸*: \n𝑃𝐸(𝐸) … 𝐸* = 𝑃𝐸( 𝑃𝐸) ⋯𝑃𝐸*",
+      "char_count": 336
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDice, increasingly misunderstood (still our friends)\n• Each roll of a 6-sided die is an independent trial.\n• Two rolls: 𝐷# and 𝐷$.\n• Let event 𝐸: \n𝐷# = 1\n \n event 𝐹: \n𝐷$ = 6\n \n event 𝐺: \n𝐷# + 𝐷$ = 7\n7\n2. Are 𝐸 and 𝐺 \nindependent?\n3. Are 𝐹 and 𝐺 \nindependent?\n4. Are 𝐸, 𝐹, 𝐺 \nindependent?\n1. Are 𝐸 and 𝐹 \nindependent?\n𝐺= { 1,6 , 2,5 , 3,4 , 4,3 , 5,2 , 6,1 } \n✅\n𝑃𝐸𝐹= 1/36",
+      "char_count": 443
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDice, increasingly misunderstood (still our friends)\n• Each roll of a 6-sided die is an independent trial.\n• Two rolls: 𝐷# and 𝐷$.\n• Let event 𝐸: \n𝐷# = 1\n \n event 𝐹: \n𝐷$ = 6\n \n event 𝐺: \n𝐷# + 𝐷$ = 7\n8\n1. Are 𝐸 and 𝐹 \nindependent?\n2. Are 𝐸 and 𝐺 \nindependent?\n3. Are 𝐹 and 𝐺 \nindependent?\n4. Are 𝐸, 𝐹, 𝐺 \nindependent?\n❌\n✅\n✅\n✅\n𝐺= { 1,6 , 2,5 , 3,4 , 4,3 , 5,2 , 6,1 } \nPairwise independence is not sufficient to prove independence of 3 or more events!\n𝑃𝐸𝐹= 1/36",
+      "char_count": 532
+    },
+    {
+      "page_index": 8,
+      "text": "Independence II\n9",
+      "char_count": 17
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIndependent trials\nWe often are interested in experiments consisting of 𝑛 independent trials.\n• 𝑛 trials, each with the same set of possible outcomes\n• 𝑛-way independence: an event in one subset of trials is independent of \nevents in other subsets of trials \nExamples:\n• Flip a coin 𝑛 times\n• Roll a die 𝑛 times\n• Send a multiple-choice survey to 𝑛 people\n• Send 𝑛 web requests to 𝑘 different servers\n10",
+      "char_count": 476
+    },
+    {
+      "page_index": 10,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider the following parallel network:\n• 𝑛 independent routers, each with\nprobability 𝑝+ of functioning (where 1 ≤𝑖≤𝑛)\n• 𝐸= functional path from A to B exists. \nWhat is 𝑃𝐸?\n11\nNetwork reliability\n𝑝(\n𝑝)\n𝑝,\n…\n𝐴\n𝐵",
+      "char_count": 285
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider the following parallel network:\n• 𝑛 independent routers, each with\nprobability 𝑝+ of functioning (where 1 ≤𝑖≤𝑛)\n• 𝐸= functional path from A to B exists. \nWhat is 𝑃𝐸?\n12\nNetwork reliability\n𝑝(\n𝑝)\n𝑝,\n…\n𝐴\n𝐵\n𝑃𝐸= 𝑃≥1 one router works  \n \n= 1 −𝑃all routers fail  \n \n= 1 −1 −𝑝#\n1 −𝑝$ ⋯1 −𝑝%  \n= 1 −@\n&'#\n%\n1 −𝑝&\n≥1 with independent trials: \ntake complement",
+      "char_count": 431
+    },
+    {
+      "page_index": 12,
+      "text": "Exercises\n13",
+      "char_count": 12
+    },
+    {
+      "page_index": 13,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIndependence?\n1. True or False? Two events 𝐸 and 𝐹 are independent if:\nA. Knowing that 𝐹 happens means that 𝐸 can’t happen.\nB. Knowing that 𝐹 happens doesn’t change probability that 𝐸 happened.\n2. Are 𝐸 and 𝐹 independent in the following pictures?\n14\nS\nF\nE\nS\nE\nF\nA.  \nB.  \n1/4\n2/9\n1/9\n4/9\n1/4\n𝑃𝐸|𝐹= 𝑃(𝐸)\n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹)\nIndependent\nevents 𝐸 and 𝐹",
+      "char_count": 415
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIndependence?\n1. True or False? Two events 𝐸 and 𝐹 are independent if:\nA. Knowing that 𝐹 happens means that 𝐸 can’t happen.\nB. Knowing that 𝐹 happens doesn’t change probability that 𝐸 happened.\n2. Are 𝐸 and 𝐹 independent in the following pictures?\n15\nS\nF\nE\nS\nE\nF\nA.  \nB.  \n1/4\n2/9\n1/9\n4/9\n1/4\n𝑃𝐸|𝐹= 𝑃(𝐸)\n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹)\nIndependent\nevents 𝐸 and 𝐹",
+      "char_count": 415
+    },
+    {
+      "page_index": 15,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCoin Flips\nSuppose we flip a coin 𝑛 times. Each coin flip is an independent trial with \nprobability 𝑝 of coming up heads. Write an expression for the following:\n1.  𝑃(𝑛 heads on 𝑛 coin flips)\n2.  𝑃(𝑛 tails on 𝑛 coin flips)\n3.  𝑃(first 𝑘 heads, then 𝑛−𝑘 tails)\n4.  𝑃(exactly 𝑘 heads on 𝑛 coin flips)\n16",
+      "char_count": 374
+    },
+    {
+      "page_index": 16,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCoin Flips\nSuppose we flip a coin 𝑛 times. Each coin flip is an independent trial with \nprobability 𝑝 of coming up heads. Write an expression for the following:\n1.  𝑃(𝑛 heads on 𝑛 coin flips)\n2.  𝑃(𝑛 tails on 𝑛 coin flips)\n3.  𝑃(first 𝑘 heads, then 𝑛−𝑘 tails)\n4.  𝑃(exactly 𝑘 heads on 𝑛 coin flips)\n17\n𝑛\n𝑘 𝑝( 1 −𝑝%)(\n# of mutually\nexclusive\noutcomes\n𝑃(a particular outcome’s\n𝑘 heads on 𝑛 coin flips)\nMake sure you understand #4! It will come up again.",
+      "char_count": 524
+    },
+    {
+      "page_index": 17,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProbability of events\n18\nE or F\n𝑃𝐸∪𝐹\nE and F\n𝑃𝐸𝐹\nJust add!\nInclusion-\nExclusion \nPrinciple\nJust multiply!\nChain Rule\nMutually \nexclusive?\nIndependent?\n𝑃𝐸+ 𝑃(𝐹)\n𝑃𝐸+ 𝑃𝐹−𝑃(𝐸∩𝐹)",
+      "char_count": 246
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProbability of events\n19\nE or F\n𝑃𝐸∪𝐹\nE and F\n𝑃𝐸𝐹\nJust add!\nInclusion-\nExclusion \nPrinciple\nJust multiply!\nChain Rule\nMutually \nexclusive?\nIndependent?\n𝑃𝐸+ 𝑃(𝐹)\n𝑃𝐸+ 𝑃𝐹−𝑃(𝐸∩𝐹)\n𝑃𝐸𝑃𝐹𝐸\nor \n𝑃𝐹𝑃(𝐸|𝐹)\n𝑃𝐸𝑃𝐹",
+      "char_count": 270
+    },
+    {
+      "page_index": 19,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProbability of events\n20\nE or F\n𝑃𝐸∪𝐹\nE and F\n𝑃𝐸𝐹\nJust add!\nInclusion-\nExclusion \nPrinciple\nJust multiply!\nChain Rule\nDe Morgan’s\nMutually \nexclusive?\nIndependent?",
+      "char_count": 235
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGreat if 𝐸+\n- mutually exclusive!\nGreat if 𝐸+ independent!\nDe Morgan’s Laws\n21\nE\nF\nS\n𝐸∩𝐹- = 𝐸- ∪𝐹-\n;\n+.(\n,\n𝐸+\n-\n= <\n+.(\n,\n𝐸+\n-\nIn probability:\n𝑃𝐸#𝐸$ ⋯𝐸%  \n \n= 1 −𝑃\n𝐸#𝐸$ ⋯𝐸% -  \n \n= 1 −𝑃𝐸#\n- ∪𝐸$\n. ∪⋯∪𝐸%.  \n𝐸∪𝐹- = 𝐸- ∩𝐹-\nE\nF\nS\n<\n+.(\n,\n𝐸+\n-\n= ;\n+.(\n,\n𝐸+\n-\nIn probability:\n𝑃𝐸# ∪𝐸$ ∪⋯∪𝐸%  \n \n \n= 1 −𝑃\n𝐸# ∪𝐸$ ∪⋯∪𝐸% -\n \n \n= 1 −𝑃𝐸#\n.𝐸$\n. ⋯𝐸%\n.\nDe Morgan’s lets you switch between AND and OR.",
+      "char_count": 456
+    },
+    {
+      "page_index": 21,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nHash table fun\n•\n𝑚 strings are hashed (not uniformly) into a hash table with 𝑛 buckets.\n•\nEach string hashed is an independent trial w.p. 𝑝+ of getting hashed into bucket 𝑖.\nWhat is 𝑃𝐸 if\n1. 𝐸 = bucket 1 has ≥1 string hashed into it?\n2. 𝐸 = at least 1 of buckets 1 to 𝑘 has ≥1 string hashed into it?\n22",
+      "char_count": 375
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nHash table fun\n•\n𝑚 strings are hashed (not uniformly) into a hash table with 𝑛 buckets.\n•\nEach string hashed is an independent trial w.p. 𝑝+ of getting hashed into bucket 𝑖.\nWhat is 𝑃𝐸 if\n1. 𝐸 = bucket 1 has ≥1 string hashed into it?\n23\nDefine \n𝑆+ = string 𝑖 is\n  \nhashed into bucket 1\n  \n𝑆+\n- = string 𝑖 is not \n  \nhashed into bucket 1\n𝑃𝑆! = 𝑝\"\n𝑃𝑆!\n# = 1 −𝑝\"",
+      "char_count": 432
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nHash table fun\n•\n𝑚 strings are hashed (not uniformly) into a hash table with 𝑛 buckets.\n•\nEach string hashed is an independent trial w.p. 𝑝+ of getting hashed into bucket 𝑖.\nWhat is 𝑃𝐸 if\n1. 𝐸 = bucket 1 has ≥1 string hashed into it?\n24\n𝑃𝐸= 𝑃(𝑆# ∪𝑆$ ∪⋯∪𝑆4) \n \n \n = 1 −𝑃\n𝑆# ∪𝑆$ ∪⋯∪𝑆4 -   \nComplement\n \n = 1 −𝑃𝑆#\n-𝑆$\n- ⋯𝑆4\n-   \n \n \nDe Morgan’s Law\n \n = 1 −𝑃𝑆#\n- 𝑃𝑆$\n- ⋯𝑃𝑆4\n-\n= 1 −𝑃𝑆#\n-\n4\n    𝑆+ independent trials\n \n = 1 −(1 −𝑝#)4  \n \nDefine \n𝑆+ = string 𝑖 is\n  \nhashed into bucket 1\n  \n𝑆+\n- = string 𝑖 is not \n  \nhashed into bucket 1\n𝑃𝑆! = 𝑝\"\n𝑃𝑆!\n# = 1 −𝑝\"\nWTF (not-real acronym for Want To Find):",
+      "char_count": 669
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMore hash table fun: Possible approach?\n•\n𝑚 strings are hashed (not uniformly) into a hash table with 𝑛 buckets.\n•\nEach string hashed is an independent trial w.p. 𝑝+ of getting hashed into bucket 𝑖.\nWhat is 𝑃𝐸 if\n1. 𝐸 = bucket 1 has ≥1 string hashed into it?\n2. 𝐸 = at least 1 of buckets 1 to 𝑘 has ≥1 string hashed into it?\n25\n⚠ 𝐹+ bucket events are dependent!\nSo we cannot approach with complement. \nDefine \n𝐹+ = bucket 𝑖 has at \n  \nleast one string in it\n𝑃𝐸 \n= 𝑃𝐹# ∪𝐹$ ∪⋯∪𝐹(  \n \n= 1 −𝑃\n𝐹# ∪ 𝐹$ ∪⋯∪𝐹( -  \n \n= 1 −𝑃𝐹#\n-𝐹$\n- ⋯𝐹(\n-\n \n \n \n? = 1 −𝑃𝐹#\n- 𝑃𝐹$\n- ⋯𝑃𝐹(\n.",
+      "char_count": 634
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n= 𝑃buckets 1 to 𝑘 𝐚𝐥𝐥 𝐝𝐞𝐧𝐢𝐞𝐝 𝐬𝐭𝐫𝐢𝐧𝐠𝐬  \n= 𝑃each string hashes to 𝑘+ 1 or higher\n$ \n= (1 −𝑝\" −𝑝%…– 𝑝&)$\nMore hash table fun\n•\n𝑚 strings are hashed (not uniformly) into a hash table with 𝑛 buckets.\n•\nEach string hashed is an independent trial w.p. 𝑝+ of getting hashed into bucket 𝑖.\nWhat is 𝑃𝐸 if\n1. 𝐸 = bucket 1 has ≥1 string hashed into it?\n2. 𝐸 = at least 1 of buckets 1 to 𝑘 has ≥1 string hashed into it?\n26\nDefine \n𝐹+ = bucket 𝑖 has at \n  \nleast one string in it\n𝑃𝐸 \n= 𝑃𝐹# ∪𝐹$ ∪⋯∪𝐹(  \n \n= 1 −𝑃\n𝐹# ∪ 𝐹$ ∪⋯∪𝐹( -  \n \n \n \n= 1 −𝑃𝐹#\n-𝐹$\n- ⋯𝐹(\n-\n \n \n \n= 1 −(1 −𝑝# −𝑝$…– 𝑝()4",
+      "char_count": 643
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:57Z"
+}

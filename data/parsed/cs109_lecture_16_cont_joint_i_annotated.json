@@ -1,0 +1,206 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/16_cont_joint_i_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/16_cont_joint_i_annotated.pdf",
+  "sha256": "351ceafd1cbb80dd9ada8455b82ddd9b9d49c7722755d6a9d0c46bd647beb08f",
+  "title_guess": "16 cont joint i annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "16: Continuous Joint \nDistributions\nJerry Cain\n May 6th, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 88
+    },
+    {
+      "page_index": 1,
+      "text": "Continuous \nJoint \nDistributions\n2",
+      "char_count": 34
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStanford logo with darts\n3\nQuick check: What is the probability that a dart\nhits at (456.2344132343, 532.1865739012)?\nThe Stanford letterhead logo was \ncreated by throwing 500,000 darts \naccording to a joint distribution.\nIf we throw another dart according to \nthe same distribution, what is \nP(dart hits within 𝑟 pixels of center)?\nnot really, but let’s pretend\nzero",
+      "char_count": 440
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCS109 logo with darts\n4\n1 pixel = 1 dart thrown\nat screen\nPossible dart counts (in 100x100 boxes)\nP(dart hits within 𝑟 pixels of center)?",
+      "char_count": 210
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCS109 logo with darts\n5\nPossible dart counts (in 50x50 boxes)\nP(dart hits within 𝑟 pixels of center)?",
+      "char_count": 174
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCS109 logo with darts\n6\nPossible dart counts\n(in infinitesimally small boxes)\nP(dart hits within 𝑟 pixels of center)?",
+      "char_count": 190
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nContinuous joint probability density functions\nIf two random variables 𝑋 and 𝑌 are jointly continuous, then there exists a \njoint probability density function 𝑓!,# defined over −∞< 𝑥, 𝑦< ∞ such that:\n𝑃𝑎$ ≤𝑋≤𝑎%,  𝑏$ ≤𝑌≤𝑏% = 1\n&!\n&\"\n1\n'!\n'\"\n𝑓!,# 𝑥, 𝑦𝑑𝑦𝑑𝑥 \n7",
+      "char_count": 328
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFrom one continuous RV to jointly continuous RVs\nSingle continuous RV 𝑋\n• PDF 𝑓! such that ∫()\n) 𝑓! 𝑥𝑑𝑥= 1\n• Integrate to get probabilities\nJointly continuous RVs 𝑋 and 𝑌\n• PDF 𝑓!,# such that∫()\n) ∫()\n) 𝑓!,# 𝑥, 𝑦𝑑𝑦𝑑𝑥= 1\n• Double integrate to get probabilities\n8\nProbability for jointly continuous RVs is volume under a surface.\n0\n…\n44\n52\n60\n…\n90\n!\nProbability = \narea under curve",
+      "char_count": 452
+    },
+    {
+      "page_index": 8,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDouble integrals without tears\nLet 𝑋 and 𝑌 be two continuous random variables.\n• Support: 0 ≤𝑋≤1, 0 ≤𝑌≤2.\nIs 𝑔𝑥, 𝑦= 𝑥𝑦 a valid joint PDF over 𝑋 and 𝑌?\nWrite down the definite double integral that\nmust integrate to 1:",
+      "char_count": 289
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDouble integrals without tears\nLet 𝑋 and 𝑌 be two continuous random variables.\n• Support: 0 ≤𝑋≤1, 0 ≤𝑌≤2.\nIs 𝑔𝑥, 𝑦= 𝑥𝑦 a valid joint PDF over 𝑋 and 𝑌?\nWrite down the definite double integral that\nmust integrate to 1:\n1\n*+,\n%\n1\n-+,\n$\n𝑥𝑦 𝑑𝑥𝑑𝑦= 1\nor\n1\n-+,\n$\n1\n*+,\n%\n𝑥𝑦 𝑑𝑦𝑑𝑥= 1\n(used in next slide)",
+      "char_count": 367
+    },
+    {
+      "page_index": 10,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDouble integrals without tears\nLet 𝑋 and 𝑌 be two continuous random variables.\n• Support: 0 ≤𝑋≤1, 0 ≤𝑌≤2.\nIs 𝑔𝑥, 𝑦= 𝑥𝑦 a valid joint PDF over 𝑋 and 𝑌?\n11\n1 = $\n!\"\n\"\n$\n!\"\n\"\n𝑔𝑥, 𝑦𝑑𝑥 𝑑𝑦= $\n#$%\n&\n$\n'$%\n(\n𝑥𝑦 𝑑𝑥 𝑑𝑦\n$\n#$%\n&\n$\n'$%\n(\n𝑥𝑦 𝑑𝑥𝑑𝑦= $\n#$%\n&\n𝑦$\n'$%\n(\n𝑥 𝑑𝑥𝑑𝑦= $\n#$%\n&\n𝑦𝑥&\n2\n%\n(\n𝑑𝑦= $\n#$%\n&\n𝑦1\n2 𝑑𝑦\n$\n#$%\n&\n𝑦1\n2 𝑑𝑦= 𝑦&\n4\n#$%\n&\n= 1 −0 = 1\n1. Evaluate inside integral by treating 𝑦 as a constant:\n2. Evaluate remaining (single) integral:\nYes, 𝑔𝑥, 𝑦is a valid joint PDF\nbecause it integrates to 1.\n0. Set up integral:",
+      "char_count": 585
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMarginal distributions\nSuppose 𝑋 and 𝑌 are continuous random\nvariables with joint PDF:\nThe marginal density functions—that is, the marginal PDFs—are therefore:\n𝑓! 𝑎= 1\n()\n)\n𝑓!,# 𝑎, 𝑦𝑑𝑦 \n𝑓# 𝑏= 1\n()\n)\n𝑓!,# 𝑥, 𝑏𝑑x\n12\n𝑓) 𝑥\n𝑓* 𝑦\n$\n!\"\n\"\n$\n!\"\n\"\n𝑓),* 𝑥, 𝑦𝑑𝑦𝑑𝑥= 1",
+      "char_count": 327
+    },
+    {
+      "page_index": 12,
+      "text": "Joint CDFs\n13",
+      "char_count": 13
+    },
+    {
+      "page_index": 13,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCDFs and PDFs in one dimension\nFor a one-dimensional continuous random variable 𝑋 with PDF 𝑓, the CDF \n(cumulative distribution function) is\n𝐹𝑎= 𝑃𝑋≤𝑎= 1\n()\n&\n𝑓𝑥𝑑𝑥\nThe density 𝑓 is the derivative of the CDF, 𝐹:\n𝑓𝑥= 𝑑\n𝑑𝑥𝐹𝑥\n14\nFundamental Theorem \nof Calculus\nReview",
+      "char_count": 336
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSingle variable CDF, graphically\n15\nlim\n'→!\"𝐹- 𝑥= 0\nlim\n'→.\"𝐹) 𝑥= 1\n𝐹! 𝑥= 𝑃𝑋≤𝑥\n𝑓! 𝑥\nReview",
+      "char_count": 163
+    },
+    {
+      "page_index": 15,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nJoint cumulative distribution function\nFor two random variables 𝑋 and 𝑌, there can be a joint cumulative \ndistribution function 𝐹!,#:\n𝐹!,# 𝑎, 𝑏= 𝑃𝑋≤𝑎, 𝑌≤𝑏\n16\nFor continuous 𝑋 and 𝑌:\n𝐹!,# 𝑎, 𝑏= 1\n()\n&\n1\n()\n'\n𝑓!,# 𝑥, 𝑦𝑑𝑦𝑑𝑥\n𝑓!,# 𝑎, 𝑏=\n1\"\n1& 1' 𝐹!,# 𝑎, 𝑏\nFor discrete 𝑋 and 𝑌:\n𝐹!,# 𝑎, 𝑏= ;\n-3&\n;\n*3'\n𝑝!,#(𝑥, 𝑦)",
+      "char_count": 379
+    },
+    {
+      "page_index": 16,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nJoint CDF, graphically\n17\nlim\n',#→!\"𝐹),* 𝑥, 𝑦= 0\nlim\n',#→.\"𝐹),* 𝑥, 𝑦= 1\n𝐹!,# 𝑥, 𝑦= 𝑃𝑋≤𝑥, 𝑌≤𝑦\n𝑓!,# 𝑥, y",
+      "char_count": 175
+    },
+    {
+      "page_index": 17,
+      "text": "Independent \nContinuous RVs\n18",
+      "char_count": 30
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIndependent continuous RVs\nTwo continuous random variables 𝑋 and 𝑌 are independent if:\n𝑃𝑋≤𝑥, 𝑌≤𝑦= 𝑃𝑋≤𝑥𝑃𝑌≤𝑦\nEquivalently:\n𝐹!,# 𝑥, 𝑦= 𝐹! 𝑥𝐹# 𝑦\n𝑓!,# 𝑥, 𝑦= 𝑓! 𝑥𝑓# 𝑦\nProof for PDF:\n19\n𝑓),* 𝑥, 𝑦=\n𝜕&\n𝜕𝑥 𝜕𝑦 𝐹),* 𝑥, 𝑦=\n𝜕&\n𝜕𝑥 𝜕𝑦 𝐹) 𝑥𝐹* 𝑦\n= 𝜕\n𝜕𝑥\n𝜕\n𝜕𝑦 𝐹) 𝑥𝐹* 𝑦\n= 𝑓) 𝑥𝑓* 𝑦\n= 𝜕\n𝜕𝑥 𝐹) 𝑥\n𝜕\n𝜕𝑦 𝐹* 𝑦\n∀𝑥, 𝑦\n∀𝑥, 𝑦",
+      "char_count": 366
+    },
+    {
+      "page_index": 19,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIndependent continuous RVs\nTwo continuous random variables 𝑋 and 𝑌 are independent if:\n𝑃𝑋≤𝑥, 𝑌≤𝑦= 𝑃𝑋≤𝑥𝑃𝑌≤𝑦\nEquivalently:\n𝐹!,# 𝑥, 𝑦= 𝐹! 𝑥𝐹# 𝑦\n𝑓!,# 𝑥, 𝑦= 𝑓! 𝑥𝑓# 𝑦\nMore generally, 𝑋 and 𝑌 are independent if the joint PDF factors into two, \nsingle-variable marginal probability densities:\n𝑓!,# 𝑥, 𝑦= 𝑔𝑥ℎ𝑦, where −∞< 𝑥, 𝑦< ∞\n20\n∀𝑥, 𝑦\n∀𝑥, 𝑦",
+      "char_count": 407
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPop quiz! (just kidding)\nAre 𝑋 and 𝑌 independent in the following cases?\n21\nindependent\n𝑋 and 𝑌\n𝑓!,# 𝑥, 𝑦= 𝑔𝑥ℎ𝑦,\nwhere −∞< 𝑥, 𝑦< ∞\n1.  𝑓!,# 𝑥, 𝑦= 6𝑒(4-𝑒(%*\n where 0 < 𝑥, 𝑦< ∞\n2.  𝑓!,# 𝑥, 𝑦= 4𝑥𝑦\n where 0 < 𝑥, 𝑦< 1\n3.  𝑓!,# 𝑥, 𝑦= 24𝑥𝑦\n where 0 < 𝑥+  𝑦< 1",
+      "char_count": 325
+    },
+    {
+      "page_index": 21,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPop quiz! (just kidding)\nAre 𝑋 and 𝑌 independent in the following cases?\n22\n1.  𝑓!,# 𝑥, 𝑦= 6𝑒(4-𝑒(%*\n where 0 < 𝑥, 𝑦< ∞\n2.  𝑓!,# 𝑥, 𝑦= 4𝑥𝑦\n where 0 < 𝑥, 𝑦< 1\n3.  𝑓!,# 𝑥, 𝑦= 24𝑥𝑦\n where 0 < 𝑥+  𝑦< 1\n𝑔𝑥= 3𝑒!:'\nℎ𝑦= 2𝑒!&# \n𝑔𝑥= 2𝑥\nℎ𝑦= 2𝑦\nCannot capture constraint on 𝑥+  𝑦! \n❌\n✅\n✅\nindependent\n𝑋 and 𝑌\n𝑓!,# 𝑥, 𝑦= 𝑔𝑥ℎ𝑦,\nwhere −∞< 𝑥, 𝑦< ∞\nSeparable functions:\nSeparable functions:\nIf you can factor densities over the entire \nsupport, you have independence.",
+      "char_count": 522
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMore pop quiz! (more kidding)\n𝑋 and 𝑌 have the following joint PDF:\n1. Are 𝑋 and 𝑌 independent?\n2. What is the marginal\nPDF of 𝑋? Of 𝑌?\n3. What is 𝐸𝑋+ 𝑌?\n23\n𝑓),* 𝑥, 𝑦= 3𝑒!:'\nwhere 0 < 𝑥< ∞, 1 < 𝑦< 2",
+      "char_count": 271
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMore pop quiz! (more kidding)\n 𝑋 and 𝑌 have the following joint PDF:\n1. Are 𝑋 and 𝑌 independent?\n2. What is the marginal\nPDF of 𝑋? Of 𝑌?\n3. What is 𝐸𝑋+ 𝑌?\n24\n𝑔𝑥= 3𝐶𝑒!:', 0 < 𝑥< ∞ \nℎ𝑦= 1/𝐶,  \n1 < 𝑦< 2 \n𝐶 is a \nconstant\n✅\n𝑓),* 𝑥, 𝑦= 3𝑒!:'\nwhere 0 < 𝑥< ∞, 1 < 𝑦< 2\n𝑥\n𝑦\n𝑓),* 𝑥, 𝑦",
+      "char_count": 348
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMore pop quiz! (more kidding)\n𝑋 and 𝑌 have the following joint PDF:\n1. Are 𝑋 and 𝑌 independent?\n2. What is the marginal\nPDF of 𝑋? Of 𝑌?\n3. What is 𝐸𝑋+ 𝑌?\n25\n𝑓),* 𝑥, 𝑦= 3𝑒!:'\nwhere 0 < 𝑥< ∞, 1 < 𝑦< 2\n𝑔𝑥= 3𝑒!:', 0 < 𝑥< ∞ \nℎ𝑦= 1,  \n1 < 𝑦< 2 \n✅",
+      "char_count": 313
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThe joy of meetings\nTwo people set up a meeting time. Each arrives independently at a time uniformly \ndistributed between 12pm and 12:30pm.\nDefine \n𝑋= # minutes past 12pm that person 1 arrives.  𝑋~Uni 0, 30\n \n𝑌= # minutes past 12pm that person 2 arrives. 𝑌~Uni 0, 30\nWhat is the probability that the first to arrive waits >10 mins for the other?\nCompute: 𝑃𝑋+ 10 < 𝑌+ 𝑃𝑌+ 10 < 𝑋= 2𝑃𝑋+ 10 < 𝑌\n1. What is symmetry here?\n2. How do we integrate to compute this probability?\n26\n(by symmetry)",
+      "char_count": 558
+    },
+    {
+      "page_index": 26,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDouble integrals: A guide\n27\n(by symmetry, \nindependence)\n= 2\n@\n'.(%;#,\n%<',#,<:%\n1/30 &𝑑𝑥𝑑𝑦\n= 2\n30& $\n(%\n:%\n$\n%\n#!(%\n𝑑𝑥𝑑𝑦\n= 2\n30& $\n(%\n:%\n𝑦−10 𝑑𝑦\n= ⋯= 4\n9\n2𝑃𝑋+ 10 < 𝑌\nSteps:\n1. Draw a picture.\n2. Set bounds \"from outside in\".\n•\nOuter integral bounds should\nbe full range possible\n•\nInner integral can depend on \nintegration variable of outer \nintegral\nFrom last slide:",
+      "char_count": 442
+    },
+    {
+      "page_index": 27,
+      "text": "Sum of \nIndependent \nGaussians\n28",
+      "char_count": 33
+    },
+    {
+      "page_index": 28,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSum of independent Gaussians\n29\n𝑋~𝒩𝜇$, 𝜎$\n% ,\n𝑌~𝒩𝜇%, 𝜎%\n%\n𝑋, 𝑌 independent\n𝑋+ 𝑌 ~𝒩(𝜇! + 𝜇\", 𝜎!\n\" + 𝜎\"\n\")\n(proof left to Wikipedia)\nHolds in general case:\n𝑋=~𝒩𝜇=, 𝜎=\n&\n𝑋= independent for 𝑖= 1, … , 𝑛\n;\n5+$\n6\n𝑋5 ~𝒩\n;\n5+$\n6\n𝜇5 , ;\n5+$\n6\n𝜎5\n%",
+      "char_count": 310
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n30\nBack for another playoff game\nWhat is the probability that the Warriors win?\nHow do you model zero-sum games?\n𝑃𝐴! > 𝐴\"\nThis is a probability of an event \ninvolving two random variables!\nWe will compute: \n𝑃𝐴! −𝐴\" > 0\nA sum of Normals!",
+      "char_count": 309
+    },
+    {
+      "page_index": 30,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMotivating idea: Zero sum games\nWant: 𝑃Warriors win = 𝑃𝐴7 −𝐴8 > 0  \nAssume 𝐴7, 𝐴8 are independent.\nLet 𝐷= 𝐴7 −𝐴8.\n31\nWhat is the distribution of 𝐷?\n0\n0.0005\n0.001\n0.0015\n0.002\n0.0025\n1000\n1500\n2000\n2500\n!=1470\n0\n0.0005\n0.001\n0.0015\n0.002\n0.0025\n1000\n1500\n2000\n2500\n!=1657\nWarriors )*~, - = 1657, 2000\nOpponents )1~, - = 1470, 2000\nA.  𝐷~𝒩1657 −1470, 200% − 200%\nB.  𝐷~𝒩1657 −1470, 200% + 200%\nC.  𝐷~𝒩1657 + 1470, 200% + 200%\nD.  𝐷~𝒩1657 + 1470, 200%",
+      "char_count": 522
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMotivating idea: Zero sum games\nWant: 𝑃Warriors win = 𝑃𝐴7 −𝐴8 > 0  \nAssume 𝐴7, 𝐴8 are independent.\nLet 𝐷= 𝐴7 −𝐴8.\n32\n0\n0.0005\n0.001\n0.0015\n0.002\n0.0025\n1000\n1500\n2000\n2500\n!=1470\n0\n0.0005\n0.001\n0.0015\n0.002\n0.0025\n1000\n1500\n2000\n2500\n!=1657\nWarriors )*~, - = 1657, 2000\nOpponents )1~, - = 1470, 2000\nA.  𝐷~𝒩1657 −1470, 200% − 200%\nB.  𝐷~𝒩1657 −1470, 200% + 200%\nC.  𝐷~𝒩1657 + 1470, 200% + 200%\nD.  𝐷~𝒩1657 + 1470, 200%\nWhat is the distribution of 𝐷?\nIf 𝑋~𝒩𝜇(, 𝜎& ,\nthen −𝑋~𝒩−𝜇, −1 &𝜎& = 𝜎& .",
+      "char_count": 564
+    },
+    {
+      "page_index": 32,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMotivating idea: Zero sum games\nWant: 𝑃Warriors win = 𝑃𝐴7 −𝐴8 > 0  \nAssume 𝐴7, 𝐴8 are independent.\nLet 𝐷= 𝐴7 −𝐴8.\n33\n𝐷~𝒩1657 −1470, 200%+200%\n~𝒩187, 2 ⋅200%\n𝜎≈282.842\n𝑃𝐷> 0 = 1 −𝐹9 0 = 1 −Φ 0 −187\n282.842\n≈0.74574\nCompare with 0.7488, calculated by sampling!\n0\n0.0005\n0.001\n0.0015\n0.002\n0.0025\n1000\n1500\n2000\n2500\n!=1470\n0\n0.0005\n0.001\n0.0015\n0.002\n0.0025\n1000\n1500\n2000\n2500\n!=1657\nWarriors )*~, - = 1657, 2000\nOpponents )1~, - = 1470, 2000\n>>> from scipy.stats import norm\n>>> 1 - norm(187, 80000 ** 0.5).cdf(0)\n0.7457402843526317\n>>> 1 - norm(0, 1).cdf(-187 / (80000 ** 0.5))\n0.7457402843526317",
+      "char_count": 670
+    },
+    {
+      "page_index": 33,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVirus infections\nSuppose you are working with the WHO to initiate a response to the onset \nof a virus. There are two exposed groups:\n• G1: 20000 people, each independently infected with 𝑝( = 0.1\n• G2: 10000 people, each independently infected with 𝑝& = 0.4\nWhat is 𝑃people infected ≥6100 ? An approximation is okay.\n34\nStrategy:\nA. Sum of independent Binomials\nB. Sum of independent Poissons\nC. Sum of independent Gaussians\nD. Sum of independent Exponentials\nLet 𝐴= # infected in G1.\n \n𝐴~Bin 20000,0.1  \n \n𝐵= # infected in G2.\n \n𝐵~Bin 10000,0.4  \nWant: 𝑃𝐴+ 𝐵≥6100\n1. Define RVs\n& state goal",
+      "char_count": 663
+    },
+    {
+      "page_index": 34,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVirus infections\nSuppose you are working with the WHO to initiate a response to the onset \nof a virus. There are two exposed groups:\n• G1: 20000 people, each independently infected with 𝑝( = 0.1\n• G2: 10000 people, each independently infected with 𝑝& = 0.4\nWhat is 𝑃people infected ≥6100 ? An approximation is okay.\n35\n2. Approximate as sum of Gaussians\nLet 𝐴= # infected in G1.\n \n𝐴~Bin 20000,0.1  \n \n𝐵= # infected in G2.\n \n𝐵~Bin 10000,0.4  \nWant: 𝑃𝐴+ 𝐵≥6100\n𝐴≈𝑋~𝒩2000, 1800 𝐵≈𝑌~𝒩4000, 2400\n1. Define RVs\n& state goal\n𝑃𝐴+ 𝐵≥6100 ≈𝑃𝑋+ 𝑌≥6099.5\ncontinuity \ncorrection\n3. Solve",
+      "char_count": 647
+    },
+    {
+      "page_index": 35,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVirus infections\nSuppose you are working with the WHO to initiate a response to the onset \nof a virus. There are two exposed groups:\n• G1: 20000 people, each independently infected with 𝑝( = 0.1\n• G2: 10000 people, each independently infected with 𝑝& = 0.4\nWhat is 𝑃people infected ≥6100 ? An approximation is okay.\n36\n2. Approximate as sum of Gaussians\nLet 𝐴= # infected in G1.\n \n𝐴~Bin 20000,0.1  \n \n𝐵= # infected in G2.\n \n𝐵~Bin 10000,0.4  \nWant: 𝑃𝐴+ 𝐵≥6100\n1. Define RVs\n& state goal\n3. Solve\nLet 𝑊= 𝑋+ 𝑌~𝒩6000, 4200\n≈1 − Φ(1.53531) ≈0.06235\n= 1 −Φ 6099.5 −6000\n4200\n𝑃𝑊≥6099.5\n𝐴≈𝑋~𝒩2000, 1800 𝐵≈𝑌~𝒩4000, 2400\n𝑃𝐴+ 𝐵≥6100 ≈𝑃𝑋+ 𝑌≥6099.5\ncontinuity \ncorrection\n>>> 1 - norm(6000, 4200 ** 0.5).cdf(6099.5)\n0.06235282662988528\n>>> 1 - norm(0, 1).cdf((6099.5 - 6000)/(4200 ** 0.5))\n0.06235282662988528",
+      "char_count": 869
+    },
+    {
+      "page_index": 36,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSum of Independent Gaussians\n37\n𝑋$~𝒩𝜇$, 𝜎$\n% ,\n𝑋%~𝒩𝜇%, 𝜎%\n%\n𝑋$, 𝑋% independent\n𝑋! + 𝑋\"~𝒩(𝜇! + 𝜇\", 𝜎!\n\" + 𝜎\"\n\")\nIs this related to linear transformations of Gaussians?\nRecall:\nIf 𝑌= 𝑎𝑋+ 𝑏, then 𝑌~𝒩𝑎𝜇! + 𝑏, 𝑎\"𝜎!\n\"",
+      "char_count": 284
+    },
+    {
+      "page_index": 37,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTeaser: Linear transforms vs. independence\nLet 𝑋~𝒩(𝜇, 𝜎%) and 𝑌= 𝑋+ 𝑋. What is the distribution of 𝑌?\n• Are both approaches valid?\n38\nIndependent RVs approach\n⚠\nLet 𝑋~𝒩(𝜇, 𝜎&).\nIf 𝑌= 𝑎𝑋+ 𝑏,\nthen 𝑌~𝒩(𝑎𝜇+ 𝑏, 𝑎&𝜎&).\nLet 𝑋(~𝒩𝜇(, 𝜎(\n& , 𝑋&~𝒩𝜇&, 𝜎&\n&\nbe independent.\nThen 𝑌= 𝑋( + 𝑋&~𝒩(𝜇( + 𝜇&, 𝜎(\n& + 𝜎&\n&)\nLinear transform approach",
+      "char_count": 399
+    },
+    {
+      "page_index": 38,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTeaser: Linear transforms vs. independence\nLet 𝑋~𝒩(𝜇, 𝜎%) and 𝑌= 𝑋+ 𝑋. What is the distribution of 𝑌?\n• Are both approaches valid?\n39\numm, 𝑋 is NOT independent of 𝑋!\nIndependent RVs approach ❌\n𝑌= 𝑋+ 𝑋\n𝑋+ 𝑋~𝒩𝜇+ 𝜇, 𝜎% + 𝜎% ?\n𝑌~𝒩2𝜇, 2𝜎% ?\n⚠\nLet 𝑋~𝒩(𝜇, 𝜎&).\nIf 𝑌= 𝑎𝑋+ 𝑏,\nthen 𝑌~𝒩(𝑎𝜇+ 𝑏, 𝑎&𝜎&).\nLet 𝑋(~𝒩𝜇(, 𝜎(\n& , 𝑋&~𝒩𝜇&, 𝜎&\n&\nbe independent.\nThen 𝑌= 𝑋( + 𝑋&~𝒩(𝜇( + 𝜇&, 𝜎(\n& + 𝜎&\n&)\n𝑌= 2𝑋\nLinear transform approach\n𝑌~𝒩(2𝜇, 4𝜎%)\n✅\nFor independent 𝑋(~𝒩𝜇(, 𝜎(\n& , 𝑋&~𝒩𝜇&, 𝜎&\n& ,\n𝑎𝑋( + 𝑏𝑋& + 𝑐~𝒩𝑎𝜇( + 𝑏𝜇& + 𝑐, 𝑎&𝜎(\n& + 𝑏&𝜎&\n&",
+      "char_count": 589
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:58Z"
+}

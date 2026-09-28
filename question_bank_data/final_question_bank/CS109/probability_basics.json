@@ -1,0 +1,1170 @@
+{
+  "topic_id": "probability_basics",
+  "topic_name": "Probability Basics",
+  "course": "CS109",
+  "questions": [
+    {
+      "question_id": "CS109_probability_basics_0001",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "conceptual",
+      "difficulty": "easy",
+      "question": "A student says, \"An event is just one outcome, so in two coin flips the event 'at least one head' is not really an event because it contains several outcomes.\" Do you agree? Explain by identifying the sample space for two fair flips and then describing how events relate to that sample space.",
+      "expected_answer": "I do not agree. For two fair coin flips, the sample space is {HH, HT, TH, TT}. An event is any subset of the sample space, not just a single outcome. So 'at least one head' is the event {HH, HT, TH}. A single outcome such as HH is a special case of an event, but events can contain one, several, or all outcomes.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c",
+        "cs109_demo_exam_q2_efd3fc77a3",
+        "cs109_demo_exam_q2b_9d729a7773"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the sample space correctly as {HH, HT, TH, TT} or equivalent.",
+          "Explains that an event is any subset of the sample space.",
+          "Correctly identifies 'at least one head' as {HH, HT, TH}."
+        ],
+        "partial_credit": [
+          "Gives the right sample space but only vaguely explains what an event is.",
+          "Says 'at least one head' has multiple outcomes but does not explicitly connect this to subsets."
+        ],
+        "common_mistakes": [
+          "Saying an event must be a single outcome.",
+          "Leaving out HT or TH from 'at least one head'.",
+          "Confusing sample space with event."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example of an event that contains exactly two outcomes in this same experiment, and explain why it is still an event?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If events could only be single outcomes, how would you represent the statement 'at least one head' using your framework?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from probability basics; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying an event must be a single outcome. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0002",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "computational",
+      "difficulty": "easy",
+      "question": "For two fair coin flips, compare the events A = 'two heads' and B = 'at least one head'. Compute P(A), P(B), and P(A|B), and explain in words why the conditional probability differs from the unconditional one.",
+      "expected_answer": "The sample space is {HH, HT, TH, TT}, each with probability 1/4. Event A = {HH}, so P(A)=1/4. Event B = {HH, HT, TH}, so P(B)=3/4. Since A is contained in B, P(A|B)=P(A and B)/P(B)=P(A)/P(B)=(1/4)/(3/4)=1/3. The conditional probability is larger than 1/4 because once we know B occurred, TT is no longer possible, so the relevant sample space shrinks from 4 outcomes to 3.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c",
+        "cs109_demo_exam_q2_efd3fc77a3",
+        "cs109_demo_exam_q2a_600ae699f9",
+        "cs109_demo_exam_q2b_9d729a7773"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes P(A)=1/4, P(B)=3/4, and P(A|B)=1/3.",
+          "Uses or explains the reduced sample space under conditioning.",
+          "Notes that A is a subset of B."
+        ],
+        "partial_credit": [
+          "Gets the three probabilities right but gives little interpretation.",
+          "Uses enumeration correctly but does not articulate why conditioning changes the probability."
+        ],
+        "common_mistakes": [
+          "Saying P(A|B)=1/4 because the coin is fair.",
+          "Using denominator 4 instead of 3 after conditioning on B.",
+          "Confusing P(A|B) with P(B|A)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Without recalculating from scratch, what is P(B|A), and why is it different from P(A|B)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "After learning that at least one head occurred, which outcome has been ruled out, and how many outcomes remain possible?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Saying P(A|B)=1/4 because the coin is fair. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0003",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "misconception",
+      "difficulty": "medium",
+      "question": "Someone argues: \"The events 'first flip is heads' and 'at least one head' are independent because knowing the first flip is heads does not change whether at least one head happened.\" Evaluate this claim carefully using the formal definition of independence.",
+      "expected_answer": "The claim is false. Let A be 'first flip is heads' = {HH, HT} and B be 'at least one head' = {HH, HT, TH}. Then P(A)=1/2 and P(B)=3/4. Also A\u2229B=A, so P(A\u2229B)=1/2. For independence we need P(A\u2229B)=P(A)P(B)= (1/2)(3/4)=3/8, but actually P(A\u2229B)=1/2, so the events are not independent. Intuitively, if the first flip is heads then B is guaranteed, so conditioning changes the probability strongly.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c",
+        "cs109_demo_exam_q2_efd3fc77a3",
+        "cs109_demo_exam_q2b_9d729a7773"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines the events correctly.",
+          "Checks independence via P(A\u2229B)=P(A)P(B) or equivalently P(B|A)=P(B).",
+          "Concludes correctly that the events are not independent and explains why."
+        ],
+        "partial_credit": [
+          "States they are not independent with correct intuition but incomplete calculation.",
+          "Calculates one or two probabilities correctly but does not finish the formal test."
+        ],
+        "common_mistakes": [
+          "Arguing independence from a verbal intuition without checking the definition.",
+          "Confusing logical implication with independence.",
+          "Using disjointness as if it implied independence."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give a pair of events from two fair coin flips that actually are independent, and verify it numerically?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is P('at least one head' | 'first flip is heads'), and how does it compare to P('at least one head')?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from probability basics.",
+        "Watch out for this common trap: Arguing independence from a verbal intuition without checking the definition. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0004",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "applied",
+      "difficulty": "medium",
+      "question": "A medical screening test returns positive. Let D be the event that a patient has a disease and T+ the event of a positive test. Without plugging in numbers, explain how Bayes' rule combines prior information and the test's accuracy to produce P(D|T+). Then describe one reason why a positive test does not automatically mean the patient probably has the disease.",
+      "expected_answer": "Bayes' rule says P(D|T+) = P(T+|D)P(D) / P(T+). The prior P(D) is the disease prevalence, P(T+|D) is the likelihood or sensitivity, and P(T+) accounts for all ways to test positive, including true positives and false positives. A positive result does not automatically imply high posterior probability because if the disease is rare, the prior P(D) may be very small, and false positives can make up a large share of positive tests.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States Bayes' rule in correct form or equivalent verbal decomposition.",
+          "Explains prior, likelihood, and posterior roles.",
+          "Mentions the denominator as all ways to get a positive result.",
+          "Identifies low base rate / false positives as a key reason a positive test need not imply high disease probability."
+        ],
+        "partial_credit": [
+          "States Bayes' rule but gives only partial interpretation.",
+          "Mentions priors matter but does not explain the denominator."
+        ],
+        "common_mistakes": [
+          "Treating P(D|T+) as the same as P(T+|D).",
+          "Ignoring the prior prevalence.",
+          "Saying posterior depends only on test accuracy."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If prevalence drops while sensitivity and specificity stay the same, what happens qualitatively to P(D|T+), and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you distinguish in words between P(T+|D) and P(D|T+) using the testing example?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Treating P(D|T+) as the same as P(T+|D). Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0005",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Explain why the axioms of probability force P(A^c) = 1 - P(A). Your explanation should rely on the ideas of sample space, mutually exclusive events, and total probability 1, rather than just quoting a formula.",
+      "expected_answer": "The event A and its complement A^c are mutually exclusive and together cover the whole sample space S. By the probability axioms, P(S)=1 and the probability of a union of disjoint events is the sum of their probabilities. Since A \u222a A^c = S and A \u2229 A^c = \u2205, we have P(A)+P(A^c)=P(S)=1, so P(A^c)=1-P(A).",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies A and A^c as disjoint and exhaustive.",
+          "Uses P(S)=1.",
+          "Derives P(A^c)=1-P(A) from additivity."
+        ],
+        "partial_credit": [
+          "States the formula correctly with limited justification.",
+          "Mentions complement but not the role of disjoint union or total probability."
+        ],
+        "common_mistakes": [
+          "Saying complements are independent by default.",
+          "Failing to note that A and A^c cover the sample space.",
+          "Using unsupported algebra without the axioms."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you use this reasoning to find the probability of 'not at least one head' in two fair flips?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the union of an event with its complement, and what is their intersection?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from probability basics; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying complements are independent by default. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0006",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "computational",
+      "difficulty": "medium",
+      "question": "In two fair coin flips, let A be 'exactly one head' and B be 'the second flip is heads.' Compute P(A), P(B), P(A\u2229B), and decide whether A and B are independent. Explain your conclusion aloud rather than just naming it.",
+      "expected_answer": "The sample space is {HH, HT, TH, TT}. A = {HT, TH}, so P(A)=1/2. B = {HH, TH}, so P(B)=1/2. A\u2229B = {TH}, so P(A\u2229B)=1/4. Since P(A)P(B)= (1/2)(1/2)=1/4, which equals P(A\u2229B), the events are independent. Knowing the second flip is heads leaves HH and TH equally likely, and among those, exactly one head occurs in one of the two outcomes, so the probability remains 1/2.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c",
+        "cs109_demo_exam_q2_efd3fc77a3"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies A, B, and A\u2229B correctly.",
+          "Computes probabilities correctly.",
+          "Uses the formal criterion for independence and interprets it."
+        ],
+        "partial_credit": [
+          "Gets most probabilities right but does not clearly conclude independence.",
+          "Gives correct conclusion with incomplete explanation."
+        ],
+        "common_mistakes": [
+          "Listing A\u2229B as {HT}.",
+          "Thinking shared outcomes automatically mean dependence.",
+          "Confusing independence with disjointness."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can two events be independent even if they overlap? Use this example to justify your answer."
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which outcomes satisfy both 'exactly one head' and 'second flip is heads'?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Listing A\u2229B as {HT}. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0007",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "misconception",
+      "difficulty": "hard",
+      "question": "A classmate says, \"If two events cannot happen together, they are independent because they do not affect one another.\" Assess this statement in general, and then test it on the two-flip coin experiment using A = 'two heads' and B = 'two tails.'",
+      "expected_answer": "The statement is generally false. If two events are disjoint, then P(A\u2229B)=0. For independence we would need P(A\u2229B)=P(A)P(B). So disjoint events can only be independent if at least one has probability 0. In the coin example, A={HH} and B={TT}, so P(A)=1/4, P(B)=1/4, and P(A\u2229B)=0, while P(A)P(B)=1/16. Since 0 \u2260 1/16, they are not independent.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c",
+        "cs109_demo_exam_q2_efd3fc77a3",
+        "cs109_demo_exam_q2a_600ae699f9"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the general principle that disjointness does not imply independence.",
+          "Explains the exception when one event has probability 0.",
+          "Verifies with the concrete coin-flip example numerically."
+        ],
+        "partial_credit": [
+          "Correctly rejects the statement for the example but does not give the general reasoning.",
+          "Explains disjointness versus independence but omits the zero-probability exception."
+        ],
+        "common_mistakes": [
+          "Saying disjoint events are always independent.",
+          "Confusing 'cannot occur together' with 'no influence.'",
+          "Failing to compare 0 with P(A)P(B)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why do many students find disjointness and independence easy to confuse, despite their formal definitions being different?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If A and B are disjoint and both have positive probability, what is P(A\u2229B), and what would independence require it to be?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from probability basics.",
+        "Watch out for this common trap: Saying disjoint events are always independent. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0008",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "applied",
+      "difficulty": "hard",
+      "question": "Suppose a spam filter labels an email as spam. Let S be 'email is actually spam' and F be 'filter flags spam.' Explain how you would compute P(S|F) using Bayes' rule, and then argue qualitatively how that posterior changes if the inbox suddenly receives far fewer spam emails while the filter's true-positive and false-positive rates stay unchanged.",
+      "expected_answer": "We use Bayes' rule: P(S|F)=P(F|S)P(S)/P(F), where P(F)=P(F|S)P(S)+P(F|S^c)P(S^c). If spam becomes much rarer, then the prior P(S) decreases. Holding the filter's detection and false-positive rates fixed, the numerator shrinks and the denominator may still include many false positives from the large non-spam population. So P(S|F) generally decreases: a flagged message is less convincing evidence of actual spam when spam is rare.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States Bayes' rule with a correct denominator decomposition.",
+          "Explains the role of prevalence as the prior.",
+          "Correctly predicts that the posterior decreases when spam becomes rarer, all else equal."
+        ],
+        "partial_credit": [
+          "States Bayes' rule but does not expand P(F).",
+          "Gives the right qualitative conclusion with weak justification."
+        ],
+        "common_mistakes": [
+          "Confusing P(F|S) with P(S|F).",
+          "Ignoring the effect of the base rate.",
+          "Claiming unchanged filter accuracy implies unchanged posterior."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "In this context, what would count as the prior, likelihood, and posterior?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why is it not enough to know only how often the filter catches actual spam?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Confusing P(F|S) with P(S|F). Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0010",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "computational",
+      "difficulty": "hard",
+      "question": "Let X be the number of heads in two fair coin flips, and let Y be the indicator that the first flip is heads, so Y=1 if the first flip is heads and 0 otherwise. Are X and Y independent? Answer by comparing at least one joint probability with the product of the corresponding marginals, and explain the dependence in words.",
+      "expected_answer": "They are not independent. The outcomes are HH, HT, TH, TT. X takes values 0,1,2 with probabilities 1/4, 1/2, 1/4. Y takes values 1 and 0 with probabilities 1/2 each. For example, P(X=0, Y=1)=0 because if the first flip is heads then X cannot be 0. But P(X=0)P(Y=1)=(1/4)(1/2)=1/8. Since these are not equal, X and Y are dependent. Intuitively, Y contains information about whether there was at least one head, so it changes the distribution of X.",
+      "source_chunk_ids": [
+        "cs109_demo_exam_q1_c290a1b3af",
+        "cs109_demo_exam_q2_efd3fc77a3"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines X and Y correctly from the experiment.",
+          "Computes a valid counterexample showing P(X=x,Y=y) \u2260 P(X=x)P(Y=y).",
+          "Explains dependence conceptually."
+        ],
+        "partial_credit": [
+          "Concludes dependence correctly with a weaker or less explicit calculation.",
+          "Computes marginals correctly but uses incomplete reasoning."
+        ],
+        "common_mistakes": [
+          "Saying X and Y are independent because the coin flips themselves are independent.",
+          "Confusing random variables with the underlying flips.",
+          "Not computing joint probability correctly."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you describe how the distribution of X changes after conditioning on Y=1?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If Y=1, which values of X are still possible, and how does that already suggest dependence?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Saying X and Y are independent because the coin flips themselves are independent. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0011",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "misconception",
+      "difficulty": "medium",
+      "question": "In the two-coin-flip experiment, a student reasons: \"There are three outcomes with at least one head, so P(at least one head)=1/3.\" Diagnose the mistake and give a correct method for finding the probability.",
+      "expected_answer": "The mistake is treating the event as if its probability were the reciprocal of the number of outcomes it contains. Probabilities depend on the total sample space and the probabilities of outcomes, not just how many outcomes are in the event. For two fair flips the sample space has four equally likely outcomes: HH, HT, TH, TT. 'At least one head' is {HH, HT, TH}, so its probability is 3/4. Equivalently, use the complement: 1 - P(TT) = 1 - 1/4 = 3/4.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c",
+        "cs109_demo_exam_q2_efd3fc77a3",
+        "cs109_demo_exam_q2b_9d729a7773"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the specific counting mistake.",
+          "Uses the full sample space of four equally likely outcomes.",
+          "Gives the correct probability 3/4 and explains either direct counting or complement."
+        ],
+        "partial_credit": [
+          "Gets 3/4 correctly but only says 'because there are 3 outcomes' without emphasizing denominator 4.",
+          "Recognizes the mistake vaguely but does not articulate the correct principle."
+        ],
+        "common_mistakes": [
+          "Using number of favorable outcomes as denominator.",
+          "Ignoring the equally likely assumption.",
+          "Mixing up 'at least one' with 'exactly one'."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is the complement method especially convenient for 'at least one' events?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "How many outcomes are in the entire sample space, not just in the event?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from probability basics.",
+        "Watch out for this common trap: Using number of favorable outcomes as denominator. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0012",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "applied",
+      "difficulty": "medium",
+      "question": "A teacher says, \"Bayes' rule is just algebra, so it does not really say anything conceptual.\" Respond to that claim. Your answer should connect Bayes' rule to updating beliefs from prior to posterior after observing evidence.",
+      "expected_answer": "It is algebraically derivable from conditional probability, but conceptually it is very meaningful. Bayes' rule shows how a prior belief P(A) is updated after observing evidence B through the likelihood P(B|A), producing the posterior P(A|B). The denominator normalizes across all ways the evidence could occur. So the rule is not just manipulation; it formalizes learning from evidence and clarifies why rare hypotheses can remain unlikely even after supportive observations.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Acknowledges the algebraic basis.",
+          "Explains prior, likelihood, posterior, and normalization conceptually.",
+          "Emphasizes that the rule formalizes updating beliefs with evidence."
+        ],
+        "partial_credit": [
+          "Says Bayes updates beliefs but gives little detail.",
+          "Mentions prior and posterior without explaining the role of evidence or normalization."
+        ],
+        "common_mistakes": [
+          "Calling Bayes' rule merely a formula with no interpretation.",
+          "Confusing the posterior with the likelihood.",
+          "Omitting the role of the denominator."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give a simple non-numeric example where the prior matters a lot in the posterior?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In Bayes' rule, which term represents belief before seeing evidence, and which term represents belief after?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Calling Bayes' rule merely a formula with no interpretation. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0013",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "For two fair coin flips, explain the difference between the statements 'exactly one head' and 'at least one head' in terms of events. Then discuss why students often confuse them and how you would distinguish them systematically from the sample space.",
+      "expected_answer": "'Exactly one head' means the event {HT, TH}. 'At least one head' means {HH, HT, TH}. The difference is that 'exactly one' excludes HH, while 'at least one' includes any outcome with one or more heads. Students confuse them because both involve seeing a head and because language can be imprecise. Systematically, start from the full sample space {HH, HT, TH, TT} and list all outcomes satisfying the phrase literally.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c",
+        "cs109_demo_exam_q2_efd3fc77a3",
+        "cs109_demo_exam_q2b_9d729a7773"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly lists both events.",
+          "Explains the inclusion of HH in 'at least one' and its exclusion from 'exactly one'.",
+          "Describes a systematic sample-space method to avoid confusion."
+        ],
+        "partial_credit": [
+          "Gets the event sets right but gives little discussion of the distinction.",
+          "Explains verbally but does not enumerate the outcomes."
+        ],
+        "common_mistakes": [
+          "Treating the two events as the same.",
+          "Including TT in one of the events.",
+          "Failing to distinguish 'exactly' from 'at least'."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Using your event sets, what is the probability difference between these two events?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Does HH satisfy 'at least one head'? Does it satisfy 'exactly one head'?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from probability basics; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Treating the two events as the same. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0014",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "computational",
+      "difficulty": "hard",
+      "question": "In two fair coin flips, let A be 'the two flips match' and B be 'at least one head.' Compute P(A), P(B), and P(A|B). Then decide whether A and B are independent and justify your answer both numerically and intuitively.",
+      "expected_answer": "The sample space is {HH, HT, TH, TT}. A = {HH, TT}, so P(A)=1/2. B = {HH, HT, TH}, so P(B)=3/4. A\u2229B = {HH}, so P(A|B)=P(A\u2229B)/P(B)=(1/4)/(3/4)=1/3. For independence we would need P(A|B)=P(A), but 1/3 \u2260 1/2, so they are not independent. Intuitively, conditioning on at least one head removes TT, which was one of the matching outcomes, so the chance of matching goes down.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c",
+        "cs109_demo_exam_q2_efd3fc77a3",
+        "cs109_demo_exam_q2b_9d729a7773"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies A, B, and A\u2229B correctly.",
+          "Computes P(A)=1/2, P(B)=3/4, P(A|B)=1/3.",
+          "Concludes non-independence using a valid criterion and gives intuition."
+        ],
+        "partial_credit": [
+          "Gets the main probabilities right but does not explicitly connect them to independence.",
+          "Concludes they are not independent with only one type of justification."
+        ],
+        "common_mistakes": [
+          "Forgetting TT is in A.",
+          "Using P(A\u2229B)=1/2.",
+          "Saying conditioning should not matter because flips are fair."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you also verify non-independence using P(A\u2229B) versus P(A)P(B)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which matching outcome becomes impossible once you know there was at least one head?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Forgetting TT is in A. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0015",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "misconception",
+      "difficulty": "hard",
+      "question": "A student claims: \"If P(A|B) is bigger than P(A), then B causes A.\" Give a careful response from the perspective of probability basics. Your answer should explain what the inequality really tells us and what it does not justify.",
+      "expected_answer": "The inequality P(A|B) > P(A) means that learning B makes A more probable than before, so B is informative about A or positively associated with A. It does not by itself justify a causal claim. Probability here is about how beliefs change with information, not about mechanism. The same pattern could arise from common causes, selection effects, or the way events are defined. Formally it tells us A and B are not independent, since independence would imply P(A|B)=P(A) when P(B)>0.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that the inequality indicates association or information, not causation.",
+          "Connects it to lack of independence when P(B)>0.",
+          "Explains that causal interpretation needs more than conditional probability."
+        ],
+        "partial_credit": [
+          "Rejects causal conclusion but provides only general caution.",
+          "Mentions dependence but not the distinction from causation."
+        ],
+        "common_mistakes": [
+          "Equating increased conditional probability with causation.",
+          "Ignoring the requirement P(B)>0 for conditional probability.",
+          "Saying probability statements can never inform us, which is too strong."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If instead P(A|B)=P(A), what does that say about A and B?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the difference between 'B makes A more likely' and 'B causes A'?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from probability basics.",
+        "Watch out for this common trap: Equating increased conditional probability with causation. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0016",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Suppose A is an event with P(A)=0.7 and B is a subset of A. Without choosing specific outcomes, explain what must be true about P(B) relative to P(A), and justify your answer using the axioms or basic properties of events.",
+      "expected_answer": "If B is a subset of A, then B cannot have larger probability than A, so P(B) \u2264 P(A)=0.7. The reason is that A can be written as the disjoint union of B and A\\B. By additivity, P(A)=P(B)+P(A\\B), and probabilities are nonnegative, so P(A\\B)\u22650. Therefore P(B)\u2264P(A). This is the monotonicity property that follows from the axioms.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States P(B) \u2264 P(A).",
+          "Justifies via disjoint decomposition A = B \u222a (A\\B) and nonnegativity.",
+          "Connects to a basic property derived from the axioms."
+        ],
+        "partial_credit": [
+          "States the inequality correctly with intuitive but incomplete reasoning.",
+          "Mentions subsets should not be more likely but lacks formal justification."
+        ],
+        "common_mistakes": [
+          "Saying subset events can have larger probability because they are more specific.",
+          "Using unsupported intuition only.",
+          "Confusing subset with complement."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Under what condition would P(B)=P(A) even though B is a subset of A?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you decompose A into two disjoint pieces involving B?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from probability basics; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying subset events can have larger probability because they are more specific. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0017",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "computational",
+      "difficulty": "medium",
+      "question": "For two fair coin flips, compute the probability of 'at most one head' in two different ways: first by listing outcomes directly, and second using a complement argument. Then explain why both methods must agree.",
+      "expected_answer": "Directly, 'at most one head' means zero or one head, so the event is {TT, HT, TH}, which has probability 3/4. By complement, the only excluded case is two heads, HH, which has probability 1/4, so P(at most one head)=1-1/4=3/4. Both methods must agree because they describe the same event, and the complement method uses the fact that an event and its complement partition the sample space.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c",
+        "cs109_demo_exam_q2_efd3fc77a3",
+        "cs109_demo_exam_q2a_600ae699f9"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly identifies the event and computes 3/4 by direct counting.",
+          "Computes 3/4 again via complement.",
+          "Explains why the two methods are equivalent."
+        ],
+        "partial_credit": [
+          "Gets the answer right by one method only.",
+          "Uses both methods but does not explain why agreement is guaranteed."
+        ],
+        "common_mistakes": [
+          "Confusing 'at most one' with 'exactly one'.",
+          "Omitting TT from the direct-counting method.",
+          "Using complement of the wrong event."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Which kinds of event descriptions are often easiest to handle with a complement?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the complement of 'at most one head' in this experiment?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Confusing 'at most one' with 'exactly one'. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0018",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "applied",
+      "difficulty": "hard",
+      "question": "You are told that in a certain population, an observed symptom E is common even among healthy people. Explain, using Bayes' rule in words, why seeing E may provide only weak evidence for a disease D even if most diseased people show the symptom.",
+      "expected_answer": "Bayes' rule says the posterior P(D|E) depends not only on how common the symptom is among diseased people, P(E|D), but also on how common the disease is overall, P(D), and on how often the symptom appears for other reasons, which contributes to P(E). If E is common among healthy people, then the denominator P(E) is large because there are many non-disease paths to the symptom. So even a high P(E|D) does not guarantee a high P(D|E); the symptom may be weak evidence if it is nonspecific or the disease is rare.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains the distinction between P(E|D) and P(D|E).",
+          "Identifies disease prevalence and nonspecific symptoms as key factors.",
+          "Uses Bayes' rule conceptually to argue why evidence can be weak."
+        ],
+        "partial_credit": [
+          "States that common symptoms are weaker evidence but gives limited Bayesian explanation.",
+          "Mentions one of prevalence or false positives but not both."
+        ],
+        "common_mistakes": [
+          "Equating 'most diseased have the symptom' with 'most with the symptom are diseased'.",
+          "Ignoring the denominator or alternative causes of E.",
+          "Treating the symptom as decisive evidence."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What aspect of a symptom would make it stronger evidence in Bayesian terms?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you explain the difference between 'the symptom is common in diseased people' and 'the disease is common among people with the symptom'?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Equating 'most diseased have the symptom' with 'most with the symptom are diseased'. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0019",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Describe a strategy for computing a probability from a worded problem before doing any arithmetic. Your strategy should mention the sample space, event identification, and whether conditioning is present, and then illustrate it briefly on the phrase 'probability of at least one head in two fair flips given that the first flip is tails.'",
+      "expected_answer": "First, define the experiment and sample space. Second, translate the verbal statement into events. Third, check whether conditioning is present and, if so, restrict attention to the conditioned event before calculating. In the example, the sample space is {HH, HT, TH, TT}. Let A='at least one head' and B='first flip is tails'={TH, TT}. Under the condition B, only TH and TT remain equally likely, and A occurs only in TH, so the conditional probability is 1/2. The strategy matters more than the arithmetic because it prevents mixing unconditional and conditional reasoning.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c",
+        "cs109_demo_exam_q2_efd3fc77a3",
+        "cs109_demo_exam_q2b_9d729a7773"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Gives a clear general strategy involving sample space, event translation, and conditioning.",
+          "Correctly applies it to the example.",
+          "Obtains P(A|B)=1/2 and explains the restricted sample space."
+        ],
+        "partial_credit": [
+          "Provides a reasonable strategy but applies it incompletely.",
+          "Gets the example right but does not extract a general method."
+        ],
+        "common_mistakes": [
+          "Computing the unconditional 3/4 instead of the conditional 1/2.",
+          "Forgetting to restrict the sample space under conditioning.",
+          "Skipping event definitions and relying on intuition only."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the restricted-sample-space view connect to the formula P(A|B)=P(A\u2229B)/P(B) here?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If the first flip is known to be tails, which two outcomes are still possible?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from probability basics; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Computing the unconditional 3/4 instead of the conditional 1/2. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0020",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "computational",
+      "difficulty": "hard",
+      "question": "In two fair coin flips, let A be 'exactly one head' and B be 'at least one head.' Compute P(A|B) and P(B|A), and explain why one of these conditional probabilities equals 1 while the other does not.",
+      "expected_answer": "A = {HT, TH} and B = {HH, HT, TH}. Since A is a subset of B, whenever A occurs, B must occur, so P(B|A)=1. For P(A|B), restrict to the three outcomes in B: HH, HT, TH. In two of those three outcomes, A occurs, so P(A|B)=2/3. The asymmetry comes from set inclusion: A implies B, but B does not imply A because HH is in B but not in A.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c",
+        "cs109_demo_exam_q2_efd3fc77a3",
+        "cs109_demo_exam_q2b_9d729a7773"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies A and B correctly.",
+          "Computes P(A|B)=2/3 and P(B|A)=1.",
+          "Explains asymmetry through subset relation A\u2286B."
+        ],
+        "partial_credit": [
+          "Gets both numbers right but gives weak explanation.",
+          "Recognizes one direction is 1 but mishandles the other slightly."
+        ],
+        "common_mistakes": [
+          "Confusing P(A|B) and P(B|A).",
+          "Saying both are 1 because the events are related.",
+          "Forgetting HH when conditioning on B."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you generalize: if A is a subset of B and P(A)>0, what is P(B|A)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Does 'exactly one head' guarantee 'at least one head,' or does it work the other way around?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Confusing P(A|B) and P(B|A). Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0021",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "misconception",
+      "difficulty": "medium",
+      "question": "A student says, \"Because each flip is independent, any two events built from the two flips must also be independent.\" Challenge this claim by giving a concrete counterexample from the two-flip experiment and explaining where the reasoning breaks down.",
+      "expected_answer": "The claim is false. The independence of the underlying flips does not mean every event formed from them is independent. For example, let A='first flip is heads' and B='at least one head.' Then P(A)=1/2, P(B)=3/4, but P(B|A)=1, so they are not independent. The reasoning breaks down because events can overlap or imply one another in ways that create dependence, even when the basic trial components are independent.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c",
+        "cs109_demo_exam_q2_efd3fc77a3",
+        "cs109_demo_exam_q2b_9d729a7773"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Provides a valid counterexample from two fair flips.",
+          "Shows non-independence with a correct calculation or conditional probability.",
+          "Explains why independence of trials does not automatically transfer to arbitrary derived events."
+        ],
+        "partial_credit": [
+          "Gives a plausible counterexample but weak verification.",
+          "States the principle correctly with limited example detail."
+        ],
+        "common_mistakes": [
+          "Assuming event independence follows automatically from trial independence.",
+          "Using an example that actually is independent.",
+          "Explaining only verbally without any check."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you also give an example of two derived events that are independent, to show the issue is not all-or-nothing?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is P('at least one head' | 'first flip is heads') in your counterexample?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from probability basics.",
+        "Watch out for this common trap: Assuming event independence follows automatically from trial independence. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0022",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "applied",
+      "difficulty": "medium",
+      "question": "Imagine you are explaining probability to someone who keeps asking, \"What are we taking probability of?\" Using the language of sample space and events, answer that question in a way that would help them correctly interpret both 'two heads' and 'at least one head' in the two-flip coin experiment.",
+      "expected_answer": "We are always taking probability of an event, meaning a set of outcomes from the sample space. In two coin flips, the sample space is {HH, HT, TH, TT}. 'Two heads' is the event {HH}; 'at least one head' is the event {HH, HT, TH}. Framing questions this way clarifies what counts as favorable outcomes and avoids confusion about whether a phrase refers to one outcome or several.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c",
+        "cs109_demo_exam_q2_efd3fc77a3",
+        "cs109_demo_exam_q2a_600ae699f9",
+        "cs109_demo_exam_q2b_9d729a7773"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States clearly that probability is assigned to events, which are subsets of the sample space.",
+          "Gives the correct sample space and event sets for both phrases.",
+          "Explains why this viewpoint helps interpretation."
+        ],
+        "partial_credit": [
+          "Gives correct examples but only a minimal explanation of events.",
+          "Defines sample space correctly but is vague about events as subsets."
+        ],
+        "common_mistakes": [
+          "Saying probability is taken only of outcomes, not events.",
+          "Misstating one of the event sets.",
+          "Leaving out the sample-space perspective."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would this language help if the problem instead asked for 'no heads' or 'exactly one head'?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Is 'at least one head' a single outcome or a set of outcomes?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying probability is taken only of outcomes, not events. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0023",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "conceptual_depth",
+      "difficulty": "medium",
+      "question": "A student says: \"If two events cannot happen at the same time, then they must be independent.\" Do you agree? Answer by comparing the axioms of probability for disjoint events with the definition of independence, and give a concrete example using a simple sample space.",
+      "expected_answer": "The statement is generally false. If events A and B are disjoint, then P(A and B)=0. Independence instead requires P(A and B)=P(A)P(B). So for disjoint events to be independent, we would need P(A)P(B)=0, which means at least one of the events has probability 0. A concrete example is one flip of a fair coin with A={H} and B={T}. They are disjoint, but P(A and B)=0 while P(A)P(B)=1/2 times 1/2 = 1/4, so they are not independent.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States clearly that disjointness and independence are different concepts",
+          "Uses the equations P(A\u2229B)=0 for disjoint events and P(A\u2229B)=P(A)P(B) for independence",
+          "Explains the special case that disjoint events can only be independent if one has probability 0",
+          "Gives or analyzes a correct example"
+        ],
+        "partial_credit": [
+          "Says the claim is false but gives only an informal explanation",
+          "Provides an example without connecting it to the formal definitions",
+          "Mentions the probability-0 exception vaguely"
+        ],
+        "common_mistakes": [
+          "Saying disjoint events are automatically independent",
+          "Confusing 'cannot occur together' with 'one does not affect the probability of the other'",
+          "Forgetting the probability-0 exception"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example of two independent events that are not disjoint, and explain why both conditions hold?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What values do P(A\u2229B) and P(A)P(B) have for A={H} and B={T} on a single fair coin flip?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from probability basics; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying disjoint events are automatically independent. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0024",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A fair coin is flipped twice. Let A be the event \"the first flip is heads\" and B be the event \"at least one head occurs.\" Compute P(A), P(B), and P(A|B), and then decide whether A and B are independent. Explain your conclusion in words, not just with arithmetic.",
+      "expected_answer": "The sample space is {HH, HT, TH, TT}, each with probability 1/4. A={HH, HT}, so P(A)=1/2. B={HH, HT, TH}, so P(B)=3/4. Since A\u2229B=A, we have P(A\u2229B)=1/2, so P(A|B)=P(A\u2229B)/P(B)=(1/2)/(3/4)=2/3. They are not independent because if they were, P(A|B) would equal P(A), but 2/3 is not 1/2. Intuitively, knowing that at least one head occurred makes it more likely that the first flip was heads.",
+      "source_chunk_ids": [
+        "cs109_demo_exam_q2_efd3fc77a3",
+        "cs109_demo_exam_q2b_9d729a7773",
+        "cs109_demo_p0_p1_9c72e6785c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Lists or uses the correct sample space for two fair flips",
+          "Computes P(A)=1/2 and P(B)=3/4 correctly",
+          "Uses conditional probability correctly to get P(A|B)=2/3",
+          "Concludes non-independence and explains why conditioning changes the probability"
+        ],
+        "partial_credit": [
+          "Gets most probabilities right but makes a minor arithmetic slip",
+          "Correctly concludes non-independence using P(A\u2229B)\u2260P(A)P(B) without computing P(A|B) fully",
+          "Uses verbal reasoning that is mostly sound but incomplete"
+        ],
+        "common_mistakes": [
+          "Treating A and B as independent because they both involve heads",
+          "Computing P(B) as 1/2 instead of 3/4",
+          "Forgetting that A is contained in B, so A\u2229B=A"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your reasoning change if B were instead the event 'exactly one head occurs'?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which outcomes belong to B='at least one head', and how many of the four equally likely outcomes are in that event?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Treating A and B as independent because they both involve heads. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0025",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A medical screening test is used in a population where 1% of people have a disease. The test is positive 95% of the time when the disease is present, and it is falsely positive 10% of the time when the disease is absent. A person tests positive. Using Bayes' rule, explain how to compute the probability the person actually has the disease, and interpret the result for someone who confuses it with 95%.",
+      "expected_answer": "Let D be 'has disease' and + be 'tests positive.' We are given P(D)=0.01, P(+|D)=0.95, and P(+|D^c)=0.10. Bayes' rule gives P(D|+)=P(+|D)P(D)/P(+). The denominator is P(+)=P(+|D)P(D)+P(+|D^c)P(D^c)=0.95(0.01)+0.10(0.99)=0.1085. So P(D|+)=0.0095/0.1085, about 0.088, or 8.8%. The interpretation is that even with a fairly accurate test, a positive result does not mean a 95% chance of disease because false positives from the much larger healthy group contribute heavily when the disease is rare.",
+      "source_chunk_ids": [
+        "cs109_demo_p0_p1_9c72e6785c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines relevant events and identifies prior, likelihood, and false-positive rate",
+          "Applies Bayes' rule with the correct denominator using total probability",
+          "Obtains a posterior of about 8.8%",
+          "Explains the base-rate effect and why 95% is the wrong interpretation"
+        ],
+        "partial_credit": [
+          "Sets up Bayes' rule correctly but makes a minor arithmetic mistake",
+          "Computes the numerator correctly but is incomplete on the denominator",
+          "Gives a qualitatively correct interpretation of why the posterior is much smaller than 95%"
+        ],
+        "common_mistakes": [
+          "Answering 95% by confusing P(+|D) with P(D|+)",
+          "Ignoring false positives in the denominator",
+          "Using 10% as P(D|+) directly"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the disease were more common, say 20% instead of 1%, would the posterior after a positive test increase or decrease? Explain without fully recalculating if you can."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the difference between the statement '95% of diseased people test positive' and the statement '95% of people who test positive are diseased'?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Answering 95% by confusing P(+|D) with P(D|+). Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0026",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "For two discrete random variables X and Y, a classmate claims: \"If knowing Y does not change the probability of one event about X, then X and Y are independent.\" Is that enough? Explain what must be true for independence, and describe how you would check it in principle without relying on a specific numerical table.",
+      "expected_answer": "That is not enough in general. Independence of discrete random variables means the joint probabilities factor for all values: P(X=x, Y=y)=P(X=x)P(Y=y) for every x and y. Equivalently, whenever the conditional probability is defined, P(X=x|Y=y)=P(X=x) for every pair of values. Checking only one event or one value is insufficient, because dependence may appear for other values even if one probability happens to match. In principle, I would compare the full joint distribution with the product of the marginals across all combinations.",
+      "source_chunk_ids": [
+        "cs109_demo_exam_q1_c290a1b3af",
+        "cs109_demo_p0_p1_9c72e6785c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that one matching conditional probability is not sufficient",
+          "Gives the correct all-values condition for independence of discrete random variables",
+          "Mentions either factorization of the joint distribution or equality of conditional and marginal probabilities for every value",
+          "Explains why a single case can be misleading"
+        ],
+        "partial_credit": [
+          "Knows the formal definition but does not explicitly address why one case is insufficient",
+          "Explains the need to check multiple values but not clearly 'all' relevant values",
+          "Uses event-based language that is mostly correct"
+        ],
+        "common_mistakes": [
+          "Saying one successful check proves independence",
+          "Defining independence only for one pair of events rather than the whole variables",
+          "Confusing zero correlation or a single unchanged probability with independence"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you explain why verifying P(X=x|Y=y)=P(X=x) for every x and y is equivalent to checking P(X=x,Y=y)=P(X=x)P(Y=y)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Suppose one value pair satisfies P(X=x|Y=y)=P(X=x). What could still go wrong for a different value of y?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from probability basics.",
+        "Watch out for this common trap: Saying one successful check proves independence. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_0027",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A fair coin is flipped twice. Without listing only the final numbers, compare the events A='two heads' and B='at least one head.' Compute P(A), P(B), and P(A|B), then explain why the conditional probability makes sense from the reduced sample space.",
+      "expected_answer": "With two fair flips, the equally likely outcomes are HH, HT, TH, TT. Event A='two heads' is {HH}, so P(A)=1/4. Event B='at least one head' is {HH, HT, TH}, so P(B)=3/4. Given B, the reduced sample space removes TT, leaving three equally likely outcomes, and only one of them is HH, so P(A|B)=1/3. This makes sense because conditioning on at least one head increases the chance of two heads from 1/4 to 1/3, but it is still not very large because among the allowed outcomes, two of the three have exactly one head.",
+      "source_chunk_ids": [
+        "cs109_demo_exam_q2_efd3fc77a3",
+        "cs109_demo_exam_q2a_600ae699f9",
+        "cs109_demo_exam_q2b_9d729a7773",
+        "cs109_demo_p0_p1_9c72e6785c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses the correct four-outcome sample space",
+          "Computes P(A)=1/4 and P(B)=3/4 correctly",
+          "Computes P(A|B)=1/3 either by ratio or reduced sample space",
+          "Explains the interpretation of conditioning on B"
+        ],
+        "partial_credit": [
+          "Gets the unconditional probabilities right but struggles to explain the conditional sample space",
+          "Finds P(A|B) correctly with limited verbal interpretation",
+          "Minor arithmetic or notation slips with otherwise correct reasoning"
+        ],
+        "common_mistakes": [
+          "Answering P(A|B)=1/4 by ignoring the condition",
+          "Using only two outcomes after conditioning instead of three",
+          "Confusing 'at least one head' with 'exactly one head'"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would A and B be independent? Justify using either P(A|B) versus P(A) or P(A\u2229B) versus P(A)P(B)."
+        },
+        {
+          "condition": "incorrect",
+          "question": "After excluding TT because B occurred, which outcomes remain possible, and among those how many satisfy A?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Answering P(A|B)=1/4 by ignoring the condition. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    }
+  ]
+}

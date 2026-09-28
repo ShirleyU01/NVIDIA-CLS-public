@@ -1,0 +1,1220 @@
+{
+  "topic_id": "ethics_ai",
+  "topic_name": "Ethics in Probability and AI",
+  "course": "CS109",
+  "questions": [
+    {
+      "question_id": "CS109_ethics_ai_0001",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A city asks you to help design the decision rule for self-driving cars in rare crash scenarios. A policymaker says, \"Just survey people globally, estimate the most popular moral preference, and encode that as the objectively correct rule.\" Explain why the probability framework from class does not by itself solve the ethical problem, even if the survey estimates are statistically precise.",
+      "expected_answer": "A strong answer should distinguish descriptive probabilities from normative claims. Probability can summarize beliefs or observed frequencies of preferences, but a high-probability preference is not automatically the ethically correct one. The Moral Machine context shows preferences vary across cultures and even locally, so there may be no universal value ordering to infer. Even if the estimated survey proportions are accurate and satisfy the axioms of probability, the remaining question is which values should govern the system, not merely which values are most common.",
+      "source_chunk_ids": [
+        "cs109_01_intros_and_counting_annotated_p25_p26_561504157b",
+        "cs109_03_probability_annotated_p4_6c2e1bc6c8",
+        "cs109_21_beta_annotated_p12_dfb20dfb00"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains difference between descriptive and normative use of probability",
+          "Uses variation in Moral Machine preferences as evidence against a universal rule",
+          "States that statistical precision does not remove ethical controversy"
+        ],
+        "partial_credit": [
+          "Notes that cultures differ but does not connect to normative vs descriptive distinction",
+          "Says surveys can be biased without addressing the deeper ethical issue"
+        ],
+        "common_mistakes": [
+          "Claiming the majority preference is automatically ethical",
+          "Treating probability as a machine for deciding moral truth",
+          "Ignoring cross-group heterogeneity"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If you were forced to use survey data anyway, what additional transparency or governance step would you require before deployment?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Suppose 90% of respondents prefer one policy. Why does that still not logically imply the policy is ethically right?"
+        }
+      ],
+      "hints": [
+        "Start by separating two roles of probability: it can describe how often people hold a preference, but ask yourself whether that is the same as deciding what ought to be done.",
+        "Use the survey as a descriptive estimate of frequencies or beliefs, then identify the extra step the policymaker is sneaking in: moving from 'most popular' to 'objectively correct.'",
+        "Bring in the Moral Machine lesson that preferences differ across cultures and groups; even with very accurate estimated proportions that satisfy probability rules, the unresolved issue is which values should govern the car, not just which values are most common."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0002",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "An autonomous-vehicle company reports that event A is \"the car harms a pedestrian\" and event B is \"the car harms a passenger\" in a simulated emergency. An executive says, \"The probability of harm to either side is just P(A)+P(B).\" Give a careful response using the probability rules, and explain what assumption would make the executive's formula valid.",
+      "expected_answer": "The correct setup is P(A union B) = P(A) + P(B) - P(A and B). The executive's formula is only valid if A and B are mutually exclusive, meaning both harms cannot occur in the same scenario. In crash settings that assumption may fail because one event can co-occur with the other, so subtracting the overlap matters. If A and B can both happen, adding them directly double-counts those joint cases.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p32_f98bba92d1",
+        "cs109_03_probability_annotated_p15_3b7231a7cc",
+        "cs109_03_probability_annotated_p16_p17_ba45532e31"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States inclusion-exclusion formula correctly",
+          "Explains mutual exclusivity as the condition for simple addition",
+          "Interprets double counting in the crash context"
+        ],
+        "partial_credit": [
+          "Gives the right formula but weak interpretation",
+          "Mentions overlap without naming mutual exclusivity"
+        ],
+        "common_mistakes": [
+          "Using independence instead of mutual exclusivity",
+          "Saying P(A union B)=P(A)+P(B) always",
+          "Subtracting P(A)P(B) without justification"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your answer change if the executive instead claimed A and B are independent?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can two bad outcomes happen in the same emergency? If yes, what goes wrong when you simply add the probabilities?"
+        }
+      ],
+      "hints": [
+        "Start by translating \"harms a pedestrian or a passenger\" into the probability of a union, P(A \u222a B), not just two separate events.",
+        "Ask whether A and B can happen in the same emergency scenario; if they can, adding P(A) and P(B) counts those joint cases twice.",
+        "Use the inclusion-exclusion rule P(A \u222a B)=P(A)+P(B)-P(A \u2229 B), and then identify the special assumption that makes the overlap term vanish."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0003",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A company advertises its AI detector with the statement, \"There is a 99% chance this essay was AI-written because our detector gave a positive result with p-value 0.01.\" Explain what is wrong with that statement, and describe what extra probabilistic ingredients would be needed to estimate the probability the essay was AI-written.",
+      "expected_answer": "A p-value is not the posterior probability that the essay was AI-written. It measures how surprising the observed statistic would be under a null model, such as human-written text, not the probability of the hypothesis itself. To estimate P(AI-written | detector output), we need Bayes' theorem: a prior probability of AI-written text, the likelihood of a positive detector result given AI-writing, and the likelihood of a positive result given human writing. Without base rates and both conditional probabilities, the 99% claim is unsupported.",
+      "source_chunk_ids": [
+        "cs109_midtermfall2024soln_preamble_1a95125874",
+        "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045",
+        "cs109_finalwin2022soln_preamble_667e8456d8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Clearly distinguishes p-value from posterior probability",
+          "Mentions Bayes' theorem and required components: prior and likelihoods",
+          "Explains base-rate dependence"
+        ],
+        "partial_credit": [
+          "Says p-value is not the same as probability of hypothesis but does not say what is needed instead",
+          "Mentions false positives only"
+        ],
+        "common_mistakes": [
+          "Interpreting p-value as P(hypothesis true | data)",
+          "Ignoring prior probability of AI-written essays",
+          "Thinking low p-value alone proves authorship"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "In a setting where only 1% of essays are AI-written, how can the posterior still be much lower than 99% even with a strong detector?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What probability does a p-value condition on: the hypothesis, or the data under the hypothesis?"
+        }
+      ],
+      "hints": [
+        "Start by separating two different probabilities: a p-value is computed assuming a null model (for example, human-written text), while the claim in the ad is about the probability the AI-written hypothesis is true after seeing the detector result.",
+        "Ask yourself what the detector\u2019s output tells you in both worlds: how often it flags AI-written essays, and how often it falsely flags human-written essays. Also think about the base rate: before seeing the test, how common are AI-written essays in the population of interest?",
+        "The right framework is Bayes\u2019 theorem: combine a prior probability of AI authorship with the detector\u2019s true-positive and false-positive rates to reason about the probability of AI-writing given a positive result. A small p-value by itself does not supply that posterior probability."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0004",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A university is considering a watermark-based policy for flagging student essays. Suppose H is the event \"essay is human-written\" and W is the event \"essay contains the watermark pattern.\" Explain aloud how you would compute P(H | W), and then discuss one ethical danger of deploying the flag if administrators confuse P(W | H) with P(H | W).",
+      "expected_answer": "Using Bayes' theorem, P(H | W) = P(W | H)P(H) / P(W). Expanding the denominator gives P(W)=P(W|H)P(H)+P(W|AI)P(AI), where AI is the complement of H. The ethical danger is base-rate neglect: even if humans rarely trigger the watermark, a flagged essay need not be unlikely to be human if most essays are human-written. Misreading P(W|H) as P(H|W) can lead to unjust accusations and overconfidence in enforcement.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045",
+        "cs109_05_section_soln_sec2_part1_69fbee7835",
+        "cs109_03_probability_annotated_p32_f98bba92d1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States Bayes formula correctly in this context",
+          "Expands denominator or otherwise explains normalization",
+          "Identifies confusion between likelihood and posterior as an ethical risk",
+          "Connects the error to wrongful flagging"
+        ],
+        "partial_credit": [
+          "Uses Bayes correctly but gives a vague ethical discussion",
+          "Mentions false accusations without explaining the probability confusion"
+        ],
+        "common_mistakes": [
+          "Equating P(W|H) with P(H|W)",
+          "Forgetting the denominator",
+          "Ignoring the prior/base rate of human essays"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What policy safeguard would reduce harm from the base-rate problem while still allowing the watermark to be used?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If almost all essays are human-written, can a rare watermark in human text still produce many human flags? Why?"
+        }
+      ],
+      "hints": [
+        "Start by separating the two directions of conditioning: the question asks for the chance an essay is human-written after you already know it was flagged with a watermark.",
+        "To compute that posterior, identify the prior probability an essay is human-written and the two likelihoods for seeing the watermark under human-written versus AI-written essays.",
+        "Use Bayes\u2019 rule: combine the human side in the numerator and normalize by the total probability of a watermark; then note ethically that confusing a likelihood like P(W|H) with the posterior can cause base-rate neglect and unfairly strong suspicion of flagged students."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0005",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "In a debate about AI-generated medical advice, one student says, \"Probability is objective frequency, so talking about a prior belief that the advice is safe is unscientific.\" Another says, \"Probability can represent a degree of belief that updates with evidence.\" Compare these views and explain which one better supports decision-making when evidence is incomplete.",
+      "expected_answer": "The frequentist view treats the safety probability as a fixed but unknown quantity tied to long-run frequencies, while the Bayesian view treats uncertainty itself as something we can model and update. In practice, decisions about AI safety often must be made before large repeated datasets exist, so a Bayesian interpretation is useful because it allows prior beliefs to combine with new evidence via Bayes' theorem. A good answer should note that the Bayesian view does not mean arbitrary guessing; priors should be justified and then updated transparently.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p10_a0b35f551d",
+        "cs109_21_beta_annotated_p12_dfb20dfb00",
+        "cs109_03_probability_annotated_p4_6c2e1bc6c8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Accurately contrasts frequentist and Bayesian interpretations",
+          "Explains why Bayesian updating is useful under incomplete evidence",
+          "Notes that priors should be justified, not arbitrary"
+        ],
+        "partial_credit": [
+          "Gives the basic contrast but weak application to AI safety",
+          "Says Bayesian is better without discussing uncertainty updating"
+        ],
+        "common_mistakes": [
+          "Claiming one interpretation makes the other invalid in all contexts",
+          "Treating Bayesian probability as purely subjective guesswork",
+          "Ignoring the role of evidence updating"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What would make a prior ethically more defensible in a high-stakes AI application?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you have very little repeated data, how would a strict long-run frequency interpretation limit what you can say?"
+        }
+      ],
+      "hints": [
+        "Start by separating the two meanings of probability in the debate: one ties probability to long-run observed frequencies, while the other uses it to represent uncertainty about an unknown claim like \"the advice is safe.\"",
+        "Think about the setting: medical AI decisions often must be made before you have huge repeated datasets, so identify which view gives you a way to combine limited evidence with existing knowledge.",
+        "Your comparison should mention that Bayesian reasoning updates a prior with new evidence (rather than treating the prior as a random guess), and also avoid claiming the frequentist view is useless in all cases."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0006",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "A moderation team monitors two kinds of harms from an AI system on a given day: D = \"it spreads dangerous misinformation\" and B = \"it expresses demographic bias.\" They know P(D)=0.08, P(B)=0.11, and P(D union B)=0.16. Compute P(D and B), and then explain why reporting only the two marginal probabilities could understate the ethical concern.",
+      "expected_answer": "By inclusion-exclusion, P(D and B)=P(D)+P(B)-P(D union B)=0.08+0.11-0.16=0.03. Reporting only the marginals hides the overlap, which matters because some outputs may be both biased and dangerous at once. That joint region can represent concentrated harm to specific groups, so a system can look acceptable on separate dashboards while still creating especially severe compound failures.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p32_f98bba92d1",
+        "cs109_03_probability_annotated_p15_3b7231a7cc"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes 0.03 correctly",
+          "Uses inclusion-exclusion explicitly or correctly implicitly",
+          "Explains why overlap corresponds to compounded ethical harm"
+        ],
+        "partial_credit": [
+          "Gets the number right with little explanation",
+          "Discusses overlap qualitatively but arithmetic is off"
+        ],
+        "common_mistakes": [
+          "Adding 0.08 and 0.11 directly",
+          "Subtracting the union from one marginal only",
+          "Failing to interpret the joint event ethically"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If a manager claimed the harms are independent, what would that imply for P(D and B), and how would you compare it to the observed overlap?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What part of P(D)+P(B) is being counted twice?"
+        }
+      ],
+      "hints": [
+        "Sketch a quick Venn diagram for events D and B. Notice that if you add the two marginal probabilities, the overlap gets counted twice.",
+        "The quantity you need is the intersection P(D and B). Use the given union probability together with the two marginals, and avoid the common mistake of subtracting the union from only one event.",
+        "Apply inclusion-exclusion by rearranging it to solve for the overlap: P(D and B)=P(D)+P(B)-P(D union B). For the ethics part, think about why cases in that shared region are compound failures that a dashboard with only separate rates could miss."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0007",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A product team says, \"Because our classifier has two errors, false positives and false negatives, they should add to 1.\" Is that statement always true? Answer carefully by defining the events and saying when such a complement relationship would and would not hold.",
+      "expected_answer": "It is not always true as stated. False positive rate is typically P(predict positive | actually negative), while false negative rate is P(predict negative | actually positive); these are conditioned on different sample spaces, so they are not complements and need not sum to 1. A complement relationship only holds within the same conditioning event, such as true positive rate plus false negative rate equaling 1 when conditioned on actually positive cases. The key issue is that complements must live in the same sample space.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p32_f98bba92d1",
+        "cs109_03_probability_annotated_p15_3b7231a7cc",
+        "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the claim is generally false",
+          "Explains that the rates are conditioned on different events/sample spaces",
+          "Gives a correct example of a true complement pair"
+        ],
+        "partial_credit": [
+          "Says they are not complements but explanation is vague",
+          "Mentions conditioning without a concrete example"
+        ],
+        "common_mistakes": [
+          "Saying all binary errors must sum to 1",
+          "Ignoring conditioning",
+          "Confusing false positive rate with 1-specificity but not explaining the distinction"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you name another pair of rates in classification that really do sum to 1, and say why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Are false positives measured among actual positives or among actual negatives?"
+        }
+      ],
+      "hints": [
+        "Start by asking: what is the sample space for each error rate? Two probabilities add to 1 only if they are complements within the same conditioning event.",
+        "Write the two rates as conditional probabilities, like P(predict positive | actually negative) and P(predict negative | actually positive). Notice these are computed over different groups of examples.",
+        "Look for a pair that keeps the actual label fixed: within actually positive cases, one event and its complement split that group; likewise within actually negative cases. That is the setting where a sum-to-1 relationship holds."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0008",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Suppose an AI-generated-text detector counts occurrences of a watermark-related word in a 10,000-word document. A colleague says, \"We should always model the count as Poisson, because word counts are counts.\" Give a more nuanced answer comparing a Poisson model for short text with a Gaussian approximation for long text, and explain why the modeling choice matters ethically.",
+      "expected_answer": "For short text and relatively rare events, a Poisson model is often reasonable because it directly models discrete counts with right skew. For very long documents, the total count can be large and the distribution of aggregate counts or averages may be well approximated by a Gaussian, often due to central-limit-style reasoning. The choice matters ethically because miscalibrated uncertainty can overstate evidence of AI authorship in borderline cases. A detector used in discipline should justify its statistical approximation in the regime where it is deployed.",
+      "source_chunk_ids": [
+        "cs109_05_section_soln_sec2_part1_69fbee7835",
+        "cs109_finalwin2022soln_preamble_667e8456d8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains why Poisson can fit shorter, lower-count settings",
+          "Explains why Gaussian approximation can be appropriate for large documents",
+          "Connects model misspecification to ethical risk in enforcement"
+        ],
+        "partial_credit": [
+          "Mentions one model is more convenient but gives weak justification",
+          "Notes ethical stakes without linking to calibration"
+        ],
+        "common_mistakes": [
+          "Saying counts must always be Poisson",
+          "Claiming Gaussian cannot model counts at all",
+          "Ignoring document length regime"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What empirical check would you perform before trusting the Gaussian approximation in a disciplinary pipeline?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why might a very large count distribution start to look more symmetric and less like a small-count Poisson?"
+        }
+      ],
+      "hints": [
+        "Start by questioning the phrase \u201calways Poisson\u201d: the right model depends on the document-length regime and how rare the watermark word is. Think about how a discrete, skewed count behaves when the expected count is small versus large.",
+        "For a short text with a low expected number of occurrences, a Poisson model is a natural benchmark for the count itself. For a very long document, ask when an aggregate count can be treated by a Gaussian approximation because many opportunities to see the word are being combined.",
+        "Use the idea that large counts often become approximately bell-shaped, even though the underlying variable is still a count. Then connect that modeling choice to ethics: if the approximation is poor in the deployment setting, the detector\u2019s uncertainty can be miscalibrated and lead to unfairly strong claims of AI authorship."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0009",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "In election forecasting, the course notes mention that reporting probabilities can influence voter behavior. Relate that idea to AI ethics: if a platform publicly reports a very high probability that its content-moderation model is fair, why might that itself be ethically problematic even if the estimate is statistically honest?",
+      "expected_answer": "The key point is that probabilistic reports can change behavior rather than merely describe reality. Just as election polls may affect turnout and strategy, a public claim that a model is highly likely to be fair may reduce scrutiny, discourage appeals, or make regulators less vigilant. So even an honest estimate can act as a feedback mechanism. Ethical communication should therefore include uncertainty, assumptions, and limitations rather than presenting a probability as final reassurance.",
+      "source_chunk_ids": [
+        "cs109_08_section_soln_sec1_part4_2c83657e86",
+        "cs109_03_probability_annotated_p4_6c2e1bc6c8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies feedback effects of probability reporting",
+          "Transfers the election-polling ethical concern to AI fairness communication",
+          "Argues for communicating uncertainty and assumptions"
+        ],
+        "partial_credit": [
+          "Says probabilities can mislead without explaining behavior change",
+          "Discusses overconfidence but not feedback effects"
+        ],
+        "common_mistakes": [
+          "Treating forecasts as passive facts with no social effect",
+          "Assuming honesty alone removes ethical concern",
+          "Ignoring downstream decision-makers"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you redesign the report so that it informs without creating false certainty?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can publishing a probability change the system or the people reacting to it, even if the number was estimated correctly?"
+        }
+      ],
+      "hints": [
+        "Start from the election-forecast analogy: a probability report is not just descriptive, because people may react to it. Ask who might change their behavior after hearing a model is \"very likely fair.\"",
+        "Think about downstream actors such as users, moderators, regulators, or auditors. A high fairness probability could reduce scrutiny, appeals, or independent checks even if the estimate was computed honestly.",
+        "Focus on the ethical issue as a feedback effect: the public claim can reshape the system around the model, not merely summarize evidence. That points toward why uncertainty, assumptions, and limits should be communicated instead of treating the number as reassurance."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0010",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A safety auditor says an autonomous system avoids harm in 97% of simulated runs. Without doing new arithmetic, explain how you would express the probability that harm occurs in a run, and why this complement rule is useful but not sufficient for ethical evaluation.",
+      "expected_answer": "If E is the event that the system avoids harm, then the event of harm is E complement, so P(E complement)=1-P(E)=0.03. The complement rule is useful because it converts a success probability into a failure probability immediately. But ethical evaluation needs more than one overall failure probability: it matters who bears the risk, whether failures are concentrated in certain groups, and what kinds of harm are included in the event definition.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p32_f98bba92d1",
+        "cs109_03_probability_annotated_p15_3b7231a7cc"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Applies complement rule correctly",
+          "States harm probability as 1 minus safety probability",
+          "Explains why aggregate probability alone is ethically incomplete"
+        ],
+        "partial_credit": [
+          "Gets 0.03 but no ethical interpretation",
+          "Mentions subgroup issues without clearly invoking complement"
+        ],
+        "common_mistakes": [
+          "Saying the harm probability is also 0.97",
+          "Forgetting events must be complements",
+          "Treating aggregate reliability as full ethical adequacy"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What additional partition of the sample space would you ask for before trusting the 3% figure?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If an event happens with probability 0.97, what must be true about the probability of its complement?"
+        }
+      ],
+      "hints": [
+        "Treat \u201cavoids harm\u201d and \u201charm occurs\u201d as opposite outcomes for a single run. When two events are complements, their probabilities must add to 1.",
+        "Name the event that the system avoids harm, say E. Then write the probability of harm using the complement notation or as 1 minus the reported safety probability, without simplifying it.",
+        "After expressing the failure probability, ask what that single aggregate number hides: are harms uneven across groups, and does the event definition capture all relevant kinds or severities of harm?"
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0011",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A hospital wants to infer whether an AI triage alert truly indicates a critical patient. You are told only that the system is highly accurate in trials, but not the prevalence of critical cases in the hospital. Explain why Bayes' theorem says prevalence matters, and describe the ethical consequence of ignoring it.",
+      "expected_answer": "Bayes' theorem shows that the posterior probability of a patient being critical given an alert depends on both the alert's likelihood properties and the prior prevalence of critical patients. Even with strong sensitivity and specificity, if critical cases are rare, many alerts can still be false positives. Ignoring prevalence can overload staff, delay care for others, and produce misplaced trust in alerts. So base rates are ethically central, not just a technical detail.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045",
+        "cs109_15_general_inference_annotated_p23_p24_63310f4a9e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains role of prevalence/prior in Bayes updating",
+          "Connects rare-condition setting to many false positives",
+          "Describes concrete ethical harms from ignoring base rates"
+        ],
+        "partial_credit": [
+          "Mentions base rates matter but no clear Bayesian explanation",
+          "Gives ethical concern without linking to prevalence"
+        ],
+        "common_mistakes": [
+          "Assuming high trial accuracy guarantees high posterior certainty everywhere",
+          "Ignoring context-dependent prevalence",
+          "Confusing sensitivity with positive predictive value"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What information would you ask the hospital for before interpreting the alert probability?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If a condition is very rare, can a good test still produce many false alarms? Why?"
+        }
+      ],
+      "hints": [
+        "Separate the model\u2019s trial accuracy measures from the question the hospital actually cares about: after an alert, what is the chance the patient is truly critical? Bayes\u2019 theorem links those, and it needs a prior/base rate.",
+        "Identify the pieces in Bayes\u2019 theorem: prevalence of critical patients as the prior, and the alert behavior through sensitivity and false-positive rate. Ask how the posterior changes if critical cases are rare even when the test looks strong in trials.",
+        "Use the base-rate insight to reason ethically: when the condition is rare, many alerts may still be false positives, so an alert is not automatically strong evidence. Connect that to concrete harms like wasted clinician attention, alarm fatigue, or delayed care for other patients."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0012",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "A regulator asks whether a generative model's \"probability of harmful output\" should be treated as a fixed property of the model or as a random variable reflecting uncertainty in our knowledge. Give a Bayesian answer and say why that distinction matters for governance decisions.",
+      "expected_answer": "A Bayesian answer is that the underlying harm probability can itself be treated as an uncertain quantity, modeled as a random variable representing our current knowledge. That lets us distinguish observed frequency from uncertainty about the true rate, especially when data are limited or shifting. This matters for governance because a point estimate alone can hide how uncertain we are, while a posterior distribution can support conservative deployment, monitoring thresholds, or holdback decisions when credible risk remains high.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p9_b3d5151ec8",
+        "cs109_21_beta_annotated_p10_a0b35f551d",
+        "cs109_21_beta_annotated_p12_dfb20dfb00"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that the probability itself can be modeled as a random variable under Bayesian reasoning",
+          "Explains distinction between point estimate and uncertainty about the true rate",
+          "Connects posterior uncertainty to governance choices"
+        ],
+        "partial_credit": [
+          "Mentions posterior uncertainty but not why governance changes",
+          "Gives a generic Bayesian description without applying it"
+        ],
+        "common_mistakes": [
+          "Saying probabilities can never be random variables",
+          "Confusing the random variable with observed outputs only",
+          "Ignoring limited-data uncertainty"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How might a regulator act differently if two models have the same estimated harm rate but very different uncertainty around that estimate?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you only observed a few harmful outputs, do you know the true harm probability exactly?"
+        }
+      ],
+      "hints": [
+        "Start by separating two ideas: the model\u2019s actual long-run harm rate versus our uncertainty about that rate. In Bayesian thinking, unknown parameters are often represented through beliefs, not just a single fixed number.",
+        "Think of the harm probability as a parameter with a prior and a posterior after observing safety evaluations or incident data. This helps you contrast an observed frequency or point estimate with a distribution over plausible true rates, especially when evidence is sparse or shifting.",
+        "For the governance part, ask what decision changes when you use a posterior distribution instead of only a best estimate. Focus on how uncertainty can justify stricter deployment, monitoring, or holdback rules when there is still meaningful probability that risk is too high."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0013",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "An AI company claims that two diagnostic subsystems fail independently. Let F1 be failure of subsystem 1 and F2 be failure of subsystem 2. Explain how independence changes the expression for P(F1 | F2), and then discuss why assuming independence without evidence can create ethical problems.",
+      "expected_answer": "If F1 and F2 are truly independent, then P(F1 | F2)=P(F1), because observing F2 gives no information about F1. Equivalently, P(F1 and F2)=P(F1)P(F2). But assuming independence without evidence can badly understate correlated failures caused by shared data, shared sensors, or common environmental conditions. Ethically, this can produce misleading safety claims and underprepare operators for systemic failures.",
+      "source_chunk_ids": [
+        "cs109_05_independence_annotated_p3_9f91220977",
+        "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States P(F1|F2)=P(F1) under independence",
+          "May also mention product rule for joint probability",
+          "Explains why unjustified independence can hide common-cause risk"
+        ],
+        "partial_credit": [
+          "Knows independence means 'does not change probability' but weak formula",
+          "Notes dependence may exist without giving ethical consequence"
+        ],
+        "common_mistakes": [
+          "Confusing independence with mutual exclusivity",
+          "Claiming independent events cannot occur together",
+          "Assuming independence because systems are separate modules"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Give one realistic mechanism in AI systems that would make failures positively correlated."
+        },
+        {
+          "condition": "incorrect",
+          "question": "If learning that F2 happened changes your belief about F1, are the events independent?"
+        }
+      ],
+      "hints": [
+        "First, separate the ideas of independence and mutual exclusivity: independent failures can still happen together, and being different modules does not by itself prove independence.",
+        "Write the conditional probability definition for P(F1 | F2) in terms of a joint probability, then ask what extra simplification becomes valid only if the company\u2019s independence claim is justified.",
+        "Use the independence rule to replace the joint term, which shows that observing F2 should not change the chance of F1; ethically, the danger is that shared sensors, training data, or environment can create common-cause failures, making the system look safer than it really is."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0014",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says, \"If event A is ethically worse than event B, then probability theory should assign P(A) greater than P(B).\" Critique this statement using the axioms and the meaning of probability from class.",
+      "expected_answer": "Probability quantifies belief or frequency of occurrence, not moral severity. The axioms constrain probabilities to lie between 0 and 1, sum appropriately over events, and normalize the sample space, but they do not encode value judgments about how bad events are. An ethically worse event may be rarer, so it can have lower probability even while deserving more attention. Ethical importance and probability are different dimensions that must be considered separately.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p4_6c2e1bc6c8",
+        "cs109_03_probability_annotated_p15_3b7231a7cc"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Separates probability from moral severity",
+          "References the meaning or axioms of probability appropriately",
+          "States that rare but severe harms can have low probability"
+        ],
+        "partial_credit": [
+          "Says the statement is wrong but without linking to what probability means",
+          "Mentions severity vs likelihood in vague terms"
+        ],
+        "common_mistakes": [
+          "Equating importance with probability",
+          "Thinking the probability scale includes a moral ranking",
+          "Ignoring the event-frequency interpretation"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What additional quantitative concept besides probability might policymakers need to assess severe but rare AI harms?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can a catastrophic event be low probability? If yes, what does that tell you about probability versus severity?"
+        }
+      ],
+      "hints": [
+        "Start by separating two ideas: probability measures how likely an event is, while \u201cethically worse\u201d describes how harmful or undesirable it is.",
+        "Use the class definition and axioms of probability: probabilities are numbers between 0 and 1 that represent chance/belief and must obey normalization and additivity, not moral ranking.",
+        "Ask yourself whether a very severe harm could still be rare; that comparison helps show why ethical importance and probability are different dimensions rather than one determining the other."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0015",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A firm uses rejection sampling to estimate the probability that a complex AI pipeline produces a harmful response under a certain user profile. Explain, at a high level, why sampling can help when exact inference is tedious, and then name one ethical risk if the rare profile of interest is badly under-sampled.",
+      "expected_answer": "Sampling can approximate probabilities when the full joint calculation is too complex, as in large probabilistic systems with many intermediate variables. By repeatedly simulating from the model and counting outcomes, we can estimate the target probability. But if the user profile of interest is rare and the sampling scheme scarcely produces it, the estimate can be noisy or misleadingly optimistic. Ethically, that can erase risk faced by minority or unusual users who may already be vulnerable.",
+      "source_chunk_ids": [
+        "cs109_15_general_inference_annotated_p23_p24_63310f4a9e",
+        "cs109_05_section_soln_sec2_part1_69fbee7835"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains sampling as approximation when exact inference is hard",
+          "Describes estimate via repeated simulated draws",
+          "Identifies under-sampling of rare profiles as an ethical fairness risk"
+        ],
+        "partial_credit": [
+          "Mentions Monte Carlo vaguely without explaining why needed",
+          "Notes rare events are hard but not the ethical implications"
+        ],
+        "common_mistakes": [
+          "Claiming sampling always gives exact answers",
+          "Ignoring variance or sample size",
+          "Assuming rare groups are unimportant because they are infrequent"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What modification to the sampling strategy might better study a rare but important subgroup?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If the subgroup almost never appears in your simulations, how confident should you be in the estimated harm probability for that subgroup?"
+        }
+      ],
+      "hints": [
+        "First separate the two parts: why Monte Carlo-style sampling is useful at all, and what goes wrong when the profile you care about is very rare. Think about avoiding an unwieldy full joint calculation over many pipeline components.",
+        "For the first part, describe estimation as repeatedly simulating the pipeline and using the share of runs with harmful output as an approximation. For the rare-profile part, focus on how rejection sampling may leave you with very few relevant accepted samples.",
+        "Ask what a tiny sample for that profile does to the estimate: it becomes unstable and may understate harm for that group. The ethical issue to name is a fairness/representation risk for minority or unusual users whose failures get overlooked."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0016",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A content platform tracks two events for a generated post: U = \"contains unsafe advice\" and R = \"was removed by moderation.\" The platform celebrates that P(R) is high. Explain why P(U | R) and P(R | U) answer different questions, and which one is more relevant if the ethical goal is to know whether harmful content is being caught.",
+      "expected_answer": "P(R | U) asks: among unsafe posts, what fraction are removed? That is the more relevant quantity for whether harmful content is being caught. P(U | R) instead asks: among removed posts, what fraction were actually unsafe? That speaks more to precision or over-removal. The two can be very different, so using the wrong conditional can create a misleading ethical narrative.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045",
+        "cs109_05_independence_annotated_p3_9f91220977"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Clearly distinguishes the two conditional probabilities",
+          "Identifies P(R|U) as the catch-rate question",
+          "Explains why confusing them can mislead policy"
+        ],
+        "partial_credit": [
+          "Knows they differ but muddles which is which",
+          "Gives one interpretation but not the ethical implication"
+        ],
+        "common_mistakes": [
+          "Swapping the conditioning event",
+          "Assuming the two conditionals are equal",
+          "Using a high removal rate P(R) as evidence harmful content is caught"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Which conditional would matter more if the concern were wrongful censorship of safe posts?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When you say 'among unsafe posts,' which event belongs after the vertical bar?"
+        }
+      ],
+      "hints": [
+        "Pay close attention to which event comes after the bar: the conditioning event tells you which group you are restricting attention to.",
+        "Interpret each conditional in words: one looks at removed posts and asks how many were unsafe, while the other looks at unsafe posts and asks how many got removed.",
+        "For the ethical question of whether harmful content is being caught, start with the set of unsafe posts as your denominator; a high overall removal rate P(R) does not answer that catch-rate question."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0017",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Why might a fairness claim based only on an overall average model score be statistically and ethically misleading? Use the course's emphasis on means, distributions, and subgroup variation rather than giving a purely legal answer.",
+      "expected_answer": "An overall average can hide the shape of the distribution and differences across subgroups. Two systems can have the same mean performance while one has much higher variance or systematically worse outcomes for a minority group. Statistically, averages compress information; ethically, that can mask concentrated harm. A careful assessment should examine subgroup-conditioned distributions, uncertainty, and tail risks rather than only one pooled summary.",
+      "source_chunk_ids": [
+        "cs109_finalfall2021soln_q0_42694214da",
+        "cs109_03_probability_annotated_p4_6c2e1bc6c8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains why means can hide variation",
+          "Mentions subgroup-conditioned performance or tail risk",
+          "Connects hidden variation to ethical masking of harm"
+        ],
+        "partial_credit": [
+          "Says averages are incomplete but without statistical detail",
+          "Mentions fairness groups but not distributions"
+        ],
+        "common_mistakes": [
+          "Treating equal averages as equal fairness",
+          "Ignoring variance and tails",
+          "Assuming pooled data are always sufficient"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give a simple verbal example where two groups have the same average score but very different error experiences?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If two models have the same average error, could one still be much worse for a small subgroup?"
+        }
+      ],
+      "hints": [
+        "Start by asking what information a single mean throws away: two models can share the same average score even if their score distributions look very different.",
+        "Think about conditioning on subgroups rather than pooling everyone together. Compare not just central tendency, but spread and whether one group is concentrated among the low-score outcomes.",
+        "A strong next move is to connect the statistical issue to ethics: hidden variance or tail risk can mean a minority group bears worse errors even when the overall average appears similar."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0018",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Imagine you are asked to defend a policy that suspends users whenever an AI abuse detector outputs a posterior probability above 0.8. What probabilistic and ethical questions would you ask before accepting 0.8 as a threshold? Focus on uncertainty, priors, and the consequences of false positives.",
+      "expected_answer": "I would ask how the posterior was computed, including the prior prevalence of actual abuse, the model's calibration, and whether the likelihood model is stable across user groups and contexts. I would ask whether 0.8 means the same thing in each subgroup or if base rates make the threshold unevenly punitive. I would also ask about uncertainty around the estimate, appeal mechanisms, and the cost of false positives relative to false negatives. Ethically, a numerical threshold is not self-justifying; its fairness depends on calibration, error asymmetry, and procedural safeguards.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045",
+        "cs109_21_beta_annotated_p12_dfb20dfb00",
+        "cs109_08_section_soln_sec1_part4_2c83657e86"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Asks about priors/base rates and calibration",
+          "Raises subgroup comparability and uncertainty",
+          "Discusses false-positive costs and procedural protections"
+        ],
+        "partial_credit": [
+          "Focuses only on accuracy metrics or only on ethics",
+          "Mentions threshold choice but not posterior construction"
+        ],
+        "common_mistakes": [
+          "Treating 0.8 as universally meaningful without calibration",
+          "Ignoring prevalence differences",
+          "Assuming a high threshold automatically guarantees fairness"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would your answer change if the platform told you the threshold was chosen solely to maximize expected revenue?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Does a posterior threshold mean the same thing if the model is poorly calibrated or the prior is wrong?"
+        }
+      ],
+      "hints": [
+        "Start by questioning what a posterior of 0.8 actually means in this system: is it a well-calibrated probability or just a score that looks probabilistic? A threshold is only meaningful if the quantity crossing it is interpretable.",
+        "Break the posterior into its ingredients: what prior prevalence of real abuse is being assumed, and are the likelihoods and calibration stable across different users, contexts, or subgroups? If base rates differ, the same 0.8 cutoff may not imply the same risk everywhere.",
+        "Now focus on uncertainty and harm: how noisy is the estimate around 0.8, and what are the consequences when the model is wrong on the false-positive side? Think about whether appeal mechanisms, human review, or extra evidence are needed before suspension."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0019",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A teammate says, \"Since probabilities must sum to 1, if we make the probability of one harmful AI behavior smaller, the probabilities of all other harmful behaviors must get larger.\" Is that necessarily true? Clarify what sample space this claim is assuming and when the statement breaks down.",
+      "expected_answer": "That statement is only true in a specific partition of the sample space, where the listed behaviors are mutually exclusive and collectively exhaustive outcomes. In many AI safety settings, harmful behaviors overlap, so reducing the probability of one event does not mechanically force all others to increase. Also, if we are not considering the full sample space, probability mass could shift to safe outcomes instead. The statement breaks down when events are not a partition.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p15_3b7231a7cc",
+        "cs109_03_probability_annotated_p16_p17_ba45532e31",
+        "cs109_03_probability_annotated_p32_f98bba92d1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains need for mutually exclusive, exhaustive partition",
+          "States why overlapping events break the claim",
+          "Mentions probability can shift to non-harm events"
+        ],
+        "partial_credit": [
+          "Says 'not always true' but with weak explanation",
+          "Mentions overlap without discussing sample space"
+        ],
+        "common_mistakes": [
+          "Thinking all listed events automatically partition the sample space",
+          "Forgetting safe outcomes",
+          "Assuming one probability decreasing forces every other one upward"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give a simple AI example where two harmful behaviors can occur together, so the partition logic fails?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Do the events have to be mutually exclusive for their probabilities to behave like slices of a fixed pie?"
+        }
+      ],
+      "hints": [
+        "Ask what outcomes are being summed to 1: are these harmful behaviors the entire sample space, or just some events within a larger space that also includes safe outcomes?",
+        "The \"one goes down, others must go up\" idea only follows when the listed categories form a partition\u2014mutually exclusive and collectively exhaustive outcomes.",
+        "Check where the claim fails: harmful behaviors can overlap, so they are not separate pieces of one total, and any reduced probability could shift to non-harmful outcomes instead of making every other harmful behavior more likely."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0020",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "You are comparing two versions of an AI tutor on average student rating. Version A and Version B each have many independent ratings, and you plan to compare the sample means. Explain why a normal approximation for the difference in sample means can be reasonable, and then state one ethical limitation of using only a significance threshold to decide deployment.",
+      "expected_answer": "With many independent observations, each sample mean can be approximated as normal by the central limit theorem, and the difference of two approximately normal independent means is also approximately normal. That justifies using a normal model for inference about the mean difference. But a significance threshold alone can miss practical importance, subgroup harms, or distributional changes: a tiny but significant average gain could still hide worse outcomes for vulnerable students. Ethical deployment needs effect size, uncertainty, and disaggregated analysis, not just p-values.",
+      "source_chunk_ids": [
+        "cs109_finalfall2021soln_q0_42694214da",
+        "cs109_finalwin2022soln_preamble_667e8456d8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains CLT justification for means",
+          "States difference of independent normals is normal",
+          "Identifies an ethical limitation of significance-only decisions"
+        ],
+        "partial_credit": [
+          "Mentions CLT without connecting to difference of means",
+          "Critiques p-values generally without AI deployment context"
+        ],
+        "common_mistakes": [
+          "Assuming significance implies importance",
+          "Ignoring subgroup effects",
+          "Claiming normality is exact without conditions"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What additional statistic would you request before approving deployment?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why can averages of many independent observations look approximately normal even if individual ratings are not?"
+        }
+      ],
+      "hints": [
+        "Start with the sampling distribution of each version\u2019s sample mean: when you have many independent ratings, what theorem tells you its shape is close to normal?",
+        "Let \\(\\bar X_A\\) and \\(\\bar X_B\\) be the two sample means. If each is approximately normal and the two samples are independent, think about what that implies for \\(\\bar X_A-\\bar X_B\\).",
+        "For the ethics part, ask what a significance cutoff does *not* capture in deployment decisions\u2014such as whether the average improvement is meaningful in practice or whether some student subgroups could still be harmed."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0021",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Suppose you observe 30 safe deployments and 20 unsafe deployments of an AI system, and a colleague says, \"So the true safety probability is exactly 0.6.\" Give a Bayesian response that treats the safety probability as uncertain, and explain why that is ethically preferable in high-stakes settings.",
+      "expected_answer": "A Bayesian response is that 0.6 is a reasonable point estimate, such as the sample proportion or near the posterior mean under a simple prior, but the true safety probability is not known exactly after only 50 observations. We should represent uncertainty with a distribution over the safety probability rather than a single fixed claim. That is ethically preferable because high-stakes decisions should reflect confidence as well as central tendency; uncertainty may justify more testing, monitoring, or restricted deployment even when the point estimate seems acceptable.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p9_b3d5151ec8",
+        "cs109_21_beta_annotated_p10_a0b35f551d",
+        "cs109_21_beta_annotated_p12_dfb20dfb00"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects exact-certainty claim after finite data",
+          "Describes Bayesian distribution over the unknown probability",
+          "Connects uncertainty representation to cautious governance"
+        ],
+        "partial_credit": [
+          "Says 0.6 is only an estimate but does not mention distributional uncertainty",
+          "Mentions more data are needed without Bayesian framing"
+        ],
+        "common_mistakes": [
+          "Treating observed fraction as the exact true parameter",
+          "Confusing sample proportion with posterior certainty",
+          "Ignoring stakes when summarizing uncertainty"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How might your recommendation differ if the 20 unsafe deployments were all minor versus all catastrophic?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "After only 50 trials, do you know the true probability exactly, or only have evidence about it?"
+        }
+      ],
+      "hints": [
+        "First separate the observed fraction from the unknown safety probability: after only 50 deployments, a Bayesian would not say the parameter is known exactly.",
+        "Model each deployment as safe/unsafe with an unknown probability p, choose a prior for p, and update it with 30 safe and 20 unsafe outcomes to get a posterior distribution rather than a single fixed value.",
+        "Use that posterior to talk about both the center and the remaining uncertainty; ethically, high-stakes decisions should account for uncertainty in p, which can support caution such as more testing, monitoring, or limited deployment."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0022",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A policymaker insists that any ethical AI standard must be universal, and therefore local variation in moral preferences is just noise to be averaged away. Using the self-driving-car context, argue for or against that claim in a way that separates statistical aggregation from value disagreement.",
+      "expected_answer": "A strong answer should say that averaging preferences can summarize disagreement, but it does not erase the fact that disagreement may be substantive rather than noisy. The Moral Machine context suggests variation across and within societies, which indicates that different groups may genuinely prioritize different values. So statistical aggregation can inform policy design, but it cannot by itself determine whether a universal standard is legitimate. Ethical governance may need participatory processes, explicit tradeoffs, and transparency about whose values are encoded.",
+      "source_chunk_ids": [
+        "cs109_01_intros_and_counting_annotated_p25_p26_561504157b",
+        "cs109_03_probability_annotated_p4_6c2e1bc6c8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Separates aggregation from normative legitimacy",
+          "Uses local/global variation as evidence of substantive disagreement",
+          "Explains why averaging does not automatically solve the ethical problem"
+        ],
+        "partial_credit": [
+          "States values differ but does not distinguish noise from disagreement",
+          "Argues for pluralism without referencing the context"
+        ],
+        "common_mistakes": [
+          "Treating disagreement as mere sampling error",
+          "Assuming universality follows from averaging",
+          "Ignoring whose values are excluded by aggregation"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If a regulator still wanted one rule, what process would make that choice more ethically defensible?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If two communities consistently prefer different crash tradeoffs, is that automatically just random statistical noise?"
+        }
+      ],
+      "hints": [
+        "Start by separating two questions: what people prefer on average (a descriptive/statistical issue) versus what rule is ethically justified (a normative issue). A universal standard needs more than a summary statistic.",
+        "Use the self-driving-car examples to ask whether cross-cultural differences look like random fluctuation or stable differences in what groups prioritize. If the variation is systematic, that is evidence of substantive value disagreement, not just noise.",
+        "Frame your argument around the limit of aggregation: averaging can inform policymakers about patterns, but it does not by itself settle legitimacy or whose values should govern. A strong answer mentions excluded minorities, explicit tradeoffs, and the need for participatory or transparent governance."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0023",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A city asks you to design the decision policy for autonomous cars in unavoidable crash situations. A policymaker says, \u201cJust use the most popular answer from the Moral Machine survey and call that the ethical standard.\u201d Explain why that conclusion does not follow from the survey evidence, and distinguish carefully between a probability distribution over people\u2019s responses and a normative ethical rule the car should implement.",
+      "expected_answer": "A strong answer should say that the survey gives empirical information about how often different moral choices are selected, not proof that the most frequent choice is ethically correct. The Moral Machine evidence shows disagreement across populations and even within local areas, so there may be no universal ethical ranking that is noncontroversial. A probability distribution here represents uncertainty or heterogeneity in human judgments; it does not itself prescribe what ought to be done. The student should also note that turning majority response into policy raises fairness and legitimacy concerns, because minority values may be ignored and context-specific harms may be hidden.",
+      "source_chunk_ids": [
+        "cs109_01_intros_and_counting_annotated_p25_p26_561504157b",
+        "cs109_03_probability_annotated_p4_6c2e1bc6c8",
+        "cs109_21_beta_annotated_p12_dfb20dfb00"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that survey frequencies are descriptive, not automatically normative.",
+          "Mentions cross-cultural or local variation as evidence against a single universal rule.",
+          "Correctly distinguishes probability as belief/frequency from ethical justification.",
+          "Raises at least one ethical policy concern such as fairness, minority protection, or legitimacy."
+        ],
+        "partial_credit": [
+          "States that public opinion is imperfect evidence for ethics but does not clearly explain why.",
+          "Mentions disagreement in survey responses without connecting it to policy design.",
+          "Recognizes a difference between prediction and prescription but leaves it vague."
+        ],
+        "common_mistakes": [
+          "Claiming the highest-probability response is therefore the correct ethical action.",
+          "Treating variability in responses as mere sampling noise rather than substantive disagreement.",
+          "Confusing probability of a response with moral correctness of that response."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose the city still wants to use the survey somehow. What is a more defensible role for the probability data in policy design?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If 70% of respondents prefer one action and 30% prefer another, what exactly does that 70% mean\u2014and what does it not mean?"
+        }
+      ],
+      "hints": [
+        "Start by separating two kinds of claims: what people tend to choose in a survey versus what a car ought to do as an ethical policy. A popularity statistic answers the first question, not automatically the second.",
+        "Identify what the Moral Machine data actually provides: a distribution of responses across people or groups. Ask whether variation across countries or even local populations looks like mere noise, or like real disagreement that challenges a single universal rule.",
+        "Your key move is to explain that probabilities describe frequencies or uncertainty about human judgments, while a normative rule needs ethical justification beyond majority vote. Then note one policy risk of using the top response directly, such as unfairness to minorities or weak legitimacy."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0024",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "A university is considering a watermark detector for AI-written essays. Let H be the event \u201cessay is human-written\u201d and C be the event \u201cessay is ChatGPT-written.\u201d Suppose 90% of submitted essays are human-written, the detector flags 80% of ChatGPT essays, and it falsely flags 10% of human essays. If an essay is flagged, compute the posterior probability it was ChatGPT-written, and then explain why that posterior may still be a poor basis for accusing a student of misconduct.",
+      "expected_answer": "Let F be the event the detector flags the essay. We want P(C | F). By Bayes\u2019 theorem, P(C | F) = P(F | C)P(C) / P(F). Here P(C)=0.1, P(H)=0.9, P(F | C)=0.8, and P(F | H)=0.1. So P(F)=0.8(0.1)+0.1(0.9)=0.08+0.09=0.17, and P(C | F)=0.08/0.17\u22480.47. A strong student should then say that even a seemingly good detector produces many false accusations when the base rate of cheating is low. Ethical use therefore requires caution, likely additional evidence, and attention to due process rather than automatic punishment from a single posterior probability.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045",
+        "cs109_finalfall2021soln_q0_42694214da",
+        "cs109_05_section_soln_sec2_part1_69fbee7835"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines events clearly and uses Bayes\u2019 theorem correctly.",
+          "Computes P(F)=0.17 and P(C|F)\u22480.47.",
+          "Interprets the result as a base-rate effect.",
+          "Connects the quantitative result to ethical concerns about false accusations and evidentiary standards."
+        ],
+        "partial_credit": [
+          "Correct setup but arithmetic error in denominator or final ratio.",
+          "Gets the intuition that flagged does not imply guilty, even if calculation is incomplete.",
+          "Mentions false positives but not the role of the prior prevalence."
+        ],
+        "common_mistakes": [
+          "Answering 0.8 instead of the posterior 0.47.",
+          "Ignoring the prior and treating detector accuracy as guilt probability.",
+          "Mixing up P(F|C) and P(C|F)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your answer change qualitatively if only 1% of essays were AI-written instead of 10%, with the same detector performance?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you write the denominator P(F) by splitting flagged essays into the ChatGPT-written and human-written cases?"
+        }
+      ],
+      "hints": [
+        "Define the flag event as F, and be careful not to confuse the detector\u2019s hit rate P(F|C) with the quantity you actually want, P(C|F).",
+        "Start from the priors P(C)=0.1 and P(H)=0.9, then use the law of total probability to express the overall chance an essay gets flagged: P(F)=P(F|C)P(C)+P(F|H)P(H).",
+        "Now apply Bayes\u2019 rule: P(C|F)=P(F|C)P(C)/P(F). For the ethics part, compare how many flagged essays come from true ChatGPT cases versus false flags on the much larger human-written group; that\u2019s the base-rate issue behind why a flag alone is weak grounds for accusation."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0025",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "An ed-tech company says, \u201cOur AI tutor predicts a 99% chance a student will fail the class, so intervention is ethically justified.\u201d Another analyst replies, \u201cThat number alone is not enough.\u201d Give two different probabilistic reasons the analyst could be right, and make sure at least one of them is not just \u2018the model might be biased.\u2019",
+      "expected_answer": "A strong answer should give two distinct probabilistic critiques. One is calibration: a predicted probability of 0.99 may not correspond to actual long-run 99% failure among similar students. Another is conditioning on the wrong variables or a changing sample space: the probability may be based on historical data, but an intervention itself changes outcomes, so the quoted number may not represent what will happen under the new policy. Other acceptable points include uncertainty from small sample sizes, omitted-variable confounding, distribution shift, or ambiguity about what event is being predicted. The student should connect these to ethics by saying that high numerical confidence does not by itself justify high-stakes intervention.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p4_6c2e1bc6c8",
+        "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045",
+        "cs109_08_section_soln_sec1_part4_2c83657e86"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Provides two distinct probabilistic reasons the 0.99 may be insufficient.",
+          "At least one reason goes beyond generic bias language, such as calibration, base rates, conditioning, uncertainty, or intervention effects.",
+          "Explains clearly why the probability statement may not support the ethical decision claimed."
+        ],
+        "partial_credit": [
+          "Provides one solid probabilistic reason and one vague concern.",
+          "Mentions bias correctly but gives limited probabilistic detail.",
+          "Recognizes that prediction and decision are different but does not elaborate."
+        ],
+        "common_mistakes": [
+          "Saying 0.99 is always enough because it is numerically large.",
+          "Giving only non-probabilistic critiques with no connection to the meaning of the number.",
+          "Confusing uncertainty in prediction with moral certainty about intervention."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you test empirically whether the model\u2019s 0.99 predictions are calibrated?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What would it mean, in plain language, for a predicted probability of 0.99 to be well calibrated?"
+        }
+      ],
+      "hints": [
+        "Start by separating a prediction from a decision: a large probability is only meaningful if you know exactly what event it refers to and for which group of students.",
+        "One strong probabilistic critique is calibration: ask whether students given a 0.99 prediction actually fail at roughly that rate. For a second critique, consider whether the number is based on limited or historical data, the wrong conditioning variables, or a changing population.",
+        "A key move is to compare the quoted quantity to the one ethics really needs: not just \"predicted fail from past data,\" but whether that probability is reliable and whether it still applies once an intervention changes outcomes. Give two distinct reasons along those lines, with at least one beyond generic bias."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0026",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A public health agency uses an AI screening tool to decide who receives a scarce follow-up test. Group A and Group B have different disease prevalences. A manager claims, \u201cIf the model uses the same threshold and the same posterior-risk formula for everyone, then the policy is automatically fair because probability rules are universal.\u201d Do you agree? Use probability ideas to argue your position, and be explicit about the difference between mathematical consistency and ethical fairness.",
+      "expected_answer": "A strong answer should say that probability rules such as Bayes\u2019 theorem are universal mathematically, but fairness judgments are not automatic consequences of those rules. If prevalences differ across groups, then the same threshold can yield different false positive and false negative rates even when the same formula is used. Equal treatment in the procedural sense does not imply equal impact or equitable outcomes. The student should explain that posterior risk depends on priors/base rates and evidence, so different groups can be affected differently; whether to equalize thresholds, errors, or utilities is an ethical and policy choice, not a theorem of probability. An excellent answer may also note that different fairness criteria can conflict, so there is no single universally noncontroversial standard.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045",
+        "cs109_01_intros_and_counting_annotated_p25_p26_561504157b",
+        "cs109_08_section_soln_sec1_part4_2c83657e86"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects the claim that universal probability rules imply automatic fairness.",
+          "Uses base rates or conditional probabilities to explain how the same threshold can create unequal error profiles.",
+          "Separates mathematical validity from ethical choice.",
+          "Mentions that fairness criteria may conflict or require normative judgment."
+        ],
+        "partial_credit": [
+          "Recognizes that equal thresholds may not be fair but gives only intuitive explanation.",
+          "Mentions prevalence differences without linking them to conditional error rates or posterior probabilities.",
+          "Notes that ethics matters but does not distinguish it from probabilistic reasoning."
+        ],
+        "common_mistakes": [
+          "Assuming same formula plus same threshold guarantees fairness.",
+          "Ignoring group prevalence entirely.",
+          "Claiming probability alone can determine the ethically correct fairness criterion."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you name one pair of fairness goals that might conflict when prevalences differ, and explain the conflict qualitatively?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If one group has a much lower prevalence, what happens qualitatively to the meaning of a positive prediction in that group?"
+        }
+      ],
+      "hints": [
+        "Start by separating two ideas: a probability formula can be mathematically correct for everyone, but that alone does not decide whether the policy is ethically fair.",
+        "Ask how posterior risk is computed: it depends on evidence and the prior/base rate, so if Group A and Group B have different prevalences, the same score threshold can correspond to different conditional outcomes in each group.",
+        "Use conditional probabilities to compare what happens under one common threshold\u2014think about false positives, false negatives, or who gets the scarce test in each group\u2014and then note that choosing which disparity matters is a normative fairness choice, not a theorem of Bayes."
+      ]
+    },
+    {
+      "question_id": "CS109_ethics_ai_0027",
+      "course": "CS109",
+      "topic_id": "ethics_ai",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A company monitoring AI-generated content defines two events in a document: T = \u201cthe word \u2018the\u2019 appears unusually often\u201d and O = \u201cthe word \u2018of\u2019 appears unusually often.\u201d An analyst reports P(T)=0.30, P(O)=0.25, and P(T \u2229 O)=0.12. First compute P(T \u222a O) and P(neither T nor O). Then explain why an ethics review board should care whether the company reports only P(T \u222a O) without also discussing dependence, uncertainty, and what those events actually mean for authorship.",
+      "expected_answer": "Using inclusion-exclusion, P(T \u222a O)=P(T)+P(O)-P(T \u2229 O)=0.30+0.25-0.12=0.43. By the complement rule, P(neither)=1-0.43=0.57. A strong explanation should say that the union probability only tells us how often at least one marker appears; it does not establish that a document is AI-written. The overlap P(T \u2229 O) shows dependence structure matters, and uncertainty in estimated probabilities matters too. Ethically, reporting a striking probability without clarifying what event it refers to can mislead decision-makers into treating stylistic markers as proof of authorship.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p32_f98bba92d1",
+        "cs109_03_probability_annotated_p15_3b7231a7cc",
+        "cs109_finalwin2022soln_q0_22f09650a5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly computes P(T\u222aO)=0.43.",
+          "Correctly computes P(neither)=0.57.",
+          "Explains that union of markers is not the same as probability of AI authorship.",
+          "Mentions at least one of dependence, estimation uncertainty, or ambiguity of the event definition."
+        ],
+        "partial_credit": [
+          "Gets one probability correct but not the other.",
+          "Uses the right formulas but arithmetic slips.",
+          "Provides some ethical interpretation but does not connect it clearly to the event probabilities."
+        ],
+        "common_mistakes": [
+          "Adding 0.30 and 0.25 without subtracting the overlap.",
+          "Treating P(T\u222aO) as the probability the text is AI-generated.",
+          "Ignoring that these are marker events, not authorship events."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If T and O were independent, what would P(T \u2229 O) be, and how would comparing that value to 0.12 help you reason about dependence?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why do we subtract P(T \u2229 O) when computing P(T \u222a O)? Say it in terms of double counting."
+        }
+      ],
+      "hints": [
+        "Start by recognizing this as a two-event probability problem: \u201cat least one marker appears\u201d is a union, and \u201cneither appears\u201d is its complement.",
+        "Use inclusion\u2013exclusion for the union: add P(T) and P(O), then subtract the overlap P(T \u2229 O) so you do not double-count documents with both markers. After that, apply the complement rule to get the probability of neither event.",
+        "For the ethics part, separate marker events from the claim of AI authorship: P(T \u222a O) only describes how often at least one unusual word-frequency flag occurs. Explain why the overlap hints that dependence matters, and why estimated probabilities and vague event definitions can mislead if reported as if they were proof."
+      ]
+    }
+  ]
+}

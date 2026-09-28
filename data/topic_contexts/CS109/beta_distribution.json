@@ -1,0 +1,223 @@
+{
+  "course": "CS109",
+  "topic_id": "beta_distribution",
+  "topic_name": "Beta Distribution",
+  "queries_used": [
+    "Beta Distribution definition",
+    "Beta Distribution intuition",
+    "Beta Distribution worked example",
+    "Beta Distribution exam problem",
+    "beta distribution overview",
+    "beta distribution practice",
+    "conjugate prior overview",
+    "conjugate prior practice",
+    "beta-binomial overview",
+    "beta-binomial practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_21_beta_annotated_p35_2d17b1a76f",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeta is a conjugate distribution for Bernoulli\nBeta is a conjugate distribution for Bernoulli, meaning:\n1. If our prior belief of the parameter is Beta, and\n2. Our experiment is Bernoulli, then\n3. Our posterior is also Beta.\n36\nProof:\n𝜃~Beta(𝑎, 𝑏)\n𝑁|𝜃~Bin(𝑛+ 𝑚, 𝑥)\n𝑓?|9 𝑥𝑛=\n𝑝9|? 𝑛|𝑥𝑓? 𝑥\n𝑝9 𝑛\n=\n𝑛+ 𝑚\n𝑚\n𝑥+ 1 −𝑥$ ⋅\n1\n𝐵𝑎, 𝑏𝑥./# 1 −𝑥0/#\n𝑝) 𝑛\n= 𝐶⋅𝑥1 1 −𝑥3 ⋅𝑥@A! 1 −𝑥BA!\nconstants that \ndon’t depend on 𝑥\n= 𝐶⋅𝑥12@A! 1 −𝑥32BA! ✅\n(observe 𝑛 successes, 𝑚 failures)",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.6034438610076904
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p20_b50cf6c86a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider an experiment: 𝑛 independent Ber(𝑝) trials.\ndef A Binomial random variable 𝑋 counts the successes across 𝑛 trials.\nExamples:\n• # heads in n coin flips\n• # of 1’s in randomly generated length n bit string\n• # of disk drives crashed in 1000 computer cluster\n(assuming disks crash independently)\nBinomial Random Variable\n21\n𝑘= 0, 1, … , 𝑛:\n𝑃𝑋= 𝑘= 𝑝𝑘= 𝑛\n𝑘𝑝! 1 −𝑝\"#!\n𝑋~Bin(𝑛, 𝑝)\nSupport: {0,1, … , 𝑛}\nPMF\n𝐸𝑋= 𝑛𝑝 \nVar 𝑋= 𝑛𝑝(1 −𝑝) \nVariance  \nExpectation",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.581582248210907
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p25_eb665b659c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider an experiment: 𝑛 independent trials of Ber(𝑝) random variables.\ndef A Binomial random variable 𝑋 is the number of successes in 𝑛 trials.\nExamples:\n• # heads in n coin flips\n• # of 1’s in randomly generated length n bit string\n• # of disk drives crashed in 1000 computer cluster\n(assuming disks crash independently)\nBinomial Random Variable\n26\n𝑋~Bin(𝑛, 𝑝)\nRange: {0,1, … , 𝑛}\nVariance  \nExpectation \n \n \nPMF\n𝐸𝑋= 𝑛𝑝 \nVar 𝑋= 𝑛𝑝(1 −𝑝) \n𝑘= 0, 1, … , 𝑛:\n𝑃𝑋= 𝑘= 𝑝𝑘= 𝑛\n𝑘𝑝! 1 −𝑝\"#!",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.579435408115387
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p36_5a0c1842e3",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeta is a conjugate distribution for Bernoulli\nBeta is a conjugate distribution for Bernoulli, meaning:\n• Prior and posterior parametric forms are the same\n• Practically, conjugate means easy update:\n \n \nAdd number of “heads” and “tails” seen to Beta parameters.\nYou can invent a prior to express how biased you believe the coin is a \npriori:\n• 𝜃~Beta(𝑎, 𝑏): pretend you’ve conducted 𝑎+ 𝑏−2  imaginary trials, where\n \n \n \n𝑎−1  trials produced a head and 𝑏−1  produced a tail\n• Choosing Beta 1, 1 = Uni(0, 1) means you don’t hold any prior beliefs\n37\nThis is the main \ntakeaway of Beta.\nPrior\nPosterior\nExperiment\nObserve 𝑛 successes and 𝑚 failures\nBeta(𝑎= 𝑛!$.1 + 1, 𝑏= 𝑚!$.1 + 1) \nBeta 𝑎= 𝑛!$.1 + 𝑛+ 1, 𝑏= 𝑚!$.1 + 𝑚+ 1",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.5758013129234314
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p28_p29_28a8f77d8e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider an experiment: 𝑛 independent trials of Ber(𝑝) random variables.\ndef A Binomial random variable 𝑋 is the number of successes in 𝑛 trials.\nExamples:\n• # heads in n coin flips\n• # of 1’s in randomly generated length n bit string\n• # of disk drives crashed in 1000 computer cluster\n(assuming disks crash independently)\nBinomial Random Variable\n29\n𝑋~Bin(𝑛, 𝑝)\nRange: {0,1, … , 𝑛}\nPMF\n𝐸𝑋= 𝑛𝑝 \nVar 𝑋= 𝑛𝑝(1 −𝑝) \nWe’ll prove \nthis later in \nthe course.\nVariance  \nExpectation \n \n \n𝑘= 0, 1, … , 𝑛:\n𝑃𝑋= 𝑘= 𝑝𝑘= 𝑛\n𝑘𝑝! 1 −𝑝\"#!\n\nExercises\n30",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.5708785057067871
+    },
+    {
+      "chunk_id": "cs109_finalfall2024soln_q0_226fab78aa",
+      "text": "5\n3-4 years",
+      "source_type": "exam_question",
+      "document_name": "FinalFall2024Soln",
+      "score": 0.5702977180480957
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p27_6cc4987b35",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider an experiment: 𝑛 independent trials of Ber(𝑝) random variables.\ndef A Binomial random variable 𝑋 is the number of successes in 𝑛 trials.\nExamples:\n• # heads in n coin flips\n• # of 1’s in randomly generated length n bit string\n• # of disk drives crashed in 1000 computer cluster\n(assuming disks crash independently)\nBinomial Random Variable\n28\n𝑋~Bin(𝑛, 𝑝)\nRange: {0,1, … , 𝑛}\n𝐸𝑋= 𝑛𝑝 \nVar 𝑋= 𝑛𝑝(1 −𝑝) \nVariance  \nExpectation \n \n \nPMF\n𝑘= 0, 1, … , 𝑛:\n𝑃𝑋= 𝑘= 𝑝𝑘= 𝑛\n𝑘𝑝! 1 −𝑝\"#!",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.5691972374916077
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p13_ec22e865fc",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeta is a conjugate distribution for Bernoulli\nBeta is a conjugate distribution for Bernoulli, meaning:\n• Prior and posterior parametric forms are the same\n• Practically, conjugate means easy update:\n \n \nAdd numbers of \"successes\" and \"failures\" seen to Beta parameters.\n• You can set the prior to reflect how fair/biased you think the experiment is a priori.\nMode of Beta(𝑎, 𝑏): \n14\nPrior\nPosterior\nExperiment\nObserve 𝑛 successes and 𝑚 failures\nBeta(𝑎= 𝑛*345 + 1, 𝑏= 𝑚*345 + 1) \nBeta 𝑎= 𝑛*345 + 𝑛+ 1, 𝑏= 𝑚*345 + 𝑚+ 1  \n𝑎−1\n𝑎+ 𝑏−2\n(we’ll prove this in a few minutes)\nMostly Review\nBeta parameters 𝑎, 𝑏 are called hyperparameters. \nInterpret Beta(𝑎, 𝑏):  𝑎+ 𝑏−2 trials, \nwith 𝑎−1 successes and with 𝑏−1 failures",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.5675976872444153
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p0_p1_c0e41e71ea",
+      "text": "21: Bayesian Statistics \nand Beta\nJerry Cain\nMay 17, 2024\n1\nLecture Discussion on Ed\n\nMLE: \nMultinomial\n2",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.5640089511871338
+    },
+    {
+      "chunk_id": "cs109_midtermspr2017_q0_ef20d6de51",
+      "text": "00",
+      "source_type": "exam_question",
+      "document_name": "MidtermSpr2017",
+      "score": 0.5553842186927795
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p39_25295a92ff",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMedicinal Beta\n• Before being tested, a medicine is believed to \"work\" 80% of the time.\n• The medicine is administered to 20 patients.\n• It \"works\" for 14, \"doesn’t work\" for 6.\nWhat is your new belief that the drug \"works\"?\n40\nWhat is the prior distribution of 𝜃? (select all that apply)\nA.  𝜃~Beta 1, 1 = Uni 0, 1\nB.  𝜃~Beta 81, 101\nC.  𝜃~Beta 80, 20\nD.  𝜃~Beta 81, 21\nE.  𝜃~Beta 5, 2\nBeta(𝑎= 𝑛!)&* + 1, 𝑏= 𝑚!)&* + 1)\nPrior\nBeta(𝑎= 𝑛!)&* + 𝑛+ 1, 𝑏= 𝑚!)&* + 𝑚+ 1)\nPosterior\n(Bayesian interpretation)\n🤔",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.5479087829589844
+    },
+    {
+      "chunk_id": "cs109_finalfall2017_q3_6efa687425",
+      "text": "0",
+      "source_type": "exam_question",
+      "document_name": "FinalFall2017",
+      "score": 0.5460500121116638
+    },
+    {
+      "chunk_id": "cs109_midtermfall2025soln_q0_96c40be370",
+      "text": "482 and the variance of the return for simulation 2 is 0.0099. You collect 100 samples from each.\nWhat is the distribution of the average calculated from the 100 samples from simulation 1?\n6\n\nLet ¯X = 1\nn ∑n\ni=1 Xi be the average calculated from n = 100 samples. We use CLT for averages to get\n¯X ∼N\n\u0012\nµ = 0.01,σ2 =\n1\n100 ·0.482\n\u0013\n.\nWhat is the distribution of the average calculated from the 100 samples from simulation 2?\nSimilarly,\n¯Y ∼N\n\u0012\nµ = 0.01,σ2 =\n1\n100 ·0.0099\n\u0013\n.\n7",
+      "source_type": "exam_question",
+      "document_name": "MidtermFall2025Soln",
+      "score": 0.5424510836601257
+    },
+    {
+      "chunk_id": "cs109_07_section_soln_sec1_part1_94bd466144",
+      "text": "– 1 –\nCS109\nMay 23, 2024\nSampling and Bootstrapping, MLE, Beta\nBefore you leave lab, make sure you click here so that you’re marked as having attended this week’s\nsection. The CA leading your discussion section can enter the password needed once you’ve\nsubmitted.\n1\nWarmups\n1.1\nMLE\nSuppose 𝑥1, . . . , 𝑥𝑛are iid (independent and identically distributed) values sampled from some\ndistribution with density function 𝑓(𝑥|𝜃), where 𝜃is unknown. Recall that the likelihood of the data is\n𝐿(𝜃) = 𝑓(𝑥1, 𝑥2, . . . , 𝑥𝑛|𝜃) =\n𝑛\nÖ\n𝑖=1\n𝑓(𝑥𝑖|𝜃)\nRecall we solve an optimization problem to find ˆ𝜃which maximizes 𝐿(𝜃), i.e., ˆ𝜃= arg max𝜃𝐿(𝜃).\na. Write an expression for the log-likelihood, 𝐿𝐿(𝜃) = log 𝐿(𝜃).\nb. Why can we optimize 𝐿𝐿(𝜃) rather than 𝐿(𝜃)?\nc. Why might we optimize 𝐿𝐿(𝜃) rather than 𝐿(𝜃)?\na. Í𝑛\n𝑖=1 log 𝑓(𝑥𝑖|𝜃)\nb. Logarithms are strictly increasing functions. For any strictly increasing function 𝑓and any\nfunction 𝑔, the following holds: arg max 𝑔(𝑥) = arg max 𝑓(𝑔(𝑥))\nc. Finding the max of a function requires you take derivatives. The original expression consists of\na product of many functions of 𝜃. This leads to a difficult derivation because of the chain rule\nof calculus.\nBy taking the log, we convert the product into sums, and the derivative of the sum of many\nfunctions of 𝜃is much easier to compute.\nThat is, 𝜕\n𝜕𝜃\nÍ\n𝑖𝑓𝑖(𝜃) = Í\n𝑖\n𝜕\n𝜕𝜃𝑓𝑖(𝜃) which is easy.\nHowever, 𝜕\n𝜕𝜃\nÎ\n𝑖𝑓𝑖(𝜃) = a complicated expression\n\n– 2 –\n1.2\nBeta\na. Suppose you have a coin where you have no prior belief on its true probability of heads 𝑝. How\ncan you model this belief as a Beta distribution?\nb. Suppose you have a coin which you believe is fair, with ”strength” 𝛼. That is, pretend you’ve\nseen 𝛼heads and 𝛼tails. How can you model this belief as a Beta distribution?\nc. Now suppose you take the coin from the previous part and flip it 10 times. You see 8 heads and\n2 tails. How can you model your posterior belief of the coin’s probability of heads?\na. Beta(1, 1) is a uniform prior, meaning that prior to seeing the experiment, all probabilities of\nheads are equally likely.\nb. Beta(𝛼+ 1, 𝛼+ 1). This is our prior belief about the distribution.\nc. Beta(𝛼+ 9, 𝛼+ 3)\n1.3\nBeta Sum\nWhat is the distribution of the sum of 100 iid Betas? Let 𝑋be the sum\n𝑋=\n100\n∑︁\n𝑖=1\n𝑋𝑖\nwhere each 𝑋𝑖∼Beta(𝑎= 3, 𝑏= 4)\nNote the variance of a Beta:\nVar(𝑋𝑖) =\n𝑎𝑏\n(𝑎+ 𝑏)2(𝑎+ 𝑏+ 1)\nwhere 𝑋𝑖∼Beta(𝑎, 𝑏)\nBy the Central Limit Theorem, the sum of equally weighted IID random variables will be Normally\ndistributed. We calculate the expectation and variance of 𝑋𝑖using the beta formulas:\n𝐸(𝑋𝑖) =\n𝑎\n𝑎+ 𝑏\nExpectation of a Beta\n= 3\n7 ≈0.43\nVar(𝑋𝑖) =\n𝑎𝑏\n(𝑎+ 𝑏)2(𝑎+ 𝑏+ 1)\nVariance of a Beta\n=\n3 · 4\n(3 + 4)2(3 + 4 + 1)\n=\n12\n49 · 8 ≈0.03",
+      "source_type": "review_section",
+      "document_name": "07 section soln",
+      "score": 0.5410293936729431
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p19_872a014906",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0.0\n1.0\n2.0\n3.0\n4.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nBeta RV with different 𝑎, 𝑏\nMatch PDF to distribution:\n20\nA. Beta(5,5)\nB. Beta(2,8)\nC. Beta(8,2)\n0.0\n1.0\n2.0\n3.0\n4.0\n5.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nBeta(0.2,0.8)\nBeta(0.8. 0.2)\nBeta(0.8,0.8)\n0.0\n1.0\n2.0\n3.0\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nBeta(1,2)\nBeta(2,1)\nBeta(1,1)\nA. Beta(5,5)\nB. Beta(2,8)\nC. Beta(8,2)\n𝑋~Beta(𝑎, 𝑏)\nIn CS109, we focus on Beta functions \nwhere 𝑎, 𝑏 are both positive integers.",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.5402504801750183
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p34_ef1f381b2e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeta is a conjugate distribution for Bernoulli\nBeta is a conjugate distribution for Bernoulli, meaning:\n• Prior and posterior parametric forms are the same\n35\n(proof on next slide)",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.5372768640518188
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p40_c62ffaf649",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMedicinal Beta\n• Before being tested, a medicine is believed to \"work\" 80% of the time.\n• The medicine is administered to 20 patients.\n• It \"works\" for 14, \"doesn’t work\" for 6.\nWhat is your new belief that the drug \"works\"?\n41\nWhat is the prior distribution of 𝜃? (select all that apply)\nA.  𝜃~Beta 1, 1 = Uni 0, 1\nB.  𝜃~Beta 81, 101\nC.  𝜃~Beta 80, 20\nD.  𝜃~Beta 81, 21\nE.  𝜃~Beta 5, 2\nBeta(𝑎= 𝑛!)&* + 1, 𝑏= 𝑚!)&* + 1)\nPrior\nBeta(𝑎= 𝑛!)&* + 𝑛+ 1, 𝑏= 𝑚!)&* + 𝑚+ 1)\nPosterior\n(Bayesian interpretation)\nInterpretation: 80 successes / 100 imaginary trials\n(you can choose either based on how strongly you believe in prior data. \nWe choose E on next slide)",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.5272126793861389
+    },
+    {
+      "chunk_id": "cs109_midtermfall2017soln_q49_376e2f8f80",
+      "text": "2\n)\n6\n\n3\n500 year ﬂood planes [20 points]\nThe Huffmeister ﬂoodplane in Houston has historically been estimated to ﬂood at an average rate of 1 ﬂood\nevery 500 years. A ﬂood plane with that rate of ﬂooding is called a “500 year” ﬂoodplane.\na. (4 points) What is the probability of observing at least 3 ﬂoods in 500 years?\nPoisson RV with λ = 1 (ﬂood per 500-year period)\nP(X ≥3) = 1−\n2\n∑\ni=0\nP(X = i)\n= 1−\n2\n∑\ni=0\nλ i\ni! e−λ\n= 1−5\n2e\nb. (5 points) What is the probability that a ﬂood will occur within the next 100 years?\nY ∼Exp( 1\n500)\nF(Y) = 1−e−λY\nF(100) = 1−e−100\n500 = 1−e−1\n5\n7\n\nc. (5 points) What is the expected number of years until the next ﬂood?\nE[Y] = 1\nλ = 500\nusing λ =\n1\n500 in terms of one year\nd. (6 points) Say there are 10 independent 500 year ﬂoodplanes. What is the probability that more than 2\nof them will have at least three ﬂoods in a given year?\nFirst ﬁnd the probability p∗that a single ﬂoodplane has at least 3 ﬂoods:\nX ∼Poisson( 1\n500) = number of ﬂoods in a ﬂoodplane in one year\np∗= P(X ≥3) = 1−\n2\n∑\ni=0\nλ i\ni! e−λ\np∗= 1−\n2\n∑\ni=0\n( 1\n500)i\ni!\ne−1\n500\nThen treat each ﬂoodplane as an independent trial of a binomial RV with n = 10 and p = p∗:\nY ∼Bin(10, p∗) = number of ﬂoodplanes with X ≥3\nP(Y > 2) =\n10\n∑\ni=3\n\u001210\ni\n\u0013\n(p∗)i(1−p∗)10−i\n8\n\n4\nGaussian Mixture Model [22 points]\nYou are looking at the distribution of the number of ﬂowers observed on rose bushes (a ﬂowering curve)\nand you think you have made a discovery! Based on your ﬂowering curve, you have reason to believe that\nthere are two distinct species of roses. The species look the same but have different ﬂowering patterns. The\nobserved probability density of number of ﬂowers is a “mixture”.\nYou believe that:\n• Each ﬂower is either from species A or species B.\n• There are two times as many bushes of species A than there are of species B.\n• The number of ﬂowers on a bush for species A: XA ∼N(µ = 4,σ2 = 4).\n• The number of ﬂowers on a bush for species B: XB ∼N(µ = 2,σ2 = 9)\na. (4 points) What is the probability that a rose bush from species A has more than 3 ﬂowers?\nSolution:\nNote that for both a and b, you have to use continuity correction because you are using the Gaussian\ndistribution to approximate a discrete distribution:\nP(XA > 3) = 1−P(XA <= 3)\n= 1−φ\n\u00103.5−4\n2\n\u0011\n= 1−φ(−0.25)\n= φ(0.25)\n= 0.5987\nb. (4 points) What is the probability that a rose bush from species B has more than 3 ﬂowers?\nSolution:\nP(XB > 3) = 1−P(XB <= 3)\n= 1−φ\n\u00103.5−2\n3\n\u0011\n= 1−φ(0.5)\n= 0.3085\n9\n\nc. (7 points) Without knowing which species a rose bush is from, what is the probability that a rose bush\nhas more than 3 ﬂowers? You can use pa for your answer to part (a) and pb for your answer to part (b).\nSolution:\nP(X > 3) = P(X > 3,X = A)+P(X > 3,X = B)\n= P(X > 3|X = A)P(X = A)+P(X > 3|X = B)P(X = B)\n= P(XA > 3)P(X = A)+P(XB > 3)P(X = B)\n= pa(2\n3)+ pb(1\n3)\nd. (7 points) A rosebush has 3 ﬂowers. How many times more likely is the rosebush to be from species\nB?\nP(X = B|X = 3)\nP(X = A|X = 3) = P(X = B,X = 3)\nP(X = A,X = 3)\n= P(X = 3|X = B)P(X = B)\nP(X = 3|X = A)P(X = A)\n= ε f(X = 3|X = B)P(X = B)\nε f(X = 3|X = A)P(X = A)\n=\n1\n√\n2π9e\n(3−2)2\n2·9\n· 1\n3\n1\n√\n2π4e\n(3−4)2\n2·4\n· 2\n3\n= 1\n3e−5\n72 ≈0.357\n10\n\n5\nCurse of Dimensionality [20 points]\nIn machine learning projects we often work in high dimensions, and high dimension spaces have some sur-\nprising probabilistic properties.\nA random value Xi is a Uni(0, 1).\nA random point of dimension d is a list of d random values: [X1 ...Xd].\na. (4 points) A random value Xi is close to an edge if Xi is less than 0.01 or Xi is greater than 0.99. What\nis the probability that a random value is close to an edge? Solutions:Let E be the event that a random\nvalue is close to an edge. P(E) = P(Xi < 0.01)+P(Xi > 0.99) = 0.02\nb. (4 points) A random point [X1,X2,X3] of dimension 3 is close to an edge if any of it’s values are close\nto an edge. What is the probability that a 3 dimensional point is close to an edge?\nSolutions:The event is equivalent to the complement of none of the dimensions of the point is close to\nan edge, which is: 1−(1−P(E))3 = 1−0.983\nc. (4 points) A random point [X1,...X100] of dimension 100 is close to an edge if any of it’s values are\nclose to an edge. What is the probability that a 100 dimensional point is close to an edge?\nSolutions: Similarly, it is: 1−(1−P(E))100 = 1−0.98100\n11\n\n6\nGoodbye integral, my old friend [14 points]\nWhen working with continuous random variables it can get hard to calculate probabilities by hand. For\nexample consider a random variable X that can takes on values in the range 0 ≤x ≤1, and has probability\ndensity function:\nf(x) = 1\nK ·g(x)\nWhere g(x) is some terribly nasty and non-integratable function. For your sanity I won’t even write out g. It\nis that bad. In such a situation, we can turn to the power of computers to help us (you may assume that while\ng is impossible to integrate, it is straightforward to code g as a function in a programming language). The\nkey idea that we are going to use is called Monte Carlo Integration:\nGenerate N values (X1,X2,...,XN) uniformly sampled over a range (a,b). We can approximate the\nintegral of a function h over (a,b) as:\nb\nZ\na\nh(x) dx ≈(b−a)\nN\nN\n∑\ni=1\nh(Xi)\nPretty amazing! Why did we bother with integrals at all? This question requires you to write pseudo code.\nSuch code does not have to compile, but it should be speciﬁc enough that a knowledgable programmer could\nimplement what you have described. You may use a function random(a, b) which returns a sample from\nX ∼Uni(a,b).\na. (7 points) How could you use Monte Carlo Integration to ﬁnd K? Give your answer as pseudo-code.\nsum = 0\nfor i in range(N):\nsum += g(random(0, 1))\nreturn sum / N\n12\n\nb. (7 points) Given that you know K, how could you ﬁnd P(X < 0.5)? Again, provide pseudo-code.\nsum = 0\nfor i in range(N):\nsum += g(random(0, .5))\nreturn .5 * sum / (N * K)\nThat’s the last question of the exam! We hope you had fun. Monte carlo sampling techniques (aka\nparticle ﬁlters) are an increasingly proliﬁc tool for solving more complex probability questions.\nGaussian Mixture Models are a workhorse for unsupervised clustering. The Curse of Dimensionality\nand the Wisdom of the Crowds are real world phenomena that are worth understanding.\n13\n\nStandard Normal Table\nAn entry in the table is the area under the curve to the left of z, P(Z ≤z) = Φ(z).\nZ",
+      "source_type": "exam_question",
+      "document_name": "MidtermFall2017Soln",
+      "score": 0.5221795439720154
+    },
+    {
+      "chunk_id": "cs109_practicemidterm_q0_58ea894b39",
+      "text": "00",
+      "source_type": "exam_question",
+      "document_name": "PracticeMidterm",
+      "score": 0.5139142274856567
+    },
+    {
+      "chunk_id": "cs109_08_section_soln_sec1_part3_a75edc0065",
+      "text": "– 5 –\nFundamentally, you need to compute two probabilities: 𝑃(𝑋1 = 5, 𝑋2 = 3,𝑌= 0) and\n𝑃(𝑋1 = 5, 𝑋2 = 3,𝑌= 1) and then predict ˆ𝑌to be whichever of 0 and 1 leads to a higher\njoint probability. However, when some of the input variables are continuous, the probability\nthose continuous values takes on any specific value is 0.\nHowever,\nyou\ncan\nstill\ncompute\nand\ncompare\nprobability\ndensities,\nas\nwith:\n𝑓(𝑋1 = 5, 𝑋2 = 3,𝑌= 0) and 𝑓(𝑋1 = 5, 𝑋2 = 3,𝑌= 1). The Na¨ıve Bayes as-\nsumption allows us to rewrite those densities as:\n𝑓(𝑋1 = 5, 𝑋2 = 3,𝑌= 0) = 𝑓(𝑋1 = 5|𝑌= 0) · 𝑓(𝑋2 = 3|𝑌= 0) · 𝑃(𝑌= 0)\nand\n𝑓(𝑋1 = 5, 𝑋2 = 3,𝑌= 1) = 𝑓(𝑋1 = 5|𝑌= 1) · 𝑓(𝑋2 = 3|𝑌= 1) · 𝑃(𝑌= 1)\nWhen the input variables are specifically guided by Gaussians with the learned paramaters\npresented above, we ultimately predict ˆ𝑌= 0 if\n1\n√\n2𝜋\n𝑒−1\n2 ( 5−5\n1 )2 ·\n1\n√\n2𝜋\n𝑒−1\n2 ( 3−0\n1 )2 · 0.4 = 1\n5𝜋𝑒−9\n2\nis greater than\n1\n√\n2𝜋\n𝑒−1\n2 ( 5−0\n1 )2 ·\n1\n√\n2𝜋\n𝑒−1\n2 ( 3−3\n4 )2 · 0.6 =\n3\n10𝜋𝑒−25\n2\nand otherwise predict ˆ𝑌= 1.\n3\nEthics and Beta Distribution\nWhile there won’t be any ethics material on the final exam, we’re including a problem that will not\nonly exercise some probability, but hopefully provoke you to think about the impact that\nprobability- and data-driven decisions have on society.\nThe Economist used a beta distribution to forecast results for the 2020 U.S. presidential election.1\n1Gelman, A., & Heidemanns, M. (2020). How the economist presidential forecast works. The Economist.\n\n– 6 –\nFigure 1: Updated prediction of Democratic vote share is ”Posterior” prediction.\n1. Why is the beta distribution appropriate for modeling a presidential election?\n2. Read the polling report published by The Economist. What should be considered when\nusing this model and releasing its election predictions?\n1. Several features of the beta distribution map onto election modeling:\n• The beta requires number of successes and number of failures as parameters,\nThese are easy to acquire for elections since they are the counts of the target\ncandidate polling positively vs. negatively.\n• The beta distribution can be used to model quantities representing fractions or\npercentages, since it is a continuous random variable with a support of [0, 1].\nElection outcomes are typically reported in terms of percentage vote share, which\nnaturally lends itself to a beta.\n• Election results are highly variable and betas allow us to incorporate uncertainty!\n• Election predictions require priors and new data, especially as the election day\napproaches. In the Economist’s model, the expected distribution of potential\nvote shares in each state was used as the prior, and the state polls that trickled in\nduring the course of the campaign were the ”new data”.\n2. Possible answers:\nLimitations\n• The beta approach is bad at modeling multiparty systems because success/failure\ncan’t split up vote shares per candidate unless it is a two-party system.\n• Random drift causes uncertainty around the current polling average.\n• In states that are heavily polled late in the race, the model will pay little attention\nto its prior forecast; conversely, it will emphasise the prior early in the race or in\nthinly-polled states.",
+      "source_type": "review_section",
+      "document_name": "08 section soln",
+      "score": 0.5098598003387451
+    },
+    {
+      "chunk_id": "cs109_finalfall2017_q10_d342a69e74",
+      "text": "What is P(A|M)? You may leave your\nanswer in terms of P(A). To make your future life easier, simplify your answer as much as possible.\nd. (8 points) Using the same assumption as the previous part, calculate P(A). You may use a function\nroot(a, b, c) which returns the value of x such that ax2 +bx+c = 0.\n3\n\ne. (10 points) Prove that P(A) = P(A|MC) if people who did not respond are just as likely to vote for\nAyesha as those who did: P(A|M) = P(A|MC).\n4\n\n2\nOccupy Mt Gox [24 points]\nModern nations have such high disparity in incomes that we need to use special fat-tailed random variables\nto represent country wide distributions. Enter the ExamPareto distribution, a simpliﬁed version of the Pareto\nincome distribution. X ⇠ExamPareto(a) represents a countries distribution of incomes—in Bitcoins (￿):\nPdf:\nfX(x) =\n(\na(1+x)−(a+1)\nx ≥0\n0\nelse\nMean:\nE[X] =\n1\na−1\nCdf:\nFX(x) =\n(\n1−(1+x)−a\nx ≥0\n0\nelse\nVariance:\nVar(X) =\na\n(a−1)2(a−2)\na. (4 points) Let X ⇠ExamPareto(a = 2). What is the probability that X is greater than 4 ￿?\nb. (6 points) Let X ⇠ExamPareto(a = 3). If we sample 100 IID individual incomes from X, approximate\nthe probability that the sum of their incomes is greater than 55 ￿?\n5\n\nc. (4 points) You have samples of n IID incomes from a country (x1,x2,...,xn). Write an equation for the\nlog likelihood of the n samples.\nd. (10 points) Write pseudocode that can estimate the parameter a from the n samples. You may use any\nparameter estimation technique we talked about in class. Make sure to work out any necessary math\nﬁrst.\n6\n\n3\nTiming Attack [33 points]\nIn this problem we are going to show you how to crack a password in linear time, by measuring how long the\npassword check takes to execute (see code below). Assume that our server takes T ms to execute any line in\nthe code where T ⇠N(µ = 5,s2 = 0.5). The amount of time taken to execute a line is always independent\nof other values of T.\n# An i n s e c u r e\ns t r i n g\ncomparison\ndef\ns t r i n g E q u a l s ( guess ,\npassword ) :\nnGuess = len ( guess )\nnPassword = len ( password )\ni f\nnGuess !=\nnPassword :\nreturn\nFalse\n# 4\nl i n e s\nexecuted\nto\nget\nhere\nfor\ni\nin\nrange ( nGuess ) :\ni f\nguess [ i ]\n!=\npassword [ i ] :\nreturn\nFalse\n# 6 + 2 i\nl i n e s\nexecuted\nto\nget\nhere\nreturn\nTrue\n# 5 + 2n\nl i n e s\nexecuted\nto\nget\nhere\nOn our site all passwords are length 5 through 10 (inclusive) and are composed of lower case letters only. A\nhacker is trying to crack the root password which is “gobayes” by carefully measuring how long we take to\ntell them that her guesses are incorrect. All answers to this question may be left in terms of the Normal CDF\nfunction f.\na. (4 points) First, lets say the hacker wanted to brute force and try all passwords. How many passwords\nare there? Recall that all passwords are length 5 through 10 and composed of lower case letters only.\nb. (5 points) What is the distribution of time that it takes our server to execute k lines of code? Recall that\neach line independently takes T ⇠N(µ = 5,s2 = 0.5) ms.\n7\n\nc. (7 points) First the hacker needs to ﬁnd out the length of the password. What is the probability that the\ntime taken to test a guess of correct length (server executes 6 lines) is longer than the time taken to test\na guess of an incorrect length (server executes 4 lines)? Assume that the ﬁrst letter of the guess does\nnot match the ﬁrst letter of the password. Hint P(A > B) is the same as P(A−B > 0).\nd. (5 points) Let p be your answer to part (c). The hacker ﬁrst tries a guess of length 5, then a guess of\nlength 6, and so on up until a guess of length 10. What is the probability that the guess of length 7,\nwhich is the correct length (server executes 6 lines), takes longer than all the other guesses of incorrect\nlength (where the server executes 4 lines)?\n8\n\ne. (8 points) Now that our hacker knows the length of the password, to get the actual string she is go-\ning to try and ﬁgure out each letter one at a time, starting with the ﬁrst letter. The hacker tries the\nstring “aaaaaaa” and it takes 27s. Based on this timing, how much more probable is it that ﬁrst char-\nacter matched (server executes 8 lines) than the ﬁrst character did not match (server executes 6 lines)?\nAssume that all letters in the alphabet are equally likely to be the ﬁrst letter.\nf. (3 points) If it takes the hacker 5 guesses to ﬁnd the length of the password, and 26 guesses per letter\nto crack the password string, how many attempts must she make to crack our password, “gobayes”?\nYikes!\n9\n\n4\nLearning While Helping [30 points]\nYou are designing a randomized algorithm that delivers one of two new drugs to patients who come to your\nclinic—each patient can only receive one of the drugs. Initially you know nothing about the effectiveness of\nthe two drugs. You are simultaneously trying to learn which drug is the best and, at the same time, cure the\nmaximum number of people. To do so we will use the Thompson Sampling Algorithm.\nThompson Sampling Algorithm:\nThe algorithm we are going to use is based on sound probability.\nFor each drug we maintain a Beta distribution to represent the drug’s probability of being successful.\nInitially we assume that drug i has a probability of success qi ⇠Beta(1,1).\nWhen choosing which drug to give to the next patient we sample a value from each Beta and select\nthe drug with the largest sampled value. We administer the drug, observe if the patient was cured, and\nupdate the Beta that represents our belief about the probability of the drug being successful. Repeat for\nthe next patient.\na. (4 points) Imagine you try the ﬁrst drug on 7 patients. It cures 5 patients and has no effect on 2. What\nis your updated belief about the drug’s probability of success, q1? Your answer should be a Beta.\nb. (4 points) After running Thomspons’ Algorithm 50 times, you end up with the following Beta distribu-\ntion for the second drug: q2 ⇠Beta(16,14). What is the variance of a value sampled from the second\ndrug’s Beta?\n10\n\nMethod\nDescription\nV = sampleBeta(a, b)\nReturns a real number value in the range [0, 1] with probability deﬁned by a\nPDF of a Beta with parameters a and b.\nR = giveDrug(i)\nGives drug i to the next patient. Returns a True if the drug was successful in\ncuring the patient or False if it was not. Throws an error if i /2 {1,2}.\nI = argmax(list)\nReturns the index of the largest value in the list.\nc. (10 points) Write pseudocode to administer either of the two drugs to 100 patients using Thompson’s\nSampling Algorithm. Use functions from the table above. Your code should execute giveDrug 100\ntimes.\n11\n\nd. (4 points) After running Thomspons’ Algorithm 100 times, you end up with the following Beta distri-\nbutions:\nq1 ⇠Beta(11,11),\nq2 ⇠Beta(76,6)\nWhat is the expected probability of success for each drug?\ne. (8 points) Write pseudocode to compute the p-value for the difference in expected probability of success\nbetween drug2 and drug1 observed from the 100 samples in part (d). Ie, under the null hypothesis\nassumption that all 100 samples are identically distributed, calculate the probability of a difference in\nexpected probabilities that is greater than or equal to the one observed. Describe, don’t implement any\nhelper methods you want to use.\n12\n\n5\nExpected Maximum Uniform [12 points]\nLet X ⇠Uni(0,1) and Y ⇠Uni(0,1) be independent random variables. What is E[max(X, Y)]? Gain most of\nthe points by writing an expression that you could solve using Wolfram Alpha. Provide a numerical answer\nfor full credit.\n13\n\n6\nGaussian Na¨ıve Bayes [16 points]\nThe version of Na¨ıve Bayes that we used in class worked great when the feature values were all binary. If\ninstead they are continuous, we are going to have to rethink how we estimate of the probability of the ith\nfeature given the label, P(Xi|Y). The ubiquitous solution is to make the Gaussian Input Assumption that:\nIf Y = 0, then Xi ⇠N(µi,0,s2\ni,0)\nIf Y = 1, then Xi ⇠N(µi,1,s2\ni,1)\nFor each feature, there are 4 parameters (mean and variance for both class labels). There is a ﬁnal parameter,\np, which is the estimate of P(Y = 1). Assume that you have trained on data with two input features and have\nalready estimated all 9 parameter values:\nFeature i\nµi,0\nµi,1\ns2\ni,0\ns2\ni,1\n1\n5\n0\n1\n1\n2\n0\n3\n1\n4\np = 0.6\nWrite an inequality to predict whether Y = 1 for input [X1 = 5,X2 = 3]. Use the Na¨ıve Bayes assumption and\nthe Gaussian Input Assumption. Your expression must be in terms of the learned parameters (either using\nnumbers or symbols is ﬁne):\n14\n\n7\nThe Most Important Features [32 points]\nLet’s explore saliency, a measure of how important a feature is for classiﬁcation. We deﬁne the saliency of\nthe ith input feature for a given example (x,y) to be the absolute value of the partial derivative of the log\nlikelihood of the sample prediction, with respect to that input feature\n\"\" ∂LL\n∂xi\n\"\". In the images below, we show\nboth input images and the corresponding saliency of the input features (in this case, input features are pixels):\nFirst consider a trained logistic regression classiﬁer with weights q. Like the logistic regression classiﬁer that\nyou wrote in your homework it predicts binary class labels. In this question we allow the values of x to be\nreal numbers, which doesn’t change the algorithm (neither training nor testing).\na. (4 points) What is the Log Likelihood of a single training example (x,y) for a logistic regression\nclassiﬁer?\nb. (8 points) Calculate is the saliency of a single feature (xi) in a training example (x,y).\nc. (5 points) Show that the ratio of saliency for features i and j is the ratio of the absolute value of their\nweights |qi|\n|q j|.\n15\n\nd. (10 points) Saliency is much more interesting for deep learning networks. Consider a simple deep\nlearning network with two hidden neurons that predicts P(Y = 1|X = x) ⇡ˆy:\nh1 = s\n⇣n\nÂ\ni=1\nq (h)\ni,1 xi\n⌘\nh2 = s\n⇣n\nÂ\ni=1\nq (h)\ni,2 xi\n⌘\nˆy = s\n⇣\nq (y)\n1 h1 +q (y)\n2 h2\n⌘\nCalculate the saliency of a single feature (xi) in a training example (x,y).\ne. (5 points) Weights are not invariant to units of measurement. Imagine your logistic regression classiﬁer\nhas weight values: [q0 = 10,q1 = −4,q2 = 8]. What values do you expect for the weights in a newly\ntrained model if we change the units of the last feature (x2) to be centimeters instead of meters? That\nmeans all the values x2 will be 100x times as large.\nq0 =\nq1 =\nq2 =\n16\n\n[End of exam]\nThat’s all folks! Missing data requires probability theory to understand. Income distributions give us a way\nto measure inequality. Timing attacks are a real thing... watch your code. Thompson Sampling is a hot new\nalgorithm for N-Armed-Bandit questions, a key part of MCTS, the algorithm used in AlphaGoZero.\nGaussian Na¨ıve bayes is good times for continuous inputs and saliency is a new tool for understanding deep\nneural nets. Thank you all for the wonderful quarter.\n17\n\n.\nContinuous Random Variable Reference\nUniform\nAll intervals in the range (of the same length) are equally probable.\nNotation\nX ⇠Uni(a,b)\nRange(X):\nx 2 R, a x b\npdf:\nf(X = k) =\n1\nb−a\nE[X]:\n1\n2(a+b)\nVar(X):\n1\n12(b−a)2\nNormal\nOften used to represent real-valued random variables whose distributions are not known.\nNotation\nX ⇠N(µ,s2)\nRange(X):\nx 2 R\npdf:\nf(X = k) =\n1\np\n2ps2 e\n(k−µ)2\n2s2\ncdf:\nF(k) = f( k−µ\ns )\nE[X]:\nµ\nVar(X):\ns2\nBeta\nOften used to represent a distribution of belief of a probability.\nNotation\nX ⇠Beta(a,b)\nRange(X):\nx 2 R, 0 x 1\npdf:\nf(X = k) = x(a−1)(1−x)(b−1)\nE[X]:\na\na+b\nVar(X):\nab\n(a+b)2(a+b+1)\n18\n\nStandard Normal Table\nAn entry in the table is the area under the curve to the left of z, P(Z z) = F(z).\nZ",
+      "source_type": "exam_question",
+      "document_name": "FinalFall2017",
+      "score": 0.4983713924884796
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p20_p21_aec5fb5719",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMAP for Bernoulli, conjugate prior (from ﬁrst principles)\n• Flip a coin 8 times. Observe 𝑛= 7 heads and 𝑚= 1 tail.\n• Choose a prior on 𝜃. What is 𝜃$()?\nSuppose we pick a prior 𝜃~Beta 𝑎, 𝑏. 𝑔𝜃= !\n6 𝑝4-! 1 −𝑝7-!\n21\n3. Solve for 𝑝\nnormalizing \nconstant, 𝛽\n𝑎−1\n𝑝\n+ 𝑛\n𝑝−𝑏−1\n1 −𝑝−\n𝑚\n1 −𝑝= 0\n𝜃$() =\n𝑎+ 𝑛−1\n𝑎+ 𝑛+ 𝑏+ 𝑚−2\nThe mode of the posterior,\nBeta 𝑎+ 𝑛, 𝑏+ 𝑚!\nIf we choose a conjugate prior, we avoid calculus \nwith MAP, and we can simply report mode of \nposterior.\n✅\n(from previous slide)\n𝑎+ 𝑛−1\n𝑝\n−𝑏+ 𝑚−1\n1 −𝑝\n= 0\n⟹\n𝑎+ 𝑛−1 −𝑎+ 𝑛−1 𝑝= 𝑏+ 𝑚−1 𝑝\n⟹\n𝑝𝑎+ 𝑛+ 𝑏+ 𝑚−2 = 𝑎+ 𝑛−1\n⟹\n\nChoosing \nhyperparameters \nfor conjugate \nprior\n22",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.4901008605957031
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p11_p12_e635b55bb3",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nA better approach: Use conjugate distributions\n12\nChoose model\nBernoulli 𝑝\nObserve data\nChoose prior on 𝜃\nFind  𝜃$() = \n  arg max\n'\n 𝑓𝜃|𝑋!, 𝑋\", … , 𝑋#\n𝑛 heads, 𝑚 tails\n(some 𝑔𝜃)\n(choose conjugate\ndistribution)\n⭐\nmaximize\nlog prior + log-likelihood\nUp next: Conjugate \npriors are great\nfor MAP!\nlog 𝑔𝜃+ 6\n*+!\n#\nlog 𝑓𝑋*|𝜃\n• Differentiate, set to 0\n• Solve\n\nBernoulli MAP: \nConjugate prior\n13",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.48231738805770874
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p20_0177b09ec2",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeta random variable\ndef A Beta random variable 𝑋 is defined as follows:\n21\n𝑓𝑥=\n1\n𝐵𝑎, 𝑏𝑥@A! 1 −𝑥BA!\n𝑋~Beta(𝑎, 𝑏)\nVariance  \nExpectation \n \n \nPDF\n𝐸𝑋=\n𝑎\n𝑎+ 𝑏\nVar 𝑋=\n𝑎𝑏\n𝑎+ 𝑏% 𝑎+ 𝑏+ 1\nSupport of 𝑋: 0, 1\n𝑎> 0, 𝑏> 0\nBeta can be a distribution of probabilities.\nwhere 𝐵𝑎, 𝑏= ∫%\n#𝑥&'# 1 −𝑥('#𝑑𝑥, normalizing constant",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.47076380252838135
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p19_119a9ff2a2",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMAP for Bernoulli, conjugate prior (from first principles)\n• Flip a coin 8 times. Observe 𝑛= 7 heads and 𝑚= 1 tail.\n• Choose a prior on 𝜃. What is 𝜃$()?\nSuppose we pick a prior 𝜃~Beta 𝑎, 𝑏. 𝑔𝜃= 𝑝= !\n6 𝑝4-! 1 −𝑝7-!\n20\n1. Determine log prior + log likelihood\n2. Differentiate\nw.r.t. (each) 𝜃, \nset to 0\n3. Solve\nlog 𝑔𝜃+ log 𝑓𝑋!, 𝑋\", … , 𝑋#|𝜃= log 1\n𝛽𝑝4-! 1 −𝑝7-! + log\n𝑛+ 𝑚\n𝑛\n𝑝# 1 −𝑝3\n= log 1\n𝛽+ 𝑎−1 log 𝑝+ 𝑏−1 log 1 −𝑝+ log 𝑛+ 𝑚\n𝑛\n+ 𝑛log 𝑝+ 𝑚log 1 −𝑝\n𝑎−1\n𝑝\n+ 𝑛\n𝑝−𝑏−1\n1 −𝑝−\n𝑚\n1 −𝑝= 0\n(next slide)\nnormalizing \nconstant, 𝛽",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.45901790261268616
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p15_582df2e20e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConjugate strategy: MAP for Bernoulli\n• Flip a coin 8 times. Observe 𝑛= 7 heads and 𝑚= 1 tail.\n• Choose a prior on 𝜃. What is 𝜃$()?\n16\n1. Choose a prior\n2. Determine posterior\n3. Compute MAP\nSuppose we pick a prior 𝜃~Beta 𝑎, 𝑏.\nBecause Beta is a conjugate distribution for Bernoulli,\nthe posterior distribution is 𝜃|𝐷~Beta 𝑎+ 𝑛, 𝑏+ 𝑚\nDefine as data, 𝐷\n𝜃$() =\n𝑎+ 𝑛−1\n𝑎+ 𝑛+ 𝑏+ 𝑚−2\n(mode of Beta 𝑎+ 𝑛, 𝑏+ 𝑚)",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.448310524225235
+    },
+    {
+      "chunk_id": "cs109_04_cond_bayes_annotated_p27_08be1e5795",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMathematically:\n  \n \n \n \n \n \n𝑃𝐸𝐹→𝑃𝐹|𝐸\nReal-life application:  \n \n \n \n \n \n \nGiven new evidence 𝐸, update belief of fact 𝐹 \n \n \n \n \n \n \nPrior belief → Posterior belief\n \n \n \n \n \n \n𝑃𝐹→𝑃𝐹|𝐸\nBayes’ Theorem\n28\nposterior\nlikelihood\nprior\nReview\n𝑃𝐹𝐸= 𝑃𝐸𝐹𝑃𝐹\n𝑃𝐸",
+      "source_type": "lecture_slide",
+      "document_name": "04 cond bayes annotated",
+      "score": 0.4369560778141022
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p29_fff893986e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTop-down view\n1. Define prior\nYou have a prior belief about the 2-D location of an object, 𝑋, 𝑌.\n30\nLet 𝑋, 𝑌= object’s 2-D location, \nassuming satellite is at (0,0)\nSuppose the prior distribution is a\nsymmetric bivariate normal distribution:\n𝑥\n𝑦\n𝑓!,% 𝑥, 𝑦\n3-D view\n𝑓+,, 𝑥, 𝑦=\n1\n2𝜋2E 𝑒\n. \n:.G !- H.G !\nE E!\nnormalizing constant\n= 𝐾5 ⋅ 𝑒% \n#$% &' ($% &\n)\n𝑓!,%|2 𝑥, 𝑦|𝑑=\n𝑓2|!,% 𝑑|𝑥, 𝑦 𝑓!,% 𝑥, 𝑦\n𝑓2 𝑑",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.4139763414859772
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p28_4003f4ca12",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConjugate distributions\nMAP\nestimator:\n29\n𝜃*+, = arg max\n-\n𝑓𝜃|𝑋', 𝑋(, … , 𝑋)\nThe mode of the\nposterior distribution of 𝜃\nDistribution parameter\nConjugate distribution\nBernoulli 𝑝\nBeta\nBinomial 𝑝\nBeta\nMultinomial 𝑝!\nDirichlet\nPoisson 𝜆\nGamma\nExponential 𝜆\nGamma\nNormal 𝜇\nNormal\nNormal 𝜎%\nInverse Gamma",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.39593976736068726
+    }
+  ],
+  "built_at": "2026-04-28T05:13:13Z"
+}

@@ -1,0 +1,83 @@
+{
+  "topic_id": "probability_basics",
+  "topic_name": "Probability Basics",
+  "course": "CS109",
+  "questions": [
+    {
+      "question_id": "CS109_probability_basics_001",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "conceptual",
+      "difficulty": "easy",
+      "question": "What is the probability that exactly 5 or 6 babies show up if the individual show-up probabilities for the 6 enrolled babies are p1, p2, ..., p6?",
+      "expected_answer": "The probability that exactly 5 or 6 babies show up can be expressed as P(5) + P(6), where P(k) = C(6, k) * (p^k) * ((1-p)^(6-k)) for k = 5 and 6.",
+      "source_chunk_ids": [
+        "cs109_midtermspr2019_p5_2f512c8be0"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly identifies the expression for P(5) and P(6) using binomial coefficients."
+        ],
+        "partial_credit": [
+          "Identifies the concept of independent probabilities but does not correctly express the probabilities."
+        ],
+        "common_mistakes": [
+          "Confusing the probabilities with non-independent events or miscalculating the binomial coefficients."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you explain how you would calculate the actual numerical value of this probability if given specific values for p1 to p6?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What do you think is the role of independence in calculating the probability of multiple events occurring?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from probability basics; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Confusing the probabilities with non-independent events or miscalculating the binomial coefficients. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_probability_basics_002",
+      "course": "CS109",
+      "topic_id": "probability_basics",
+      "question_type": "computational",
+      "difficulty": "medium",
+      "question": "Under the normal assumption H1, what is P(0.9 < X < 1.0) if X is distributed as Normal(\u00b5 = 0.7, s\u00b2 = 0.22)?",
+      "expected_answer": "To find P(0.9 < X < 1.0), calculate the z-scores for 0.9 and 1.0 and then use the standard normal table to find the probabilities.",
+      "source_chunk_ids": [
+        "cs109_midtermspr2019_p14_bee301f4a7"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly calculates the z-scores and uses the standard normal table to find the correct probabilities."
+        ],
+        "partial_credit": [
+          "Calculates z-scores but makes errors in looking up probabilities or interpreting the results."
+        ],
+        "common_mistakes": [
+          "Forgetting to standardize the values or misapplying the normal distribution properties."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the result change if the mean or variance of the distribution were different?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you describe the steps you took to arrive at your answer?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Forgetting to standardize the values or misapplying the normal distribution properties. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    }
+  ]
+}

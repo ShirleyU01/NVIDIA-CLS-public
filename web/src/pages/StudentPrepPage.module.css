@@ -1,0 +1,59 @@
+.page {
+  display: grid;
+  gap: 1rem;
+}
+
+.greeting {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.headline {
+  margin: 0;
+  color: var(--color-green-700);
+  font-size: 1.45rem;
+}
+
+.topics {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.topicCard {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  padding: 0.9rem 1rem;
+  display: grid;
+  gap: 0.6rem;
+  align-items: start;
+  box-shadow: var(--shadow-sm);
+}
+
+.topicCard h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.topicCard ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.beginButton {
+  border: 1px solid color-mix(in srgb, var(--color-green-700) 25%, var(--color-border));
+  border-radius: 999px;
+  background: var(--color-green-700);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  padding: 0.46rem 0.95rem;
+  cursor: pointer;
+}
+
+.beginButton:hover {
+  background: color-mix(in srgb, var(--color-green-700) 88%, black);
+}

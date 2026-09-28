@@ -1,0 +1,96 @@
+{
+  "course": "CS109",
+  "document_role": "exam",
+  "source_path": "data/raw/CS109/exams/FinalSpring2017.pdf",
+  "relative_path": "data/raw/CS109/exams/FinalSpring2017.pdf",
+  "sha256": "e0f266d4fef84051dd39e290f34b6dbf71e22087f941c84514f1a3881ba6b3b9",
+  "title_guess": "FinalSpring2017",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "CS109 Final Exam\nChris Piech\nCS109\nSpring Quarter\nJune 13th, 2017\nThis is a closed calculator/computer exam. You are, however, allowed to use notes in the exam. The last page\nof the exam is a Standard Normal Table, in case you need it. You have 3 hours (180 minutes) to take the\nexam. The exam is 180 points, meant to roughly correspond to one point per minute of the exam. You may\nwant to use the point allocation for each problem as an indicator for pacing yourself on the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions and\nparameter values you used, where appropriate. It is ﬁne for your answers to include summations, products,\nfactorials, exponentials, and combinations, unless the question speciﬁcally asks for a numeric quantity or\nclosed form. Where numeric answers are required, the use of fractions is ﬁne.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than I have in\nmy entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):",
+      "char_count": 1158
+    },
+    {
+      "page_index": 1,
+      "text": "1\nRandom Encounter Redux [14 points]\nYou walk into a gathering at Stanford with R number of Stanford students. What is the probability that you\nknow more than 5 people at the gathering?\nLet P be the number of students at Stanford and let F be the number of Stanford students that you know.\nAssume that each Stanford student is equally likely to be at the gathering.\n2\nLetters of Recommendation [16 points]\nTo get a job or internship next summer, you submit recommendation letters from two professors. Unfortu-\nnately, you can never be completely certain what your recommendation letters say.\nYou estimate that if you had two good letters, the probability that you would get the job is 0.75. If you only\nhave one good letter, the probability is 0.2 and if you have no good letters the probability is 0.05.\nYou believe that the two letters are independent, the probability that the ﬁrst letter is good = 0.8 and the\nprobability that the second letter is good is 0.5.\na. What is the probability of getting two good letters?\n2",
+      "char_count": 1022
+    },
+    {
+      "page_index": 2,
+      "text": "b. What is the probability of getting exactly one good letter?\nc. What is the probability of getting the job?\nd. You got the job. What is the probability that you had two good letters?\n3",
+      "char_count": 186
+    },
+    {
+      "page_index": 3,
+      "text": "3\nHindenbug [16 points]\nYou are testing software and discover that your program has a non-deterministic bug that causes catastrophic\nfailure. Your program was tested for 400 hours and the bug occurred twice.\na. Based on the rate of occurrence that you observed, what is the probability that the bug will occur fewer\nthan ﬁve times if the program is used for another 400 hours?\nb. Each user uses your program to complete a three hour long task. If the hindenbug manifests the user\nwill immediately stop using your program. What is the probability that the bug manifests for a given\nuser?\nc. Your program is used by one million users. Use a normal approximation to estimate the probability\nthat more than 10000 users experience the bug. Let p be the solution to part (b).\n4",
+      "char_count": 771
+    },
+    {
+      "page_index": 4,
+      "text": "4\nNBA Finals Week [18 points]\nRecall that a team’s ability can be modeled by an Elo score, which predicts that if teams A and B have\nrespective Elo scores EA and EB, then the probability that A wins a game against B, all else equal, is\nP(A wins) =\n1\n1+9\n⇣\n−EA−EB\n400\n⌘\na. Suppose that team A has an Elo rating which is 200 less than the Elo rating for team B. What is the\nprobability that team A wins a game?\nb. Suppose the Elo scores of the two teams in the ﬁnals are drawn independently from a normal distri-\nbution with mean µ = 1600 and variance s2 = 2002\n2 . What is the probability density function for the\ndifference (D) between their Elo ratings? D = EA −EB.\nc. The difference between the elo scores of two teams is given by the probability density function from\npart (b). Write an expression for the probability that team A wins. It is ok to have an integral in your\nanswer.\n5",
+      "char_count": 885
+    },
+    {
+      "page_index": 5,
+      "text": "5\nGaussian Blur [16 points]\nIn image processing, a Gaussian blur is the result of blurring an image by a Gaussian function. It is a widely\nused effect in graphics software, typically to reduce image noise.\nGaussian blurring is based on a joint probability distribution of two independent random variables:\nX ⇠N(0,4) and Y ⇠N(0,4).\na. Write an expression that could be used to calculate P(X < x,Y < y). For full credit your expression\nshould not have integrals.\nb. Each pixel is given a weight equal to the probability that X and Y are both within the pixel bounds.\nThe center pixel covers the area where −0.5 x 0.5 and −0.5 y 0.5. What is the weight of the\ncenter pixel? Give an expression that has no functions or variables.\n6",
+      "char_count": 731
+    },
+    {
+      "page_index": 6,
+      "text": "6\nImproved Exam Grading [18 points]\nYou are experimenting with a new training course to prepare TAs for exam grading. You give the new training\nto 100 graders (group A) and give the old, standard training to another set of 100 graders (group B). All 200\ngraders are then asked to grade the same assignment.\nThe data collected by your experiment are the 100 grades given to the assignment by the graders in group A\n(A1 ...A100), and the 100 grades given by the graders in group B (B1 ...B100). You assume that each grade is\nIID given the grader’s group.\nYou notice that the sample mean of the two groups is about the same. In expectation all graders are accurate.\nHowever the sample standard deviation of the grades given by group A was 5 percentage points, whereas the\nsample standard deviation of grades given by group B was 10 percentage points.\nIn this question we expect you to write pseudo-code. You will be assessed on the quality of your algorithm,\nnot on programming syntax. Please be as precise as possible. You may use any of the following methods:\nMethod\nDescription\nsize(L)\nReturns the number of elements in list L\nmean(L)\nReturns the arithmetic mean of the values in a list L\njoin(L1, L2)\nReturns a list that has all the elements from L1 and L2\nsum(L)\nReturns the sum of all elements in L\nsampleReplace(L, n)\nReturns a list of n samples, drawn from list L with replacement\nsampleNoReplace(L, n)\nReturns a list of n samples, drawn from list L without replacement\na. Provide pseudo code for a method sampleStandard(S) that calculates the unbiased estimate of stan-\ndard deviation for a list of IID samples S = [S1,S2,··· ,Sn].\n7",
+      "char_count": 1639
+    },
+    {
+      "page_index": 7,
+      "text": "b. Was the difference in standard deviation signiﬁcant? Write a method pValue(A, B) where A is the list\nof the grades given by group A and B is a list of the grades given by group B. Under the assumption that\nall 200 grades are identically distributed, calculate the probability of observing a difference in sample\nstandard deviation greater than or equal to ﬁve. You may use sampleStandard(S) from part (a).\n8",
+      "char_count": 410
+    },
+    {
+      "page_index": 8,
+      "text": "7\nDifferential Privacy [22 points]\nYou have a dataset that consists of 100 IID values: X1 ...X100 where Xi ⇠Bern(px).\nA researcher wants to calculate statistics on your data. Since you are mindful about privacy, you decide that\nyou shouldn’t give the raw data to the researcher. Instead for every sample Xi, you give the researcher a value\nYi using the following algorithm.\n# Maximize\naccuracy ,\nwhile\np r e s e r v i n g\np rivacy .\ndef\nc a l c u l a t e Y i ( Xi ) :\no b f u s c a t e = random ( )\ni f\no b f u s c a t e :\nreturn\ni n d i c a t o r ( random ( ) )\ne l s e :\nreturn Xi\nWhere random is a function that returns true or false with equal probability and indicator is a function that\nreturns 1 if the input is true (and 0 otherwise).\na. What is E[Yi]? Give your answer in terms of px.\nb. What is Var(Yi)? Give your answer in terms of px.\n9",
+      "char_count": 848
+    },
+    {
+      "page_index": 9,
+      "text": "c. Write the distribution of the sample mean ¯Y of the samples Y1 ...Y100. Explain why the sample mean\nfollows that distribution. Your distribution parameters should be in terms of px and/or values calculated\nin previous parts.\nd. Given the sample mean ¯Y, write an expression for an unbiased estimate of px. An unbiased estimate is\none where the expectation of your estimate should be equal to the true value.\ne. Write an expression for the probability that your estimate from the previous part is more than 0.1\ngreater than, or less than, the true probability px.\n10",
+      "char_count": 568
+    },
+    {
+      "page_index": 10,
+      "text": "8\nWindfarm Modeling [20 points]\nIn class we saw how climate sensitivity suggests that there is a ﬁerce urgency to developing clean energy\nsolutions. Wind is a powerful yet unpredictable source of clean energy and thus requires probability theory.\nThe speed of the wind at a windfarm is a random variable that varies as a Rayliegh Distribution. A Rayliegh\ndistribution is parameterized by a single scale parameter q and has the following probability density function.\nfX(x) =\n(\nx\nq e−x2/2q\nx ≥0\n0\nelse\nWe wish to model the wind speed on a wind farm. To this end we collect N independent measurements of\nwind speeds w1, w2, ··· , wN. Find a maximum likelihood estimate of q if we are modeling the wind speed\nas coming from a Rayleigh distribution.\n11",
+      "char_count": 748
+    },
+    {
+      "page_index": 11,
+      "text": "9\nMulticlass Bayes [20 points]\nIn this problem we are going to explore how to write Naive Bayes for multiple output classes. We want to\npredict a single output variable Y which represents how a user feels about a book. Unlike in your homework,\nthe output variable Y can take on one of the four values in the set {Like,Love,Haha,Sad}. We will base our\npredictions off of three binary feature variables X1,X2, and X3 which are indicators of the user’s taste. All\nvalues Xi 2 {0,1}.\nWe have access to a dataset with 10,000 users. Each user in the dataset has a value for X1,X2,X3 and Y. You\ncan use a special query method count that returns the number of users in the dataset with the given equality\nconstraints (and only equality constraints). Here are some example usages of count:\ncount(X1 = 1,Y = Haha)\nreturns the number of users where X1 = 1 and Y = Haha.\ncount(Y = Love)\nreturns the number of users where Y = Love.\ncount(X1 = 0,X3 = 0)\nreturns the number of users where X1 = 0, and X3 = 0.\nYou are given a new user with X1 = 1, X2 = 1, X3 = 0. What is the best prediction for how the user will\nfeel about the book (Y)? You may leave your answer in terms of an argmax function. You should explain\nhow you would calculate all probabilities used in your expression. Use Laplace estimation when calculating\nprobabilities.\n12",
+      "char_count": 1324
+    },
+    {
+      "page_index": 12,
+      "text": "10\nLogistic Vision Test [20 points]\nYou decide that the vision tests given by eye doctors could have more precise results if we used an approach\ninspired by logistic regression. In a vision test a user looks at a letter with a particular font size and either\ncorrectly guesses the letter or incorrectly guesses the letter.\nYou assume that the probability that a particular patient is able to guess a letter correctly is:\np = s(q −f)\nWhere q is the user’s vision score and f is the font size of the letter.\nExplain how you could estimate a user’s vision score (q) based on their 20 responses ( f (1),y(1))...(f (20),y(20)),\nwhere y(i) is an indicator variable for whether the user correctly identiﬁed the ith letter and f (i) is the font\nsize of the ith letter. Solve for any and all partial derivatives required by your answer.\n13",
+      "char_count": 830
+    },
+    {
+      "page_index": 13,
+      "text": "Final Spring 2017 Solution\nNoah Arthurs\nJune 5, 2019\nDisclaimer:\nThese solutions are not super verbose or complete. They’re\njust meant to give you an idea of how to do each problem. Feel free to start\ndiscussions on Piazza if you’re confused.\n1. Every\n!P\nR\n\"\ncombination of people is equally likely.\nThe number of combinations where you know exactly k people is Q(k) =\n!F\nk\n\"!P −F\nR−k\n\"\n(as long as k F). Note that Q(k) is an integer-valued func-\ntion, not a probability.\nProbability you know at least 6 people (using sample/event spaces) is:\n1 −⌃5\nk=0Q(k)\n!P\nR\n\"\n= 1 −\n⌃5\nk=0\n!F\nk\n\"!P −F\nR−k\n\"\n!P\nR\n\"\n2. (setup): Let J be getting the job, G1 and G2 be letters 1 and 2 being\ngood. We then know:\n• P(J|G1G2) = 0.75\n• P(J|G1XORG2) = 0.2\n• P(J|GC\n1 GC\n2 ) = 0.05\n• P(G1) = 0.8\n• P(G2) = 0.5\nNOTE: I’m just going to get each problem to the point where you can\nplug in from previous parts. Too lazy to plug in for you.\n(a) P(G1G2) = P(G1)P(G2)\n(b) P(G1XORG2) = P(G1)(1 −P(G2)) + (1 −P(G1))P(G2)\n(c) P(GC\n1 GC\n2 ) = (1 −P(G1))(1 −P(G2))\nP(J) = P(J|G1G2)P(G1G2)+P(J|G1XORG2)P(G1XORG2)+P(J|GC\n1 GC\n2 )P(GC\n1 GC\n2 )\n1",
+      "char_count": 1109
+    },
+    {
+      "page_index": 14,
+      "text": "(d) P(G1G2|J) = P (J|G1G2)P (G1G2)\nP (J)\n3.\n(a) Let X be #occurrences in 400 hours: X ⇠Poi(2), so P(X < 5) =\n⌃4\nk=0P(X = k) = ⌃4\nk=0\n2ke−2\nk!\n(b) See solution to PS3 Problem 9a.\n(c) See solution to PS3 Problem 9b.\n4.\n(a)\n1\n1+9\n1\n2 = 1\n4\n(b) Note that −EB ⇠N(1600, 2002\n2 ):\nD = EA−EB = EA+(−EB) = N(1600, 2002\n2\n)+N(−1600, 2002\n2\n) = N(0, 2002)\n(c)\nP(A wins) =\nZ 1\nx=−1\nfEA−EB(x)P(A wins|EA −EB = x)\n=\nZ 1\nx=−1\n1\np\n2⇡2002 e−\nx2\ni\n2⇤2002\n1\n1 + 9−x\n5.\n(a) Using independence:\nP(X < x, Y < y) = P(X < x)P(Y < y) = FX(x)FY (y) = Φ(x/2)Φ(y/2)\n(b)\nP(−0.5 < X < 0.5, −0.5 < Y < 0.5) = P(−0.5 < X < 0.5)P(−0.5 < Y < 0.5)\n= (Φ(0.5/2) −Φ(−0.5/2))2\n= (Φ(0.5/2) −(1 −Φ(0.5/2))2\n= (2Φ(0.5/2) −1)2\nand plug in using the Φ table.\n6.\n(a) Code version of:\nq\n1\nn−1⌃n\ni=1(Si −¯S)2 where ¯S = ⌃n\ni=1Si\nn\n(b) Null hypothesis is that all data is drawn from the same distribution.\nTo simulate the null hypothesis, we sample with replacement from\nall 200 grades. The pValue is the probability that, conditioned on\nthe null hypothesis, the di↵erence between the sample standard de-\nviations would be more than 5 percentage points apart. To do ﬁnd\nthis, repeatedly draw two samples of size 100 (as described above)\nand see how often their sample variances are 5 percentage points or\nmore apart. (See Corgi problem from section 6 if you’re confused).\n2",
+      "char_count": 1325
+    },
+    {
+      "page_index": 15,
+      "text": "7.\n(a) Let Yi ⇠Bernoulli(q):\nE[Yi] = P(Yi = 1) = 0.5 ⇤0.5 + 0.5 ⇤px = 0.25 + 0.5px = q\n(b) V ar(Yi) = q(1 −q) (plug in from above)\n(c) ¯Y = ⌃100\ni=1Yi\n100\n⇠Binom(100,q)\n100\n(d) Note that (by our answer to part a), px = 2q −0.5.\nSince ¯Y is an unbiased estimate of q (the sample mean is always an\nunbiased estimate), we have px ⇡2 ¯Y −0.5. It then makes sense to\nestimate ˆpx = 2 ¯Y −0.5.\nAnd this turns out to be unbiased:\nE[ ˆpx] = 2E[ ¯Y ] −0.5 = 2⌃100\ni=1E[Yi]\n100\n−0.5 = 2q −0.5 = px\n(e) Assume for simplicity that 100q is an integer. I think my solution still\nworks without this assumption, but it makes things easier. Then note\nthat if ¯Y is o↵of q by more than 0.05, ˆpx will be o↵by more than 0.1\n(SEE NOTE), meaning that we need the sum of the Yi’s to be more\nthan 5 away from 100q (using the fact that ⌃100\ni=1Yi ⇠Binom(100, q)):\nP(|⌃100\ni=1Yi −100q| > 5) = 1 −P(100q −5 |⌃100\ni=1Yi −100q| 100q + 5)\n= ⌃100q+5\ni=100q−5P(Binom(100, q) = i)\nAnd then plug into the binomial PMF.\nThis solution is super janky. Maybe there’s a cleaner one.\nNOTE:\nP(| ˆpx −px| > 0.1) = P(|2 ¯Y −0.5 −px| > 0.1)\n= P(|2 ¯Y −0.5 −2q + 0.5| > 0.1)\n= P(|2 ¯Y −2q| > 0.1) = P(| ¯Y −q| > 0.05)\n8.\n(a)\nargmax\n✓\nLL(✓) = argmax\n✓\n⌃N\ni=1 log(fX(wi))\n= argmax\n✓\n⌃N\ni=1(log(x) −log(theta) −x2/2✓)\n= argmax\n✓\n(−N log(✓) −z\n2✓)\nwhere z = ⌃N\ni=1x2\n3",
+      "char_count": 1322
+    },
+    {
+      "page_index": 16,
+      "text": "We then take the derivative and set it to 0 to get our estimator:\ndLL\nd✓\n= −N\n✓\n+\nz\n2✓2 = 0 =) ✓=\nz\n2N = ⌃N\ni=1x2\n2N\nThe second derivative is\nN\n✓2 −z\n✓3\nwhich is hopefully negative for our choice of ✓, which would mean\nthat we have found the maximum.\n9: Section 8 Problem 2\n10: Section 8 Problem 1\n4",
+      "char_count": 299
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:59Z"
+}

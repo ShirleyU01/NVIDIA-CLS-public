@@ -1,0 +1,1200 @@
+{
+  "topic_id": "beta_distribution",
+  "topic_name": "Beta Distribution",
+  "course": "CS109",
+  "model": "gpt-5.4",
+  "questions": [
+    {
+      "question_id": "CS109_beta_distribution_0001",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "conceptual",
+      "difficulty": "easy",
+      "question": "You are modeling an unknown coin bias \u03b8. A student says, \u201cIf I have no prior opinion, I should use Beta(0,0), because that represents zero prior heads and zero prior tails.\u201d Do you agree? Explain what prior would actually represent no prior preference in this course\u2019s setup, and interpret its pseudo-counts.",
+      "expected_answer": "I do not agree. In the course setup, Beta(a,b) is interpreted as a\u22121 prior successes and b\u22121 prior failures, so the parameters must be positive and Beta(0,0) is not a valid Beta distribution. The standard noninformative prior here is Beta(1,1), which is Uniform(0,1). Under the pseudo-count interpretation, Beta(1,1) corresponds to 0 imaginary heads and 0 imaginary tails, so it expresses no preference for any value of \u03b8 in [0,1].",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p36_5a0c1842e3",
+        "cs109_07_section_soln_sec1_part1_94bd466144"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States Beta(0,0) is invalid or not used here because Beta parameters must be positive.",
+          "Identifies Beta(1,1) as the no-prior-preference choice.",
+          "Explains the pseudo-count interpretation as a\u22121 and b\u22121, giving 0 prior heads and 0 prior tails."
+        ],
+        "partial_credit": [
+          "Identifies Beta(1,1) but gives a vague or incomplete reason.",
+          "Mentions uniform prior without connecting it to pseudo-counts."
+        ],
+        "common_mistakes": [
+          "Saying Beta(0,0) is the correct uninformative prior in this course context.",
+          "Interpreting Beta(a,b) as a prior heads and b prior tails instead of a\u22121 and b\u22121."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If instead you wanted to encode a prior belief that the coin is fair with strength \u03b1, how would you choose a Beta prior and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you restate how Beta(a,b) maps to imaginary successes and failures in this course\u2019s interpretation?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from beta distribution; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying Beta(0,0) is the correct uninformative prior in this course context. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0002",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose your prior on a coin\u2019s probability of heads is Beta(4,3), and then you flip the coin 12 times and observe 9 heads and 3 tails. What is the posterior distribution, and how would you explain verbally what changed from prior to posterior?",
+      "expected_answer": "Because Beta is conjugate to Bernoulli/Binomial data, we update by adding observed successes to the first parameter and failures to the second. So the posterior is Beta(4+9, 3+3) = Beta(13,6). Verbally, the prior already encoded some belief favoring heads slightly, and the data provided 9 additional successes and 3 additional failures, so the posterior shifts further toward larger \u03b8 and becomes more concentrated because we have more total evidence.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p36_5a0c1842e3",
+        "cs109_21_beta_annotated_p35_2d17b1a76f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly computes posterior Beta(13,6).",
+          "Explains conjugate updating as adding successes and failures to parameters.",
+          "Interprets the posterior as both shifted and more concentrated due to more evidence."
+        ],
+        "partial_credit": [
+          "Gets the posterior right but gives little interpretation.",
+          "Explains update idea but makes a small arithmetic slip."
+        ],
+        "common_mistakes": [
+          "Using Beta(9,3) and forgetting the prior.",
+          "Adding 1 extra for successes/failures again even though the prior is already in Beta form.",
+          "Treating 12 trials as one count added to both parameters."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Without integrating anything, would the posterior mean be larger or smaller than the prior mean? Justify."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What specific quantities from the data should be added to each Beta parameter?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using Beta(9,3) and forgetting the prior. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0003",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A classmate says: \u201cConjugate means the posterior equals the prior, so choosing a Beta prior forces your beliefs not to change form or value after data.\u201d Identify what is right and what is wrong in that statement, using the Bernoulli/Binomial setting.",
+      "expected_answer": "What is right is that conjugacy means the posterior has the same parametric family as the prior: Beta prior leads to Beta posterior when the data are Bernoulli/Binomial. What is wrong is that the posterior is not equal in value to the prior; the parameters change after seeing data. In this setting, if the prior is Beta(a,b) and we observe n successes and m failures, the posterior becomes Beta(a+n,b+m), so the family is the same but the distribution itself is updated.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p34_ef1f381b2e",
+        "cs109_21_beta_annotated_p36_5a0c1842e3"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Clearly distinguishes same family from same parameter values.",
+          "States the update Beta(a+n,b+m) or equivalent.",
+          "Uses Bernoulli/Binomial context explicitly."
+        ],
+        "partial_credit": [
+          "Says the posterior is still Beta but does not explain why the original statement is partly wrong.",
+          "Mentions parameter updating without clearly defining conjugacy."
+        ],
+        "common_mistakes": [
+          "Saying conjugate means prior and posterior are numerically identical.",
+          "Only repeating the definition without addressing the misconception."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is conjugacy especially useful in oral or by-hand calculations?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can two distributions be in the same family but still represent different beliefs? Give an example with Beta parameters."
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from beta distribution.",
+        "Watch out for this common trap: Saying conjugate means prior and posterior are numerically identical. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0004",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A startup is testing whether users click a new button. Before any experiment, the product manager says, \u201cI think the click-through rate is about 30%, and my belief is as strong as if I had seen 20 past users.\u201d Using the Beta pseudo-count interpretation from class, propose a reasonable prior and justify your parameter choice.",
+      "expected_answer": "Using the class interpretation, Beta(a,b) corresponds to a\u22121 prior successes and b\u22121 prior failures, with total imaginary trials a+b\u22122. If the manager\u2019s prior mean should be about 0.30 and total imaginary trials 20, then we want about 6 successes and 14 failures. That gives a = 6+1 = 7 and b = 14+1 = 15, so a reasonable prior is Beta(7,15). This prior encodes 20 pseudo-observations centered around a 30% click rate.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p36_5a0c1842e3",
+        "cs109_22_map_annotated_p13_ec22e865fc"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses the pseudo-count interpretation correctly.",
+          "Sets 20 imaginary trials with about 6 successes and 14 failures.",
+          "Produces Beta(7,15) or an equivalent justified nearby integer choice if the student explains rounding."
+        ],
+        "partial_credit": [
+          "Gets the success/failure counts right but forgets the +1 shift.",
+          "Chooses parameters with roughly 30% mean but does not connect to strength 20."
+        ],
+        "common_mistakes": [
+          "Using Beta(6,14) directly under the course convention.",
+          "Making total pseudo-trials equal to a+b instead of a+b\u22122.",
+          "Ignoring the requested prior strength."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the manager had the same 30% prior belief but much weaker confidence, how would the Beta parameters change qualitatively?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "How many imaginary successes and failures does Beta(a,b) represent in this course notation?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using Beta(6,14) directly under the course convention. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0005",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Derive aloud why a Beta prior is conjugate to Binomial data, but do it at the level of proportionality rather than normalization constants. Start from a prior \u03b8 ~ Beta(a,b) and Binomial data with n successes and m failures. What kernel do you get for the posterior?",
+      "expected_answer": "The Binomial likelihood for n successes and m failures is proportional to \u03b8^n(1\u2212\u03b8)^m, since the combinatorial term does not depend on \u03b8. The Beta(a,b) prior density is proportional to \u03b8^(a\u22121)(1\u2212\u03b8)^(b\u22121). Multiplying prior and likelihood gives a posterior kernel proportional to \u03b8^(n+a\u22121)(1\u2212\u03b8)^(m+b\u22121). That is exactly the kernel of a Beta(a+n,b+m) distribution, so the posterior is Beta(a+n,b+m) up to normalization.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p35_2d17b1a76f",
+        "cs109_07_bernoulli_binomial_annotated_p20_b50cf6c86a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes likelihood kernel \u03b8^n(1\u2212\u03b8)^m.",
+          "Writes prior kernel \u03b8^(a\u22121)(1\u2212\u03b8)^(b\u22121).",
+          "Multiplies exponents correctly to obtain \u03b8^(a+n\u22121)(1\u2212\u03b8)^(b+m\u22121).",
+          "Identifies the posterior as Beta(a+n,b+m) and explains why constants can be ignored."
+        ],
+        "partial_credit": [
+          "Understands the multiplication idea but is sloppy about constants or exponents.",
+          "States the final posterior correctly without fully showing the kernel derivation."
+        ],
+        "common_mistakes": [
+          "Including the combinatorial term as if it changes the posterior family.",
+          "Dropping the \u22121 terms from the Beta exponents.",
+          "Confusing n trials with n successes."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is it legitimate to ignore the normalization constants during the derivation?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What part of the Binomial likelihood depends on \u03b8, and what part does not?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Including the combinatorial term as if it changes the posterior family. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0006",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "You see three candidate priors for a proportion \u03b8: Beta(5,5), Beta(2,8), and Beta(8,2). Without drawing the exact curves, explain how their centers and shapes differ, and match each one to a belief statement about a process being roughly fair, likely small, or likely large.",
+      "expected_answer": "Beta(5,5) is symmetric around 0.5 and is concentrated there, so it represents a belief that \u03b8 is roughly fair or near one-half. Beta(2,8) puts much more mass near smaller values of \u03b8, so it represents believing \u03b8 is likely small. Beta(8,2) is the mirror image, putting more mass near larger values of \u03b8, so it represents believing \u03b8 is likely large. The larger parameters also make the distribution more concentrated than a uniform prior because they encode stronger prior information.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p19_872a014906"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly identifies Beta(5,5) as symmetric near 0.5.",
+          "Correctly identifies Beta(2,8) as skewed toward 0 and Beta(8,2) toward 1.",
+          "Comments on concentration or strength of belief."
+        ],
+        "partial_credit": [
+          "Gets the center directions right but says little about shape or concentration.",
+          "Correctly matches two of the three."
+        ],
+        "common_mistakes": [
+          "Reversing Beta(2,8) and Beta(8,2).",
+          "Claiming Beta(5,5) is uniform.",
+          "Ignoring that support is on [0,1]."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your verbal description change if the prior were Beta(1,1) instead?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a Beta(a,b), which parameter being larger suggests more mass near 1?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from beta distribution; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Reversing Beta(2,8) and Beta(8,2). Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0007",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "In a medical trial, before any data are collected, you are told the treatment is believed to work about 80% of the time. Two scientists propose priors Beta(81,21) and Beta(5,2). Explain how both can be defensible even though they are different, and describe how their posteriors would differ after observing 14 successes and 6 failures.",
+      "expected_answer": "Both priors have means near 0.8, so both encode the same central prior belief about effectiveness. The difference is prior strength: Beta(81,21) represents about 100 imaginary trials, while Beta(5,2) represents about 5 imaginary trials under the class pseudo-count interpretation. After seeing 14 successes and 6 failures, the posteriors are Beta(95,27) and Beta(19,8), respectively. The stronger prior Beta(81,21) will move less in response to the data, while the weaker prior Beta(5,2) will let the observed 14/20 have more influence.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p39_25295a92ff",
+        "cs109_21_beta_annotated_p40_c62ffaf649",
+        "cs109_21_beta_annotated_p36_5a0c1842e3"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains same mean but different strength.",
+          "Correctly interprets Beta(81,21) as much stronger than Beta(5,2).",
+          "Computes posteriors Beta(95,27) and Beta(19,8).",
+          "Explains how stronger priors resist change more."
+        ],
+        "partial_credit": [
+          "Explains the strength distinction but does not compute both posteriors.",
+          "Computes posteriors correctly but gives weak interpretation."
+        ],
+        "common_mistakes": [
+          "Claiming only one prior is valid because both have mean 0.8.",
+          "Comparing priors only by mean and not by concentration.",
+          "Forgetting to add observed failures to the second parameter."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the observed data had instead been 2 successes and 18 failures, which prior would create more conflict with the data and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "How do you measure the strength of a Beta prior in terms of imaginary trials in this course?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming only one prior is valid because both have mean 0.8. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0008",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student observes 8 heads in 10 flips and says, \u201cSo the posterior must be Beta(8,2), because those are the observed counts.\u201d Critique this statement in two different ways depending on what prior was used.",
+      "expected_answer": "If the prior was not specified, the statement is incomplete because posterior depends on both prior and data. With a uniform prior Beta(1,1), observing 8 heads and 2 tails gives posterior Beta(9,3), not Beta(8,2), because we add the counts to the prior parameters. If instead the student meant a likelihood summary from the data alone, then 8 and 2 are the observed counts, but that is not yet the posterior unless a different parameterization is being used, which is not the course convention here.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p36_5a0c1842e3",
+        "cs109_07_section_soln_sec1_part1_94bd466144"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that posterior depends on prior and data.",
+          "Under Beta(1,1), correctly gives Beta(9,3).",
+          "Explains that observed counts alone are not the posterior under the course convention."
+        ],
+        "partial_credit": [
+          "Points out that a prior is missing but does not compute the corrected posterior.",
+          "Gives Beta(9,3) but does not explain why Beta(8,2) might sound tempting."
+        ],
+        "common_mistakes": [
+          "Accepting Beta(8,2) as the posterior under a uniform prior.",
+          "Confusing likelihood with posterior."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the answer change if the prior were Beta(4,4) instead?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What posterior do you get from a Beta(1,1) prior and 8 heads, 2 tails?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from beta distribution.",
+        "Watch out for this common trap: Accepting Beta(8,2) as the posterior under a uniform prior. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0009",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose X is the number of successes in 25 independent Bernoulli trials with success probability p. State the distribution of X, give its expectation and variance, and then explain what changes and what does not if p itself is treated as an unknown random variable with a Beta prior.",
+      "expected_answer": "Conditional on a fixed p, X follows a Binomial(25,p) distribution. Its expectation is 25p and its variance is 25p(1\u2212p). If p is then modeled as random with a Beta prior, the conditional model X|p is still Binomial(25,p); that part does not change. What changes is our uncertainty about p and therefore our posterior for p after seeing X. The Binomial sampling model describes the data given p, while the Beta prior and posterior describe uncertainty about the unknown parameter.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p20_b50cf6c86a",
+        "cs109_21_beta_annotated_p35_2d17b1a76f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States X|p ~ Bin(25,p).",
+          "Gives expectation 25p and variance 25p(1\u2212p).",
+          "Explains clearly that the Binomial model for data conditional on p stays the same while the prior/posterior describe uncertainty about p."
+        ],
+        "partial_credit": [
+          "Gets the Binomial facts right but gives a vague explanation of the Bayesian part.",
+          "Explains prior/posterior uncertainty but omits expectation or variance."
+        ],
+        "common_mistakes": [
+          "Saying X itself is Beta-distributed.",
+          "Replacing the Binomial model with Beta after introducing a prior.",
+          "Confusing the random variable X with the parameter p."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is it useful to separate the model for X|p from the model for p itself?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Is the Beta distribution being used for the count X or for the probability parameter p?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Saying X itself is Beta-distributed. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0010",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "In a class discussion, someone says the Beta distribution is appropriate for election vote share because it is \u201cbasically Bernoulli.\u201d Give a more careful explanation of why Beta is a reasonable model for a two-candidate vote share, and also state one important limitation of that modeling choice.",
+      "expected_answer": "Beta is reasonable because vote share is a proportion bounded between 0 and 1, and the Beta distribution has support exactly on [0,1]. It is also convenient in Bayesian updating because polling data can be summarized in terms of success/failure counts, and Beta priors update naturally with Bernoulli/Binomial-type evidence. The Beta is not itself Bernoulli; rather, it models uncertainty about the underlying success probability or vote share. A key limitation is that a single Beta is naturally suited to a two-outcome setting, so it does not directly handle multiparty elections well without a more general model.",
+      "source_chunk_ids": [
+        "cs109_08_section_soln_sec1_part3_a75edc0065",
+        "cs109_21_beta_annotated_p36_5a0c1842e3"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains support on [0,1] and role as a model for an unknown proportion.",
+          "Distinguishes Beta from Bernoulli/Binomial rather than conflating them.",
+          "States a relevant limitation such as poor fit for multiparty settings."
+        ],
+        "partial_credit": [
+          "Mentions that Beta models proportions but does not explain the Bayesian updating advantage.",
+          "States a limitation but does not distinguish Beta from Bernoulli clearly."
+        ],
+        "common_mistakes": [
+          "Saying Beta is a discrete success/failure distribution.",
+          "Claiming Beta directly models individual votes rather than vote share uncertainty.",
+          "Ignoring the two-party limitation."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you verbally describe the role of the prior early in a campaign versus late in a heavily polled race?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the key difference between a Bernoulli random variable and a Beta-distributed parameter?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from beta distribution; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying Beta is a discrete success/failure distribution. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0011",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A website owner uses a Beta(1,1) prior for the conversion rate \u03b8. On day 1, they observe 3 conversions and 7 non-conversions. On day 2, they observe 4 conversions and 6 non-conversions. Explain two ways to update the posterior and show that they agree.",
+      "expected_answer": "Starting from Beta(1,1), after day 1 the posterior is Beta(4,8). Updating again with day 2 adds 4 successes and 6 failures, giving Beta(8,14). Alternatively, combine the data first: total successes are 7 and total failures are 13, so from the original prior the posterior is Beta(1+7,1+13) = Beta(8,14). They agree because the Beta-Binomial conjugate update depends only on the total number of successes and failures added to the prior.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p36_5a0c1842e3",
+        "cs109_21_beta_annotated_p35_2d17b1a76f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly computes sequential updates Beta(4,8) then Beta(8,14).",
+          "Correctly computes the one-step combined update Beta(8,14).",
+          "Explains why the two methods agree."
+        ],
+        "partial_credit": [
+          "Gets one method right but not the other.",
+          "Explains additivity of counts without correct arithmetic."
+        ],
+        "common_mistakes": [
+          "Resetting the prior on day 2 instead of using the day 1 posterior.",
+          "Adding total trials rather than separate successes and failures."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would this order-independence still hold if you processed the 20 trials one at a time? Why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What total numbers of conversions and non-conversions have been observed across both days?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Resetting the prior on day 2 instead of using the day 1 posterior. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0012",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "For a Beta(a,b) distribution with a>1 and b>1, the mode is given in the notes. Use that formula to compare the prior mode and posterior mode when the prior is Beta(6,4) and you observe 8 successes and 2 failures. Interpret the result in words.",
+      "expected_answer": "For Beta(a,b) with a>1 and b>1, the mode is (a\u22121)/(a+b\u22122). The prior mode of Beta(6,4) is (6\u22121)/(6+4\u22122) = 5/8 = 0.625. After observing 8 successes and 2 failures, the posterior is Beta(14,6), whose mode is (14\u22121)/(14+6\u22122) = 13/18, about 0.722. So the most likely value of \u03b8 shifts upward because the observed data are more favorable to success than the prior alone was.",
+      "source_chunk_ids": [
+        "cs109_22_map_annotated_p13_ec22e865fc",
+        "cs109_21_beta_annotated_p36_5a0c1842e3"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses the correct mode formula.",
+          "Computes prior mode 5/8 and posterior mode 13/18.",
+          "Interprets the increase as evidence pushing belief toward larger \u03b8."
+        ],
+        "partial_credit": [
+          "Gets the posterior right but not the prior, or vice versa.",
+          "Uses mean instead of mode but gives a sensible qualitative interpretation."
+        ],
+        "common_mistakes": [
+          "Using a/(a+b) instead of the mode formula when asked for mode.",
+          "Forgetting to update the posterior parameters before computing the mode."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your interpretation change if the observed data had been 2 successes and 8 failures instead?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the formula for the mode of Beta(a,b) when both parameters exceed 1?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using a/(a+b) instead of the mode formula when asked for mode. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0013",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says, \u201cIf two Beta priors have the same mean, then they express the same prior belief.\u201d Give a counterexample using priors from the course materials and explain what feature of the belief differs.",
+      "expected_answer": "A counterexample is Beta(81,21) and Beta(5,2). Both have mean 0.8, so they are centered at the same value. But they do not express the same overall belief because Beta(81,21) is much more concentrated and acts like about 100 imaginary trials, whereas Beta(5,2) is much weaker, acting like about 5 imaginary trials. So same mean does not mean same certainty or same prior strength.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p39_25295a92ff",
+        "cs109_21_beta_annotated_p40_c62ffaf649",
+        "cs109_22_map_annotated_p13_ec22e865fc"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Provides a concrete counterexample with same mean but different concentration.",
+          "Explains the difference in prior strength or imaginary sample size.",
+          "States clearly that same mean is not the same as same prior belief."
+        ],
+        "partial_credit": [
+          "Gives the right intuition without a concrete example.",
+          "Provides a concrete example but does not explain strength."
+        ],
+        "common_mistakes": [
+          "Equating center with full belief specification.",
+          "Discussing only means and not uncertainty/concentration."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would those two priors differ in their influence on a small new dataset?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can two distributions have the same center but different spreads? How does that apply here?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from beta distribution.",
+        "Watch out for this common trap: Equating center with full belief specification. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0014",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are comparing two manufacturing lines. For line A, your prior is Beta(2,2) and you observe 18 defect-free items and 2 defective ones. For line B, your prior is also Beta(2,2) and you observe 9 defect-free items and 1 defective one. Without doing any integrals, compare the posterior beliefs about the two lines\u2019 success probabilities and explain which line you are more certain about.",
+      "expected_answer": "For line A, the posterior is Beta(2+18,2+2)=Beta(20,4). For line B, the posterior is Beta(2+9,2+1)=Beta(11,3). Both posteriors are centered at about the same success rate, since both observed proportions are 0.9 and the priors are the same. But I am more certain about line A because it is based on more total observations, so Beta(20,4) is more concentrated than Beta(11,3). Thus the posterior uncertainty is smaller for line A even though the central estimate is similar.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p36_5a0c1842e3",
+        "cs109_22_map_annotated_p13_ec22e865fc"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes posteriors Beta(20,4) and Beta(11,3).",
+          "Recognizes their centers are similar because the observed proportions match and priors match.",
+          "Explains that more total evidence makes line A\u2019s posterior more concentrated and therefore more certain."
+        ],
+        "partial_credit": [
+          "Gets both posteriors right but does not explain certainty.",
+          "Explains the qualitative difference without computing the exact posterior parameters."
+        ],
+        "common_mistakes": [
+          "Choosing line A as better solely because it has more successes, ignoring differing sample sizes.",
+          "Claiming equal certainty because both empirical rates are 0.9."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If both lines had shown 90% success but with a Beta(1,1) prior instead, would your certainty comparison change?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "How many total observed items were seen for line A and for line B?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Choosing line A as better solely because it has more successes, ignoring differing sample sizes. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0015",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Explain the relationship among Bernoulli trials, the Binomial random variable, and the Beta prior in one coherent story. Your answer should make clear which object represents data, which represents a count summary, and which represents uncertainty about a parameter.",
+      "expected_answer": "A Bernoulli trial is a single success/failure experiment with success probability p or \u03b8. If we repeat independent Bernoulli trials n times, the Binomial random variable X counts how many successes occur among those n trials. In Bayesian modeling, the Beta distribution is placed on the unknown parameter \u03b8, not on the observed count. So Bernoulli describes one trial, Binomial summarizes many such trials as a count, and Beta describes our uncertainty about the success probability before and after observing data.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p20_b50cf6c86a",
+        "cs109_21_beta_annotated_p35_2d17b1a76f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly describes Bernoulli as one trial and Binomial as counting successes over n trials.",
+          "Clearly states that Beta is a distribution on the parameter \u03b8.",
+          "Integrates the three pieces into a coherent Bayesian story."
+        ],
+        "partial_credit": [
+          "Gets each object mostly right but does not connect them well.",
+          "Mentions Beta and Binomial but is vague about which is data and which is parameter."
+        ],
+        "common_mistakes": [
+          "Saying Beta is the distribution of the number of successes.",
+          "Confusing Bernoulli and Binomial.",
+          "Treating \u03b8 as observed data rather than an unknown parameter."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is it efficient to reduce Bernoulli data to just the numbers of successes and failures in this model?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you flip a coin 10 times, which random variable counts the number of heads?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from beta distribution; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying Beta is the distribution of the number of successes. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0016",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A coin has prior Beta(3,7). You flip it once and observe a head. Then you flip it once more and observe a tail. Give the posterior after each step, and explain whether the final posterior depends on the order of these two observations.",
+      "expected_answer": "Starting from Beta(3,7), after observing a head the posterior becomes Beta(4,7). After then observing a tail, it becomes Beta(4,8). If the order were reversed, the first update would be Beta(3,8) after the tail, and then Beta(4,8) after the head. So the final posterior does not depend on order; it depends only on the total number of observed successes and failures.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p36_5a0c1842e3"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly updates to Beta(4,7) then Beta(4,8).",
+          "Checks reversed order and shows the same final posterior.",
+          "Explains that only total successes and failures matter."
+        ],
+        "partial_credit": [
+          "Gets the final posterior right but not both intermediate steps.",
+          "Explains order-independence qualitatively without verifying it."
+        ],
+        "common_mistakes": [
+          "Adding both observations to the same parameter.",
+          "Thinking the order changes the final posterior."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would this order-independence connect to using Binomial data instead of listing individual Bernoulli trials?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which Beta parameter is incremented by a head, and which by a tail?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Adding both observations to the same parameter. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0017",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A scientist wants a prior that strongly favors a fair coin, while another wants a prior that is fair on average but weak. Give one example of each using Beta distributions, and explain how the two priors would react differently to seeing 8 heads and 2 tails.",
+      "expected_answer": "A strong fair prior could be Beta(51,51), which is centered at 0.5 and highly concentrated. A weak fair prior could be Beta(2,2), also centered at 0.5 but much less concentrated. After 8 heads and 2 tails, the strong prior gives posterior Beta(59,53), which remains close to fairness because the prior contributes a lot of pseudo-data. The weak prior gives posterior Beta(10,4), which moves much more toward heads because the actual data dominate. So both priors encode fairness on average, but they differ greatly in strength.",
+      "source_chunk_ids": [
+        "cs109_07_section_soln_sec1_part1_94bd466144",
+        "cs109_22_map_annotated_p13_ec22e865fc",
+        "cs109_21_beta_annotated_p36_5a0c1842e3"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Provides one strong fair prior and one weak fair prior, both centered at 0.5.",
+          "Correctly updates both with 8 heads and 2 tails.",
+          "Explains the different sensitivity to data due to prior strength."
+        ],
+        "partial_credit": [
+          "Provides reasonable priors but does not compute both posteriors.",
+          "Explains strength qualitatively without concrete examples."
+        ],
+        "common_mistakes": [
+          "Choosing priors not centered at 0.5.",
+          "Thinking equal means imply equal updating behavior."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What feature of the Beta parameters controls this notion of strength?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you name a Beta prior centered at 0.5 that is much more concentrated than Beta(2,2)?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Choosing priors not centered at 0.5. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0018",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "Someone claims: \u201cBecause the Binomial variance is np(1\u2212p), once we place a Beta prior on p the variance formula for the observed count X is still just n times the posterior mean times one minus the posterior mean.\u201d Is that statement automatically valid? Explain carefully what is being mixed up.",
+      "expected_answer": "That statement mixes up conditional and unconditional variance. The formula Var(X|p)=np(1\u2212p) is correct when p is fixed. Once p is uncertain under a Beta prior or posterior, replacing p by its posterior mean inside that formula generally does not give the full variance of X, because uncertainty in p also contributes variability. So the Binomial variance formula applies conditionally on p; a Bayesian predictive variance would need to account for both Binomial randomness and parameter uncertainty.",
+      "source_chunk_ids": [
+        "cs109_07_bernoulli_binomial_annotated_p20_b50cf6c86a",
+        "cs109_21_beta_annotated_p35_2d17b1a76f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the confusion between conditioning on fixed p and averaging over uncertain p.",
+          "States that Var(X|p)=np(1\u2212p) applies conditionally.",
+          "Explains that parameter uncertainty adds extra variability beyond plugging in the posterior mean."
+        ],
+        "partial_credit": [
+          "Says the statement is not automatically valid but gives only a vague reason.",
+          "Mentions conditional variance without clearly explaining the mismatch."
+        ],
+        "common_mistakes": [
+          "Approving the plug-in argument without qualification.",
+          "Confusing posterior mean of p with a fixed true p."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Even if you do not derive the predictive variance, can you explain intuitively why uncertainty about p should increase uncertainty about X?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When is the formula Var(X)=np(1\u2212p) exactly correct?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from beta distribution.",
+        "Watch out for this common trap: Approving the plug-in argument without qualification. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0019",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Why is it natural that Beta distributions are only used for parameters like probabilities or proportions, rather than arbitrary real-valued parameters? Answer by referring to support and interpretation, not just by citing a rule.",
+      "expected_answer": "A Beta-distributed variable takes values only in the interval [0,1], which matches the allowable range for probabilities and proportions. Its shape can represent many kinds of uncertainty about such quantities, including beliefs concentrated near 0, near 1, near 1/2, or more spread out. The pseudo-count interpretation also makes sense only for success probabilities, where prior successes and failures can be imagined. For arbitrary real-valued parameters, the support and interpretation would not match.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p19_872a014906",
+        "cs109_08_section_soln_sec1_part3_a75edc0065"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Mentions support on [0,1].",
+          "Explains the relevance to probabilities/proportions.",
+          "Adds interpretation such as pseudo-counts or flexible shapes for uncertain fractions."
+        ],
+        "partial_credit": [
+          "Mentions support but gives little explanation beyond that.",
+          "Gives a generally correct answer without tying to interpretation."
+        ],
+        "common_mistakes": [
+          "Saying Beta can model any parameter because it is flexible.",
+          "Ignoring the support mismatch."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example of a real-world quantity other than coin bias that is naturally modeled with a Beta?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What range of values can a Beta random variable take?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from beta distribution; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying Beta can model any parameter because it is flexible. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0020",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A teacher says, \u201cI will use Beta(1,1) for every problem because it is objective.\u201d Give a nuanced response. In your answer, explain one advantage of that choice and one situation where a different Beta prior could be more appropriate.",
+      "expected_answer": "Beta(1,1) has the advantage of being simple and expressing no preference across \u03b8 in [0,1], so it is a reasonable default when prior knowledge is weak. But it is not always the best choice if we genuinely have prior information. For example, if long experience suggests a medicine works about 80% of the time, a prior like Beta(5,2) or Beta(81,21) may be more appropriate depending on how strongly we trust that prior knowledge. So Beta(1,1) is useful as a baseline, but not automatically the best or only principled choice.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p36_5a0c1842e3",
+        "cs109_21_beta_annotated_p39_25295a92ff",
+        "cs109_21_beta_annotated_p40_c62ffaf649"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States an advantage of Beta(1,1) as a simple no-preference prior.",
+          "Explains that informative priors can be better when credible prior knowledge exists.",
+          "Gives a concrete example of an alternative prior and why it might be used."
+        ],
+        "partial_credit": [
+          "Defends Beta(1,1) but does not discuss limitations.",
+          "Critiques the claim but does not name a specific alternative prior."
+        ],
+        "common_mistakes": [
+          "Claiming Beta(1,1) is always the uniquely correct objective prior.",
+          "Rejecting all use of priors despite available prior knowledge."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you choose between Beta(5,2) and Beta(81,21) if both reflect an 80% prior mean?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does Beta(1,1) say about probabilities near 0.2 versus 0.8 before seeing data?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming Beta(1,1) is always the uniquely correct objective prior. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0021",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose you start with Beta(a,b), then observe n independent Bernoulli trials with x successes. A student proposes the posterior Beta(a+x\u22121,b+n\u2212x\u22121) because \u201cthe Beta density already has minus ones in the exponents, so you should subtract one when updating.\u201d Explain why this reasoning is incorrect and give the correct posterior.",
+      "expected_answer": "The minus ones are already part of the Beta parameterization of the prior density, where the kernel is \u03b8^(a\u22121)(1\u2212\u03b8)^(b\u22121). The likelihood contributes \u03b8^x(1\u2212\u03b8)^(n\u2212x). When multiplying them, exponents add, giving \u03b8^(a+x\u22121)(1\u2212\u03b8)^(b+n\u2212x\u22121). That matches a Beta distribution with parameters a+x and b+n\u2212x, not with an extra subtraction. So the correct posterior is Beta(a+x,b+n\u2212x).",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p35_2d17b1a76f",
+        "cs109_07_bernoulli_binomial_annotated_p20_b50cf6c86a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that the \u22121 terms belong to the prior exponents, not to an additional update step.",
+          "Correctly combines the prior and likelihood exponents.",
+          "States the correct posterior Beta(a+x,b+n\u2212x)."
+        ],
+        "partial_credit": [
+          "Gives the correct posterior but weakly explains the exponent issue.",
+          "Explains exponent addition but makes notation slightly inconsistent."
+        ],
+        "common_mistakes": [
+          "Subtracting 1 from the counts during updating.",
+          "Confusing Beta parameters with exponents directly."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you verify your formula by checking the special case of a Beta(1,1) prior?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the likelihood kernel for x successes in n Bernoulli trials?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Subtracting 1 from the counts during updating. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0022",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Imagine two analysts are using Beta-Binomial updating on the same sequence of data. Analyst 1 reports only posterior means, while Analyst 2 also emphasizes how concentrated the posterior is. Explain why Analyst 2 is giving a more complete Bayesian summary, using Beta priors as your language.",
+      "expected_answer": "A posterior mean gives only the center of the posterior belief about \u03b8, but a Beta posterior also carries information about uncertainty through its spread or concentration. Two Beta distributions can have similar means but very different parameter sizes, like Beta(5,2) versus Beta(81,21), so they imply very different certainty and very different sensitivity to future data. A complete Bayesian summary should therefore mention not just where the posterior is centered, but also how strongly concentrated it is, because decisions may depend on uncertainty as well as point estimate.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p39_25295a92ff",
+        "cs109_21_beta_annotated_p40_c62ffaf649",
+        "cs109_22_map_annotated_p13_ec22e865fc"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that mean captures center but not uncertainty.",
+          "Uses Beta examples or parameter-size reasoning to illustrate differing concentration.",
+          "Connects concentration to strength of belief or decision-making."
+        ],
+        "partial_credit": [
+          "Says uncertainty matters but does not tie it specifically to Beta parameters.",
+          "Mentions concentration without giving a concrete comparison."
+        ],
+        "common_mistakes": [
+          "Treating posterior mean as a complete description of Bayesian belief.",
+          "Ignoring the role of parameter magnitude in concentration."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you name two Beta posteriors that might have similar means but clearly different strengths?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If two posteriors have the same mean, do they necessarily express the same level of certainty?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from beta distribution; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Treating posterior mean as a complete description of Bayesian belief. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0023",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A startup is testing a new signup flow. Let \u03b8 be the probability that a visitor converts. Before collecting data, the product manager says, \"I want a prior that reflects a 70% conversion belief, but only as strongly as if we had previously seen 8 imaginary visitors.\" Explain how you would choose a Beta prior, then suppose the team observes 9 conversions and 6 non-conversions. State the posterior and interpret what changed.",
+      "expected_answer": "A Beta(a,b) prior can be interpreted as a\u22121 imaginary successes and b\u22121 imaginary failures, for a total of a+b\u22122 imaginary trials. To encode a prior mean-like belief of 70% with strength 8, we want 0.7\u00d78 = 5.6 imaginary successes and 2.4 imaginary failures; since the course context emphasizes integer parameters, a clean nearby choice is 6 successes and 2 failures, giving prior Beta(7,3). After observing 9 real successes and 6 real failures, conjugacy says we add successes and failures to the parameters, so the posterior is Beta(16,9). The interpretation is that the data pulled the prior belief downward from a strong belief near 0.7 toward a lower conversion rate, while the prior still contributes pseudo-counts.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p36_5a0c1842e3",
+        "cs109_22_map_annotated_p13_ec22e865fc"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains the pseudo-count interpretation a\u22121 and b\u22121 clearly.",
+          "Chooses a reasonable Beta prior consistent with 70% and strength 8, ideally Beta(7,3) or explicitly discusses rounding/integer approximation.",
+          "Correctly updates to posterior by adding observed successes and failures.",
+          "Interprets posterior as a compromise between prior belief and observed data."
+        ],
+        "partial_credit": [
+          "Gets the update rule right but is vague on how the prior was chosen.",
+          "Identifies pseudo-count idea but mixes up whether to add 1 when converting counts to Beta parameters.",
+          "Chooses a close prior with correct reasoning even if numbers are slightly off due to rounding."
+        ],
+        "common_mistakes": [
+          "Using Beta(5.6,2.4) without acknowledging the integer-parameter convention in the provided context.",
+          "Forgetting the minus-1 interpretation and using Beta(6,2) directly as 6 successes and 2 failures.",
+          "Updating to Beta(7+9,3+6) but being unable to explain why that update is justified."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If instead the manager wanted the same 70% prior belief but much weaker confidence, how would you change the hyperparameters while keeping the center roughly the same?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you restate what a\u22121 and b\u22121 represent in the pseudo-count interpretation, and then rebuild the prior from that?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using Beta(5.6,2.4) without acknowledging the integer-parameter convention in the provided context. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0024",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A classmate says: \"If the medicine is believed to work 80% of the time, the prior must be Beta(80,20), because those parameters literally mean 80 successes and 20 failures.\" Critique this statement carefully. Use the pseudo-trial interpretation from class, and explain why more than one prior could reasonably encode '80% belief.'",
+      "expected_answer": "The statement is too rigid and is slightly off under the course's pseudo-count interpretation. For Beta(a,b), the interpretation given is a\u22121 prior successes and b\u22121 prior failures, so Beta(80,20) corresponds to 79 successes and 19 failures, not 80 and 20. If we want exactly 80 out of 100 imaginary trials, then Beta(81,21) matches that interpretation. Also, 'believed to work 80% of the time' does not uniquely determine the prior, because it specifies a center but not the strength of belief. For example, Beta(5,2) has mean centered near 0.714 and mode 0.8, while Beta(81,21) encodes a much stronger prior concentrated near 0.8. So different Beta priors can represent similar directional beliefs but with different confidence.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p39_25295a92ff",
+        "cs109_21_beta_annotated_p40_c62ffaf649",
+        "cs109_22_map_annotated_p13_ec22e865fc"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explicitly identifies the a\u22121, b\u22121 pseudo-count interpretation.",
+          "Explains why Beta(80,20) is not literally 80 prior successes and 20 prior failures in this framing.",
+          "States that multiple priors can encode an 80% belief because prior strength is separate from central tendency.",
+          "Gives at least one valid alternative such as Beta(81,21) or discusses weaker/stronger alternatives."
+        ],
+        "partial_credit": [
+          "Notices that there is an off-by-one issue but does not clearly explain the interpretation.",
+          "Says multiple priors are possible but does not connect that to prior strength.",
+          "Mentions Beta(81,21) but cannot explain why it is preferable under the given interpretation."
+        ],
+        "common_mistakes": [
+          "Claiming Beta(80,20) is uniquely correct.",
+          "Confusing mode with mean without saying so.",
+          "Assuming any prior with mean 0.8 is equivalent regardless of concentration."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the posterior differ qualitatively after 14 successes and 6 failures if you used Beta(81,21) versus a much weaker prior like Beta(5,2)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What extra information, besides the center near 0.8, is needed to determine a unique Beta prior?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from beta distribution.",
+        "Watch out for this common trap: Claiming Beta(80,20) is uniquely correct. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0025",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose \u03b8 has prior Beta(a,b), and then you run n independent Bernoulli trials with x successes and n\u2212x failures. Without doing any normalization integrals, derive the posterior kernel aloud from Bayes' rule and explain exactly where conjugacy appears. Your answer should make clear which terms are treated as constants in \u03b8.",
+      "expected_answer": "Start with Bayes' rule: p(\u03b8|x) is proportional to p(x|\u03b8)p(\u03b8). For n Bernoulli trials summarized by x successes, the likelihood is proportional to \u03b8^x(1\u2212\u03b8)^(n\u2212x), ignoring the binomial coefficient because it does not depend on \u03b8. The Beta(a,b) prior has density proportional to \u03b8^(a\u22121)(1\u2212\u03b8)^(b\u22121), ignoring the Beta-function normalizing constant for the same reason. Multiplying gives p(\u03b8|x) proportional to \u03b8^(x+a\u22121)(1\u2212\u03b8)^(n\u2212x+b\u22121), which is the kernel of a Beta(a+x, b+n\u2212x) distribution. Conjugacy appears because the posterior has the same functional family as the prior: powers of \u03b8 and 1\u2212\u03b8 with updated exponents.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p35_2d17b1a76f",
+        "cs109_21_beta_annotated_p34_ef1f381b2e",
+        "cs109_07_bernoulli_binomial_annotated_p20_b50cf6c86a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes posterior as proportional to likelihood times prior.",
+          "Uses the binomial/Bernoulli likelihood kernel \u03b8^x(1\u2212\u03b8)^(n\u2212x).",
+          "Uses the Beta prior kernel \u03b8^(a\u22121)(1\u2212\u03b8)^(b\u22121).",
+          "Combines exponents correctly to get Beta(a+x,b+n\u2212x).",
+          "Explains that constants not depending on \u03b8 are absorbed into normalization."
+        ],
+        "partial_credit": [
+          "Gets the final posterior parameters right but provides weak justification.",
+          "Shows the proportionality argument but mixes x and n\u2212x notation slightly.",
+          "Recognizes conjugacy but does not explicitly identify which terms are constants in \u03b8."
+        ],
+        "common_mistakes": [
+          "Trying to keep the binomial coefficient as if it affects the posterior shape in \u03b8.",
+          "Updating with Beta(a+n,b+x) or other parameter swaps.",
+          "Forgetting the prior exponents are a\u22121 and b\u22121, not a and b."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If you observed all failures, so x=0, what would the posterior be and how would you interpret it?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which pieces of the likelihood depend on \u03b8, and which do not?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Trying to keep the binomial coefficient as if it affects the posterior shape in \u03b8. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0026",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Two analysts observe the same data: 12 coin flips with 9 heads and 3 tails. Analyst A uses a uniform prior Beta(1,1). Analyst B uses a prior centered at fairness with pseudo-count strength \u03b1 on both heads and tails, as in Beta(\u03b1+1, \u03b1+1). Compare their posteriors conceptually, and explain what happens as \u03b1 becomes very large. Do not just state formulas; interpret the effect of prior strength relative to sample size.",
+      "expected_answer": "With the uniform prior Beta(1,1), the posterior is driven almost entirely by the observed data, giving Beta(10,4). With the symmetric fairness prior Beta(\u03b1+1,\u03b1+1), the posterior becomes Beta(\u03b1+10, \u03b1+4), so it still leans toward fairness because the prior contributes \u03b1 pseudo-heads and \u03b1 pseudo-tails. As \u03b1 grows, the prior becomes much stronger relative to only 12 observed flips, so the posterior gets pulled closer to 0.5 and becomes less sensitive to the 9/12 empirical rate. In the limit of very large \u03b1, the data have little effect compared with the prior, so the posterior concentrates near fairness. The key idea is that Beta hyperparameters act like prior sample size, and posterior belief balances prior evidence against actual evidence.",
+      "source_chunk_ids": [
+        "cs109_07_section_soln_sec1_part1_94bd466144",
+        "cs109_21_beta_annotated_p36_5a0c1842e3",
+        "cs109_22_map_annotated_p13_ec22e865fc"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly states or describes both posteriors.",
+          "Explains symmetric prior as encoding belief in fairness with strength \u03b1 on each side.",
+          "Clearly compares influence of prior versus data.",
+          "Correctly describes the large-\u03b1 limiting behavior as prior domination toward 0.5."
+        ],
+        "partial_credit": [
+          "Knows the update formulas but gives little interpretation.",
+          "Explains that larger \u03b1 means stronger prior but does not connect it to the sample size of 12.",
+          "Understands fairness prior qualitatively even if one posterior parameter is off by 1."
+        ],
+        "common_mistakes": [
+          "Saying a larger \u03b1 makes the posterior more spread out rather than more concentrated.",
+          "Claiming both analysts must reach the same posterior because they saw the same data.",
+          "Treating Beta(\u03b1+1,\u03b1+1) as \u03b1 total pseudo-trials instead of 2\u03b1."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give a practical rule of thumb for when the data will overwhelm the prior in this Beta-Bernoulli setting?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "How many pseudo-heads and pseudo-tails are encoded by Beta(\u03b1+1,\u03b1+1) under the class interpretation?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from beta distribution; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying a larger \u03b1 makes the posterior more spread out rather than more concentrated. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_beta_distribution_0027",
+      "course": "CS109",
+      "topic_id": "beta_distribution",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "An election forecaster wants to model a candidate's two-party vote share in a state using a Beta distribution. Defend why Beta is a sensible choice in that setting, then identify one important limitation of the model and explain how that limitation could matter when communicating predictions to the public.",
+      "expected_answer": "Beta is sensible because vote share is a continuous proportion between 0 and 1, which matches the support of the Beta distribution. It also naturally incorporates uncertainty and can be updated with new polling data through a prior-posterior framework; in a two-party setting, support for the candidate versus not-support can be summarized in a success/failure way. A key limitation is that Beta is fundamentally a one-dimensional success/failure model, so it is less appropriate in multiparty elections where vote share must be split among more than two candidates. Another practical limitation is that the prior can dominate in thinly polled states or early in the race, meaning the forecast may reflect modeling assumptions as much as current data. When communicating to the public, forecasters should emphasize uncertainty, data sparsity, and the assumptions behind the prior, rather than presenting the forecast as a precise factual probability detached from modeling choices.",
+      "source_chunk_ids": [
+        "cs109_08_section_soln_sec1_part3_a75edc0065"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains the support match: Beta models values in [0,1].",
+          "Connects Beta to uncertainty and Bayesian updating from prior plus polling data.",
+          "Identifies at least one substantive limitation such as multiparty inadequacy or prior dominance in sparse-data settings.",
+          "Explains why that limitation matters for interpretation or public communication."
+        ],
+        "partial_credit": [
+          "States that Beta models percentages but does not discuss updating or uncertainty.",
+          "Names a limitation but does not explain its real-world consequence.",
+          "Gives a communication concern without tying it to a technical modeling issue."
+        ],
+        "common_mistakes": [
+          "Saying Beta is appropriate for any election without qualification.",
+          "Ignoring that two-party framing is what makes success/failure natural.",
+          "Treating forecast output as objective truth rather than model-based uncertainty."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If there were three serious candidates instead of two, what feature of the Beta framework would break first?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What property of vote share makes the support of the Beta distribution appealing here?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying Beta is appropriate for any election without qualification. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    }
+  ]
+}

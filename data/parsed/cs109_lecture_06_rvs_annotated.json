@@ -1,0 +1,206 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/06_rvs_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/06_rvs_annotated.pdf",
+  "sha256": "0099ea2d0317deb19cb97049cd02713ec6eef7af4fd40c88f42c3f168984f6e7",
+  "title_guess": "06 rvs annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "06: Random Variables\nJerry Cain\nApril 12th, 2024 \n1\nLecture Discussion on Ed",
+      "char_count": 76
+    },
+    {
+      "page_index": 1,
+      "text": "Conditional \nIndependence\n2",
+      "char_count": 27
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional Paradigm\nFor any events A, B, and E, you can condition consistently on E,\nand all formulas still hold:\nAxiom 1  \n \n \n \n \n 0 ≤𝑃𝐴𝐸≤1\nCorollary 1 (complement)  \n 𝑃𝐴𝐸= 1 −𝑃𝐴!|𝐸\nTransitivity \n \n \n \n \n 𝑃𝐴𝐵𝐸= 𝑃(𝐵𝐴|𝐸)\nChain Rule  \n \n \n \n 𝑃𝐴𝐵𝐸= 𝑃(𝐵|𝐸)𝑃𝐴𝐵𝐸\nBayes’ Theorem  \n \n \n \n3\n𝑃𝐴𝐵𝐸= 𝑃𝐵𝐴𝐸𝑃𝐴|𝐸\n𝑃(𝐵|𝐸)\n‘s theorem?",
+      "char_count": 390
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional Independence\n4\nTwo events 𝐴 and 𝐵 are defined as conditionally independent given 𝐸 if:\n𝑃𝐴𝐵|𝐸= 𝑃𝐴|𝐸𝑃(𝐵|𝐸)\nAn equivalent definition:\nA.  𝑃𝐴𝐵= 𝑃𝐴\nB.  𝑃𝐴𝐵𝐸= 𝑃𝐴\nC.  𝑃𝐴𝐵𝐸= 𝑃𝐴|𝐸\n𝑃𝐸|𝐹= 𝑃(𝐸)\n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹)\nIndependent\nevents 𝐸 and 𝐹",
+      "char_count": 305
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional Independence\n5\nTwo events 𝐴 and 𝐵 are defined as conditionally independent given 𝐸 if:\n𝑃𝐴𝐵|𝐸= 𝑃𝐴|𝐸𝑃(𝐵|𝐸)\nAn equivalent definition:\nA.  𝑃𝐴𝐵= 𝑃𝐴\nB.  𝑃𝐴𝐵𝐸= 𝑃𝐴\nC.  𝑃𝐴𝐵𝐸= 𝑃𝐴|𝐸\n𝑃𝐸|𝐹= 𝑃(𝐸)\n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹)\nIndependent\nevents 𝐸 and 𝐹\nE is the \"new sample space\", \nso left and right side must \nboth be conditioned on E.",
+      "char_count": 390
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNetflix and Condition\nLet 𝐸 = a user watches Life is Beautiful.\nLet 𝐹 = a user watches Amelie.\nWhat is 𝑃𝐸?\n𝑃𝐸≈# people who have watched movie\n# people on Netflix\n=\n$%,'(),'($\n*%,+'(,$'( ≈0.20\nWhat is the probability that a user watches\nLife is Beautiful, given they watched Amelie?\n \n \n𝑃𝐸|𝐹= \n \n6\n𝑃𝐸𝐹\n𝑃(𝐹) = # people who have watched both\n# people who have watched Amelie ≈0.42\nReview",
+      "char_count": 457
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNetflix and Condition\nLet 𝐸 be the event that a user watches the given movie.\nLet 𝐹 be the event that the same user watches Amelie.\n7\n𝑃𝐸= 0.19\n𝑃𝐸= 0.32\n𝑃𝐸= 0.20\n𝑃𝐸= 0.20\n𝑃𝐸= 0.09\n𝑃𝐸|𝐹= 0.14\n𝑃𝐸|𝐹= 0.35\n𝑃𝐸|𝐹= 0.20\n𝑃𝐸|𝐹= 0.72\n𝑃𝐸|𝐹= 0.42\nIndependent!\nReview",
+      "char_count": 326
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhat if 𝐸$𝐸'𝐸(𝐸) are not independent? (e.g., all international emotional comedies)\nWatched:\nWill they \nwatch?\n𝐸(\n𝐸)\n𝐸*\n𝐸+\nNetflix and Condition (on many movies)\n8\n𝑃𝐸)|𝐸$𝐸'𝐸( =\nWe need to keep track of an exponential number of movie-watching statistics\n𝑃𝐸$𝐸'𝐸(𝐸)\n𝑃𝐸$𝐸'𝐸(\n=\n# people who have watched all 4\n# people who have watched those 3",
+      "char_count": 410
+    },
+    {
+      "page_index": 8,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNetflix and Condition (on many movies)\nAssume: 𝐸$𝐸'𝐸(𝐸) are conditionally independent given 𝐾\n9\nWatched:\nWill they \nwatch?\n𝐸(\n𝐸)\n𝐸*\n𝐸+\n𝐾: likes international emotional comedies\n𝑃𝐸)|𝐸$𝐸'𝐸(𝐾= 𝑃𝐸)|𝐾\n𝑃𝐸)|𝐸$𝐸'𝐸( = 𝑃𝐸$𝐸'𝐸(𝐸)\n𝑃𝐸$𝐸'𝐸(\nAn easier probability to store and compute!",
+      "char_count": 343
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDependent events can be conditionally independent.\n(And vice versa: Independent events can be conditionally dependent.)\nNetflix and Condition\n10\n𝐸(\n𝐸)\n𝐸*\n𝐸+\n𝐾: likes international emotional comedies\n𝐸$𝐸'𝐸(𝐸) are\ndependent\n𝐸$𝐸'𝐸(𝐸) are\nconditionally independent \ngiven 𝐾\nChallenge: How \ndo we determine \n𝐾? Stay tuned in \n6 weeks’ time!",
+      "char_count": 408
+    },
+    {
+      "page_index": 10,
+      "text": "Random \nVariables\n11",
+      "char_count": 20
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRandom variables are like typed \nvariables (with uncertainty)\nint a = 5;\ndouble b = 4.2;\nbit c = 1;\n𝐴 is the number of Pokemon we \nbring to our future battle.\n𝐴∈1, 2, … , 6\n𝐵 is the amount of money we get \nafter we win a battle.\n𝐵∈ℝ,\n𝐶 is 1 if we successfully beat the \nElite Four. 0 otherwise.\n𝐶∈{0,1}\n12\nRandom variables are like typed variables\ntype\nname\nvalue\nRandom \nvariables\nCS variables",
+      "char_count": 467
+    },
+    {
+      "page_index": 12,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRandom Variable\nA random variable is a real-valued function defined on a sample space.\n13\nExperiment\n𝑋= 𝑘\n2. What is the event (set of outcomes) where 𝑋= 2?\nOutcome\nExample:\n 3 coins are flipped.\n Let 𝑋= # of heads.\n 𝑋 is a random variable.\n1. What is the value of 𝑋 for the outcomes:\n• (T,T,T)?\n• (H,H,T)?\n3. What is 𝑃𝑋= 2 ?",
+      "char_count": 398
+    },
+    {
+      "page_index": 13,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRandom Variable\nA random variable is a real-valued function defined on a sample space.\n14\nExperiment\n𝑋= 𝑘\n2. What is the event (set of outcomes) where 𝑋= 2?\nOutcome\n1. What is the value of 𝑋 for the outcomes:\n• (T,T,T)?\n• (H,H,T)?\n3. What is 𝑃𝑋= 2 ?\nExample:\n 3 coins are flipped.\n Let 𝑋= # of heads.\n 𝑋 is a random variable.",
+      "char_count": 398
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRandom variables are NOT events!\nIt is confusing that random variables and events use the same notation.\n• Random variables ≠ events.\n• We can define an event to be a particular assignment of a random \nvariable, or more generally, in terms of a random variable.\n15\nevent\n𝑋= 2\nprobability\n(number b/t 0 and 1)\n𝑃(𝑋= 2)\nExample:\n 3 coins are flipped.\n Let 𝑋= # of heads.\n 𝑋 is a random variable.",
+      "char_count": 465
+    },
+    {
+      "page_index": 15,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRandom variables are NOT events!\nIt is confusing that random variables and events use the same notation.\n• Random variables ≠ events.\n• We can define an event to be a particular assignment of a random \nvariable, or more generally, in terms of a random variable.\n16\nExample:\n 3 coins are flipped.\n Let 𝑋= # of heads.\n 𝑋 is a random variable.\n𝑋= 𝟏\n{(H, T, T), (T, H, T), \n(T, T, H)}\n3/8\n𝑋= 𝟐\n{(H, H, T), (H, T, H), \n(T, H, H)}\n3/8\n𝑋= 𝟑\n{(H, H, H)}\n1/8\n𝑋≥4\n{ }\n0\n𝑋= 𝑥\nSet of outcomes\n𝑃𝑋= 𝑘\n𝑋= 𝟎\n{(T, T, T)}\n1/8",
+      "char_count": 580
+    },
+    {
+      "page_index": 16,
+      "text": "PMF/CDF\n17",
+      "char_count": 10
+    },
+    {
+      "page_index": 17,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSo far\n3 coins are flipped. Let 𝑋= # of heads. 𝑋 is a random variable.\n18\nExperiment\n𝑋= ___\nOutcome\n(flip __ heads)\n𝑃𝑋= ___ \nCan we get a \"shorthand\" for \nthis last step?\nSeems like it might be useful!",
+      "char_count": 274
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProbability Mass Function\n3 coins are flipped. Let 𝑋= # of heads. 𝑋 is a random variable.\n19\n𝑃(𝑋= 𝑘)\nreturn value/output\nnumber between\n0 and 1\nparameter/input 𝑘\nA function on 𝑘 \nwith range [0,1]\nWhat would be a useful function to define?\nThe probability of the event that a random variable 𝑋 takes on the value 𝑘!\nFor discrete random variables, this is a probability mass function.",
+      "char_count": 455
+    },
+    {
+      "page_index": 19,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProbability Mass Function\n3 coins are flipped. Let 𝑋= # of heads. 𝑋 is a random variable.\n20\n𝑃(𝑋= 2)\n2\n0.375\nreturn value/output:\nprobability of the event\n𝑋= 2\nparameter/input 𝑘:\na value of 𝑋\nA function on 𝑘 \nwith range [0,1]\n def prob_x(n, k, p):\n   n_ways = math.comb(n, k)\n   p_way = p ** k * (1 – p) ** (n - k)\n   return n_ways * p_way\nprobability mass function",
+      "char_count": 438
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nA random variable 𝑋 is discrete if it can take on countably many values.\n• 𝑋= 𝑥, where 𝑥∈𝑥$, 𝑥', 𝑥(, …\nThe probability mass function (PMF) of a discrete random variable is\n𝑃𝑋= 𝑥 \n• Probabilities must sum to 1: \nThis last point is a good \nway to verify any PMF \nyou create is valid\nDiscrete RVs and Probability Mass Functions\n21\n>\n89$\n:\n𝑝𝑥8 = 1\nshorthand notation\n= 𝑝𝑥= 𝑝4(𝑥)",
+      "char_count": 447
+    },
+    {
+      "page_index": 21,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPMF for a single 6-sided die\nLet 𝑋 be a random variable that \nrepresents the result of a single\ndice roll.\n• Support of 𝑋 : 1, 2, 3, 4, 5, 6\n• Therefore, 𝑋 is a discrete\nrandom variable.\n• PMF of X:\n𝑝𝑥= B 1/6 𝑥∈{1, … , 6}\n0 \notherwise\n22\n1/6\n1\n2\n3\n4\n5\n6\n0\n𝑋= 𝑥\n𝑃𝑋= 𝑥",
+      "char_count": 339
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCumulative Distribution Functions\nFor a random variable 𝑋, the cumulative distribution function (CDF) is \ndefined as\n𝐹𝑎= 𝐹? 𝑎= 𝑃𝑋≤𝑎, where −∞< 𝑎< ∞\nFor a discrete RV 𝑋, the CDF is:\n𝐹𝑎= 𝑃𝑋≤𝑎=\n>\nall @AB\n𝑝(𝑥)\n23",
+      "char_count": 281
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLet 𝑋 be a random variable that \nrepresents the result of a single \ndice roll.\n24\n1/6\n1\n2\n3\n4\n5\n6\n0\n𝑋= 𝑥\n𝑃𝑋= 𝑥\nCDFs as graphs\nCDF (cumulative \ndistribution function) 𝐹𝑎= 𝑃𝑋≤𝑎\n𝐹𝑎\n𝑋= 𝑥\n5/6\n4/6\n3/6\n2/6\n1/6\nPMF of 𝑋\nCDF of 𝑋\n𝑃𝑋≤0 = 0\n𝑃𝑋≤6 = 1",
+      "char_count": 311
+    },
+    {
+      "page_index": 24,
+      "text": "Expectation\n25",
+      "char_count": 14
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDiscrete random variables\n26\nDiscrete \nRandom \nVariable, 𝑋\nExperiment \noutcomes\nPMF\n𝑃𝑋= 𝑥= 𝑝(𝑥)\nDefinition\nProperties\nSupport\nCDF 𝐹𝑥\nWithout performing the experiment:\n• The support tells us which values \nour random variable might produce\n• Next up: How do we report the \n\"average\" value?",
+      "char_count": 361
+    },
+    {
+      "page_index": 26,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nExpectation\nThe expectation of a discrete random variable 𝑋 is defined as:\n𝐸𝑋=\n6\n6:8 6 9:\n𝑝𝑥⋅𝑥\n• Note: sum over all values of 𝑋= 𝑥 that have non-zero probability.\n• Other names: mean, expected value, weighted average,\n \n \n \ncenter of mass, first moment\n27",
+      "char_count": 328
+    },
+    {
+      "page_index": 27,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nExpectation of a die roll\nWhat is the expected value of a 6-sided die roll?\n28\nExpectation \nof 𝑋\n𝐸𝑋=\nE\n!:# ! $%\n𝑝𝑥⋅𝑥\n1. Define random \nvariables\n2. Solve\n𝑃𝑋= 𝑥= B 1/6 𝑥∈{1, … , 6}\n0 \notherwise\n𝑋 = RV for value of roll\n𝐸𝑋= 1\n1\n6 + 2 1\n6 + 3 1\n6 + 4 1\n6 + 5 1\n6 + 6 1\n6 = 7\n2",
+      "char_count": 346
+    },
+    {
+      "page_index": 28,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nImportant properties of expectation\n1. Linearity:\n𝐸𝑎𝑋+ 𝑏= 𝑎𝐸𝑋+ 𝑏\n2. Expectation of a sum = sum of expectation:\n𝐸𝑋+ 𝑌= 𝐸𝑋+ 𝐸𝑌\n3. Unconscious statistician:\n𝐸𝑔𝑋\n= )\n$\n𝑔𝑥𝑝(𝑥)\n29\n• Let 𝑋= 6-sided dice roll,\n      𝑌= 2𝑋−1.\n• 𝐸𝑋= 3.5\n• 𝐸𝑌= 6\nSum of two dice rolls:\n• Let 𝑋= roll of die 1\n      𝑌= roll of die 2\n• 𝐸𝑋+ 𝑌= 3.5 + 3.5 = 7\nThese properties let you avoid \ndefining difficult PMFs.",
+      "char_count": 456
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLinearity of Expectation proof\n𝐸𝑎𝑋+ 𝑏= 𝑎𝐸𝑋+ 𝑏\nProof:\n𝐸𝑎𝑋+ 𝑏= >\n@\n𝑎𝑥+ 𝑏𝑝𝑥= >\n@\n𝑎𝑥𝑝𝑥+ 𝑏𝑝𝑥\n = 𝑎>\n@\n𝑥𝑝(𝑥) + 𝑏>\n@\n𝑝𝑥 \n= 𝑎 𝐸𝑋+ 𝑏⋅1 \n30\n𝐸𝑋=\n$\n!:# ! $%\n𝑝𝑥⋅𝑥",
+      "char_count": 221
+    },
+    {
+      "page_index": 30,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nExpectation of Sum intuition\n𝐸𝑋+ 𝑌= 𝐸𝑋+ 𝐸𝑌\n31\nwe’ll prove this in a \nfew lectures\n𝑋\n𝑌\n𝑋+ 𝑌\n3\n6\n9\n2\n4\n6\n6\n12\n18\n10\n20\n30\n-1\n-2\n-3\n0\n0\n0\n8\n16\n24\n(\n/ (28)\nAverage:\n1\n𝑛E\n&'(\n)\n𝑥&\n1\n𝑛E\n&'(\n)\n𝑦&\n1\n𝑛E\n&'(\n)\n𝑥& + 𝑦&\nIntuition \nfor now:\n+\n=\n+\n=\n(\n/ (56)\n(\n/ (84)\n𝐸𝑋=\n$\n!:# ! $%\n𝑝𝑥⋅𝑥",
+      "char_count": 346
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLOTUS proof\n32\nLet 𝑌= 𝑔(𝑋), where 𝑔 is a real-valued function.\n𝐸𝑔𝑋\n= 𝐸𝑌=  >\nK\n𝑦K𝑝(𝑦K)\n= ?\n0\n𝑦0\n?\n1:3 4! 5 7\"\n𝑝(𝑥1)\n= ?\n0\n?\n1:3 4! 5 7\"\n𝑦0 𝑝(𝑥1)\n= ?\n0\n?\n1:3 4! 5 7\"\n𝑔(𝑥1) 𝑝(𝑥1)\n= >\n8\n𝑔(𝑥8) 𝑝(𝑥8)\nExpectation \nof 𝑔𝑋\n𝐸𝑔𝑋\n= E\n!\n𝑔𝑥𝑝(𝑥)\nFor you to review\nso that you can\nsleep tonight!",
+      "char_count": 351
+    },
+    {
+      "page_index": 32,
+      "text": "Exercises\n33",
+      "char_count": 12
+    },
+    {
+      "page_index": 33,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEvent-driven probability\n• Relate only binary events\n◦Either something happens (𝐸)\n◦or it doesn’t happen (𝐸*)\n• Can only report probability\n• Lots of combinatorics\nRandom Variables\n• Link multiple similar events \ntogether (𝑋= 1, 𝑋= 2, … , 𝑋= 6)\n• Can compute statistics: report the \n\"average\" outcome\n• Once we have the PMF (for \ndiscrete RVs), we can do regular \nmath\n34\nA Whole New World with Random Variables",
+      "char_count": 484
+    },
+    {
+      "page_index": 34,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nExample random variable\nConsider 5 flips of a coin which comes up heads with probability 𝑝.\nEach coin flip is an independent trial. Let 𝒀= # of heads on 5 flips.\n1. What is the support of 𝑌? In other words, what are the values that 𝑌 can \ntake on with non-zero probability?\n2. Define the event 𝑌= 2. What is 𝑃𝑌= 2 ?\n3. What is the PMF of 𝑌? In other words, what\nis 𝑃𝑌= 𝑘, for 𝑘 in the support of 𝑌?\n35\n🤔",
+      "char_count": 476
+    },
+    {
+      "page_index": 35,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nExample random variable\nConsider 5 flips of a coin which comes up heads with probability 𝑝.\nEach coin flip is an independent trial. Let 𝒀= # of heads on 5 flips.\n1. What is the support of 𝑌? In other words, what are the values that 𝑌 can \ntake on with non-zero probability?\n2. Define the event 𝑌= 2. What is 𝑃𝑌= 2 ?\n3. What is the PMF of 𝑌? In other words, what\nis 𝑃𝑌= 𝑘, for 𝑘 in the support of 𝑌?\n36\n0, 1, 2, 3, 4, 5\n𝑃𝑌= 2 = 5\n2 𝑝' 1 −𝑝(\n𝑃𝑌= 𝑘=\n5\n𝑘𝑝O 1 −𝑝*PO",
+      "char_count": 533
+    },
+    {
+      "page_index": 36,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLying with statistics\nA school has 3 classes with 5, 10, and 150 students.\nWhat is the average class size?\n37\n1.  Interpretation #1\n•\nRandomly choose a class\nwith equal probability.\n•\n𝑋= size of chosen class\n𝐸𝑋= 5 1\n3 + 10 1\n3 + 150 1\n3\n= 165\n3\n= 55\n2.  Interpretation #2\n•\nRandomly choose a student\nwith equal probability.\n•\n𝑌= size of chosen class\n𝐸𝑌= 5\n5\n165 + 10\n10\n165 + 150 150\n165\n= 22635\n165\n≈137\nAverage student perception of class size\nWhat alumni relations usually reports",
+      "char_count": 556
+    },
+    {
+      "page_index": 37,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeing a statistician unconsciously\nLet 𝑋 be a discrete random variable.\n• 𝑃𝑋= 𝑥=\n$\n( for 𝑥∈{−1, 0, 1}\nLet 𝑌= |𝑋|. What is 𝐸𝑌?\n38\nExpectation \nof 𝑔𝑋\n𝐸𝑔𝑋\n= E\n!\n𝑔𝑥𝑝(𝑥)\nA.\n!\n\" ⋅1 +\n!\n\" ⋅0 +\n!\n\" ⋅−1 \n= 0\nB.  𝐸𝑌= 𝐸0  \n= 0\nC.\n!\n\" ⋅0 +\n#\n\" ⋅1 \n=\n#\n\"\nD.\n!\n\" ⋅−1 +\n!\n\" ⋅0 +\n!\n\" 1 =\n#\n\"\nE.  C and D",
+      "char_count": 360
+    },
+    {
+      "page_index": 38,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nA.\n!\n\" ⋅1 +\n!\n\" ⋅0 +\n!\n\" ⋅−1 \n= 0\nB.  𝐸𝑌= 𝐸0  \n= 0\nC.\n!\n\" ⋅0 +\n#\n\" ⋅1 \n=\n#\n\"\nD.\n!\n\" ⋅−1 +\n!\n\" ⋅0 +\n!\n\" 1 =\n#\n\"\nE.  C and D\nBeing a statistician unconsciously\nLet 𝑋 be a discrete random variable.\n• 𝑃𝑋= 𝑥=\n$\n( for 𝑥∈{−1, 0, 1}\nLet 𝑌= |𝑋|. What is 𝐸𝑌?\n39\nExpectation \nof 𝑔𝑋\n𝐸𝑔𝑋\n= E\n!\n𝑔𝑥𝑝(𝑥)\n𝐸𝑋 \n1.  Find PMF of 𝑌: 𝑝8 0 =\n(\n* , 𝑝8 1 =\n)\n* \n2.  Compute 𝐸[𝑌]\nUse LOTUS by using PMF of X:\n1.  𝑃𝑋= 𝑥⋅𝑥\n2.  Sum up\n𝐸𝐸𝑋\n❌\n❌",
+      "char_count": 485
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:57Z"
+}

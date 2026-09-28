@@ -1,0 +1,206 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/17_cont_joint_ii_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/17_cont_joint_ii_annotated.pdf",
+  "sha256": "971230e208ae1166f71e502172419b3298b212dc66165c13098fb3e046814c72",
+  "title_guess": "17 cont joint ii annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "17: Continuous Joint \nDistributions II\nJerry Cain\nMay 8th, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 90
+    },
+    {
+      "page_index": 1,
+      "text": "Convolution: \nSum of \nindependent \nUniform RVs\n2",
+      "char_count": 48
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nToday’s lecture\nTake what we’ve seen with discrete joint distributions…\n…and generalize to continuous joint distributions.\nFor the most part, this\nisn’t too bad. Examples:\nBut some concepts, while mathematically accessible given what we’ve \nlearned, are difficult to implement in practice.\nWe’ll focus on some of these today.\n3\nMarginal \ndistributions\n𝑓! 𝑎= $\n\"#\n#\n𝑓!,% 𝑎, 𝑦𝑑𝑦\nIndependent RVs\n𝑝!,% 𝑥, 𝑦= 𝑝! 𝑥𝑝% 𝑦\n𝑓!,% 𝑥, 𝑦= 𝑓! 𝑥𝑓% 𝑦\n𝑝! 𝑎= *\n&\n𝑝!,% 𝑎, 𝑦\nGoal of CS109 continuous joint \ndistributions unit: build \nmathematical maturity",
+      "char_count": 606
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDance, Dance, Convolution\n4\nthe convolution \nof 𝑝+ and 𝑝,\nRecall that for independent discrete random variables 𝑋 and 𝑌:\n𝑃𝑋+ 𝑌= 𝑛= '\n!\n𝑃𝑋= 𝑘𝑃𝑌= 𝑛−𝑘\nReview\n2\n3\n4\n5\n6\n7\n8\n9 10 11 12\n6/36\n0\n% + ' = )\n5/36\n4/36\n3/36\n2/36\n1/36\n. % + ' = )\n1\n2\n3\n4\n5\n6\n! = #\n$ ! = #\n1\n2\n3\n4\n5\n6\n! = #\n$ ! = #\n+\n=\nIndependent 𝑋, 𝑌",
+      "char_count": 379
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDance, Dance, Convolution\n5\nthe convolution \nof 𝑝+ and 𝑝,\nRecall that for independent discrete random variables 𝑋 and 𝑌:\n𝑃𝑋+ 𝑌= 𝑛= '\n!\n𝑃𝑋= 𝑘𝑃𝑌= 𝑛−𝑘\nthe convolution \nof 𝑓+ and 𝑓,\nFor independent continuous random variables 𝑋 and 𝑌:\n𝑓\"#$ 𝛼= ,\n%&\n&\n𝑓\" 𝑥𝑓$ 𝛼−𝑥𝑑𝑥\n0\n1/2\n%\n&!\"# %\n1/2\n1\n3/2\n2\n1\n0\n0\n1\n!\n\"! !\n1\n0\n1\n!\n\"! !\n1\n+\n=\n?\nIndependent 𝑋, 𝑌",
+      "char_count": 411
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0\n1\n!\n\"! !\n1\nSum of independent Uniforms\n6\n🤔\nIsn’t this just \none??\n𝑓+-, 𝛼= (\n./\n/\n𝑓+ 𝑥𝑓, 𝛼−𝑥𝑑𝑥\nLet 𝑋~Uni 0,1  and 𝑌~Uni 0,1  be independent RVs.\nWhat is the distribution of 𝑋+ 𝑌, 𝑓+-, 𝛼?\nNot so fast…\n𝑓, 𝑥",
+      "char_count": 278
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSum of independent Uniforms\n7\n𝑓+-, 𝛼= (\n./\n/\n𝑓+ 𝑥𝑓, 𝛼−𝑥𝑑𝑥\n0\n1\n𝑥\n𝑓+ 𝑥\n1\n𝑓+ 𝑥= 01 \nif 0 ≤𝑥≤1\n0 \notherwise\n𝑥\n𝑓, 𝛼−𝑥\n1\nLet 𝑋~Uni 0,1  and 𝑌~Uni 0,1  be independent RVs.\nWhat is the distribution of 𝑋+ 𝑌, 𝑓+-, 𝛼?\n𝑓, 𝛼−𝑥= 01 \nif 0 ≤𝛼−𝑥≤1\n0 \notherwise \n?\n= 01 \nif 𝛼−1 ≤𝑥≤𝛼\n0 \notherwise \n𝛼 is a constant \nin the integral \nw.r.t. 𝑥.",
+      "char_count": 395
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLet 𝑋~Uni 0,1  and 𝑌~Uni 0,1  be independent RVs.\nWhat is the distribution of 𝑋+ 𝑌, 𝑓+-, 𝛼?\n1.  𝛼≤0\nSum of independent Uniforms\n8\n𝑓!'% 𝛼= $\n\"#\n#\n𝑓! 𝑥𝑓% 𝛼−𝑥𝑑𝑥\n𝑋 and 𝑌\nindependent\n+ continuous\n𝑓! 𝛼−𝑥= .1 \nif 𝛼−1 ≤𝑥≤𝛼\n0 \notherwise \n0\n1\n𝑥\n1\n𝑓\" 𝑥= .1 \nif 0 ≤𝑥≤1\n0 \notherwise\n𝑓% 𝛼−𝑥\n𝑓! 𝑥\n0",
+      "char_count": 356
+    },
+    {
+      "page_index": 8,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0\n1\n𝑥\n1\nSum of independent Uniforms\n9\n𝑓!'% 𝛼= $\n\"#\n#\n𝑓! 𝑥𝑓% 𝛼−𝑥𝑑𝑥\n𝑋 and 𝑌\nindependent\n+ continuous\nLet 𝑋~Uni 0,1  and 𝑌~Uni 0,1  be independent RVs.\nWhat is the distribution of 𝑋+ 𝑌, 𝑓+-, 𝛼?\n1.  𝛼≤0\n2.  𝛼= 1/2\n𝑓! 𝛼−𝑥= .1 \nif 𝛼−1 ≤𝑥≤𝛼\n0 \notherwise \n𝑓\" 𝑥= .1 \nif 0 ≤𝑥≤1\n0 \notherwise\n𝑓% 𝛼−𝑥\n𝑓! 𝑥\n1/2\n0\nIntegral = area under the curve\nThis curve = product of 2 functions of 𝑥",
+      "char_count": 444
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSum of independent Uniforms\n10\n𝑓!'% 𝛼= $\n\"#\n#\n𝑓! 𝑥𝑓% 𝛼−𝑥𝑑𝑥\n𝑋 and 𝑌\nindependent\n+ continuous\nLet 𝑋~Uni 0,1  and 𝑌~Uni 0,1  be independent RVs.\nWhat is the distribution of 𝑋+ 𝑌, 𝑓+-, 𝛼?\n1.  𝛼≤0\n2.  𝛼= 1/2\n3.  𝛼= 1\n4.  𝛼= 3/2\n5.  𝛼≥2\n1/2\n0\n𝑓! 𝛼−𝑥= .1 \nif 𝛼−1 ≤𝑥≤𝛼\n0 \notherwise \n𝑓\" 𝑥= .1 \nif 0 ≤𝑥≤1\n0 \notherwise",
+      "char_count": 380
+    },
+    {
+      "page_index": 10,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0\n1\n!\n1\nSum of independent Uniforms\n11\n𝑓!'% 𝛼= $\n\"#\n#\n𝑓! 𝑥𝑓% 𝛼−𝑥𝑑𝑥\n𝑋 and 𝑌\nindependent\n+ continuous\nLet 𝑋~Uni 0,1  and 𝑌~Uni 0,1  be independent RVs.\nWhat is the distribution of 𝑋+ 𝑌, 𝑓+-, 𝛼?\n1.  𝛼≤0\n2.  𝛼= 1/2\n3.  𝛼= 1\n4.  𝛼= 3/2\n5.  𝛼≥2\n1/2\n1\n𝑓% 𝛼−𝑥\n𝑓! 𝑥\n0\n𝑓! 𝛼−𝑥= .1 \nif 𝛼−1 ≤𝑥≤𝛼\n0 \notherwise \n𝑓\" 𝑥= .1 \nif 0 ≤𝑥≤1\n0 \notherwise",
+      "char_count": 402
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0\n1\n!\n1\n𝑓% 𝛼−𝑥\n𝑓! 𝑥\nSum of independent Uniforms\n12\n𝑓!'% 𝛼= $\n\"#\n#\n𝑓! 𝑥𝑓% 𝛼−𝑥𝑑𝑥\n𝑋 and 𝑌\nindependent\n+ continuous\nLet 𝑋~Uni 0,1  and 𝑌~Uni 0,1  be independent RVs.\nWhat is the distribution of 𝑋+ 𝑌, 𝑓+-, 𝛼?\n1.  𝛼≤0\n2.  𝛼= 1/2\n3.  𝛼= 1\n4.  𝛼= 3/2\n5.  𝛼≥2\n1/2\n1\n1/2\n0\n𝑓! 𝛼−𝑥= .1 \nif 𝛼−1 ≤𝑥≤𝛼\n0 \notherwise \n𝑓\" 𝑥= .1 \nif 0 ≤𝑥≤1\n0 \notherwise",
+      "char_count": 406
+    },
+    {
+      "page_index": 12,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0\n1\n!\n1\nSum of independent Uniforms\n13\n𝑓!'% 𝛼= $\n\"#\n#\n𝑓! 𝑥𝑓% 𝛼−𝑥𝑑𝑥\n𝑋 and 𝑌\nindependent\n+ continuous\nLet 𝑋~Uni 0,1  and 𝑌~Uni 0,1  be independent RVs.\nWhat is the distribution of 𝑋+ 𝑌, 𝑓+-, 𝛼?\n1.  𝛼≤0\n2.  𝛼= 1/2\n3.  𝛼= 1\n4.  𝛼= 3/2\n5.  𝛼≥2\n0\n1/2\n1\n1/2\n0\n𝑓! 𝛼−𝑥= .1 \nif 𝛼−1 ≤𝑥≤𝛼\n0 \notherwise \n𝑓\" 𝑥= .1 \nif 0 ≤𝑥≤1\n0 \notherwise\n𝑓% 𝛼−𝑥\n𝑓! 𝑥",
+      "char_count": 408
+    },
+    {
+      "page_index": 13,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSum of independent Uniforms\n14\n𝑓!'% 𝛼= $\n\"#\n#\n𝑓! 𝑥𝑓% 𝛼−𝑥𝑑𝑥\n𝑋 and 𝑌\nindependent\n+ continuous\nLet 𝑋~Uni 0,1  and 𝑌~Uni 0,1  be independent RVs.\nWhat is the distribution of 𝑋+ 𝑌, 𝑓+-, 𝛼?\n1.  𝛼≤0\n2.  𝛼= 1/2\n3.  𝛼= 1\n4.  𝛼= 3/2\n5.  𝛼≥2\n0\n1/2\n1\n1/2\n0\n𝑓+-, 𝛼= 3\n𝛼\n0 ≤𝛼≤1\n2 −𝛼\n1 ≤𝛼≤2\n0\notherwise\n0\n1/2\n𝛼\n𝑓\"#! 𝛼\n1/2\n1\n3/2\n2\n1\n0",
+      "char_count": 391
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDance, Dance, Convolution Extreme\n15\n2\n3\n4\n5\n6\n7\n8\n9 10 11 12\n6/36\n0\n% + ' = )\n5/36\n4/36\n3/36\n2/36\n1/36\n. % + ' = )\n1\n2\n3\n4\n5\n6\n! = #\n$ ! = #\n1\n2\n3\n4\n5\n6\n! = #\n$ ! = #\n+\n=\n0\n1/2\n%\n&!\"# %\n1/2\n1\n3/2\n2\n1\n0\n0\n1\n!\n\"! !\n1\n0\n1\n!\n\"! !\n1\n+\n=\nIndependent 𝑋, 𝑌\nIndependent 𝑋, 𝑌",
+      "char_count": 339
+    },
+    {
+      "page_index": 15,
+      "text": "Ratio of PDFs\n16",
+      "char_count": 16
+    },
+    {
+      "page_index": 16,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRelative probabilities of continuous random variables\nLet 𝑋= time to finish Problem Set 4.\nSuppose 𝑋~𝒩10, 2 .\nHow much more likely are you to \ncomplete in 10 hours than 5 hours?\n17\n𝑃𝑋= 10\n𝑃𝑋= 5\n=\nA. 0/0 = undefined\nB. 2\nC.\n4 56\n4 7\nD.\n4 8\n4 5\n5             10\n!\n\"(!)",
+      "char_count": 339
+    },
+    {
+      "page_index": 17,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRelative probabilities of continuous random variables\nLet 𝑋= time to finish problem set 4.\nSuppose 𝑋~𝒩10, 2 .\nHow much more likely are you to \ncomplete in 10 hours than 5 hours?\n18\n𝑃𝑋= 10\n𝑃𝑋= 5\n=\nA. 0/0 = undefined\nB. 2\nC.\n4 56\n4 7\nD.\n4 8\n4 5\n5             10\n!\n\"(!)",
+      "char_count": 339
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRatios of PDFs \nare meaningful!\nRelative probabilities of continuous random variables\n19\n𝑃𝑋= 𝑎= 𝑃𝑎−𝜀\n2 ≤𝑋≤𝑎+ 𝜀\n2\n𝑃𝑋= 10\n𝑃𝑋= 5\n= 𝑓10\n𝑓5\n𝑃𝑋= 𝑎\n𝑃𝑋= 𝑏= 𝜀𝑓𝑎\n𝜀𝑓𝑏= 𝑓𝑎\n𝑓𝑏\nTherefore\n= ?\n$%&\n'\n$#&\n'𝑓𝑥𝑑𝑥≈𝜀𝑓(𝑎)\n=\n1\n𝜎2𝜋𝑒\" )* \" + !\n,-!\n1\n𝜎2𝜋𝑒\n\" . \" + !\n,-!\n= 𝑒\" )* \")* !\n,⋅,\n𝑒\" . \" )* !\n,⋅,\n= \n𝑒(\n𝑒% ')\n*\n = 518\n5             10\n!\n\"(!)\nLet 𝑋= time to finish problem set 4.\nSuppose 𝑋~𝒩10, 2 .\nHow much more likely are you to \ncomplete in 10 hours than 5 hours?",
+      "char_count": 518
+    },
+    {
+      "page_index": 19,
+      "text": "Continuous \nconditional \ndistributions\n20",
+      "char_count": 41
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nContinuous conditional distributions\nFor continuous RVs 𝑋 and 𝑌, the conditional PDF of 𝑋 given 𝑌 is\n𝑓\"|$ 𝑥|𝑦= 𝑓\",$ 𝑥, 𝑦\n𝑓$ 𝑦\nIntuition:\nNote that conditional PDF 𝑓+|, is a \"true\" density: \n21\n𝑃𝑋= 𝑥𝑌= 𝑦= 𝑃𝑋= 𝑥, 𝑌= 𝑦\n𝑃𝑌= 𝑦\n𝑓+|, 𝑥𝑦𝜀+ = 𝑓+,, 𝑥, 𝑦𝜀+𝜀,\n𝑓, 𝑦𝜀,\n(\n./\n/\n𝑓+|, 𝑥|𝑦𝑑𝑥= (\n./\n/ 𝑓+,, 𝑥, 𝑦\n𝑓, 𝑦\n𝑑𝑥= 𝑓, 𝑦\n𝑓, 𝑦= 1\nwhere 𝑓! 𝑦> 0",
+      "char_count": 399
+    },
+    {
+      "page_index": 21,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhy sums of random variables?\nSometimes modeling and understanding a complex RV, 𝑋, is difficult.\nBut if we can decompose 𝑋 into the sum of simpler, independent RVs,\n• We can compute distributions on 𝑋.\n• We can better understand how 𝑋 changes as its constituent RVs change.\n22\nWe’re covering the \nreverse direction for \nnow; the forward \ndirection will come \non Friday\nWhat can we model \nwith a triangular PDF?\n0\n1/2\n𝑥\n𝑓𝑥\n1/2 1\n3/2 2\n1\n0\nSum of uniforms!\n0\n1\n𝑥)\n𝑓!\" 𝑥)\n1\n0\n1\n𝑥,\n𝑓!! 𝑥,\n1\n+",
+      "char_count": 562
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEverything* in probability is a sum or a product (or both)\n23\nSum of values that can \nbe considered separately \n(possibly weighted by \nprob. of happening)\nProduct of values that \ncan each be considered \nin sequence\n𝐸𝑋|𝑌= 𝑦= (\n./\n/\n𝑥𝑓+|, 𝑥|𝑦𝑑𝑥\n𝐸𝑋= ;\n:\n𝑥𝑝𝑥\nLaw of Total Probability\n𝑃(𝐸) = ;\n;<=\n>\n𝑃𝐸|𝐹; 𝑃𝐹;\nweight\nweight\nweight\nAxiom 3, 𝐸= 𝐸+ ∪⋯∪𝐸,\n𝑃𝐸= ;\n;<=\n>\n𝑃𝐸;\nChain Rule\n𝑃(𝐸∩𝐹∩𝐺) = 𝑃𝐸𝑃𝐹|𝐸𝑃𝐺|𝐸𝐹\n𝑓+,, 𝑥, 𝑦= 𝑓+ 𝑥𝑓, 𝑦\nIndependent cont. RVs \n*except conditional probability (a ratio)\n𝑃𝑋+ 𝑌= 𝑛= *\n0\n𝑃𝑋= 𝑘𝑃𝑌= 𝑛−𝑘\nSum of indep. discrete RVs \n(convolution)",
+      "char_count": 623
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional probability and Bayes’ Theorem\n24\n𝑃𝐹|𝐸= 𝑃𝐹𝑃𝐸|𝐹\n𝑃𝐸\n𝑃𝐹|𝐸= 𝑃𝐸∩𝐹\n𝑃𝐸\nDefinition\nBayes’ Theorem\nPrior: some prob. of event 𝐹\nPosterior: prob. of \n𝐹 knowing that 𝐸 \nhappened\nLikelihood\nScaling to the correct sample space\nScaling to the correct sample space\nIndependence\n𝑃𝐹|𝐸= 𝑃𝐹\nSample space doesn’t need\nto be scaled\n𝐸, 𝐹 independent",
+      "char_count": 412
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMultiple Bayes’ Theorems\n25\n𝑝!|# 𝑦|𝑥=\n𝑝! 𝑦𝑝#|! 𝑥|𝑦\n𝑝# 𝑥\n𝑃𝐹|𝐸= 𝑃𝐹𝑃𝐸|𝐹\n𝑃𝐸\n𝑓!|# 𝑦|𝑥=\n𝑓! 𝑦𝑓#|! 𝑥|𝑦\n𝑓# 𝑥\nwith \nevents\nwith\ndiscrete RVs\nwith\ncontinuous RVs\nReally all the \nsame idea!\nYou are given \nthis value…\n…so this is just a scalar",
+      "char_count": 303
+    },
+    {
+      "page_index": 25,
+      "text": "Intense\nExercise\n26",
+      "char_count": 19
+    },
+    {
+      "page_index": 26,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTracking in 2-D space\n27\nYou want to know\nthe 2-D location of\nan object.\nYour satellite ping\ngives you a noisy 1-D\nmeasurement of the\ndistance of the object\nfrom the satellite (0,0).\nUsing the satellite\nmeasurement,\nwhere is the object?",
+      "char_count": 309
+    },
+    {
+      "page_index": 27,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n• Before measuring, we have some \nprior belief about the 2-D location\nof an object, 𝑋, 𝑌.\n• We observe some noisy \nmeasurement 𝐷= 4, the Euclidean \ndistance of the object to a satellite.\n• After the measurement, what is our \nupdated (posterior) belief of the 2-\nD location of the object?\n28\nTracking in 2-D space\nTop-down view\nSatellite at (0, 0)\n?\n𝐷= 4",
+      "char_count": 426
+    },
+    {
+      "page_index": 28,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTracking in 2-D space\n• You hold some prior beliefs about the 2-D location of an object, 𝑋, 𝑌.\n• You observe a noisy distance measurement, 𝐷= 4.\n• How do you update your beliefs about the 2-D location of the object after \nthat noisy measurement?\n29\nposterior\nbelief\nlikelihood\n(of evidence)\nprior\nbelief\nnormalization constant\nRecall Bayes \nterminology:\n𝑓#,!|% 𝑥, 𝑦|𝑑=\n𝑓%|#,! 𝑑|𝑥, 𝑦𝑓#,! 𝑥, 𝑦\n𝑓% 𝑑",
+      "char_count": 469
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTop-down view\n1. Define prior\nYou have a prior belief about the 2-D location of an object, 𝑋, 𝑌.\n30\nLet 𝑋, 𝑌= object’s 2-D location, \nassuming satellite is at (0,0)\nSuppose the prior distribution is a\nsymmetric bivariate normal distribution:\n𝑥\n𝑦\n𝑓!,% 𝑥, 𝑦\n3-D view\n𝑓+,, 𝑥, 𝑦=\n1\n2𝜋2E 𝑒\n. \n:.G !- H.G !\nE E!\nnormalizing constant\n= 𝐾5 ⋅ 𝑒% \n#$% &' ($% &\n)\n𝑓!,%|2 𝑥, 𝑦|𝑑=\n𝑓2|!,% 𝑑|𝑥, 𝑦 𝑓!,% 𝑥, 𝑦\n𝑓2 𝑑",
+      "char_count": 469
+    },
+    {
+      "page_index": 30,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n2. Define likelihood\nYou observe a noisy distance measurement, 𝐷= 4.\n31\nLet 𝐷= measured radial distance from the satellite, where\nactual 𝑥, 𝑦 is known! \n• 𝐷 is still noisy! Suppose noise is standard normal.\n• On average, 𝐷 is your true Euclidean distance:\n𝑥E + 𝑦E\nIf you knew your actual location to be 𝑥, 𝑦, you could argue\nJust how likely a measurement of 𝐷= 4 actually is.\n𝑓!,%|2 𝑥, 𝑦|𝑑=\n𝑓2|!,% 𝑑|𝑥, 𝑦 𝑓!,% 𝑥, 𝑦\n𝑓2 𝑑",
+      "char_count": 492
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n2. Define likelihood\nYou observe a noisy distance measurement, 𝐷= 4.\n32\nLet 𝐷= measured radial distance from the satellite, where\nactual 𝑥, 𝑦 is known!\n• 𝐷 is still noisy! Suppose noise is standard normal.\n• On average, 𝐷 is your true Euclidean distance:\nIf you knew your actual location to be 𝑥, 𝑦, you could argue\nJust how likely a measurement of 𝐷= 4 actually is.\n𝑓!,%|2 𝑥, 𝑦|𝑑=\n𝑓2|!,% 𝑑|𝑥, 𝑦 𝑓!,% 𝑥, 𝑦\n𝑓2 𝑑\n𝐷|𝑋, 𝑌~𝑁𝜇=\n𝑥& + 𝑦&, 𝜎& = 1\n𝑓I|+,, 𝐷= 𝑑|𝑋= 𝑥, 𝑌= 𝑦=\n1\n2𝜋\n𝑒. =\nE J. :!-H! !\n(𝐴)\n(𝐵)\n(𝐶)\n(𝐷)\n𝑥E + 𝑦E",
+      "char_count": 581
+    },
+    {
+      "page_index": 32,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n2. Define likelihood\nYou observe a noisy distance measurement, 𝐷= 4.\n33\nIf you knew your actual location to be 𝑥, 𝑦, you could argue\nJust how likely a measurement of 𝐷= 4 actually is.\n𝑓!,%|2 𝑥, 𝑦|𝑑=\n𝑓2|!,% 𝑑|𝑥, 𝑦 𝑓!,% 𝑥, 𝑦\n𝑓2 𝑑\n𝐷|𝑋, 𝑌~𝑁𝜇= 𝐴 , 𝜎& = 𝐵 \n𝑓I|+,, 𝐷= 𝑑|𝑋= 𝑥, 𝑌= 𝑦=\n1\n \n𝐶 \n2𝜋\n𝑒 \nI  \n𝐷|𝑋, 𝑌~𝑁𝜇=\n𝑥& + 𝑦&, 𝜎& = 1\n𝑓I|+,, 𝐷= 𝑑|𝑋= 𝑥, 𝑌= 𝑦=\n1\n2𝜋\n𝑒. =\nE J. :!-H! !\n= \n𝑒.=\nE J. :!-H! !\nnormalizing constant\n𝐾8 ⋅\nLet 𝐷= measured radial distance from the satellite, where\nactual 𝑥, 𝑦 is known!\n• 𝐷 is still noisy! Suppose noise is standard normal.\n• On average, 𝐷 is your true Euclidean distance:\n𝑥E + 𝑦E",
+      "char_count": 675
+    },
+    {
+      "page_index": 33,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n3. Compute posterior\nWhat is your updated (posterior) belief of the 2-D location of the object \nafter observing the measurement?\n34\n𝑓\",$|M 𝑥, 𝑦|4 = 𝑓\",$|M 𝑋= 𝑥, 𝑌= 𝑦|𝐷= 4\nPosterior\nbelief\nCompute:\n𝑓!,%|2 𝑥, 𝑦|𝑑=\n𝑓2|!,% 𝑑|𝑥, 𝑦 𝑓!,% 𝑥, 𝑦\n𝑓2 𝑑",
+      "char_count": 313
+    },
+    {
+      "page_index": 34,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n3. Compute posterior\nWhat is your updated (posterior) belief of the 2-D location of the object \nafter observing the measurement?\n35\n𝑓\",$|M 𝑥, 𝑦|4 = 𝑓\",$|M 𝑋= 𝑥, 𝑌= 𝑦|𝐷= 4\nPosterior\nbelief\nCompute:\nTips\n• Use Bayes’ Theorem!\n• 𝑓I 4  is just a scaling constant. Why?\n• How can we approximate the final \nscaling constant with a computer?\n𝑓-|\",! 𝑑|𝑥, 𝑦= 𝐾' ⋅𝑒%+\n' 0% 13#23 3\nKnow:\nPrior \nbelief\nObservation \nlikelihood\n𝑓!,% 𝑥, 𝑦= 𝐾) ⋅ 𝑒. \n\"#$ !% &#$ !\n'\n𝑓!,%|2 𝑥, 𝑦|𝑑=\n𝑓2|!,% 𝑑|𝑥, 𝑦 𝑓!,% 𝑥, 𝑦\n𝑓2 𝑑",
+      "char_count": 566
+    },
+    {
+      "page_index": 35,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTracking in 2-D space\nWhat is your updated (posterior) belief of the 2-D location of the object \nafter observing the measurement?\n36\n𝑓\",$|M 𝑋= 𝑥, 𝑌= 𝑦|𝐷= 4\n=\n𝑓M|\",$ 𝐷= 4|𝑋= 𝑥, 𝑌= 𝑦𝑓\",$ 𝑥, 𝑦\n𝑓(𝐷= 4)\nBayes’\nTheorem\n= 𝐾E ⋅𝑒.\nM. :!-H! !\nE\n⋅𝐾= ⋅ 𝑒. \n:.G !- H.G !\nN\n𝑓(𝐷= 4)\nlikelihood of 𝐷= 4 \nprior belief\n= 𝐾G ⋅𝑒.\nM. :!-H! !\nE\n -\n:.G !- H.G !\nN\n \n𝑓(𝐷= 4)\n= 𝐾M ⋅𝑒.\n(# \"!%&!\n!\n!\n -\n\"#$ !% &#$ !\n'\nKey: Once we know the \npart dependent on 𝑥, 𝑦, we \ncan computationally \napproximate 𝐾M so that \n𝑓+,,|I is a valid PDF.",
+      "char_count": 582
+    },
+    {
+      "page_index": 36,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWith this continuous version of Bayes’ \ntheorem, we can explore new domains.\n• Before measuring, you hold some \nprior beliefs about the 2-D location of \nan object, 𝑋, 𝑌.\n• You observe a noisy distance \nmeasurement, 𝐷=4.\n• After the measurement, do you \nupdate your beliefs about the 2-D \nlocation of the object after that \nnoisy measurement.\n37\nTracking in 2-D space\nTop-down view\n!\n3-D view\n\"\nTop-down view\n3-D view\n0.08     \n0.04",
+      "char_count": 504
+    },
+    {
+      "page_index": 37,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTracking in 2-D space: Posterior belief\n38\n𝑓+,, 𝑥, 𝑦= 𝐾= ⋅ 𝑒. \n\"#$ !% &#$ !\n'\nPrior belief\nPosterior belief\nTop-down view\n𝑦\n3-D view\n𝑥\n𝑦\n𝑥\nTop-down view\n3-D view\n𝑓+,,|I 𝑥, 𝑦|4 = \n \n𝐾M⋅𝑒.\nM. :!-H! !\nE\n -\n:.G !- H.G !\nN\n0.08     \n0.04",
+      "char_count": 305
+    },
+    {
+      "page_index": 38,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nHow’d you compute that 𝐾!?\nTo be a valid conditional PDF,\n39\n(\n./\n/\n(\n./\n/\n𝑓+,,|I 𝑥, 𝑦|4  𝑑𝑥 𝑑𝑦= 1\n1\n𝐾M\n≈;\nH\n;\n:\n𝑒.\nM. :!-H! !\nE\n -\n:.G !- H.G !\nN\n∆𝑥∆𝑦\n(\n./\n/\n(\n./\n/\n𝐾M ⋅𝑒.\nM. :!-H! !\nE\n -\n:.G !- H.G !\nN\n𝑑𝑥 𝑑𝑦= 1\nApproximate:\n1\n𝐾M\n= (\n./\n/\n(\n./\n/\n𝑒.\nM. :!-H! !\nE\n -\n:.G !- H.G !\nN\n𝑑𝑥 𝑑𝑦\n(pull out 𝐾*, divide)\nUse a computer!",
+      "char_count": 397
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:58Z"
+}

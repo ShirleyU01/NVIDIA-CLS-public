@@ -1,0 +1,615 @@
+{
+  "topic_id": "conditional_expectation",
+  "topic_name": "Conditional Expectation",
+  "course": "CS109",
+  "questions": [
+    {
+      "question_id": "CS109_conditional_expectation_0001",
+      "course": "CS109",
+      "topic_id": "conditional_expectation",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A student says, \u201cConditional expectation is just the usual expectation, except you compute it after plugging in Y=y. So E[X|Y=y] is a number, but E[E[X|Y]] makes no sense because you are taking expectation of an expectation.\u201d How would you respond, and how does this connect to the law of total expectation?",
+      "expected_answer": "A strong answer should distinguish between E[X|Y=y], which is a number for each fixed y, and E[X|Y], which is a random variable/function of Y. If we define g(Y)=E[X|Y], then g(Y) takes the value E[X|Y=y] when Y=y. Since it is a random variable, its expectation is well-defined. The law of total expectation says E[X]=E[E[X|Y]], meaning we first average X within each Y-group, then average those group means using the probabilities of the Y-values.",
+      "source_chunk_ids": [
+        "cs109_14_conditional_expectation_annotated_p15_5248b39f66",
+        "cs109_14_conditional_expectation_annotated_p16_d1adb0751a",
+        "cs109_14_conditional_expectation_annotated_p9_2045b17352"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that E[X|Y=y] is a scalar for fixed y.",
+          "Explains that E[X|Y] is a function of Y, hence a random variable.",
+          "States or justifies E[X]=E[E[X|Y]].",
+          "Interprets the theorem as averaging conditional means over the distribution of Y."
+        ],
+        "partial_credit": [
+          "States the theorem correctly but does not explain why E[X|Y] is a random variable.",
+          "Explains the difference between E[X|Y=y] and E[X|Y] but gives only an informal LOTe statement."
+        ],
+        "common_mistakes": [
+          "Saying E[X|Y] is always a number rather than a random variable.",
+          "Confusing E[X|Y] with E[Y|X].",
+          "Treating the outer expectation as unnecessary duplication."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you explain why this does not require X and Y to be independent?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If Y can be 0 or 1, what are the two values that the random variable E[X|Y] can take?"
+        }
+      ],
+      "hints": [
+        "Start by separating two objects: one is for a fixed value y, and the other is what you get before fixing Y. Ask yourself which one is a plain number and which one can still vary from outcome to outcome.",
+        "If you define a function g(y)=E[X|Y=y], then E[X|Y] can be viewed as g(Y). Since Y is random, g(Y) is also a random variable, so taking its expectation is meaningful.",
+        "Connect this to the idea of a two-stage average: first compute the mean of X within each Y-group, then average those group means according to how likely the Y-values are. That is exactly the relationship behind the law of total expectation."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_expectation_0002",
+      "course": "CS109",
+      "topic_id": "conditional_expectation",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A factory has two machine states. Let Y=0 denote normal operation with probability 0.8 and Y=1 denote misalignment with probability 0.2. The number of defects in the next hour is X, with E[X|Y=0]=1.5 and E[X|Y=1]=6. Without knowing the full distribution of X, compute E[X] and explain why your method is valid.",
+      "expected_answer": "Use the law of total expectation: E[X]=E[E[X|Y]]. Since Y is binary, E[X]=E[X|Y=0]P(Y=0)+E[X|Y=1]P(Y=1)=1.5(0.8)+6(0.2)=1.2+1.2=2.4. This is valid because unconditional expectation can be recovered by averaging conditional expectations over the distribution of Y, and this does not require knowing the full PMF of X.",
+      "source_chunk_ids": [
+        "cs109_14_conditional_expectation_annotated_p16_d1adb0751a",
+        "cs109_14_conditional_expectation_annotated_p15_5248b39f66",
+        "cs109_14_conditional_expectation_annotated_p9_2045b17352"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Sets up E[X]=sum_y E[X|Y=y]P(Y=y).",
+          "Computes 2.4 correctly.",
+          "Explains that full distribution of X is unnecessary because of the law of total expectation."
+        ],
+        "partial_credit": [
+          "Correct arithmetic with incomplete explanation.",
+          "Correct formula but minor arithmetic slip."
+        ],
+        "common_mistakes": [
+          "Averaging 1.5 and 6 equally instead of weighting by probabilities.",
+          "Claiming independence is needed.",
+          "Using P(X|Y) notation incorrectly in place of expectation."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If a manager instead computed (1.5+6)/2, what assumption would they be implicitly making?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why do the weights have to be P(Y=0) and P(Y=1), rather than 1/2 and 1/2?"
+        }
+      ],
+      "hints": [
+        "Notice that Y splits the situation into two cases, and you already know the expected defects in each case. So think of E[X] as an average of those case-specific expectations, weighted by how likely each machine state is.",
+        "Use the law of total expectation for a binary conditioning variable: write E[X] as E[X|Y=0]P(Y=0) + E[X|Y=1]P(Y=1). Be careful not to average 1.5 and 6 equally, since the two states do not occur equally often.",
+        "Substitute the given probabilities 0.8 and 0.2 into that weighted sum and simplify. This method is valid because E[X]=E[E[X|Y]], so you only need the conditional means and the distribution of Y, not the full distribution of X."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_expectation_0003",
+      "course": "CS109",
+      "topic_id": "conditional_expectation",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "Someone claims that linearity fails for conditional expectation unless the random variables are independent. They point to E[X+Z|Y=y] and say dependence between X and Z should break the rule. Is that claim correct? Defend your answer carefully.",
+      "expected_answer": "The claim is false. Conditional expectation is linear: E[aX+bZ+c|Y=y]=aE[X|Y=y]+bE[Z|Y=y]+c. This property follows from summation/integration inside the conditional distribution and does not require X and Z to be independent. Independence matters for factorizations of products, not for linearity of expectation.",
+      "source_chunk_ids": [
+        "cs109_14_conditional_expectation_annotated_p11_f1e0126251",
+        "cs109_11_joint_rvs_annotated_p39_93a41618e7",
+        "cs109_12_independent_rvs_annotated_p18_1bb39480a8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that linearity holds even under dependence.",
+          "Gives the correct linearity formula for conditional expectation.",
+          "Explains that independence is not needed for expectation of sums."
+        ],
+        "partial_credit": [
+          "States the result correctly but explanation is vague.",
+          "Mentions linearity of ordinary expectation and extends it informally to conditional expectation."
+        ],
+        "common_mistakes": [
+          "Claiming dependence breaks linearity.",
+          "Confusing E[XZ|Y] with E[X|Y]E[Z|Y].",
+          "Saying all conditional expectation rules require independence."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you name a property involving conditional expectation where independence or stronger assumptions might matter more?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If Y=y is fixed, what distribution are you averaging over when you compute E[X+Z|Y=y]?"
+        }
+      ],
+      "hints": [
+        "Ask yourself which expectation rule is being discussed: linearity for sums, or factorization for products. Dependence usually matters for products, not automatically for adding random variables.",
+        "Condition on Y=y and write the conditional expectation using the conditional distribution of (X,Z) given Y=y. Then look at how E[X+Z\\mid Y=y] is computed from a sum or integral over x and z.",
+        "Inside that sum/integral, replace (x+z) by x plus z and split the expression into two pieces. This shows the same additivity property as ordinary expectation, without needing any independence assumption between X and Z."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_expectation_0004",
+      "course": "CS109",
+      "topic_id": "conditional_expectation",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You roll two fair six-sided dice. Let X be the first die and let Y be the sum of the two dice. Without writing the full joint PMF table, explain how you would compute E[X|Y=8], and then use symmetry or conditioning to evaluate it. After that, explain how the law of total expectation predicts E[X] from these conditional means.",
+      "expected_answer": "Conditioning on Y=8 means the possible pairs are (2,6),(3,5),(4,4),(5,3),(6,2), all equally likely. Therefore E[X|Y=8]=(2+3+4+5+6)/5=4. More generally, by symmetry between the dice, E[X|Y=s]=s/2 whenever s is feasible. Then E[X]=E[E[X|Y]]=E[Y/2]=(1/2)E[Y]=(1/2)(7)=3.5, since the sum of two fair dice has expectation 7.",
+      "source_chunk_ids": [
+        "cs109_14_conditional_expectation_annotated_p9_2045b17352",
+        "cs109_14_conditional_expectation_annotated_p16_d1adb0751a",
+        "cs109_06_rvs_annotated_p28_8fe9b89b51"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly identifies the conditional sample space for Y=8.",
+          "Computes E[X|Y=8]=4.",
+          "Uses symmetry to state E[X|Y=s]=s/2.",
+          "Uses law of total expectation to recover E[X]=3.5."
+        ],
+        "partial_credit": [
+          "Gets E[X|Y=8]=4 but does not connect to LOTe.",
+          "Uses LOTe correctly but symmetry argument is incomplete."
+        ],
+        "common_mistakes": [
+          "Including impossible outcomes like (1,7).",
+          "Assuming X and Y are independent.",
+          "Claiming E[X|Y=s]=E[X]=3.5 for all s."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What changes in your argument if the two dice are not identically distributed?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "List all outcomes with sum 8. Are they equally likely for fair dice?"
+        }
+      ],
+      "hints": [
+        "Conditioning on Y=8 means you only look at ordered die outcomes whose sum is 8; because the original dice are fair, those remaining outcomes are equally likely within that condition.",
+        "List the feasible ordered pairs summing to 8 and take the average of the first-coordinate values across those pairs. Be careful not to include impossible outcomes such as one die being 7.",
+        "For a general feasible sum s, symmetry between the two dice says each die should contribute half of the total on average, so relate E[X\\mid Y=s] to s/2. Then use the law of total expectation, E[X]=E[E[X\\mid Y]], together with the expected value of the sum of two fair dice."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_expectation_0005",
+      "course": "CS109",
+      "topic_id": "conditional_expectation",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Give an oral proof sketch of the law of total expectation in the discrete case. Start from E[E[X|Y]] and justify each step until you reach E[X]. I care more about the logic of the manipulations than about exact notation.",
+      "expected_answer": "Let g(Y)=E[X|Y]. Then E[E[X|Y]]=E[g(Y)]=sum_y P(Y=y)E[X|Y=y] by LOTUS for a function of Y. Next substitute the definition E[X|Y=y]=sum_x x P(X=x|Y=y). So we have sum_y P(Y=y)sum_x x P(X=x|Y=y). Rearranging gives sum_x sum_y x P(X=x|Y=y)P(Y=y). By the chain rule this becomes sum_x sum_y x P(X=x,Y=y). Switching summation order and marginalizing over y yields sum_x x P(X=x)=E[X].",
+      "source_chunk_ids": [
+        "cs109_14_conditional_expectation_annotated_p16_d1adb0751a",
+        "cs109_14_conditional_expectation_annotated_p11_f1e0126251",
+        "cs109_11_joint_rvs_annotated_p39_93a41618e7"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Starts from E[E[X|Y]].",
+          "Uses E[g(Y)] as a weighted sum over y.",
+          "Substitutes the conditional expectation definition.",
+          "Uses chain rule P(X=x|Y=y)P(Y=y)=P(X=x,Y=y).",
+          "Marginalizes to obtain E[X]."
+        ],
+        "partial_credit": [
+          "Knows the outline but omits one justification step.",
+          "States theorem with intuitive partition argument but not full algebra."
+        ],
+        "common_mistakes": [
+          "Replacing P(X=x|Y=y)P(Y=y) with P(X=x)P(Y=y).",
+          "Forgetting to weight by P(Y=y).",
+          "Not recognizing E[X|Y] as a function of Y."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Which step in your proof would change if Y were continuous?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Where exactly do you use the chain rule in this derivation?"
+        }
+      ],
+      "hints": [
+        "First notice that \\(E[X\\mid Y]\\) is itself a random variable determined by \\(Y\\), so you can rename it as \\(g(Y)\\). Then start with \\(E[g(Y)]\\) and write its expectation as a sum over the possible values of \\(Y\\).",
+        "In that outer sum, keep the factor \\(P(Y=y)\\), and for each fixed \\(y\\) replace \\(E[X\\mid Y=y]\\) by its discrete definition as a sum over \\(x\\). Be careful not to drop the conditioning or replace it with an independence-style product.",
+        "Once you have a double sum in \\(x\\) and \\(y\\), use the chain rule \\(P(X=x\\mid Y=y)P(Y=y)=P(X=x,Y=y)\\). After that, switch the order of summation and sum over all \\(y\\) to recover the marginal distribution of \\(X\\)."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_expectation_0006",
+      "course": "CS109",
+      "topic_id": "conditional_expectation",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "A random variable Y takes values 1, 2, and 4 with probabilities 0.2, 0.5, and 0.3. Another random variable X satisfies E[X|Y=y]=2y+1. Compute E[X] without finding the distribution of X, and explain why this is an application of both conditional expectation and LOTUS.",
+      "expected_answer": "Since E[X|Y]=2Y+1 as a random variable, E[X]=E[E[X|Y]]=E[2Y+1]=2E[Y]+1. Compute E[Y]=1(0.2)+2(0.5)+4(0.3)=0.2+1+1.2=2.4. Therefore E[X]=2(2.4)+1=5.8. This uses the law of total expectation to replace E[X] with E[E[X|Y]], and then LOTUS or linearity to compute the expectation of the function 2Y+1.",
+      "source_chunk_ids": [
+        "cs109_14_conditional_expectation_annotated_p15_5248b39f66",
+        "cs109_14_conditional_expectation_annotated_p11_f1e0126251",
+        "cs109_06_rvs_annotated_p28_8fe9b89b51"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Recognizes E[X|Y]=2Y+1.",
+          "Applies E[X]=E[E[X|Y]].",
+          "Uses linearity to compute 2E[Y]+1.",
+          "Computes 5.8 correctly."
+        ],
+        "partial_credit": [
+          "Correct setup with arithmetic slip.",
+          "Computes E[Y] correctly but does not clearly connect to LOTUS/LOTE."
+        ],
+        "common_mistakes": [
+          "Plugging in a single y instead of treating 2Y+1 as a random variable.",
+          "Averaging 2y+1 values without probability weights.",
+          "Thinking the formula requires independence."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If I changed the rule to E[X|Y=y]=y^2, what would your method be?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the random variable E[X|Y] here, before taking its expectation?"
+        }
+      ],
+      "hints": [
+        "Treat the condition as defining a new random variable: since \\(E[X\\mid Y=y]=2y+1\\), you can write \\(E[X\\mid Y]=2Y+1\\).",
+        "Now use the law of total expectation: \\(E[X]=E[E[X\\mid Y]]\\). So the problem reduces to finding the expectation of the function \\(2Y+1\\) using the given distribution of \\(Y\\).",
+        "Apply LOTUS/linearity: \\(E[2Y+1]=2E[Y]+1\\), with \\(E[Y]=\\sum_y y\\,P(Y=y)\\). Be careful to weight each value of \\(Y\\) by its probability rather than averaging the three cases equally."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_expectation_0007",
+      "course": "CS109",
+      "topic_id": "conditional_expectation",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A classmate says, \u201cBecause conditioning gives you more information, E[X|Y=y] should always be larger than E[X].\u201d Give a counterexample or a general argument showing why this statement is wrong.",
+      "expected_answer": "The statement is false. Conditioning can raise, lower, or leave unchanged the expected value, depending on which Y=y event we are on. For example, if X=Y for a fair Bernoulli variable Y, then E[X]=1/2, but E[X|Y=1]=1 and E[X|Y=0]=0, so one conditional mean is above the unconditional mean and one is below. The law of total expectation says the weighted average of the conditional means equals E[X], so they cannot all be strictly larger unless probabilities fail to sum correctly.",
+      "source_chunk_ids": [
+        "cs109_14_conditional_expectation_annotated_p9_2045b17352",
+        "cs109_14_conditional_expectation_annotated_p16_d1adb0751a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that conditioning does not necessarily increase expectation.",
+          "Provides a correct counterexample or uses LOTe to refute the claim.",
+          "Explains that conditional means may be above or below the unconditional mean."
+        ],
+        "partial_credit": [
+          "Gives an intuitive rebuttal without a precise example.",
+          "Provides example but explanation is incomplete."
+        ],
+        "common_mistakes": [
+          "Arguing only from 'more information' without mathematics.",
+          "Confusing expectation with variance or uncertainty reduction.",
+          "Claiming conditional expectation is monotone in information in the sense of always increasing."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you produce an example where E[X|Y=y]=E[X] for every y?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If all conditional expectations were larger than E[X], what would LOTe imply after averaging over y?"
+        }
+      ],
+      "hints": [
+        "Remember that \\(E[X\\mid Y=y]\\) is the average of \\(X\\) only within the cases where \\(Y=y\\); more information narrows the sample space, but it does not force that average upward.",
+        "Try a very simple dependent example, like making \\(X\\) equal to \\(Y\\) for a Bernoulli random variable. Then compare the overall mean of \\(X\\) to the conditional mean on one value of \\(Y\\) and on the other value.",
+        "A general refutation uses the law of total expectation: the unconditional mean is a probability-weighted average of the conditional means. So if all \\(E[X\\mid Y=y]\\) were strictly larger than \\(E[X]\\), that weighted average relationship would fail."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_expectation_0008",
+      "course": "CS109",
+      "topic_id": "conditional_expectation",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A website shows either a simple layout or a premium layout. Let Y indicate the layout, with P(Y=simple)=0.7 and P(Y=premium)=0.3. Let X be time on page in seconds, and suppose E[X|Y=simple]=40 while E[X|Y=premium]=65. A product manager claims the expected time on page must be at least 65 because premium is the better layout. Critique that reasoning and compute the correct expectation.",
+      "expected_answer": "The manager is wrong because the overall expectation is a weighted average of the conditional expectations, not the maximum one. By the law of total expectation, E[X]=40(0.7)+65(0.3)=28+19.5=47.5 seconds. The premium layout has a higher conditional mean, but it is shown only 30% of the time, so the overall average must lie between 40 and 65.",
+      "source_chunk_ids": [
+        "cs109_14_conditional_expectation_annotated_p16_d1adb0751a",
+        "cs109_17_cont_joint_ii_annotated_p22_cf0d04ea8f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects the manager's claim.",
+          "Uses weighted averaging of conditional means.",
+          "Computes 47.5 correctly.",
+          "States that the result lies between the conditional means."
+        ],
+        "partial_credit": [
+          "Correct computation with weak verbal critique.",
+          "Good critique but arithmetic mistake."
+        ],
+        "common_mistakes": [
+          "Taking the larger conditional expectation as the overall expectation.",
+          "Using equal weights instead of 0.7 and 0.3.",
+          "Saying the mean must exceed both because conditioning adds information."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Under what circumstances would the unconditional expectation equal 65 exactly?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the appropriate weights in the weighted average, and why?"
+        }
+      ],
+      "hints": [
+        "Ask whether an overall mean can equal the larger conditional mean when that case happens only part of the time. The unconditional expectation should combine both layouts, not just the premium one.",
+        "Use the law of total expectation: split on Y and weight each conditional mean by its layout probability. Be careful to use 0.7 for simple and 0.3 for premium, not equal weights.",
+        "Compute 0.7\u00b7E[X|Y=simple] + 0.3\u00b7E[X|Y=premium], then compare the result to 40 and 65. That comparison is the key critique of the manager\u2019s claim."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_expectation_0010",
+      "course": "CS109",
+      "topic_id": "conditional_expectation",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A student says: \u201cIf I know the function g(y)=E[X\\mid Y=y], then I have not really learned anything about X itself, only about a new random variable g(Y). So there is no reason that E[g(Y)] should equal E[X].\u201d Do you agree or disagree? Explain carefully using the discrete definitions of conditional expectation and the chain rule, not just by quoting the law of total expectation.",
+      "expected_answer": "Disagree. The key point is that g(Y)=E[X\\mid Y] is itself a random variable determined by Y, and its expectation averages the conditional averages of X over the possible values of Y. In the discrete case, E[E[X\\mid Y]] = \\sum_y P(Y=y)E[X\\mid Y=y]. Then substitute the definition E[X\\mid Y=y]=\\sum_x x P(X=x\\mid Y=y). This gives \\sum_y \\sum_x x P(X=x\\mid Y=y)P(Y=y). By the chain rule, P(X=x\\mid Y=y)P(Y=y)=P(X=x,Y=y), so this becomes \\sum_y \\sum_x x P(X=x,Y=y). Switching the order of summation gives \\sum_x x \\sum_y P(X=x,Y=y)=\\sum_x x P(X=x)=E[X]. So the conditional means, when weighted by how often each Y occurs, recover the original mean of X.",
+      "source_chunk_ids": [
+        "cs109_14_conditional_expectation_annotated_p16_d1adb0751a",
+        "cs109_14_conditional_expectation_annotated_p15_5248b39f66",
+        "cs109_14_conditional_expectation_annotated_p9_2045b17352"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States clearly that the claim is false/disagrees.",
+          "Explains that E[X\\mid Y] is a random variable depending on Y.",
+          "Expands E[E[X\\mid Y]] as a weighted sum over y.",
+          "Substitutes the definition of conditional expectation and uses the chain rule to get the joint pmf.",
+          "Marginalizes over y to conclude E[X]."
+        ],
+        "partial_credit": [
+          "Correctly states the law of total expectation without proof.",
+          "Gives an intuitive averaging explanation but omits one algebraic step.",
+          "Uses the chain rule or marginalization correctly but not both."
+        ],
+        "common_mistakes": [
+          "Treating E[X\\mid Y=y] as a constant unrelated to Y.",
+          "Saying E[X\\mid Y]=E[X] for all Y.",
+          "Forgetting the weighting by P(Y=y).",
+          "Confusing P(X=x\\mid Y=y) with P(Y=y\\mid X=x)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Now suppose E[X\\mid Y=y]=2y+1. Without knowing the full joint distribution, what can you say about E[X] in terms of E[Y], and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you write the expression for E[E[X\\mid Y]] explicitly as a sum over y, and then replace E[X\\mid Y=y] by its definition?"
+        }
+      ],
+      "hints": [
+        "Notice that once you define g(y)=E[X\\mid Y=y], plugging in the random variable Y makes g(Y)=E[X\\mid Y], which is itself a random variable. Its expectation is found by averaging over the possible values of Y.",
+        "In the discrete case, write E[g(Y)] as \\(\\sum_y g(y)P(Y=y)\\), then substitute \\(g(y)=\\sum_x x\\,P(X=x\\mid Y=y)\\). Be careful not to forget the weight \\(P(Y=y)\\).",
+        "After substituting, combine the sums and use the chain rule \\(P(X=x\\mid Y=y)P(Y=y)=P(X=x,Y=y)\\). Then think about what \\(\\sum_y P(X=x,Y=y)\\) becomes when you marginalize over y."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_expectation_0011",
+      "course": "CS109",
+      "topic_id": "conditional_expectation",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "A box contains red and blue balls. First a random variable Y is generated, where Y is the number of red balls placed into a small sample you will inspect: P(Y=0)=1/4, P(Y=1)=1/2, P(Y=2)=1/4. Given Y=y, you then draw one ball uniformly from those two inspected balls, and let X be the indicator that the chosen ball is red. Compute E[X] in two different ways: first using conditional expectation given Y, and second by reasoning directly from linearity or weighted averaging. Then interpret what E[X] means in this setting.",
+      "expected_answer": "Since X is an indicator of drawing a red ball, E[X]=P(X=1), the overall probability the chosen ball is red. Conditioning on Y, if Y=0 then there are no red balls among the two inspected so E[X\\mid Y=0]=0. If Y=1, one of the two is red, so E[X\\mid Y=1]=1/2. If Y=2, both are red, so E[X\\mid Y=2]=1. By the law of total expectation, E[X]=E[E[X\\mid Y]] = 0\\cdot 1/4 + (1/2)\\cdot 1/2 + 1\\cdot 1/4 = 1/2. A second way is to notice that conditional on Y=y, the fraction of red balls is y/2, so E[X\\mid Y]=Y/2. Then E[X]=E[Y/2]=E[Y]/2 by linearity. Here E[Y]=0\\cdot 1/4 + 1\\cdot 1/2 + 2\\cdot 1/4 = 1, so E[X]=1/2. The interpretation is that on average, the probability the selected ball is red is one-half; since X is an indicator, that is also the expected value of X.",
+      "source_chunk_ids": [
+        "cs109_14_conditional_expectation_annotated_p11_f1e0126251",
+        "cs109_12_independent_rvs_annotated_p18_1bb39480a8",
+        "cs109_06_rvs_annotated_p28_8fe9b89b51"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Recognizes X as an indicator and interprets E[X] as a probability.",
+          "Computes E[X\\mid Y=0], E[X\\mid Y=1], E[X\\mid Y=2] correctly.",
+          "Uses law of total expectation correctly to get 1/2.",
+          "Provides a second method using E[X\\mid Y]=Y/2 and linearity to get the same answer.",
+          "Gives a correct interpretation of the result."
+        ],
+        "partial_credit": [
+          "Gets the conditional expectations right but makes an arithmetic slip.",
+          "Uses only one valid method instead of two.",
+          "Identifies that E[X]=P(X=1) but gives incomplete conditioning steps."
+        ],
+        "common_mistakes": [
+          "Treating E[X\\mid Y=y] as y rather than y/2.",
+          "Averaging 0,1/2,1 equally instead of weighting by P(Y=y).",
+          "Assuming independence where none is needed.",
+          "Forgetting that the expectation of an indicator equals a probability."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If instead the chosen ball were red with probability (y+1)/4 given Y=y, how would you express E[X] in terms of E[Y] without summing each case separately?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Given Y=1, what exactly is the conditional distribution of X, and what does that make E[X\\mid Y=1]?"
+        }
+      ],
+      "hints": [
+        "Since X is an indicator for \u201cthe chosen ball is red,\u201d start by rewriting E[X] as a probability. The natural conditioning variable is Y, because Y tells you how many red balls are in the two-ball sample.",
+        "For each case y=0,1,2, find E[X\\mid Y=y]=P(X=1\\mid Y=y) by looking at the fraction of red balls among the two inspected balls. Then combine those three conditional expectations using the given probabilities for Y as weights, not by averaging them equally.",
+        "A shorter second method is to notice that given Y, the chance of drawing red is exactly Y/2, so E[X\\mid Y]=Y/2. Apply the law of total expectation to get E[X]=E[Y/2], compute E[Y] from the distribution of Y, and interpret the result as the overall probability that the selected ball is red."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_expectation_0012",
+      "course": "CS109",
+      "topic_id": "conditional_expectation",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "Two students are discussing conditional expectation. Student A says, \u201cBecause expectation is linear, E[X\\mid Y=y]=E[X] for every y.\u201d Student B says, \u201cNo, linearity means E[aX+bW\\mid Y=y]=aE[X\\mid Y=y]+bE[W\\mid Y=y], but conditioning can still change the value.\u201d Who is right? Defend your answer with a concrete example and explain what linearity does and does not imply.",
+      "expected_answer": "Student B is right. Linearity of conditional expectation says that for fixed y, E[aX+bW\\mid Y=y]=aE[X\\mid Y=y]+bE[W\\mid Y=y]. It does not say that conditioning has no effect. A concrete example: let X=Y where Y is 0 or 1 with probability 1/2 each. Then E[X]=1/2, but E[X\\mid Y=0]=0 and E[X\\mid Y=1]=1, so conditional expectation depends on y and is not equal to the unconditional expectation in general. The equality E[X\\mid Y=y]=E[X] for all y holds under stronger conditions, such as when X is independent of Y. So linearity is about distributing expectation across sums and constants, not about removing the effect of conditioning.",
+      "source_chunk_ids": [
+        "cs109_14_conditional_expectation_annotated_p11_f1e0126251",
+        "cs109_06_rvs_annotated_p29_b2e7f50774",
+        "cs109_11_joint_rvs_annotated_p39_93a41618e7"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies Student B as correct.",
+          "States the correct linearity property for conditional expectation.",
+          "Provides a valid counterexample showing E[X\\mid Y=y] can differ from E[X].",
+          "Explains that equality with E[X] requires additional assumptions such as independence."
+        ],
+        "partial_credit": [
+          "Correct conclusion but weak or incomplete example.",
+          "Good example but does not clearly separate linearity from independence.",
+          "States independence is relevant but does not articulate why."
+        ],
+        "common_mistakes": [
+          "Agreeing with Student A because 'expectation averages things out'.",
+          "Giving the unconditional linearity rule instead of the conditional one.",
+          "Claiming dependence is required for conditioning to matter, instead of saying independence is sufficient for no change.",
+          "Using an example where E[X\\mid Y=y] accidentally equals E[X] for all y and thinking it proves the general rule."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What extra assumption would let you conclude E[X\\mid Y=y]=E[X] for every y with positive probability, and how would you justify it?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you produce a simple example where X is completely determined by Y? What would E[X\\mid Y=y] be there compared with E[X]?"
+        }
+      ],
+      "hints": [
+        "Separate two ideas: linearity tells you how expectation behaves on sums and constants, while conditioning can change the distribution you are averaging over. Ask yourself whether knowing Y=y should generally leave X unchanged.",
+        "Write the conditional linearity rule carefully: for fixed y, E[aX+bW | Y=y] = aE[X | Y=y] + bE[W | Y=y]. Then compare that with the much stronger statement E[X | Y=y] = E[X], which typically needs an extra assumption like independence.",
+        "Try a concrete dependent example such as X=Y with Y taking two possible values. Compute the unconditional mean of X and then compare it to the conditional means given each value of Y; that contrast shows what linearity does and does not imply."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_expectation_0013",
+      "course": "CS109",
+      "topic_id": "conditional_expectation",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A company tracks customer spending X and customer segment Y, where Y can be Budget, Standard, or Premium. The analyst knows only the conditional means: E[X\\mid Y=Budget]=20, E[X\\mid Y=Standard]=50, E[X\\mid Y=Premium]=120, and the segment probabilities are 0.5, 0.4, and 0.1 respectively. Explain how to compute the overall expected spending E[X], and then explain why this calculation is valid even if spending behavior within each segment is highly variable and the joint distribution is otherwise unknown.",
+      "expected_answer": "Use the law of total expectation: E[X]=E[E[X\\mid Y]]. Since Y takes three values, E[X]=20(0.5)+50(0.4)+120(0.1)=10+20+12=42. The reason this is valid is that the overall mean is a weighted average of the within-segment means, weighted by how often each segment occurs. We do not need the full distribution of X within each segment, only the conditional expectations. Formally, E[E[X\\mid Y]] expands to \\sum_y P(Y=y)E[X\\mid Y=y], and by substituting the definition of conditional expectation and applying the chain rule and marginalization, this equals E[X]. So high within-segment variance does not affect the correctness of the expected value calculation as long as the conditional means and segment probabilities are correct.",
+      "source_chunk_ids": [
+        "cs109_14_conditional_expectation_annotated_p15_5248b39f66",
+        "cs109_14_conditional_expectation_annotated_p16_d1adb0751a",
+        "cs109_17_cont_joint_ii_annotated_p22_cf0d04ea8f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Sets up E[X]=\\sum_y P(Y=y)E[X\\mid Y=y].",
+          "Computes the value 42 correctly.",
+          "Explains the weighted-average interpretation.",
+          "Justifies why full within-segment distributions are unnecessary for computing the mean.",
+          "Connects reasoning to law of total expectation rather than an ad hoc average."
+        ],
+        "partial_credit": [
+          "Correct formula with arithmetic error.",
+          "Correct arithmetic but weak explanation of why the method is valid.",
+          "Good intuition but no explicit weighting by segment probabilities."
+        ],
+        "common_mistakes": [
+          "Averaging 20, 50, and 120 equally.",
+          "Thinking high variance prevents computation of E[X].",
+          "Claiming the method requires X and Y to be independent.",
+          "Confusing E[X\\mid Y] with P(Y\\mid X)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose the company can reduce Premium customers\u2019 conditional mean from 120 to 100 while segment probabilities stay fixed. How much does E[X] change, and why can you compute that change immediately?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why is it not correct to average the three segment means equally here? What should determine the weights?"
+        }
+      ],
+      "hints": [
+        "Think of the overall mean as a weighted average across the three customer segments, not a simple average of 20, 50, and 120. The key concept is the law of total expectation.",
+        "Let Y take values Budget, Standard, and Premium, and write E[X] as a sum over segments: \\sum_y P(Y=y)E[X\\mid Y=y]. Then substitute the given probabilities and conditional means, making sure each segment mean is multiplied by how often that segment occurs.",
+        "To justify why this works without knowing the full joint distribution, use E[X]=E[E[X\\mid Y]]. Conditional expectation only needs the within-segment means, so high variance inside a segment does not change the correctness of the overall mean calculation."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_expectation_0014",
+      "course": "CS109",
+      "topic_id": "conditional_expectation",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "In a proof, someone writes E[X]=\\sum_x\\sum_y x\\,P(X=x,Y=y), then claims this is \u2018basically the same\u2019 as \\sum_y P(Y=y)E[X\\mid Y=y]. Give a careful oral explanation of why these two expressions are equal. Your explanation should mention which step uses conditional probability, which step uses the chain rule, and which step uses marginalization or switching sums.",
+      "expected_answer": "Start from the conditional-expression side: \\sum_y P(Y=y)E[X\\mid Y=y]. By definition of conditional expectation, E[X\\mid Y=y]=\\sum_x xP(X=x\\mid Y=y). Substituting gives \\sum_y P(Y=y)\\sum_x xP(X=x\\mid Y=y). We can rewrite this as \\sum_y\\sum_x xP(X=x\\mid Y=y)P(Y=y). The chain rule for probabilities gives P(X=x\\mid Y=y)P(Y=y)=P(X=x,Y=y). So the expression becomes \\sum_y\\sum_x xP(X=x,Y=y). Since these are finite or absolutely convergent sums, we can switch the order to get \\sum_x\\sum_y xP(X=x,Y=y). Then marginalization says \\sum_y P(X=x,Y=y)=P(X=x), so this becomes \\sum_x xP(X=x)=E[X]. Thus the two expressions are equal step by step, not just heuristically.",
+      "source_chunk_ids": [
+        "cs109_14_conditional_expectation_annotated_p16_d1adb0751a",
+        "cs109_14_conditional_expectation_annotated_p9_2045b17352",
+        "cs109_11_joint_rvs_annotated_p40_eb0d10c7b8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Begins from one expression and transforms it systematically into the other.",
+          "Correctly invokes the definition of conditional expectation.",
+          "Correctly identifies the chain rule step converting conditional times marginal into joint.",
+          "Mentions switching the order of summation and marginalization.",
+          "Ends at E[X]=\\sum_x xP(X=x)."
+        ],
+        "partial_credit": [
+          "Understands the overall equivalence but omits one named step.",
+          "Gives a mostly correct derivation with notation slightly imprecise.",
+          "Uses intuition about weighted averages without fully connecting to the joint pmf."
+        ],
+        "common_mistakes": [
+          "Skipping from conditional to unconditional expectation without weighting by P(Y=y).",
+          "Using Bayes\u2019 rule unnecessarily or incorrectly.",
+          "Marginalizing the wrong variable.",
+          "Treating x as if it depended on y in the summation step."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the same argument look in the continuous case at a high level? You do not need full technical detail, just the analogous steps."
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you first state the definition of E[X\\mid Y=y] in the discrete case, and then multiply it by P(Y=y)?"
+        }
+      ],
+      "hints": [
+        "A clean way to explain it is to start from \\(\\sum_y P(Y=y)E[X\\mid Y=y]\\) and expand \\(E[X\\mid Y=y]\\) using its definition as a sum over \\(x\\). That is the step where conditional probability enters.",
+        "After substituting, you get a double sum in \\(x\\) and \\(y\\): \\(\\sum_y\\sum_x x\\,P(X=x\\mid Y=y)P(Y=y)\\). The key named move here is the chain rule, turning \\(P(X=x\\mid Y=y)P(Y=y)\\) into the joint probability \\(P(X=x,Y=y)\\).",
+        "Once you have a sum involving \\(x\\,P(X=x,Y=y)\\), note that you may switch the order of summation, then sum over \\(y\\) first. That inner sum is the marginalization step, giving the marginal pmf of \\(X\\), which lines up with the standard form of \\(E[X]\\)."
+      ]
+    }
+  ]
+}

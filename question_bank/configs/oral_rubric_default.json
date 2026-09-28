@@ -1,0 +1,42 @@
+{
+  "rubric_id": "question_bank_oral_v1",
+  "name": "Oral understanding (generated bank)",
+  "scale": { "min": 0, "max": 2 },
+  "criteria": [
+    {
+      "id": "C1",
+      "name": "Conceptual accuracy",
+      "description": "Student states definitions and relationships correctly.",
+      "max": 2,
+      "anchors": {
+        "0": "Incorrect or missing",
+        "1": "Partially correct",
+        "2": "Clear and correct"
+      },
+      "weight": 1.0
+    },
+    {
+      "id": "C2",
+      "name": "Reasoning and justification",
+      "description": "Student explains why, not only what.",
+      "max": 2,
+      "anchors": {
+        "0": "No reasoning",
+        "1": "Some justification",
+        "2": "Coherent chain of reasoning"
+      },
+      "weight": 1.0
+    },
+    {
+      "id": "C3",
+      "name": "Communication",
+      "description": "Answer is coherent and uses appropriate terminology.",
+      "max": 1,
+      "anchors": {
+        "0": "Incoherent or off-topic",
+        "1": "Clear and coherent"
+      },
+      "weight": 0.5
+    }
+  ]
+}

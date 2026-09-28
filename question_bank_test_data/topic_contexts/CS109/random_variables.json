@@ -1,0 +1,127 @@
+{
+  "course": "CS109",
+  "topic_id": "random_variables",
+  "topic_name": "Random Variables",
+  "queries_used": [
+    "Random Variables definition",
+    "Random Variables intuition",
+    "Random Variables worked example",
+    "Random Variables exam problem",
+    "random variable overview",
+    "random variable practice",
+    "pmf overview",
+    "pmf practice",
+    "cdf overview",
+    "cdf practice",
+    "expectation overview",
+    "expectation practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_midtermspr2019_p13_c76f066165",
+      "text": "5\nGrades are not Normal [22 points]\nSometimes you just feel like squashing normals:\nLogit Normal\nThe logit normal is the continuous distribution that results from applying a special “squashing” function\nto a Normally distributed random variable. The squashing function maps all values the normal could\ntake on onto the range 0 to 1. If X ⇠LogitNormal(µ,s2) it has:\nPDF:\nfX(x) =\n8\n<\n:\n1\ns(\np\n2p)x(1−x)e−(logit(x)−µ)2\n2s2\nif 0 < x < 1\n0\notherwise\nCDF:\nFX(x) = F\n⇣logit(x)−µ\ns\n⌘\nWhere:\nlogit(x) = log\n⇣\nx\n1−x\n⌘\nA new theory shows that the Logit Normal better ﬁts exam score distributions than the traditionally used\nNormal. Let’s test it out! We have some set of exam scores for a test with min possible score 0 and max\npossible score 1, and we are trying to decide between two hypotheses:\nH1: our grade scores are distributed according to X ⇠Normal(µ = 0.7,s2 = 0.22).\nH2: our grade scores are distributed according to X ⇠LogitNormal(µ = 1.0,s2 = 0.92).\na. (5 points) Under the normal assumption, H1, what is P(0.9 < X < 1.0)? Provide a numerical answer to\ntwo decimal places.\n11",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermSpr2019",
+      "score": 0.443043977022171
+    },
+    {
+      "chunk_id": "cs109_midtermspr2019_p15_556a0346ca",
+      "text": "Standard Normal Table\nAn entry in the table is the area under the curve to the left of z, P(Z z) = F(z).\nZ\n0.00\n0.01\n0.02\n0.03\n0.04\n0.05\n0.06\n0.07\n0.08\n0.09\n0.0\n0.5000\n0.5040\n0.5080\n0.5120\n0.5160\n0.5199\n0.5239\n0.5279\n0.5319\n0.5359\n0.1\n0.5398\n0.5438\n0.5478\n0.5517\n0.5557\n0.5596\n0.5636\n0.5675\n0.5714\n0.5753\n0.2\n0.5793\n0.5832\n0.5871\n0.5910\n0.5948\n0.5987\n0.6026\n0.6064\n0.6103\n0.6141\n0.3\n0.6179\n0.6217\n0.6255\n0.6293\n0.6331\n0.6368\n0.6406\n0.6443\n0.6480\n0.6517\n0.4\n0.6554\n0.6591\n0.6628\n0.6664\n0.6700\n0.6736\n0.6772\n0.6808\n0.6844\n0.6879\n0.5\n0.6915\n0.6950\n0.6985\n0.7019\n0.7054\n0.7088\n0.7123\n0.7157\n0.7190\n0.7224\n0.6\n0.7257\n0.7291\n0.7324\n0.7357\n0.7389\n0.7422\n0.7454\n0.7486\n0.7517\n0.7549\n0.7\n0.7580\n0.7611\n0.7642\n0.7673\n0.7703\n0.7734\n0.7764\n0.7793\n0.7823\n0.7852\n0.8\n0.7881\n0.7910\n0.7939\n0.7967\n0.7995\n0.8023\n0.8051\n0.8078\n0.8106\n0.8133\n0.9\n0.8159\n0.8186\n0.8212\n0.8238\n0.8264\n0.8289\n0.8315\n0.8340\n0.8365\n0.8389\n1.0\n0.8413\n0.8438\n0.8461\n0.8485\n0.8508\n0.8531\n0.8554\n0.8577\n0.8599\n0.8621\n1.1\n0.8643\n0.8665\n0.8686\n0.8708\n0.8729\n0.8749\n0.8770\n0.8790\n0.8810\n0.8830\n1.2\n0.8849\n0.8869\n0.8888\n0.8906\n0.8925\n0.8943\n0.8962\n0.8980\n0.8997\n0.9015\n1.3\n0.9032\n0.9049\n0.9066\n0.9082\n0.9099\n0.9115\n0.9131\n0.9147\n0.9162\n0.9177\n1.4\n0.9192\n0.9207\n0.9222\n0.9236\n0.9251\n0.9265\n0.9279\n0.9292\n0.9306\n0.9319\n1.5\n0.9332\n0.9345\n0.9357\n0.9370\n0.9382\n0.9394\n0.9406\n0.9418\n0.9429\n0.9441\n1.6\n0.9452\n0.9463\n0.9474\n0.9484\n0.9495\n0.9505\n0.9515\n0.9525\n0.9535\n0.9545\n1.7\n0.9554\n0.9564\n0.9573\n0.9582\n0.9591\n0.9599\n0.9608\n0.9616\n0.9625\n0.9633\n1.8\n0.9641\n0.9649\n0.9656\n0.9664\n0.9671\n0.9678\n0.9686\n0.9693\n0.9699\n0.9706\n1.9\n0.9713\n0.9719\n0.9726\n0.9732\n0.9738\n0.9744\n0.9750\n0.9756\n0.9761\n0.9767\n2.0\n0.9772\n0.9778\n0.9783\n0.9788\n0.9793\n0.9798\n0.9803\n0.9808\n0.9812\n0.9817\n2.1\n0.9821\n0.9826\n0.9830\n0.9834\n0.9838\n0.9842\n0.9846\n0.9850\n0.9854\n0.9857\n2.2\n0.9861\n0.9864\n0.9868\n0.9871\n0.9875\n0.9878\n0.9881\n0.9884\n0.9887\n0.9890\n2.3\n0.9893\n0.9896\n0.9898\n0.9901\n0.9904\n0.9906\n0.9909\n0.9911\n0.9913\n0.9916\n2.4\n0.9918\n0.9920\n0.9922\n0.9925\n0.9927\n0.9929\n0.9931\n0.9932\n0.9934\n0.9936\n2.5\n0.9938\n0.9940\n0.9941\n0.9943\n0.9945\n0.9946\n0.9948\n0.9949\n0.9951\n0.9952\n2.6\n0.9953\n0.9955\n0.9956\n0.9957\n0.9959\n0.9960\n0.9961\n0.9962\n0.9963\n0.9964\n2.7\n0.9965\n0.9966\n0.9967\n0.9968\n0.9969\n0.9970\n0.9971\n0.9972\n0.9973\n0.9974\n2.8\n0.9974\n0.9975\n0.9976\n0.9977\n0.9977\n0.9978\n0.9979\n0.9979\n0.9980\n0.9981\n2.9\n0.9981\n0.9982\n0.9982\n0.9983\n0.9984\n0.9984\n0.9985\n0.9985\n0.9986\n0.9986\n3.0\n0.9987\n0.9987\n0.9987\n0.9988\n0.9988\n0.9989\n0.9989\n0.9989\n0.9990\n0.9990\n3.1\n0.9990\n0.9991\n0.9991\n0.9991\n0.9992\n0.9992\n0.9992\n0.9992\n0.9993\n0.9993\n3.2\n0.9993\n0.9993\n0.9994\n0.9994\n0.9994\n0.9994\n0.9994\n0.9995\n0.9995\n0.9995\n3.3\n0.9995\n0.9995\n0.9995\n0.9996\n0.9996\n0.9996\n0.9996\n0.9996\n0.9996\n0.9997\n3.4\n0.9997\n0.9997\n0.9997\n0.9997\n0.9997\n0.9997\n0.9997\n0.9997\n0.9997\n0.9998\n3.5\n0.9998\n0.9998\n0.9998\n0.9998\n0.9998\n0.9998\n0.9998\n0.9998\n0.9998\n0.9998\nThat’s all folks! We hope you had fun. The counting you did was for the real enigma machine. Folks\nwho program the internet think deeply about queuing theory, and like movies too. The last question is an\nintroduction to how we chose between different probabilistic models.\n13",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermSpr2019",
+      "score": 0.43714821338653564
+    },
+    {
+      "chunk_id": "cs109_midtermspr2019_p0_87674bc009",
+      "text": "CS109 Midterm Exam\nChris Piech\nCS109\nSpring 2019\nMay 7th\nThis is a closed calculator/computer exam. You are, however, allowed to use notes in the exam. The last page\nof the exam is a Standard Normal Table, in case you need it. You have 2 hours (120 minutes) to take the\nexam. The exam is 120 points, meant to roughly correspond to one point per minute of the exam. You may\nwant to use the point allocation for each problem as an indicator for pacing yourself on the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions and\nparameter values you used, where appropriate. It is ﬁne for your answers to include summations, products,\nfactorials, exponentials, and combinations, unless the question speciﬁcally asks for a numeric quantity or\nclosed form. Where numeric answers are required, the use of fractions is ﬁne.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than I have in\nmy entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\nEmail (preferably your gradescope email):",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermSpr2019",
+      "score": 0.43032848834991455
+    },
+    {
+      "chunk_id": "cs109_midtermspr2019_p5_2f512c8be0",
+      "text": "e (12 points) Each family is unique. With our advanced analytics we were able to estimate an individual\nshow-up probability for each of the six enrolled babies: p1, p2,..., p6 where pi is the probability that baby\ni shows up. Write a new expression for the probability that 5 or 6 babies show up. You may still assume\nthat babies show up independent of one another.\n6",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermSpr2019",
+      "score": 0.4125962555408478
+    },
+    {
+      "chunk_id": "cs109_midtermspr2019_p14_bee301f4a7",
+      "text": "b. (5 points) Under the logit-normal assumption, H2, what is P(0.9 < X < 1.0)?\nc. (2 points) Under the normal assumption, H1, what is the maximum value that X can take on?\nd. (10 points) Before observing any test scores, you assume that (a) one of your two hypotheses is correct and\n(b) that initially, each hypothesis is equally likely to be correct, P(H1) = P(H2) = 1/2. You then observe a\nsingle test score, X = 0.9. What is your updated probability that the Logit-Normal hypothesis is correct?\n12",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermSpr2019",
+      "score": 0.40525463223457336
+    },
+    {
+      "chunk_id": "cs109_midtermspr2019_p7_b40ecd3154",
+      "text": "b (9 points) If you choose a line uniformly at random to wait in, what is the probability that you and your\nfriends are on time for the movie?\nc (9 points) Your genius friend says, “why don’t we just each take a line and if anyone is able to buy tickets\nin time, we can make the movie.” Under her plan, what is the probability that you and your friends are on\ntime for the movie? Assume that each line acts independently.\n8",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermSpr2019",
+      "score": 0.37158235907554626
+    },
+    {
+      "chunk_id": "cs109_midtermspr2019_p8_d606cd50ac",
+      "text": "4\nName2Age [18 points]\nYou are working on a team that uses probability and CS to help a rockband better understand their audience.\nThe band recently played a New Years day concert. After selling the tickets online you know the ﬁrst name\nof all attendees and would like to update your belief about their ages. Names can be quite indicative of age:\nYou have access to a digitalized census which tells you how many US residents were born with a given\nname in a given year. You also had a previous belief about the age of concert attendees (and you assume all\nattendees are US residents). Speciﬁcally you have functions:\nFunction\nDescription\n(year, name)\nThe number of residents, born in a given year with a given name.\n(year)\nThe prior belief than a resident was born in a given year, given they attend the concert\nExpress all of your answers in terms of the count and prior functions. All people are born after 1900. Let\nN1,N2,...,Nk be all possible names.\na (8 points) Use census data to estimate the probability that a resident in America is named “Gary” given\nthat they were born in 1950.\n9\n&=\nP(Gary /1950) =Payn\n1950)\n*\nP (1950)\nOCGary 1950) =\nare so t\n↑total\nP(1950)\n=\n=I\npopulation",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermSpr2019",
+      "score": 0.3633694648742676
+    },
+    {
+      "chunk_id": "cs109_midtermspr2019_p1_a31978d621",
+      "text": "1\nEnigma Machine [20 points]\nOne of the very ﬁrst computers was built to break the Nazi “enigma” codes in WW2. It was a hard problem\nbecause the “enigma” machine, used to make secret codes, had so many unique conﬁgurations. Let’s count!\na. (4 points) The enigma machine has three rotors. Each rotor can be set to one of 26 different positions.\nHow many unique conﬁgurations are there of the three rotors?\nb. What’s more! The machine has a plug board with single plug for each letter in the alphabet. On the plug\nboard, wires can connect any pair of letters to produce a new conﬁguration.\ni. (4 points) How many ways are there to place exactly one wire that connects two letters? A wire from\n‘K’ to ’L’ is not considered distinct from a wire from ‘L’ to ’K’. A wire can’t connect a letter to itself.\n2\n2\n: 26\n:23\n= 233\nUSE\ncom b\n*\n=\n=\ns\nNot matter\n-\n# ways\nto\nchoose\na pair (2 letters\n26\nC\n2\nC\n=\n325\nE\nK L\n⑳",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermSpr2019",
+      "score": 0.3444492816925049
+    },
+    {
+      "chunk_id": "cs109_midtermspr2019_p11_1f95811b6a",
+      "text": "L\nO(G(Y\n· P(Y/C)\n= --\n2\n0 , P(G(y ,<)\n· P(y/C)\nCop\n↳our (a)\n- Prior(1950)\nD- ~\nprincy)\n=\n(G(X)\n· PCYI\nusing\n2019 P(G(y)\n· P(y/C)\nassumption\n&\ny\n= 1901O F\n↑similar approach=PC)\n= a.\nproclassn\npily)\n&201990 (",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermSpr2019",
+      "score": 0.3425294756889343
+    },
+    {
+      "chunk_id": "cs109_midtermspr2019_p10_04334aa83c",
+      "text": "b (10 points) What is the updated belief that a resident was born in 1950, given that they attended the\nconcert and their name was Gary? Make the reasonable assumption that a person’s name is conditionally\nindependent of whether or not they attend the concert, given their age.\n10\nP(G(Y)\nP(1950/C , Gary\nA\n· P(y(c , G)\n= 0\nP(G(C)=P\nP(G , () = P(GIC)P()\nP(G(Y,\n)\n=0> E P(G , Y, C)\n= PCGLYC\nP(Y, C)\nP(Y( , G)\n=\nG(Y, c)\n- P(Y, C\n↳\nP(GIC)\n· P(C)\n#P(Y, C)\nP(Y(C) = -\nP(C)\n=G\n.Ple\nR",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermSpr2019",
+      "score": 0.29938411712646484
+    },
+    {
+      "chunk_id": "cs109_midtermspr2019_p6_78832b5b47",
+      "text": "3\nµ Girls [26 points]\nYou are on your way to buy tickets to see the new hit movie, “µ Girls” with your friends! At the movie\ntheater, you have to make the usual decision - which line should I wait in? The lines are long so you and your\nfriends brieﬂy observe the rate of people served per minute in each line. How should we balance the rate at\nwhich people are served and the length of a line? The movie is starting soon. You will make it on time if\nit takes less than 10 mins to buy your tickets.\nLine\nRate (people / min)\nNum People in line\nLine A\n1/2\n4\nLine B\n1/3\n3\nLine C\n1/4\n2\na (8 points) It turns out that line B (which already has three people in it) is the riskiest line to wait in. If you\nwait in line B, what is the probability that you and your friends are on time for the movie?\n7",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermSpr2019",
+      "score": 0.266936719417572
+    },
+    {
+      "chunk_id": "cs109_midtermspr2019_p4_56ea195d2c",
+      "text": "c (6 points) If 0 to 4 babies show up we will hire one staff member. If 5 or 6 babies show up we will hire\ntwo staff. We pay each staff member $200 a day. What are our expected staff costs? You may express you\nanswer in terms of a, the answer to part (a).\nd (8 points) What is the lowest value $k that we can charge per child in order to have an expected proﬁt\nof $0? Assume that our only costs are staff. Recall that Proﬁt = Revenue - Cost. You may express your\nanswer in terms of a, b or c, the answers to part (a), (b) and (c) respectively.\n5",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermSpr2019",
+      "score": 0.25552263855934143
+    },
+    {
+      "chunk_id": "cs109_midtermspr2019_p3_f7c88312e0",
+      "text": "2\nDaycare.ai [34 points]\nProviding affordable daycare would have a tremendously positive effect on society. We are building an app\nfor daycare centers and we want to charge our customers as little as possible while paying our staff a living\nwage. California mandates that the ratio of babies to staff must be 4.\nWe have a challenge: just because a baby is enrolled, doesn’t mean they will show up. At a particular\nlocation, 6 babies are enrolled. We estimate that the probability an enrolled child actually shows up on a\ngiven day is 5/6. Assume that babies show up independent of one another.\na (4 points) What is the probability that either 5 or 6 babies show up?\nb (4 points) If we charge $50 per baby that shows up, what is our expected revenue?\n4",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermSpr2019",
+      "score": 0.25125575065612793
+    },
+    {
+      "chunk_id": "cs109_midtermspr2019_p9_c4bb10cf9f",
+      "text": "↑Paul as\na\n-I\n=\nlast\nTu\nseeproblem\ncount(1950, Gary\n= -\n1) We need /1950/\n& count(1950, Ni)\nn\n#people who\nare born in 1950\n2) We have\nto use \"count\" or \"prior\" functions\n3)\nuse\ncount(year , namel\n&\ngo thmu all the names for evers\npersonN , Nc,\n.\n.\n. Ne names\nE\nSam up\ncounts of people with\nfor\neach\nname\nborn\nin 1950",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermSpr2019",
+      "score": 0.23126253485679626
+    },
+    {
+      "chunk_id": "cs109_midtermspr2019_p12_5da7b9dd97",
+      "text": "b (10 points) What is the updated belief that a resident was born in 1950, given that they attended the\nconcert and their name was Gary? Make the reasonable assumption that a person’s name is conditionally\nindependent of whether or not they attend the concert, given their age.\n10",
+      "source_type": "lecture_slide",
+      "document_name": "MidtermSpr2019",
+      "score": 0.202167347073555
+    }
+  ],
+  "built_at": "2026-04-18T05:01:09Z"
+}

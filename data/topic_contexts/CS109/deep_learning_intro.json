@@ -1,0 +1,230 @@
+{
+  "course": "CS109",
+  "topic_id": "deep_learning_intro",
+  "topic_name": "Introduction to Deep Learning",
+  "queries_used": [
+    "Introduction to Deep Learning definition",
+    "Introduction to Deep Learning intuition",
+    "Introduction to Deep Learning worked example",
+    "Introduction to Deep Learning exam problem",
+    "neural networks overview",
+    "neural networks practice",
+    "deep learning overview",
+    "deep learning practice",
+    "classification models overview",
+    "classification models practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p0_p1_fb25eb7233",
+      "text": "26: Intro to Deep \nLearning\nJerry Cain\nMay 31, 2024\n1\nLecture Discussion on Ed\n\nDeep Learning\n2",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.6454280614852905
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p5_3ead03a42b",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDeep learning\ndef Deep learning is \nmaximum likelihood estimation \nwith neural networks.\n6\n[1,0, … , 1]\n𝒙, input\n(𝑦, output\n𝑃𝑌= 1|𝑿= 𝒙\n> 0.5?\nYes.\nPredict 1\nLots of Logistic \n(regressions)\nLOL\ndef A neural network is,\nat its core, many logistic \nregression units stacked on top \nof each other and daisy-\nchained together.",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.5696451663970947
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p6_775acec977",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n✅ 𝑿 can be dependent\n🤷 Regression model (2𝑌∈ℝ, not discrete)\n7\nPrediction models so far\nLinear Regression (Regression)\n𝜃! + 3\n\"#$\n%\n𝜃\"𝑋\"\n𝑿\n2𝑌\n✅ Tractable with NB assumption, but…\n⚠ Realistically, 𝑋& features aren’t always\n     conditionally independent\n🤷 Actually models 𝑃𝑿, 𝑌, not 𝑃𝑌|𝑿?\n2𝑃𝑿|𝑌2𝑃𝑌\n𝑿\n𝑌\n2𝑃𝑿, 𝑌\nNaïve Bayes (Classification)\n2𝑌= arg max\n'( !,\"\n𝑃𝑌 | 𝑿 \n = arg max\n'( !,\"\n𝑃𝑿|𝑌𝑃𝑌\n2𝑌= 𝜃! + ∑&(\"\n$ 𝜃&𝑋&",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.5591104626655579
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p23_cdce04ab1e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic regression classiﬁer\n24\n24\nTesting\n=𝑌= arg max\n4& $,!\n𝑃𝑌|𝑋\nTraining\n𝜃= 𝜃$, 𝜃!, 𝜃\", … , 𝜃#\nGiven an observation 𝑿= 𝑋!, 𝑋\", … , 𝑋# , predict\nEstimate parameters\nfrom training data\nChoose 𝜃 that optimizes some objective:\n1.\nDetermine objective function\n2.\nFind gradient with respect to each 𝜃\n3.\nSolve analytically by setting to 0, or solve\ncomputationally with gradient ascent\nWe are modeling 𝑃𝑌|𝑋 \ndirectly, so we maximize the \nconditional likelihood of \ntraining data.\n𝑃𝑌= 1|𝑿= 𝒙= 𝜎∑%&$\n#\n𝜃%𝑥% = 𝜎𝜃'𝒙 \n=𝑌= arg max\n4& $,!\n𝑃𝑌|𝑿",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.5437195301055908
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p31_1fb219e78c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThe problem with our current classifier\n32\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑌 | 𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑋!, 𝑋\", … , 𝑋#|𝑌\nEstimating this joint conditional \ndistribution is intractable.\nWhat if we could make a simplifying assumption—even if incredibly naïve—\nto make our parameter estimation effort computationally tractable?\nChoose the 𝑌 that is \nmost likely given 𝑿\n(Bayes’ Theorem)\n(1/𝑃𝑿 is constant w.r.t. 𝑦)",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.5376031994819641
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p40_a905f3de2f",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGoogLeNet (2015)\n41\n1 Trillion Artificial Neurons\n(btw human brains have 1 billion neurons)\n22 layers deep!\nMultiple,\nMulti class output\nSzegedy et al., Going Deeper With Convolutions. CVPR 2015",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.5314772725105286
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p21_p22_8823ec123c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLogistic regression classiﬁer\n22\n22\nTesting\n=𝑌= arg max\n4& $,!\n𝑃𝑌|𝑿\nTraining\n𝜃= 𝜃$, 𝜃!, 𝜃\", … , 𝜃#\nGiven an observation 𝑿= 𝑋!, 𝑋\", … , 𝑋# , predict\n𝑃𝑌= 1|𝑿= 𝒙= 𝜎∑%&$\n#\n𝜃%𝑥% = 𝜎𝜃'𝒙 \nEstimate parameters\nfrom training data\n=𝑌= arg max\n4& $,!\n𝑃𝑌|𝑿\n\nTraining:\nThe big picture\n23",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.5265231728553772
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p15_p16_ba9633216f",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nClassification: Predicting class labels\n16\n…\nFeature 1 Feature 2\nFeature 300\nOutput\nPatient 1  1 \n0 \n… \n1 \n 1 \nPatient 2  1 \n1 \n… \n0 \n 0 \n     …\nPatient 𝑛  0 \n0 \n… \n1 \n 1 \n…\n…\n𝑿= 𝑋!, 𝑋\", 𝑋#, … , 𝑋#$$\n\nBrute Force Bayes\n17",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.5223563313484192
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p2_c986e1c7af",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInnovations in deep learning\nDeep learning and neural \nnetworks are cores theories and \ntechnologies behind the current AI \nrevolution.\n3\nAlphaGO (2016)\nErrata:\n•\nCheckers is the last solved game (from game \ntheory, where perfect player outcomes can be \nfully predicted from any gameboard). \nhttps://en.wikipedia.org/wiki/Solved_game \n•\nThe first machine learning algorithm defeated a \nworld champion in Chess in 1996. \nhttps://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.5215867757797241
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p5_6959ca3cce",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nEx 3. Naïve Bayes Classiﬁer (𝑚, 𝑛 large)\n6\n0𝑌= arg max\n'( ),!\n9\n$(!\n#\n0𝑃𝑋$|𝑌\n0𝑃𝑌\n6\n∀𝑗:\n0𝑃𝑌= 1 , 0𝑃𝑌= 0  \n0𝑃𝑋$ = 1|𝑌= 0 , 0𝑃𝑋$ = 0|𝑌= 0 ,\n0𝑃𝑋$ = 1|𝑌= 1 , 0𝑃𝑋$ = 0|𝑌= 0 ,\nTesting\nTraining\nUse MLE or\nLaplace (MAP)\n0𝑌= arg max\n'( ),!\n9\n$(!\n#\n0𝑃𝑋$|𝑌\n0𝑃𝑌\nLaplace (MAP) estimates avoid estimating \n0 probabilities for events that don’t occur \nin your training data.",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.5205121636390686
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p6_52b3457baa",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nReal World Problem\nFormal Model 𝜃\nPrediction \nFunction \"𝜃 \nModel the problem\nLearning Algorithm\nTesting\nData\nTraining \nData\nEvaluation\nscore\nSupervised learning\nNot CS109’s focus.\nCS228 is awesome.\nModeling",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.5088397264480591
+    },
+    {
+      "chunk_id": "cs109_24_gradient_ascent_annotated_p8_1f8e3c24a5",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nEx 3. Naïve Bayes Classifier (𝑚, 𝑛 large)\n9\n0𝑌= arg max\n'( ),!\n9\n$(!\n#\n0𝑃𝑋$|𝑌\n0𝑃𝑌\n9\n∀𝑖:\n0𝑃𝑌= 1 , 0𝑃𝑌= 0  \n0𝑃𝑋$ = 1|𝑌= 0 , 0𝑃𝑋$ = 0|𝑌= 0 ,\n0𝑃𝑋$ = 1|𝑌= 1 , 0𝑃𝑋$ = 0|𝑌= 0 ,\nTesting\nTraining\nUse MLE or\nLaplace (MAP)\n0𝑌= arg max\n'( ),!\nlog 0𝑃𝑌+ ?\n$(!\n#\nlog 0𝑃𝑋$|𝑌\nUse sums of log-\nprobabilities for \nnumerical stability.",
+      "source_type": "lecture_slide",
+      "document_name": "24 gradient ascent annotated",
+      "score": 0.508786141872406
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p16_89a8a83f9a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIntroducing: The Neural network\n17\n…\n𝒙, input features\n(𝑦, output\n𝒉, hidden\nlayer\n> 0.5?\nNo. \nPredict 0\n✅",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.5084870457649231
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p42_00ad9cf1c7",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaking decisions?\nNot everything is classification.\nDeep Reinforcement Learning\nInstead of having the output of \na model be a probability, you \nmake output an expectation.\n43\nhttp://cs.stanford.edu/people/karpathy/convnetjs/demo/rldemo.html",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.5051456689834595
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p9_fe9dd29610",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNeural network =\nmany logistic\nregressions\nBiological basis for neural networks\n10\nA neuron\nYour brain\nOne neuron =\n   one logistic\n   regression\n(or rather, someone else’s brain)\n𝑥$\n𝑥&\n𝑥'\n𝑥(\n𝜃!\n𝜃\"\n𝜃#\n𝜃$\n\"𝑦\n𝑥$\n𝑥&\n𝑥'\n𝑥(",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.5017383694648743
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p44_d0de35ec97",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n45\nNaïve Bayes \n \n \n     vs \nLogistic Regression\n[𝑃𝑿|𝑌[𝑃𝑌\n𝑿\n𝑌\n[𝑃𝑿, 𝑌\n[𝑌= arg max\n.# !,$\n𝑃𝑌 | 𝑿= arg max\n.# !,$\n𝑃𝑿|𝑌𝑃𝑌\n[𝑌= arg max\n.# !,$\n𝑃𝑌|𝑿\n𝜃#𝒙\n𝑿\n0\n0.2\n0.4\n0.6\n0.8\n1\n-10\n-8\n-6\n-4\n-2\n0\n2\n4\n6\n8\n10\n! \"\n\"\n𝑃𝑌= 1|𝑿\nCompare/contrast:\n1. What distributions are we modeling?\n2. After learning our parameters, could we randomly generate a new datapoint 𝒙, 𝑦?\n3. Could we model a continuous 𝑋& feature (e.g., 𝑋&~Normal, or 𝑋&~Unknown)?\n4. Could we model a non-binary discrete 𝑋& (e.g., 𝑋& ∈1,2, … , 6 )?\n𝜃",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.49576038122177124
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p39_11f9b2e467",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNeurons learn features of the dataset\n40\nLe, et al., Building high-level features using large-scale unsupervised learning. ICML 2012\nNeurons in later layers will respond strongly to high-level \nfeatures of your training data.\nIf your training data is faces, you will get lots of face neurons.\nIf your training data\nis all of YouTube…\nTop stimuli in test set\nOptimal stimulus found\nby numerical optimization\n…you get a cat \nneuron.",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.49314916133880615
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p18_6944eb80a4",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFeed neurons into other neurons\n19\n…\n𝒉, hidden\nlayer\n+\nσ\nhidden\nneuron\n• Neuron = logistic regression\n𝒙, input features\n(𝑦, output\n> 0.5?\nNo. \nPredict 0\nBig idea #2 σ θ*𝒙\nNon-linear transform of multiple \nvalues into one value, using \nparameter θ",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.48838669061660767
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p43_af84d32f5c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDeep Reinforcement Learning\n44\nhttp://cs.stanford.edu/people/karpathy\n/convnetjs/demo/rldemo.html\nDeep Mind Atari Games\nScore compared to best \nhuman",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.48766371607780457
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p26_bb4c08c97a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNeural networks\n27\nTesting/\nPrediction\nTraining\nA neural network (like logistic regression) gets intelligence from its \nparameters 𝜃.\n•\nLearn parameters 𝜃 \n•\nFind 𝜃&'( that maximizes likelihood of\ntraining data (MLE)\nFor input feature vector 𝑿= 𝒙:\n•\nUse parameters to compute (𝑦= 𝑃𝑌= 1|𝑿= 𝒙\n•\nClassify instance as:\n-1 \n(𝑦> 0.5 \n0 \notherwise",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.48732972145080566
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p5_6427ae604e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nReal World Problem\nFormal Model 𝜃\nPrediction \nFunction \"𝜃\nModel the problem\nLearning Algorithm\nTesting\nData\nTraining \nData\nEvaluation\nscore\nSupervised learning",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.4837953448295593
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p23_70cee23a73",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhy doesn’t a linear model introduce “complexity”?\nNeural network:\n1.  \n2.  \nLinear network:\n1.   \n2.  \n24\n…\n!, input features\n\"#, output\n$, hidden\nlayer\nfor 𝑗= 1, … , |𝒉|:\nℎ\" = 𝜎𝜃\"\n) *\n𝒙\n1.\n2.\nfor 𝑗= 1, … , |𝒉|:\nℎ\" = 𝜃\"\n) *\n𝒙\n,𝑦= 𝜎𝜃+, *𝒉= 𝑃𝑌= 1|𝑿= 𝒙\n,𝑦= 𝜎𝜃+, *𝒉= 𝑃𝑌= 1|𝑿= 𝒙",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.48308855295181274
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p17_1fe90e8983",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNeural network\n18\n…\n𝒙, input features\n(𝑦, output\nBig idea #1  𝑃𝑌|𝑿= 𝒙\nModel conditional probability \n\"𝑦 of class label given input\n𝒉, hidden\nlayer\n> 0.5?\nNo. \nPredict 0",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.48140841722488403
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p27_6916fd0439",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNeural networks\n28\nTraining\nA neural network (like logistic regression) gets intelligence from its \nparameters 𝜃.\n•\nLearn parameters 𝜃 \n•\nFind 𝜃&'( that maximizes likelihood of\ntraining data (MLE)\nHow do we learn the 𝒙⋅𝒉+ |𝒉| parameters?\nGradient ascent + chain rule!",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.47987592220306396
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p19_ad0407bef7",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFeed neurons into other neurons\n20\n…\n𝒉, hidden\nlayer\n+\nσ\nanother\nhidden\nneuron\n• Neuron = logistic regression\n• Different parameters for\nevery connection\n𝒙, input features\n(𝑦, output\n> 0.5?\nNo. \nPredict 0",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.47128504514694214
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p21_2c97ca0dc9",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFeed neurons into other neurons\n22\n…\n𝒉, hidden\nlayer\n> 0.5?\nNo. \nPredict 0\n+\nσ\noutput\nneuron\n• Neuron = logistic regression\n• Different parameters for\nevery connection\n𝒙, input features\n(𝑦, output\n|𝒉| logistic \nregression \nconnections\n𝒙⋅|𝒉| \nparameters",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.46137356758117676
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p20_d4468b974a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFeed neurons into other neurons\n21\n…\n𝒙, input features\n(𝑦, output\n𝒉, hidden\nlayer\n|𝒉| logistic \nregression \nconnections\n• Neuron = logistic regression\n• Different parameters for\nevery connection\n> 0.5?\nNo. \nPredict 0\n𝒙⋅|𝒉| \nparameters",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.4610009789466858
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p22_157180b0af",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nFeed neurons into other neurons\n23\n…\n𝒙, input features\n(𝑦, output\n𝒉, hidden\nlayer\n> 0.5?\nNo. \nPredict 0\n1 logistic \nregression \nconnection\n|𝒉| logistic \nregression \nconnections\n𝒙⋅|𝒉| \nparameters\n|𝒉| \nparameters\n• Neuron = logistic regression\n• Different parameters for\nevery connection",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.4507322311401367
+    },
+    {
+      "chunk_id": "cs109_26_deep_learning_annotated_p35_p36_21ed17488f",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Optimization\nproblem:\n2. Compute gradient\n3. Optimize\n2. Compute gradient via backpropagation\n36\n𝜃+,- = arg max\n.\n9\n(\"%\n/\n𝑓𝑦( | 𝒙( , 𝜃= arg max\n.\n 𝐿𝐿𝜃\n𝐿𝐿𝜃= <\n(\"%\n/\n𝑦(() log \"𝑦( + 1 −𝑦(() log 1 −\"𝑦(\nℎ3 = 𝜎𝜃3\n4 *\n𝒙\n\"𝑦= 𝜎𝜃5! *𝒉\nfor 𝑗= 1, … , |𝒉|\nTake gradient with respect to all 𝜃 parameters\nLearn the tricks behind \nbackpropagation in \nCS229, CS231N, CS224N, \netc.\n\nBeyond the \nbasics\n37",
+      "source_type": "lecture_slide",
+      "document_name": "26 deep learning annotated",
+      "score": 0.44966834783554077
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p4_aed2e330a2",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMachine Learning uses a lot of data.\nTask: Identify the chair\nData: All the chairs ever\nSupervised learning: A \ncategory of machine learning \nwhere you have labeled data for \nthe problem you are solving.\nMany different forms of machine learning\n◦We focus on the problem of prediction given prior observations.",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.428500235080719
+    }
+  ],
+  "built_at": "2026-04-28T05:13:15Z"
+}

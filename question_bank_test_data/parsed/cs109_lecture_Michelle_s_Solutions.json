@@ -1,0 +1,51 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "question_bank_test_data/raw/CS109/lectures/Michelle's Solutions.pdf",
+  "relative_path": "question_bank_test_data/raw/CS109/lectures/Michelle's Solutions.pdf",
+  "sha256": "493d768d452c096488923435e6f2768223de59f91b3ceb39f3d949c20b3b226f",
+  "title_guess": "Michelle's Solutions",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 1,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 2,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 3,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 4,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 5,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 6,
+      "text": "",
+      "char_count": 0
+    },
+    {
+      "page_index": 7,
+      "text": "",
+      "char_count": 0
+    }
+  ],
+  "ingested_at": "2026-04-18T05:01:05Z"
+}

@@ -1,0 +1,575 @@
+.page {
+  display: flex;
+  gap: 18px;
+  padding: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.panel {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text);
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.kicker {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.statusPill {
+  margin: 0;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  font-size: 12px;
+}
+
+.questionBody {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.35;
+  color: var(--color-ink);
+}
+
+.hintsPanel {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  background: var(--color-surface-2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hintsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.hintsTitle {
+  margin: 0;
+  font-weight: 650;
+  color: var(--color-ink);
+}
+
+.hintFolders {
+  display: grid;
+  gap: 8px;
+}
+
+.hintFolder {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+.hintSummary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 12px;
+  cursor: pointer;
+  color: var(--color-ink);
+  font-weight: 650;
+  user-select: none;
+}
+
+.hintSummary::-webkit-details-marker {
+  display: none;
+}
+
+.hintSummary:hover {
+  background: color-mix(in srgb, var(--color-sage-700) 7%, var(--color-surface));
+}
+
+.hintChevron {
+  color: var(--color-muted);
+  font-size: 12px;
+  transition: transform 140ms ease;
+}
+
+.hintFolder[open] .hintChevron {
+  transform: rotate(90deg);
+}
+
+.hintFolderTab {
+  position: relative;
+  width: 18px;
+  height: 13px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--color-sage-700) 22%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--color-sage-700) 35%, var(--color-border));
+  flex: 0 0 auto;
+}
+
+.hintFolderTab::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: -5px;
+  width: 9px;
+  height: 5px;
+  border-radius: 3px 3px 0 0;
+  background: color-mix(in srgb, var(--color-sage-700) 22%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--color-sage-700) 35%, var(--color-border));
+  border-bottom: none;
+}
+
+.hintMeta {
+  margin-left: auto;
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.hintText {
+  margin: 0;
+  padding: 0 12px 12px 48px;
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+.instructions {
+  border-top: 1px solid var(--color-border);
+  padding-top: 10px;
+}
+
+.instructionsTitle {
+  margin: 0 0 6px 0;
+  font-weight: 650;
+  color: var(--color-ink);
+}
+
+.instructionsList {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--color-text);
+}
+
+.captureButton {
+  align-self: flex-start;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-sage-700) 25%, var(--color-border));
+  background: var(--color-sage-700);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.captureButton:hover {
+  background: color-mix(in srgb, var(--color-sage-700) 88%, black);
+}
+
+.captureButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.previewPanel {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--color-text);
+}
+
+.previewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.previewTitle {
+  margin: 0;
+  font-weight: 650;
+  color: var(--color-ink);
+}
+
+.previewControls {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.previewButton {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.previewButton:hover {
+  border-color: var(--color-border-strong);
+}
+
+.previewButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.videoWrap {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-2);
+  aspect-ratio: 16 / 9;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.a4Guide {
+  position: absolute;
+  inset: 6%;
+  border-radius: var(--radius-sm);
+  border: 2px dashed var(--color-border-strong);
+  background: transparent;
+  pointer-events: none;
+}
+
+.previewHint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.feedback {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 650;
+  color: var(--color-ink);
+}
+
+.markdown {
+  margin: 0;
+  word-break: break-word;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  max-height: 420px;
+  overflow: auto;
+}
+
+.imageFigure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.capturedImage {
+  width: 100%;
+  max-height: 360px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-2);
+}
+
+.imageCaption {
+  margin: 0;
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.placeholder {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.ctaRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ctaButton,
+.ctaButtonSecondary,
+.askButton {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  font: inherit;
+  cursor: pointer;
+}
+
+.ctaButton {
+  background: var(--color-sage-700);
+  color: #fff;
+  border-color: color-mix(in srgb, var(--color-sage-700) 25%, var(--color-border));
+}
+
+.ctaButton:hover {
+  background: color-mix(in srgb, var(--color-sage-700) 88%, black);
+}
+
+.ctaButtonSecondary {
+  background: var(--color-surface-2);
+  color: var(--color-text);
+}
+
+.ctaButtonSecondary:hover {
+  border-color: var(--color-border-strong);
+}
+
+.askBox {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.askLabel {
+  font-weight: 650;
+  color: var(--color-ink);
+}
+
+.askRow {
+  display: flex;
+  gap: 10px;
+}
+
+.askInput {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+
+.askInput:focus {
+  outline: none;
+  border-color: var(--color-sage-700);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-sage-700) 20%, transparent);
+}
+
+.askButton {
+  background: var(--color-clay-700);
+  color: #fff;
+  border-color: color-mix(in srgb, var(--color-clay-700) 25%, var(--color-border));
+}
+
+.askButton:hover {
+  background: color-mix(in srgb, var(--color-clay-700) 88%, black);
+}
+
+.error {
+  margin: 0;
+  color: var(--color-red-700);
+}
+
+.doneLink {
+  align-self: flex-start;
+  background: transparent;
+  border: none;
+  color: var(--color-sage-700);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.modeRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 0 4px;
+  border-top: 1px solid var(--color-border);
+}
+
+.modeLabel {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--color-muted);
+}
+
+.modeToggle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.modeButton {
+  flex: 1;
+  min-width: 140px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modeButtonActive {
+  border-color: var(--color-sage-700);
+  background: color-mix(in srgb, var(--color-sage-700) 12%, var(--color-surface));
+  color: var(--color-ink);
+}
+
+.modeButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.oralPanel {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  background: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.oralHint {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-text);
+}
+
+.transcriptBox {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  background: var(--color-surface-2);
+}
+
+.transcriptLabel {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.transcriptText {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--color-ink);
+  white-space: pre-wrap;
+}
+
+.oralActions {
+  display: grid;
+  gap: 10px;
+}
+
+.recordingBanner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--color-red-700) 35%, var(--color-border));
+  background: color-mix(in srgb, var(--color-red-700) 8%, var(--color-surface));
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.recordingDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-red-700);
+  flex-shrink: 0;
+  animation: study-recording-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes study-recording-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.92);
+  }
+}
+
+.doneSpeakingButton {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 999px;
+  border: none;
+  background: var(--color-clay-700);
+  color: #fff;
+  font: inherit;
+  font-size: max(16px, 1rem);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  touch-action: manipulation;
+}
+
+.doneSpeakingButton:hover {
+  filter: brightness(1.05);
+}
+
+.doneSpeakingButton:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}

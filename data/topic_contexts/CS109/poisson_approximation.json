@@ -1,0 +1,209 @@
+{
+  "course": "CS109",
+  "topic_id": "poisson_approximation",
+  "topic_name": "Poisson Distribution and Approximations",
+  "queries_used": [
+    "Poisson Distribution and Approximations definition",
+    "Poisson Distribution and Approximations intuition",
+    "Poisson Distribution and Approximations worked example",
+    "Poisson Distribution and Approximations exam problem",
+    "poisson distribution overview",
+    "poisson distribution practice",
+    "poisson approximation overview",
+    "poisson approximation practice",
+    "rare events overview",
+    "rare events practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_08_poisson_and_more_annotated_p29_1cfe0aced4",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPoisson Approximation, approximately\nPoisson can still provide a good approximation of the Binomial,\neven when assumptions are \"mildly\" violated.\nYou still can apply the Poisson approximation when:\n•\n\"Successes\" in trials are almost, but not entirely independent\ne.g., # entries in each bucket in large hash table.\n•\nProbability of \"success\" in each trial varies (slightly),\nlike a small relative change in a very small p\ne.g., average # requests to web server/sec may fluctuate\n slightly due to load on network or time of day\n30\nWe won’t explore this too much, but we \nwant you to know about it anyway.",
+      "source_type": "lecture_slide",
+      "document_name": "08 poisson and more annotated",
+      "score": 0.6210840940475464
+    },
+    {
+      "chunk_id": "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPoisson approximation\nPoisson approximates Binomial \nwhen 𝑛 is large, 𝑝 is small, and \n𝜆= 𝑛𝑝 is \"moderate”.\nDifferent interpretations of \n\"moderate\":\n• 𝑛> 20 and 𝑝< 0.05\n• 𝑛> 100 and 𝑝< 0.1\nPoisson is Binomial in the limit:\n• 𝜆= 𝑛𝑝, where 𝑛→∞, 𝑝→0\n27\n0\n0.05\n0.1\n0.15\n0.2\n0.25\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n𝑃(𝑋 = 𝑘)\n𝑋 = 𝑘\nBin(10,0.3)\nBin(100,0.03)\nBin(1000,0.003)\nPoi(3)\n𝑋~Poi(𝜆)\n𝐸𝑋= 𝜆 \n𝑌~Bin(𝑛, 𝑝)\n𝐸𝑌= 𝑛𝑝",
+      "source_type": "lecture_slide",
+      "document_name": "08 poisson and more annotated",
+      "score": 0.5653451681137085
+    },
+    {
+      "chunk_id": "cs109_midtermspr2017_q6k_9949ec7b94",
+      "text": "such that the probability that you don't drop a single request in the busiest\nhour is > 0.99. Use p from part a. The expression does not have to be closed form.\n\n– 13 – \nc. (7 points) A Poisson random variable with a parameter of λ ≥ 1000, can be \napproximated by a normal. The approximating normal should match the mean and \nthe variance of the Poisson. Let X ~ Poi(1000). What is an approximation for \nP(990 < X < 1000). Give your answer to two decimal places. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nd. (6 points) The probit function, Φ-1(x) is the inverse of the CDF of a standard \nnormal. It maps from probabilities to the standard normal CDF input that would \nproduce said probability. For example, you can confirm using the Standard \nNormal Table that Φ(0.1) = 0.5398, so  Φ-1(0.5398) = 0.1. Give a closed form \nexpression, using the probit function, for an approximation of K. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nWebsites solve this problem constantly.\n\n– 14 – \nStandard Normal Table \nNote: An entry in the table is the area under the curve to the left of z, P(Z ≤ z) = Φ(z) \n \n \n \n \n \nZ",
+      "source_type": "exam_question",
+      "document_name": "MidtermSpr2017",
+      "score": 0.5611138343811035
+    },
+    {
+      "chunk_id": "cs109_08_poisson_and_more_annotated_p30_7e1affcde8",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCan these Binomial RVs be approximated?\n31\nPoisson approximates Binomial \nwhen 𝑛 is large, 𝑝 is small, and \n𝜆= 𝑛𝑝 is \"moderate\".\nDifferent interpretations of \n\"moderate\":\n• 𝑛> 20 and 𝑝< 0.05\n• 𝑛> 100 and 𝑝< 0.1\nPoisson is Binomial in the limit:\n• 𝜆= 𝑛𝑝, where 𝑛→∞, 𝑝→0\n0\n0.05\n0.1\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n!(\" = #)\nBin(100,0.5)\n0\n0.1\n0.2\n0.3\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n!(\" = #)\nBin(100,0.04)\n0\n0.1\n0.2\n0.3\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n!(\" = #)\nBin(100,0.96)",
+      "source_type": "lecture_slide",
+      "document_name": "08 poisson and more annotated",
+      "score": 0.5494188070297241
+    },
+    {
+      "chunk_id": "cs109_08_poisson_and_more_annotated_p25_ea87f3dfd8",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhen is a Poisson approximation appropriate?\n26\n𝑃𝑋= 𝑘= lim\n\"→%\n𝑛\n𝑘\n𝜆\n𝑛\n!\n1 −𝜆\n𝑛\n\"#!\n= lim\n\"→$\n𝑛!\n𝑛%(𝑛−𝑘)!\n𝜆%\n𝑘!\n𝑒/0\n1 −l\n𝑛\n%\nDef natural \nexponent\n= lim\n\"→$\n𝑛𝑛−1 ⋯𝑛−𝑘+ 1\n𝑛%\n𝑛−𝑘!\n𝑛−𝑘!\n𝜆%\n𝑘!\n𝑒/0\n1 −l\n𝑛\n%\nExpand\n= lim\n\"→$\n𝑛%\n𝑛%\n𝜆%\n𝑘!\n𝑒/0\n1\nLimit analysis\n= 𝜆%\n𝑘! 𝑒/0\nSimplify\n= ⋯\nUnder which conditions will \n𝑋~Bin(𝑛, 𝑝) behave like \nPoi(𝜆), where 𝜆= 𝑛𝑝?\nA.\nLarge 𝑛, large 𝑝\nB.\nSmall 𝑛, small 𝑝\nC.\nLarge 𝑛, small 𝑝\nD.\nSmall 𝑛, large 𝑝\nE.\nOther",
+      "source_type": "lecture_slide",
+      "document_name": "08 poisson and more annotated",
+      "score": 0.5465505123138428
+    },
+    {
+      "chunk_id": "cs109_01_section_soln_sec1_part1_ca6b35b380",
+      "text": "CS109\nApril 11, 2024\nSection 1 Solution: Combinatorics and Probability\nChris Piech, Mehran Sahami, Jerry Cain, Lisa Yan, and numerous CS109 CA’s.\nOverview of Section Materials\nThe warm-up questions provided will help students practice concepts introduced in lectures. The section prob-\nlems are meant to apply these concepts in more complex scenarios similar to what you will see in problem sets\nand exams. In fact, many of them are old exam questions.\nBefore you leave lab, make sure you click here so that you’re marked as having attended this week’s section. The\nCA leading your discussion section can enter the password needed once you’ve submitted.\nWarm-ups\n1. Equality versus Inequality\nShow that for any events 𝐴and 𝐵that\n𝑃(𝐴) + 𝑃(𝐵) −1 ≤𝑃(𝐴∩𝐵) ≤𝑃(𝐴∪𝐵) ≤𝑃(𝐴) + 𝑃(𝐵)\nFor each of the three inequalities, describe sets 𝐴and 𝐵that would result in equality.\nWe’ll show each of the three to be true, one by one.\n• The Inclusion-Exclusion Principle is clear that 𝑃(𝐴∪𝐵) = 𝑃(𝐴) + 𝑃(𝐵) −𝑃(𝐴∩𝐵). Because all\nprobabilities, including those of intersections, are greater than or equal to 0, we have that 𝑃(𝐴∪𝐵) =\n𝑃(𝐴) + 𝑃(𝐵) −𝑃(𝐴∩𝐵) ≤𝑃(𝐴) + 𝑃(𝐵). When does the equality hold? When 𝐴and 𝐵are mutually\nexclusive events so that the probability that both events occur is 0.\n• 𝑃(𝐴∩𝐵) ≤𝑃(𝐴∪𝐵) is true simply because 𝐴∩𝐵⊆𝐴∪𝐵. Equality holds when 𝐴and 𝐵are the same\nevent.\n• Inclusion-Exclusion states that 𝑃(𝐴∪𝐵) = 𝑃(𝐴) + 𝑃(𝐵) −𝑃(𝐴∩𝐵) so that 𝑃(𝐴∪𝐵) + 𝑃(𝐴∩𝐵) = 𝑃(𝐴) +\n𝑃(𝐵). Because all probabilities are at most 1, we have 𝑃(𝐴) +𝑃(𝐵) = 𝑃(𝐴∩𝐵) +𝑃(𝐴∪𝐵) ≤𝑃(𝐴∩𝐵) +1,\nso that 𝑃(𝐴) + 𝑃(𝐵) −1 ≤𝑃(𝐴∩𝐵). Equality holds when the union of 𝐴and 𝐵is the full sample space 𝑆.\n2. Fish Pond\nSuppose there are 7 blue fish, 4 red fish, and 8 green fish in a large fishing tank. You drop a net into it and end up\nwith 2 fish. What is the probability you get 2 blue fish?",
+      "source_type": "review_section",
+      "document_name": "01 section soln",
+      "score": 0.5437543392181396
+    },
+    {
+      "chunk_id": "cs109_11_joint_rvs_annotated_p10_761317177f",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. If there is a choice, use Gaussian to approximate.\n2. When using Normal to approximate a discrete RV, use a continuity correction.\nWho gets to approximate?\n11\nPoisson approximation\n𝑛 large (> 20), 𝑝 small (< 0.05)\nslight dependence okay\nNormal approximation\n𝑛 large (> 20), 𝑝 mid-ranged (𝑛𝑝1 −𝑝> 10)\nindependence\n0\n0.05\n0.1\n0.15\n0.2\n0.25\n0\n10\n!(\" = #)\n$\nBin(100,0.04)\nN(4,1.96)\nPoi(4)\n0\n0.01\n0.02\n0.03\n0.04\n0.05\n0.06\n0.07\n0.08\n0.09\n30\n40\n50\n60\n70\n!(\" = #)\n$\nBin(100,0.5)\nN(50,5)\nPoi(50)",
+      "source_type": "lecture_slide",
+      "document_name": "11 joint rvs annotated",
+      "score": 0.5392930507659912
+    },
+    {
+      "chunk_id": "cs109_08_poisson_and_more_annotated_p20_4cbbde7458",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPoisson Random Variable\nIn CS109, a Poisson RV 𝑋~Poi(𝜆) most often models\n1. # of successes in a fixed interval of time, where successes are independent\n𝜆= 𝐸[𝑋], average success/interval\n21\n𝑃𝑋= 𝑘= 𝑒23 𝜆1\n𝑘!\n𝑋~Poi(𝜆)\nSupport: {0,1, 2, … }\nPMF\n𝐸𝑋= 𝜆 \nVar 𝑋= 𝜆 \nVariance  \nExpectation \n \n \nReview",
+      "source_type": "lecture_slide",
+      "document_name": "08 poisson and more annotated",
+      "score": 0.5385241508483887
+    },
+    {
+      "chunk_id": "cs109_12_independent_rvs_annotated_p11_cff3bf0da7",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSum of independent Poissons\n12\n𝑋~Poi 𝜆! , 𝑌~Poi 𝜆\"\n𝑋, 𝑌 independent\n𝑋+ 𝑌 ~Poi(𝜆! + 𝜆\")\n𝑃𝑋+ 𝑌= 𝑛= ;\n4\n𝑃𝑋= 𝑘𝑃𝑌= 𝑛−𝑘\n𝑋 and 𝑌 independent, \nconvolution\n= ;\n453\n%\n𝑒&6! 𝜆!\n4\n𝑘! 𝑒&6\"\n𝜆\"\n%&4\n(𝑛−𝑘)! = 𝑒&(6!86\") ;\n453\n%\n𝜆!\n4 𝜆\"\n%&4\n𝑘! (𝑛−𝑘)!\nPMF of Poisson RVs\n= 𝑒& 6!86\"\n𝑛!\n;\n453\n%\n𝑛! \n𝑘! (𝑛−𝑘)! 𝜆!\n4 𝜆\"\n%&4 = 𝑒& 6!86\"\n𝑛!\n𝜆! + 𝜆\" %\nProof (just for reference):\n𝑎+ 𝑏! = =\n\"#$\n!\n𝑛\n𝑘𝑎\"𝑏!%\"\nBinomial Theorem:\nPoi 𝜆! + 𝜆\"",
+      "source_type": "lecture_slide",
+      "document_name": "12 independent rvs annotated",
+      "score": 0.5267595052719116
+    },
+    {
+      "chunk_id": "cs109_practicemidterm_q17_5a0ecaaf90",
+      "text": "8 ⇡0.056). So a Poisson approximation is a good choice here.\nWe can approximate Y ⇡W ⇠Poi(λ = np).\nP(Y > 108) ⇡P(W > 108) = 1 −\n108\n’\ni=0\ne−np(np)i\ni!\n= 1 −\n108\n’\ni=0\ne−109",
+      "source_type": "exam_question",
+      "document_name": "PracticeMidterm",
+      "score": 0.5191929936408997
+    },
+    {
+      "chunk_id": "cs109_08_poisson_and_more_annotated_p0_p1_ae2defcc63",
+      "text": "08: Poisson and More\nJerry Cain\nApril 17th, 2024\n1\nLecture Discussion on Ed\n\nPoisson\n2",
+      "source_type": "lecture_slide",
+      "document_name": "08 poisson and more annotated",
+      "score": 0.5189085006713867
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p31_ed3594529a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMAP for Poisson\nLet 𝜆 be the average # of successes in a time period.\n1. What does it mean to have\na prior of 𝜃~Gamma 11,5 ?\nNow perform the experiment and see 11 events in next 2 time periods.\n2. Given your prior, what is the\nposterior distribution?\n3. What is 𝜃*+,?\n32\nGamma 𝛼, 𝛽 \nis conjugate for Poisson\nObserve 10 imaginary events\nin 5 time periods,\ni.e., observe at Poisson rate = 2\n🤔\nMode: &'#\n(",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.5180634260177612
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p32_9937b376e3",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMAP for Poisson\nLet 𝜆 be the average # of successes in a time period.\n1. What does it mean to have\na prior of 𝜃~Gamma 11,5 ?\nNow perform the experiment and see 11 events in next 2 time periods.\n2. Given your prior, what is the\nposterior distribution?\n3. What is 𝜃*+,?\n33\nGamma 𝛼, 𝛽 \nis conjugate for Poisson Mode: &'#\n(\nObserve 10 imaginary events\nin 5 time periods,\ni.e., observe at Poisson rate = 2\n𝜃|𝑛 events in 𝑘 periods ~Gamma 22, 7  \n𝜃$() = 3, the updated Poisson rate",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.5105296969413757
+    },
+    {
+      "chunk_id": "cs109_08_poisson_and_more_annotated_p31_c5b48dc4ec",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCan these Binomial RVs be approximated?\n32\n0\n0.05\n0.1\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n𝑃(𝑋 = 𝑘)\nBin(100,0.5)\nPoi(50)\n0\n0.1\n0.2\n0.3\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n𝑃(𝑋 = 𝑘)\nBin(100,0.04)\nPoi(4)\n0\n0.1\n0.2\n0.3\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n𝑃(𝑋 = 𝑘)\nBin(100,0.96)\nPoi(4)\nCan approximate\nBin(100,1-0.96)\nPoisson approximates Binomial \nwhen 𝑛 is large, 𝑝 is small, and \n𝜆= 𝑛𝑝 is \"moderate\".\nDifferent interpretations of \n“moderate”:\n• 𝑛> 20 and 𝑝< 0.05\n• 𝑛> 100 and 𝑝< 0.1\nPoisson is Binomial in the limit:\n• 𝜆= 𝑛𝑝, where 𝑛→∞, 𝑝→0",
+      "source_type": "lecture_slide",
+      "document_name": "08 poisson and more annotated",
+      "score": 0.49272117018699646
+    },
+    {
+      "chunk_id": "cs109_08_poisson_and_more_annotated_p22_9b024820cf",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPoisson Random Variable\nIn CS109, a Poisson RV 𝑋~Poi(𝜆) most often models\n1. # of successes in a fixed time interval, where successes are \nindependent\n𝜆= 𝐸[𝑋], average success/interval\n2. Approximation of 𝑌~Bin(𝑛, 𝑝) where 𝑛 is large and 𝑝 is small.\n𝜆= 𝐸𝑌= 𝑛𝑝 \nApproximation works well even when trials not entirely independent. \n23\n𝑃𝑋= 𝑘= 𝑒23 𝜆1\n𝑘!\n𝑋~Poi(𝜆)\nSupport: {0,1, 2, … }\nPMF\n𝐸𝑋= 𝜆 \nVar 𝑋= 𝜆 \nVariance  \nExpectation",
+      "source_type": "lecture_slide",
+      "document_name": "08 poisson and more annotated",
+      "score": 0.49155905842781067
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p33_dd831876d1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEvent-driven probability\n• Relate only binary events\n◦Either something happens (𝐸)\n◦or it doesn’t happen (𝐸*)\n• Can only report probability\n• Lots of combinatorics\nRandom Variables\n• Link multiple similar events \ntogether (𝑋= 1, 𝑋= 2, … , 𝑋= 6)\n• Can compute statistics: report the \n\"average\" outcome\n• Once we have the PMF (for \ndiscrete RVs), we can do regular \nmath\n34\nA Whole New World with Random Variables",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.4817577600479126
+    },
+    {
+      "chunk_id": "cs109_08_poisson_and_more_annotated_p15_aad6c35b4f",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCatching Pokemon\nWild Pokemon are captured by throwing Pokeballs at them.\n• Each ball has probability p = 0.1 of capturing the Pokemon.\n• Each ball is an independent trial.\nWhat is the probability that you catch the Pokemon on the 5th try?\n16\n1. Define events/ \nRVs & state goal\nA.  𝑋~Bin 5, 0.1\nB.  𝑋~Poi 0.5\nC.  𝑋~NegBin 5, 0.1\nD.  𝑋~NegBin 1, 0.1  \nE.  𝑋~Geo 0.1\n2. Solve\n𝑋~some distribution     \nWant: 𝑃𝑋= 5",
+      "source_type": "lecture_slide",
+      "document_name": "08 poisson and more annotated",
+      "score": 0.478229284286499
+    },
+    {
+      "chunk_id": "cs109_08_poisson_and_more_annotated_p16_p17_40447135c9",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWild Pokemon are captured by throwing Pokeballs at them.\n• Each ball has probability p = 0.1 of capturing the Pokemon.\n• Each ball is an independent trial.\nWhat is the probability that you catch the Pokemon on the 5th try?\nA.  𝑋~Bin 5, 0.1\nB.  𝑋~Poi 0.5\nC.  𝑋~NegBin 5, 0.1\nD.  𝑋~NegBin 1, 0.1  \nE.  𝑋~Geo 0.1\nCatching Pokemon\n17\n1. Define events/ \nRVs & state goal\n2. Solve\n𝑋~some distribution     \nWant: 𝑃𝑋= 5\n𝑋~Geo(𝑝) 𝑝𝑘= 1 −𝑝#!$𝑝\n\nExercises\n18\nThe hardest part of is almost always deciding what \nyou’re modeling and what random variable to use.",
+      "source_type": "lecture_slide",
+      "document_name": "08 poisson and more annotated",
+      "score": 0.47379598021507263
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p13_437f426b6d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nQuick review of sets\n14\nReview\n𝐸 and 𝐹 are events in 𝑆.\nExperiment:\n \nDie roll\n \n𝑆= 1, 2, 3, 4, 5, 6  \n \nLet 𝐸= 1, 2 , and 𝐹= 2,3\nE\nS\nF\ndef Intersection of events, 𝐸∩𝐹\nThe event containing all outcomes \nin 𝐸 and 𝐹.\n𝐸∩𝐹= 𝐸𝐹= {2}\ndef Mutually exclusive events 𝐹 \nand 𝐺 means that 𝐹∩𝐺= ∅\nG",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.4731745719909668
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p15_p16_55ef09c173",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRandom variables are NOT events!\nIt is confusing that random variables and events use the same notation.\n• Random variables ≠ events.\n• We can define an event to be a particular assignment of a random \nvariable, or more generally, in terms of a random variable.\n16\nExample:\n 3 coins are flipped.\n Let 𝑋= # of heads.\n 𝑋 is a random variable.\n𝑋= 𝟏\n{(H, T, T), (T, H, T), \n(T, T, H)}\n3/8\n𝑋= 𝟐\n{(H, H, T), (H, T, H), \n(T, H, H)}\n3/8\n𝑋= 𝟑\n{(H, H, H)}\n1/8\n𝑋≥4\n{ }\n0\n𝑋= 𝑥\nSet of outcomes\n𝑃𝑋= 𝑘\n𝑋= 𝟎\n{(T, T, T)}\n1/8\n\nPMF/CDF\n17",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.4725300669670105
+    },
+    {
+      "chunk_id": "cs109_09_continuous_rv_annotated_p36_bf0f54e843",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEarthquakes\nMajor earthquakes (magnitude 8.0+) occur independently on average\nonce every 500 years.*\nWhat is the probability of zero major earthquakes next year?\n37\nStrategy 1: Exponential RV\nStrategy 2: Poisson RV\n𝑌~Poi(𝜆)\n𝑝𝑘= 𝑒#$ 𝜆*\n𝑘!\nDefine events/RVs & state goal\nSolve\n𝑇: when first earthquake happens\n𝑇 ~Exp(𝜆= 0.002)\nWant: 𝑃𝑇> 1 = 1 −𝐹(1)\n𝑃𝑇> 1 = 1 −1 −𝑒CI⋅8 = 𝑒CI\n*In California, according to historical data form USGS, 2015\n𝑁: # earthquakes next year\n𝑁 ~Poi(𝜆= 0.002)\nWant: 𝑃𝑁= 0\nDefine events/RVs & state goal\nSolve\n𝑃𝑁= 0 = 𝜆W𝑒CI\n0!\n= 𝑒CI ≈0.998\nearthquakes\nyear\n𝜆:",
+      "source_type": "lecture_slide",
+      "document_name": "09 continuous rv annotated",
+      "score": 0.47008973360061646
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p35_p36_8b26957b9e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n𝑆\nTakeaway: Union of events\n36\n𝑆\n𝐸\n𝐹\n𝐺\nAxiom 3,\nMutually exclusive events\nE\nF\nG\nCorollary 3,\nInclusion-Exclusion Principle\nThe challenge of probability is in defining events.\nSome event probabilities are easier to compute than others.\nReview\n\nLisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSerendipity\n37",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.4686037600040436
+    },
+    {
+      "chunk_id": "cs109_05_independence_annotated_p19_d0c710402d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProbability of events\n20\nE or F\n𝑃𝐸∪𝐹\nE and F\n𝑃𝐸𝐹\nJust add!\nInclusion-\nExclusion \nPrinciple\nJust multiply!\nChain Rule\nDe Morgan’s\nMutually \nexclusive?\nIndependent?",
+      "source_type": "lecture_slide",
+      "document_name": "05 independence annotated",
+      "score": 0.46680647134780884
+    },
+    {
+      "chunk_id": "cs109_09_continuous_rv_annotated_p22_p23_a313d32c18",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEarthquakes\nMajor earthquakes (magnitude 8.0+) occur once every 500 years.*\n1. What is the probability of a major earthquake in the next 30 years?\n2. What is the standard deviation of years until the next earthquake?\n23\nDefine events/ \nRVs & state goal\n𝑋: when next\n     earthquake happens\n𝑋 ~Exp 𝜆= 0.002\nWant: 𝑃𝑋< 30\nyear($\n𝜆:\n*In California, according to historical data form USGS, 2015\nSolve\n𝑋~Exp(𝜆) 𝑓𝑥= 𝜆𝑒#$% if 𝑥≥0\n𝐸𝑋= 1/𝜆\n\nCumulative \nDistribution \nFunctions\n24",
+      "source_type": "lecture_slide",
+      "document_name": "09 continuous rv annotated",
+      "score": 0.4558284282684326
+    },
+    {
+      "chunk_id": "cs109_09_continuous_rv_annotated_p35_3532d499ad",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEarthquakes\nMajor earthquakes (magnitude 8.0+) occur independently on average\nonce every 500 years.*\nWhat is the probability of zero major earthquakes next year?\n36\nStrategy 1: Exponential RV\nDefine events/RVs & state goal\nSolve\n𝑇: when first earthquake happens\n𝑇 ~Exp(𝜆= 0.002)\nWant: 𝑃𝑇> 1 = 1 −𝐹(1)\n𝑃𝑇> 1 = 1 −1 −𝑒CI⋅8 = 𝑒CI\n*In California, according to historical data form USGS, 2015",
+      "source_type": "lecture_slide",
+      "document_name": "09 continuous rv annotated",
+      "score": 0.4557477831840515
+    },
+    {
+      "chunk_id": "cs109_09_continuous_rv_annotated_p21_82bdfcd1d1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEarthquakes\nMajor earthquakes (magnitude 8.0+) occur once every 500 years.*\n1. What is the probability of a major earthquake in the next 30 years?\n22\nDefine events/ \nRVs & state goal\nSolve\n𝑋: when next\n     earthquake happens\n𝑋 ~Exp 𝜆= 0.002\nWant: 𝑃𝑋< 30\nyear($\n𝜆:\n𝑋~Exp(𝜆) 𝑓𝑥= 𝜆𝑒#$% if 𝑥≥0\n∫𝑒&%𝑑𝑥= 1\n𝑐𝑒&%\n*In California, according to historical data form USGS, 2015\nRecall\n= 1/500\n𝐸𝑋= 1/𝜆",
+      "source_type": "lecture_slide",
+      "document_name": "09 continuous rv annotated",
+      "score": 0.44605639576911926
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p14_dbc1095be1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRandom variables are NOT events!\nIt is confusing that random variables and events use the same notation.\n• Random variables ≠ events.\n• We can define an event to be a particular assignment of a random \nvariable, or more generally, in terms of a random variable.\n15\nevent\n𝑋= 2\nprobability\n(number b/t 0 and 1)\n𝑃(𝑋= 2)\nExample:\n 3 coins are flipped.\n Let 𝑋= # of heads.\n 𝑋 is a random variable.",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.43649375438690186
+    }
+  ],
+  "built_at": "2026-04-28T05:13:09Z"
+}

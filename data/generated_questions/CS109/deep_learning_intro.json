@@ -1,0 +1,1292 @@
+{
+  "topic_id": "deep_learning_intro",
+  "topic_name": "Introduction to Deep Learning",
+  "course": "CS109",
+  "model": "gpt-5.4",
+  "questions": [
+    {
+      "question_id": "CS109_deep_learning_intro_0001",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A classmate says, \"Deep learning is basically a completely different idea from logistic regression.\" Using the view from lecture that a neural network is many logistic regression units stacked together, explain what is the same and what is new when you move from logistic regression to a neural network with one hidden layer.",
+      "expected_answer": "A strong answer should say that both models are supervised probabilistic models that can be trained by maximum likelihood to model P(Y|X). In logistic regression, we compute a single linear score theta^T x and pass it through a sigmoid to get P(Y=1|X=x). In a neural network, each hidden neuron also computes a weighted combination of its inputs followed by a nonlinearity like a sigmoid, so each neuron is logistic-regression-like. The new part is composition: the outputs of earlier units become inputs to later units, allowing the model to build intermediate features and represent more complex nonlinear decision boundaries than a single logistic regression can.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p5_3ead03a42b",
+        "cs109_26_deep_learning_annotated_p18_6944eb80a4",
+        "cs109_26_deep_learning_annotated_p17_1fe90e8983"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that both logistic regression and neural networks model conditional probabilities P(Y|X).",
+          "Explains that a neuron computes a weighted sum followed by a sigmoid/nonlinear activation.",
+          "Identifies stacking/composition through hidden layers as the source of added expressive power.",
+          "Mentions that hidden layers learn intermediate features or nonlinear transformations."
+        ],
+        "partial_credit": [
+          "Says neural networks are built from logistic-regression-like pieces but does not explain P(Y|X).",
+          "Mentions hidden layers add complexity without explaining composition or nonlinearity.",
+          "Correctly contrasts single-layer vs multi-layer models but with limited detail."
+        ],
+        "common_mistakes": [
+          "Claiming neural networks are generative models like Naive Bayes.",
+          "Saying the only difference is having more parameters, without discussing nonlinear composition.",
+          "Saying each neuron is literally an independent logistic regression fitted separately."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If every hidden unit were linear instead of nonlinear, would adding the hidden layer still increase modeling power? Explain."
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you describe exactly what one hidden neuron does to the input vector before its output is passed onward?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from deep learning intro; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming neural networks are generative models like Naive Bayes. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0002",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "Suppose you build a network with one hidden layer, but every hidden unit computes only a linear combination h_j = theta_j^T x, and the output applies a sigmoid to a linear combination of those h_j values. A student claims this is already a deep nonlinear model because it has a hidden layer. Do you agree? Reason it out algebraically and conceptually.",
+      "expected_answer": "The correct response is no. If the hidden layer is purely linear, then the output pre-activation is another linear combination of linear combinations, which collapses to a single linear function of x. Applying one sigmoid at the end gives exactly the same functional form as ordinary logistic regression on the original inputs. So depth alone does not create extra expressive power here; the key is the nonlinearity between layers.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p23_70cee23a73",
+        "cs109_26_deep_learning_annotated_p18_6944eb80a4"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Shows that composing linear maps yields another linear map.",
+          "Concludes the model reduces to logistic regression with an effective weight vector.",
+          "States that nonlinearity in hidden layers is what prevents collapse and creates added complexity."
+        ],
+        "partial_credit": [
+          "Says the model is not more expressive but gives only intuitive justification.",
+          "Mentions linear layers collapse without explicitly tying it to logistic regression."
+        ],
+        "common_mistakes": [
+          "Thinking any hidden layer automatically makes the model deep in a meaningful expressive sense.",
+          "Confusing number of parameters with functional complexity.",
+          "Saying multiple linear layers create polynomial decision boundaries."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What specific role does the sigmoid inside each hidden unit play that a purely linear hidden layer would not?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I substitute h = Ax into the output sigma(w^T h), what does the expression become in terms of x alone?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from deep learning intro.",
+        "Watch out for this common trap: Thinking any hidden layer automatically makes the model deep in a meaningful expressive sense. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0003",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "You have a binary classifier with 300 input features and one hidden layer of size 10, where every hidden neuron receives all 300 inputs and the output neuron receives all 10 hidden activations. Ignoring bias terms, count the number of trainable connection weights, and explain what each group of parameters represents.",
+      "expected_answer": "There are 300 x 10 = 3000 weights from the input layer to the hidden layer, because each of the 10 hidden neurons has a separate weight for each of the 300 inputs. There are 10 more weights from the 10 hidden activations to the single output neuron. So the total is 3010 trainable weights, ignoring biases. The first group determines which patterns each hidden feature responds to, and the second group combines those learned hidden features into the final estimate of P(Y=1|X=x).",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p20_d4468b974a",
+        "cs109_26_deep_learning_annotated_p21_2c97ca0dc9",
+        "cs109_26_deep_learning_annotated_p22_157180b0af",
+        "cs109_23_naive_bayes_annotated_p15_p16_ba9633216f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly computes 3000 input-to-hidden weights and 10 hidden-to-output weights.",
+          "States total 3010 ignoring biases.",
+          "Interprets the role of both parameter groups in terms of feature extraction and final prediction."
+        ],
+        "partial_credit": [
+          "Gets one of the counts right but makes a minor counting error.",
+          "Provides the total without explaining what the two groups do."
+        ],
+        "common_mistakes": [
+          "Adding instead of multiplying for input-to-hidden weights.",
+          "Forgetting that each hidden neuron has its own separate weights.",
+          "Counting only hidden-to-output parameters."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If you doubled the hidden-layer size to 20, how would the parameter count change, and what tradeoff might that create?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "How many inputs feed into one hidden neuron, and how many hidden neurons are there?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Adding instead of multiplying for input-to-hidden weights. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0004",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are choosing between Naive Bayes, logistic regression, and a small neural network for a medical classification task with many binary features that are plausibly dependent. Explain why estimating P(X1, ..., Xn | Y) directly is problematic, how Naive Bayes avoids that, and why logistic regression or a neural network might be appealing despite requiring optimization.",
+      "expected_answer": "A strong answer should note that directly estimating the full joint conditional distribution P(X1, ..., Xn | Y) is intractable because the number of possible feature combinations grows exponentially with the number of features. Naive Bayes makes the conditional independence assumption X_j independent given Y, which factorizes the joint into a product of much simpler terms and makes estimation tractable. But if the features are realistically dependent, that assumption may be badly violated. Logistic regression avoids modeling P(X|Y) at all and instead models P(Y|X) directly, training by maximizing conditional likelihood. A neural network extends this discriminative approach and can capture more complex nonlinear interactions among features through hidden layers, at the cost of more parameters and gradient-based optimization.",
+      "source_chunk_ids": [
+        "cs109_23_naive_bayes_annotated_p31_1fb219e78c",
+        "cs109_25_logistic_regression_annotated_p6_775acec977",
+        "cs109_25_logistic_regression_annotated_p23_cdce04ab1e",
+        "cs109_26_deep_learning_annotated_p5_3ead03a42b"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains why direct joint conditional estimation is intractable.",
+          "Describes Naive Bayes factorization via conditional independence.",
+          "Contrasts generative modeling of P(X|Y)P(Y) with discriminative modeling of P(Y|X).",
+          "Explains why dependence among features motivates logistic regression or neural networks.",
+          "Mentions optimization/parameter tradeoff for discriminative models."
+        ],
+        "partial_credit": [
+          "Correctly compares Naive Bayes and logistic regression but omits why the full joint is hard.",
+          "Mentions feature dependence but does not connect it to model choice.",
+          "Describes neural networks as more flexible without tying them to discriminative learning."
+        ],
+        "common_mistakes": [
+          "Saying logistic regression also requires conditional independence.",
+          "Claiming Naive Bayes directly models P(Y|X) only.",
+          "Ignoring the tractability argument for Naive Bayes."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If your training set were very small, what argument might still favor Naive Bayes despite its unrealistic assumption?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What exactly is the simplifying assumption that turns Naive Bayes from intractable to tractable?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying logistic regression also requires conditional independence. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0005",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "During training, a neural network lecture says \"deep learning is maximum likelihood estimation with neural networks.\" Make that statement precise for binary classification. What objective is being optimized, and how does that connect to the predicted probability at test time?",
+      "expected_answer": "For binary classification, the network outputs a predicted probability y-hat = P(Y=1|X=x; theta). Training chooses parameters theta to maximize the conditional likelihood of the observed labels given the inputs across the training set, or equivalently maximize the log-likelihood. For Bernoulli outputs this log-likelihood is the sum over examples of y^(i) log y-hat^(i) + (1 - y^(i)) log(1 - y-hat^(i)). At test time, the same learned parameters are used to compute P(Y=1|X=x) for a new input, and then we classify by thresholding, such as predicting class 1 if the probability exceeds 0.5.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p5_3ead03a42b",
+        "cs109_26_deep_learning_annotated_p35_p36_21ed17488f",
+        "cs109_26_deep_learning_annotated_p26_bb4c08c97a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that the network models P(Y=1|X=x; theta).",
+          "Identifies maximum conditional likelihood or log-likelihood as the training objective.",
+          "Gives or clearly describes the Bernoulli log-likelihood form.",
+          "Connects training objective to test-time probability prediction and thresholding."
+        ],
+        "partial_credit": [
+          "Mentions MLE and thresholding but not the explicit likelihood/log-likelihood form.",
+          "Describes cross-entropy informally without linking it to maximum likelihood."
+        ],
+        "common_mistakes": [
+          "Saying the network maximizes P(X,Y) rather than conditional likelihood.",
+          "Confusing training-time optimization with test-time argmax only.",
+          "Claiming MLE means minimizing squared error by default."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is it often more convenient to maximize log-likelihood rather than raw likelihood?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For one training example with label y in {0,1} and predicted probability y-hat, what expression should contribute to the objective?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from deep learning intro; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying the network maximizes P(X,Y) rather than conditional likelihood. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0006",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Consider one binary-labeled training example. Your network predicts 0.9 for a true positive case and 0.9 for a true negative case in two different examples. Without doing heavy arithmetic, compare how each example contributes to the Bernoulli log-likelihood and explain what this says about how maximum likelihood rewards or penalizes confidence.",
+      "expected_answer": "For the true positive with predicted probability 0.9, the contribution is log(0.9), which is close to zero and therefore relatively good. For the true negative with the same predicted probability 0.9 of class 1, the contribution is log(1 - 0.9) = log(0.1), which is a large negative penalty. So maximum likelihood rewards confident correct predictions and strongly penalizes confident wrong predictions. This is important because the objective is sensitive not just to correctness after thresholding, but also to calibration and confidence.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p35_p36_21ed17488f",
+        "cs109_26_deep_learning_annotated_p26_bb4c08c97a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly identifies log(0.9) for y=1 and log(0.1) for y=0 when y-hat=0.9.",
+          "Explains that the incorrect confident prediction gets much more heavily penalized.",
+          "Notes the distinction between likelihood-based training and simple 0/1 accuracy after thresholding."
+        ],
+        "partial_credit": [
+          "Understands one case is rewarded and the other penalized but does not clearly connect to the log-likelihood form.",
+          "Mentions confidence matters but gives muddled sign interpretation."
+        ],
+        "common_mistakes": [
+          "Treating both examples as equally good because both are above 0.5.",
+          "Forgetting that the y=0 term uses log(1-y-hat).",
+          "Saying likelihood only cares about final class labels, not predicted probabilities."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your interpretation change if the wrong example predicted 0.51 instead of 0.9?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a training example with true label 0, does the objective use log(y-hat) or log(1-y-hat)?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Treating both examples as equally good because both are above 0.5. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0007",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says, \"At test time, a neural network is doing something fundamentally different from logistic regression because it no longer outputs probabilities.\" Evaluate this statement for the binary classification setting described in lecture.",
+      "expected_answer": "The statement is false in this setting. At test time, the network computes a value interpreted as P(Y=1|X=x), just like logistic regression does. The difference is that the input to the final sigmoid is not a single linear function of the raw features but a function of hidden-layer features built from earlier logistic-regression-like units. The final classification step may threshold that probability at 0.5, but the underlying output is still probabilistic.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p17_1fe90e8983",
+        "cs109_26_deep_learning_annotated_p26_bb4c08c97a",
+        "cs109_25_logistic_regression_annotated_p21_p22_8823ec123c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that the network outputs a probability P(Y=1|X=x) in binary classification.",
+          "Explains that thresholding is a separate decision rule layered on top of the probability.",
+          "Contrasts single linear score in logistic regression with hidden-feature composition in neural networks."
+        ],
+        "partial_credit": [
+          "Says the statement is false and mentions probabilities, but does not explain thresholding or the role of hidden layers."
+        ],
+        "common_mistakes": [
+          "Confusing probability output with final hard label.",
+          "Claiming only logistic regression has a probabilistic interpretation.",
+          "Saying hidden layers eliminate the meaning of the final output as a probability."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why might two models with the same 0/1 prediction still differ substantially in log-likelihood?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When the lecture says predict 1 if y-hat > 0.5, what is y-hat supposed to represent before thresholding?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from deep learning intro.",
+        "Watch out for this common trap: Confusing probability output with final hard label. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0008",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Imagine you train a neural network on a huge video dataset and later discover that some later-layer neurons respond strongly to cats, faces, or other high-level concepts. Explain why this phenomenon is plausible from the architecture and training objective, without appealing to biology or hand-waving.",
+      "expected_answer": "A strong answer should say that each hidden layer applies learned nonlinear transformations to the outputs of previous layers. Early units can respond to simple patterns present in the raw input, while later units combine these earlier responses into more abstract features. Because training maximizes likelihood for the target task, the network is encouraged to create internal representations that are useful for reducing prediction error. On a rich dataset, certain high-level recurring structures may become especially useful intermediate features, so some neurons in later layers respond strongly when those structures are present. This does not mean the network was explicitly told to create a cat detector; rather, such detectors can emerge as useful features for the optimization objective.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p39_11f9b2e467",
+        "cs109_26_deep_learning_annotated_p18_6944eb80a4",
+        "cs109_26_deep_learning_annotated_p27_6916fd0439"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains hierarchical feature composition across layers.",
+          "Connects emergence of high-level neurons to optimization for the prediction objective.",
+          "Avoids claiming neurons are manually programmed with semantic meanings.",
+          "Notes that useful intermediate representations can emerge from data and objective."
+        ],
+        "partial_credit": [
+          "Mentions deeper layers learn more abstract features but does not tie this to training objective.",
+          "Correctly describes emergent features but in vague terms."
+        ],
+        "common_mistakes": [
+          "Saying later-layer concepts appear because of a built-in semantic label for each neuron.",
+          "Explaining only by analogy to the brain with no machine-learning reasoning.",
+          "Claiming every neuron always corresponds to a human-interpretable concept."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would you expect the same high-level neurons if the training data changed drastically, say from faces and videos to handwritten digits? Why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does a later-layer neuron receive as its input: raw pixels only, or outputs from earlier learned features?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying later-layer concepts appear because of a built-in semantic label for each neuron. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0009",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Compare Naive Bayes and logistic regression from the perspective of what probability distribution each model learns. Then explain why the lecture frames deep learning as an extension of logistic regression rather than of Naive Bayes.",
+      "expected_answer": "Naive Bayes is a generative model: it models P(X|Y) and P(Y), then uses Bayes' rule to infer P(Y|X). Logistic regression is a discriminative model: it models P(Y|X) directly. Deep learning, in the lecture's framing, extends this discriminative approach because a neural network directly outputs P(Y|X) and is trained by maximizing conditional likelihood, just like logistic regression. The main extension is that instead of a single linear score, the network uses layers of nonlinear transformations to represent complex dependencies among features.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p44_d0de35ec97",
+        "cs109_25_logistic_regression_annotated_p23_cdce04ab1e",
+        "cs109_26_deep_learning_annotated_p5_3ead03a42b"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly identifies Naive Bayes as modeling P(X|Y)P(Y) and logistic regression as modeling P(Y|X).",
+          "Explains that neural networks directly model P(Y|X), so they extend the logistic-regression viewpoint.",
+          "Mentions conditional likelihood training and nonlinear feature composition."
+        ],
+        "partial_credit": [
+          "Gets the generative/discriminative contrast right but does not explain why deep learning aligns with logistic regression.",
+          "Mentions direct probability modeling but not the specific distributions."
+        ],
+        "common_mistakes": [
+          "Claiming Naive Bayes and logistic regression model the same distribution in different notation.",
+          "Calling neural networks generative here.",
+          "Failing to distinguish P(X|Y) from P(Y|X)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Which of these two, Naive Bayes or logistic regression, could naturally be used to generate a synthetic x after learning, and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I ask you for P(X|Y), which model is set up to model that quantity directly?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from deep learning intro; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming Naive Bayes and logistic regression model the same distribution in different notation. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0010",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose a binary logistic regression and a one-hidden-layer neural network both produce an estimated probability for the same example, and both probabilities are below 0.5. Explain the decision rule each uses for classification, and then explain why the internal computation leading to that probability can still be very different.",
+      "expected_answer": "Both models would classify the example as class 0 if they use the threshold rule predict 1 when y-hat > 0.5 and 0 otherwise. But in logistic regression, y-hat comes from sigma(theta^T x), a sigmoid applied to one linear score. In the neural network, y-hat comes from first computing hidden activations through multiple weighted nonlinear transformations, then combining those activations in the output unit. So the same final decision rule can sit on top of very different representations and decision boundaries.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p21_p22_8823ec123c",
+        "cs109_26_deep_learning_annotated_p26_bb4c08c97a",
+        "cs109_26_deep_learning_annotated_p16_89a8a83f9a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the common thresholding rule at 0.5.",
+          "Explains logistic regression uses one linear score plus sigmoid.",
+          "Explains neural networks use hidden-layer nonlinear transformations before the final output.",
+          "Notes that same threshold does not imply same internal model or boundary."
+        ],
+        "partial_credit": [
+          "Gets the thresholding rule right but gives only a vague comparison of internals.",
+          "Understands that neural networks have hidden layers but not why that matters."
+        ],
+        "common_mistakes": [
+          "Claiming the threshold differs by model in the given lecture setup.",
+          "Saying a neural network\u2019s output is not comparable to a logistic regression probability.",
+          "Ignoring the role of hidden activations."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can two models make the same prediction on one point but have very different confidence? Why does that matter for likelihood?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In plain logistic regression, what function is applied to theta^T x to convert it into a probability?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Claiming the threshold differs by model in the given lecture setup. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0011",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Why does adding hidden layers help with feature dependence in a way that Naive Bayes does not? Answer in terms of model assumptions and representation, not just \"neural networks are more powerful.\"",
+      "expected_answer": "Naive Bayes makes an explicit conditional independence assumption among features given the class, which simplifies estimation but can be unrealistic when the features interact. A neural network does not require that assumption when modeling P(Y|X). Instead, it learns intermediate hidden representations that can combine multiple input features and capture interactions among them. Because later units operate on combinations of earlier units, the model can represent dependencies and nonlinear interactions directly in the conditional prediction function. So the difference is not just \"more power\" but the removal of a strong independence assumption and the addition of learned hierarchical representations.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p6_775acec977",
+        "cs109_23_naive_bayes_annotated_p31_1fb219e78c",
+        "cs109_26_deep_learning_annotated_p18_6944eb80a4"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explicitly names the Naive Bayes conditional independence assumption.",
+          "Explains that neural networks learn representations of feature interactions instead of assuming them away.",
+          "Frames the contrast in terms of model assumptions and representation, not vague flexibility only."
+        ],
+        "partial_credit": [
+          "Notes Naive Bayes assumes independence and neural networks do not, but gives limited explanation of hidden representations.",
+          "Says neural networks can capture nonlinearities without tying this to dependence among inputs."
+        ],
+        "common_mistakes": [
+          "Claiming logistic regression or neural networks require independent features.",
+          "Discussing only dataset size or compute cost.",
+          "Giving only a slogan like \"deep networks are stronger.\""
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Could plain logistic regression also avoid the Naive Bayes independence assumption? If so, what extra advantage might hidden layers still provide?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the exact simplifying assumption Naive Bayes makes about X1, X2, ..., Xn given Y?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from deep learning intro; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming logistic regression or neural networks require independent features. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0012",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You are advising a team that wants to build a classifier for labeled images. One teammate points to the success of systems like AlphaGo and large image networks and concludes that any task should use the deepest model available. Give a careful answer that uses the course framing rather than hype.",
+      "expected_answer": "A careful answer should say that deep learning has driven major advances and large neural networks can learn complex representations from large datasets, but model choice should still follow the supervised learning pipeline: define the prediction problem, pick a formal model, train on labeled data, and evaluate. Neural networks are powerful because they model P(Y|X) with many learned nonlinear transformations and many parameters, but that also means more optimization difficulty, more data requirements, and potentially greater risk of overfitting or unnecessary complexity for simple tasks. So success stories motivate the approach, but they do not prove that the deepest possible model is always best.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p2_c986e1c7af",
+        "cs109_23_naive_bayes_annotated_p6_52b3457baa",
+        "cs109_26_deep_learning_annotated_p27_6916fd0439",
+        "cs109_26_deep_learning_annotated_p40_a905f3de2f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Acknowledges genuine successes of deep learning.",
+          "Places model choice in the supervised-learning pipeline rather than hype.",
+          "Explains that more depth/parameters increase expressive power but also training demands and complexity.",
+          "Rejects the blanket claim that deepest is always best."
+        ],
+        "partial_credit": [
+          "Says deeper is not always better but provides limited reasoning.",
+          "Mentions data/compute needs without tying to course framing."
+        ],
+        "common_mistakes": [
+          "Arguing solely from famous examples.",
+          "Claiming depth is always harmful or always beneficial.",
+          "Ignoring evaluation and task-specific model choice."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What aspects of a dataset or task would make you more willing to choose a neural network over a simpler classifier?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Before choosing a model, what are the key stages of the supervised learning pipeline discussed in class?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Arguing solely from famous examples. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0013",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student argues that because each neuron is like a logistic regression, the hidden neurons in one layer can all share the same parameters without losing anything important. Is that right? Explain what would happen if all hidden neurons had identical weights.",
+      "expected_answer": "That is not right. Hidden neurons need separate parameters so they can detect different patterns in the input. If all hidden neurons shared identical weights and biases, then for any input they would produce the same activation, so the hidden layer would effectively contain repeated copies of one feature rather than a diverse learned representation. The network would lose much of the benefit of having multiple hidden units.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p19_ad0407bef7",
+        "cs109_26_deep_learning_annotated_p21_2c97ca0dc9",
+        "cs109_26_deep_learning_annotated_p39_11f9b2e467"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that different hidden neurons need different parameters.",
+          "Explains that identical parameters produce identical activations for every input.",
+          "Concludes this collapses representational diversity and reduces the value of the hidden layer."
+        ],
+        "partial_credit": [
+          "Says the claim is wrong but gives only intuitive explanation.",
+          "Mentions learning different features without explicitly noting identical outputs."
+        ],
+        "common_mistakes": [
+          "Saying parameter sharing is always harmless because neurons are interchangeable.",
+          "Confusing this with convolutional weight sharing, which is not the issue in the given lecture context.",
+          "Claiming hidden units stay different just because they are in different positions."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If two hidden units start identical and are updated identically forever, how many distinct features are really being learned?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For the same input x, what outputs would two neurons with exactly the same weights and activation function produce?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from deep learning intro.",
+        "Watch out for this common trap: Saying parameter sharing is always harmless because neurons are interchangeable. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0014",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "In Naive Bayes, the lecture emphasizes using sums of log-probabilities instead of products of probabilities at test time. Explain the numerical reason for that trick, and then contrast it with how optimization is framed for logistic regression or neural networks.",
+      "expected_answer": "In Naive Bayes, multiplying many probabilities, each less than 1, can produce extremely tiny numbers that underflow numerically, especially with many features. Taking logs turns products into sums, which are numerically more stable and easier to compare when choosing the argmax class. For logistic regression and neural networks, training is framed as maximizing conditional log-likelihood, not just for numerical convenience but also because it gives a smooth objective suitable for gradient-based optimization. So logs are useful in both settings, but in Naive Bayes they are emphasized for stable evaluation of a product model, while in logistic regression and neural networks they are central to the training objective itself.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p8_1f8e3c24a5",
+        "cs109_25_logistic_regression_annotated_p23_cdce04ab1e",
+        "cs109_26_deep_learning_annotated_p35_p36_21ed17488f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains underflow from multiplying many small probabilities in Naive Bayes.",
+          "States that logs convert products to sums and preserve the argmax.",
+          "Contrasts this with conditional log-likelihood optimization in logistic regression/neural networks.",
+          "Mentions the smooth gradient-based objective in discriminative models."
+        ],
+        "partial_credit": [
+          "Knows logs help with numerical stability but does not clearly contrast the training roles across models.",
+          "Mentions underflow vaguely without explaining product-to-sum conversion."
+        ],
+        "common_mistakes": [
+          "Saying logs change which class is predicted.",
+          "Claiming logistic regression is trained by multiplying P(X|Y) terms like Naive Bayes.",
+          "Ignoring optimization when discussing neural networks."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why does taking logs not change which class wins the argmax in Naive Bayes?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What happens numerically when you multiply hundreds of probabilities that are all smaller than 1?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Saying logs change which class is predicted. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0015",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "The lecture says a neural network, like logistic regression, gets its intelligence from its parameters theta. Explain what that means operationally during training and prediction.",
+      "expected_answer": "Operationally, the model architecture specifies how inputs are transformed, but the parameters determine exactly which patterns are detected and how predictions are made. During training, we adjust theta to maximize the likelihood of the observed labels, using gradient-based methods. During prediction, the learned theta values are held fixed and used to compute the output probability for a new x. So the network's behavior is not intelligent by design alone; it comes from the values of the learned weights.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p26_bb4c08c97a",
+        "cs109_26_deep_learning_annotated_p27_6916fd0439",
+        "cs109_23_naive_bayes_annotated_p5_6427ae604e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that architecture defines form, while parameters encode learned behavior.",
+          "States that training learns theta by optimizing likelihood/objective.",
+          "States that prediction uses the fixed learned theta to compute outputs for new inputs."
+        ],
+        "partial_credit": [
+          "Says parameters matter but does not distinguish training from prediction.",
+          "Mentions learning weights without tying them to behavior or likelihood."
+        ],
+        "common_mistakes": [
+          "Saying the architecture alone contains the intelligence.",
+          "Confusing parameters with training data points.",
+          "Describing training as memorizing labels without mentioning optimization."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If I randomly reinitialize theta after training, what happens to the model's predictive ability, and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "At test time, are we still changing theta, or are we using the learned theta to compute y-hat?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from deep learning intro; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying the architecture alone contains the intelligence. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0016",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are given a binary classification problem where the relationship between X and Y is strongly nonlinear. A teammate proposes to solve this by keeping logistic regression but just adding more linear layers before the final sigmoid. Another proposes hidden layers with nonlinear activations. Which proposal is principled, and why?",
+      "expected_answer": "The principled proposal is the one with nonlinear activations. Stacking linear layers still produces an overall linear transformation of the input, so after the final sigmoid the model is still equivalent to logistic regression and cannot capture fundamentally nonlinear decision boundaries. Adding nonlinear activations between layers prevents this collapse and allows the model to build complex nonlinear functions of the input. So the key is not merely adding layers, but adding nonlinear transformations between them.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p23_70cee23a73",
+        "cs109_26_deep_learning_annotated_p18_6944eb80a4"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects extra linear layers as insufficient.",
+          "Explains that composition of linear maps is linear.",
+          "Explains that nonlinear activations create extra expressive power and enable nonlinear boundaries."
+        ],
+        "partial_credit": [
+          "Chooses nonlinear layers as better but without the linear-composition argument.",
+          "Mentions hidden layers help with nonlinearity in vague terms."
+        ],
+        "common_mistakes": [
+          "Thinking depth alone guarantees nonlinearity.",
+          "Saying more linear parameters automatically fit nonlinear patterns.",
+          "Confusing output sigmoid with hidden nonlinearities."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you express in words why sigma(W2(W1x)) has the same basic form as sigma(Wx)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If h = W1x and the output score is W2h, what kind of function of x is W2W1x?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Thinking depth alone guarantees nonlinearity. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0017",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "In a one-hidden-layer network for binary classification, explain why the chain rule is necessary to learn the input-to-hidden weights. Your answer should describe the dependency path from one early weight to the final log-likelihood, even if you do not compute derivatives explicitly.",
+      "expected_answer": "An input-to-hidden weight affects the hidden neuron's activation, which in turn affects the input to the output neuron, which then affects the predicted probability y-hat, which finally affects the log-likelihood for the training example. Because the early weight influences the objective only through this sequence of intermediate quantities, we need the chain rule to compute how a small change in that weight changes the final objective. Backpropagation is the systematic application of this idea across all layers and parameters.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p27_6916fd0439",
+        "cs109_26_deep_learning_annotated_p35_p36_21ed17488f",
+        "cs109_26_deep_learning_annotated_p18_6944eb80a4"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Describes the dependency chain: early weight -> hidden activation -> output score/probability -> log-likelihood.",
+          "Explains why direct differentiation requires chain rule through composed functions.",
+          "Identifies backpropagation as organized repeated application of chain rule."
+        ],
+        "partial_credit": [
+          "Mentions chain rule and backpropagation but does not clearly describe the dependency path.",
+          "Explains only that there are many layers, without linking to the objective."
+        ],
+        "common_mistakes": [
+          "Saying chain rule is needed only because there are many parameters, not because of functional composition.",
+          "Confusing backpropagation with gradient ascent itself.",
+          "Claiming early weights affect the likelihood directly without intermediate activations."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is the derivative for an output-layer weight conceptually simpler than for an input-to-hidden weight?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What quantity does an early weight influence first: the label y, the hidden activation h_j, or the dataset itself?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Saying chain rule is needed only because there are many parameters, not because of functional composition. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0018",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "Someone says, \"Since neural networks are trained with MLE just like Naive Bayes can be, they are basically the same kind of model.\" How would you correct that statement?",
+      "expected_answer": "MLE is a learning principle, not the whole model class. Different models can all use maximum likelihood while representing very different probability distributions and assumptions. Naive Bayes is a generative model that typically estimates P(X|Y) and P(Y), often with a conditional independence assumption; a neural network for binary classification is a discriminative model that directly outputs P(Y|X) through layered nonlinear transformations. So sharing MLE as an estimation method does not make them the same kind of model.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p5_6959ca3cce",
+        "cs109_25_logistic_regression_annotated_p44_d0de35ec97",
+        "cs109_26_deep_learning_annotated_p5_3ead03a42b"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that MLE is an estimation principle, not a model specification.",
+          "Contrasts Naive Bayes as generative and neural networks/logistic regression as discriminative.",
+          "Mentions differing assumptions or architectures despite shared MLE."
+        ],
+        "partial_credit": [
+          "Says the models are different despite both using MLE, but without clarifying generative vs discriminative.",
+          "Mentions different architectures but not the probabilistic distinction."
+        ],
+        "common_mistakes": [
+          "Equating training criterion with model family.",
+          "Claiming Naive Bayes directly models P(Y|X) in the same way.",
+          "Ignoring the role of independence assumptions in Naive Bayes."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can two different models maximize likelihood over different probability distributions and still be fundamentally different? Give the key reason."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What quantity does Naive Bayes usually specify directly that a neural network classifier does not?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from deep learning intro.",
+        "Watch out for this common trap: Equating training criterion with model family. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0019",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Why might a one-hidden-layer neural network be viewed as learning a new feature representation before doing classification? Explain this in terms of h, not in terms of vague metaphors.",
+      "expected_answer": "The hidden layer h is a vector of transformed features computed from the original input x. Each component h_j is a learned nonlinear function of x that can respond to specific combinations or patterns in the inputs. The output classifier then operates on h rather than directly on x, so the network is effectively learning a representation and then classifying in that learned feature space. Because h is learned jointly with the final prediction objective, those features are optimized to be useful for estimating P(Y|X).",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p16_89a8a83f9a",
+        "cs109_26_deep_learning_annotated_p18_6944eb80a4",
+        "cs109_26_deep_learning_annotated_p39_11f9b2e467"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines h as learned transformed features of x.",
+          "Explains each h_j as a nonlinear function of x.",
+          "States that the output layer classifies using h, so the network learns a representation before final prediction.",
+          "Mentions joint learning with the prediction objective."
+        ],
+        "partial_credit": [
+          "Says hidden layers learn features but does not explain that the output works on h rather than raw x.",
+          "Correct but somewhat metaphorical rather than operational."
+        ],
+        "common_mistakes": [
+          "Treating h as just an internal storage device with no modeling role.",
+          "Saying the hidden layer is precomputed independently of training objective.",
+          "Ignoring the nonlinear transformation aspect."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How is this different from hand-engineering features and then fitting ordinary logistic regression?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the input to the output neuron in a one-hidden-layer network: the raw x directly, or the hidden vector h?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from deep learning intro; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Treating h as just an internal storage device with no modeling role. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0020",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A startup has labels for many observations and wants to \"predict the class label given prior observations.\" Use the supervised learning pipeline from lecture to explain where a neural network fits, and name the roles of data, model, learning algorithm, testing, and evaluation.",
+      "expected_answer": "In supervised learning, we start with labeled training data consisting of inputs and known outputs. We choose a formal model, such as a neural network with parameters theta, that defines how to map x to a predicted probability or class label. The learning algorithm adjusts theta using the training data, for example by maximizing likelihood with gradient-based optimization. At testing time, the learned model is applied to new observations to produce predictions. Evaluation then scores how well those predictions match held-out labels, informing whether the model is effective for the problem.",
+      "source_chunk_ids": [
+        "cs109_23_naive_bayes_annotated_p5_6427ae604e",
+        "cs109_23_naive_bayes_annotated_p6_52b3457baa",
+        "cs109_26_deep_learning_annotated_p26_bb4c08c97a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly identifies data, formal model, learning algorithm, testing, and evaluation.",
+          "Places neural networks as one possible formal model in the pipeline.",
+          "Explains training as learning parameters from labeled data and testing as using them on new data."
+        ],
+        "partial_credit": [
+          "Lists the pipeline components but with limited explanation of the neural network's role.",
+          "Explains training and testing but omits evaluation or model selection."
+        ],
+        "common_mistakes": [
+          "Confusing testing with training.",
+          "Treating evaluation as part of the training labels themselves.",
+          "Skipping the formal model stage entirely."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Where specifically do the parameters theta appear in that pipeline, and when are they changed?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "After choosing data, what is the next conceptual step: directly test the model, or specify a formal model and learning algorithm?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Confusing testing with training. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0021",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Why is a neural network with many parameters not automatically better than logistic regression, even though logistic regression is just one logistic unit? Give a reasoning-based answer that balances expressiveness and learnability.",
+      "expected_answer": "More parameters increase expressiveness, so a neural network can represent patterns that logistic regression cannot, especially nonlinear interactions. But those same parameters make optimization more complex, require more data to estimate reliably, and can make the learning problem harder. Logistic regression may be sufficient if the conditional relationship is close to linear in the given features, and it is simpler to interpret and train. So model quality depends on the match between the task and the model class, not just on having the largest number of parameters.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p27_6916fd0439",
+        "cs109_25_logistic_regression_annotated_p23_cdce04ab1e",
+        "cs109_26_deep_learning_annotated_p40_a905f3de2f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that more parameters increase expressive power.",
+          "Explains tradeoffs: optimization difficulty, data demands, and potential over-complexity.",
+          "States that suitability depends on the task and feature relationship, not parameter count alone."
+        ],
+        "partial_credit": [
+          "Says bigger models are not always better but gives only one side of the tradeoff.",
+          "Mentions overfitting or optimization vaguely without discussing expressiveness."
+        ],
+        "common_mistakes": [
+          "Assuming parameter count alone determines performance.",
+          "Claiming logistic regression is obsolete because neural networks exist.",
+          "Arguing only from simplicity without acknowledging neural networks' extra power."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the true boundary were nearly linear in the observed features, what would be the argument for preferring logistic regression?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is one benefit and one cost of moving from logistic regression to a larger neural network?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from deep learning intro; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Assuming parameter count alone determines performance. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0022",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose you have a training set with binary labels and you can either maximize raw likelihood or maximize log-likelihood for your neural network. Explain why these lead to the same optimizer in principle, and why log-likelihood is still the preferred formulation.",
+      "expected_answer": "Because the logarithm is a strictly increasing function, the parameter values that maximize the likelihood also maximize the log-likelihood. So the optimizer is the same in principle. We still prefer log-likelihood because it turns products across independent training examples into sums, making the objective easier to work with numerically and analytically, and it fits naturally with gradient-based optimization and the Bernoulli output form.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p35_p36_21ed17488f",
+        "cs109_25_logistic_regression_annotated_p23_cdce04ab1e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that log is monotone increasing, so argmax is unchanged.",
+          "Explains product-to-sum simplification across examples.",
+          "Mentions numerical/optimization convenience as the practical reason for using log-likelihood."
+        ],
+        "partial_credit": [
+          "Knows the optimizer is unchanged but provides only one practical reason for the log form.",
+          "Mentions numerical stability without explaining why."
+        ],
+        "common_mistakes": [
+          "Claiming the maximizer changes after taking logs.",
+          "Confusing maximizing log-likelihood with minimizing classification error directly.",
+          "Ignoring why sums are easier than products."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How does the per-example Bernoulli log-likelihood combine over many training cases?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Is the logarithm increasing or decreasing, and what does that imply for an argmax?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Claiming the maximizer changes after taking logs. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0023",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are designing a model whose output should be an expected future reward rather than a class probability. Use the lecture's contrast to explain why that problem is no longer ordinary classification, even if the internal function approximator is still a deep network.",
+      "expected_answer": "In ordinary binary classification, the output is interpreted as P(Y=1|X=x), and the decision rule often thresholds that probability. In the deep reinforcement learning setting mentioned in lecture, the output is instead an expectation, such as expected future reward, so the meaning of the target and prediction changes fundamentally. The network may still provide a flexible function approximator with many layers, but it is not estimating a class probability in the same supervised-classification sense. So the architecture can be similar while the learning objective and interpretation of the output are different.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p42_00ad9cf1c7",
+        "cs109_26_deep_learning_annotated_p17_1fe90e8983"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that classification outputs probabilities for labels, while reinforcement-style outputs can be expectations of reward.",
+          "States that the same deep architecture can be used with a different target/objective.",
+          "Clearly distinguishes output interpretation from internal function approximator."
+        ],
+        "partial_credit": [
+          "Notes that reinforcement learning is different because output is expectation, but gives limited explanation.",
+          "Mentions not everything is classification without specifying the probability-vs-expectation distinction."
+        ],
+        "common_mistakes": [
+          "Assuming any deep network output is automatically a probability.",
+          "Confusing model architecture with learning objective.",
+          "Treating reinforcement learning as just multiclass classification."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "So if two systems both use deep networks, what determines whether one is a classifier and the other is not?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "According to lecture, in deep reinforcement learning what kind of quantity replaces a probability at the output?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Assuming any deep network output is automatically a probability. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0024",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A classmate says: \"Deep learning is a completely different statistical idea from logistic regression; neural networks are not really doing likelihood-based learning.\" Based on the course framing, explain why that statement is misleading. In your answer, connect logistic regression, hidden neurons, and the training objective, and explain what is new in a neural network compared with a single logistic regression classifier.",
+      "expected_answer": "A strong answer should say that, in this course framing, deep learning is still maximum likelihood estimation, but with a richer function class: neural networks. A single logistic regression directly models P(Y=1|X=x)=sigma(theta^T x) and learns theta by maximizing the conditional likelihood of the training labels. A neural network keeps the same high-level probabilistic goal\u2014modeling P(Y|X) and choosing parameters to maximize likelihood\u2014but replaces the single linear score theta^T x with a composition of many logistic-regression-like units, where hidden neurons compute nonlinear transforms of the input and pass them forward. What is new is not abandoning likelihood, but stacking many parameterized nonlinear units so the model can represent much more complex decision boundaries and learned intermediate features.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p5_3ead03a42b",
+        "cs109_25_logistic_regression_annotated_p23_cdce04ab1e",
+        "cs109_26_deep_learning_annotated_p18_6944eb80a4",
+        "cs109_26_deep_learning_annotated_p35_p36_21ed17488f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that both logistic regression and neural networks are trained via MLE / maximizing conditional likelihood.",
+          "Explains that a neuron is being framed as a logistic-regression-like unit.",
+          "Explains that hidden layers create compositions of nonlinear transformations, increasing expressive power.",
+          "Contrasts single linear score in logistic regression with stacked nonlinear units in a neural network."
+        ],
+        "partial_credit": [
+          "Correctly says both model P(Y|X) but does not clearly connect to MLE.",
+          "Recognizes hidden layers add complexity but gives vague reasoning about why.",
+          "Says neural nets are many logistic regressions but does not explain what training objective remains the same."
+        ],
+        "common_mistakes": [
+          "Claiming neural networks model P(X,Y) instead of P(Y|X) in this framing.",
+          "Saying the main difference is only that neural networks have more data, rather than more expressive parameterized structure.",
+          "Saying deep learning is not statistical or not likelihood-based at all."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose I remove the nonlinear sigmoid from every hidden unit but keep multiple layers of linear transformations before the final sigmoid. Why does that fail to add real modeling complexity?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For ordinary logistic regression, what quantity are we maximizing during training, and how would that same idea extend to a neural network?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from deep learning intro; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming neural networks model P(X,Y) instead of P(Y|X) in this framing. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0025",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "You are given a dataset of 300 binary medical features per patient and a binary disease label. A student argues: \"Since naive Bayes already handles lots of features, deep learning must be preferable only because it has more parameters.\" Evaluate this claim by comparing naive Bayes, logistic regression, and a simple neural network in terms of what probability distribution they model, what assumptions they avoid or impose, and why a neural network might help when features interact.",
+      "expected_answer": "A strong answer should distinguish the models carefully. Naive Bayes is generative in the sense that it models P(X|Y) and P(Y), then uses Bayes' rule to classify; this becomes tractable by making a conditional independence assumption among features given Y. Logistic regression is discriminative: it directly models P(Y|X), so it avoids needing a full joint conditional model of all features and does not require conditional independence. A simple neural network remains discriminative and still aims at P(Y|X), but it introduces hidden layers that can represent nonlinear interactions among features rather than just a single linear score. So the benefit is not merely \"more parameters\"; it is that the architecture can learn transformed features and capture interactions that naive Bayes misses because of independence assumptions and that logistic regression misses because of linearity in the log-odds.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p6_775acec977",
+        "cs109_23_naive_bayes_annotated_p31_1fb219e78c",
+        "cs109_25_logistic_regression_annotated_p44_d0de35ec97",
+        "cs109_26_deep_learning_annotated_p17_1fe90e8983",
+        "cs109_26_deep_learning_annotated_p39_11f9b2e467"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly identifies naive Bayes as modeling P(X|Y) and P(Y), and logistic regression / neural nets as modeling P(Y|X).",
+          "Explains the role of the naive conditional independence assumption.",
+          "Explains that logistic regression is limited by linear decision structure, while neural networks can learn nonlinear feature interactions via hidden units.",
+          "Explicitly rejects the simplistic claim that neural nets are better only because they have more parameters."
+        ],
+        "partial_credit": [
+          "Gets the generative vs discriminative distinction right but gives weak explanation of feature interactions.",
+          "Mentions nonlinearities in neural nets without tying them to the medical-feature scenario.",
+          "Notes that naive Bayes uses independence assumptions but does not explain why that matters computationally or statistically."
+        ],
+        "common_mistakes": [
+          "Saying logistic regression assumes feature independence.",
+          "Claiming naive Bayes directly models P(Y|X).",
+          "Reducing the comparison to parameter count only, without discussing modeled distributions or nonlinearity."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Give an example of a disease rule involving two binary features where logistic regression might struggle but a hidden-layer network could represent more naturally."
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which of the three models needs an explicit simplifying assumption to make estimating many-feature probabilities tractable, and what is that assumption?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from deep learning intro.",
+        "Watch out for this common trap: Saying logistic regression assumes feature independence. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0026",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Consider a binary classifier with d input features, one hidden layer of size h, and one output neuron, where every hidden and output unit is a logistic-regression-style sigmoid unit. Without plugging in numbers, explain how many connection parameters this network has, how the forward computation produces a prediction for one example, and why training requires the chain rule rather than the simpler gradient expression from ordinary logistic regression.",
+      "expected_answer": "A strong answer should count parameters by layer: from the d-dimensional input to h hidden neurons there are d times h connection parameters, and from the h hidden activations to the single output neuron there are h more connection parameters, ignoring or separately noting any bias terms. For one input x, each hidden neuron computes h_j = sigma(theta_j^T x), producing h hidden activations; then the output computes y-hat = sigma(v^T h), which is interpreted as P(Y=1|X=x). Training still maximizes conditional likelihood, but unlike ordinary logistic regression, each early-layer parameter affects the output only indirectly through downstream hidden activations. Therefore the gradient for an input-to-hidden weight must be computed by chaining together how that weight changes a hidden activation, how that hidden activation changes the output score, and how the output score changes the log-likelihood; this is why backpropagation uses the chain rule.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p20_d4468b974a",
+        "cs109_26_deep_learning_annotated_p21_2c97ca0dc9",
+        "cs109_26_deep_learning_annotated_p22_157180b0af",
+        "cs109_26_deep_learning_annotated_p27_6916fd0439",
+        "cs109_26_deep_learning_annotated_p35_p36_21ed17488f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly gives d\u00b7h input-to-hidden parameters and h hidden-to-output parameters, with sensible treatment of biases.",
+          "Explains forward pass as hidden activations followed by output sigmoid yielding P(Y=1|X=x).",
+          "States that training still uses likelihood maximization.",
+          "Explains clearly why gradients for early weights require the chain rule/backpropagation through intermediate activations."
+        ],
+        "partial_credit": [
+          "Counts parameters correctly but gives only a vague description of backpropagation.",
+          "Describes forward pass correctly but misses the interpretation as a conditional probability.",
+          "Mentions chain rule without explaining the dependence of output on earlier-layer weights through hidden units."
+        ],
+        "common_mistakes": [
+          "Adding layers' parameters incorrectly, such as d+h instead of d\u00b7h+h.",
+          "Saying each hidden neuron shares the same parameters unless justified; the context says different parameters for every connection.",
+          "Treating hidden activations as final class predictions rather than intermediate features."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If I double h while keeping d fixed, what changes in model capacity and optimization difficulty would you expect qualitatively?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For one hidden neuron, does it use the same weight vector as another hidden neuron, or does each have its own parameters? How does that affect the parameter count?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Adding layers' parameters incorrectly, such as d+h instead of d\u00b7h+h. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0027",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A team builds a network with an input layer, several hidden layers, and an output sigmoid for binary image classification. One engineer proposes removing all hidden-layer nonlinearities while keeping the same layered architecture, arguing that depth alone should make the model more expressive. Do you agree? Give a verbal argument, using the course's comparison between a neural network and a linear network, for what happens to the effective model class.",
+      "expected_answer": "The correct response is that depth alone does not help if the hidden layers are purely linear. A composition of linear transformations is still just a single linear transformation, so all those hidden layers collapse into one equivalent linear map from x to the final score; after the final sigmoid, the model is effectively just logistic regression on a linear function of x. The reason neural networks gain expressive power is that hidden layers apply nonlinear transformations, such as sigmoids, allowing the model to build more complex features and nonlinear decision boundaries. So removing hidden nonlinearities destroys the main source of added complexity.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p23_70cee23a73",
+        "cs109_26_deep_learning_annotated_p18_6944eb80a4",
+        "cs109_26_deep_learning_annotated_p16_89a8a83f9a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that stacked linear layers compose to a linear map.",
+          "Connects that result to the final sigmoid, concluding the model is effectively logistic regression on a linear score.",
+          "Explains that nonlinear hidden activations are what create additional expressive power.",
+          "Uses the comparison between linear and nonlinear hidden layers, not just a memorized slogan."
+        ],
+        "partial_credit": [
+          "Says 'no, it won't help' but gives only an intuitive answer without the composition-of-linear-maps argument.",
+          "Recognizes nonlinearities matter but does not connect to why layered linear maps collapse.",
+          "Correctly compares linear vs nonlinear networks but forgets the final output interpretation."
+        ],
+        "common_mistakes": [
+          "Claiming more layers automatically imply more expressive power even without nonlinearities.",
+          "Confusing more parameters with a genuinely different function class.",
+          "Saying the final sigmoid alone is enough to make the whole deep linear network highly nonlinear in a way hidden layers preserve."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the hidden layers keep sigmoids, what kind of pattern can the network now capture that a linear logistic regression cannot?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the composition of two linear transformations? Is it fundamentally nonlinear or still linear?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming more layers automatically imply more expressive power even without nonlinearities. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_deep_learning_intro_0028",
+      "course": "CS109",
+      "topic_id": "deep_learning_intro",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Imagine you are training a deep binary classifier and, early in training, someone says: \"At test time we just threshold at 0.5, so during training we should directly optimize the number of examples above 0.5.\" Explain why that is not the objective described in the course, what objective is used instead, and why that objective is especially natural when the network outputs an estimate of P(Y=1|X=x).",
+      "expected_answer": "A strong answer should say that although prediction may threshold the output at 0.5 for a final class label, training is not framed as directly maximizing thresholded accuracy. Instead, the course describes learning parameters by maximum likelihood: choose theta to maximize the conditional likelihood of the observed labels, equivalently the log-likelihood or cross-entropy objective for binary outputs. This is natural because the network output is interpreted as y-hat = P(Y=1|X=x), so for each training example we reward assigning high probability to the true label and low probability to the false one. Directly optimizing the 0.5-thresholded count would be awkward because the threshold decision discards probability information and does not provide the smooth gradient structure needed for gradient ascent/backpropagation.",
+      "source_chunk_ids": [
+        "cs109_26_deep_learning_annotated_p26_bb4c08c97a",
+        "cs109_25_logistic_regression_annotated_p23_cdce04ab1e",
+        "cs109_26_deep_learning_annotated_p35_p36_21ed17488f",
+        "cs109_26_deep_learning_annotated_p17_1fe90e8983"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Distinguishes test-time thresholding from training-time objective.",
+          "Identifies MLE / conditional log-likelihood / binary cross-entropy as the training objective.",
+          "Explains why this matches the probabilistic interpretation of output as P(Y=1|X=x).",
+          "Notes why thresholded accuracy is a poor optimization target for gradient-based training: it discards confidence and is not smoothly optimized by gradient methods."
+        ],
+        "partial_credit": [
+          "Names cross-entropy or likelihood correctly but gives weak reasoning about why.",
+          "Explains thresholding is for prediction, not training, but does not connect to probability modeling.",
+          "Mentions gradients vaguely without tying them to the objective."
+        ],
+        "common_mistakes": [
+          "Saying the model is trained by counting how many outputs exceed 0.5.",
+          "Confusing the predicted label with the predicted probability.",
+          "Claiming MLE is only for logistic regression and not for neural networks."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If two models make the same 0/1 prediction on an example but one outputs 0.51 and the other 0.99 for the true class, how does the likelihood-based objective distinguish them?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When the network outputs 0.8 for an example with true label 1, what does that number mean in the course's probabilistic interpretation?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying the model is trained by counting how many outputs exceed 0.5. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    }
+  ]
+}

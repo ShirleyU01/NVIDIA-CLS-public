@@ -1,0 +1,1302 @@
+{
+  "topic_id": "counting_combinatorics",
+  "topic_name": "Counting and Combinatorics",
+  "course": "CS109",
+  "questions": [
+    {
+      "question_id": "CS109_counting_combinatorics_0001",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A student says, 'Whenever I see multiple steps, I should multiply, so choosing 3 club officers from 10 students is 10\u00b79\u00b78.' Explain carefully why that answer is not the number of ways to choose the officers if the roles are identical, and then explain when 10\u00b79\u00b78 would be the correct count.",
+      "expected_answer": "A strong answer distinguishes ordered and unordered outcomes. If the 3 selected students are just an unlabeled committee, then 10\u00b79\u00b78 overcounts because each set of 3 students is counted once for every ordering of those 3 people, namely 3! times. The correct count is therefore 10\u00b79\u00b78/3! = binom(10,3). However, if the roles are president, vice president, and treasurer, then the positions are distinct, order matters, and 10\u00b79\u00b78 is correct by the product rule.",
+      "source_chunk_ids": [
+        "cs109_01_intros_and_counting_annotated_p30_a0f9799e32",
+        "cs109_02_combinatorics_annotated_p20_247584d496",
+        "cs109_01_intros_and_counting_annotated_p40_fc10f99d68"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explicitly states that product rule counts ordered multistep assignments.",
+          "Explains overcounting by 3! when order does not matter.",
+          "Gives correct unordered count as binomial coefficient.",
+          "Identifies a scenario with distinct roles where 10\u00b79\u00b78 is correct."
+        ],
+        "partial_credit": [
+          "Recognizes combination vs permutation but gives incomplete justification.",
+          "Mentions dividing by 3! without clearly explaining why.",
+          "Gives only formulas with little verbal interpretation."
+        ],
+        "common_mistakes": [
+          "Saying 10\u00b79\u00b78 is always wrong.",
+          "Using binom(10,3) even when roles are distinct.",
+          "Claiming order 'sometimes matters' without tying it to the sample space."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Now suppose two of the three roles are identical assistants and one is chair. How would you adapt the counting and what symmetry are you dividing out?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you name two different ordered sequences of the same 3 students that would correspond to the same committee?"
+        }
+      ],
+      "hints": [
+        "First ask whether the outcome is an ordered assignment or just a set of 3 students. The product rule naturally counts different first/second/third choices as different outcomes.",
+        "If the roles are identical, pick one specific group of 3 students and list the different orders they could be chosen in. That shows why 10\u00b79\u00b78 counts the same group multiple times.",
+        "Use the idea that each unordered group is counted 3! times in 10\u00b79\u00b78, so you would correct for that when the officers are just an unlabeled committee. But if the positions are distinct (like president, vice president, treasurer), then those different orders really are different outcomes, so 10\u00b79\u00b78 is the right setup."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0002",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "You roll two fair six-sided dice. Count the number of outcomes where at least one die shows an even number, and explain two different counting strategies that must agree.",
+      "expected_answer": "A strong answer first identifies the sample space as 36 ordered pairs. One strategy is direct counting by complement: count outcomes with no even numbers, meaning both dice are odd, which gives 3\u00b73 = 9, so the desired count is 36 - 9 = 27. Another strategy is inclusion-exclusion: first die even gives 3\u00b76 = 18, second die even gives 6\u00b73 = 18, and both even gives 3\u00b73 = 9, so total is 18 + 18 - 9 = 27. The student should note why ordered pairs are the right sample space.",
+      "source_chunk_ids": [
+        "cs109_01_intros_and_counting_annotated_p28_4789449e8f",
+        "cs109_01_intros_and_counting_annotated_p29_53a8a5a0bf",
+        "cs109_01_intros_and_counting_annotated_p30_a0f9799e32"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses ordered-pair sample space of size 36.",
+          "Presents a valid complement method.",
+          "Presents a valid inclusion-exclusion method.",
+          "Explains agreement of the two methods."
+        ],
+        "partial_credit": [
+          "Gets 27 with only one valid method.",
+          "Uses correct arithmetic but weak explanation of overlap.",
+          "Understands ordered pairs but not inclusion-exclusion."
+        ],
+        "common_mistakes": [
+          "Counting only 18 by forgetting the second die can be even.",
+          "Adding 18+18 without subtracting overlap.",
+          "Treating outcomes like {2,5} and {5,2} as the same without justification."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your setup change if the event were 'exactly one die is even'?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What specific outcomes are being double-counted when you add 18 and 18?"
+        }
+      ],
+      "hints": [
+        "Treat each roll as an ordered pair \b(first die, second die), so outcomes like (2,5) and (5,2) are different. That representation helps you count systematically.",
+        "One clean approach is the complement: instead of counting \u001cat least one even,\u001d count the outcomes where no die is even. Ask what each die must show in that case.",
+        "A second approach is inclusion-exclusion: count outcomes where the first die is even, count outcomes where the second die is even, then subtract the overlap where both are even. These two methods should match because they count the same event in different ways."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0003",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "In the birthday problem with n labeled people, a classmate claims that the number of assignments with no shared birthday is simply binom(365,n), because we are choosing n different dates. Explain precisely why that is not compatible with the original sample space, and repair the argument.",
+      "expected_answer": "The sample space for labeled people is all assignments of birthdays to people, so its size is 365^n and outcomes distinguish which person has which date. The count binom(365,n) chooses an unordered set of dates and forgets which person gets which birthday, so it is not counting objects of the same type as the sample space. To repair it, after choosing n distinct dates, we must assign them to the n labeled people in n! ways, giving binom(365,n)n! = 365\u00b7364\u00b7...\u00b7(365-n+1). Therefore P(no shared birthday) is that falling factorial divided by 365^n, and the desired birthday-match probability is one minus that.",
+      "source_chunk_ids": [
+        "cs109_01_section_soln_sec1_part5_63bf8a16e5",
+        "cs109_01_intros_and_counting_annotated_p30_a0f9799e32",
+        "cs109_02_combinatorics_annotated_p20_247584d496"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the sample space as labeled assignments of size 365^n.",
+          "Explains why binom(365,n) counts unlabeled date sets.",
+          "Repairs by multiplying by n! or by using the product rule directly.",
+          "Connects to complement probability."
+        ],
+        "partial_credit": [
+          "States the correct formula but does not explain mismatch of object types.",
+          "Explains labels matter but not why n! appears.",
+          "Gives only the product 365\u00b7364\u00b7... without conceptual justification."
+        ],
+        "common_mistakes": [
+          "Claiming binom(365,n) is fine because birthdays are distinct.",
+          "Forgetting that people are distinguishable.",
+          "Using permutations in numerator but combinations in denominator inconsistently."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the people were not labeled at all, what would the sample space have to look like for binom(365,n) to become appropriate?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In your class, are 'Alice gets Jan 1 and Bob gets Jan 2' and 'Alice gets Jan 2 and Bob gets Jan 1' the same outcome or different?"
+        }
+      ],
+      "hints": [
+        "First check what one outcome in the original experiment looks like: each of the n labeled people is assigned a birthday, so outcomes remember who got which date.",
+        "Compare that to what \\(\\binom{365}{n}\\) counts: it chooses an unordered set of n distinct dates, but it does not record which person gets which one. Ask how many labeled assignments correspond to the same chosen set of dates.",
+        "Repair the count by either assigning the chosen distinct dates to the n people in all possible orders, or by using the product rule person-by-person. Then divide that no-collision count by the full sample-space size, and use the complement if you want the probability of at least one shared birthday."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0004",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A password consists of 8 characters: exactly 3 are letters A, exactly 2 are letters B, and the remaining 3 are all distinct digits chosen from 0 through 9. Digits may not repeat. Count the number of distinct passwords and explain where each factor comes from.",
+      "expected_answer": "A strong solution separates choice from arrangement. First choose the 3 distinct digits: binom(10,3). Now there are 8 total symbols consisting of 3 A's, 2 B's, and 3 distinct digits, so the number of distinct arrangements is 8!/(3!2!). We do not divide by 3! for the digits because they are distinct from one another. Thus the total is binom(10,3)\u00b78!/(3!2!), or equivalently choose positions for A's and B's and then place an ordered selection of 3 distinct digits in the remaining slots.",
+      "source_chunk_ids": [
+        "cs109_02_combinatorics_annotated_p2_72670408d4",
+        "cs109_02_combinatorics_annotated_p20_247584d496",
+        "cs109_02_combinatorics_annotated_p50_p51_ec337e48cf"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Chooses the 3 distinct digits correctly.",
+          "Counts arrangements with repeated A and B using division by 3! and 2!.",
+          "Explains why digits are not divided out.",
+          "Provides a coherent product-rule interpretation."
+        ],
+        "partial_credit": [
+          "Has the right general form but mixes binomial and permutation notation.",
+          "Counts arrangements correctly but forgets to choose digits.",
+          "Chooses digits as 10\u00b79\u00b78 without explaining equivalence to binom(10,3)\u00b73!."
+        ],
+        "common_mistakes": [
+          "Dividing by 3! for the digits even though they are distinct.",
+          "Using 10^3 instead of choosing distinct digits.",
+          "Treating repeated A's and B's as distinct."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the count change if the 3 digits were allowed to repeat?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which symbols in your count are genuinely indistinguishable, and which are not?"
+        }
+      ],
+      "hints": [
+        "Break the count into two stages: first decide which 3 digits appear, then count how many 8-character arrangements can be made from those symbols.",
+        "For the digit stage, the 3 digits must be distinct, so think of choosing a set of 3 from 0\u20139 rather than using unrestricted powers. After that, you are arranging 3 identical A\u2019s, 2 identical B\u2019s, and 3 different digits.",
+        "Use the product rule: multiply the number of digit choices by the number of arrangements of the multiset. In the arrangement count, divide by 3! for the A\u2019s and 2! for the B\u2019s, but do not divide for the digits because each chosen digit is different."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0005",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Suppose you must split 12 distinct students into three project teams of sizes 5, 4, and 3. Explain why the count is a multinomial coefficient, and then explain what would change if the three teams were unlabeled rather than labeled Team 1, Team 2, Team 3.",
+      "expected_answer": "With labeled teams, we are assigning all 12 distinct students into 3 groups of specified sizes, so the count is 12!/(5!4!3!), the multinomial coefficient. This can be seen either as choosing 5 for Team 1, then 4 of the remaining for Team 2, then the rest for Team 3, or as permuting all 12 and dividing out internal reorderings within each team. If the teams are unlabeled, then we would need to divide further by the number of ways to relabel groups of equal status. Since the sizes 5, 4, and 3 are different, the sizes themselves identify the teams, so there is no extra division. If two sizes were equal, extra symmetry would matter.",
+      "source_chunk_ids": [
+        "cs109_02_combinatorics_annotated_p25_13faff62ce",
+        "cs109_02_combinatorics_annotated_p37_f7088c93d7"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States labeled-team count as 12!/(5!4!3!).",
+          "Explains the multinomial interpretation.",
+          "Recognizes that unlabeled makes no difference here because sizes differ.",
+          "Notes extra division would appear if equal-sized unlabeled groups existed."
+        ],
+        "partial_credit": [
+          "Gets the formula but not the unlabeled subtlety.",
+          "Says 'multinomial' without explaining why.",
+          "Recognizes group labels matter but handles the unlabeled case vaguely."
+        ],
+        "common_mistakes": [
+          "Dividing by 3! automatically for unlabeled groups even though sizes differ.",
+          "Using binom(12,5) only and stopping.",
+          "Confusing internal team order with team labels."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What if the teams had sizes 4, 4, and 4 and were unlabeled? What extra factor appears and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If one team has size 5 and another has size 3, can swapping their labels leave the same partition, or does the size information already distinguish them?"
+        }
+      ],
+      "hints": [
+        "Think of this as partitioning all 12 distinct students into three groups with prescribed sizes, not just choosing one team and stopping. That is the setting where multinomial counting naturally appears.",
+        "A good setup is: choose the 5-person team first, then choose the 4-person team from those left, and let the remaining students form the 3-person team. Equivalently, imagine ordering all 12 students and then correcting for reordering within each team.",
+        "For the unlabeled version, don\u2019t divide by the number of team-name permutations automatically. First ask whether swapping team labels can actually create a different grouping when the three team sizes are all distinct; extra division only arises when some groups are the same size."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0006",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A raffle draws 4 distinct winners from 75 tickets, and order of drawing does not matter. What is the probability that all 4 winners come from a particular block of 15 tickets? Then explain how you would compute the same probability if the raffle announced first, second, third, and fourth place so order did matter.",
+      "expected_answer": "If order does not matter, the sample space is all 4-element subsets of 75 tickets, so size binom(75,4). The favorable outcomes are the 4-element subsets entirely inside the designated block of 15, so size binom(15,4). Hence the probability is binom(15,4)/binom(75,4). If the raffle distinguishes first through fourth place, then the sample space becomes ordered 4-tuples of distinct tickets, with size 75\u00b774\u00b773\u00b772, and favorable outcomes have size 15\u00b714\u00b713\u00b712. The ratio is the same after cancellation, but the student should note that one must keep event space and sample space consistent.",
+      "source_chunk_ids": [
+        "cs109_midtermfall2024soln_q0_403ea1f789",
+        "cs109_03_probability_annotated_p25_7ff4cb6a23",
+        "cs109_01_intros_and_counting_annotated_p30_a0f9799e32"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses unordered counting consistently for the first setup.",
+          "Computes favorable and total counts correctly.",
+          "Explains the ordered version with permutations.",
+          "States that both approaches agree if done consistently."
+        ],
+        "partial_credit": [
+          "Gets one setup correct but not the other.",
+          "States formulas but does not justify why order matters or not.",
+          "Uses correct probability but weak explanation of sample space."
+        ],
+        "common_mistakes": [
+          "Using binom(15,4)/75^4 despite no replacement.",
+          "Mixing ordered numerator with unordered denominator.",
+          "Assuming probability changes when switching descriptions of the same physical experiment."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the favorable count change if exactly 3 of the 4 winners had to come from that block of 15?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What does one outcome in your sample space look like: an ordered list of tickets or just a set of 4 tickets?"
+        }
+      ],
+      "hints": [
+        "Start by deciding what counts as one outcome of the raffle: since the 4 winners are distinct and order does not matter, think in terms of choosing a 4-ticket subset from all 75 tickets.",
+        "For the unordered version, count total outcomes as all 4-ticket subsets of 75, and favorable outcomes as all 4-ticket subsets that lie entirely within the designated block of 15 tickets.",
+        "If first through fourth place are announced, switch to ordered selections without replacement: use a permutation-style count for both the sample space and the favorable outcomes. The key is to keep numerator and denominator in the same model; if you do, the probability matches the unordered setup."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0007",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student claims that the number of ways to arrange the letters in the word BALLOON is 7!, because there are 7 letters. Diagnose the overcounting and give the corrected reasoning aloud.",
+      "expected_answer": "The letters are not all distinct: there are two L's, two O's, and the other letters B, A, N are singletons. Starting from 7! orders counts every distinct arrangement multiple times, because swapping the two identical L's does not create a new visible arrangement, and similarly for the two O's. Therefore we divide by 2! for the L's and 2! for the O's, giving 7!/(2!2!). The key idea is to divide out the internal permutations of indistinguishable objects.",
+      "source_chunk_ids": [
+        "cs109_02_combinatorics_annotated_p2_72670408d4",
+        "cs109_01_intros_and_counting_annotated_p40_fc10f99d68"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies repeated letters correctly.",
+          "Explains why swaps of identical letters do not create new arrangements.",
+          "Gives corrected count 7!/(2!2!)."
+        ],
+        "partial_credit": [
+          "Knows to divide by repeated counts but misses one repeated letter.",
+          "Gives formula without explanation.",
+          "Uses the right idea but incorrect arithmetic detail."
+        ],
+        "common_mistakes": [
+          "Using 7!/2! only once.",
+          "Dividing by 4! because there are four repeated letters total.",
+          "Treating repeated letters as distinct positions."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the two O's were colored differently but the two L's were still identical, what would the new count be and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you swap the two L's in an arrangement, can anyone tell that the arrangement changed?"
+        }
+      ],
+      "hints": [
+        "Before using 7!, check whether all 7 letters are actually distinct. In BALLOON, some letters repeat, so not every permutation of positions creates a new visible arrangement.",
+        "Identify the repeated letters and ask what happens if you swap only those copies. A swap of identical letters does not change the arrangement, so 7! counts the same arrangement multiple times.",
+        "Start from the count for 7 distinct letters, then divide out the internal reorderings of each repeated group. Use one factorial factor for each letter that appears more than once, rather than combining all repeats into a single division."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0008",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A university schedules 6 distinct guest speakers into 8 available time slots, with at most one speaker per slot. Count the number of schedules. Then compare that count to the number of ways if the university instead only cared about which 6 slots are used, not which speaker is in which used slot.",
+      "expected_answer": "If speakers are distinct and the schedule specifies who is in which slot, then we must assign 6 speakers to 6 of the 8 slots. One approach is choose the 6 used slots in binom(8,6) ways and then permute the 6 speakers into them in 6! ways, for binom(8,6)6! = 8!/2!. Equivalently, assign speakers one by one to slots: 8\u00b77\u00b76\u00b75\u00b74\u00b73. If we only care which 6 slots are occupied, not which speaker is where, then the count collapses to just binom(8,6). The distinction is between choosing positions and assigning distinct objects to those positions.",
+      "source_chunk_ids": [
+        "cs109_01_intros_and_counting_annotated_p30_a0f9799e32",
+        "cs109_02_combinatorics_annotated_p20_247584d496",
+        "cs109_01_intros_and_counting_annotated_p40_fc10f99d68"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Counts full schedules as binom(8,6)6! or equivalent.",
+          "Explains relation to permutations of distinct speakers.",
+          "Counts slot-only version as binom(8,6).",
+          "Clearly contrasts order/assignment versus selection."
+        ],
+        "partial_credit": [
+          "Gets one count right but not the comparison.",
+          "Uses 8P6 without verbal interpretation.",
+          "Confuses choosing slots with ordering speakers."
+        ],
+        "common_mistakes": [
+          "Using 8! for all 8 slots despite only 6 speakers.",
+          "Using binom(8,6) for the full schedule without assigning speakers.",
+          "Treating unused slots as indistinguishable objects to permute."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your first count change if two of the speakers were identical twins that the university considered interchangeable?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "After you choose which 6 slots are used, is there still any remaining decision to make in the original problem?"
+        }
+      ],
+      "hints": [
+        "First decide what makes two schedules different: here, the speakers are distinct, so changing which speaker is in a used slot creates a new schedule.",
+        "For the full schedule count, separate the task into two steps: choose which 6 of the 8 slots are occupied, then assign the 6 different speakers to those chosen slots.",
+        "If you only care about which slots are used, the assignment step disappears; compare that count with the full one by noticing the full schedule count is the slot-choice count multiplied by the number of permutations of the 6 speakers."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0009",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Give a combinatorial proof, in words, of the identity binom(n,k) = binom(n,n-k). Your explanation should not just say 'the formula is symmetric'; it should describe one set being counted in two ways.",
+      "expected_answer": "A strong answer says we are counting the same collection of outcomes in two ways: subsets of size k from an n-element set. Every choice of k selected elements corresponds uniquely to a choice of the n-k elements left unselected. Thus counting chosen elements gives binom(n,k), while counting the complementary unchosen elements gives binom(n,n-k). Since these are in one-to-one correspondence, the numbers are equal. The point is a combinatorial argument based on complements, not just algebraic symmetry of factorials.",
+      "source_chunk_ids": [
+        "cs109_02_combinatorics_annotated_p21_d65c1208d5",
+        "cs109_02_combinatorics_annotated_p20_247584d496"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies a concrete set being counted.",
+          "Explains the bijection between chosen and unchosen elements.",
+          "Avoids relying only on algebraic formula symmetry."
+        ],
+        "partial_credit": [
+          "States complement idea but not as a counting argument.",
+          "Uses formula manipulation only.",
+          "Gives an example but no general reasoning."
+        ],
+        "common_mistakes": [
+          "Saying they are equal 'because factorials cancel' without combinatorial interpretation.",
+          "Confusing k-permutations with k-combinations.",
+          "Not specifying what the two counts refer to."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give a real-world selection scenario where this identity is naturally visible?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you choose 3 people to invite from 10, how many people are simultaneously being left out?"
+        }
+      ],
+      "hints": [
+        "Think of a specific collection of objects being counted by one of these binomial coefficients, such as committees chosen from an n-element set.",
+        "Describe each outcome in two equivalent ways: by listing the k elements you picked, or by listing the elements you did not pick. Make sure both descriptions refer to the same underlying selection.",
+        "Use the complement map: every k-subset has a unique complementary (n-k)-subset, and vice versa. That gives a one-to-one correspondence between the two counts without using factorial algebra."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0010",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "How many 10-bit strings contain exactly four 1s, under the additional condition that the first bit and last bit are different? Explain your case split and why the cases are disjoint.",
+      "expected_answer": "We count binary strings of length 10 with exactly four 1s and endpoints different. There are two disjoint cases: first bit 1 and last bit 0, or first bit 0 and last bit 1. In the first case, among the middle 8 positions we need 3 more 1s, giving binom(8,3). In the second case, among the middle 8 positions we need all 4 remaining 1s, giving binom(8,4). These cases cannot overlap because the endpoints cannot be both 1,0 and 0,1 simultaneously. So the total is binom(8,3)+binom(8,4).",
+      "source_chunk_ids": [
+        "cs109_01_intros_and_counting_annotated_p29_53a8a5a0bf",
+        "cs109_02_combinatorics_annotated_p20_247584d496"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Sets up the two endpoint cases correctly.",
+          "Counts each case with the correct binomial coefficient.",
+          "Explains disjointness and sums validly."
+        ],
+        "partial_credit": [
+          "Correct case split but one coefficient wrong.",
+          "Correct total idea but weak explanation of why sum rule applies.",
+          "Attempts complement but without complete setup."
+        ],
+        "common_mistakes": [
+          "Using 2\u00b7binom(8,3), ignoring asymmetry of the two cases.",
+          "Counting all strings with four 1s as binom(10,4) and stopping.",
+          "Forgetting that fixing a 1 at one end changes how many 1s remain to place."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you modify the count if the first and last bits had to be the same instead?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If the first bit is fixed to 1 and the last to 0, how many 1s remain to place in the middle 8 positions?"
+        }
+      ],
+      "hints": [
+        "Start by focusing on the endpoint condition: if the first and last bits are different, there are only two possible endpoint patterns to consider.",
+        "For each endpoint pattern, treat those two bits as fixed and ask how many 1s are still left to place among the 8 middle positions.",
+        "Be careful: the two cases are not counted the same way, because fixing a 1 at an endpoint changes how many 1s remain. Count each case with the appropriate binomial coefficient, then add them since a string cannot belong to both endpoint patterns at once."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0011",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A menu offers 9 distinct toppings, and a pizza comes with exactly 3 different toppings. Compare the number of possible pizzas when the toppings are listed alphabetically on the receipt versus when the kitchen physically places toppings into three labeled sectors of the pizza. Why does one setup use combinations and the other use permutations?",
+      "expected_answer": "If the receipt only records which 3 toppings are chosen and not any order or location, then the count is binom(9,3) because the selection is unordered. If the pizza has three labeled sectors and each chosen topping goes into a specific sector, then after choosing the 3 toppings we must assign them to the labeled sectors in 3! ways, so the count is binom(9,3)\u00b73! = 9\u00b78\u00b77. The difference is whether the outcome distinguishes arrangements among the chosen items. Same physical ingredients, different notion of outcome.",
+      "source_chunk_ids": [
+        "cs109_02_combinatorics_annotated_p20_247584d496",
+        "cs109_01_intros_and_counting_annotated_p30_a0f9799e32",
+        "cs109_01_intros_and_counting_annotated_p40_fc10f99d68"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses combination count for unordered topping sets.",
+          "Uses permutation-enhanced count for labeled sectors.",
+          "Explains that the definition of an outcome determines the model."
+        ],
+        "partial_credit": [
+          "Gets formulas but weak conceptual contrast.",
+          "Knows one is ordered and one unordered but does not explain why.",
+          "Counts sectors correctly after prompting."
+        ],
+        "common_mistakes": [
+          "Using binom(9,3) in both cases.",
+          "Using 9^3 despite different toppings required.",
+          "Saying alphabetical listing introduces order that changes the pizza count."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If two sectors were considered identical and one sector were special, what symmetry adjustment would you make?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If mushroom is in sector 1 and onion in sector 2, is that the same as onion in sector 1 and mushroom in sector 2 in the second setup?"
+        }
+      ],
+      "hints": [
+        "First decide what makes two pizzas count as the same outcome in each setup. An alphabetical receipt is just a way to display the chosen set, not a new arrangement.",
+        "For the receipt version, you are only selecting 3 distinct toppings from 9, with no positions attached. For the sector version, the pizza has 3 labeled places, so you must track which topping goes to which sector.",
+        "Use an unordered count for the topping set, then in the labeled-sector case account for the extra ways to assign those same 3 toppings to the 3 labels. That contrast is exactly why one model is combinations and the other includes permutations."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0012",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "Someone counts the number of ways to place 7 identical balls into 3 labeled boxes as 3^7, arguing that each ball has 3 choices. Explain why that answer corresponds to a different model, and state the correct count for identical balls in labeled boxes.",
+      "expected_answer": "The count 3^7 treats the 7 balls as distinguishable because it assigns each individual ball independently to one of 3 labeled boxes. But if the balls are identical, outcomes differ only by how many balls end up in each box, not by which specific ball goes where. So we are counting nonnegative integer solutions to x1+x2+x3=7. By stars and bars, the number is binom(7+3-1,3-1)=binom(9,2). The key modeling issue is distinct versus indistinct objects.",
+      "source_chunk_ids": [
+        "cs109_02_combinatorics_annotated_p37_f7088c93d7",
+        "cs109_03_probability_annotated_p25_7ff4cb6a23",
+        "cs109_02_combinatorics_annotated_p50_p51_ec337e48cf"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains why 3^7 corresponds to distinct balls.",
+          "Reframes the problem as counting occupancy counts.",
+          "Gives stars-and-bars answer binom(9,2)."
+        ],
+        "partial_credit": [
+          "States stars and bars result but weakly explains mismatch with 3^7.",
+          "Recognizes identical vs distinct issue without giving full count.",
+          "Gives correct formula in a different but equivalent form."
+        ],
+        "common_mistakes": [
+          "Using 3^7 anyway because boxes are labeled.",
+          "Using binom(7,3) or similar without interpretation.",
+          "Forgetting that boxes may be empty."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the answer change if each box had to contain at least one ball?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If two balls are identical, can swapping them between boxes ever create a visibly new outcome?"
+        }
+      ],
+      "hints": [
+        "First ask what makes two placements different here: is it which specific ball goes to a box, or just how many balls each labeled box contains? That distinction is exactly where the 3^7 argument can go wrong.",
+        "Let x1, x2, and x3 be the numbers of balls in the three labeled boxes. Because the balls are identical, each outcome is just a nonnegative integer triple with x1+x2+x3=7, and empty boxes are allowed.",
+        "The count 3^7 comes from treating the 7 balls as distinguishable, with each ball making its own choice among 3 boxes. For identical balls, switch to counting the nonnegative solutions of x1+x2+x3=7 using stars and bars."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0013",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A 5-column game card is built by choosing numbers within each column from disjoint ranges of size 15. Four columns contain 5 numbers each, while the middle column has only 4 numbers because the center is free. Explain why the total number of cards is (15!/10!)^4\u00b7(15!/11!), and why replacing those factors by binom(15,5) and binom(15,4) would be incomplete.",
+      "expected_answer": "For each full column, the column consists of 5 vertically distinct cells, and cards differ if the same 5 values appear in different rows. So each full column is an ordered selection of 5 distinct numbers from 15, counted by 15\u00b714\u00b713\u00b712\u00b711 = 15!/10!. The middle column has only 4 numbered cells, so it contributes 15!/11!. By the product rule across independent columns, the total is (15!/10!)^4(15!/11!). Using binom(15,5) or binom(15,4) alone would treat the selected values as unordered and ignore which cell gets which number.",
+      "source_chunk_ids": [
+        "cs109_midtermfall2024soln_q0_403ea1f789",
+        "cs109_01_intros_and_counting_annotated_p30_a0f9799e32",
+        "cs109_02_combinatorics_annotated_p20_247584d496"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Recognizes cells within a column are distinct positions.",
+          "Derives ordered counts for 5-cell and 4-cell columns.",
+          "Applies product rule across columns.",
+          "Explains why pure combinations undercount."
+        ],
+        "partial_credit": [
+          "Correct formula with limited explanation.",
+          "Understands order matters but not why columnwise multiplication is valid.",
+          "Uses binom(15,5)\u00b75! idea correctly but incompletely."
+        ],
+        "common_mistakes": [
+          "Using binom(15,5)^4 binom(15,4).",
+          "Treating all columns the same despite free center.",
+          "Forgetting that row placement matters."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the rules changed so numbers in each column were automatically sorted from top to bottom, how would your count change?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If a column contains the same 5 values but in different rows, does the problem statement regard those as the same card or different cards?"
+        }
+      ],
+      "hints": [
+        "Focus on a single column first: are the five spots in that column interchangeable, or does swapping two chosen numbers between rows make a different card?",
+        "For a full column, count ways to fill the 5 distinct row positions with different numbers from its 15-number range; for the middle column, do the same but with only 4 filled positions because the center is free.",
+        "You can view one full column as an ordered selection, equivalently \\(\\binom{15}{5}5!\\), and the middle one as \\(\\binom{15}{4}4!\\); then use the product rule across independent columns. This is why \\(\\binom{15}{5}\\) or \\(\\binom{15}{4}\\) alone is incomplete: it ignores which selected value goes in which cell."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0014",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Explain the difference between a generative process that is valid for the product rule and one that is not. Use the birthday problem's 'no shared birthdays' event as your example, and state the three properties you would want from the process.",
+      "expected_answer": "A valid generative process should generate every element of the set being counted, generate no element more than once, and, for direct product-rule use, have a fixed number of choices at each step once the previous steps are determined. In the birthday problem for the event of no shared birthdays, assigning birthdays person by person works: the first person has 365 choices, the second 364, and so on. This process hits every no-match assignment exactly once and never repeats one. A process that chose an unordered set of birthdays would fail because it would not specify which person gets which date and therefore would not match the original labeled-outcome space.",
+      "source_chunk_ids": [
+        "cs109_01_section_soln_sec1_part5_63bf8a16e5",
+        "cs109_01_intros_and_counting_annotated_p30_a0f9799e32"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the key properties of a valid generative process.",
+          "Applies them correctly to no-shared-birthday counting.",
+          "Explains why an unordered-date process is invalid in that context."
+        ],
+        "partial_credit": [
+          "Describes the birthday process but omits one property.",
+          "Mentions 'no overcounting' without discussing coverage.",
+          "Understands labels matter but not the generative-process framing."
+        ],
+        "common_mistakes": [
+          "Thinking any step-by-step procedure is automatically valid.",
+          "Ignoring the need for consistency with the sample space.",
+          "Assuming constant choices at each step is always necessary, rather than just product-rule-friendly."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can a generative process still be valid if different steps have different numbers of choices, like 365 then 364 then 363? Why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If your process can generate the same outcome in two different ways, what goes wrong in the count?"
+        }
+      ],
+      "hints": [
+        "First decide what one outcome in the event actually is: a birthday assigned to each labeled person, with no repeats. That tells you what a generative process must be generating.",
+        "Test any proposed process with two questions: does it produce every such labeled assignment, and can the same labeled assignment be produced in more than one way? An unordered choice of dates is a useful contrast because it loses the people labels.",
+        "For direct product-rule use, once earlier steps are fixed, the number of options at the next step should be determined. Phrase the three desired properties as: complete coverage of the target set, no duplication, and step counts that are well-defined from the previous choices."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0015",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A committee of 6 is chosen from 14 people, but two particular people refuse to serve together. Count the number of valid committees in two ways: by subtraction from all committees, and by a direct case split. Explain why the answers must match.",
+      "expected_answer": "Total committees are binom(14,6). Invalid committees are those containing both particular people; once those two are included, we choose the remaining 4 from the other 12, giving binom(12,4). So the valid count is binom(14,6)-binom(12,4). A direct case split counts committees containing neither of them, exactly one of them, or both; valid means neither or exactly one. So we could compute binom(12,6) + 2\u00b7binom(12,5). These expressions must agree because they count the same set of valid committees by complementary decompositions.",
+      "source_chunk_ids": [
+        "cs109_01_intros_and_counting_annotated_p29_53a8a5a0bf",
+        "cs109_02_combinatorics_annotated_p20_247584d496"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes all-minus-invalid correctly.",
+          "Provides a valid disjoint case split.",
+          "Explains equality as counting the same set two ways."
+        ],
+        "partial_credit": [
+          "Gets one method right but not the other.",
+          "Recognizes complement idea but not direct decomposition.",
+          "Uses inclusion-exclusion language vaguely without concrete counts."
+        ],
+        "common_mistakes": [
+          "Subtracting binom(2,2)\u00b7binom(12,4) without explanation and then mishandling the rest.",
+          "Using permutations instead of committees.",
+          "Forgetting the 'exactly one of them' case in the direct split."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you modify the count if three particular people were not all allowed to serve together, but any pair among them was allowed?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If both forbidden people are already on the committee, how many more members still need to be chosen?"
+        }
+      ],
+      "hints": [
+        "Start by viewing this as a combinations problem: committees are unordered, so think in terms of binomial coefficients. For the subtraction method, count all 6-person committees first, then identify which ones are invalid.",
+        "For the invalid committees, the two particular people are already fixed in the committee, so only the remaining seats need to be chosen from the other 12. For the direct count, split valid committees into disjoint cases: neither of the two is chosen, or exactly one of them is chosen.",
+        "Write one expression from \u201call minus invalid\u201d and another from the case split, making sure the cases don\u2019t overlap and don\u2019t miss any valid committee. The two expressions must match because they count the same set of valid committees in two different ways."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0016",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "How many ways are there to select 8 cards from a standard 52-card deck so that the hand contains exactly 3 hearts, exactly 2 spades, and the remaining 3 cards are from clubs or diamonds? Explain why the product rule applies here without overcounting.",
+      "expected_answer": "The categories are disjoint suits, and the hand is unordered. Choose 3 of the 13 hearts, 2 of the 13 spades, and then 3 of the 26 cards that are clubs or diamonds. This gives binom(13,3)\u00b7binom(13,2)\u00b7binom(26,3). The product rule applies because choosing cards from one suit category does not interfere except through disjointness already built into the categories, and every valid 8-card hand corresponds to exactly one triple of such choices. There is no overcounting because the same hand cannot arise from two different suit-wise selections.",
+      "source_chunk_ids": [
+        "cs109_02_combinatorics_annotated_p25_13faff62ce",
+        "cs109_02_combinatorics_annotated_p20_247584d496",
+        "cs109_01_intros_and_counting_annotated_p30_a0f9799e32"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses the correct product of combinations.",
+          "Explains the categories are disjoint and exhaustive for the requirement.",
+          "Justifies why no extra factorial appears."
+        ],
+        "partial_credit": [
+          "Correct formula but little explanation.",
+          "Understands suit-based splitting but omits why unordered selection is preserved.",
+          "Uses an equivalent choose-sequentially approach."
+        ],
+        "common_mistakes": [
+          "Multiplying by 8! even though the hand is unordered.",
+          "Choosing the final 3 from 39 rather than 26.",
+          "Using multinomial with suits but forgetting the actual card identities."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the expression change if the remaining 3 cards had to include at least one club and at least one diamond?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "After you choose the 3 hearts and 2 spades, from how many cards should the last 3 be chosen if they must avoid hearts and spades?"
+        }
+      ],
+      "hints": [
+        "Split the hand by suit counts: the requirement fixes how many cards come from hearts, from spades, and from the combined pool of clubs/diamonds. Since a hand is unordered, think in terms of combinations, not arrangements.",
+        "Identify the three disjoint categories you are choosing from: 13 hearts, 13 spades, and 26 cards that are either clubs or diamonds. Decide how many cards must be chosen from each category to satisfy the condition exactly.",
+        "Use the product rule because a valid hand is determined by one independent choice from each disjoint category, and each final hand corresponds to exactly one such triple of choices. That is why you multiply combinations for the three categories and do not include any extra factorial factor."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0017",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says, 'To count 4-digit PINs with no repeated digits, I can use binom(10,4) because I am choosing 4 digits from 0 through 9.' Explain what that count misses, and discuss one subtle issue involving leading zero.",
+      "expected_answer": "binom(10,4) only chooses which 4 digits appear and ignores the order of the digits, but different orders usually produce different PINs. If leading zero is allowed, then the count is 10\u00b79\u00b78\u00b77 because we are making an ordered 4-step choice without repetition. If leading zero is not allowed because we interpret it as a 4-digit number rather than a PIN, then the first position has only 9 choices and the rest have 9, 8, 7, for 9\u00b79\u00b78\u00b77. The key is to define the object and sample space carefully before counting.",
+      "source_chunk_ids": [
+        "cs109_01_intros_and_counting_annotated_p30_a0f9799e32",
+        "cs109_02_combinatorics_annotated_p20_247584d496",
+        "cs109_01_intros_and_counting_annotated_p40_fc10f99d68"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that binom(10,4) ignores order.",
+          "Gives the ordered count for true PINs with no repetition.",
+          "Discusses the leading-zero distinction clearly."
+        ],
+        "partial_credit": [
+          "Identifies order issue but misses leading-zero nuance.",
+          "Gets one of the two model counts correct.",
+          "Says 'permutation' without specifying what is being permuted."
+        ],
+        "common_mistakes": [
+          "Using binom(10,4)\u00b74! but then forgetting leading zero issue.",
+          "Treating PIN and 4-digit number as automatically the same.",
+          "Using 10^4 despite no repetition."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your answer change if repetition were allowed but the PIN had to contain at least one repeated digit?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Are 0123 and 3210 the same PIN or different PINs?"
+        }
+      ],
+      "hints": [
+        "Ask yourself whether a PIN is just a set of 4 digits or an ordered sequence of 4 positions. For example, using the same four digits in a different order usually gives a different PIN.",
+        "So instead of choosing 4 digits all at once, imagine filling the 4 slots one by one without replacement. That is a permutation-style count, not a combination count.",
+        "Be careful about what counts as a valid object: a true PIN may allow 0 in the first position, while a 4-digit number usually does not. Split those two interpretations before you count, and then reduce the available choices after each slot is filled."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0018",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Without doing algebraic simplification, explain why the formula for choosing k objects from n distinct objects can be derived from permutations by dividing out two sources of overcounting. Be explicit about what each division by a factorial corresponds to.",
+      "expected_answer": "Start with all n! orderings of the n distinct objects. Any particular k-element subset appears many times among these orderings: the chosen k objects can be internally rearranged in k! ways among the first k positions without changing which subset is designated as chosen, and the remaining n-k unchosen objects can be internally rearranged in (n-k)! ways among the remaining positions. Therefore each k-subset is represented exactly k!(n-k)! times in the permutation count. Dividing n! by these two factors gives binom(n,k). The two divisions correspond to forgetting order within the chosen group and within the unchosen group.",
+      "source_chunk_ids": [
+        "cs109_02_combinatorics_annotated_p20_247584d496",
+        "cs109_02_combinatorics_annotated_p21_d65c1208d5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Begins from permutation viewpoint n!.",
+          "Identifies both overcounting factors and their meanings.",
+          "Connects the quotient to unordered selection."
+        ],
+        "partial_credit": [
+          "Knows the formula but explains only one factorial in the denominator.",
+          "Starts from choosing positions but does not articulate both symmetries.",
+          "Gives algebra but little interpretation."
+        ],
+        "common_mistakes": [
+          "Dividing only by k! and forgetting the unchosen objects also vary.",
+          "Saying 'because order doesn't matter' without specifying where order was introduced.",
+          "Confusing permutations of n objects with permutations of k chosen objects."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you adapt the same reasoning to explain the multinomial coefficient for splitting all n objects into groups of sizes n1, n2, ..., nr?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If the first k positions of a full ordering mark the chosen items, can the unchosen items also be rearranged without changing the chosen subset?"
+        }
+      ],
+      "hints": [
+        "Start from a process that definitely uses order: imagine arranging all n distinct objects in a line, giving n! total orderings. Then interpret the first k positions as the 'chosen' group.",
+        "Ask: for one fixed k-element subset, how many different full orderings represent that same subset as chosen? Count the reorderings inside the chosen block and separately inside the unchosen block.",
+        "The overcounting comes from two independent symmetries: the chosen k objects can be permuted in k! ways, and the remaining n-k objects in (n-k)! ways, without changing which subset was selected. So divide the permutation count by both factorials to remove those duplicate representations."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0019",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You have 12 distinct books and want to put them onto two labeled shelves, with 5 books on the top shelf and 7 on the bottom shelf, and order matters within each shelf. Count the number of arrangements, and then explain why your answer is not just binom(12,5).",
+      "expected_answer": "First choose which 5 books go on the top shelf: binom(12,5). Then order those 5 books in 5! ways and order the remaining 7 on the bottom shelf in 7! ways. The total is binom(12,5)\u00b75!\u00b77! = 12!. Another way to see this is that lining up all 12 distinct books in order automatically determines the first 5 as the top shelf and the last 7 as the bottom shelf. It is not just binom(12,5) because that would choose shelf membership but would ignore order within each shelf.",
+      "source_chunk_ids": [
+        "cs109_02_combinatorics_annotated_p25_13faff62ce",
+        "cs109_01_intros_and_counting_annotated_p40_fc10f99d68",
+        "cs109_02_combinatorics_annotated_p20_247584d496"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Chooses shelf membership and then shelf orders.",
+          "Obtains total 12! or equivalent.",
+          "Explains why binom(12,5) alone undercounts."
+        ],
+        "partial_credit": [
+          "Correct count with weak interpretation.",
+          "Gets the choose-and-order structure partly right.",
+          "Recognizes shelves are labeled but misses internal order."
+        ],
+        "common_mistakes": [
+          "Using only binom(12,5).",
+          "Multiplying by 2! for the shelves unnecessarily.",
+          "Treating bottom shelf order as irrelevant."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What if only the top shelf order mattered and the bottom shelf books were considered an unordered set?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "After you choose which 5 books go on top, can those 5 books still be arranged in multiple different ways?"
+        }
+      ],
+      "hints": [
+        "Notice there are two decisions here: which books go on each labeled shelf, and the left-to-right order of books within each shelf. If order matters on a shelf, this is more than just a selection problem.",
+        "Start by choosing the 5 books for the top shelf; the other 7 are then forced onto the bottom shelf. After that, count how many orders those 5 chosen books can have and how many orders the remaining 7 can have.",
+        "Combine the counts by multiplying: choose the top-shelf set, then permute the top shelf and permute the bottom shelf. A useful check is to imagine arranging all 12 books in one line and treating the first 5 as the top shelf and the last 7 as the bottom shelf."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0020",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "How many 9-letter strings over the alphabet {A,B,C} contain exactly 4 A's, 3 B's, and 2 C's? Give two different counting explanations that lead to the same formula.",
+      "expected_answer": "One explanation uses multinomial reasoning: we are arranging 9 symbols with multiplicities 4, 3, and 2, so the count is 9!/(4!3!2!). Another explanation chooses positions sequentially: choose the 4 positions of A in binom(9,4) ways, then choose 3 of the remaining 5 positions for B in binom(5,3) ways, and the last 2 positions must be C. Multiplying gives binom(9,4)binom(5,3), which equals the same multinomial count. Both arguments count the same set of strings with repeated symbols.",
+      "source_chunk_ids": [
+        "cs109_02_combinatorics_annotated_p2_72670408d4",
+        "cs109_02_combinatorics_annotated_p25_13faff62ce"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Gives both the repeated-permutation and sequential-position arguments.",
+          "Provides the correct formula 9!/(4!3!2!).",
+          "Explains why the two methods count the same objects."
+        ],
+        "partial_credit": [
+          "One correct method only.",
+          "Correct formula but no second explanation.",
+          "Uses choose-position method with minor notational issues."
+        ],
+        "common_mistakes": [
+          "Using 3^9, ignoring exact counts.",
+          "Using 9! with no division.",
+          "Choosing positions for A, B, C independently without accounting for overlap."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the count change if the two C's had to be adjacent?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you first choose positions for the A's, can a later choice for B reuse one of those positions?"
+        }
+      ],
+      "hints": [
+        "Because the letters repeat, this is not a 3^9 problem; think about arranging a multiset, or equivalently about choosing which positions get each letter.",
+        "For one explanation, choose positions step by step: first decide which 4 of the 9 spots are A, then which 3 of the remaining spots are B; the leftover spots are forced to be C.",
+        "For a second explanation, imagine all 9 letters were distinct, count those arrangements, and then divide out the overcount from permuting the identical A\u2019s, B\u2019s, and C\u2019s among themselves; this should match your product of binomial coefficients."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0021",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student wants the number of ways to distribute 10 identical candies to 4 children so that each child gets at least one, and says the answer is 4^10 because each candy chooses a child. Explain the model mismatch and derive the correct count.",
+      "expected_answer": "The expression 4^10 treats the candies as distinguishable and also allows some children to receive none. But with identical candies, outcomes are determined only by counts per child, and the condition 'at least one each' means we seek positive integer solutions to x1+x2+x3+x4=10. Using stars and bars for positive solutions, we can subtract one candy from each child first, reducing to nonnegative solutions of y1+y2+y3+y4=6. The count is then binom(6+4-1,4-1)=binom(9,3). The key is to match the counting method to whether objects are distinct or indistinct.",
+      "source_chunk_ids": [
+        "cs109_02_combinatorics_annotated_p37_f7088c93d7",
+        "cs109_02_combinatorics_annotated_p50_p51_ec337e48cf",
+        "cs109_03_probability_annotated_p25_7ff4cb6a23"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains why 4^10 is the wrong model.",
+          "Transforms the positive-count problem correctly.",
+          "Gives the stars-and-bars count binom(9,3)."
+        ],
+        "partial_credit": [
+          "Identifies identical-candy issue but incomplete derivation.",
+          "Uses stars and bars but forgets the at-least-one adjustment.",
+          "Correct formula with minimal explanation."
+        ],
+        "common_mistakes": [
+          "Using binom(13,3) by forgetting the positivity condition.",
+          "Treating candies as distinct.",
+          "Forgetting that children are labeled."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What if exactly one child had to receive no candies? How would you organize that count?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If two candies are identical, does swapping them between the same recipients create a new distribution?"
+        }
+      ],
+      "hints": [
+        "Ask what an outcome looks like when the candies are identical: is it a sequence of 10 independent choices, or just the totals each child receives? Also notice that 4^10 would include cases where some child gets none.",
+        "Model the distribution by counts x1, x2, x3, x4 for the 4 labeled children. Then you want positive integer solutions to x1+x2+x3+x4=10, not assignments of distinct candies.",
+        "Handle the \u201cat least one\u201d condition by giving each child one candy first, so yi=xi-1 and y1+y2+y3+y4=6 with yi>=0. Now use the stars-and-bars formula for nonnegative solutions to finish the count."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0022",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "When using equally likely outcomes to compute probability as |E|/|S|, why is it dangerous to choose a sample space that tracks more detail than the event count does, or vice versa? Illustrate your explanation with an ordered-vs-unordered selection example.",
+      "expected_answer": "The ratio |E|/|S| only works when E and S are counted in the same outcome model. If S counts ordered outcomes but E counts unordered ones, or the other way around, the ratio is not a probability because numerator and denominator refer to different elementary outcomes. For example, if 4 winners are drawn without replacement, using S = binom(75,4) means one outcome is an unordered set of tickets, so E must also be counted as an unordered set count. If instead S = 75\u00b774\u00b773\u00b772, then E must be counted with ordered draws too. Consistency of the sample space is the core issue.",
+      "source_chunk_ids": [
+        "cs109_03_probability_annotated_p25_7ff4cb6a23",
+        "cs109_midtermfall2024soln_q0_403ea1f789",
+        "cs109_01_intros_and_counting_annotated_p27_70e2e81f37"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that E and S must use the same elementary outcomes.",
+          "Explains the ordered/unordered mismatch clearly.",
+          "Gives a concrete example of consistent versus inconsistent counting."
+        ],
+        "partial_credit": [
+          "Knows consistency matters but explanation is vague.",
+          "Gives an example without articulating the principle.",
+          "Focuses only on formulas rather than sample-space meaning."
+        ],
+        "common_mistakes": [
+          "Thinking any numerator and denominator counts can be divided.",
+          "Saying order 'doesn't matter' without specifying in which model.",
+          "Assuming probabilities change when switching between equivalent consistent models."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can two different sample spaces still produce the same probability? Under what condition?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If your denominator treats first-place and second-place drawings as different, should your numerator do the same?"
+        }
+      ],
+      "hints": [
+        "Start by asking: what is one 'outcome' in your sample space? The ratio |E|/|S| only makes sense if the numerator and denominator are counting the same kind of basic outcome.",
+        "Decide whether a 4-winner draw is being modeled as an unordered set of tickets or as an ordered sequence of draws. Then check whether your event count uses that same choice, rather than mixing a set-count with a sequence-count.",
+        "Use an ordered-vs-unordered example: if S is counted with combinations like choosing 4 from 75, E must also count favorable 4-ticket sets; if S is counted with sequential draws, E must count favorable sequences too. The danger is that mismatched models make the fraction compare unlike objects, so it is not a valid probability calculation."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0023",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A research lab must assign 9 distinct samples into 3 labeled freezers so that the freezers receive 2, 3, and 4 samples respectively. Count the number of assignments. Then explain how the answer changes if the freezers with capacities 2, 3, and 4 are physically distinct but the order of samples inside each freezer is irrelevant.",
+      "expected_answer": "If the task is just assignment into labeled freezers with specified occupancies, then we are partitioning 9 distinct samples into groups of sizes 2, 3, and 4, so the count is 9!/(2!3!4!). Equivalently, choose 2 of 9 for freezer 1, then 3 of the remaining 7 for freezer 2, and the last 4 go to freezer 3. If the freezers are physically distinct but order inside each freezer is irrelevant, that is actually the same model, so the count remains 9!/(2!3!4!). Internal order was never part of the assignment. Only if samples were arranged on ordered slots within each freezer would extra factorials appear.",
+      "source_chunk_ids": [
+        "cs109_02_combinatorics_annotated_p25_13faff62ce",
+        "cs109_02_combinatorics_annotated_p50_p51_ec337e48cf"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Gives 9!/(2!3!4!) or equivalent sequential-choose expression.",
+          "Explains why labeled freezers matter.",
+          "Correctly observes no change when internal order is irrelevant because it was not counted initially.",
+          "Mentions what would change if internal slots were ordered."
+        ],
+        "partial_credit": [
+          "Correct formula but weak interpretation.",
+          "Thinks there is a change but gives coherent reasoning about a different model.",
+          "Recognizes partitioning into labeled groups."
+        ],
+        "common_mistakes": [
+          "Multiplying by 2!3!4! instead of dividing.",
+          "Dividing by 3! even though freezers are labeled and sizes differ.",
+          "Inventing internal order when the problem never included it."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the count change if each freezer had ordered rack positions for its samples?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Does placing the same 2 samples into freezer 1 in a different internal order create a different assignment under the stated model?"
+        }
+      ],
+      "hints": [
+        "Treat this as splitting 9 distinct samples into 3 labeled groups of prescribed sizes 2, 3, and 4. The important first question is whether the freezer labels matter and whether any order within a freezer is being tracked.",
+        "A clean setup is sequential: choose which 2 samples go in the 2-capacity freezer, then which 3 of the remaining go in the 3-capacity freezer; the last 4 are forced. This is the same structure as a multinomial count for labeled groups of fixed sizes.",
+        "Write the count as a product of binomial coefficients and, if helpful, convert it to a factorial form by canceling repeated internal reorderings within each freezer. For the second part, ask whether your original count ever distinguished different orders of the same samples inside one freezer; only an ordered-slot model would change the count."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0024",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A classmate says: 'To count the number of ways to assign birthdays to 20 distinct students so that no two share a birthday, we should just choose 20 different dates out of 365, so the answer is 365 choose 20.' Explain carefully why that count is not compatible with the natural sample space for the birthday problem, and then give a correct count in two equivalent forms.",
+      "expected_answer": "A strong answer should say that the natural sample space assigns one birthday to each distinct student, so outcomes are ordered by person. The quantity 365 choose 20 counts only unordered sets of 20 dates, so it forgets which student got which date and therefore undercounts relative to the sample space. The correct count is 365 \u00d7 364 \u00d7 ... \u00d7 346, because the first student has 365 choices, the second 364, and so on. An equivalent form is 365! / 345!, or also 365 choose 20 times 20!, where the 20! restores the assignments of the chosen dates to the 20 distinct students.",
+      "source_chunk_ids": [
+        "cs109_01_section_soln_sec1_part5_63bf8a16e5",
+        "cs109_01_intros_and_counting_annotated_p30_a0f9799e32",
+        "cs109_02_combinatorics_annotated_p20_247584d496"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies that students are distinct and the sample space is person-labeled assignments.",
+          "Explains clearly why 365 choose 20 counts unordered dates and therefore is not the right event count by itself.",
+          "Provides a correct ordered count such as 365 \u00d7 364 \u00d7 ... \u00d7 346 or 365! / 345!.",
+          "States an equivalent form 365 choose 20 times 20! and explains why it matches."
+        ],
+        "partial_credit": [
+          "Gives the correct formula but weakly explains the mismatch with the sample space.",
+          "Recognizes ordering matters but does not explicitly connect it to distinct students.",
+          "Mentions multiplying by 20! without fully justifying why."
+        ],
+        "common_mistakes": [
+          "Saying 365 choose 20 is correct because the birthdays are all distinct.",
+          "Using 365^20 for the no-match event.",
+          "Confusing ordered outcomes with unordered selections."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If instead the 20 people were indistinguishable, would 365 choose 20 then make sense? What would the outcome mean in that case?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you describe one concrete outcome counted by 365 choose 20, and then explain how many different student-labeled assignments correspond to it?"
+        }
+      ],
+      "hints": [
+        "Start by deciding what one outcome in the birthday sample space looks like: each of the 20 distinct students is assigned a birthday, so the outcomes are labeled by person.",
+        "Ask what \\(\\binom{365}{20}\\) actually counts. It chooses an unordered set of 20 dates, so it ignores which student gets which chosen date.",
+        "To count the no-shared-birthday outcomes, count assignments student by student with a shrinking number of available dates; equivalently, if you first choose 20 dates, you still need to account for all the ways to permute those dates among the 20 students."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0025",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "You roll two fair six-sided dice. Let event A be 'at least one die shows an even number' and event B be 'the sum is 7.' Without listing all 36 outcomes one by one, compute the number of outcomes in A, in B, and in A \u222a B. Explain your counting strategy and where inclusion-exclusion enters.",
+      "expected_answer": "A strong solution should use the product rule and inclusion-exclusion. There are 36 ordered outcomes total. For A, it is easier to count the complement: both odd has 3 \u00d7 3 = 9 outcomes, so |A| = 36 - 9 = 27. For B, the ordered pairs summing to 7 are (1,6), (2,5), (3,4), (4,3), (5,2), (6,1), so |B| = 6. For A \u2229 B, among those six pairs, exactly the ones with at least one even entry are all six of them, because every pair summing to 7 has one odd and one even. Therefore |A \u222a B| = |A| + |B| - |A \u2229 B| = 27 + 6 - 6 = 27. A nice interpretation is that B is actually a subset of A in this experiment.",
+      "source_chunk_ids": [
+        "cs109_01_intros_and_counting_annotated_p28_4789449e8f",
+        "cs109_01_intros_and_counting_annotated_p29_53a8a5a0bf",
+        "cs109_01_intros_and_counting_annotated_p30_a0f9799e32"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses ordered outcomes for two dice, with total 36.",
+          "Counts A correctly, ideally by complement, as 27.",
+          "Counts B correctly as 6 ordered pairs.",
+          "Computes the intersection correctly and applies inclusion-exclusion to get 27.",
+          "Explains why B is contained in A or equivalently why the intersection size is 6."
+        ],
+        "partial_credit": [
+          "Gets the right counts but with limited explanation.",
+          "Counts A directly rather than by complement, but correctly.",
+          "Uses inclusion-exclusion correctly after a small arithmetic slip."
+        ],
+        "common_mistakes": [
+          "Treating dice outcomes as unordered and using 21 total outcomes.",
+          "Counting only three sum-7 outcomes instead of six.",
+          "Adding |A| and |B| without subtracting the overlap."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Now replace A by 'both dice are even.' How would your inclusion-exclusion setup change, and what becomes the new intersection with B?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you first tell me whether dice outcomes like (1,6) and (6,1) should be treated as the same or different here, and why?"
+        }
+      ],
+      "hints": [
+        "Model each roll as an ordered pair \b(first die, second die), so order matters. For event A, a complement count is much cleaner than counting all cases with an even directly.",
+        "To count A, think about when A fails: both dice are odd. To count B, identify the ordered pairs whose entries add to 7, being careful not to collapse pairs like (1,6) and (6,1).",
+        "Use inclusion-exclusion: |A \b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\bunion B| = |A| + |B| - |A \bintersection B|. The key observation is that any two numbers summing to 7 must have opposite parity, so every outcome in B automatically satisfies A."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0026",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A research lab has 10 distinct students to assign to three project teams: Team A must get 4 students, Team B must get 3, and Team C must get 3. First count the number of valid assignments when the teams are labeled A, B, and C. Then explain how the answer would change if the three teams were unlabeled and only the group sizes 4, 3, and 3 mattered.",
+      "expected_answer": "For labeled teams, this is a multinomial counting problem on 10 distinct students partitioned into groups of sizes 4, 3, and 3. The count is 10! / (4!3!3!). One way to justify it aloud is: choose 4 of the 10 for Team A, then 3 of the remaining 6 for Team B, and the last 3 go to Team C, giving 10 choose 4 times 6 choose 3 times 3 choose 3, which simplifies to the same expression. If the teams are unlabeled, we must divide by the overcount from swapping the two size-3 teams, since interchanging those two groups does not create a new unlabeled partition. So the unlabeled count is 10! / (4!3!3!2!). We do not divide by 3! because the size-4 group is distinguishable from the size-3 groups by size.",
+      "source_chunk_ids": [
+        "cs109_02_combinatorics_annotated_p25_13faff62ce",
+        "cs109_02_combinatorics_annotated_p37_f7088c93d7",
+        "cs109_02_combinatorics_annotated_p50_p51_ec337e48cf"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the labeled-teams case as a partition of distinct objects into groups of fixed sizes.",
+          "Gives 10! / (4!3!3!) or an equivalent sequential-choices expression and connects the two.",
+          "Explains why unlabeled teams require dividing by 2! for the two equal-sized groups.",
+          "Explicitly notes why division by 3! would be incorrect."
+        ],
+        "partial_credit": [
+          "Gets the labeled count correct but is unsure about the unlabeled adjustment.",
+          "Recognizes some overcount in the unlabeled case but uses the wrong factor.",
+          "Uses choose notation correctly but does not simplify or interpret it."
+        ],
+        "common_mistakes": [
+          "Using 10 choose 4,3,3 but not explaining what it means.",
+          "Dividing by 3! in the unlabeled case even though only two groups are interchangeable.",
+          "Treating the groups as ordered internally and multiplying by extra factorials."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose instead the target sizes were 4, 4, and 2 with unlabeled teams. What symmetry factor would you divide by now, and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you rebuild the labeled count step by step using 'choose Team A first, then Team B,' and see whether that clarifies what is being overcounted?"
+        }
+      ],
+      "hints": [
+        "Treat this as partitioning 10 distinct students into groups of fixed sizes. For the labeled case, think either in sequential choices or as a multinomial count.",
+        "For Teams A, B, C, first choose which 4 students go to A, then which 3 of the remaining go to B; the last 3 are forced into C. If you like factorials, convert that product of binomial coefficients into one compact expression.",
+        "When the teams are unlabeled, only relabelings that keep the same size pattern should be collapsed. The two 3-person groups can be swapped without creating a new partition, but the 4-person group is distinguished by size, so do not divide by all 3! team permutations."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0027",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "conceptual_depth",
+      "difficulty": "medium",
+      "question": "Someone claims that the number of ways to create a 5-card hand from a standard 52-card deck is 52 \u00d7 51 \u00d7 50 \u00d7 49 \u00d7 48. Give a careful critique of that statement. Then describe a counting process that would make that product correct, and explain how to convert it back to the usual hand count.",
+      "expected_answer": "The critique is that 52 \u00d7 51 \u00d7 50 \u00d7 49 \u00d7 48 counts ordered 5-card sequences, not unordered hands. In a hand, the order in which the five cards are dealt does not matter, so each actual hand is counted 5! times in that product. Therefore the number of 5-card hands is (52 \u00d7 51 \u00d7 50 \u00d7 49 \u00d7 48) / 5! = 52 choose 5. A valid process for the product is: deal five cards one at a time into five labeled positions such as first, second, third, fourth, fifth; then order matters, so the product rule applies directly. Converting to hands means quotienting out by the 5! reorderings of the same chosen cards.",
+      "source_chunk_ids": [
+        "cs109_01_intros_and_counting_annotated_p30_a0f9799e32",
+        "cs109_02_combinatorics_annotated_p20_247584d496",
+        "cs109_01_intros_and_counting_annotated_p40_fc10f99d68"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Clearly distinguishes ordered sequences from unordered hands.",
+          "Explains why the product counts each hand 5! times.",
+          "Gives the corrected count as 52 choose 5.",
+          "Describes a generative process with labeled positions under which the product is correct."
+        ],
+        "partial_credit": [
+          "States that order does not matter but does not fully justify the 5! overcount.",
+          "Gives 52 choose 5 without connecting it to the ordered product.",
+          "Describes the ordered process but is vague about how to correct it."
+        ],
+        "common_mistakes": [
+          "Saying the product is wrong because cards are not distinct.",
+          "Using 52 choose 5 times 5! as the final hand count.",
+          "Failing to specify what makes the ordered process ordered."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your explanation change if the task were to count 5-card rankings, like first through fifth place, rather than hands?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I show you the same five cards in two different orders, are those two different poker hands? How does that answer affect the counting formula?"
+        }
+      ],
+      "hints": [
+        "First ask: does a 5-card hand remember which card was chosen first, second, third, etc., or only which five cards are present? That distinction tells you whether a simple product rule is appropriate.",
+        "Interpret 52\u00d751\u00d750\u00d749\u00d748 as dealing cards one at a time into five labeled positions. Then think about how many different position-orders represent the same underlying set of five cards.",
+        "The product correctly counts ordered 5-card sequences, so to get ordinary hands you need to divide out the rearrangements of the same five chosen cards. After that, connect the result to the standard \u201cchoose 5 from 52\u201d notation."
+      ]
+    },
+    {
+      "question_id": "CS109_counting_combinatorics_0028",
+      "course": "CS109",
+      "topic_id": "counting_combinatorics",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A word game draws 7 letter tiles from a bag containing the multiset {A, A, A, B, B, C, D}. You are asked two different questions: first, how many distinct 7-letter strings can be formed using all the tiles; second, how many distinct 3-letter strings can be formed if you may use at most the available multiplicity of each letter. Explain why these are different kinds of counting problems, and compute both counts.",
+      "expected_answer": "For the first question, all 7 tiles are used, and there are repeated letters, so this is a permutation-with-indistinguishable-objects problem. The count is 7! / (3!2!) because the three A's are identical and the two B's are identical. For the second question, we are not using all objects, so we must break into cases by composition of the 3-letter string. The valid multiplicity patterns are: all distinct (ABC, ABD, ACD, BCD types), one pair plus a different letter, and AAA is allowed because there are three A's, while BBB is not because only two B's exist. Counting carefully: all distinct uses choose 3 of the 4 letter types A,B,C,D and then order them, giving 4 choose 3 times 3! = 24. One pair cases: AA with one of B,C,D gives 3 choices for the extra letter and 3!/2! = 3 orders each, so 9; BB with one of A,C,D also gives 9. Triple case: AAA gives 1. Total is 24 + 9 + 9 + 1 = 43. The key distinction is that the first is one multinomial-style permutation count, while the second requires casework and the product rule within cases.",
+      "source_chunk_ids": [
+        "cs109_02_combinatorics_annotated_p2_72670408d4",
+        "cs109_02_combinatorics_annotated_p50_p51_ec337e48cf",
+        "cs109_01_intros_and_counting_annotated_p29_53a8a5a0bf"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies the first task as permutations with repeated letters and gives 7!/(3!2!).",
+          "Explains why the second task cannot be solved by the same single formula.",
+          "Breaks the 3-letter problem into valid multiplicity cases and counts each correctly.",
+          "Gets the total 43 and justifies exclusion of impossible cases like BBB or AAB with too many of an unavailable letter."
+        ],
+        "partial_credit": [
+          "Gets the first count right but misses a case in the second problem.",
+          "Uses casework correctly but makes a small arithmetic error.",
+          "Recognizes repeated-letter issues but does not clearly separate the two tasks conceptually."
+        ],
+        "common_mistakes": [
+          "Using 7! for the first part and ignoring repeated letters.",
+          "Using 4^3 for the second part and ignoring multiplicity limits.",
+          "Forgetting the AAA case or incorrectly including BBB.",
+          "Counting one-pair cases as unordered choices instead of ordered strings."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the bag were instead {A, A, B, B, C, C, D}, which parts of your 3-letter casework would change most, and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you first list the possible repetition patterns for a 3-letter string from this bag\u2014such as all distinct, one pair, or triple\u2014and decide which patterns are actually feasible?"
+        }
+      ],
+      "hints": [
+        "Notice the two parts are fundamentally different: in the first, you must use all 7 tiles exactly once, while in the second, you are building shorter strings subject to supply limits.",
+        "For the 7-letter count, treat this as arranging 7 positions with repeated letters: three A\u2019s are identical and two B\u2019s are identical. For the 3-letter count, make casework by possible multiplicities that the bag actually allows: all distinct, one pair plus a different letter, or three of a kind when enough copies exist.",
+        "Use the permutation-with-repeats idea for the full 7-letter arrangement. For 3-letter strings, count each valid case as ordered strings by choosing the letters in the case and then counting distinct orderings; remember AAA is possible, but BBB is not."
+      ]
+    }
+  ]
+}

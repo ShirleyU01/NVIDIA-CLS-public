@@ -1,0 +1,138 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.greeting {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.headline {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 650;
+  color: var(--color-ink);
+}
+
+.topics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.topicCard {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text);
+}
+
+.beginButton {
+  align-self: flex-start;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-sage-700) 25%, var(--color-border));
+  background: var(--color-sage-700);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.beginButton:hover {
+  background: color-mix(in srgb, var(--color-sage-700) 88%, black);
+}
+
+.beginButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  margin: 0;
+  color: var(--color-red-700);
+}
+
+.secondaryLink {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.examModeLink {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--color-sage-700);
+  background: color-mix(in srgb, var(--color-sage-100) 85%, white);
+  border: 1px solid color-mix(in srgb, var(--color-sage-700) 35%, var(--color-border));
+}
+
+.examModeLink:hover {
+  background: color-mix(in srgb, var(--color-sage-100) 70%, white);
+}
+
+.bankForm {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bankFormTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 650;
+}
+
+.bankFormHint {
+  margin: 0;
+  opacity: 0.85;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.fieldRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.select,
+.numberInput {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  max-width: 420px;
+}
+
+.numberInput {
+  max-width: 120px;
+}
+
+@media (max-width: 760px) {
+  .topics {
+    grid-template-columns: 1fr;
+  }
+}

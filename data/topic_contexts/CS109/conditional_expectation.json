@@ -1,0 +1,104 @@
+{
+  "course": "CS109",
+  "topic_id": "conditional_expectation",
+  "topic_name": "Conditional Expectation",
+  "queries_used": [
+    "Conditional Expectation definition",
+    "Conditional Expectation intuition",
+    "Conditional Expectation worked example",
+    "Conditional Expectation exam problem",
+    "conditional expectation overview",
+    "conditional expectation practice",
+    "expectation given event overview",
+    "expectation given event practice",
+    "law of total expectation overview",
+    "law of total expectation practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_14_conditional_expectation_annotated_p16_d1adb0751a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProof of Law of Total Expectation\n17\n𝐸𝑋= 𝐸𝐸𝑋|𝑌\n𝐸𝐸𝑋|𝑌\n= 𝐸𝑔𝑌\n= )\n\"\n𝑃𝑌= 𝑦𝐸𝑋|𝑌= 𝑦\n(LOTUS, 𝑔𝑌= 𝐸𝑋|𝑌)\n= )\n\"\n𝑃𝑌= 𝑦)\n!\n𝑥𝑃𝑋= 𝑥|𝑌= 𝑦\n(def of \nconditional \nexpectation)\n= )\n\"\n)\n!\n𝑥𝑃𝑋= 𝑥|𝑌= 𝑦𝑃𝑌= 𝑦\n= )\n\"\n)\n!\n𝑥𝑃𝑋= 𝑥, 𝑌= 𝑦\n(chain rule)\n= )\n!\n)\n\"\n𝑥𝑃𝑋= 𝑥, 𝑌= 𝑦\n= )\n!\n𝑥)\n\"\n𝑃𝑋= 𝑥, 𝑌= 𝑦\n(switch order of \nsummations)\n= )\n!\n𝑥𝑃𝑋= 𝑥\n(marginalization)\n= 𝐸𝑋",
+      "source_type": "lecture_slide",
+      "document_name": "14 conditional expectation annotated",
+      "score": 0.6792091727256775
+    },
+    {
+      "chunk_id": "cs109_11_joint_rvs_annotated_p39_93a41618e7",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProperties of Expectation, extended to two RVs\n40\nwe’ve seen this! \nwe’ll prove momentarily.\nTrue for both independent \nand dependent random \nvariables!\n1. Linearity:\n𝐸𝑎𝑋+ 𝑏𝑌+ 𝑐= 𝑎𝐸𝑋+ 𝑏𝐸𝑌+ 𝑐\n2. Expectation of a sum = sum of expectation:\n𝐸𝑋+ 𝑌= 𝐸𝑋+ 𝐸𝑌\n3. Unconscious statistician:\n𝐸𝑔𝑋, 𝑌\n= .\n9\n.\n6\n𝑔𝑥, 𝑦𝑝5,8(𝑥, 𝑦)",
+      "source_type": "lecture_slide",
+      "document_name": "11 joint rvs annotated",
+      "score": 0.6251643300056458
+    },
+    {
+      "chunk_id": "cs109_14_conditional_expectation_annotated_p11_f1e0126251",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProperties of conditional expectation\n12\n1. LOTUS:\n𝐸𝑔𝑋|𝑌= 𝑦= )\n!\n𝑔𝑥𝑝#|%(𝑥|𝑦)\n2. Linearity of conditional expectation:\n𝐸)\n120\n3\n𝑋1 | 𝑌= 𝑦= )\n120\n3\n𝐸𝑋1|𝑌= 𝑦\n3. Law of total expectation (in, like, three slides)",
+      "source_type": "lecture_slide",
+      "document_name": "14 conditional expectation annotated",
+      "score": 0.622128963470459
+    },
+    {
+      "chunk_id": "cs109_14_conditional_expectation_annotated_p15_5248b39f66",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProperties of conditional expectation\n16\n1. LOTUS:\n𝐸𝑔𝑋|𝑌= 𝑦= )\n!\n𝑔𝑥𝑝#|%(𝑥|𝑦)\n2. Linearity of conditional expectation:\n𝐸)\n120\n3\n𝑋1 | 𝑌= 𝑦= )\n120\n3\n𝐸𝑋1|𝑌= 𝑦\n3. Law of total expectation:\n𝐸𝑋= 𝐸𝐸𝑋|𝑌\nwhat?",
+      "source_type": "lecture_slide",
+      "document_name": "14 conditional expectation annotated",
+      "score": 0.6179463863372803
+    },
+    {
+      "chunk_id": "cs109_14_conditional_expectation_annotated_p0_p1_3cd749a47e",
+      "text": "14: Conditional \nExpectation\nJerry Cain\nMay 1st, 2024\nLecture Discussion on Ed\n\nDiscrete \nconditional \ndistributions\n2",
+      "source_type": "lecture_slide",
+      "document_name": "14 conditional expectation annotated",
+      "score": 0.6141613125801086
+    },
+    {
+      "chunk_id": "cs109_12_independent_rvs_annotated_p18_1bb39480a8",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLinearity of Expectation: Important\nExpectation is a linear mathematical operation. If 𝑋= ∑$%&\n'\n𝑋$ :\n• Even if you don’t know the distribution of 𝑋 (e.g., because the joint \ndistribution of 𝑋&, … , 𝑋'  is unknown), you can still compute \nexpectation of 𝑋. \n• Problem-solving key:\nDefine 𝑋$ such that\n19\n𝐸𝑋= 𝐸.\n67!\n8\n𝑋6 = .\n67!\n8\n𝐸𝑋6\n𝑋= ;\n#5!\n%\n𝑋#\nMost common use cases:\n• 𝐸𝑋#  easy to calculate\n• Sum of dependent RVs",
+      "source_type": "lecture_slide",
+      "document_name": "12 independent rvs annotated",
+      "score": 0.586084246635437
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p28_8fe9b89b51",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nImportant properties of expectation\n1. Linearity:\n𝐸𝑎𝑋+ 𝑏= 𝑎𝐸𝑋+ 𝑏\n2. Expectation of a sum = sum of expectation:\n𝐸𝑋+ 𝑌= 𝐸𝑋+ 𝐸𝑌\n3. Unconscious statistician:\n𝐸𝑔𝑋\n= )\n$\n𝑔𝑥𝑝(𝑥)\n29\n• Let 𝑋= 6-sided dice roll,\n      𝑌= 2𝑋−1.\n• 𝐸𝑋= 3.5\n• 𝐸𝑌= 6\nSum of two dice rolls:\n• Let 𝑋= roll of die 1\n      𝑌= roll of die 2\n• 𝐸𝑋+ 𝑌= 3.5 + 3.5 = 7\nThese properties let you avoid \ndefining difficult PMFs.",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.5773449540138245
+    },
+    {
+      "chunk_id": "cs109_14_conditional_expectation_annotated_p9_2045b17352",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional expectation\nRecall the the conditional PMF of 𝑋 given 𝑌= 𝑦: \n𝑝!|# 𝑥|𝑦= 𝑃𝑋= 𝑥|𝑌= 𝑦= 𝑝!,# 𝑥, 𝑦\n𝑝# 𝑦\nThe conditional expectation of 𝑋 given 𝑌= 𝑦 is\n𝐸𝑋|𝑌= 𝑦= 3\n!\n𝑥𝑃𝑋= 𝑥|𝑌= 𝑦= 3\n!\n𝑥𝑝\"|$ 𝑥|𝑦\n10\n• Note that 𝐸𝑋 is a well-defined statistic even when 𝑋 is one of many random\nvariables in a multivariate distribution: 𝐸𝑋= ∑! ∑\" 𝑥𝑝#,% 𝑥, 𝑦\n• 𝐸𝑋|𝑌= 𝑦 is the average value of 𝑋 when 𝑌 is constrained to take on a specific\nvalue of 𝑦: 𝐸𝑋|𝑌= 𝑦= ∑! 𝑥𝑝#,% 𝑥|𝑦",
+      "source_type": "lecture_slide",
+      "document_name": "14 conditional expectation annotated",
+      "score": 0.5561900734901428
+    },
+    {
+      "chunk_id": "cs109_06_rvs_annotated_p29_b2e7f50774",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLinearity of Expectation proof\n𝐸𝑎𝑋+ 𝑏= 𝑎𝐸𝑋+ 𝑏\nProof:\n𝐸𝑎𝑋+ 𝑏= >\n@\n𝑎𝑥+ 𝑏𝑝𝑥= >\n@\n𝑎𝑥𝑝𝑥+ 𝑏𝑝𝑥\n = 𝑎>\n@\n𝑥𝑝(𝑥) + 𝑏>\n@\n𝑝𝑥 \n= 𝑎 𝐸𝑋+ 𝑏⋅1 \n30\n𝐸𝑋=\n$\n!:# ! $%\n𝑝𝑥⋅𝑥",
+      "source_type": "lecture_slide",
+      "document_name": "06 rvs annotated",
+      "score": 0.5417932868003845
+    },
+    {
+      "chunk_id": "cs109_11_joint_rvs_annotated_p40_eb0d10c7b8",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProof of expectation of a sum of RVs\n41\n𝐸𝑋+ 𝑌= 𝐸𝑋+ 𝐸𝑌\nD\n.\nD\n*\n𝑥+ 𝑦𝑝),\" 𝑥, 𝑦\nLOTUS,\n𝑔𝑋, 𝑌= 𝑋+ 𝑌\n= D\n.\nD\n*\n𝑥𝑝),\" 𝑥, 𝑦+ D\n.\nD\n*\n𝑦𝑝),\" 𝑥, 𝑦\nLinearity of summations\n(cont. case: linearity of integrals)\n= D\n.\n𝑥D\n*\n𝑝),\" 𝑥, 𝑦+ D\n*\n𝑦D\n.\n𝑝),\" 𝑥, 𝑦\nMarginal PMFs for 𝑋 and 𝑌\n= D\n.\n𝑥𝑝) 𝑥+ D\n*\n𝑦𝑝\" 𝑦\n= 𝐸𝑋+ 𝐸[𝑌]\n𝐸𝑋+ 𝑌=",
+      "source_type": "lecture_slide",
+      "document_name": "11 joint rvs annotated",
+      "score": 0.49060332775115967
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p22_cf0d04ea8f",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEverything* in probability is a sum or a product (or both)\n23\nSum of values that can \nbe considered separately \n(possibly weighted by \nprob. of happening)\nProduct of values that \ncan each be considered \nin sequence\n𝐸𝑋|𝑌= 𝑦= (\n./\n/\n𝑥𝑓+|, 𝑥|𝑦𝑑𝑥\n𝐸𝑋= ;\n:\n𝑥𝑝𝑥\nLaw of Total Probability\n𝑃(𝐸) = ;\n;<=\n>\n𝑃𝐸|𝐹; 𝑃𝐹;\nweight\nweight\nweight\nAxiom 3, 𝐸= 𝐸+ ∪⋯∪𝐸,\n𝑃𝐸= ;\n;<=\n>\n𝑃𝐸;\nChain Rule\n𝑃(𝐸∩𝐹∩𝐺) = 𝑃𝐸𝑃𝐹|𝐸𝑃𝐺|𝐸𝐹\n𝑓+,, 𝑥, 𝑦= 𝑓+ 𝑥𝑓, 𝑦\nIndependent cont. RVs \n*except conditional probability (a ratio)\n𝑃𝑋+ 𝑌= 𝑛= *\n0\n𝑃𝑋= 𝑘𝑃𝑌= 𝑛−𝑘\nSum of indep. discrete RVs \n(convolution)",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.4901182949542999
+    },
+    {
+      "chunk_id": "cs109_midtermwin2025soln_q6_d97feb3a89",
+      "text": "b. (5 points) What is the expectation of the number of cards received in a turn?\nLet X be the number of cards received in a turn. The expectation E[X] is given by the weighted sum of the\npossible outcomes, where each outcome is multiplied by its probability:\nE[X] =\n2\n∑\nk=0\nkP(X = k).\nFrom the problem setup and the same approach at in part a, we know:\n• P(X = 0) = 30",
+      "source_type": "exam_question",
+      "document_name": "MidtermWin2025Soln",
+      "score": 0.42511630058288574
+    }
+  ],
+  "built_at": "2026-04-28T05:13:11Z"
+}

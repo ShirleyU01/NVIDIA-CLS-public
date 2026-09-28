@@ -1,0 +1,221 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/07_bernoulli_binomial_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/07_bernoulli_binomial_annotated.pdf",
+  "sha256": "7c54ca66cd6affbd814a6f720f7364574c40934dc76a75e1656d25ef1cea718e",
+  "title_guess": "07 bernoulli binomial annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "07: Variance, \nBernoulli, Binomial\nJerry Cain\nApril 15th, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 89
+    },
+    {
+      "page_index": 1,
+      "text": "Variance\n2",
+      "char_count": 10
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStanford, CA\n𝐸high = 68°F\n𝐸low = 52°F\nWashington, DC\n𝐸high = 67°F\n𝐸low = 51°F\n3\nAverage temperatures\nIs 𝐸𝑋 enough? Does is capture everything?",
+      "char_count": 215
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStanford, CA\n𝐸high = 68°F\n𝐸low = 52°F\nWashington, DC\n𝐸high = 67°F\n𝐸low = 51°F\n4\nAverage temperatures\n0\n0.1\n0.2\n0.3\n0.4\n0\n0.1\n0.2\n0.3\n0.4\n𝑃𝑋= 𝑥\n𝑃𝑋= 𝑥\nStanford high temps\nWashington high temps\n35             50           65            80     90\n35             50           65            80     90\n68°F\n67°F\nNormalized histograms are approximations of probability mass functions, i.e., PMFs.",
+      "char_count": 461
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVariance = measure of \"spread\"\nConsider the following three distributions (PMFs):\n• Expectation: 𝐸𝑋= 3 for all distributions\n• But the shape and spread across distributions are very different!\n• Variance, Var 𝑋 : a formal quantification of spread\n5",
+      "char_count": 321
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVariance\nThe variance of a random variable 𝑋 with mean 𝐸𝑋= 𝜇 is\nVar 𝑋= 𝐸𝑋−𝜇(\n• Also written as: 𝐸\n𝑋−𝐸𝑋\n!\n• Note: Var(X) ≥ 0\n• Other names: 2nd central moment, or square of the standard deviation\n  \n \n \n \n \n \nVar 𝑋\ndef standard deviation \nSD 𝑋=\nVar 𝑋\n6\nUnits of 𝑋!\nUnits of 𝑋",
+      "char_count": 347
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVariance of Stanford weather\n7\nVariance\nof 𝑋\nVar 𝑋= 𝐸\n𝑋−𝐸𝑋\n!\nStanford, CA\n𝐸high = 68°F\n𝐸low = 52°F\n0\n0.1\n0.2\n0.3\n0.4\n𝑃𝑋= 𝑥\nStanford high temps\n35             50            65           80     90\n𝑋\n𝑋−𝜇!\n57°F\n121 (°F)2\n𝐸𝑋= 𝜇= 68°F\n71°F\n9 (°F)2\n75°F\n49 (°F)2\n69°F\n1 (°F)2\n…\n…\nVariance 𝐸\n𝑋−𝜇! = 39 (°F)2\nStandard deviation \n    = 6.2°F",
+      "char_count": 404
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStanford, CA\n𝐸high = 68°F\nWashington, DC\n𝐸high = 67°F\n8\nComparing variance\n0\n0.1\n0.2\n0.3\n0.4\n0\n0.1\n0.2\n0.3\n0.4\n𝑃𝑋= 𝑥\n𝑃𝑋= 𝑥\nStanford high temps\nWashington high temps\n35             50            65           80     90\n35             50            65           80     90\nVar 𝑋= 39 °F !\nVar 𝑋= 248 °F !\nVariance\nof 𝑋\nVar 𝑋= 𝐸\n𝑋−𝐸𝑋\n!\n68°F\n67°F",
+      "char_count": 412
+    },
+    {
+      "page_index": 8,
+      "text": "Properties of \nVariance\n9",
+      "char_count": 25
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProperties of variance\nDefinition \n \n \n \n Var 𝑋= 𝐸\n𝑋−𝐸𝑋\n!\ndef standard deviation \nSD 𝑋=\nVar 𝑋\nProperty 1 \n \nVar 𝑋= 𝐸𝑋!  −𝐸𝑋\n!\nProperty 2 \n \nVar 𝑎𝑋+ 𝑏= 𝑎!Var 𝑋\n10\nUnits of 𝑋!\nUnits of 𝑋\n• Property 1 is often easier to manipulate than the original definition\n• Unlike expectation, variance is not linear",
+      "char_count": 374
+    },
+    {
+      "page_index": 10,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProperties of variance\nDefinition \n \n \n \n Var 𝑋= 𝐸\n𝑋−𝐸𝑋\n!\ndef standard deviation \nSD 𝑋=\nVar 𝑋\nProperty 1 \n \nVar 𝑋= 𝐸𝑋!  −𝐸𝑋\n!\nProperty 2 \n \nVar 𝑎𝑋+ 𝑏= 𝑎!Var 𝑋\n11\nUnits of 𝑋!\nUnits of 𝑋",
+      "char_count": 257
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComputing variance, a proof\n12\nVar 𝑋= 𝐸\n𝑋−𝐸𝑋\n!\n= 𝐸𝑋! −𝐸𝑋\n!\n= 𝐸𝑋! −𝜇!\n= 𝐸𝑋! −2𝜇! + 𝜇!\n= 𝐸𝑋! −2𝜇𝐸𝑋+ 𝜇!\n= 𝐸\n𝑋−𝜇!\nLet 𝐸𝑋= 𝜇\nEveryone, \nplease \nwelcome the \nsecond \nmoment!\nVariance\nof 𝑋\nVar 𝑋= 𝐸\n𝑋−𝐸𝑋\n!\n= 𝐸𝑋!  −𝐸𝑋\n!\n= ,\n\"\n𝑥−𝜇!𝑝𝑥\n= ,\n\"\n𝑥! −2𝜇𝑥+ 𝜇! 𝑝𝑥\n= ,\n\"\n𝑥!𝑝𝑥−2𝜇,\n\"\n𝑥𝑝𝑥+ 𝜇! ,\n\"\n𝑝𝑥\n⋅1",
+      "char_count": 352
+    },
+    {
+      "page_index": 12,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nLet Y = outcome of a single die roll. Recall 𝐸𝑌= 7/2 .\nCalculate the variance of Y. \n13\nVariance of a 6-sided die\nVariance\nof 𝑋\nVar 𝑋= 𝐸\n𝑋−𝐸𝑋\n!\n= 𝐸𝑋!  −𝐸𝑋\n!\n1.  Approach #1: Definition\nVar 𝑌= \n1\n6 1 −7\n2\n!\n+ 1\n6 2 −7\n2\n!\n \n+ 1\n6 3 −7\n2\n!\n+ 1\n6 4 −7\n2\n!\n \n+ 1\n6 5 −7\n2\n!\n+ 1\n6 6 −7\n2\n!\n2.  Approach #2: A property\n𝐸𝑌! = 1\n6 1! + 2! + 3! + 4! + 5! + 6!\n= 91/6\nVar 𝑌= E 𝑌! −E Y ! = 91/6 −7/2 !\n= 35/12\n= 35/12\n2nd moment",
+      "char_count": 490
+    },
+    {
+      "page_index": 13,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProperties of variance\nDefinition \n \n \n \n Var 𝑋= 𝐸\n𝑋−𝐸𝑋\n!\ndef standard deviation \nSD 𝑋=\nVar 𝑋\nProperty 1 \n \nVar 𝑋= 𝐸𝑋!  −𝐸𝑋\n!\nProperty 2 \n \nVar 𝑎𝑋+ 𝑏= 𝑎!Var 𝑋\n14\nUnits of 𝑋!\nUnits of 𝑋",
+      "char_count": 257
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProperty 2: A proof\nProperty 2 \n \nVar 𝑎𝑋+ 𝑏= 𝑎!Var 𝑋\n15\nVar 𝑎𝑋+ 𝑏 \n \n= 𝐸\n𝑎𝑋+ 𝑏! −𝐸𝑎𝑋+ 𝑏\n! \n \n \n \n \nProperty 1 \n \n= 𝐸𝑎!𝑋! + 2𝑎𝑏𝑋+ 𝑏! −𝑎𝐸𝑋+ 𝑏! \n \n= 𝑎!𝐸𝑋! + 2𝑎𝑏𝐸𝑋+ 𝑏! −𝑎! 𝐸[𝑋] ! + 2𝑎𝑏𝐸[𝑋] + 𝑏!\n \n= 𝑎!𝐸𝑋! −𝑎! 𝐸[𝑋] !\n \n= 𝑎! 𝐸𝑋! −𝐸[𝑋] !\n \n= 𝑎!Var 𝑋  \n \n \n \n \n \n \n \n \n \nProperty 1 \nProof:\nFactoring/\nLinearity of \nExpectation",
+      "char_count": 390
+    },
+    {
+      "page_index": 15,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nOther Moments of Interest\nSkewness: \nSometimes referred to as the 3rd central moment and \ncomputed as 𝐸\n𝑋−𝐸𝑋\n) , skewness provides a \nmeasure of whether a probability distribution is \nsymmetric or asymmetric.\nKurtosis: \nSometimes referred to as the 4th central moment and \ncomputed as 𝐸\n𝑋−𝐸𝑋\n* , kurtosis provides a \nmeasure of how concentrated the distribution is.  Some \ndistributions are so dispersed they don’t have finite \nvariances or means.\n16\n[image source]",
+      "char_count": 538
+    },
+    {
+      "page_index": 16,
+      "text": "Bernoulli RV\n17",
+      "char_count": 15
+    },
+    {
+      "page_index": 17,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider an experiment with two outcomes: \"success\" and \"failure\".\ndef A Bernoulli random variable 𝑋 maps \"success\" to 1 and \"failure\" to 0.\n \nOther names: indicator random variable, Boolean random variable\nExamples:\n• Coin flip\n• Random binary digit\n• Whether Doris barks\nBernoulli Random Variable\n18\n𝑃𝑋= 1 = 𝑝1 = 𝑝 \n𝑃𝑋= 0 = 𝑝0 = 1 −𝑝 \n𝑋~Ber(𝑝)\nSupport: {0,1}\nVariance  \nExpectation \n \n \nPMF\n𝐸𝑋= 𝑝 \nVar 𝑋= 𝑝(1 −𝑝)",
+      "char_count": 487
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDefining Bernoulli RVs\n19\nServe an ad.\n• User clicks w.p. 0.2\n• Ignores otherwise\nLet 𝑋: 1 if clicked\n𝑋~Ber(___)\n𝑃𝑋= 1 =  ___\n𝑃𝑋= 0 =  ___\nRoll two dice.\n• Success: roll a 10\n• Failure: anything else\nLet 𝑋 : 1 if success\n𝑋~Ber(___)\n𝐸𝑋= ___\n𝑋~Ber(𝑝)\n𝑝\" 1 = 𝑝 \n𝑝\" 0 = 1 −𝑝 \n𝐸𝑋= 𝑝 \nRun a program\n• Crashes w.p. 𝑝\n• Works w.p. 1 −𝑝\nLet 𝑋: 1 if crash\n𝑋~Ber(𝑝)\n𝑃𝑋= 1 = 𝑝\n𝑃𝑋= 0 = 1 −𝑝",
+      "char_count": 450
+    },
+    {
+      "page_index": 19,
+      "text": "Binomial RV\n20",
+      "char_count": 14
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider an experiment: 𝑛 independent Ber(𝑝) trials.\ndef A Binomial random variable 𝑋 counts the successes across 𝑛 trials.\nExamples:\n• # heads in n coin flips\n• # of 1’s in randomly generated length n bit string\n• # of disk drives crashed in 1000 computer cluster\n(assuming disks crash independently)\nBinomial Random Variable\n21\n𝑘= 0, 1, … , 𝑛:\n𝑃𝑋= 𝑘= 𝑝𝑘= 𝑛\n𝑘𝑝! 1 −𝑝\"#!\n𝑋~Bin(𝑛, 𝑝)\nSupport: {0,1, … , 𝑛}\nPMF\n𝐸𝑋= 𝑛𝑝 \nVar 𝑋= 𝑛𝑝(1 −𝑝) \nVariance  \nExpectation",
+      "char_count": 529
+    },
+    {
+      "page_index": 21,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nReiterating notation\nThe parameters of a Binomial random variable:\n• 𝑛: number of independent trials\n• 𝑝: probability of success on each trial\n22\n1. The random \nvariable\n2. is distributed \nas a\n3. Binomial\n4. with parameters\n𝑋 ~ Bin(𝑛, 𝑝)",
+      "char_count": 311
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nReiterating notation\nIf 𝑋 is a binomial with parameters 𝑛 and 𝑝, the PMF of 𝑋 is\n23\n𝑋 ~ Bin(𝑛, 𝑝)\n𝑃𝑋= 𝑘= 𝑛\n𝑘𝑝( 1 −𝑝)*(\nProbability Mass Function for a Binomial\nProbability that 𝑋\ntakes on the value 𝑘",
+      "char_count": 272
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThree coin flips\nThree fair (with 𝑝= 0.5) coins are flipped.\n•\n𝑋 is number of heads\n•\n𝑋~Bin 3, 0.5\nCompute the following event probabilities:\n24\n𝑋~Bin(𝑛, 𝑝)\n𝑝𝑘= 𝑛\n𝑘𝑝# 1 −𝑝$%#\n𝑃𝑋= 0\n𝑃𝑋= 1\n𝑃𝑋= 2\n𝑃𝑋= 3\nP(event)",
+      "char_count": 280
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThree coin flips\nThree fair (with 𝑝= 0.5) coins are flipped.\n•\n𝑋 is number of heads\n•\n𝑋~Bin 3, 0.5\nCompute the following event probabilities:\n25\n𝑋~Bin(𝑛, 𝑝)\n𝑝𝑘= 𝑛\n𝑘𝑝# 1 −𝑝$%#\n𝑃𝑋= 0\n= 𝑝0  \n= 3\n0 𝑝$ 1 −𝑝% =\n&\n' \n𝑃𝑋= 1\n𝑃𝑋= 2\n𝑃𝑋= 3\n= 𝑝1  \n= 3\n1 𝑝& 1 −𝑝! =\n%\n' \n= 𝑝2  \n= 3\n2 𝑝! 1 −𝑝& =\n%\n' \n= 𝑝3  \n= 3\n3 𝑝% 1 −𝑝$ =\n&\n' \nP(event)",
+      "char_count": 396
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider an experiment: 𝑛 independent trials of Ber(𝑝) random variables.\ndef A Binomial random variable 𝑋 is the number of successes in 𝑛 trials.\nExamples:\n• # heads in n coin flips\n• # of 1’s in randomly generated length n bit string\n• # of disk drives crashed in 1000 computer cluster\n(assuming disks crash independently)\nBinomial Random Variable\n26\n𝑋~Bin(𝑛, 𝑝)\nRange: {0,1, … , 𝑛}\nVariance  \nExpectation \n \n \nPMF\n𝐸𝑋= 𝑛𝑝 \nVar 𝑋= 𝑛𝑝(1 −𝑝) \n𝑘= 0, 1, … , 𝑛:\n𝑃𝑋= 𝑘= 𝑝𝑘= 𝑛\n𝑘𝑝! 1 −𝑝\"#!",
+      "char_count": 554
+    },
+    {
+      "page_index": 26,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBer 𝑝= Bin(1, 𝑝)\nBinomial RV is sum of Bernoulli RVs\nBernoulli\n• 𝑋~Ber(𝑝)\nBinomial\n• 𝑌~Bin 𝑛, 𝑝\n• The sum of 𝑛 independent \nBernoulli RVs\n27\n𝑌= ,\n()&\n*\n𝑋( ,\n 𝑋( ~Ber(𝑝)\n+\n+\n+",
+      "char_count": 247
+    },
+    {
+      "page_index": 27,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider an experiment: 𝑛 independent trials of Ber(𝑝) random variables.\ndef A Binomial random variable 𝑋 is the number of successes in 𝑛 trials.\nExamples:\n• # heads in n coin flips\n• # of 1’s in randomly generated length n bit string\n• # of disk drives crashed in 1000 computer cluster\n(assuming disks crash independently)\nBinomial Random Variable\n28\n𝑋~Bin(𝑛, 𝑝)\nRange: {0,1, … , 𝑛}\n𝐸𝑋= 𝑛𝑝 \nVar 𝑋= 𝑛𝑝(1 −𝑝) \nVariance  \nExpectation \n \n \nPMF\n𝑘= 0, 1, … , 𝑛:\n𝑃𝑋= 𝑘= 𝑝𝑘= 𝑛\n𝑘𝑝! 1 −𝑝\"#!",
+      "char_count": 554
+    },
+    {
+      "page_index": 28,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider an experiment: 𝑛 independent trials of Ber(𝑝) random variables.\ndef A Binomial random variable 𝑋 is the number of successes in 𝑛 trials.\nExamples:\n• # heads in n coin flips\n• # of 1’s in randomly generated length n bit string\n• # of disk drives crashed in 1000 computer cluster\n(assuming disks crash independently)\nBinomial Random Variable\n29\n𝑋~Bin(𝑛, 𝑝)\nRange: {0,1, … , 𝑛}\nPMF\n𝐸𝑋= 𝑛𝑝 \nVar 𝑋= 𝑛𝑝(1 −𝑝) \nWe’ll prove \nthis later in \nthe course.\nVariance  \nExpectation \n \n \n𝑘= 0, 1, … , 𝑛:\n𝑃𝑋= 𝑘= 𝑝𝑘= 𝑛\n𝑘𝑝! 1 −𝑝\"#!",
+      "char_count": 594
+    },
+    {
+      "page_index": 29,
+      "text": "Exercises\n30",
+      "char_count": 12
+    },
+    {
+      "page_index": 30,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStatistics: Expectation and variance\n1. a. Let 𝑋= the outcome of a fair 24-sided\n \ndie roll. What is 𝐸𝑋?\nb. Let 𝑌= the sum of seven rolls of a fair\n24-sided die. What is 𝐸𝑌?\n2. Let 𝑍= # of tails on 10 flips of a \nbiased coin, with p = 0.71. What is 𝐸𝑍?\n3. Compare the variances of \n𝐵4~Ber 0.0 , 𝐵5~Ber 0.1 ,\n𝐵!~Ber 0.5 , and 𝐵)~Ber(0.9).\n31",
+      "char_count": 413
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStatistics: Expectation and variance\n1. a. Let 𝑋= the outcome of a fair 24-sided\n \ndie roll. What is 𝐸𝑋?\nb. Let 𝑌= the sum of seven rolls of a fair\n24-sided die. What is 𝐸𝑌?\n2. Let 𝑍= # of tails on 10 flips of a \nbiased coin, with p = 0.71. What is 𝐸𝑍?\n3. Compare the variances of \n𝐵4~Ber 0.0 , 𝐵5~Ber 0.1 ,\n𝐵!~Ber 0.5 , and 𝐵)~Ber(0.9).\n32\nIf you can identify common RVs, just look up \nstatistics instead of rederiving from scratch.",
+      "char_count": 506
+    },
+    {
+      "page_index": 32,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVisualizing Binomial PMFs\n33\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n𝑋~Bin(𝑛, 𝑝)\n𝑝𝑖= 𝑛\n𝑘𝑝# 1 −𝑝$%#\n𝐸𝑋= 𝑛𝑝\nC.  \nD.  \nMatch the distribution \nof 𝑋 to the graph:\n1.  Bin 10, 0.5\n2.  Bin 10, 0.3\n3.  Bin 10, 0.7\n4.  Bin 5, 0.5\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\nA.  \nB.  \n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘",
+      "char_count": 444
+    },
+    {
+      "page_index": 33,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVisualizing Binomial PMFs\n34\nMatch the distribution \nof 𝑋 to the graph:\n1.  Bin 10, 0.5\n2.  Bin 10, 0.3\n3.  Bin 10, 0.7\n4.  Bin 5, 0.5\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\nC.  \nD.  \n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\nA.  \nB.  \n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑋~Bin(𝑛, 𝑝)\n𝑝𝑖= 𝑛\n𝑘𝑝# 1 −𝑝$%#\n𝐸𝑋= 𝑛𝑝",
+      "char_count": 444
+    },
+    {
+      "page_index": 34,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGalton Board\n35\n0\n1\n2\n3\n4\n5\nhttp://cs109.stanford.edu/demos/galton.html",
+      "char_count": 144
+    },
+    {
+      "page_index": 35,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGalton Board\n36\nWhen a marble hits a pin, it has an equal \nchance of going left or right.\nLet 𝐵 = the bucket index a ball drops into.\nWhat is the distribution of 𝐵?\n0\n1\n2\n3\n4\n5\n𝑛= 5\n𝑋~Bin(𝑛, 𝑝)\n𝑝𝑘= 𝑛\n𝑘𝑝# 1 −𝑝$%#\n(Interpret: If 𝐵 is a common \nrandom variable, report it, \notherwise report PMF)",
+      "char_count": 365
+    },
+    {
+      "page_index": 36,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGalton Board\n37\nWhen a marble hits a pin, it has an equal \nchance of going left or right.\nLet 𝐵 = the bucket index a ball drops into.\nWhat is the distribution of 𝐵?\n0\n1\n2\n3\n4\n5\n𝑛= 5\n𝑋~Bin(𝑛, 𝑝)\n𝑝𝑘= 𝑛\n𝑘𝑝# 1 −𝑝$%#\n• Each pin is an independent trial\n• One decision made for level 𝑖= 1, 2, . . , 5\n• Consider a Bernoulli RV with success 𝑅( if \nball went right on level 𝑖\n• Bucket index 𝐵=  # times ball went right\n𝐵~Bin(𝑛= 5, 𝑝= 0.5)",
+      "char_count": 502
+    },
+    {
+      "page_index": 37,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGalton Board\n38\nWhen a marble hits a pin, it has an equal \nchance of going left or right.\nLet 𝐵 = the bucket index a ball drops into.\n𝐵 is distributed as a Binomial RV,\n𝐵~Bin(𝑛= 5, 𝑝= 0.5)\n0\n1\n2\n3\n4\n5\n𝑛= 5\n𝑃𝐵= 0 = 5\n0 0.50 ≈0.03 \n𝑃𝐵= 1 = 5\n1 0.50 ≈0.16 \n𝑃𝐵= 2 = 5\n2 0.50 ≈0.31 \n𝑋~Bin(𝑛, 𝑝)\n𝑝𝑘= 𝑛\n𝑘𝑝# 1 −𝑝$%#\nPMF of Binomial RV!",
+      "char_count": 400
+    },
+    {
+      "page_index": 38,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGenetics and NBA Finals\n1. Each parent has 2 genes per trait (e.g., eye color).\n•\nChild inherits 1 gene from each parent with equal likelihood.\n•\nBrown eyes are \"dominant\", blue eyes are \"recessive\":\n•\nChild has brown eyes if either or both genes for brown eyes are inherited.\n•\nChild has blue eyes otherwise (i.e., child inherits two genes for blue eyes)\n•\nAssume parents each have 1 gene for blue eyes and 1 gene for brown eyes.\nTwo parents have 4 children. What is P(exactly 3 children have brown eyes)?\n2. Let’s speculate that the Boston Celtics will play the Oklahoma City\nThunder in a 7-game series during the 2024 NBA finals this June.\n• The Celtics have a probability of 81% of winning each game, independently.\n• A team wins if they win at least 4 games (we’ll assume they play all 7 games).\nWhat is P(Celtics winning)?\n39\n𝑋~Bin(𝑛, 𝑝)\n𝑝𝑘= 𝑛\n𝑘𝑝# 1 −𝑝$%#",
+      "char_count": 934
+    },
+    {
+      "page_index": 39,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGenetic inheritance\n1. Each parent has 2 genes per trait (e.g., eye color).\n•\nChild inherits 1 gene from each parent with equal likelihood.\n•\nBrown eyes are \"dominant\", blue eyes are \"recessive\":\n•\nChild has brown eyes if either or both genes for brown eyes are inherited.\n•\nChild has blue eyes otherwise (i.e., child inherits two genes for blue eyes)\n•\nAssume parents each have 1 gene for blue eyes and 1 gene for brown eyes.\nTwo parents have 4 children. What is P(exactly 3 children have brown eyes)?\n40\nBig Q: Fixed parameter or random variable?\nParameters  \n \nWhat is common among all \n \n \n \n \n \n \noutcomes of our experiment?\nRandom variable \nWhat differentiates our event\n \n \n \n \n \n \nfrom the rest of the sample\n \n \n \n \n \n \nspace?",
+      "char_count": 808
+    },
+    {
+      "page_index": 40,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Each parent has 2 genes per trait (e.g., eye color).\n•\nChild inherits 1 gene from each parent with equal likelihood.\n•\nBrown eyes are \"dominant\", blue eyes are \"recessive\":\n•\nChild has brown eyes if either or both genes for brown eyes are inherited.\n•\nChild has blue eyes otherwise (i.e., child inherits two genes for blue eyes)\n•\nAssume parents each have 1 gene for blue eyes and 1 gene for brown eyes.\nTwo parents have 4 children. What is P(exactly 3 children have brown eyes)?\n41\nGenetic inheritance\n1. Define events/ \nRVs & state goal\n3. Solve\n𝑋: # brown-eyed children,\n     𝑋~Bin(4, 𝑝)\n𝑝: 𝑃brown−eyed child\nWant: 𝑃𝑋= 3\n2. Identify known \nprobabilities",
+      "char_count": 732
+    },
+    {
+      "page_index": 41,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNBA Finals\n2. Let’s speculate that the Boston Celtics will play the Oklahoma City\nThunder in a 7-game series during the 2024 NBA finals this June.\n• The Celtics have a probability of 58% of\nwinning each game, independently.\n• A team wins if they win at least 4 games (we’ll assume they play all 7 games). What \nis P(Celtics winning)?\n42\nCool Probability Fact: this is identical to the probability of winning \nif we define winning  to be that to to first win 4 games\n1. Define events/ \nRVs & state goal\n2. Solve\n𝑋: # games Celtics win\n     𝑋~Bin(7, 0.81)\nWant: 𝑃𝑋≥4\n𝑃𝑋≥4 = ,\n1)2\n3\n𝑃𝑋= 𝑘= ,\n1)2\n3\n7\n𝑘0.8110.19341",
+      "char_count": 683
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:57Z"
+}

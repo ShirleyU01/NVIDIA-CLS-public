@@ -1,0 +1,221 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/10_normal_gaussian_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/10_normal_gaussian_annotated.pdf",
+  "sha256": "d2c92bd8421597a583ee710a9c27d597d24eb1383dfcc587979364eb0eb3b1dd",
+  "title_guess": "10 normal gaussian annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "10: Normal Distributions\nJerry Cain\nApril 22nd, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 79
+    },
+    {
+      "page_index": 1,
+      "text": "Normal \nRandom \nVariables\n2",
+      "char_count": 27
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\ndef A Normal random variable 𝑋 is defined as follows:\nOther names: Gaussian random variable\n \nNormal Random Variable\n3\n𝑓𝑥=\n1\n𝜎2𝜋\n𝑒! \"!# !/%&!\n𝑋~𝒩(𝜇, 𝜎!)\nSupport: −∞, ∞\nVariance  \nExpectation \n \n \nPDF\n𝐸𝑋= 𝜇\nVar 𝑋= 𝜎%\n𝑋~𝒩(𝜇, 𝜎!)\nmean\nvariance\n0\n0.1\n0.2\n0.3\n0.4\n0.5\n-3\n-2\n-1\n0\n1\n2\n3\n!\n𝑥\n𝑓𝑥",
+      "char_count": 359
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCarl Friedrich Gauss\nCarl Friedrich Gauss (1777-1855) was a remarkably influential\nGerman mathematician.\nDid not invent Normal distribution but rather popularized it.\n4\njust wow!",
+      "char_count": 251
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhy the Normal?\n•\nCommon for natural phenomena: \nheight, weight, etc.\n•\nMost noise in the world is Normal\n•\nOften results from the sum of many \nrandom variables\n•\nSample means are distributed normally\n5\nThat’s what they \nwant you to believe…",
+      "char_count": 314
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhy the Normal?\n•\nCommon for natural phenomena: \nheight, weight, etc.\n•\nMost noise in the world is Normal\n•\nOften results from the sum of many \nrandom variables\n•\nSample means are distributed normally\n6\nActually log-normal\nJust an assumption\nOnly if equally weighted\n(okay this one is true, we’ll see\nthis in 3 weeks)",
+      "char_count": 390
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0\n0.05\n0.1\n0.15\n0.2\n0.25\n0\n…\n44\n48\n52\n56\n60\n64\n…\n90\n0     …     44   48   52   56    60   64    …    90  \nOkay, so why the Normal?\nPart of CS109 learning goals:\n• Translate a problem statement into a random variable\nIn other words: model real life situations with probability distributions\n7\nvalue\nHow do you model student heights?\n• Suppose you have data from one classroom.\nFits perfectly!\nBut what about in \nanother classroom?",
+      "char_count": 502
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nA Gaussian maximizes entropy for a \ngiven mean and variance.\nPart of CS109 learning goals:\n• Translate a problem statement into a random variable\nIn other words: model real life situations with probability distributions\n0\n0.05\n0.1\n0.15\n0.2\n0.25\n0\n…\n44\n48\n52\n56\n60\n64\n…\n90\n0     …     44   48   52   56    60   64    …    90  \nOkay, so why the Normal?\n8\nvalue\nHow do you model student heights?\n• Suppose you have data from one classroom.\n• Same mean/var\n• Generalizes well",
+      "char_count": 544
+    },
+    {
+      "page_index": 8,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStay critical of how to model real-\nworld phenomena.\nWhy the Normal?\n•\nCommon for natural phenomena: \nheight, weight, etc.\n•\nMost noise in the world is Normal\n•\nOften results from the sum of many \nrandom variables\n•\nSample means are distributed normally\n9\nActually log-normal\nJust an assumption\nOnly if equally weighted\n(okay this one is true, we’ll see\nthis in 3 weeks)\nbecause it’s well understood",
+      "char_count": 472
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nAnatomy of a beautiful equation\nLet 𝑋~𝒩𝜇, 𝜎% .\nThe PDF of 𝑋 is defined as:\n10\n𝑓𝑥=\n1\n𝜎2𝜋\n𝑒\" $ \" % !\n!&!\nnormalizing constant\nexponential\ntail\nsymmetric\naround 𝜇\nvariance 𝜎#\nmanages spread\n0\n0.1\n0.2\n0.3\n0.4\n0.5\n-3\n-2\n-1\n0\n1\n2\n3\n!\n𝑥\n𝑓𝑥",
+      "char_count": 305
+    },
+    {
+      "page_index": 10,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNormal Random Variable\nMatch PDF to distribution:\n1.  𝒩0, 1\n2.  𝒩(−2, 0.5)\n3.  𝒩0, 5\n4.  𝒩(0, 0.2)\n11\n0\n0.1\n0.2\n0.3\n0.4\n0.5\n0.6\n0.7\n0.8\n0.9\n1\n-5\n-4\n-3\n-2\n-1\n0\n1\n2\n3\n4\n5\n!(0,1)\n!(0,0.2)\n!(0,5)\n!(-2,0.5)\nA. \nB.\nC.\nD.\n𝑋~𝒩(𝜇, 𝜎!)\nmean\nvariance\n𝑥\n𝑓𝑥",
+      "char_count": 317
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGetting to class\nYou spend some minutes, 𝑋, traveling\nbetween classes.\n• Average time spent: 𝜇= 4 minutes\n• Variance of time spent: 𝜎% = 2 minutes2\nSuppose 𝑋 is normally distributed. What is the \nprobability you spend ≥6 minutes traveling?\n12\n𝑋~𝒩(𝜇= 4, 𝜎% = 2)\n𝑃𝑋≥6 = 9\n'\n(\n𝑓(𝑥)𝑑𝑥= 9\n'\n(\n1\n2 𝜋𝑒! \" !* !\n*\n𝑑𝑥\n(tell Jerry if you solve this analytically and we’ll be famous together)\nLove and Anger in the \nSame Formula",
+      "char_count": 489
+    },
+    {
+      "page_index": 12,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComputing probabilities with Normal RVs\nFor a Normal RV 𝑋~𝒩𝜇, 𝜎% , its CDF has no closed form.\n𝑃𝑋≤𝑥= 𝐹𝑥= -\n&'\n(\n1\n𝜎2𝜋\n𝑒& * & + +\n,-+ 𝑑𝑦\nHowever, we can solve for probabilities numerically using a function Φ:\n𝐹𝑥= Φ 𝑥−𝜇\n𝜎\n13\nCannot be \nsolved \nanalytically\n⚠\nCDF of\n𝑋~𝒩𝜇, 𝜎#\nA function that has been \nsolved numerically\nTo get here, we’ll first \nneed to know some \nproperties of Normal RVs.",
+      "char_count": 461
+    },
+    {
+      "page_index": 13,
+      "text": "Normal RV: \nProperties\n14",
+      "char_count": 25
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProperties of Normal RVs\nLet 𝑋~𝒩𝜇, 𝜎%  with CDF 𝑃𝑋≤𝑥= 𝐹𝑥.\n1. Linear transformations of Normal RVs are also Normal RVs.\nIf 𝑌= 𝑎𝑋+ 𝑏, then 𝑌~𝒩(𝑎𝜇+ 𝑏, 𝑎\"𝜎\").\n2. The PDF of a Normal RV is symmetric about the mean 𝜇.\n𝐹𝜇−𝑥= 1 −𝐹𝜇+ 𝑥\n15",
+      "char_count": 302
+    },
+    {
+      "page_index": 15,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Linear transformations of Normal RVs\nLet 𝑋~𝒩𝜇, 𝜎%  with CDF 𝑃𝑋≤𝑥= 𝐹𝑥.\nLinear transformations of X are also Normal.\nIf 𝑌= 𝑎𝑋+ 𝑏, then 𝑌~𝒩𝑎𝜇+ 𝑏, 𝑎\"𝜎\"\nProof:\n• 𝐸𝑌= 𝐸𝑎𝑋+ 𝑏= 𝑎𝐸𝑋+ 𝑏= 𝑎𝜇+ 𝑏 \n• Var 𝑌= Var 𝑎𝑋+ 𝑏= 𝑎%Var 𝑋= 𝑎%𝜎% \n• 𝑌 is also Normal\n16\nProof in Ross,\n10th ed (Section 5.4)\nLinearity of Expectation\nVar 𝑎𝑋+ 𝑏= 𝑎#Var 𝑋",
+      "char_count": 397
+    },
+    {
+      "page_index": 16,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n2. Symmetry of Normal RVs\nLet 𝑋~𝒩𝜇, 𝜎%  with CDF 𝑃𝑋≤𝑥= 𝐹𝑥.\nThe PDF of a Normal RV is symmetric about the mean 𝜇.\n𝐹𝜇−𝑥= 1 −𝐹𝜇+ 𝑥\n17\n-3\n-2\n-1\n0\n1\n2\n3\n! + #\n! −#\n𝑓(𝑥)\n𝑥\n𝜇",
+      "char_count": 240
+    },
+    {
+      "page_index": 17,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n-3\n-2\n-1\n0\n1\n2\n3\n+\"\n−\"\nUsing symmetry of the Normal RV\n18\n1.  𝑃𝑍≤𝑧\n2.  𝑃𝑍< 𝑧\n3.  𝑃𝑍≥𝑧\n4.  𝑃𝑍≤−𝑧\n5.  𝑃𝑍≥−𝑧\n6.  𝑃(𝑦< 𝑍< 𝑧)\nA.  𝐹𝑧  \nB.  1 −𝐹(𝑧) \nC.  𝐹𝑧−𝐹(𝑦) \n= 𝐹𝑧 \n𝑧\n𝑓(𝑧)\n𝐹𝜇−𝑥= 1 −𝐹𝜇+ 𝑥\n𝜇= 0\nLet 𝑍~𝒩0,1  with CDF 𝑃𝑍≤𝑧= 𝐹𝑧.\nSuppose we only knew numeric values\nfor 𝐹𝑧 and 𝐹𝑦, for some 𝑦, 𝑧≥0.\nHow do we compute the following probabilities?",
+      "char_count": 407
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nUsing symmetry of the Normal RV\n19\n1.  𝑃𝑍≤𝑧\n2.  𝑃𝑍< 𝑧\n3.  𝑃𝑍≥𝑧\n4.  𝑃𝑍≤−𝑧\n5.  𝑃𝑍≥−𝑧\n6.  𝑃(𝑦< 𝑍< 𝑧)\nA.  𝐹𝑧  \nB.  1 −𝐹(𝑧) \nC.  𝐹𝑧−𝐹(𝑦) \n= 𝐹𝑧 \n= 𝐹𝑧 \n= 1 −𝐹(𝑧) \n= 1 −𝐹(𝑧) \n= 𝐹𝑧 \n= 𝐹𝑧−𝐹(𝑦) \nSymmetry is particularly useful when \ncomputing probabilities of zero-mean \nNormal RVs.\n-3\n-2\n-1\n0\n1\n2\n3\n+\"\n−\"\n𝑧\n𝑓(𝑧)\n𝐹𝜇−𝑥= 1 −𝐹𝜇+ 𝑥\n𝜇= 0\nLet 𝑍~𝒩0,1  with CDF 𝑃𝑍≤𝑧= 𝐹𝑧.\nSuppose we only knew numeric values\nfor 𝐹𝑧 and 𝐹𝑦, for some 𝑦, 𝑧≥0.\nHow do we compute the following probabilities?",
+      "char_count": 540
+    },
+    {
+      "page_index": 19,
+      "text": "Normal RV:\nComputing \nprobability\n20",
+      "char_count": 36
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nComputing probabilities with Normal RVs\nLet 𝑋~𝒩𝜇, 𝜎% .\nTo compute the CDF, 𝑃𝑋≤𝑥= 𝐹𝑥:\n• We cannot analytically solve the integral, as it has no closed form.\n• … but we can solve numerically using a function Φ:\n𝐹𝑥= Φ 𝑥−𝜇\n𝜎\n21\nCDF of the\nStandard Normal, 𝑍",
+      "char_count": 326
+    },
+    {
+      "page_index": 21,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThe Standard Normal random variable 𝑍 is defined as follows:\nOther names: Unit Normal\nCDF of 𝑍 defined as:\nStandard Normal RV, 𝑍\n22\n𝑍~𝒩(0, 1)\nVariance  \nExpectation \n \n \n𝐸𝑍= 𝜇= 0\nVar 𝑍= 𝜎% = 1\n𝑃𝑍≤𝑧= Φ(𝑧)\nNote: not a new distribution; just\na special case of the Normal",
+      "char_count": 340
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nΦ has been numerically computed\n23\nStandard Normal Table\nAn entry in the table is the area under the curve to the left of z, P(Z ≤z) = Φ(z).\nZ\n0.00\n0.01\n0.02\n0.03\n0.04\n0.05\n0.06\n0.07\n0.08\n0.09\n0.0\n0.5000\n0.5040\n0.5080\n0.5120\n0.5160\n0.5199\n0.5239\n0.5279\n0.5319\n0.5359\n0.1\n0.5398\n0.5438\n0.5478\n0.5517\n0.5557\n0.5596\n0.5636\n0.5675\n0.5714\n0.5753\n0.2\n0.5793\n0.5832\n0.5871\n0.5910\n0.5948\n0.5987\n0.6026\n0.6064\n0.6103\n0.6141\n0.3\n0.6179\n0.6217\n0.6255\n0.6293\n0.6331\n0.6368\n0.6406\n0.6443\n0.6480\n0.6517\n0.4\n0.6554\n0.6591\n0.6628\n0.6664\n0.6700\n0.6736\n0.6772\n0.6808\n0.6844\n0.6879\n0.5\n0.6915\n0.6950\n0.6985\n0.7019\n0.7054\n0.7088\n0.7123\n0.7157\n0.7190\n0.7224\n0.6\n0.7257\n0.7291\n0.7324\n0.7357\n0.7389\n0.7422\n0.7454\n0.7486\n0.7517\n0.7549\n0.7\n0.7580\n0.7611\n0.7642\n0.7673\n0.7703\n0.7734\n0.7764\n0.7793\n0.7823\n0.7852\n0.8\n0.7881\n0.7910\n0.7939\n0.7967\n0.7995\n0.8023\n0.8051\n0.8078\n0.8106\n0.8133\n0.9\n0.8159\n0.8186\n0.8212\n0.8238\n0.8264\n0.8289\n0.8315\n0.8340\n0.8365\n0.8389\n1.0\n0.8413\n0.8438\n0.8461\n0.8485\n0.8508\n0.8531\n0.8554\n0.8577\n0.8599\n0.8621\n1.1\n0.8643\n0.8665\n0.8686\n0.8708\n0.8729\n0.8749\n0.8770\n0.8790\n0.8810\n0.8830\n1.2\n0.8849\n0.8869\n0.8888\n0.8906\n0.8925\n0.8943\n0.8962\n0.8980\n0.8997\n0.9015\n1.3\n0.9032\n0.9049\n0.9066\n0.9082\n0.9099\n0.9115\n0.9131\n0.9147\n0.9162\n0.9177\n1.4\n0.9192\n0.9207\n0.9222\n0.9236\n0.9251\n0.9265\n0.9279\n0.9292\n0.9306\n0.9319\n1.5\n0.9332\n0.9345\n0.9357\n0.9370\n0.9382\n0.9394\n0.9406\n0.9418\n0.9429\n0.9441\n0\n0.1\n0.2\n0.3\n0.4\n0.5\n-3\n-2\n-1\n0\n1\n2\n3\n! = 1.31\n𝑃𝑍≤1.31 = Φ(1.31) \n𝑓𝑧\n𝑧\nΦ(𝑧)\nStandard Normal Table only has \nprobabilities Φ(𝑧) for 𝑧≥0.",
+      "char_count": 1586
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nHistory fact: Standard Normal Table\n24\nThe first Standard Normal Table was \ncomputed by Christian Kramp, French \nastronomer (1760–1826), in Analyse \ndes Réfractions Astronomiques et \nTerrestres, 1799\nUsed a Taylor series expansion to the \nthird power",
+      "char_count": 323
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProbabilities for a general Normal RV\nLet 𝑋~𝒩𝜇, 𝜎% . To compute the CDF 𝑃𝑋≤𝑥= 𝐹𝑥,\nwe use Φ, the CDF for the Standard Normal 𝑍~𝒩(0, 1):\n𝐹𝑥= Φ 𝑥−𝜇\n𝜎\nProof:\n25\n𝐹𝑥= 𝑃𝑋≤𝑥\n= 𝑃𝑋−𝜇≤𝑥−𝜇\n= 𝑃𝑋−𝜇\n𝜎\n≤𝑥−𝜇\n𝜎\n= 𝑃𝑍≤𝑥−𝜇\n𝜎\nAlgebra + 𝜎> 0\nDefinition of CDF\n•\n$%&\n'\n=\n(\n' 𝑋−\n&\n' is a linear transform of 𝑋.\n• This is distributed as 𝒩\n(\n' 𝜇−&\n' , (\n'! 𝜎# =𝒩0,1\n• In other words, \n$%&\n'\n= 𝑍~𝒩0,1 with CDF Φ.\n= Φ 𝑥−𝜇\n𝜎",
+      "char_count": 467
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProbabilities for a general Normal RV\nLet 𝑋~𝒩𝜇, 𝜎% . To compute the CDF 𝑃𝑋≤𝑥= 𝐹𝑥,\nwe use Φ, the CDF for the Standard Normal 𝑍~𝒩(0, 1):\n𝐹𝑥= Φ 𝑥−𝜇\n𝜎\nProof:\n26\n𝐹𝑥= 𝑃𝑋≤𝑥\n= 𝑃𝑋−𝜇≤𝑥−𝜇\n= 𝑃𝑋−𝜇\n𝜎\n≤𝑥−𝜇\n𝜎\n= 𝑃𝑍≤𝑥−𝜇\n𝜎\nAlgebra + 𝜎> 0\nDefinition of CDF\n•\n$%&\n'\n=\n(\n' 𝑋−\n&\n' is a linear transform of 𝑋.\n• This is distributed as 𝒩\n(\n' 𝜇−&\n' , (\n'! 𝜎# =𝒩0,1\n• In other words, \n$%&\n'\n= 𝑍~𝒩0,1 with CDF Φ.\n= Φ 𝑥−𝜇\n𝜎\n1. Compute 𝑧= 𝑥−𝜇/𝜎.\n2. Look up Φ 𝑧 in Standard Normal table.",
+      "char_count": 529
+    },
+    {
+      "page_index": 26,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCampus bikes\nYou spend some minutes, 𝑋, traveling between classes.\n• Average time spent: 𝜇= 4 minutes\n• Variance of time spent: 𝜎# = 2 minutes2\nSuppose 𝑋 is normally distributed. What is the probability \nyou spend ≥6 minutes traveling?\n27\n𝑋~𝒩(𝜇= 4, 𝜎% = 2)\n𝑃𝑋≥6 = 9\n'\n(\n𝑓(𝑥)𝑑𝑥\n(no analytic solution)\n1. Compute 𝑧=\n\"!#\n&\n2. Look up Φ(𝑧) in table\n𝑃𝑋≥6 = 1 − 𝐹\"(6)\n= 1 −Φ 6 −4\n2\n×\n≈1 −Φ 1.41\n1 −Φ 1.41  \n \n≈1 −0.9207 \n \n= 0.0793",
+      "char_count": 498
+    },
+    {
+      "page_index": 27,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIs there an easier way? (yes)\nLet 𝑋~𝒩𝜇, 𝜎% . What is 𝑃𝑋≤𝑥= 𝐹𝑥?\n• Use Python\nI'm not sure why Python decided to parameterize stats.norm around the \nstandard deviation instead of the variance, but it did. J\n28\nfrom scipy import stats\nX = stats.norm(mu, std)\nX.cdf(x)\nSciPy reference:\nhttps://docs.scipy.org/doc/scipy/refere\nnce/generated/scipy.stats.norm.html",
+      "char_count": 430
+    },
+    {
+      "page_index": 28,
+      "text": "Exercises\n29",
+      "char_count": 12
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGet your Gaussian On\nLet 𝑋~𝒩𝜇= 3, 𝜎% = 16 . Std deviation 𝜎= 4.\n1.  𝑃𝑋> 0\n30\n•\nIf 𝑋~𝒩𝜇, 𝜎# , then \n𝐹𝑥= Φ\n)%&\n'\n•\nSymmetry of the PDF of \nNormal RV implies  \nΦ −𝑧= 1 −Φ 𝑧",
+      "char_count": 242
+    },
+    {
+      "page_index": 30,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGet your Gaussian On\nLet 𝑋~𝒩𝜇= 3, 𝜎, = 16 .\nNote standard deviation 𝜎= 4.\nHow would you write each of the below\nprobabilities as a function of the\nstandard normal CDF, Φ?\n1.  𝑃𝑋> 0\n2.  𝑃2 < 𝑋< 5\n3.  𝑃𝑋−3 > 6\n31\n•\nIf 𝑋~𝒩𝜇, 𝜎# , then \n𝐹𝑥= Φ\n)%&\n'\n•\nSymmetry of the PDF of \nNormal RV implies  \nΦ −𝑧= 1 −Φ 𝑧",
+      "char_count": 376
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGet your Gaussian On\nLet 𝑋~𝒩𝜇= 3, 𝜎% = 16 . Std deviation 𝜎= 4.\n1.  𝑃𝑋> 0\n2.  𝑃2 < 𝑋< 5\n32\n•\nIf 𝑋~𝒩𝜇, 𝜎# , then \n𝐹𝑥= Φ\n)%&\n'\n•\nSymmetry of the PDF of \nNormal RV implies  \nΦ −𝑧= 1 −Φ 𝑧",
+      "char_count": 256
+    },
+    {
+      "page_index": 32,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGet your Gaussian On\nLet 𝑋~𝒩𝜇= 3, 𝜎% = 16 . Std deviation 𝜎= 4.\n1.  𝑃𝑋> 0\n2.  𝑃2 < 𝑋< 5\n3.  𝑃𝑋−3 > 6\n33\nCompute 𝑧=\n\"!#\n&\n•\nIf 𝑋~𝒩𝜇, 𝜎# , then \n𝐹𝑥= Φ\n)%&\n'\n•\nSymmetry of the PDF of \nNormal RV implies  \nΦ −𝑥= 1 −Φ 𝑥\n𝑃𝑋< −3 + 𝑃𝑋> 9\n= 𝐹−3 + 1 −𝐹9\n= Φ −3 −3\n4\n+\n1 −Φ 9 −3\n4\nLook up Φ(z) in table",
+      "char_count": 363
+    },
+    {
+      "page_index": 33,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGet your Gaussian On\nLet 𝑋~𝒩𝜇= 3, 𝜎% = 16 . Std deviation 𝜎= 4.\n1.  𝑃𝑋> 0\n2.  𝑃2 < 𝑋< 5\n3.  𝑃𝑋−3 > 6\n34\nCompute z =\n\"!#\n&\nLook up Φ(z) in table\n𝑃𝑋< −3 + 𝑃𝑋> 9\n= 𝐹−3 + 1 −𝐹9\n= Φ −3 −3\n4\n+\n1 −Φ 9 −3\n4\n= Φ −3\n2 +\n1 −Φ 3\n2\n= 2 1 −Φ 3\n2\n≈0.1337\n•\nIf 𝑋~𝒩𝜇, 𝜎# , then \n𝐹𝑥= Φ\n)%&\n'\n•\nSymmetry of the PDF of \nNormal RV implies  \nΦ −𝑥= 1 −Φ 𝑥",
+      "char_count": 405
+    },
+    {
+      "page_index": 34,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNoisy Wires\nSend a voltage of 2 V or −2 V on\nwire (to denote 1 and 0, respectively).\n• 𝑋= voltage sent (2 or −2)\n• 𝑌= noise, 𝑌~𝒩0, 1\n• 𝑅= 𝑋+ 𝑌 voltage received.\nDecode:  \n 1   if 𝑅≥0.5\n \n \n \n 0  otherwise. \n1. What is P(decoding error | original bit is 1)?\ni.e., we sent 1, but we decoded as 0?\n2. What is P(decoding error | original bit is 0)?\nThese probabilities are unequal. Why might this be useful?\n35\n0\n0.1\n0.2\n0.3\n0.4\n0.5\n-5\n-4\n-3\n-2\n-1\n0\n1\n2\n3\n4\n5\n! = 0.5\nSend 0\n& = −2\nSend 1\n& = 2\n𝐹*(𝑟)\n𝑅= 𝑟",
+      "char_count": 574
+    },
+    {
+      "page_index": 35,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNoisy Wires\nSend a voltage of 2 V or −2 V on\nwire (to denote 1 and 0, respectively).\n• 𝑋= voltage sent (2 or −2)\n• 𝑌= noise, 𝑌~𝒩0, 1\n• 𝑅= 𝑋+ 𝑌 voltage received.\nDecode:  \n 1   if 𝑅≥0.5\n \n \n \n 0  otherwise. \n1. What is P(decoding error | original bit is 1)?\ni.e., we sent 1, but we decoded as 0?\n36\n0\n0.1\n0.2\n0.3\n0.4\n0.5\n-5\n-4\n-3\n-2\n-1\n0\n1\n2\n3\n4\n5\n! = 0.5\nSend 0\n& = −2\nSend 1\n& = 2\n𝐹*(𝑟)\n𝑅= 𝑟\n𝑃𝑅< 0.5| 𝑋= 2 = 𝑃2 + 𝑌< 0.5 = 𝑃𝑌< −1.5\nY is Standard Normal\n= Φ −1.5 = 1 −Φ 1.5 ≈0.0668",
+      "char_count": 553
+    },
+    {
+      "page_index": 36,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNoisy Wires\nSend a voltage of 2 V or −2 V on\nwire (to denote 1 and 0, respectively).\n• 𝑋= voltage sent (2 or −2)\n• 𝑌= noise, 𝑌~𝒩0, 1\n• 𝑅= 𝑋+ 𝑌 voltage received.\nDecode:  \n 1   if 𝑅≥0.5\n \n \n \n 0  otherwise. \n1. What is P(decoding error | original bit is 1)?\ni.e., we sent 1, but we decoded as 0?\n2. What is P(decoding error | original bit is 0)?\n37\n0\n0.1\n0.2\n0.3\n0.4\n0.5\n-5\n-4\n-3\n-2\n-1\n0\n1\n2\n3\n4\n5\n! = 0.5\nSend 0\n& = −2\nSend 1\n& = 2\n𝐹*(𝑟)\n𝑅= 𝑟\n0.0668\n≈0.0062\n𝑃𝑅≥0.5| 𝑋= −2 = 𝑃−2 + 𝑌≥0.5 = 𝑃𝑌≥2.5\nAsymmetric decoding probability: We would like to avoid \nmistaking a 0 for 1. Errors the other way are tolerable.",
+      "char_count": 681
+    },
+    {
+      "page_index": 37,
+      "text": "Sampling with \nthe Normal RV\n38",
+      "char_count": 31
+    },
+    {
+      "page_index": 38,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nELO ratings\n39\nWhat is the probability that the Warriors win?\nMore generally: How can you model zero-sum \ngames?",
+      "char_count": 185
+    },
+    {
+      "page_index": 39,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nELO ratings\nEach team has an ELO score 𝑆, \ncalculated based on its\npast performance.\n• Each game, a team has\nability 𝐴~𝒩𝑆, 200% .\n• The team with the higher\nsampled ability wins.\nWhat is the probability\nthat Warriors win\nthis game?\nWant: 𝑃Warriors win = 𝑃𝐴7 > 𝐴8\n40\n0\n0.0005\n0.001\n0.0015\n0.002\n0.0025\n1000\n1500\n2000\n2500\n𝜇=1470\n0\n0.0005\n0.001\n0.0015\n0.002\n0.0025\n1000\n1500\n2000\n2500\n𝜇=1657\nArpad Elo\nWarriors 𝐴+~𝒩𝑆= 1657, 200#\nOpponents 𝐴,~𝒩𝑆= 1470, 200#",
+      "char_count": 527
+    },
+    {
+      "page_index": 40,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nELO ratings\n41\nWant: 𝑃Warriors win = 𝑃𝐴7 > 𝐴8\n≈0.7488, calculated by sampling\nfrom scipy import stats\nWARRIORS_ELO = 1657\nOPPONENT_ELO = 1470\nSTDEV = 200\nNTRIALS = 10000\nnSuccess = 0\nfor i in range(NTRIALS):\n  w = stats.norm.rvs(WARRIORS_ELO, STDEV)\n  o = stats.norm.rvs(OPPONENT_ELO, STDEV)\n  if w > o: nSuccess += 1\nprint(\"Warriors sampled win fraction\", \n \n \nfloat(nSuccess) / NTRIALS)\n0\n0.0005\n0.001\n0.0015\n0.002\n0.0025\n1000\n1500\n2000\n2500\n!=1470\n0\n0.0005\n0.001\n0.0015\n0.002\n0.0025\n1000\n1500\n2000\n2500\n!=1657\nWarriors !!~# $ = 1657, 200\"\nOpponents !#~# $ = 1470, 200\"",
+      "char_count": 644
+    },
+    {
+      "page_index": 41,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIs there a better way?\n𝑃𝐴! > 𝐴\"\n• This is a probability of an event involving \ntwo continuous random variables!\n• We’ll solve this problem analytically in less than two weeks’ time.\nBig goal for next lecture: Events involving two discrete random variables.\nStay tuned!\n42\nactual depiction of someone understanding \njoint continuous random variables",
+      "char_count": 421
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:58Z"
+}

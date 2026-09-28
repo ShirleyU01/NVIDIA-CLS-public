@@ -1,0 +1,1288 @@
+{
+  "topic_id": "continuous_random_variables",
+  "topic_name": "Continuous Random Variables",
+  "course": "CS109",
+  "model": "gpt-5.4",
+  "questions": [
+    {
+      "question_id": "CS109_continuous_random_variables_0001",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A student says: \u201cFor a continuous random variable, the probability at a point is given by the height of the PDF there, so if the graph reaches 2 at x=0.5 then P(X=0.5)=2.\u201d Do you agree? Explain carefully what the PDF does represent, and contrast it with what a CDF represents.",
+      "expected_answer": "No. For a continuous random variable, probabilities come from areas under the PDF, not heights at single points. The PDF f(x) is a density, so f(0.5)=2 can happen without violating probability rules; it means probability accumulates rapidly near 0.5, not that the probability of exactly 0.5 is 2. In fact P(X=0.5)=0 for a continuous RV. The CDF F(a)=P(X\u2264a) is an actual probability, and the PDF is the derivative of the CDF when the derivative exists.",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p3_0552fa72b1",
+        "cs109_09_continuous_rv_annotated_p24_1c53d31387",
+        "cs109_16_cont_joint_i_annotated_p13_3acbbb996a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that P(X=x)=0 for continuous RVs.",
+          "Explains that PDF values are densities, not probabilities.",
+          "Explains that probabilities are integrals/areas under the PDF.",
+          "Correctly describes CDF as a probability and PDF as derivative of CDF."
+        ],
+        "partial_credit": [
+          "Says point probabilities are zero but gives weak explanation.",
+          "Mentions area under curve but does not distinguish PDF from CDF clearly."
+        ],
+        "common_mistakes": [
+          "Claiming f(x)=P(X=x).",
+          "Saying PDF values must lie between 0 and 1.",
+          "Confusing density with cumulative probability."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example of a valid continuous PDF whose value exceeds 1, and explain why that is still legal?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If the probability at a point were the PDF height, what would happen when you summed probabilities over infinitely many points in an interval?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from continuous random variables; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming f(x)=P(X=x). Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0002",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose X has PDF f(x)=x/2 for 0\u2264x\u22642 and 0 otherwise. Without just quoting a memorized fact, compute P(X\u22651) in two different ways and explain why they agree.",
+      "expected_answer": "One way is direct integration: P(X\u22651)=\u222b_1^2 x/2 dx = [x^2/4]_1^2 = 1 - 1/4 = 3/4. Another way is geometric or complementary reasoning: the total area under the PDF on [0,2] is 1, and the area from 0 to 1 is \u222b_0^1 x/2 dx = 1/4, so P(X\u22651)=1-1/4=3/4. They agree because both compute the same area under the density over the event set.",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p7_7e66b85479",
+        "cs109_09_continuous_rv_annotated_p3_0552fa72b1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Sets up correct integral over [1,2].",
+          "Gets 3/4.",
+          "Provides a second valid method, such as complement or geometric area.",
+          "Explains agreement in terms of area/probability under PDF."
+        ],
+        "partial_credit": [
+          "Correct integral setup with arithmetic error.",
+          "Correct answer from complement but no explanation of why it works."
+        ],
+        "common_mistakes": [
+          "Using f(1) as the probability.",
+          "Integrating over the wrong interval.",
+          "Forgetting the PDF is 0 outside [0,2]."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you express the same probability using the CDF F, and what number would that give?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What region on the x-axis corresponds to the event X\u22651, and what does probability mean geometrically for a continuous RV?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using f(1) as the probability. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0003",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A classmate claims that for a continuous random variable, P(X>a) and P(X\u2265a) may differ because one includes the boundary point and the other does not. Is that true? Give a precise justification using CDF language.",
+      "expected_answer": "For a continuous RV, they are equal: P(X>a)=P(X\u2265a). The difference between the two events is only the single point X=a, and P(X=a)=0. In CDF terms, P(X\u2265a)=1-P(X<a) and P(X>a)=1-P(X\u2264a), but for continuous variables P(X=a)=0 so P(X<a)=P(X\u2264a)=F(a). Therefore both equal 1-F(a).",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p26_cbed5712fa",
+        "cs109_09_continuous_rv_annotated_p24_1c53d31387",
+        "cs109_09_continuous_rv_annotated_p3_0552fa72b1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States equality of P(X>a) and P(X\u2265a) for continuous RVs.",
+          "Justifies with P(X=a)=0.",
+          "Connects to the CDF, ideally showing both equal 1-F(a)."
+        ],
+        "partial_credit": [
+          "Correct conclusion with an intuitive but incomplete explanation.",
+          "Uses area intuition but does not mention point probability zero."
+        ],
+        "common_mistakes": [
+          "Saying inclusion of endpoint changes probability.",
+          "Confusing continuous and discrete cases.",
+          "Writing 1-F(a) for one expression and leaving the other unresolved."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would the same argument hold for a discrete random variable? Give a quick counterexample."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the probability of exactly one point under a continuous density, and how does that affect boundary inclusion?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from continuous random variables.",
+        "Watch out for this common trap: Saying inclusion of endpoint changes probability. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0004",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "An app records a user\u2019s arrival time X in hours after midnight, modeled as Uniform(2,8). A product manager asks for the probability the user arrives between 3.5 and 6. Explain how you would compute it from the PDF and also by geometric reasoning, then give the result.",
+      "expected_answer": "For a Uniform(2,8), the PDF is constant at 1/(8-2)=1/6 on [2,8]. So P(3.5\u2264X\u22646)=\u222b_{3.5}^{6} 1/6 dx = (6-3.5)/6 = 2.5/6 = 5/12. Geometrically, it is the length of the favorable interval divided by the total support length: 2.5/6. The endpoint inclusion does not matter for a continuous variable.",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p16_p17_9b459186b0",
+        "cs109_09_continuous_rv_annotated_p27_882ef8e282"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies uniform density 1/6.",
+          "Sets up or explains interval-length over total-length reasoning.",
+          "Computes 5/12.",
+          "Notes endpoint inclusion is irrelevant for a continuous RV."
+        ],
+        "partial_credit": [
+          "Correct method but arithmetic error.",
+          "Uses geometric reasoning correctly without explicit integral."
+        ],
+        "common_mistakes": [
+          "Using area of a rectangle with wrong height.",
+          "Dividing by 8 instead of 6.",
+          "Treating the endpoints as changing the answer."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you write the CDF F(x) piecewise for this Uniform(2,8) variable?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the support of the distribution, and why is the denominator the length of that support rather than the upper endpoint?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using area of a rectangle with wrong height. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0005",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "For X~Uniform(\u03b1,\u03b2), derive the CDF piecewise rather than quoting it. Then use your expression to compute P(a\u2264X\u2264b) for \u03b1\u2264a\u2264b\u2264\u03b2.",
+      "expected_answer": "Since the PDF is 0 outside [\u03b1,\u03b2] and 1/(\u03b2-\u03b1) on [\u03b1,\u03b2], the CDF is F(x)=0 for x<\u03b1, F(x)=(x-\u03b1)/(\u03b2-\u03b1) for \u03b1\u2264x\u2264\u03b2, and F(x)=1 for x>\u03b2. Then for \u03b1\u2264a\u2264b\u2264\u03b2, P(a\u2264X\u2264b)=F(b)-F(a)=(b-\u03b1)/(\u03b2-\u03b1)-(a-\u03b1)/(\u03b2-\u03b1)=(b-a)/(\u03b2-\u03b1). This matches the interval-length interpretation of the uniform distribution.",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p16_p17_9b459186b0",
+        "cs109_09_continuous_rv_annotated_p24_1c53d31387",
+        "cs109_09_continuous_rv_annotated_p27_882ef8e282"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Gives correct piecewise CDF.",
+          "Derives it from integrating the PDF.",
+          "Uses F(b)-F(a) correctly.",
+          "Simplifies to (b-a)/(\u03b2-\u03b1)."
+        ],
+        "partial_credit": [
+          "Correct CDF with little derivation.",
+          "Correct probability formula but weak piecewise explanation."
+        ],
+        "common_mistakes": [
+          "Using the PDF formula as the CDF.",
+          "Forgetting CDF saturates at 0 and 1 outside the support.",
+          "Using \u03b2 instead of \u03b2-\u03b1 in the denominator."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What changes if b>\u03b2 or a<\u03b1? Describe how you would adapt the formula."
+        },
+        {
+          "condition": "incorrect",
+          "question": "Before integrating, what should the CDF equal for x<\u03b1 and for x>\u03b2, and why?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using the PDF formula as the CDF. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0006",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "A student sees the formula Var(X)=(\u03b2\u2212\u03b1)^2/12 for a uniform random variable, but misreads the lecture note and says the variance must be (\u03b2\u2212\u03b1^9)/12. In an oral exam, how would you convince them from first principles which form is correct, without relying only on memory?",
+      "expected_answer": "I would check dimensions and derive it. For X~Uniform(\u03b1,\u03b2), E[X]=(\u03b1+\u03b2)/2. Also E[X^2]=\u222b_\u03b1^\u03b2 x^2\u00b71/(\u03b2-\u03b1) dx = (\u03b2^3-\u03b1^3)/(3(\u03b2-\u03b1)) = (\u03b1^2+\u03b1\u03b2+\u03b2^2)/3. Then Var(X)=E[X^2]-(E[X])^2 = (\u03b1^2+\u03b1\u03b2+\u03b2^2)/3 - (\u03b1^2+2\u03b1\u03b2+\u03b2^2)/4 = (\u03b2-\u03b1)^2/12. This also makes sense because variance should depend on spread, and squaring a length like \u03b2-\u03b1 is dimensionally sensible; a term like \u03b1^9 would be nonsensical here.",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p16_p17_9b459186b0"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Recognizes the correct variance is (\u03b2-\u03b1)^2/12.",
+          "Derives E[X^2] and subtracts the square of the mean, or gives another valid derivation.",
+          "Uses a sanity check such as units/dimensions or translation invariance."
+        ],
+        "partial_credit": [
+          "States correct formula with a plausible intuition but no derivation.",
+          "Partial derivation with algebra mistakes."
+        ],
+        "common_mistakes": [
+          "Accepting the typo-like expression blindly.",
+          "Confusing variance with standard deviation.",
+          "Failing to square the spread term."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why must the variance be unchanged if we add the same constant c to both \u03b1 and \u03b2?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you shift a uniform interval from [0,1] to [10,11], should the variance change? How does that help detect the wrong formula?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from continuous random variables; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Accepting the typo-like expression blindly. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0007",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A sensor lifetime T is modeled as Exp(\u03bb=1), measured in minutes. Explain how to compute the probability the sensor fails within the next 2 minutes, and interpret your answer in words rather than only giving a formula.",
+      "expected_answer": "For an exponential with rate \u03bb=1, the CDF is P(T\u2264t)=1-e^{-t} for t\u22650. So P(T\u22642)=1-e^{-2}. Interpreted verbally, that is the chance the waiting time until failure is at most 2 minutes; equivalently, it is one minus the probability the sensor survives beyond 2 minutes.",
+      "source_chunk_ids": [
+        "cs109_finalfall2023soln_p1_9925d52f61"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses the exponential CDF correctly.",
+          "Computes or states 1-e^-2.",
+          "Interprets it as a waiting-time probability or complement of survival."
+        ],
+        "partial_credit": [
+          "Correct formula but weak interpretation.",
+          "Correct complement idea but does not identify the CDF."
+        ],
+        "common_mistakes": [
+          "Using e^-2 directly for 'within 2 minutes'.",
+          "Confusing rate and mean.",
+          "Treating exponential like uniform over time."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What is the probability the sensor lasts more than 2 minutes, and how is it related to your previous answer?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Does 'within 2 minutes' correspond to T\u22642 or T>2? How can you tell from the wording?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using e^-2 directly for 'within 2 minutes'. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0008",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "Someone says: \u201cSince probabilities cannot exceed 1, the likelihood or density at a single observed point can never exceed 1 either.\u201d Is that statement always true for continuous models? Explain carefully, including why this does not contradict the axioms of probability.",
+      "expected_answer": "The statement is false for continuous models. A PDF value or point likelihood can exceed 1 because it is a density, not a probability. Only the integral of the density over a set must be between 0 and 1, and the total integral must equal 1. This does not violate probability axioms because probability is attached to intervals or measurable sets, not to single points. In contrast, for discrete PMFs, point probabilities must be at most 1.",
+      "source_chunk_ids": [
+        "cs109_finalfall2021soln_preamble_dfa36463ce",
+        "cs109_09_continuous_rv_annotated_p3_0552fa72b1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the claim is false for continuous distributions.",
+          "Explains density vs probability distinction.",
+          "Notes integrals over regions are probabilities.",
+          "Optionally contrasts with discrete PMFs."
+        ],
+        "partial_credit": [
+          "Correct conclusion with limited explanation.",
+          "Mentions densities can exceed 1 but does not say why."
+        ],
+        "common_mistakes": [
+          "Claiming every PDF value must be in [0,1].",
+          "Confusing point likelihood with event probability.",
+          "Ignoring the continuous/discrete distinction."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you construct a simple uniform example where the PDF is greater than 1?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If a density on a very short interval had to stay below 1, how could its total integral ever still equal 1?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from continuous random variables.",
+        "Watch out for this common trap: Claiming every PDF value must be in [0,1]. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0009",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Consider the function random_sum() that adds 1000 independent Uniform(0,1) samples. You are asked for P(total>501). Talk through an approximation strategy, including the distribution you would use, its mean and variance, and whether you expect the answer to be larger or smaller than 0.5 before doing any table lookup.",
+      "expected_answer": "Let Xi~Uniform(0,1) iid and S=\u03a3Xi for i=1 to 1000. Then E[Xi]=1/2 and Var(Xi)=1/12, so E[S]=500 and Var(S)=1000/12, with standard deviation sqrt(1000/12). By the Central Limit Theorem, S is approximately normal with that mean and variance. Therefore P(S>501)\u2248P(Z>(501-500)/sqrt(1000/12)), which is slightly less than 0.5 because 501 is one unit above the mean. The key is setting up the CLT approximation and interpreting the sign of the z-score.",
+      "source_chunk_ids": [
+        "cs109_finalfall2023soln_p1_9925d52f61",
+        "cs109_09_continuous_rv_annotated_p16_p17_9b459186b0",
+        "cs109_18_clt_annotated_p5_p6_8e18330175",
+        "cs109_11_joint_rvs_annotated_p2_6accdd07e2"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines the sum of iid uniforms.",
+          "Uses mean 1/2 and variance 1/12 for each term.",
+          "Applies CLT to approximate with a normal.",
+          "Sets up z-score for 501 and notes probability is slightly below 0.5."
+        ],
+        "partial_credit": [
+          "Correct CLT idea but missing variance.",
+          "Correct mean/variance but weak interpretation of tail direction."
+        ],
+        "common_mistakes": [
+          "Using a uniform distribution for the sum.",
+          "Forgetting to add variances across independent terms.",
+          "Saying the answer is greater than 0.5 because 501 is 'close' to the mean without considering direction."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the loop ran only 2 times instead of 1000, would the same normal approximation be as trustworthy? Why or why not?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the mean and variance of one Uniform(0,1) draw, and how do sums of independent random variables combine these quantities?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using a uniform distribution for the sum. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0010",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Why is the CDF often a more convenient tool than the PDF for answering probability questions such as P(a\u2264X\u2264b)? Give an explanation that would convince someone who keeps trying to re-integrate from scratch every time.",
+      "expected_answer": "The CDF packages the accumulated probability up to each point: F(x)=P(X\u2264x). Once you know F, interval probabilities become subtraction: P(a\u2264X\u2264b)=F(b)-F(a) for continuous RVs, so you do not need to redo an integral every time. Also, tail probabilities become 1-F(a). The PDF is still useful, but the CDF often makes repeated probability queries faster and conceptually cleaner.",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p24_1c53d31387",
+        "cs109_09_continuous_rv_annotated_p27_882ef8e282",
+        "cs109_16_cont_joint_i_annotated_p13_3acbbb996a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines or describes the CDF correctly.",
+          "Explains interval probability via F(b)-F(a).",
+          "Mentions avoidance of repeated integration or easier tail calculations."
+        ],
+        "partial_credit": [
+          "Says CDF is easier but gives only one of the main reasons.",
+          "Uses formulas correctly without interpretation."
+        ],
+        "common_mistakes": [
+          "Calling the CDF a density.",
+          "Forgetting that the CDF is itself a probability.",
+          "Saying PDFs and CDFs answer exactly the same questions in equally direct form."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If I give you a differentiable CDF, how would you recover the PDF?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Suppose I ask for P(X>7). Which single number involving the CDF would you use instead of an integral?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from continuous random variables; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Calling the CDF a density. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0011",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A lab reports a measurement X that is normally distributed with mean 3 and variance 16. Without computing decimal values, express P(2<X<5) in terms of the standard normal CDF \u03a6, and explain each standardization step aloud.",
+      "expected_answer": "If X~N(3,16), then the standard deviation is 4. Standardize with Z=(X-3)/4, so P(2<X<5)=P((2-3)/4<Z<(5-3)/4)=P(-1/4<Z<1/2)=\u03a6(1/2)-\u03a6(-1/4). Using symmetry, that can also be written as \u03a6(1/2)-[1-\u03a6(1/4)]. The main idea is shifting by the mean and scaling by the standard deviation.",
+      "source_chunk_ids": [
+        "cs109_10_normal_gaussian_annotated_p30_e3cf6aa184",
+        "cs109_11_joint_rvs_annotated_p2_6accdd07e2"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies standard deviation as 4.",
+          "Standardizes both endpoints correctly.",
+          "Expresses probability as \u03a6(1/2)-\u03a6(-1/4), optionally with symmetry simplification.",
+          "Explains the transformation conceptually."
+        ],
+        "partial_credit": [
+          "Correct expression but misses explanation of standardization.",
+          "Minor algebra error in one endpoint."
+        ],
+        "common_mistakes": [
+          "Using variance 16 as the standard deviation.",
+          "Subtracting the wrong mean.",
+          "Forgetting the probability is a difference of CDF values."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you express P(X>0) for the same normal variable in terms of \u03a6?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the standard deviation if the variance is 16, and why does that matter in the denominator?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using variance 16 as the standard deviation. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0012",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "In one dimension, we often say f(x)=F'(x). Explain what this statement really means in probability terms, and what information is lost or gained when moving between the PDF and CDF.",
+      "expected_answer": "The statement means the CDF accumulates probability up to x, and the PDF gives the local rate at which that cumulative probability is changing with x. If F is differentiable, then f(x)=dF/dx. Starting from the PDF, integrating gives the CDF and therefore all interval probabilities. Starting from the CDF, differentiating recovers the density where differentiable. The CDF directly answers probability questions, while the PDF is better for local shape and density calculations.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p13_3acbbb996a",
+        "cs109_09_continuous_rv_annotated_p24_1c53d31387"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly interprets F as accumulated probability and f as rate of accumulation.",
+          "States or implies the derivative/integral relationship.",
+          "Discusses what each representation is useful for."
+        ],
+        "partial_credit": [
+          "States the calculus relationship correctly but gives weak probabilistic interpretation.",
+          "Mentions integration but not differentiation, or vice versa."
+        ],
+        "common_mistakes": [
+          "Saying the PDF is the probability at x.",
+          "Treating derivative relation as purely symbolic with no probabilistic meaning.",
+          "Claiming no information difference between the two without nuance."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If a CDF has a flat region over an interval, what does that imply about the PDF there?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If F(5)-F(3)=0.2, what is the probability interpretation of that difference?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from continuous random variables; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying the PDF is the probability at x. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0013",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student writes P(X=x) for a continuous random variable and then starts listing 'the set of outcomes where X=x' just like in a discrete coin-flip example. What is the subtle but important distinction between a random variable, an event like {X=x}, and the probability of that event?",
+      "expected_answer": "A random variable X is a function from outcomes to real numbers; it is not itself an event. An event like {X=x} is the set of outcomes that map to the value x. The probability P(X=x) is the probability of that event. In discrete settings, such events can have positive probability and are often easy to list; in continuous settings, the event still exists conceptually, but typically has probability 0 even though neighboring intervals can have positive probability.",
+      "source_chunk_ids": [
+        "cs109_06_rvs_annotated_p14_dbc1095be1",
+        "cs109_06_rvs_annotated_p15_p16_55ef09c173",
+        "cs109_09_continuous_rv_annotated_p3_0552fa72b1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Distinguishes random variable from event.",
+          "Explains {X=x} as a set of outcomes.",
+          "Explains P(X=x) as probability of that event.",
+          "Notes the continuous-vs-discrete difference in point probabilities."
+        ],
+        "partial_credit": [
+          "Makes the main distinction but omits the continuous-specific point about zero probability.",
+          "Correct language but no example or interpretation."
+        ],
+        "common_mistakes": [
+          "Calling X itself an event.",
+          "Equating PDF value with P(X=x).",
+          "Assuming continuous variables cannot define events like {X=x}."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you explain why {X=x} is still a legitimate event even when its probability is zero?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In the three-coin example, what is X and what is the event X=2? Try separating those two objects."
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from continuous random variables.",
+        "Watch out for this common trap: Calling X itself an event. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0014",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A museum uses a normal model for a feature extracted from paintings. They say, \u201cWe chose a normal distribution because the feature is an average over many local brushstroke measurements.\u201d Explain why this is a statistically reasonable modeling choice, and what assumption is hiding underneath that argument.",
+      "expected_answer": "This is a Central Limit Theorem style justification. If the feature is an average of many contributions, then under suitable conditions the distribution of that average tends to be approximately normal, even if the individual contributions are not themselves normal. The hidden assumptions are that the underlying contributions are sufficiently independent or weakly dependent and have finite variance, and that there are many of them. So the normal model is justified as an approximation for the average, not necessarily for each raw measurement.",
+      "source_chunk_ids": [
+        "cs109_finalwin2022soln_preamble_667e8456d8",
+        "cs109_10_normal_gaussian_annotated_p6_d49a4720b4",
+        "cs109_18_clt_annotated_p5_p6_8e18330175"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Invokes the CLT or an averaging argument.",
+          "Explains that the average, not necessarily the raw data, is modeled as normal.",
+          "Mentions important assumptions such as many terms, approximate independence, finite variance."
+        ],
+        "partial_credit": [
+          "Mentions CLT with limited assumptions.",
+          "Says 'many things are normal' without a proper averaging argument."
+        ],
+        "common_mistakes": [
+          "Claiming every measurement must already be normal.",
+          "Ignoring the role of independence or finite variance.",
+          "Confusing the distribution of a sum/average with the distribution of one observation."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the local measurements were all exactly equal to one another every time, would the CLT logic still apply in the usual way?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What distributional object is the CLT about: one raw observation, or a sum/average of many observations?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming every measurement must already be normal. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0015",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose X and Y are independent continuous random variables with joint PDF f_{X,Y}(x,y)=g(x)h(y). Explain how you would verify from this factorization that P(X\u2264x, Y\u2264y)=P(X\u2264x)P(Y\u2264y), rather than just asserting it.",
+      "expected_answer": "Starting from the joint PDF, P(X\u2264x, Y\u2264y)=\u222b_{-\u221e}^x \u222b_{-\u221e}^y g(u)h(v) dv du. Because the integrand factors, this equals (\u222b_{-\u221e}^x g(u)du)(\u222b_{-\u221e}^y h(v)dv). Those are exactly the marginal CDFs F_X(x) and F_Y(y), so the joint CDF factors as F_{X,Y}(x,y)=F_X(x)F_Y(y). That is the continuous analogue of independence.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p18_3a177eef2a",
+        "cs109_16_cont_joint_i_annotated_p19_8a91b8ca19"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Sets up the double integral for the joint probability.",
+          "Uses factorization of the integrand.",
+          "Identifies the resulting factors as the marginal CDFs.",
+          "Concludes independence via factorized joint CDF."
+        ],
+        "partial_credit": [
+          "States the factorization result correctly but does not show the integral reasoning.",
+          "Uses PDF factorization directly with little explanation."
+        ],
+        "common_mistakes": [
+          "Mixing up PDFs and CDFs.",
+          "Forgetting limits of integration.",
+          "Asserting independence without showing why factorization implies it."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What would the marginal PDF of X be in terms of g and h, and what condition must h satisfy for that to work out cleanly?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you integrate the joint PDF over y first, what probability quantity are you building toward?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Mixing up PDFs and CDFs. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0016",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "For independent continuous X and Y, is it enough to check that P(X\u2264x, Y\u2264y)=P(X\u2264x)P(Y\u2264y) for one particular pair (x,y)? Explain what 'for all x,y' is doing in the definition and why a single check is not enough.",
+      "expected_answer": "No, one pair is not enough. Independence is a statement about the entire joint behavior of the variables, so the factorization must hold for all thresholds x and y. A single point could satisfy the equality by coincidence even when the variables are dependent overall. The 'for all x,y' requirement ensures the whole joint CDF factors, which captures the full distributional relationship.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p18_3a177eef2a",
+        "cs109_demo_exam_q1_c290a1b3af"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States one pair is insufficient.",
+          "Explains independence is a property of the whole joint distribution.",
+          "References the need for the condition to hold for all x,y."
+        ],
+        "partial_credit": [
+          "Correct conclusion with a vague explanation.",
+          "Mentions coincidence at a point but not the full-distribution aspect."
+        ],
+        "common_mistakes": [
+          "Thinking one successful numerical check proves independence.",
+          "Confusing independence of variables with one event equality.",
+          "Ignoring the quantifier 'for all'."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can two dependent variables still satisfy the factorization at some isolated threshold pair by accident?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I only tell you one value of the joint CDF, do you know the entire joint distribution?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from continuous random variables; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Thinking one successful numerical check proves independence. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0017",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "You are given a continuous CDF F and asked for P(a\u2264X\u2264b). A classmate writes F(b)-F(a^-), worrying about whether the endpoints are included. In the continuous case, what should the answer be, and why is the endpoint issue less delicate than in the discrete case?",
+      "expected_answer": "For a continuous RV, P(a\u2264X\u2264b)=F(b)-F(a). Endpoint inclusion does not change the answer because P(X=a)=P(X=b)=0. In a discrete setting, point masses at the endpoints matter, so one must be careful with strict versus non-strict inequalities. But in the continuous case the interval probability depends only on the area over the interval, not isolated points.",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p27_882ef8e282",
+        "cs109_09_continuous_rv_annotated_p26_cbed5712fa",
+        "cs109_09_continuous_rv_annotated_p3_0552fa72b1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Gives F(b)-F(a) for the continuous case.",
+          "Explains why endpoints do not matter via zero point probability.",
+          "Contrasts with discrete variables."
+        ],
+        "partial_credit": [
+          "Correct formula but weak explanation.",
+          "Mentions endpoints don't matter without saying why."
+        ],
+        "common_mistakes": [
+          "Using a left-limit adjustment unnecessarily.",
+          "Confusing continuous and discrete interval formulas.",
+          "Forgetting that CDF values are probabilities."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the expression change, if at all, for P(a<X<b) in the continuous case?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is P(X=a) for a continuous random variable, and how does that affect interval endpoints?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using a left-limit adjustment unnecessarily. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0018",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A reliability engineer says the waiting time until the first failure is exponential, while the number of failures in a fixed interval is Poisson. They then claim that for \u03bb=5, P(Poi(5)=0)=P(Exp(5)>1). Explain why this identity makes sense conceptually before you verify it algebraically.",
+      "expected_answer": "Conceptually, 'no failures in the first unit of time' is the same event as 'the first failure occurs after time 1.' In a Poisson process with rate 5, the number of failures in length-1 interval is Poisson(5), so P(N(1)=0)=e^{-5}. The waiting time to the first failure is Exp(5), so P(T>1)=e^{-5}. Algebraically the two match, but the key conceptual link is that both describe the same event in different languages.",
+      "source_chunk_ids": [
+        "cs109_finalfall2021soln_preamble_dfa36463ce"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains the shared event: zero arrivals in [0,1] equals first arrival after 1.",
+          "Gives both formulas leading to e^-5.",
+          "Connects Poisson counts with exponential waiting times."
+        ],
+        "partial_credit": [
+          "Verifies algebraically but gives weak conceptual interpretation.",
+          "States they are equal because formulas match, without the event explanation."
+        ],
+        "common_mistakes": [
+          "Treating Poisson and exponential as unrelated facts.",
+          "Using P(T\u22641) instead of P(T>1).",
+          "Not recognizing the unit interval connection."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the same reasoning generalize to rate \u03bb and interval length t?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What event does N(1)=0 describe, and how can you restate that event using the first-arrival time T?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Treating Poisson and exponential as unrelated facts. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0019",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student says: \u201cIf X1,...,Xn are iid, then their average always tends to a normal distribution with mean 0 and variance 0 as n grows.\u201d Identify everything wrong with that statement, and repair it into a correct version.",
+      "expected_answer": "Several things are wrong. First, the mean of the sample average is not 0 in general; it is E[Xi], assuming that expectation exists. Second, the variance of the sample average is Var(Xi)/n, so it tends to 0, but not because the distribution becomes a normal with mean 0. Third, the CLT says the average is approximately normal for large n with mean \u03bc and variance \u03c3^2/n, provided the Xi are iid with finite variance. If we standardize the average, then the standardized version tends toward the standard normal.",
+      "source_chunk_ids": [
+        "cs109_finalfall2021soln_preamble_dfa36463ce",
+        "cs109_18_clt_annotated_p5_p6_8e18330175",
+        "cs109_11_joint_rvs_annotated_p2_6accdd07e2"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies that mean should be \u03bc, not 0 in general.",
+          "Identifies variance of the average as \u03c3^2/n.",
+          "States a correct CLT-style repair involving approximate normality for large n under assumptions.",
+          "Mentions finite variance or related assumptions."
+        ],
+        "partial_credit": [
+          "Corrects mean and variance but gives only vague CLT statement.",
+          "Mentions standardization without clearly repairing the original claim."
+        ],
+        "common_mistakes": [
+          "Saying the sample average itself converges to N(0,0).",
+          "Ignoring assumptions required for CLT.",
+          "Confusing the average with its standardized form."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is it useful to distinguish between the unstandardized sample average and its standardized version in the CLT?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is E[(1/n)\u03a3Xi] in terms of E[Xi], and how do you know?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from continuous random variables.",
+        "Watch out for this common trap: Saying the sample average itself converges to N(0,0). Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0020",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A modeling team says, \u201cSince our random variable is continuous, we can answer every question by integrating the PDF directly.\u201d Give a more nuanced response: when is direct integration natural, and when is it better to switch to the CDF or to a normal approximation?",
+      "expected_answer": "Direct integration is natural when the PDF is simple and the event region is easy to integrate over, like a uniform interval or a simple polynomial density. But if many probability queries are needed, the CDF is often cleaner because interval probabilities become differences of CDF values. And for sums or averages of many independent variables, exact integration may be impractical, so a normal approximation via the CLT can be more useful. The best tool depends on the structure of the problem, not just on the variable being continuous.",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p24_1c53d31387",
+        "cs109_09_continuous_rv_annotated_p27_882ef8e282",
+        "cs109_18_clt_annotated_p5_p6_8e18330175"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains when direct PDF integration is appropriate.",
+          "Explains when using the CDF is preferable.",
+          "Explains when a normal approximation is appropriate for sums/averages.",
+          "Frames tool choice as problem-dependent."
+        ],
+        "partial_credit": [
+          "Gives two of the three tools with reasonable explanations.",
+          "Correct general sentiment but little detail."
+        ],
+        "common_mistakes": [
+          "Insisting one representation is always best.",
+          "Ignoring the role of approximations.",
+          "Confusing CDF and PDF roles."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give one example problem where each of those three approaches would be the most natural?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I ask for the same kind of interval probability many times, what precomputed function would save you from repeated integration?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Insisting one representation is always best. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0021",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose X~Uniform(\u03b1,\u03b2). Without expanding every integral in full detail, explain how you would derive E[X]=(\u03b1+\u03b2)/2 from symmetry, and then give a second derivation using the PDF to confirm it.",
+      "expected_answer": "By symmetry, the uniform distribution on [\u03b1,\u03b2] is centered exactly at the midpoint, so the expectation must be (\u03b1+\u03b2)/2. To confirm using calculus, E[X]=\u222b_\u03b1^\u03b2 x\u00b71/(\u03b2-\u03b1) dx = (1/(\u03b2-\u03b1))[x^2/2]_\u03b1^\u03b2 = (\u03b2^2-\u03b1^2)/(2(\u03b2-\u03b1)) = (\u03b1+\u03b2)/2. The two derivations agree: one uses geometric symmetry, the other uses the definition of expectation for a continuous RV.",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p16_p17_9b459186b0",
+        "cs109_09_continuous_rv_annotated_p3_0552fa72b1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses midpoint symmetry argument correctly.",
+          "Sets up the expectation integral correctly.",
+          "Simplifies to (\u03b1+\u03b2)/2.",
+          "Explains why the symmetry argument is legitimate for a uniform distribution."
+        ],
+        "partial_credit": [
+          "Gets correct answer from integration but no symmetry argument.",
+          "Gives symmetry argument but no confirming calculation."
+        ],
+        "common_mistakes": [
+          "Using (\u03b2-\u03b1)/2 instead of midpoint.",
+          "Forgetting density factor 1/(\u03b2-\u03b1).",
+          "Confusing expectation with range length."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How does the same symmetry idea help you reason quickly about the median of a Uniform(\u03b1,\u03b2)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Is (\u03b2-\u03b1)/2 the center of the interval or the half-width? What is the actual midpoint?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using (\u03b2-\u03b1)/2 instead of midpoint. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0022",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "In an oral explanation, how would you persuade someone that random variables give a more powerful language than event-only probability when dealing with many similar outcomes, especially for continuous measurements?",
+      "expected_answer": "Events alone are binary\u2014they say whether something happened or not. Random variables compress many related events into one numerical object, such as a waiting time, height, or number of heads. Once we define the distribution of the random variable, we can compute probabilities for many events like X>t or a\u2264X\u2264b and also summarize behavior with expectation and variance. For continuous measurements especially, the random-variable viewpoint is essential because we work with densities, CDFs, and statistics rather than trying to reason event-by-event from scratch.",
+      "source_chunk_ids": [
+        "cs109_06_rvs_annotated_p33_dd831876d1",
+        "cs109_06_rvs_annotated_p12_6dd4ea7252",
+        "cs109_09_continuous_rv_annotated_p3_0552fa72b1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Contrasts binary events with multi-valued random variables.",
+          "Explains how RVs unify many related events.",
+          "Mentions statistics such as expectation/variance or tools such as PDF/CDF.",
+          "Connects the argument to continuous measurements."
+        ],
+        "partial_credit": [
+          "Makes the event-vs-RV distinction but does not explain the practical payoff.",
+          "Mentions summaries like mean without showing why RVs are structurally helpful."
+        ],
+        "common_mistakes": [
+          "Saying random variables are just events with different notation.",
+          "Ignoring continuous-variable motivation.",
+          "Failing to mention that RVs are functions on the sample space."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you illustrate your point using the 'number of heads in three flips' example versus one single event like 'exactly two heads'?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I only tell you the event 'X=2', do you know anything about how X behaves at other values?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from continuous random variables; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying random variables are just events with different notation. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0023",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are handed a candidate function and told it is a PDF for a continuous random variable. In an oral exam, what checklist would you go through before trusting it, and how would that checklist change if the function is piecewise-defined on a bounded interval?",
+      "expected_answer": "First I would check nonnegativity everywhere on its claimed support, because a PDF cannot be negative. Second I would check normalization: the integral over the whole real line, or over the stated support if it is zero elsewhere, must equal 1. For a piecewise PDF on a bounded interval, I would integrate each piece over its interval and add them, and I would make sure the support is clearly specified so I know where the density is zero. If those conditions hold, it is a valid PDF, even if the function exceeds 1 on part of the interval.",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p3_0552fa72b1"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Checks nonnegativity.",
+          "Checks total integral equals 1.",
+          "Explains how to handle piecewise support by summing integrals over pieces.",
+          "Notes that PDF values may exceed 1."
+        ],
+        "partial_credit": [
+          "Mentions nonnegativity and normalization but little detail on piecewise handling.",
+          "Gives a correct but incomplete checklist."
+        ],
+        "common_mistakes": [
+          "Thinking continuity of the function is required for validity.",
+          "Forgetting to include zero density outside the support.",
+          "Insisting the PDF must stay below 1."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the total integral came out to 3 instead of 1, what simple repair might turn it into a valid PDF?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which two conditions matter most for a PDF: the function\u2019s maximum height, or its sign and total integral?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Thinking continuity of the function is required for validity. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0024",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says: \u201cFor a continuous random variable X, the probability at a point is just the height of the PDF there, so if f(2)=0.7 then P(X=2)=0.7.\u201d Respond to that claim carefully. In your explanation, distinguish the random variable X, the event X=2, the PDF, and the CDF, and explain what quantity the value 0.7 could represent.",
+      "expected_answer": "The claim is false. X is the random variable, while X=2 is an event. For a continuous random variable, probabilities come from areas under the PDF, not from the PDF height at a single point, so P(X=2)=0 because the integral over an interval of width zero is zero. The value f(2)=0.7 is a density, not a probability; it tells you the local concentration of probability near 2 and can even be greater than 1 for some continuous distributions. The CDF gives actual probabilities such as P(X\u22642)=F(2), and interval probabilities are computed by integrating the PDF or by differences of the CDF, e.g. P(1.9\u2264X\u22642.1)=F(2.1)-F(1.9).",
+      "source_chunk_ids": [
+        "cs109_06_rvs_annotated_p15_p16_55ef09c173",
+        "cs109_06_rvs_annotated_p14_dbc1095be1",
+        "cs109_09_continuous_rv_annotated_p3_0552fa72b1",
+        "cs109_09_continuous_rv_annotated_p24_1c53d31387",
+        "cs109_09_continuous_rv_annotated_p27_882ef8e282"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explicitly states that P(X=2)=0 for a continuous random variable.",
+          "Explains that PDF values are densities, not probabilities, and probabilities are areas/integrals.",
+          "Correctly distinguishes random variable vs event notation.",
+          "Mentions CDF as a probability-valued function and gives a correct interval-probability expression using CDF or integration."
+        ],
+        "partial_credit": [
+          "Says point probabilities are zero but gives a weak or incomplete reason.",
+          "Mentions area under the curve but does not clearly distinguish PDF from CDF.",
+          "Distinguishes X from X=2 but does not connect this to continuous probabilities."
+        ],
+        "common_mistakes": [
+          "Treating f(2) as P(X=2).",
+          "Saying the PDF must always be at most 1.",
+          "Confusing X with the event X=2.",
+          "Using CDF and PDF interchangeably."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example of a valid continuous distribution where the PDF is greater than 1 somewhere, and explain why that does not violate probability rules?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If P(X=2) were 0.7 for a continuous variable, what would that suggest about the probability of many nearby single points, and why would that create a problem?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from continuous random variables.",
+        "Watch out for this common trap: Treating f(2) as P(X=2). Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0025",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose waiting time in minutes until the next cough in an exam room is modeled by Z~Exp(\u03bb=1). Without just quoting a formula, explain how you would compute the probability that a cough happens within the next 2 minutes, and then interpret the result in words. Then compare that event to \u201cno cough occurs in the first 2 minutes\u201d and relate the two probabilities.",
+      "expected_answer": "For an exponential random variable with rate 1, the CDF is F(t)=P(Z\u2264t)=1-e^{-t} for t\u22650. So the probability of a cough within 2 minutes is P(Z\u22642)=1-e^{-2}. Interpreted verbally, that is the chance the waiting time is at most 2 minutes. The complementary event is no cough in the first 2 minutes, which is P(Z>2)=e^{-2}; these sum to 1. A strong answer may also note the connection to a Poisson process: \u201cno event by time 2\u201d has the same probability e^{-2}.",
+      "source_chunk_ids": [
+        "cs109_finalfall2023soln_p1_9925d52f61",
+        "cs109_finalfall2021soln_preamble_dfa36463ce",
+        "cs109_09_continuous_rv_annotated_p24_1c53d31387",
+        "cs109_09_continuous_rv_annotated_p27_882ef8e282"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Sets up the event correctly as P(Z\u22642).",
+          "Uses the exponential CDF correctly to obtain 1-e^{-2}.",
+          "Interprets the probability in context as a waiting-time statement.",
+          "Correctly identifies the complement P(Z>2)=e^{-2} and relates the two."
+        ],
+        "partial_credit": [
+          "Gets the correct numerical expression but gives little interpretation.",
+          "Uses complement reasoning correctly even if the CDF is not named.",
+          "Shows correct understanding of within 2 minutes versus after 2 minutes but makes minor notation slips."
+        ],
+        "common_mistakes": [
+          "Using P(Z=2) instead of P(Z\u22642).",
+          "Writing e^{-2} for the probability of a cough within 2 minutes.",
+          "Confusing rate \u03bb with mean.",
+          "Forgetting complementarity."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your answer change if the rate were \u03bb instead of 1, and what role does \u03bb play conceptually?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you restate the event in words as an inequality involving Z, and identify its complement?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using P(Z=2) instead of P(Z\u22642). Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0026",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A program returns the sum of 1000 independent samples from Uniform(0,1). You are asked for the probability that the sum exceeds 501. Explain how you would approximate this probability without doing a 1000-fold convolution. Your answer should identify the distribution you use, justify why it is appropriate, compute the mean and variance of the sum, and say whether you expect the final probability to be above or below 0.5 before calculating.",
+      "expected_answer": "Let Xi be i.i.d. Uniform(0,1), and S=\u03a3_{i=1}^{1000} Xi. Because the Xi are independent and identically distributed with finite mean and variance, the Central Limit Theorem suggests approximating S by a normal distribution. For Uniform(0,1), E[Xi]=1/2 and Var(Xi)=1/12, so E[S]=1000\u00b71/2=500 and Var(S)=1000\u00b7(1/12)=1000/12, giving SD(S)=sqrt(1000/12). Since 501 is slightly above the mean 500, the probability P(S>501) should be a bit less than 0.5. The approximation is P(S>501)\u22481-\u03a6((501-500)/sqrt(1000/12)). A strong oral answer may mention that continuity correction is not relevant in the same way here because the sum is continuous already.",
+      "source_chunk_ids": [
+        "cs109_finalfall2023soln_p1_9925d52f61",
+        "cs109_09_continuous_rv_annotated_p16_p17_9b459186b0",
+        "cs109_18_clt_annotated_p5_p6_8e18330175",
+        "cs109_11_joint_rvs_annotated_p2_6accdd07e2"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines the sum of i.i.d. uniform variables and invokes CLT with justification.",
+          "Correctly states mean 1/2 and variance 1/12 for each Uniform(0,1).",
+          "Correctly derives mean 500 and variance 1000/12 for the sum.",
+          "Writes the normal approximation in standardized form using \u03a6.",
+          "Interprets that the answer should be slightly below 0.5 because 501 exceeds the mean."
+        ],
+        "partial_credit": [
+          "Uses CLT correctly but makes a minor arithmetic mistake in variance or standard deviation.",
+          "Gets the setup right but omits interpretation.",
+          "Correctly computes mean and variance but does not explicitly standardize."
+        ],
+        "common_mistakes": [
+          "Using the distribution of one Uniform instead of the sum.",
+          "Forgetting the variance of Uniform(0,1) is 1/12.",
+          "Using the wrong CLT assumptions, such as requiring normal Xi to begin with.",
+          "Saying the probability is above 0.5 because 501 is 'close to' 500 without checking the direction."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the threshold were 550 instead of 501, how would you expect the quality of the normal approximation and the resulting probability statement to change?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the mean and variance of one Uniform(0,1) draw, and how do those combine when you sum 1000 independent copies?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using the distribution of one Uniform instead of the sum. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0027",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Consider two continuous random variables X and Y with joint PDF f_{X,Y}(x,y)=g(x)h(y) for all real x and y, where g and h are nonnegative functions. A classmate says, \u201cThat factorization is only an algebra trick; it does not prove independence unless you also check probabilities of every rectangle.\u201d Do you agree? Explain carefully what must be true for the factorization to imply independence, and connect your reasoning to CDFs or probabilities of events like {X\u2264x, Y\u2264y}.",
+      "expected_answer": "I do not agree with the classmate, provided the factorization is genuinely a joint PDF factorization over the full support and the factors correspond to the marginals. For continuous random variables, if f_{X,Y}(x,y)=f_X(x)f_Y(y) for all x,y, then X and Y are independent. More generally, if the joint density factors as g(x)h(y), then after integrating, g and h must be the marginal densities up to normalization, and the joint CDF becomes F_{X,Y}(x,y)=\u222b_{-\u221e}^x\u222b_{-\u221e}^y g(u)h(v) dv du = (\u222b_{-\u221e}^x g(u)du)(\u222b_{-\u221e}^y h(v)dv)=F_X(x)F_Y(y). That equality of joint CDF and product of marginal CDFs is exactly independence. So checking every rectangle is not separate from factorization; factorization already implies the rectangle probabilities factor once the density is valid.",
+      "source_chunk_ids": [
+        "cs109_16_cont_joint_i_annotated_p18_3a177eef2a",
+        "cs109_16_cont_joint_i_annotated_p19_8a91b8ca19",
+        "cs109_16_cont_joint_i_annotated_p13_3acbbb996a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States correctly that factorization of a valid joint PDF into single-variable functions implies independence.",
+          "Explains the needed validity condition: the factorization must hold over the support and define a proper joint density.",
+          "Connects the PDF factorization to either marginal densities or the joint CDF factorization.",
+          "Explains why rectangle probabilities then factor."
+        ],
+        "partial_credit": [
+          "States the result correctly but gives only a sketch of why.",
+          "Mentions CDF factorization or marginalization but not both.",
+          "Recognizes that support issues matter but does not articulate them clearly."
+        ],
+        "common_mistakes": [
+          "Thinking factorization is never sufficient.",
+          "Ignoring whether the density is valid over the support.",
+          "Confusing pairwise event independence with random-variable independence without tying it to CDF/PDF conditions.",
+          "Claiming independence requires checking infinitely many rectangles separately even after proving CDF factorization."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What kind of support restriction could break the simple conclusion, even if the formula looks like a product on part of the plane?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "How would you write P(X\u2264x, Y\u2264y) as an integral of the joint PDF, and what happens to that integral if the PDF factors?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from continuous random variables; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Thinking factorization is never sufficient. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_continuous_random_variables_0028",
+      "course": "CS109",
+      "topic_id": "continuous_random_variables",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Let X have PDF f(x)=x/2 for 0\u2264x\u22642 and 0 otherwise. Compute P(X\u22651) in two different ways, and explain why the two methods must agree. Then address a common concern: is there any difference here between P(X\u22651) and P(X>1)?",
+      "expected_answer": "First method: integrate the PDF on [1,2]. P(X\u22651)=\u222b_1^2 x/2 dx = [x^2/4]_1^2 = 1 - 1/4 = 3/4. Second method: use the CDF or complement. P(X\u22651)=1-P(X<1)=1-\u222b_0^1 x/2 dx = 1-1/4 = 3/4. They agree because both are just different decompositions of total probability and because the CDF is the integral of the PDF. For a continuous random variable, P(X=1)=0, so P(X\u22651)=P(X>1). Similarly, P(X\u22641)=P(X<1).",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p7_7e66b85479",
+        "cs109_09_continuous_rv_annotated_p24_1c53d31387",
+        "cs109_09_continuous_rv_annotated_p27_882ef8e282",
+        "cs109_16_cont_joint_i_annotated_p13_3acbbb996a"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly computes P(X\u22651)=3/4 by direct integration.",
+          "Provides a second valid method, typically complement or CDF, and gets the same result.",
+          "Explains conceptually why the methods agree.",
+          "States and justifies that P(X\u22651)=P(X>1) because point probabilities are zero for continuous RVs."
+        ],
+        "partial_credit": [
+          "Gets 3/4 correctly using one method but does not clearly provide the second.",
+          "Uses two methods but does not explain why they agree.",
+          "Knows strict versus non-strict inequalities are the same here but gives weak justification."
+        ],
+        "common_mistakes": [
+          "Integrating over the wrong interval.",
+          "Forgetting the density is zero outside [0,2].",
+          "Treating P(X=1) as positive because f(1)=1/2.",
+          "Saying \u2265 and > differ because one includes the endpoint."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you write the CDF F(a) for this distribution piecewise, at least for a in [0,2], and use it to recover your answer?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the geometric interpretation of the probability in terms of area under the density curve from 1 to 2?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Integrating over the wrong interval. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    }
+  ]
+}

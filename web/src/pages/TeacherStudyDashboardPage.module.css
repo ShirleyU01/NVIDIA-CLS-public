@@ -1,0 +1,306 @@
+.page {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1rem 0 2rem;
+}
+
+.header {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.breadcrumb {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.breadcrumbLink {
+  color: var(--color-green-700);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.breadcrumbLink:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbSeparator {
+  color: var(--color-muted);
+}
+
+.title {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.75rem;
+}
+
+.subtitle,
+.helper,
+.notice {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.notice {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  background: var(--color-surface);
+}
+
+.errorText {
+  margin: 0;
+  border: 1px solid color-mix(in srgb, #b91c1c 38%, var(--color-border));
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  color: #991b1b;
+  background: color-mix(in srgb, #fee2e2 70%, var(--color-surface));
+}
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.9rem;
+}
+
+.kpiCard,
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.kpiCard {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem;
+}
+
+.kpiLabel,
+.kpiHint {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.86rem;
+}
+
+.kpiValue {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.55rem;
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.45fr);
+  gap: 1rem;
+}
+
+.card {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem;
+}
+
+.card h2 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.1rem;
+}
+
+.funnel {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.funnel div {
+  display: grid;
+  gap: 0.25rem;
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  background: color-mix(in srgb, var(--color-surface) 88%, var(--color-sage-100));
+}
+
+.funnel span {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+.funnel strong {
+  color: var(--color-text);
+  font-size: 1.35rem;
+}
+
+.metricLine {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.filterHeader {
+  display: flex;
+  gap: 1rem;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.filterActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.smallButton {
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.88rem;
+}
+
+.smallButton:hover {
+  border-color: color-mix(in srgb, var(--color-green-700) 35%, var(--color-border));
+  box-shadow: var(--shadow-sm);
+}
+
+.filterList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.filterOption {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.45rem 0.65rem;
+  background: color-mix(in srgb, var(--color-surface) 92%, var(--color-sage-100));
+  cursor: pointer;
+}
+
+.filterOption:hover {
+  border-color: color-mix(in srgb, var(--color-green-700) 35%, var(--color-border));
+}
+
+.filterCount {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+
+.surveyStatsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+.surveyStatCard,
+.surveyTextGroup {
+  display: grid;
+  gap: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+  background: color-mix(in srgb, var(--color-surface) 94%, var(--color-sage-100));
+}
+
+.surveyStatCard h3,
+.surveyTextGroup h3 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+.surveyStatCard p {
+  margin: 0;
+}
+
+.surveyTextGrid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.answerList {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.answerCard {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  border-left: 3px solid color-mix(in srgb, var(--color-green-700) 42%, var(--color-border));
+  padding: 0.55rem 0.75rem;
+  background: var(--color-surface);
+}
+
+.answerCard blockquote {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.answerCard figcaption {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+  font-size: 0.9rem;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.65rem 0.55rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.table th {
+  color: var(--color-muted);
+  font-weight: 600;
+  background: color-mix(in srgb, var(--color-surface) 88%, var(--color-sage-100));
+}
+
+.clickableRow {
+  cursor: pointer;
+}
+
+.clickableRow:hover,
+.selectedRow {
+  background: color-mix(in srgb, var(--color-surface) 82%, var(--color-sage-100));
+}
+
+.selectedRow {
+  cursor: pointer;
+  outline: 2px solid color-mix(in srgb, var(--color-green-700) 35%, transparent);
+  outline-offset: -2px;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 760px) {
+  .grid,
+  .funnel {
+    grid-template-columns: 1fr;
+  }
+}

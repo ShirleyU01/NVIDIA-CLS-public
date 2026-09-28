@@ -1,0 +1,1272 @@
+{
+  "topic_id": "poisson_approximation",
+  "topic_name": "Poisson Distribution and Approximations",
+  "course": "CS109",
+  "model": "gpt-5.4",
+  "questions": [
+    {
+      "question_id": "CS109_poisson_approximation_0001",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A student says: 'Whenever a Binomial random variable has large n, I can approximate it by a Poisson with parameter np.' Do you agree? Give a careful response using the roles of n, p, and \u03bb=np, and explain why Bin(100,0.5) and Bin(100,0.04) should be judged differently.",
+      "expected_answer": "A strong answer says the claim is false. Large n alone is not enough; the Poisson approximation is appropriate when n is large, p is small, and \u03bb=np is moderate. For Bin(100,0.04), p is small and \u03bb=4, so a Poisson(4) approximation is reasonable. For Bin(100,0.5), although n is large, p is not small, so the Binomial is much more symmetric and a Normal approximation is usually better. The student should mention that Poisson arises as a limit with n\u2192\u221e and p\u21920 while np stays fixed.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c",
+        "cs109_08_poisson_and_more_annotated_p30_7e1affcde8",
+        "cs109_11_joint_rvs_annotated_p10_761317177f",
+        "cs109_08_poisson_and_more_annotated_p25_ea87f3dfd8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that large n alone is insufficient",
+          "Identifies the needed regime: large n, small p, moderate \u03bb=np",
+          "Correctly distinguishes Bin(100,0.5) from Bin(100,0.04)",
+          "Mentions why Normal is better for mid-range p or the limiting argument for Poisson"
+        ],
+        "partial_credit": [
+          "Says p must be small but gives weak justification",
+          "Correctly classifies one example but not the other",
+          "Mentions \u03bb=np without explaining why it matters"
+        ],
+        "common_mistakes": [
+          "Saying Poisson is always good when n is large",
+          "Using only \u03bb moderate and ignoring p",
+          "Claiming Bin(100,0.5) is well approximated by Poi(50)"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If p is not small but q=1-p is small, how could you still use a Poisson idea to approximate a tail count?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What feature of the Binomial distribution changes when p moves from 0.04 to 0.5, even if n stays 100?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from poisson approximation; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying Poisson is always good when n is large. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0002",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A quality-control machine inspects 2000 chips, and each chip independently has probability 0.0015 of being defective. You want the probability of finding exactly two defectives. Explain whether a Poisson approximation is appropriate, state the approximating distribution, and write the approximation for the probability.",
+      "expected_answer": "Since n=2000 is large and p=0.0015 is small, with \u03bb=np=3, Poisson is appropriate. Let Y~Bin(2000,0.0015). Approximate Y by X~Poi(3). Then P(Y=2)\u2248P(X=2)=e^{-3}3^2/2!. The student should explain the suitability, not just write the formula.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c",
+        "cs109_08_poisson_and_more_annotated_p22_9b024820cf",
+        "cs109_08_poisson_and_more_annotated_p20_4cbbde7458"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes \u03bb=np=3",
+          "Justifies Poisson by large n and small p",
+          "Writes P(X=2)=e^{-3}3^2/2!",
+          "Makes clear this approximates the Binomial probability"
+        ],
+        "partial_credit": [
+          "Gets \u03bb correct but does not justify approximation",
+          "Justifies approximation but makes a minor formula slip",
+          "Writes the Binomial expression but does not transition to Poisson"
+        ],
+        "common_mistakes": [
+          "Using Normal instead of Poisson here without justification",
+          "Using \u03bb=p instead of np",
+          "Forgetting the factor 2!"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would you expect the approximation to be better, worse, or about the same if n doubled and p halved so that \u03bb stayed 3?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What parameter must the approximating Poisson match from the Binomial, and what is its value here?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using Normal instead of Poisson here without justification. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0003",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "Someone argues that Bin(100,0.96) cannot be approximated by a Poisson because p is not small. Is that the end of the story? Explain how to rescue a Poisson approximation if the quantity of interest is the number of failures, and describe what parameter you would use.",
+      "expected_answer": "A strong answer says that if we model successes directly, Poisson is not appropriate because p=0.96 is not small. But if the relevant count is the number of failures, then the failure probability is q=1-p=0.04, which is small. The number of failures is Bin(100,0.04), which can be approximated by Poi(4). So the approximation can be rescued by changing the random variable to count rare failures rather than common successes.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p31_c5b48dc4ec",
+        "cs109_08_poisson_and_more_annotated_p30_7e1affcde8",
+        "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects direct Poisson on successes",
+          "Introduces failures with q=0.04",
+          "States failure count ~ Bin(100,0.04) \u2248 Poi(4)",
+          "Explains that the random variable being counted matters"
+        ],
+        "partial_credit": [
+          "Mentions using 1-p but does not clearly define the new random variable",
+          "Recognizes failures are rare but omits the parameter 4",
+          "States approximation without explaining why"
+        ],
+        "common_mistakes": [
+          "Approximating Bin(100,0.96) by Poi(96)",
+          "Saying Poisson cannot be used at all",
+          "Confusing successes and failures in the event definition"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If I ask for the probability of at least 98 successes, how would you translate that into a statement about the failure count?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What quantity is actually rare in this problem: successes or failures?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from poisson approximation.",
+        "Watch out for this common trap: Approximating Bin(100,0.96) by Poi(96). Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0004",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "A call center receives a very large number of independent potential customer calls in an hour, each person calling with a tiny probability. Suppose the expected number of calls is 4. Using a Poisson model, derive the probability of getting at least one call, and then explain in words why subtracting from 1 is natural here.",
+      "expected_answer": "Let X~Poi(4). Then P(X\u22651)=1-P(X=0)=1-e^{-4}. The complement is natural because 'at least one' includes many values 1,2,3,..., while the Poisson gives a very simple expression for zero events: P(X=0)=e^{-4}. A good oral answer emphasizes that using the complement avoids summing infinitely many terms.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p20_4cbbde7458",
+        "cs109_09_continuous_rv_annotated_p36_bf0f54e843",
+        "cs109_05_independence_annotated_p19_d0c710402d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines X~Poi(4)",
+          "Uses complement correctly",
+          "Computes P(X=0)=e^{-4}",
+          "Explains why the complement is the efficient route"
+        ],
+        "partial_credit": [
+          "Gets 1-e^{-4} with little explanation",
+          "States the complement idea but not the zero-event formula",
+          "Minor notation issue but correct logic"
+        ],
+        "common_mistakes": [
+          "Summing only P(X=1)",
+          "Using 1-P(X>1)",
+          "Forgetting that Poisson support starts at 0"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the answer change if the interval were two hours and the average rate stayed constant?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the easiest Poisson probability to compute when you want an event like 'at least one'?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Summing only P(X=1). Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0005",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Explain aloud why the Poisson can be viewed as a limit of the Binomial. I do not need a full proof, but I do want the key conditions, what remains fixed, and the intuition for why the Binomial mass function turns into e^{-\u03bb} \u03bb^k / k! for fixed k.",
+      "expected_answer": "The key regime is n\u2192\u221e and p\u21920 while \u03bb=np stays fixed. For fixed k, the Binomial pmf is C(n,k)p^k(1-p)^{n-k}. Replacing p with \u03bb/n gives factors that behave like (n^k/k!)(\u03bb/n)^k\u2192\u03bb^k/k!, while (1-\u03bb/n)^n\u2192e^{-\u03bb} and (1-\u03bb/n)^{-k}\u21921. So the Binomial mass at k converges to e^{-\u03bb} \u03bb^k / k!. Intuitively, we have many opportunities, each very unlikely, with a stable average number of occurrences.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p25_ea87f3dfd8",
+        "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the limiting regime correctly",
+          "Identifies \u03bb=np as fixed",
+          "Explains the two key limiting pieces: combinatorial term and exponential term",
+          "Gives intuition of many rare opportunities"
+        ],
+        "partial_credit": [
+          "States the conditions without describing the pmf transition",
+          "Mentions e^{-\u03bb} but not how it arises",
+          "Gives intuition only"
+        ],
+        "common_mistakes": [
+          "Saying both n and p go to infinity",
+          "Holding p fixed instead of np",
+          "Claiming the result without any mechanism"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is it important that k is treated as fixed in that limiting argument?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What quantity must stay constant as n increases and p decreases?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from poisson approximation; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying both n and p go to infinity. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0006",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "In a large hash table, each of n keys is sent to a bucket, almost independently, and each key has approximately the same tiny probability of landing in a given bucket. Why might a Poisson approximation still be useful for the number of keys in one bucket, even though the assumptions are not perfectly satisfied?",
+      "expected_answer": "A good answer says Poisson approximation is robust to mild violations. The count in one bucket is like a Binomial with many trials and tiny success probability, but exact independence may fail slightly and probabilities may not be perfectly equal. If those violations are mild, the number of keys in one bucket can still be approximated by a Poisson with mean about np, where p is the per-key bucket probability. The student should emphasize 'approximately valid because the events are rare and dependence is weak.'",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p29_1cfe0aced4",
+        "cs109_08_poisson_and_more_annotated_p22_9b024820cf",
+        "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Mentions many trials and tiny success probability",
+          "Explains mild dependence or slightly varying probabilities are acceptable",
+          "Connects the mean to approximately np",
+          "Frames the result as an approximation, not exact"
+        ],
+        "partial_credit": [
+          "Says Poisson still works approximately but gives little reason",
+          "Mentions rare events but not the dependence issue",
+          "Correct intuition without explicit mean parameter"
+        ],
+        "common_mistakes": [
+          "Claiming exact Poisson despite imperfect assumptions",
+          "Refusing Poisson because independence is not perfect",
+          "Ignoring the role of rarity"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What kind of violation would make you trust the approximation less: tiny fluctuations in p, or strong clustering dependence? Why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Does Poisson approximation require perfect independence in every practical application, or can mild violations still be acceptable?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming exact Poisson despite imperfect assumptions. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0007",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "A website averages 1000 requests in a minute, and you model the request count X by a Poisson random variable. Use a Normal approximation to estimate P(990 < X < 1000). Be explicit about the mean, variance, and continuity correction you would apply.",
+      "expected_answer": "For X~Poi(1000), the approximating Normal should match mean and variance, so X is approximated by N(1000,1000). Because X is discrete, use continuity correction: P(990 < X < 1000) = P(991 \u2264 X \u2264 999) \u2248 P(990.5 < Y < 999.5) for Y~N(1000,1000). Standardizing gives P((990.5-1000)/sqrt(1000) < Z < (999.5-1000)/sqrt(1000)). Numerically this is about P(-0.30<Z<-0.02), roughly 0.11. A strong answer stresses the continuity correction.",
+      "source_chunk_ids": [
+        "cs109_midtermspr2017_q6k_9949ec7b94",
+        "cs109_11_joint_rvs_annotated_p10_761317177f",
+        "cs109_08_poisson_and_more_annotated_p20_4cbbde7458"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses N(1000,1000) as the approximation",
+          "Applies continuity correction correctly",
+          "Standardizes both bounds correctly",
+          "Gives a reasonable numerical approximation near 0.11"
+        ],
+        "partial_credit": [
+          "Gets the Normal mean and variance right but omits continuity correction",
+          "Uses continuity correction but makes a small standardization error",
+          "Sets up correctly without numeric finish"
+        ],
+        "common_mistakes": [
+          "Using variance sqrt(1000) instead of 1000",
+          "Ignoring that Poisson variance equals mean",
+          "Using bounds 990 and 1000 directly without continuity correction"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is a Normal approximation preferred here over computing Poisson probabilities term by term?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a Poisson random variable, what are the mean and variance, and how do they determine the matching Normal?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using variance sqrt(1000) instead of 1000. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0008",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "You are given Bin(100,0.04). Two students propose two approximations: one says Poisson(4), the other says Normal with mean 4 and variance 3.84. Compare the two choices and explain which the course guidance would prefer, and why.",
+      "expected_answer": "Both approximations match some features, but course guidance says if there is a choice, use Gaussian only when appropriate and use Poisson for Binomial when n is large and p is small. Here n=100 and p=0.04, so Poisson(4) is a natural approximation because the event is rare. A Normal could be rough, but the discrete distribution is skewed and centered near a small count, so Poisson is typically more faithful. A strong answer can mention that the provided guidance highlights Poisson for small p and Normal for mid-ranged p with np(1-p)>10.",
+      "source_chunk_ids": [
+        "cs109_11_joint_rvs_annotated_p10_761317177f",
+        "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies Poisson(4) as the preferred approximation",
+          "Explains small p and skew/small-count behavior",
+          "Mentions the Normal condition involving mid-range p or np(1-p)>10",
+          "Shows awareness that approximation choice depends on shape, not just mean"
+        ],
+        "partial_credit": [
+          "Chooses Poisson but with limited justification",
+          "Notes p is small but does not compare with Normal",
+          "Says both could work without explaining preference"
+        ],
+        "common_mistakes": [
+          "Choosing Normal just because n is large",
+          "Ignoring the skewness at small means",
+          "Using N(4,4) without considering the Binomial variance or context"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What changes if the distribution were Bin(100,0.5) instead?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What qualitative shape difference do you expect between a count centered at 4 and one centered at 50?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from poisson approximation; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Choosing Normal just because n is large. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0009",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says, 'The Poisson distribution models the time until the next event.' Give a response that untangles the random variable being modeled, and use the earthquake example to explain the distinction between counting events and waiting time.",
+      "expected_answer": "That statement confuses two different random variables. Poisson models the number of events in a fixed interval, while the waiting time until the next event is modeled by an Exponential random variable in the standard Poisson-process setting. For earthquakes, N could be the number next year with N~Poi(0.002), while T could be the time until the next major earthquake with T~Exp(0.002). The student should emphasize that random variables are not events and that the modeling choice depends on what is being measured.",
+      "source_chunk_ids": [
+        "cs109_09_continuous_rv_annotated_p36_bf0f54e843",
+        "cs109_09_continuous_rv_annotated_p35_3532d499ad",
+        "cs109_06_rvs_annotated_p15_p16_55ef09c173",
+        "cs109_08_poisson_and_more_annotated_p20_4cbbde7458"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Distinguishes count vs waiting-time random variables",
+          "Uses the earthquake example correctly",
+          "Associates Poisson with counts in intervals and Exponential with waiting time",
+          "Notes the importance of defining the random variable"
+        ],
+        "partial_credit": [
+          "States Poisson counts events but does not mention Exponential",
+          "Mentions the example but mixes up the variables",
+          "Correct intuition with weak terminology"
+        ],
+        "common_mistakes": [
+          "Saying Poisson directly models waiting time",
+          "Treating 'zero events next year' and 'time to next event exceeds one year' as different probabilities in the Poisson-process setup without explanation",
+          "Not defining the random variable"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why do the two earthquake calculations P(N=0 in one year) and P(T>1) end up numerically equal in that setup?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I ask for the probability of zero earthquakes next year, am I asking about a count or a waiting time?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from poisson approximation.",
+        "Watch out for this common trap: Saying Poisson directly models waiting time. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0010",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Suppose a web server gets requests from many users. The probability any one user sends a request in a given second is tiny, but it fluctuates slightly over the day rather than being exactly constant. Defend or critique using a Poisson approximation for the number of requests in one second, and explain what feature of the approximation is robust here.",
+      "expected_answer": "It can still be defensible to use a Poisson approximation if the probabilities are all small and the fluctuations are slight. Exact Binomial assumptions are violated because the per-user success probabilities are not identical over time or across users, but Poisson approximation often remains good under mild heterogeneity when events are rare. The robust feature is that the count is driven mainly by the total expected number of rare occurrences, so the distribution is still close to Poisson with mean approximately equal to the sum of the small probabilities over users. A strong answer should mention this is approximate, not exact.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p29_1cfe0aced4",
+        "cs109_08_poisson_and_more_annotated_p22_9b024820cf"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains why rare-event structure still supports Poisson approximation",
+          "Notes slight variation in probabilities does not necessarily break it",
+          "Identifies mean as approximately the sum of small probabilities",
+          "States that the result is approximate and assumption-sensitive"
+        ],
+        "partial_credit": [
+          "Says Poisson is okay because p is small but ignores variation",
+          "Mentions robustness without explaining why",
+          "Correct idea but no explicit mean parameter"
+        ],
+        "common_mistakes": [
+          "Insisting identical p is absolutely required for any approximation",
+          "Claiming exact Poisson despite changing probabilities",
+          "Ignoring the 'slight fluctuation' qualifier"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your answer change if user requests arrived in bursts with strong positive dependence?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Is the issue here that the probabilities are large, or that they vary slightly? Which one matters more for Poisson approximation?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Insisting identical p is absolutely required for any approximation. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0011",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A security system records the number of failed login attempts per minute, and historical data suggest an average of 0.8 failed attempts per minute. Model the count by a Poisson random variable. What is the probability of exactly three failed attempts in the next minute, and how would you interpret the result operationally?",
+      "expected_answer": "Let X~Poi(0.8). Then P(X=3)=e^{-0.8}0.8^3/3!. Operationally, this is the chance that a minute with a low average attack rate nevertheless shows a burst of exactly three failed attempts. A strong answer should connect the number to risk interpretation rather than just reciting the formula.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p20_4cbbde7458",
+        "cs109_08_poisson_and_more_annotated_p22_9b024820cf"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines the Poisson model with \u03bb=0.8",
+          "Writes the exact pmf value for k=3",
+          "Interprets the event in context",
+          "Recognizes that \u03bb is the expected count per minute"
+        ],
+        "partial_credit": [
+          "Correct formula with no interpretation",
+          "Interpretation is present but formula has a minor mistake",
+          "Defines the model but omits the pmf"
+        ],
+        "common_mistakes": [
+          "Using \u03bb=3 because k=3",
+          "Confusing exactly three with at least three",
+          "Forgetting the factorial"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would you expect the probability of zero failed attempts to be larger or smaller than the probability of exactly three here, and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In a Poisson pmf, which symbol represents the average count over the interval?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using \u03bb=3 because k=3. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0012",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "In an oral exam, I ask you to justify why E[X]=Var(X)=\u03bb is especially useful when moving from a Poisson model to a Normal approximation. Explain the logic and what matching 'mean and variance' means in practice.",
+      "expected_answer": "For a Poisson random variable X~Poi(\u03bb), both the mean and variance are \u03bb. When approximating by a Normal, we choose a Normal distribution with the same center and spread, so Y~N(\u03bb,\u03bb). This matching is useful because the Normal approximation is based on reproducing the first two moments that control location and variability. In practice, for large \u03bb, the discrete Poisson histogram becomes close to a bell shape, and then we use continuity correction for event probabilities on integer counts.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p20_4cbbde7458",
+        "cs109_midtermspr2017_q6k_9949ec7b94",
+        "cs109_11_joint_rvs_annotated_p10_761317177f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States E[X]=Var(X)=\u03bb for Poisson",
+          "Explains that Normal approximation uses N(\u03bb,\u03bb)",
+          "Connects mean and variance to center and spread",
+          "Mentions the discrete-to-continuous issue and continuity correction"
+        ],
+        "partial_credit": [
+          "Gives N(\u03bb,\u03bb) without much explanation",
+          "States the moment matching but omits continuity correction",
+          "Correct concept but weak practical interpretation"
+        ],
+        "common_mistakes": [
+          "Using N(\u03bb,sqrt(\u03bb)) as parameterization without clarifying variance vs standard deviation",
+          "Saying only the mean needs to match",
+          "Forgetting the Poisson variance equals its mean"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why would this Normal approximation be poor when \u03bb is very small, say \u03bb=1?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If a Poisson has mean 1000, what variance should the approximating Normal use?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from poisson approximation; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Using N(\u03bb,sqrt(\u03bb)) as parameterization without clarifying variance vs standard deviation. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0013",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Two independent sensors each produce rare false alarms. In one hour, the first sensor's false alarm count is Poi(1.2) and the second's is Poi(0.8). Without doing a long calculation, determine the distribution of the total false alarms and explain why this result is useful in systems design.",
+      "expected_answer": "If X~Poi(1.2) and Y~Poi(0.8) are independent, then X+Y~Poi(2.0). This is useful because combining independent rare-event sources preserves the Poisson family and simply adds the rates. In systems design, it means the total alarm load can be assessed quickly from component rates without recomputing a complicated convolution each time.",
+      "source_chunk_ids": [
+        "cs109_12_independent_rvs_annotated_p11_cff3bf0da7",
+        "cs109_08_poisson_and_more_annotated_p20_4cbbde7458"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States the total is Poisson with parameter 2.0",
+          "Uses independence as the key condition",
+          "Explains usefulness in aggregating rates",
+          "Avoids unnecessary computation"
+        ],
+        "partial_credit": [
+          "Gets the parameter sum right but does not mention independence",
+          "Mentions adding rates but not the resulting distribution",
+          "Correct idea with weak application comment"
+        ],
+        "common_mistakes": [
+          "Adding standard deviations or variances instead of rates",
+          "Claiming the sum is Binomial",
+          "Forgetting independence matters"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you compute the probability of no false alarms from either sensor in that hour using your result?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When do Poisson rates add: under dependence or under independence?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Adding standard deviations or variances instead of rates. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0014",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "A population study tracks a rare mutation. Out of 50,000 births, each independently has probability 0.00004 of showing the mutation. Use a Poisson approximation to estimate the probability of at least two cases, and explain your setup before simplifying.",
+      "expected_answer": "Let Y~Bin(50000,0.00004). Since n is large and p is small, approximate with X~Poi(\u03bb=np=2). Then P(Y\u22652)\u2248P(X\u22652)=1-P(X=0)-P(X=1)=1-e^{-2}-2e^{-2}=1-3e^{-2}. The key setup is identifying the rare-event Binomial and replacing it by a Poisson with the same mean.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c",
+        "cs109_08_poisson_and_more_annotated_p22_9b024820cf",
+        "cs109_05_independence_annotated_p19_d0c710402d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes \u03bb=2",
+          "Justifies the Poisson approximation",
+          "Uses the complement for at least two",
+          "Obtains 1-3e^{-2}"
+        ],
+        "partial_credit": [
+          "Gets \u03bb correct but sums probabilities awkwardly",
+          "Correct complement idea with small algebra slip",
+          "States approximation without justification"
+        ],
+        "common_mistakes": [
+          "Using P(X=2) instead of P(X\u22652)",
+          "Using \u03bb=0.00004",
+          "Forgetting to include P(X=1) in the complement"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is complement especially convenient for 'at least two' here?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the first two Poisson probabilities you would subtract from 1 for an event like 'at least two'?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using P(X=2) instead of P(X\u22652). Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0015",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student writes, 'X=3' and then says 'that is a random variable.' Correct the language carefully. Then explain why this distinction matters when you say P(X=3) under a Poisson model.",
+      "expected_answer": "The random variable is X itself, not the statement X=3. The expression X=3 is an event: the set of outcomes for which the random variable takes value 3. This matters because P(X=3) is the probability of that event under the model, for example e^{-\u03bb}\u03bb^3/3! in a Poisson model. A strong answer should explicitly separate the object being measured from the event defined in terms of it.",
+      "source_chunk_ids": [
+        "cs109_06_rvs_annotated_p15_p16_55ef09c173",
+        "cs109_06_rvs_annotated_p14_dbc1095be1",
+        "cs109_08_poisson_and_more_annotated_p20_4cbbde7458"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that X is the random variable and X=3 is an event",
+          "Explains why P(X=3) is the probability of an event",
+          "Connects this to the Poisson pmf",
+          "Uses precise language"
+        ],
+        "partial_credit": [
+          "Distinguishes variable and event but not clearly",
+          "Gives a correct example but weak explanation",
+          "Understands notation but explains imprecisely"
+        ],
+        "common_mistakes": [
+          "Calling X=3 the random variable",
+          "Treating P(X=3) as the variable itself",
+          "Using event and random variable interchangeably"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give another example of an event written in terms of a random variable, such as an inequality?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the object that can take values 0,1,2,... in a Poisson model: the event X=3, or the random variable X?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from poisson approximation.",
+        "Watch out for this common trap: Calling X=3 the random variable. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0016",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Suppose Y~Bin(n,p) with \u03bb=np fixed at 5. Compare the quality of a Poisson approximation in two regimes: n=50,p=0.1 and n=5000,p=0.001. Both have the same mean. Why is one typically more trustworthy than the other?",
+      "expected_answer": "Although both have mean 5, the approximation quality depends not just on \u03bb but on how the Binomial is generated. For n=5000,p=0.001, we are much closer to the Poisson limiting regime: many trials and tiny success probability. For n=50,p=0.1, p is not as small, so the Binomial structure differs more from Poisson despite sharing the same mean. The student should explain that Poisson approximation improves as n gets larger and p gets smaller with np fixed.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c",
+        "cs109_08_poisson_and_more_annotated_p25_ea87f3dfd8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Recognizes that equal mean does not imply equal approximation quality",
+          "Identifies n large and p small as improving factors",
+          "Prefers the n=5000,p=0.001 regime",
+          "Relates to the Poisson limit with fixed \u03bb"
+        ],
+        "partial_credit": [
+          "Chooses the better regime without explaining why",
+          "Mentions p small but ignores n",
+          "Says same mean so both are equal-quality approximations"
+        ],
+        "common_mistakes": [
+          "Thinking matching \u03bb alone guarantees equal closeness",
+          "Preferring n=50,p=0.1 because it is easier to compute",
+          "Ignoring the limiting argument"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What aspect of the Binomial's trial structure is disappearing in the Poisson limit?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If \u03bb is fixed, what two parameters are still changing in ways that affect approximation quality?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from poisson approximation; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Thinking matching \u03bb alone guarantees equal closeness. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0017",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A hospital tracks rare adverse reactions to a treatment. Historically, the average is 0.2 adverse reactions per day. If you model the count per day by a Poisson random variable, how would you compute the probability of zero adverse reactions over the next 3 days, and why is the parameter 0.6 rather than 0.2 in your final expression?",
+      "expected_answer": "Over 3 days, the expected count scales linearly to \u03bb=3\u00d70.2=0.6, assuming a constant rate over time. Let X be the total number in 3 days, so X~Poi(0.6). Then P(X=0)=e^{-0.6}. The explanation is that Poisson counts are tied to the interval length: longer observation windows have proportionally larger expected counts.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p20_4cbbde7458",
+        "cs109_09_continuous_rv_annotated_p36_bf0f54e843"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Scales the mean to \u03bb=0.6 for 3 days",
+          "Defines the 3-day count random variable",
+          "Computes P(X=0)=e^{-0.6}",
+          "Explains why \u03bb depends on interval length"
+        ],
+        "partial_credit": [
+          "Gets e^{-0.6} with little explanation",
+          "Correct scaling but weak modeling statement",
+          "Uses the right intuition but not formal notation"
+        ],
+        "common_mistakes": [
+          "Using e^{-0.2} for the 3-day interval",
+          "Multiplying probabilities of daily zero counts without recognizing this gives the same result",
+          "Confusing rate per day with total expected count over 3 days"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If instead I asked for the probability of at least one adverse reaction in 3 days, what shortcut would you use?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What happens to the expected Poisson count when you triple the length of the observation interval?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using e^{-0.2} for the 3-day interval. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0018",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "For a large Poisson mean \u03bb, suppose you want K such that P(X\u2264K)\u22480.99 for X~Poi(\u03bb). Explain how a Normal approximation leads to an expression involving the probit function \u03a6^{-1}, and state the approximate formula including continuity correction.",
+      "expected_answer": "Approximate X~Poi(\u03bb) by Y~N(\u03bb,\u03bb). Then use continuity correction: P(X\u2264K)\u2248P(Y\u2264K+0.5)=0.99. Standardizing gives (K+0.5-\u03bb)/sqrt(\u03bb)\u2248\u03a6^{-1}(0.99). Solving yields K\u2248\u03bb+sqrt(\u03bb)\u03a6^{-1}(0.99)-0.5. A strong answer explains each step rather than just stating the final formula.",
+      "source_chunk_ids": [
+        "cs109_midtermspr2017_q6k_9949ec7b94",
+        "cs109_11_joint_rvs_annotated_p10_761317177f",
+        "cs109_08_poisson_and_more_annotated_p20_4cbbde7458"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Starts from the Normal approximation N(\u03bb,\u03bb)",
+          "Uses continuity correction K+0.5",
+          "Standardizes and invokes \u03a6^{-1}(0.99)",
+          "Solves for K correctly"
+        ],
+        "partial_credit": [
+          "Gets the general form without continuity correction",
+          "Uses z_{0.99} correctly but not explicit probit notation",
+          "Correct idea with algebraic slip"
+        ],
+        "common_mistakes": [
+          "Using variance sqrt(\u03bb) instead of \u03bb",
+          "Using K-0.5 for a \u2264 event without explanation",
+          "Forgetting to standardize by sqrt(\u03bb)"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is continuity correction particularly relevant even when \u03bb is large?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "After matching mean and variance, what standard deviation should appear in the denominator when standardizing?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using variance sqrt(\u03bb) instead of \u03bb. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0019",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "If I say 'Poisson approximates Binomial when \u03bb is moderate,' what does 'moderate' mean in practice? Give a response that avoids treating the word as a strict theorem and instead explains the rule-of-thumb nature of the criterion.",
+      "expected_answer": "A good answer says 'moderate' is a heuristic, not a sharp boundary. In practice, people use rules like n>20 and p<0.05, or n>100 and p<0.1, while also checking that \u03bb=np is not extremely large relative to the context. The idea is that Poisson works best for many rare opportunities with a manageable expected count, but the exact cutoff is not universal. A strong answer should stress judgment, not memorized thresholds alone.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that 'moderate' is a rule of thumb",
+          "Provides at least one practical threshold from context",
+          "Connects moderation to rare events and manageable expected count",
+          "Avoids portraying the criterion as exact law"
+        ],
+        "partial_credit": [
+          "States a threshold but treats it as absolute",
+          "Mentions \u03bb=np without explaining moderation",
+          "Gives only vague intuition"
+        ],
+        "common_mistakes": [
+          "Claiming one universal exact cutoff",
+          "Ignoring n and p and discussing only \u03bb",
+          "Saying any moderate \u03bb guarantees a good approximation"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example where \u03bb is moderate but p is not small, so Poisson would still be questionable?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Are the thresholds like p<0.05 exact theorems or rough guidelines?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from poisson approximation; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming one universal exact cutoff. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0020",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A manufacturing line produces 10,000 items. Defects occur independently, but the defect probability on one shift is 0.0008 and on another is 0.0012, with 5,000 items from each shift. You are asked whether a single Poisson approximation for the total number of defects is reasonable. Explain your reasoning and identify the approximate mean.",
+      "expected_answer": "Yes, a Poisson approximation is still reasonable because the defect events are rare, the total number of trials is large, and the success probabilities differ only slightly across two groups. The total count is a sum of two rare-event Binomials: approximately Poi(5000\u00b70.0008) plus Poi(5000\u00b70.0012), which gives approximately Poi(4+6)=Poi(10). Even though the trials are not identically distributed, mild heterogeneity of small probabilities still supports Poisson approximation.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p29_1cfe0aced4",
+        "cs109_12_independent_rvs_annotated_p11_cff3bf0da7",
+        "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Recognizes rare-event approximation despite unequal probabilities",
+          "Computes mean 4+6=10",
+          "Optionally decomposes into two Poisson pieces and sums them",
+          "Explains why the approximation is still reasonable"
+        ],
+        "partial_credit": [
+          "Gets mean 10 but gives weak justification",
+          "Mentions unequal probabilities but is unsure about approximation",
+          "Correct intuition without decomposition"
+        ],
+        "common_mistakes": [
+          "Rejecting Poisson solely because p is not identical across all items",
+          "Using a Binomial with one common p without comment",
+          "Adding probabilities incorrectly instead of expected counts"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would your confidence increase or decrease if one shift had defect probability 0.02 instead? Why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the expected numbers of defects from each shift separately?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Rejecting Poisson solely because p is not identical across all items. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0021",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student sees Bin(100,0.04) and says, 'Since both the Poisson and the Binomial have mean 4, they must also have the same variance, so the approximation is exact enough.' Respond carefully. What is right in this statement, and what is misleading?",
+      "expected_answer": "It is right that both distributions share mean 4 if the Poisson parameter is \u03bb=np=4. But the variances are not the same: the Binomial variance is np(1-p)=3.84, while the Poisson variance is 4. The approximation can still be good because 3.84 and 4 are close and p is small, but equality of means does not imply equality of distributions, and even variance is only approximately matched here.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p20_4cbbde7458",
+        "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c",
+        "cs109_11_joint_rvs_annotated_p10_761317177f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Confirms same mean 4",
+          "Computes or states Binomial variance 3.84 and Poisson variance 4",
+          "Explains why the approximation may still be good",
+          "Distinguishes approximation quality from exact equality"
+        ],
+        "partial_credit": [
+          "States variances differ but does not compute them",
+          "Explains means match but not why that is insufficient",
+          "Correct idea with weak nuance"
+        ],
+        "common_mistakes": [
+          "Claiming exact equality because means match",
+          "Forgetting the Binomial variance factor 1-p",
+          "Saying variance mismatch alone makes the approximation unusable"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why does the variance gap shrink as p becomes even smaller while \u03bb stays fixed?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the Binomial variance formula, and what does it give here?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from poisson approximation.",
+        "Watch out for this common trap: Claiming exact equality because means match. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0022",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "A reliability engineer models the number of component failures in a month by X~Poi(12). Without summing many terms, explain how you would approximate P(X>20) and defend whether you would stay with Poisson calculations or switch to a Normal approximation.",
+      "expected_answer": "Since \u03bb=12 is not tiny and the tail X>20 would require summing many Poisson terms or using software, a Normal approximation is defensible. Match mean and variance: Y~N(12,12). With continuity correction, P(X>20)=P(X\u226521)\u2248P(Y>20.5). Standardize as P(Z>(20.5-12)/sqrt(12)). A strong answer should note that Poisson is exact in principle, but Normal is often chosen for convenience when \u03bb is moderately large and especially for tail calculations.",
+      "source_chunk_ids": [
+        "cs109_11_joint_rvs_annotated_p10_761317177f",
+        "cs109_midtermspr2017_q6k_9949ec7b94",
+        "cs109_08_poisson_and_more_annotated_p20_4cbbde7458"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Recognizes Normal approximation as practical here",
+          "Uses N(12,12)",
+          "Applies continuity correction with 20.5",
+          "Explains the tradeoff between exact Poisson and convenient approximation"
+        ],
+        "partial_credit": [
+          "Chooses the Normal route but omits continuity correction",
+          "Prefers exact Poisson but explains setup inadequately",
+          "Correct standardization idea with arithmetic slip"
+        ],
+        "common_mistakes": [
+          "Using N(12,sqrt(12)) without clarifying parameters",
+          "Using threshold 21.5 instead of 20.5 for X>20 without justification",
+          "Saying Poisson approximation to Poisson is needed"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If \u03bb were 2 instead of 12, would you still be as comfortable using a Normal approximation? Why or why not?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When approximating a discrete upper tail like X>20 by a Normal, what continuity-corrected cutoff should you use?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using N(12,sqrt(12)) without clarifying parameters. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0023",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A student says: 'Poisson is a good approximation to any Binomial distribution as long as n is large.' Evaluate that claim using the three examples Bin(100, 0.5), Bin(100, 0.04), and Bin(100, 0.96). For each one, explain whether a Poisson approximation is appropriate, and if not, what adjustment or alternative approximation you would suggest.",
+      "expected_answer": "The claim is false because large n alone is not enough. For a Poisson approximation to Bin(n, p), we want n large, p small, and lambda = np moderate. Bin(100, 0.04) fits this well: n is large, p is small, and lambda = 4, so Poi(4) is a reasonable approximation. Bin(100, 0.5) does not fit, because p is not small; even though n is large, the distribution is centered at 50 and is better approximated by a normal distribution. Bin(100, 0.96) is also not directly approximated by Poi(96), since p is not small, but one can instead look at failures: if X ~ Bin(100, 0.96), then 100 - X ~ Bin(100, 0.04), and the number of failures can be approximated by Poi(4).",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p30_7e1affcde8",
+        "cs109_08_poisson_and_more_annotated_p31_c5b48dc4ec",
+        "cs109_11_joint_rvs_annotated_p10_761317177f",
+        "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explicitly rejects the claim that large n alone is sufficient.",
+          "States the key conditions: n large, p small, lambda = np moderate.",
+          "Correctly identifies Bin(100, 0.04) as suitable for Poisson with lambda = 4.",
+          "Explains that Bin(100, 0.5) is not suitable for Poisson and is better handled by a normal approximation.",
+          "Explains that Bin(100, 0.96) is not directly Poisson-approximable but that the number of failures can be approximated by Poi(4)."
+        ],
+        "partial_credit": [
+          "Correctly classifies at least two of the three examples.",
+          "Mentions p small as important, but gives incomplete justification.",
+          "Recognizes the complement idea for p = 0.96 without fully articulating the transformed variable."
+        ],
+        "common_mistakes": [
+          "Saying Bin(100, 0.5) is fine for Poisson because n is large.",
+          "Approximating Bin(100, 0.96) by Poi(96) without discussing why that is inappropriate.",
+          "Ignoring the role of p and focusing only on lambda."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose n = 1000 and p = 0.003. Without computing exact probabilities, explain why the approximation should generally improve compared with Bin(100, 0.03), even though both have lambda = 3."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What feature of the Binomial probability mass function changes when p moves from 0.04 to 0.5 that makes the Poisson shape much less appropriate?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from poisson approximation; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying Bin(100, 0.5) is fine for Poisson because n is large. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0024",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "A website receives a very large number of independent opportunities for a request to fail during one minute. Each opportunity fails with a tiny probability p, so the total number of failures in a minute is modeled as approximately Poisson with mean 4. Give an approximate expression for the probability of at most 2 failures in a minute, then explain how you would approximate the probability of between 990 and 1000 events when X ~ Poi(1000), including any correction you would use and why.",
+      "expected_answer": "For the first part, if Y ~ Poi(4), then P(Y <= 2) = e^{-4}(1 + 4 + 4^2/2!). The setup matters more than arithmetic. For the second part, when lambda is very large, a Poisson can be approximated by a normal with the same mean and variance, so X ~ Poi(1000) is approximated by N(1000, 1000). Because X is discrete and the normal is continuous, I should use a continuity correction: P(990 < X < 1000) means P(991 <= X <= 999), which is approximated by P(990.5 < Z* < 999.5) where Z* ~ N(1000, 1000). Standardizing gives P((990.5 - 1000)/sqrt(1000) < Z < (999.5 - 1000)/sqrt(1000)). The student should emphasize matching mean and variance and using continuity correction.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p20_4cbbde7458",
+        "cs109_midtermspr2017_q6k_9949ec7b94",
+        "cs109_11_joint_rvs_annotated_p10_761317177f"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly writes the Poisson cumulative expression for P(Y <= 2) with lambda = 4.",
+          "States that a large-lambda Poisson is approximated by a normal with mean lambda and variance lambda.",
+          "Correctly identifies N(1000, 1000) as the approximating normal.",
+          "Uses an appropriate continuity correction for the discrete-to-continuous approximation.",
+          "Correctly standardizes the interval in terms of a standard normal."
+        ],
+        "partial_credit": [
+          "Gets the Poisson setup right but not the normal approximation details.",
+          "Identifies the normal approximation but omits continuity correction.",
+          "Uses the right mean and standard deviation conceptually but makes minor endpoint errors."
+        ],
+        "common_mistakes": [
+          "Using variance 1 instead of 1000 for the approximating normal.",
+          "Forgetting the continuity correction.",
+          "Replacing P(990 < X < 1000) by P(990 < Y < 1000) with no translation to integer values."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is the normal approximation preferred over summing hundreds of Poisson terms here, and what feature of the Poisson distribution at large lambda makes that reasonable?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If the approximating normal must match both the mean and the variance of Poi(1000), what are those two numbers?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using variance 1 instead of 1000 for the approximating normal. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0025",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A systems engineer is analyzing a large hash table and wants to model the number of entries in a particular bucket. She says, 'The bucket count is not exactly Binomial because the placements are only almost independent, so Poisson is invalid.' Based on the lecture guidance, explain whether you agree. Your answer should discuss what assumptions are being mildly violated and why the approximation may still be useful.",
+      "expected_answer": "I would not fully agree. The exact Binomial assumptions may fail because item placements into buckets can be only approximately independent, and in some applications the per-item probability of landing in a bucket may vary slightly. But the lecture notes explicitly say Poisson can still be a good approximation when successes are almost, but not entirely, independent, and when the success probabilities vary slightly, especially if those probabilities are all very small and the total expected count remains moderate. So the engineer should treat Poisson as an approximation rather than an exact model, and justify it by saying the dependence and heterogeneity are mild, the bucket probability is tiny, and the expected number of entries per bucket is moderate.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p29_1cfe0aced4",
+        "cs109_08_poisson_and_more_annotated_p22_9b024820cf",
+        "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Recognizes that Poisson need not be exact to be useful.",
+          "Explains the two mild violations mentioned in the notes: slight dependence and slight variation in success probabilities.",
+          "Connects the approximation back to the usual regime of tiny probabilities and moderate expected count.",
+          "Frames the conclusion as 'approximately valid under mild violations,' not 'always valid.'"
+        ],
+        "partial_credit": [
+          "States that Poisson may still work under slight dependence but does not mention varying probabilities.",
+          "Says approximation is okay when p is small, without discussing the violated assumptions.",
+          "Gives the right conclusion with weak justification."
+        ],
+        "common_mistakes": [
+          "Claiming any dependence immediately invalidates Poisson approximation.",
+          "Claiming Poisson remains exact under dependence.",
+          "Ignoring the need for small probabilities and moderate mean."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give another real-world example from the notes where the success probability might vary slightly over time but a Poisson approximation is still reasonable?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the difference between saying a model is exact and saying it is a good approximation?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming any dependence immediately invalidates Poisson approximation. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0026",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A classmate argues: 'If requests arrive according to independent Poisson counts from two services, with means 2 and 3 per second, then the total is approximately Binomial because we are combining two random variables.' Diagnose the mistake and replace it with the correct statement. Then compute the probability of exactly 4 total requests in one second.",
+      "expected_answer": "The mistake is conceptual: the sum of independent Poisson random variables is again Poisson, not Binomial. If X ~ Poi(2) and Y ~ Poi(3) are independent, then X + Y ~ Poi(5). Therefore the probability of exactly 4 total requests is P(X + Y = 4) = e^{-5} 5^4 / 4!. A strong answer may also note that this result comes from convolution together with the binomial theorem, not from a Binomial counting interpretation.",
+      "source_chunk_ids": [
+        "cs109_12_independent_rvs_annotated_p11_cff3bf0da7",
+        "cs109_08_poisson_and_more_annotated_p20_4cbbde7458"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Clearly identifies the claim 'sum is Binomial' as incorrect.",
+          "States the correct closure property: independent Poissons add to a Poisson with summed rates.",
+          "Correctly gives the resulting distribution as Poi(5).",
+          "Correctly computes or sets up P(total = 4) = e^{-5} 5^4 / 4!."
+        ],
+        "partial_credit": [
+          "Gets the right final distribution but gives a vague explanation.",
+          "Understands the means add but cannot justify why the family stays Poisson.",
+          "Sets up the probability correctly but does not explicitly diagnose the Binomial misconception."
+        ],
+        "common_mistakes": [
+          "Multiplying means instead of adding them.",
+          "Calling the total approximately normal or binomial without justification.",
+          "Using P(X = 4) + P(Y = 4) instead of the distribution of the sum."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your answer change if the question asked for the total number of requests over 10 seconds rather than 1 second?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What distributional property lets you combine two independent Poisson rates into one total rate?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from poisson approximation.",
+        "Watch out for this common trap: Multiplying means instead of adding them. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_poisson_approximation_0027",
+      "course": "CS109",
+      "topic_id": "poisson_approximation",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Derive, in words rather than a fully formal proof, why Bin(n, p) approaches a Poisson distribution when n becomes large and p becomes small with np = lambda fixed. I want you to explain what happens separately to the combinatorial term, the factor p^k, and the factor (1-p)^(n-k), and to state what this says about when the approximation is appropriate in practice.",
+      "expected_answer": "Start from P(X = k) = C(n, k) p^k (1-p)^{n-k}, and set p = lambda/n. Then for fixed k, the combinatorial term C(n, k) behaves like n^k / k! because n(n-1)...(n-k+1) is approximately n^k when n is very large. The factor p^k becomes (lambda/n)^k, so together with the combinatorial term it approaches lambda^k / k!. The factor (1 - lambda/n)^{n-k} is essentially the same as (1 - lambda/n)^n for fixed k, and that approaches e^{-lambda}. Multiplying the limits gives e^{-lambda} lambda^k / k!, the Poisson pmf. In practice this motivates the rule of thumb that n should be large and p should be small, with lambda = np not too extreme; the lecture gives examples such as n > 20 and p < 0.05 or n > 100 and p < 0.1.",
+      "source_chunk_ids": [
+        "cs109_08_poisson_and_more_annotated_p25_ea87f3dfd8",
+        "cs109_08_poisson_and_more_annotated_p26_0c1dc8954c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rewrites p as lambda/n and starts from the Binomial pmf.",
+          "Explains the approximation of the combinatorial factor for fixed k.",
+          "Explains how the p^k term combines with the combinatorial factor to give lambda^k / k!.",
+          "Explains why the remaining factor tends to e^{-lambda}.",
+          "Connects the limit argument to practical approximation conditions."
+        ],
+        "partial_credit": [
+          "States the limiting pmf correctly but gives only partial reasoning.",
+          "Explains the e^{-lambda} term correctly but not the combinatorial term.",
+          "Knows the practical rule of thumb but cannot connect it to the limiting argument."
+        ],
+        "common_mistakes": [
+          "Treating k as growing with n in the limit explanation without qualification.",
+          "Saying only 'because np = lambda' with no decomposition of the pmf.",
+          "Confusing the Poisson approximation conditions with those for normal approximation."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why does keeping lambda = np fixed matter in the limiting argument? What would go wrong if p stayed constant while n grew?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If p = lambda/n, what classic limit should you recognize in the term (1 - lambda/n)^n?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from poisson approximation; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Treating k as growing with n in the limit explanation without qualification. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    }
+  ]
+}

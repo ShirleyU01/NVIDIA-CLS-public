@@ -1,0 +1,1292 @@
+{
+  "topic_id": "naive_bayes",
+  "topic_name": "Naive Bayes",
+  "course": "CS109",
+  "questions": [
+    {
+      "question_id": "CS109_naive_bayes_0001",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A classmate says: 'Naive Bayes assumes the features are independent, so if two words in an email are correlated in the raw data, the model is invalid.' Do you agree? Explain carefully what independence assumption Naive Bayes actually makes, and describe a situation where two features are dependent marginally but conditionally independent given the class label.",
+      "expected_answer": "A strong answer should say the model does not require unconditional independence of features. The Naive Bayes assumption is conditional independence given Y: for all feature values, P(X1,...,Xm | Y=y) = product_i P(Xi | Y=y). So features may be correlated in the population overall, yet become independent after conditioning on the class. For example, two movie preferences or two words in emails may be associated overall because both are driven by whether the user likes a genre or whether the email is spam; once we condition on that latent/class label, the dependence may largely disappear. The student should also note that this is an approximation in practice, not a theorem guaranteed by the data.",
+      "source_chunk_ids": [
+        "cs109_23_naive_bayes_annotated_p32_0e61718cb5",
+        "cs109_06_rvs_annotated_p4_ae2b276089",
+        "cs109_06_rvs_annotated_p9_p10_e768695e32",
+        "cs109_15_general_inference_annotated_p10_p11_4386b25b25"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States clearly that the assumption is conditional independence given Y, not marginal independence.",
+          "Writes or verbalizes the factorization P(X1,...,Xm|Y)=\u220fP(Xi|Y).",
+          "Explains that marginal dependence can coexist with conditional independence.",
+          "Gives a plausible example grounded in class labels or a hidden cause."
+        ],
+        "partial_credit": [
+          "Mentions 'given Y' but explanation is vague.",
+          "Gives the right intuition but no formal factorization.",
+          "Confuses events and random variables but overall idea is correct."
+        ],
+        "common_mistakes": [
+          "Saying Naive Bayes assumes Xi are independent unconditionally.",
+          "Claiming any observed correlation between features makes Naive Bayes unusable.",
+          "Describing P(Y|X)=\u220fP(Y|Xi), which is not the Naive Bayes assumption."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the conditional independence assumption is false but only mildly false, why can Naive Bayes still classify well?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you restate the assumption using the phrase 'after fixing Y' and write the corresponding product form?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from naive bayes; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying Naive Bayes assumes Xi are independent unconditionally. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0002",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose you are building a binary spam classifier with binary word-presence features X1,...,Xm. Walk me through exactly which probabilities must be estimated during training under Naive Bayes, and contrast that with the brute-force Bayes approach that estimates the full conditional distribution P(X1,...,Xm | Y). Why does the parameter count change so dramatically?",
+      "expected_answer": "The student should explain that in binary Naive Bayes for a binary label Y, training estimates the class prior P(Y=1) and P(Y=0), plus for each feature i and each class y, probabilities like P(Xi=1 | Y=y), with P(Xi=0 | Y=y) either estimated separately or inferred as one minus that value. So the number of free parameters grows linearly in m. By contrast, brute-force Bayes would require estimating probabilities for every full feature vector x under each class, i.e. a table over 2^m possible x values for each class, which is exponential in m. The student should connect this to why Naive Bayes is tractable with many features and why brute-force estimation suffers severe data sparsity.",
+      "source_chunk_ids": [
+        "cs109_23_naive_bayes_annotated_p25_p26_b15b90b12e",
+        "cs109_23_naive_bayes_annotated_p34_p35_1cfbc7e2a2",
+        "cs109_23_naive_bayes_annotated_p38_4c64cdb82e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Lists the prior(s) and per-feature conditional probabilities needed for Naive Bayes.",
+          "Explains that binary features allow one probability per feature per class as a free parameter.",
+          "Contrasts with exponential-size full joint conditional table for brute-force Bayes.",
+          "Mentions tractability/data sparsity motivation."
+        ],
+        "partial_credit": [
+          "Correctly identifies the needed Naive Bayes quantities but weakly explains the brute-force case.",
+          "Says 'fewer parameters' without describing linear versus exponential growth."
+        ],
+        "common_mistakes": [
+          "Saying Naive Bayes estimates P(Y|Xi) directly during training.",
+          "Forgetting the class prior.",
+          "Claiming the full joint needs only m parameters."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If each feature had 6 discrete values instead of being binary, how would your parameter-count comparison change qualitatively?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For m binary features, how many distinct feature vectors x exist? How does that affect a full conditional table?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Saying Naive Bayes estimates P(Y|Xi) directly during training. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0003",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You train a Naive Bayes classifier on a large text dataset, and at test time you must score an email with thousands of features. A teammate multiplies all the estimated probabilities directly and gets numerical underflow, producing zeros for both classes. Explain a principled fix, justify why it preserves the argmax decision, and mention any interpretation change in the resulting score.",
+      "expected_answer": "A strong answer should say to move to log-space and compute log P(Y=y) + sum_i log P(Xi | Y=y) instead of multiplying probabilities. This avoids underflow because sums of logs are numerically stable even when the original product is tiny. The argmax is unchanged because logarithm is a strictly increasing function, so maximizing a product of positive terms is equivalent to maximizing the sum of their logs. The interpretation changes from a probability-like product score to a log-score or log-posterior up to an additive constant if we ignore P(X).",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p8_1f8e3c24a5",
+        "cs109_23_naive_bayes_annotated_p34_p35_1cfbc7e2a2",
+        "cs109_15_general_inference_annotated_p10_p11_4386b25b25"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies underflow as the issue with multiplying many small probabilities.",
+          "Replaces the product by a sum of log-probabilities.",
+          "Justifies unchanged argmax using monotonicity of log.",
+          "Notes that P(X) can be dropped for classification because it is common across classes."
+        ],
+        "partial_credit": [
+          "Suggests logs but does not justify why decision is preserved.",
+          "Mentions numerical stability but not how to score classes."
+        ],
+        "common_mistakes": [
+          "Taking log after the product is already rounded to zero.",
+          "Believing log changes the predicted class.",
+          "Dropping terms incorrectly, such as omitting the prior P(Y)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If one of the estimated conditional probabilities is exactly zero, what happens in log-space, and how would you address that during training?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why is adding logarithms of probabilities preferable to multiplying many numbers smaller than 1?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Taking log after the product is already rounded to zero. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0004",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says: 'Since Bayes\u2019 rule divides by P(X), we need to estimate P(X) for every possible test point in order to classify with Naive Bayes.' Evaluate this claim. In your explanation, be precise about when P(X) matters and when it does not.",
+      "expected_answer": "For classification via argmax over classes, the claim is false. Bayes gives P(Y|X)=P(X|Y)P(Y)/P(X), but for a fixed observed X, the denominator P(X) does not depend on Y, so it is the same for every class and cancels in the argmax. Therefore, to predict the most likely class, we only need to compare P(X|Y=y)P(Y=y) across y. However, P(X) would matter if we wanted the actual normalized posterior probabilities rather than just the most likely class.",
+      "source_chunk_ids": [
+        "cs109_23_naive_bayes_annotated_p32_0e61718cb5",
+        "cs109_23_naive_bayes_annotated_p25_p26_b15b90b12e",
+        "cs109_finalfall2017_q5_6ce6fbd271"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that P(X) cancels in the argmax because it is common across classes.",
+          "Distinguishes prediction of the class label from computing normalized posterior probabilities.",
+          "Uses Bayes' rule correctly."
+        ],
+        "partial_credit": [
+          "Says 'it cancels' without clearly explaining why.",
+          "Correctly discusses argmax but ignores the case of wanting calibrated probabilities."
+        ],
+        "common_mistakes": [
+          "Claiming P(X) depends on Y in the denominator during argmax.",
+          "Saying Naive Bayes never needs P(X) for any purpose.",
+          "Confusing P(X) with P(X|Y)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If you wanted the actual posterior probabilities P(Y=y|X=x), not just the winning class, what extra step would be needed?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a fixed test point x, does P(X=x) change when you compare y=0 versus y=1?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from naive bayes.",
+        "Watch out for this common trap: Claiming P(X) depends on Y in the denominator during argmax. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0005",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Consider binary Naive Bayes with class Y in {0,1}. In the training set, feature X7 never appears as 1 among examples with Y=1, but the test point has X7=1. Compare what happens under MLE versus Laplace smoothing, both numerically in the class score and conceptually in the classifier\u2019s behavior.",
+      "expected_answer": "Under MLE, the estimate for P(X7=1 | Y=1) would be 0 because the event was never seen in that class. Then any test example with X7=1 makes the entire Naive Bayes product for class Y=1 equal to 0, or log-score negative infinity, regardless of all other evidence. Under Laplace smoothing, the estimate becomes a small positive value, such as (count+1)/(class_count+2) for a binary feature, so the class is penalized but not ruled out completely. Conceptually, smoothing prevents overconfidence caused by finite-sample zeros and acts like a simple MAP estimate with a prior favoring nonzero probabilities.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p5_6959ca3cce",
+        "cs109_23_naive_bayes_annotated_p44_62eeb83eb3",
+        "cs109_23_naive_bayes_annotated_p46_749f33d4e8",
+        "cs109_08_section_soln_sec1_part2_c2e6d5b272"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains zero probability under MLE and its multiplicative/log consequence.",
+          "Explains Laplace smoothing formula qualitatively or explicitly for binary features.",
+          "Interprets smoothing as avoiding impossible predictions from unseen events.",
+          "Compares the effect on the class decision."
+        ],
+        "partial_credit": [
+          "Understands that Laplace avoids zeros but gives no detail.",
+          "Describes the issue only qualitatively without linking to the class score."
+        ],
+        "common_mistakes": [
+          "Saying Laplace changes only the prior P(Y).",
+          "Claiming MLE is always preferable because it uses the data more 'exactly'.",
+          "Forgetting that one zero factor kills the whole product."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the denominator change if X7 had 6 possible discrete values instead of 2?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In a product of probabilities, what happens if even one factor is exactly zero?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Saying Laplace changes only the prior P(Y). Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0006",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are asked to extend a binary-feature Naive Bayes model to a four-class problem where Y can be {Like, Love, Haha, Sad}. A new user has X1=1, X2=1, X3=0. Explain how you would write the prediction rule as an argmax over classes and how you would estimate each term using counts with Laplace smoothing.",
+      "expected_answer": "The student should say the predicted class is argmax over y in {Like, Love, Haha, Sad} of P(Y=y) times P(X1=1|Y=y)P(X2=1|Y=y)P(X3=0|Y=y), using the Naive Bayes conditional independence assumption. Priors can be estimated as count(Y=y)/N, and each binary conditional with Laplace smoothing is estimated as (count(Xi=v, Y=y)+1)/(count(Y=y)+2), where v is 0 or 1. The explanation should make clear that we compute this score for all four classes and choose the largest. A stronger answer notes that P(X) is omitted because it is constant across classes.",
+      "source_chunk_ids": [
+        "cs109_08_section_soln_sec1_part2_c2e6d5b272",
+        "cs109_23_naive_bayes_annotated_p32_0e61718cb5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes the multiclass argmax structure correctly.",
+          "Uses the Naive Bayes factorization over the three features.",
+          "Gives correct Laplace-smoothed count formulas for binary features.",
+          "Explains evaluation across all four classes."
+        ],
+        "partial_credit": [
+          "Correct argmax but missing smoothing details.",
+          "Correct formulas for conditionals but omits the prior or the class comparison."
+        ],
+        "common_mistakes": [
+          "Using one-vs-rest logistic-regression style reasoning instead of multiclass Naive Bayes.",
+          "Applying Laplace smoothing with the wrong denominator.",
+          "Forgetting to use X3=0 rather than X3=1 in the score."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If one class has very few examples, what role does Laplace smoothing play for that class\u2019s conditional probabilities?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a binary feature Xi, how many possible values must Laplace smoothing account for in the denominator?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Using one-vs-rest logistic-regression style reasoning instead of multiclass Naive Bayes. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0007",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Compare Naive Bayes and logistic regression as models for binary classification. I do not want just the slogan 'generative versus discriminative'\u2014explain what each model learns, whether each can generate new (x,y) pairs after fitting, and how each naturally handles continuous or non-binary discrete features.",
+      "expected_answer": "A strong answer should explain that Naive Bayes models the joint structure through P(X|Y) and P(Y), so it is generative: after fitting, one can sample Y from the class prior and then sample features from the class-conditional distributions. Logistic regression models P(Y|X) directly as a conditional probability and therefore is discriminative; it does not by itself specify a generative model for X. For continuous features, Naive Bayes can handle them by specifying a class-conditional family such as Gaussian Naive Bayes, whereas logistic regression can take continuous inputs directly without needing a distribution for X. For non-binary discrete features, Naive Bayes can use categorical conditionals, and logistic regression can also incorporate them via encoding, though the modeling interpretation differs.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p44_d0de35ec97",
+        "cs109_23_naive_bayes_annotated_p34_p35_1cfbc7e2a2"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains generative vs discriminative in terms of modeled distributions, not just names.",
+          "States whether each can generate new (x,y) pairs and why.",
+          "Addresses continuous features and non-binary discrete features for both models.",
+          "Keeps the comparison tied to model assumptions rather than implementation trivia."
+        ],
+        "partial_credit": [
+          "Correctly says generative vs discriminative but gives limited consequences.",
+          "Mentions Gaussian Naive Bayes or categorical features but not both."
+        ],
+        "common_mistakes": [
+          "Claiming logistic regression models P(X|Y).",
+          "Saying Naive Bayes cannot handle continuous features.",
+          "Confusing feature encoding issues with probability-model structure."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Which model would you expect to be more sensitive to a badly misspecified distribution for X|Y, and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I ask you to simulate a new feature vector x from the fitted model, which of the two models gives that to you directly?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from naive bayes; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming logistic regression models P(X|Y). Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0008",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose you have m binary features and a binary label. During testing, a student writes the score for class y as product over i of P(Xi=1 | Y=y), regardless of whether the observed Xi is 0 or 1. Explain what is wrong with this, and give the correct per-feature contribution to the Naive Bayes score.",
+      "expected_answer": "The mistake is that the class-conditional factor must match the observed feature value. If Xi is binary and the test point has Xi=1, the factor is P(Xi=1|Y=y); if Xi=0, the factor is P(Xi=0|Y=y), which may be estimated directly or as 1-P(Xi=1|Y=y). A compact way to say it is the score uses product_i P(Xi=xi | Y=y), where xi is the observed value for that test point. Ignoring zeros treats absent words or negative feature values as irrelevant when the model may actually learn that absence is informative.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p8_1f8e3c24a5",
+        "cs109_23_naive_bayes_annotated_p44_62eeb83eb3"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies mismatch between observed Xi and the factor used.",
+          "States the correct factor as P(Xi=xi|Y=y).",
+          "Notes that Xi=0 can also carry information."
+        ],
+        "partial_credit": [
+          "Recognizes the error but gives only an informal correction.",
+          "Mentions using 1-P(Xi=1|Y=y) for zeros but not the general rule."
+        ],
+        "common_mistakes": [
+          "Treating only present words/features as part of the model by default.",
+          "Writing P(Y|Xi) instead of P(Xi|Y).",
+          "Forgetting that the product runs over all modeled features."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "In sparse text models, why might practitioners still omit many Xi=0 terms in some implementations, and what modeling choice would make that reasonable?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If Xi=0 in the test example, should the factor be based on Xi=1 or Xi=0?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Treating only present words/features as part of the model by default. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0009",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "Someone argues: 'Because Naive Bayes factorizes P(X|Y), the features must be pairwise conditionally independent, and that is the same as full conditional independence of all features given Y.' Is that statement fully correct? Explain the subtlety between pairwise and mutual conditional independence and which version Naive Bayes uses.",
+      "expected_answer": "A strong answer should say the statement is not fully correct. Pairwise conditional independence means every pair Xi and Xj is conditionally independent given Y, but mutual or full conditional independence means the entire joint conditional distribution factorizes as P(X1,...,Xm|Y)=\u220fP(Xi|Y). For more than two features, pairwise independence does not in general imply full mutual independence. Naive Bayes uses the stronger factorization of the full conditional joint, not merely pairwise conditional independence.",
+      "source_chunk_ids": [
+        "cs109_15_general_inference_annotated_p10_p11_4386b25b25",
+        "cs109_05_independence_annotated_p5_bfa15e0662",
+        "cs109_23_naive_bayes_annotated_p32_0e61718cb5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Distinguishes pairwise from full mutual conditional independence.",
+          "States that Naive Bayes assumes the full factorization.",
+          "Notes that pairwise independence alone is insufficient in general when m>2."
+        ],
+        "partial_credit": [
+          "Senses there is a distinction but cannot articulate it fully.",
+          "Correctly states the Naive Bayes factorization but not the pairwise subtlety."
+        ],
+        "common_mistakes": [
+          "Saying pairwise independence always implies mutual independence.",
+          "Talking only about unconditional independence.",
+          "Failing to mention the joint factorization."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why might this distinction matter when reasoning about whether the Naive Bayes assumption is plausible in a real dataset?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For three features, does knowing each pair is conditionally independent automatically tell you how P(X1,X2,X3|Y) factorizes?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from naive bayes.",
+        "Watch out for this common trap: Saying pairwise independence always implies mutual independence. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0010",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "Imagine you are classifying users as liking or disliking a TV genre using many binary indicators of preferences for individual shows. Explain why the brute-force Bayes classifier becomes impractical as the number of shows grows, and why Naive Bayes offers a useful compromise even if its independence assumption is not exactly true.",
+      "expected_answer": "The brute-force classifier needs estimates for P(X1,...,Xm|Y=y) for every full binary pattern x, so the number of possible patterns is 2^m per class, which becomes enormous as m grows. Most patterns will have little or no data, so estimates are unstable or impossible without huge samples. Naive Bayes reduces the estimation burden to per-feature conditional probabilities P(Xi|Y), making training feasible with limited data and many features. Even if the independence assumption is imperfect, the model can still provide useful classification because it often captures enough of the class-specific signal to rank classes well.",
+      "source_chunk_ids": [
+        "cs109_23_naive_bayes_annotated_p38_4c64cdb82e",
+        "cs109_23_naive_bayes_annotated_p25_p26_b15b90b12e",
+        "cs109_23_naive_bayes_annotated_p32_0e61718cb5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains exponential state space for brute-force Bayes.",
+          "Connects that to data sparsity and unstable estimates.",
+          "Explains the linear-parameter simplification in Naive Bayes.",
+          "Gives a sensible reason Naive Bayes can still work when assumptions are approximate."
+        ],
+        "partial_credit": [
+          "Mentions 'too many combinations' but not the 2^m growth.",
+          "Says Naive Bayes is simpler without explaining why."
+        ],
+        "common_mistakes": [
+          "Claiming Naive Bayes is exact whenever m is large.",
+          "Failing to connect parameter count to sample-size needs.",
+          "Saying brute-force Bayes is fine if you use logs."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What kind of feature engineering might make the conditional independence assumption more plausible in this setting?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If there are m binary shows, how many distinct preference vectors are possible?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming Naive Bayes is exact whenever m is large. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0011",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "In Gaussian Naive Bayes, suppose for each feature Xi and class y you model Xi as Normal with mean \u03bci,y and variance \u03c3^2_i,y. For a test point with two features x=(5,3), explain how to decide whether Y=1 or Y=0 without computing any integrals, and write the comparison in terms of Gaussian densities and the prior p=P(Y=1).",
+      "expected_answer": "The student should say compare the two class scores using the Naive Bayes product of class-conditional densities times the prior: predict Y=1 if f1,1(5) f2,1(3) p > f1,0(5) f2,0(3) (1-p), where fi,y denotes the Normal density with parameters \u03bci,y and \u03c3^2_i,y evaluated at the observed xi. Equivalently, compare log p + log f1,1(5) + log f2,1(3) to log(1-p) + log f1,0(5) + log f2,0(3). No integration is needed because classification uses density values at the observed point, not probabilities of intervals. A strong answer may note that the denominator P(X=x) is not needed for the argmax.",
+      "source_chunk_ids": [
+        "cs109_finalfall2017_q5_6ce6fbd271",
+        "cs109_finalfall2017_q10_d342a69e74",
+        "cs109_25_logistic_regression_annotated_p44_d0de35ec97"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses class-conditional Gaussian densities, not discrete probabilities, in the comparison.",
+          "Includes both features under the Naive Bayes product and the class prior.",
+          "Recognizes that logs may be used for stability.",
+          "Explains why no integral is needed."
+        ],
+        "partial_credit": [
+          "Correct comparison idea but forgets the prior or one feature.",
+          "Says 'use Gaussian probability' without distinguishing density evaluation."
+        ],
+        "common_mistakes": [
+          "Trying to compute P(X=5) for a continuous variable directly as a positive probability.",
+          "Using a single joint Gaussian without invoking Naive Bayes.",
+          "Omitting the class prior."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is it acceptable that Gaussian densities can exceed 1 at a point, whereas probabilities cannot?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For continuous Xi, should you compare probabilities of exact points or density values at those points?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Trying to compute P(X=5) for a continuous variable directly as a positive probability. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0012",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "After training a spam classifier, you evaluate it on a separate test set with known labels. Explain what precision and recall mean for the spam class, and describe a realistic situation in which a Naive Bayes system could have high precision but lower recall, or vice versa.",
+      "expected_answer": "Precision for spam means among emails predicted as spam, the fraction that truly are spam. Recall for spam means among all truly spam emails in the test set, the fraction correctly predicted as spam. High precision but lower recall would happen if the classifier is conservative and flags only very obvious spam, missing many borderline cases. High recall but lower precision would happen if it aggressively marks many emails as spam, catching most spam but producing more false positives on legitimate email.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p9_21c128ee05"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Defines precision and recall correctly for a chosen class.",
+          "Distinguishes denominator for each metric.",
+          "Provides a coherent scenario for precision-recall tradeoff."
+        ],
+        "partial_credit": [
+          "Gets the intuition right but swaps denominators.",
+          "Provides only one of the two scenarios."
+        ],
+        "common_mistakes": [
+          "Confusing precision with overall accuracy.",
+          "Defining recall using predicted positives instead of actual positives.",
+          "Ignoring the class-specific nature of the metrics."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If false positives are especially costly, which metric would you emphasize and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In precision, is the denominator the number predicted spam or the number of true spam emails?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from naive bayes; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Confusing precision with overall accuracy. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0013",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A teammate says: 'Because Naive Bayes uses Bayes\u2019 theorem, it must be estimating P(Y|X) directly during training.' Explain why this is misleading, and identify what is typically estimated from the training data instead.",
+      "expected_answer": "The statement is misleading because standard Naive Bayes training usually estimates the generative pieces P(Y) and P(Xi|Y) or more generally P(X|Y), often by MLE or Laplace/MAP. Bayes' theorem is then used at prediction time to compute a score proportional to P(Y|X). So the model does not typically fit P(Y|X) directly from the data in the way logistic regression does; rather, it estimates the class prior and class-conditional feature distributions and combines them using Bayes\u2019 rule.",
+      "source_chunk_ids": [
+        "cs109_23_naive_bayes_annotated_p25_p26_b15b90b12e",
+        "cs109_23_naive_bayes_annotated_p34_p35_1cfbc7e2a2",
+        "cs109_25_logistic_regression_annotated_p44_d0de35ec97"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that training estimates P(Y) and class-conditional feature distributions.",
+          "States Bayes' theorem is used at prediction/inference time to obtain posterior scores.",
+          "Contrasts this with direct conditional modeling."
+        ],
+        "partial_credit": [
+          "Says Naive Bayes is generative but does not spell out what is estimated.",
+          "Mentions P(X|Y) but omits P(Y)."
+        ],
+        "common_mistakes": [
+          "Claiming Naive Bayes optimizes conditional log-likelihood directly by default.",
+          "Confusing Naive Bayes training with logistic regression training.",
+          "Ignoring the role of Bayes\u2019 theorem at test time."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why might estimating P(X|Y) sometimes be easier than estimating P(Y|X) when you have strong structural assumptions?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When you estimate a table like P(Xi=1|Y=0), is that a posterior or a class-conditional probability?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from naive bayes.",
+        "Watch out for this common trap: Claiming Naive Bayes optimizes conditional log-likelihood directly by default. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0014",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Suppose you have two highly redundant binary features: X1 indicates whether the word 'free' appears in an email, and X2 indicates whether the exact same tokenization pipeline also marks a nearly identical feature for that same word. Under Naive Bayes, what risk does this redundancy create in the posterior score, and how would you explain the issue without saying the classifier is automatically wrong?",
+      "expected_answer": "Because Naive Bayes multiplies class-conditional contributions across features, two nearly duplicate features can effectively count the same evidence twice. This can make the posterior score or log-score overly extreme, leading to overconfident predictions. However, the classifier is not automatically wrong: if the duplicated evidence still points in the correct direction, the predicted class may remain correct even though the probability calibration is poor. The key issue is violation of conditional independence and double-counting of evidence, not guaranteed misclassification.",
+      "source_chunk_ids": [
+        "cs109_23_naive_bayes_annotated_p32_0e61718cb5",
+        "cs109_15_general_inference_annotated_p10_p11_4386b25b25",
+        "cs109_06_rvs_annotated_p9_p10_e768695e32"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies double-counting of evidence due to correlated/redundant features.",
+          "Explains impact on overconfidence or calibration.",
+          "Avoids overstating the consequence as inevitable misclassification."
+        ],
+        "partial_credit": [
+          "Recognizes dependence problem but not the overconfidence effect.",
+          "Says 'it violates assumptions' without explaining practical consequences."
+        ],
+        "common_mistakes": [
+          "Claiming Naive Bayes cannot be used at all with correlated features.",
+          "Saying duplicate features have no effect because each feature is treated separately.",
+          "Confusing redundancy with class imbalance."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What preprocessing step could reduce this problem before training?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If two features contain almost the same information, what happens when the model multiplies both of their likelihood factors?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming Naive Bayes cannot be used at all with correlated features. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0015",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "For binary Naive Bayes, explain how you would estimate P(Xi=0 | Y=y) from training data in two different ways, and under what assumptions those two ways agree. Then comment on whether it is ever necessary to estimate both P(Xi=1|Y=y) and P(Xi=0|Y=y) as independent free parameters.",
+      "expected_answer": "One way is direct counting: estimate P(Xi=0|Y=y) from the fraction of training examples in class y with Xi=0, possibly with smoothing. Another is to estimate P(Xi=1|Y=y) and use P(Xi=0|Y=y)=1-P(Xi=1|Y=y), since Xi is binary and the two outcomes exhaust the possibilities. These agree when the estimation procedure is coherent for a binary variable, such as MLE or symmetric Laplace smoothing applied consistently. Therefore, for a binary feature they are not independent free parameters; one determines the other.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p8_1f8e3c24a5",
+        "cs109_23_naive_bayes_annotated_p44_62eeb83eb3",
+        "cs109_23_naive_bayes_annotated_p46_749f33d4e8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Gives both direct counting and complement methods.",
+          "States that for binary features the two probabilities sum to 1.",
+          "Explains that they are not independent free parameters."
+        ],
+        "partial_credit": [
+          "Only gives one estimation approach but correctly notes complementarity.",
+          "Mentions that outcomes sum to 1 but not the implications for parameter count."
+        ],
+        "common_mistakes": [
+          "Treating P(Xi=0|Y=y) and P(Xi=1|Y=y) as unrelated parameters.",
+          "Using P(Xi=0|Y=y)=1-P(Y=y).",
+          "Ignoring smoothing consistency."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would this change if Xi had 6 possible discrete values instead of 2?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a binary variable, what must P(Xi=0|Y=y)+P(Xi=1|Y=y) equal?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Treating P(Xi=0|Y=y) and P(Xi=1|Y=y) as unrelated parameters. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0016",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Why is conditioning the right lens for understanding Naive Bayes? Answer by connecting the general conditional probability identities to the Naive Bayes derivation, starting from Bayes\u2019 theorem and ending at the class-score factorization.",
+      "expected_answer": "A strong oral answer starts from Bayes\u2019 theorem: P(Y|X)=P(X|Y)P(Y)/P(X). For classification, we compare classes by argmax_y P(X|Y=y)P(Y=y), since P(X) is constant across y for the observed test point. Then the Naive Bayes assumption applies inside the conditional term: after conditioning on Y=y, the features are assumed conditionally independent, so P(X1,...,Xm|Y=y)=\u220fP(Xi|Y=y). This shows why conditioning is central: once Y is fixed, it becomes the 'new sample space' in which the factorization is asserted.",
+      "source_chunk_ids": [
+        "cs109_06_rvs_annotated_p2_4797680fc1",
+        "cs109_06_rvs_annotated_p4_ae2b276089",
+        "cs109_23_naive_bayes_annotated_p32_0e61718cb5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Starts from Bayes\u2019 theorem correctly.",
+          "Drops P(X) only in the argmax context and explains why.",
+          "Applies conditional independence inside P(X|Y).",
+          "Connects the reasoning to conditioning as fixing Y."
+        ],
+        "partial_credit": [
+          "Gives the right equations but weak conceptual explanation.",
+          "Explains conditioning but does not connect all the derivation steps."
+        ],
+        "common_mistakes": [
+          "Applying independence to P(Y|X).",
+          "Dropping P(X) without noting the argmax context.",
+          "Describing unconditional rather than conditional independence."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If you had three features, which exact step in your derivation would fail if only two of them were conditionally independent given Y?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In the formula P(X1,...,Xm|Y=y), what does 'conditioning on Y=y' mean conceptually?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from naive bayes; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Applying independence to P(Y|X). Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0017",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You are handed a dataset where the training set was taken as the first 1538 emails in time and the test set as the next 251 emails. Explain why we still need a separate test set after training Naive Bayes, and describe one risk specific to time-ordered splitting that you would mention in an oral exam.",
+      "expected_answer": "We need a separate test set to evaluate generalization: how well the fitted Naive Bayes classifier predicts unseen examples rather than how well it fits the data used to estimate its parameters. Without a test set, performance estimates can be optimistically biased. With time-ordered splitting, one specific issue is distribution shift or concept drift: the nature of spam may change over time, so test performance may differ not because the classifier is intrinsically bad but because the underlying data distribution has evolved. On the other hand, time-ordering may be more realistic than random splitting for deployment.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p9_21c128ee05"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains the purpose of a held-out test set for generalization assessment.",
+          "Mentions optimistic bias if evaluating on training data.",
+          "Identifies a time-order-specific issue such as distribution shift or concept drift.",
+          "Optionally notes realism of temporal evaluation."
+        ],
+        "partial_credit": [
+          "Explains test-set purpose but not the temporal risk.",
+          "Mentions overfitting vaguely without tying it to evaluation."
+        ],
+        "common_mistakes": [
+          "Saying the test set is used to estimate the Naive Bayes parameters.",
+          "Assuming random and time-based splits always answer the same question.",
+          "Ignoring temporal drift."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If performance drops sharply on later emails, what are two possible explanations besides 'Naive Bayes is bad'?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What would be misleading about reporting accuracy on the same emails used to estimate the model probabilities?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying the test set is used to estimate the Naive Bayes parameters. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0018",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student says: 'Since continuous random variables satisfy P(X=x)=0, Gaussian Naive Bayes cannot classify a point x because every exact observation has probability zero.' Diagnose the mistake and repair the statement precisely.",
+      "expected_answer": "The mistake is confusing probabilities of exact points with probability densities. In Gaussian Naive Bayes for continuous features, we model class-conditional densities f(Xi=xi|Y=y), not positive point masses. The classifier compares products of densities, or sums of log-densities, times the class prior. It is true that P(X=x)=0 for an exact point under a continuous model, but density values at x are still well-defined and are the appropriate quantities for the Bayes decision rule in continuous settings.",
+      "source_chunk_ids": [
+        "cs109_finalfall2017_q10_d342a69e74",
+        "cs109_finalfall2017_q5_6ce6fbd271",
+        "cs109_16_cont_joint_i_annotated_p21_4c70615a99"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Clearly distinguishes probability from density.",
+          "States that Gaussian Naive Bayes uses class-conditional densities evaluated at the observed x.",
+          "Explains why zero point probability does not prevent classification."
+        ],
+        "partial_credit": [
+          "Says 'use densities' but does not explain the conceptual error.",
+          "Recognizes continuous-variable issue but remains imprecise."
+        ],
+        "common_mistakes": [
+          "Saying Gaussian Naive Bayes approximates probabilities of tiny intervals and that is the only valid approach.",
+          "Claiming exact-point classification is impossible for continuous features.",
+          "Using the word probability when density is required."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why can a density exceed 1 without violating probability axioms?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a continuous feature, what object replaces P(X=xi|Y=y) in the class score?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from naive bayes.",
+        "Watch out for this common trap: Saying Gaussian Naive Bayes approximates probabilities of tiny intervals and that is the only valid approach. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0019",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose a binary Naive Bayes model has learned priors P(Y=1)=0.9 and P(Y=0)=0.1. For a particular test point, the product of conditional feature likelihoods is 10^-8 under Y=1 and 10^-6 under Y=0. Without doing elaborate arithmetic, reason out which class wins and explain why priors and likelihoods must both be considered on the same scale.",
+      "expected_answer": "The posterior score for Y=1 is proportional to 0.9\u00d710^-8 = 9\u00d710^-9, while for Y=0 it is 0.1\u00d710^-6 = 10^-7, so Y=0 wins. The student should emphasize that a large prior does not automatically dominate if the likelihood under that class is much worse. In log-space, this becomes comparing log prior plus log likelihood; both are additive contributions to the same score. The key reasoning is that Naive Bayes balances prior belief about classes with evidence from the observed features.",
+      "source_chunk_ids": [
+        "cs109_23_naive_bayes_annotated_p32_0e61718cb5",
+        "cs109_24_gradient_ascent_annotated_p8_1f8e3c24a5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Combines prior and likelihood correctly for both classes.",
+          "Chooses the correct winning class.",
+          "Explains the conceptual need to balance prior and evidence, ideally in log-space."
+        ],
+        "partial_credit": [
+          "Gets the winner right but explanation is weak.",
+          "Mentions priors matter but does not combine them correctly with likelihoods."
+        ],
+        "common_mistakes": [
+          "Picking Y=1 solely because its prior is larger.",
+          "Comparing only likelihoods or only priors.",
+          "Forgetting that posteriors are proportional to prior times likelihood."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you describe a case where the prior would dominate the decision despite moderately better likelihood under the other class?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What quantity should be compared across classes: just P(Y), just P(X|Y), or their product?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Picking Y=1 solely because its prior is larger. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0020",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Explain why Naive Bayes can be seen as a model of the joint distribution over X and Y, even though at prediction time we usually write an argmax over P(Y|X). Then say what extra thing this generative view gives you that a purely conditional model may not give directly.",
+      "expected_answer": "Naive Bayes specifies P(Y) and P(X|Y), so together it defines the joint distribution P(X,Y)=P(X|Y)P(Y). Prediction uses Bayes\u2019 theorem to convert this joint information into a posterior ranking over classes via P(Y|X). Because it models the joint generatively, after fitting we can in principle generate synthetic data by first sampling Y from the prior and then sampling X from the class-conditional distribution. This generative structure can also support reasoning about missing features or feature distributions more naturally than a purely conditional model.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p44_d0de35ec97",
+        "cs109_23_naive_bayes_annotated_p25_p26_b15b90b12e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains the joint factorization P(X,Y)=P(X|Y)P(Y).",
+          "Connects prediction via Bayes\u2019 theorem to the posterior P(Y|X).",
+          "Mentions at least one consequence of the generative view, such as sampling new data."
+        ],
+        "partial_credit": [
+          "States generative meaning correctly but gives limited consequences.",
+          "Describes prediction only, without mentioning the joint."
+        ],
+        "common_mistakes": [
+          "Saying Naive Bayes models only P(Y|X).",
+          "Failing to explain why P(X,Y) is available.",
+          "Giving a consequence unrelated to generative modeling."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would you generate one synthetic labeled example from a fitted Naive Bayes model with binary features?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If you know P(Y) and P(X|Y), what formula gives you P(X,Y)?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from naive bayes; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying Naive Bayes models only P(Y|X). Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0021",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A medical screening team wants to use Naive Bayes on a mix of binary symptoms and one continuous lab value. They ask whether Naive Bayes forces all features to be binary. Answer their question, and outline a coherent modeling strategy for the mixed feature types while preserving the basic Naive Bayes idea.",
+      "expected_answer": "Naive Bayes does not force all features to be binary. The core idea is conditional independence of features given the class, not a particular feature type. A coherent mixed model would use, for example, Bernoulli or categorical conditionals for binary/discrete symptoms and a Gaussian class-conditional density for the continuous lab value, then multiply all class-conditional terms together with the class prior. The student should note that each feature gets its own appropriate conditional distribution, all assumed conditionally independent given Y.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p44_d0de35ec97",
+        "cs109_finalfall2017_q10_d342a69e74",
+        "cs109_23_naive_bayes_annotated_p32_0e61718cb5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States clearly that Naive Bayes is not restricted to binary features.",
+          "Describes a mixed-feature strategy using different class-conditional models by feature type.",
+          "Preserves the conditional independence/product structure."
+        ],
+        "partial_credit": [
+          "Says continuous features are allowed but gives no modeling detail.",
+          "Mentions Gaussian Naive Bayes without explaining how it combines with binary features."
+        ],
+        "common_mistakes": [
+          "Claiming all features must be converted to binary for Naive Bayes.",
+          "Using one joint Gaussian for all features without connecting to the Naive Bayes factorization.",
+          "Forgetting the class prior."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What assumption are you still making across the binary symptoms and the lab value after conditioning on Y?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If one feature is continuous, what kind of object would replace a Bernoulli probability in the class score?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Claiming all features must be converted to binary for Naive Bayes. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0022",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A classmate says: 'If Naive Bayes predicts the class by argmax over products, then adding more features can only improve the classifier because you are multiplying in more information.' Do you agree? Explain the best argument against this claim within the Naive Bayes framework.",
+      "expected_answer": "I would disagree. Additional features help only if they contribute useful, appropriately modeled signal. Under Naive Bayes, bad or redundant features can violate the conditional independence approximation, add noise, or double-count evidence, which may worsen classification or calibration. Also, with limited training data, each new feature introduces more class-conditional parameters to estimate, so poorly estimated probabilities can hurt performance. So more features are not automatically more information in practice.",
+      "source_chunk_ids": [
+        "cs109_23_naive_bayes_annotated_p32_0e61718cb5",
+        "cs109_24_gradient_ascent_annotated_p9_21c128ee05",
+        "cs109_23_naive_bayes_annotated_p38_4c64cdb82e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects the claim and explains why more features can hurt.",
+          "Mentions at least one of redundancy, noise, dependence violations, or estimation error.",
+          "Frames the argument within Naive Bayes scoring/assumptions."
+        ],
+        "partial_credit": [
+          "Says more features are not always better but gives only a generic machine-learning answer.",
+          "Mentions overfitting vaguely without tying it to Naive Bayes."
+        ],
+        "common_mistakes": [
+          "Agreeing unconditionally because 'information never hurts'.",
+          "Ignoring estimation error and assumption mismatch.",
+          "Assuming independence violations have no effect."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example of a feature whose absence or poor measurement quality might hurt more than help?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What happens if the new feature is almost a duplicate of an existing one under Naive Bayes?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from naive bayes.",
+        "Watch out for this common trap: Agreeing unconditionally because 'information never hurts'. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0023",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Without plugging in numbers, derive the log-odds form of binary Naive Bayes for binary features: explain why comparing class 1 to class 0 can be written as a prior log-odds term plus a sum of per-feature contributions. I want the structure and the reasoning, not a memorized formula.",
+      "expected_answer": "Start from predicting class 1 when P(Y=1)\u220fi P(Xi=xi|Y=1) > P(Y=0)\u220fi P(Xi=xi|Y=0). Divide both sides by the class-0 score and take logs. Then the decision becomes log(P(Y=1)/P(Y=0)) + \u03a3i log(P(Xi=xi|Y=1)/P(Xi=xi|Y=0)) > 0. For binary Xi, each term depends on whether xi is 1 or 0, using the corresponding conditional probabilities. The key reasoning is that products become sums in log-space and class comparison becomes a sum of evidence contributions relative to the other class.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p8_1f8e3c24a5",
+        "cs109_15_general_inference_annotated_p10_p11_4386b25b25",
+        "cs109_23_naive_bayes_annotated_p32_0e61718cb5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Starts from the two class scores and forms a ratio or comparison.",
+          "Uses logs to convert the product ratio into a sum.",
+          "Identifies a prior log-odds term and per-feature log-likelihood-ratio terms.",
+          "Notes dependence on observed xi for binary features."
+        ],
+        "partial_credit": [
+          "Gets the overall idea of log-odds but not the derivation.",
+          "States a sum of terms without explaining where it comes from."
+        ],
+        "common_mistakes": [
+          "Writing posterior odds without conditioning on observed xi.",
+          "Forgetting to divide class-1 and class-0 scores before taking logs.",
+          "Using P(Y|Xi) instead of P(Xi|Y)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How does this decomposition help interpret which features are pushing the decision toward class 1?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What operation turns a product over features into a sum over features?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Writing posterior odds without conditioning on observed xi. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0024",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A classmate says: \u201cNa\u00efve Bayes assumes the features are independent, so if two words in an email are correlated in the overall population, Na\u00efve Bayes is invalid.\u201d Respond to that claim carefully. In your answer, distinguish ordinary independence from conditional independence given the label, and explain why the Na\u00efve Bayes factorization is still written in terms of P(X_i | Y) rather than P(X_i).",
+      "expected_answer": "A strong answer should say the classmate is overstating the assumption. Na\u00efve Bayes does not require the features to be marginally independent; it requires them to be conditionally independent given the class label Y. Formally, for all feature values and labels, P(X_1, ..., X_m | Y = y) = product over i of P(X_i | Y = y). So two words can be highly correlated overall because the class mixture induces dependence, while within spam and within ham separately they may be approximately independent. The student should also explain that Bayes classification uses argmax_y P(X | Y)P(Y), and the Na\u00efve Bayes assumption simplifies the hard joint term P(X | Y), not the marginal feature distribution P(X_i).",
+      "source_chunk_ids": [
+        "cs109_23_naive_bayes_annotated_p32_0e61718cb5",
+        "cs109_06_rvs_annotated_p4_ae2b276089",
+        "cs109_15_general_inference_annotated_p10_p11_4386b25b25",
+        "cs109_06_rvs_annotated_p9_p10_e768695e32"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explicitly states the assumption is conditional independence given Y, not marginal independence.",
+          "Gives or paraphrases the factorization P(X_1,...,X_m | Y)=\u220f_i P(X_i | Y).",
+          "Explains how marginal dependence can still occur even if conditional independence holds.",
+          "Connects the assumption to simplifying P(X|Y) in Bayes classification, not simplifying P(X_i) or P(Y|X) directly."
+        ],
+        "partial_credit": [
+          "Says 'independent given the class' but does not clearly contrast with unconditional independence.",
+          "Mentions Bayes rule and argmax_y P(X|Y)P(Y) but gives little interpretation.",
+          "Recognizes that correlated features do not automatically break the model, without explaining why."
+        ],
+        "common_mistakes": [
+          "Claiming Na\u00efve Bayes assumes full independence of features in the dataset.",
+          "Writing P(X_1,...,X_m)=\u220f_i P(X_i) as the model assumption.",
+          "Confusing conditional independence with pairwise independence only.",
+          "Saying the model directly learns P(Y|X) rather than P(X|Y) and P(Y)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Give a concrete example where two binary features are dependent marginally but could still be approximately conditionally independent given Y."
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I tell you that P(X_1,X_2)=P(X_1)P(X_2) fails, does that alone prove Na\u00efve Bayes cannot be used? Why not?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from naive bayes; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming Na\u00efve Bayes assumes full independence of features in the dataset. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0025",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "You are building a binary spam filter with binary word-presence features. In the training set, 90 of 100 emails are ham and 10 are spam. A particular word, 'lottery', appears in 0 of the 90 ham emails and 3 of the 10 spam emails. For a test email whose only active feature is lottery = 1, compare the MLE-based Na\u00efve Bayes decision with the Laplace-smoothed decision, and explain the role of log-probabilities in the test-time computation.",
+      "expected_answer": "The student should first identify the class priors: P(Y=spam)=10/100 and P(Y=ham)=90/100. Under MLE, P(lottery=1 | ham)=0/90=0 and P(lottery=1 | spam)=3/10. Then the ham score is zero because the likelihood term is zero, so the classifier must predict spam regardless of the prior. With Laplace smoothing for a binary feature, P(lottery=1 | ham)=(0+1)/(90+2)=1/92 and P(lottery=1 | spam)=(3+1)/(10+2)=4/12=1/3. The unnormalized scores become ham: (1/92)(0.9) and spam: (1/3)(0.1); spam still wins, but now ham is not impossible. A strong answer should note that using sums of logs, we compare log P(Y) + sum_i log P(X_i | Y), which avoids numerical underflow when many feature probabilities are multiplied together.",
+      "source_chunk_ids": [
+        "cs109_24_gradient_ascent_annotated_p5_6959ca3cce",
+        "cs109_24_gradient_ascent_annotated_p8_1f8e3c24a5",
+        "cs109_23_naive_bayes_annotated_p34_p35_1cfbc7e2a2",
+        "cs109_23_naive_bayes_annotated_p46_749f33d4e8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes or correctly sets up priors and class-conditional probabilities under MLE and Laplace.",
+          "Explains that MLE gives zero likelihood for ham, forcing the decision.",
+          "Uses correct Laplace denominator for a binary feature: count(Y=y)+2.",
+          "Compares the smoothed class scores and identifies the predicted class.",
+          "Explains that log-probabilities preserve the argmax because log is monotone and improve numerical stability."
+        ],
+        "partial_credit": [
+          "Gets the intuition of zero counts causing brittleness, but mishandles one denominator.",
+          "Correctly describes smoothing conceptually without fully comparing scores.",
+          "Mentions logs for stability but does not connect to the argmax computation."
+        ],
+        "common_mistakes": [
+          "Adding 1 only to the numerator but not adjusting the denominator.",
+          "Using denominator +1 instead of +2 for binary features.",
+          "Claiming logs change the predicted class.",
+          "Ignoring the class prior when comparing classes."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose instead 99 of 100 emails were ham and only 1 was spam. Could Laplace smoothing plus the prior ever make ham win even if the word was never seen in ham? Explain qualitatively."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What exact probability becomes zero under MLE, and why does one zero factor dominate the whole product in Na\u00efve Bayes?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Adding 1 only to the numerator but not adjusting the denominator. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0026",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A product team wants to predict a 4-class reaction to a book: {Like, Love, Haha, Sad}, using three binary taste indicators X1, X2, X3. You are given only a count(query) interface that returns training-set counts with equality constraints. For a new user with X1=1, X2=1, X3=0, state the Na\u00efve Bayes prediction rule in a form you could actually evaluate from counts, and explain exactly where Laplace smoothing is applied. Then say whether the denominator P(X1=1, X2=1, X3=0) is needed for choosing the predicted class.",
+      "expected_answer": "The student should write something like y-hat = argmax over y in {Like, Love, Haha, Sad} of P(X1=1|Y=y) P(X2=1|Y=y) P(X3=0|Y=y) P(Y=y). They should then express each conditional from counts using Laplace smoothing for binary features: for example P(X1=1|Y=y) = [count(X1=1, Y=y)+1]/[count(Y=y)+2], similarly for X2 and X3, using the appropriate value 1 or 0. The class prior can be estimated as count(Y=y)/N if only likelihood terms are smoothed in this setup. They should explicitly say the denominator P(X1=1, X2=1, X3=0) does not depend on y, so it cancels inside the argmax and is unnecessary for prediction, though it would matter if one needed actual normalized posterior probabilities.",
+      "source_chunk_ids": [
+        "cs109_08_section_soln_sec1_part2_c2e6d5b272",
+        "cs109_23_naive_bayes_annotated_p25_p26_b15b90b12e",
+        "cs109_23_naive_bayes_annotated_p32_0e61718cb5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes the multiclass argmax over the four labels.",
+          "Correctly factors the likelihood into three conditional terms using the Na\u00efve Bayes assumption.",
+          "Expresses each term in evaluable count form with Laplace smoothing and correct binary-feature denominator +2.",
+          "States that P(X) is not needed for argmax because it is constant across labels.",
+          "Notes that the denominator would be needed only to produce calibrated posterior probabilities, not just the predicted label."
+        ],
+        "partial_credit": [
+          "Gives the correct argmax but not the count-based formulas.",
+          "Uses counts correctly but omits smoothing or is vague about where it enters.",
+          "States that P(X) cancels without explaining why."
+        ],
+        "common_mistakes": [
+          "Trying to estimate P(X1=1,X2=1,X3=0|Y=y) directly from counts despite being asked for Na\u00efve Bayes.",
+          "Applying Laplace smoothing to the prior in an inconsistent way without explanation.",
+          "Using count(X1=1)/N instead of count(X1=1,Y=y)/count(Y=y)-type class-conditional probabilities.",
+          "Saying the denominator is needed to compare labels."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If X3 were no longer binary but took values in {1,2,3,4,5,6}, how would the Laplace denominator change when estimating P(X3=v | Y=y)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Why is it computationally attractive to estimate three one-feature conditionals instead of one full joint conditional over all three features for each class?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Trying to estimate P(X1=1,X2=1,X3=0|Y=y) directly from counts despite being asked for Na\u00efve Bayes. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0027",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says: \u201cNa\u00efve Bayes and logistic regression are basically the same because both output a class probability, so once trained they can both generate new (x, y) samples from the same learned model.\u201d Evaluate this statement. Compare what distribution each model is trying to learn, and use that comparison to explain which model is naturally generative and what that implies for handling different feature types.",
+      "expected_answer": "A strong answer should say the statement is false or only superficially true. Na\u00efve Bayes is a generative model: it models P(X|Y) together with P(Y), which gives a model of the joint distribution P(X,Y)=P(X|Y)P(Y). Because of that, after fitting parameters, one can in principle generate a class Y from P(Y) and then generate features X from P(X|Y). Logistic regression is discriminative: it models P(Y|X) directly, not the distribution of X itself, so it does not by itself define a full generative process for sampling realistic x values. The student should then connect this to feature modeling: in Na\u00efve Bayes, one explicitly chooses per-feature conditional distributions given Y, which makes it natural to use Bernoulli, categorical, or Gaussian assumptions for different feature types. Logistic regression can accept real-valued or encoded discrete features without specifying a probabilistic model for their marginal distribution, but that is different from being able to generate X.",
+      "source_chunk_ids": [
+        "cs109_25_logistic_regression_annotated_p44_d0de35ec97",
+        "cs109_23_naive_bayes_annotated_p34_p35_1cfbc7e2a2",
+        "cs109_08_section_soln_sec1_part2_c2e6d5b272"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Clearly distinguishes generative modeling of P(X|Y) and P(Y) from discriminative modeling of P(Y|X).",
+          "Explains why Na\u00efve Bayes can generate (x,y) samples and logistic regression cannot do so without an extra model for X.",
+          "Connects the comparison to handling continuous or non-binary discrete features via chosen class-conditional distributions in Na\u00efve Bayes.",
+          "Avoids claiming the models are identical just because both can output class probabilities."
+        ],
+        "partial_credit": [
+          "Correctly says Na\u00efve Bayes is generative and logistic regression is discriminative, but gives little explanation.",
+          "Mentions sample generation but not how it follows from the modeled distribution.",
+          "Discusses feature types only vaguely."
+        ],
+        "common_mistakes": [
+          "Saying logistic regression learns P(X,Y).",
+          "Saying both models can equally generate X once they output P(Y|X).",
+          "Confusing the ability to classify continuous features with having a generative probabilistic model for them.",
+          "Claiming Na\u00efve Bayes cannot handle continuous features."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If one feature is continuous, what additional assumption would let Na\u00efve Bayes model it, and what parameters would need to be estimated per class?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Suppose I hand you only P(Y=1|X=x) from logistic regression. What piece is still missing if you want to sample new x values?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from naive bayes.",
+        "Watch out for this common trap: Saying logistic regression learns P(X,Y). Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_naive_bayes_0028",
+      "course": "CS109",
+      "topic_id": "naive_bayes",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Consider Gaussian Na\u00efve Bayes with two continuous features. You have already estimated: for feature 1, if Y=0 then X1~N(5,1) and if Y=1 then X1~N(0,1); for feature 2, if Y=0 then X2~N(0,1) and if Y=1 then X2~N(3,4); and P(Y=1)=0.6. For a test point x=(5,3), explain how to decide between Y=1 and Y=0 without plugging through every decimal, and argue qualitatively which class is favored.",
+      "expected_answer": "The student should set up the comparison using the Gaussian densities under the Na\u00efve Bayes assumption: predict Y=1 if f_1(x1=5|Y=1) f_2(x2=3|Y=1) P(Y=1) > f_1(x1=5|Y=0) f_2(x2=3|Y=0) P(Y=0), and equivalently compare log-scores. Then reason qualitatively: for feature 1, x1=5 is exactly at the mean of class 0 and far from the mean of class 1, with equal variance 1, so feature 1 strongly favors Y=0. For feature 2, x2=3 is exactly at the mean of class 1 and far from the mean of class 0, so feature 2 favors Y=1, though class 1 has larger variance 4 which lowers the peak density relative to variance 1. The prior P(Y=1)=0.6 favors class 1, but the student should discuss the tradeoff: x1 is a very strong mismatch for class 1, while x2 and the prior favor class 1. A strong oral answer recognizes that because x1=5 is five standard deviations from the class-1 mean but exactly centered for class 0, class 0 is likely to win overall despite the prior and the second feature.",
+      "source_chunk_ids": [
+        "cs109_finalfall2017_q5_6ce6fbd271",
+        "cs109_finalfall2017_q10_d342a69e74",
+        "cs109_25_logistic_regression_annotated_p44_d0de35ec97"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes the correct Gaussian Na\u00efve Bayes inequality or equivalent log-score comparison.",
+          "Explains that each class score is the product of two class-conditional Gaussian densities times the prior.",
+          "Correctly identifies feature 1 as strongly favoring Y=0 and feature 2 as favoring Y=1.",
+          "Comments on the effect of larger variance for class 1 on feature 2's density peak.",
+          "Gives a defensible qualitative conclusion that class 0 likely wins because feature 1 is overwhelmingly more informative here."
+        ],
+        "partial_credit": [
+          "Sets up the inequality correctly but does not reason qualitatively about means and variances.",
+          "Identifies which feature favors which class but misses the role of the prior or variance.",
+          "States a class choice without enough justification."
+        ],
+        "common_mistakes": [
+          "Using probabilities P(X_i=value|Y) for continuous variables instead of densities.",
+          "Ignoring the prior entirely.",
+          "Assuming the feature at the class mean always dominates regardless of variance.",
+          "Multiplying raw z-scores instead of Gaussian densities or log-densities."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your qualitative argument change if P(Y=1) were 0.99 instead of 0.6?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "For a continuous feature, why do we compare density values rather than probabilities at exactly X_i=5 or X_i=3?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using probabilities P(X_i=value|Y) for continuous variables instead of densities. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "topic_id": "conditional_probability",
+  "topic_name": "Conditional Probability and Bayes Rule",
+  "course": "CS109",
+  "model": "gpt-4o-mini",
+  "questions": [
+    {
+      "question_id": "CS109_conditional_probability_001",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "conceptual",
+      "difficulty": "easy",
+      "question": "What is the definition of conditional probability?",
+      "expected_answer": "Conditional probability is the probability of an event occurring given that another event has already occurred.",
+      "source_chunk_ids": [
+        "cs109_midtermspr2019_p10_04334aa83c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Clear and precise definition of conditional probability."
+        ],
+        "partial_credit": [
+          "Mention of probability but lacks clarity on the conditional aspect."
+        ],
+        "common_mistakes": [
+          "Confusing conditional probability with joint probability."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you provide an example of conditional probability in real life?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What do you think is the difference between conditional probability and unconditional probability?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from conditional probability; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Confusing conditional probability with joint probability. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_conditional_probability_002",
+      "course": "CS109",
+      "topic_id": "conditional_probability",
+      "question_type": "computational",
+      "difficulty": "medium",
+      "question": "Given that the probability of each baby showing up is 5/6, calculate the probability that exactly 5 babies show up out of 6 enrolled babies.",
+      "expected_answer": "The probability is calculated using the binomial formula: P(X = k) = C(n, k) * p^k * (1-p)^(n-k). For 5 babies showing up, it is C(6, 5) * (5/6)^5 * (1/6)^1 = 6 * (5/6)^5 * (1/6).",
+      "source_chunk_ids": [
+        "cs109_midtermspr2019_p3_f7c88312e0"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correct application of the binomial formula and accurate calculation."
+        ],
+        "partial_credit": [
+          "Correct setup of the formula but incorrect calculation."
+        ],
+        "common_mistakes": [
+          "Using the wrong values for n, k, or p in the formula."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What would be the probability if we wanted to calculate for 6 babies showing up instead?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you explain what part of the calculation you found challenging?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using the wrong values for n, k, or p in the formula. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    }
+  ]
+}

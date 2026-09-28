@@ -1,0 +1,76 @@
+{
+  "course": "CS109",
+  "document_role": "exam",
+  "source_path": "data/raw/CS109/exams/FinalFall2023Soln.pdf",
+  "relative_path": "data/raw/CS109/exams/FinalFall2023Soln.pdf",
+  "sha256": "4a15fc62ccbcaa3d0d342d490e16d3180f87998dab8745d424c1cb71a7a87c11",
+  "title_guess": "FinalFall2023Soln",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "CS109 Final Exam\nChris Piech\nCS109\nFall 2023\nThis is a closed calculator/computer exam. You are, however, allowed to use notes in the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions and\nparameter values you used, where appropriate. It is fine for your answers to include summations, products,\nfactorials, exponentials, and combinations.\nYou can leave your answer in terms of Φ (the CDF of the standard normal) or Φ−1 (the inverse CDF). For\nexample Φ\n\u0010\n3\n4\n\u0011\nis an acceptable final answer. Recall that the exam is going to be “curved” according to the\ndifficulty of the questions and as such hard questions will not translate to lower grades.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than I have in\nmy entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\nEmail (preferably your gradescope email):",
+      "char_count": 1024
+    },
+    {
+      "page_index": 1,
+      "text": "2\n1\nShort Answer (40 points)\nAnswer each of the following questions. You must give a brief justification for your answer.\na. (8 points) Let 𝑍∼Exp(𝜆= 1) be the minutes until someone coughs during the exam. What is the\nprobability that someone coughs within the next 2 mins?\nb. (7 points) What is the probability that the random sum function returns a value greater than 501?\ndef random_sum():\ntotal = 0\nfor i in range(1000):\ntotal += random() # sample from a uniform(0, 1)\nreturn total",
+      "char_count": 484
+    },
+    {
+      "page_index": 2,
+      "text": "3\nc. (8 points) Google weather says there is an overall 10% chance of the event, 𝑅, that it will rain at some\npoint today. They also divide the day into 8 time intervals and provide the probability for the event that\nit rains during each of those intervals: 𝑊1, 𝑊2, . . . 𝑊8. Based on only these probabilities how could you\ntest if the eight events are (a) mutually exclusive (b) independent. Leave your answers to both (a) and\n(b) as expressions in terms of 𝑃(𝑅) and 𝑃(𝑊1) . . . 𝑃(𝑊8).\nd. (5 points) Let 𝑋= 𝐴+ 𝐵+ 𝐶+ 𝐷+ 𝐸+ 𝐹where 𝐴through 𝐹are all independent random variables.\nDoes the Central Limit Theorem apply to 𝑋? Explain as if teaching in 1 or 2 sentences.\n𝐴∼Bernoulli(𝑝= 0.5)\n𝐵∼Binomial(𝑛= 4, 𝑝= 0.8)\n𝐶∼Geometric(𝑝= 0.3)\n𝐷∼Uni(𝛼= 0, 𝛽= 1)\n𝐸∼Beta(𝑎= 2, 𝑏= 3)\n𝐹∼Exp(𝜆= 3)",
+      "char_count": 778
+    },
+    {
+      "page_index": 3,
+      "text": "4\ne. (5 points) In order to make optimal parking decisions you need to represent your belief in 𝑋, the\nprobability that parking spaces on a particular road will be open (parking spaces are either open or not).\nBefore observations you believe the probability that a space is open is Uniform(𝛼= 0, 𝛽= 1). You pass\n10 parking spots on the road, 9 of which are full, one of which was open. What is your posterior belief\nin 𝑋if you consider the 10 spots to be IID samples?\nf. (7 points) In Google’s recent release of Gemini (their ChatGPT competitor) they reported that during\nthe training process, “silent data corruption” affected the integrity of their training data. Silent data\ncorruption refers to random bit flips in a computer’s data, potentially leading to flawed outcomes or\nsystem malfunctions. They have estimated that they experience an average of 0.1 instances of silent\ndata corruption per terabyte of data processed. If the training process for their next model requires\nprocessing 50 terabytes of data, calculate the probability that there will be less than two instances of\nsilent data corruption during training.",
+      "char_count": 1126
+    },
+    {
+      "page_index": 4,
+      "text": "5\n2\nDon’t Quit Until You Are Ahead (22 points)\nA player is playing uno (a card game with no ties). Each game the player has a 0.55 probability of winning.\nEach game is independent.\na. (7 points) The player plays 10 games. What is the exact probability they have more wins than losses?\nb. (7 points) The player plays 𝑖games (where 𝑖> 20). What is an approximation for the probability that\nthey have more wins than losses? Assume that 𝑖is even.\nc. (8 points) Let’s try a different angle! Instead of playing a fixed number of games, the player stops as\nsoon as they have more wins than losses. What is the probability they stop after exactly 5 games?",
+      "char_count": 647
+    },
+    {
+      "page_index": 5,
+      "text": "6\n3\nPopcorn (23 points)\nThe instructions on a popcorn bag say to keep cooking until there is 1 second between pops. A “pop” is the\nsound made when a popcorn kernel turns into a fluffy piece of popcorn.\nThe time in seconds since you started cooking for a popcorn kernel to pop is well approximated as 𝑇𝑖∼𝑁(𝜇=\n100, 𝜎2 = 202). There are 100 kernels in a microwavable bag. Aside: even though 𝑇𝑖is “time until”, it is not\nExponential as it doesn’t follow the Poisson process. Each kernel’s popping time is IID.\na. (7 points) 110 seconds have passed and 99 kernels have popped. What is the probability that the final\nunpopped kernel will pop in the next 1 second?\nb. (5 points) 110 seconds have passed and 70 kernels have popped. What is the probability that at least\none of the 30 remaining kernels will pop in the next 1 second? Let 𝑝𝑎be your answer to part (a).",
+      "char_count": 858
+    },
+    {
+      "page_index": 6,
+      "text": "7\nc. (10 points) 110 seconds have passed and an unknown number of kernels have popped. What is the\nprobability that at least one of the remaining kernels will pop in the next 1 second?",
+      "char_count": 184
+    },
+    {
+      "page_index": 7,
+      "text": "8\n4\nDelicate Polling (25 points)\nYou are trying to estimate the probability 𝑝that a randomly selected person in a population thinks the answer\nto a single delicate true or false question is “true”. However the topic is sensitive, so if you ask them directly,\nthey will not provide an honest answer.\nInstead of directly asking the question, we are going to give each participant 7 true or false questions and ask\nthem to report how many they think are true. Question 1 is the “delicate” question we care about. Each of the\nother 6 questions are unimportant, nonsensitive questions where we know that each person is equally likely to\nanswer “true” of “false”, independent of their response to other questions.\na. (8 points) Let 𝑋𝑖be the number of “true” answers for person i. What is the probability that 𝑋𝑖= 4?\nLeave your answer in terms of 𝑝, the probability that a person thinks the answer to question 1 is true.\nb. (8 points) Write an expression for 𝐸[𝑋𝑖] in terms of 𝑝.",
+      "char_count": 972
+    },
+    {
+      "page_index": 8,
+      "text": "9\nc. (9 points) Your solution to part (b) can be expressed as 𝐸[𝑋𝑖] = 𝛼𝑝+ 𝛽where 𝛼and 𝛽are computed\nconstants. Now we want to estimate 𝑝from a sample of 100 people, where we observe 𝑋𝑖for each\nperson. To do this, we use the function estimate p, which estimates 𝐸[𝑋𝑖] to be the sample mean and\nthen chooses a value for 𝑝such that 𝐸[𝑋𝑖] = 𝛼𝑝+ 𝛽. Write bootstrap pseudocode to approximate and\nprint the probability that estimate p(samples) is within 0.1 of the actual fraction of the population\nthat believes the answer to question 1 is ’true’.\ndef estimate_p(samples):\n# np.mean calculates the average of a list\nsample_mean = np.mean(samples)\nreturn (sample_mean - beta)/alpha\ndef bootstrap_p_distribution(samples):\nestimated_p = estimate_p(samples)\n# your code here:",
+      "char_count": 765
+    },
+    {
+      "page_index": 9,
+      "text": "10\n5\nWater Levels (20 points)\nThe fraction of water in a reservoir at any point in time is modelled by a ReservoirDistribution with a single\nparameter, 𝑎. The ReservoirDistribution has the following PDF and CDF:\nPDF: 𝑓(𝑋= 𝑥) = 2𝑎𝑥𝑎−1(1 −𝑥𝑎)\nCDF: 𝐹(𝑥) = 1 −(1 −𝑥𝑎)2\na. (6 points) For a particular reservoir, at a particular time of the year, we estimate 𝑎= 1.5. What is the\nprobability that the reservoir is more than 0.25 full at that time of the year?\nb. (14 points) For a new reservoir, you observe 𝑛measurements of fullness: 𝑥1, 𝑥2, . . . , 𝑥𝑛. Explain, in\nwords, how you would choose parameter 𝑎using the maximum likelihood estimation framework, and\nprovide any necessary derivatives. Note:\n𝑑\n𝑑𝑥𝑘𝑥= 𝑘𝑥log(𝑘)",
+      "char_count": 711
+    },
+    {
+      "page_index": 10,
+      "text": "11\n6\nLogistic Regression Priors (28 points)\nWe are going to train a logistic regression model – but we don’t have very much training data. As such, we\nwould like to use MAP, instead of MLE (the parameter estimation method we used on pset6). We are going\nto use a simplified logistic regression model that has a single parameter 𝜃, for a single feature 𝑥. Specifically\nwe assume: 𝑃(𝑌= 1|𝑋= 𝑥) = 𝜎(𝜃· 𝑥) where 𝑥and 𝜃are each numbers, not lists, and there is no bias\nterm. Our prior belief is that 𝜃is standard normal, 𝑁(𝜇= 0, 𝜎= 1). Our training data is a list of 𝑛tuples:\n[(𝑥1, 𝑦1), (𝑥2, 𝑦2), . . . , (𝑥𝑛, 𝑦𝑛)]\na. (8 points) Based only on your prior belief of 𝜃, how many times larger is the probability density that\n𝜃= 0, compared to the probability density that 𝜃= 2?\nb. (10 points) The MAP objective for this simplified logistic regression is to choose the 𝜃value that is\nmost likely given the values of 𝑦in our training data: 𝜃MAP = argmax\n𝜃\n𝑓(𝜃|𝑦1, . . . , 𝑦𝑛). Write out and\nexplain, step by step, how to derive:\n𝜃MAP = argmax\n𝜃\n[log( 𝑓(𝜃)) +\n𝑛\n∑︁\n𝑖=1\nlog( 𝑓(𝑦𝑖|𝜃))]",
+      "char_count": 1071
+    },
+    {
+      "page_index": 11,
+      "text": "12\nc. (10 points) We want to apply gradient ascent to find 𝜃. Write an expression that calculates the gradient\nwe should use. Recall:\n𝜃MAP = argmax\n𝜃\n[log( 𝑓(𝜃)) +\n𝑛\n∑︁\n𝑖=1\nlog( 𝑓(𝑦𝑖|𝜃))]",
+      "char_count": 187
+    },
+    {
+      "page_index": 12,
+      "text": "13\n7\nEstimating Child Vocab Size (22 points)\nAside: while this question is secretly about estimating vocab size in children, we are going to use dice, as it is\neasier to think about during an exam.\nA child is rolling an 𝑛-sided fair dice (the sides have the integers 1 through 𝑛, and each side is equally likely).\nThe child rolls the dice three times and gets the value 12 twice and 48 once. Clearly the dice has at least 48\nsides, but it could have more! Your prior belief is that each value of 𝑛between 1 and 100 (including 1 and\n100) is equally likely.\na. (8 points) If the dice has 50 sides, what is the probability of rolling 12 twice and 48 once, in any order?\nb. (14 points) What is a mathematical expression for the probability that the dice has 𝑛sides, given that\nthe child has rolled 12 twice and 48 once?\nThat’s all folks. Thank you all for the wonderful quarter and we hope you have a fantastic winter break!",
+      "char_count": 920
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:59Z"
+}

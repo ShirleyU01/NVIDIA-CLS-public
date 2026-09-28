@@ -1,0 +1,59 @@
+.page {
+  display: grid;
+  gap: 1rem;
+}
+
+.greeting {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.title {
+  font-size: 1.4rem;
+  color: var(--color-text);
+}
+
+.feedback {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0;
+}
+
+.feedback label {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+}
+
+.feedback textarea {
+  width: 100%;
+  resize: vertical;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 0.75rem 0.85rem;
+  font: inherit;
+  color: var(--color-text);
+  background: color-mix(in srgb, var(--color-surface) 92%, var(--color-green-100));
+}
+
+.feedback textarea:focus {
+  outline: 2px solid color-mix(in srgb, var(--color-green-700) 45%, white);
+  border-color: color-mix(in srgb, var(--color-green-700) 30%, var(--color-border));
+}
+
+.doneButton {
+  width: fit-content;
+  border: 1px solid color-mix(in srgb, var(--color-green-700) 32%, var(--color-border));
+  border-radius: 999px;
+  background: var(--color-green-700);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  padding: 0.52rem 1rem;
+  cursor: pointer;
+}
+
+.doneButton:hover {
+  background: color-mix(in srgb, var(--color-green-700) 88%, black);
+}

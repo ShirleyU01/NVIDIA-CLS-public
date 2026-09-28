@@ -1,0 +1,244 @@
+{
+  "course": "CS109",
+  "topic_id": "statistical_inference",
+  "topic_name": "Statistical Inference",
+  "queries_used": [
+    "Statistical Inference definition",
+    "Statistical Inference intuition",
+    "Statistical Inference worked example",
+    "Statistical Inference exam problem",
+    "inference overview",
+    "inference practice",
+    "estimation overview",
+    "estimation practice",
+    "population vs sample overview",
+    "population vs sample practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p23_p24_63310f4a9e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference via math\n24\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝑈= 1 = 0.8\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0 \nSolving inference questions \nprecisely is possible, but \nsometimes tedious.\nCan we use sampling\nto do approximate \ninference?\n\nRejection \nSampling\n25",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.6211519241333008
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p0_p3_415f62e71a",
+      "text": "15: General Inference\nJerry Cain\nMay 3rd, 2024\n1\nLecture Discussion on Ed\n\nInference\n2\n\nLisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference\n3\n\nLisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference\n4",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.5479552745819092
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p21_6194fdc4d9",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference via math\n3.  𝑃𝐹+, = 1|𝑈= 1, 𝑇= 1 ?\n22\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝑈= 1 = 0.8\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.5477917194366455
+    },
+    {
+      "chunk_id": "cs109_finalwin2022soln_preamble_667e8456d8",
+      "text": "CS109 Final Exam\nChris Piech\nCS109\nWinter 2022\nThis is a closed calculator/computer exam. You are, however, allowed to use notes in the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions and\nparameter values you used, where appropriate. It is fine for your answers to include summations, products,\nfactorials, exponentials, and combinations.\nYou can leave your answer in terms of Φ (the CDF of the standard normal) or Φ−1 (the inverse CDF). For\nexample Φ\n\u0010\n3\n4\n\u0011\nis an acceptable final answer. Recall that the exam is going to be “curved\" according to the\ndifficulty of the questions and as such hard questions will not translate to lower grades.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than I have in\nmy entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\nEmail (preferably your gradescope email):\n\n1\nShort Answer (30 points)\nAnswer each of the following questions. You must give a brief justification for your answer.\na. (6 points) Google Maps stores a probability distribution of the time of day that people go to the San\nFrancisco Airport (SFO):\nLet 𝑝𝑖be the probability that a person will show up at SFO 𝑖hours past midnight (so 𝑝6 is the probability\nthat they will show up between 6a and 7a). Out of the visitors that will visit SFO on a given day, what\nfraction do you expect to show up between midnight and noon? Give an expression.\n11\n∑︁\n𝑖=0\n𝑝𝑖\nSince Í23\n𝑖=0 𝑝𝑖= 1, the following is another equivalent answer:\n11Í\n𝑖=0\n𝑝𝑖\n23Í\n𝑖=0\n𝑝𝑖\nb. (7 points) We will consider a datapoint 𝑥an “outlier” if the probability of seeing a value 𝑥or larger is\n≤0.05. Consider a distribution 𝑋∼Geo(𝑝= 0.8). Is 7 an outlier? Give an expression.\n7 is an outlier if 1 −Σ6\n𝑖=0(0.2)𝑖−1(0.8) ≤0.05\nc. (7 points) A class uses High Resolution Course Feedback. In a given week they ask a random sample\nof 20 people for a numerical rating, instead of asking everyone. Assume the population expectation of\nrating is 4.5 and the population variance of rating is 1.0. What is the probability that the sample mean\nrating from 20 students will be ≥4.7?\nTrue\nA p-value of 0.99 would occur if the difference we observed between the modes of the two datasets is\nthe kind of difference we would observe frequently by chance if the two sets of points were drawn from\ndistributions with the same mode.\nd. (10 points) You meet a person at a party who mentions that they have two children. They reveal that\nthey have a daughter who was born on a Tuesday. What is the probability that they have two daughters?\nAssume a child has a 1⁄2 chance of being a daughter and a 1⁄7 chance of being born on a Tuesday. Assume\nthat the genders of the children, and the weekdays they were born on, are all independent of one another.\n\nThe answer is 13/27.\nLet B be the event that both children are girls. Let T be the event that there is a girl born on a Tuesday.\n𝑃(𝐵|𝑇) = 𝑃(𝑇|𝐵)𝑃(𝐵)\n𝑃(𝑇)\n𝑃(𝐵) = 1/4\n𝑃(𝑇|𝐵) = 1/7 + 1/7 −1/49\n𝑃(𝑇) = 1/14 + 1/14 −1/196\nAnother explanation:\nThis is a well known paradox known as the boy-girl-paradox. Intuition says that the answer is 0.5, but\nit is not!\nFigure 1: We are conditioning on the yellow region (i.e. think of it as the \"new sample space\"). We are\nassessing the probability of the yellow region inside the \"female/female\" quadrant.\nLet the event \"there are two daughters\" be 𝐸.\nLet the event \"there is at least one daughter born on Tuesday\" be 𝐹.\n𝑃(𝐸|𝐹) = 𝑃(𝐸𝐹)\n𝑃(𝐹)\nUsing Inclusion-Exclusion Principle:\n= 𝑃(C1 Fem Tue, C2 Fem) + 𝑃(C1 Fem, C2 Fem Tue) −𝑃(C1 Fem Tue, C2 Fem Tue)\n𝑃(C1 Fem Tue) + 𝑃(C2 Fem Tue) −𝑃(C1 Fem Tue, C2 Fem Tue)\nThis turns into\n(7 + 7 −1)/142\n(14 + 14 −1)/142 = 13\n27 = 0.48148148\n.\n\n2\nQuantitative Art History (20 points)\nA Stanford alumni discovered that the “Average Number of Brushstrokes in the Neighborhood\" is very\npredictive of whether a painting has been painted by Van Gough [1].\nLet 𝑋∼𝑁(𝜇= 20, 𝜎2 = 9) be the average number of brushstrokes in the neighborhood if Van Gough is\nthe painter. Let 𝑋∼𝑁(𝜇= 12, 𝜎2 = 25) be the average number of brushstrokes in the neighborhood if Van\nGough is not the painter.\nAside: A brushstroke 𝑗is a neighbor of brushstroke 𝑖if they are at most 200 pixels apart. For each brushstroke\nwe can calculate how many other brushstrokes are neighbours. The Average Number of Brushstrokes in the\nNeighborhood is an average of these values over all brushstrokes in a painting. Here is a painting by Van\nGough (left) and the auto-identified brush strokes (right).\na. (4 points) Why is a normal distribution appropriate for the “average number of brushstrokes in the\nneighborhood\" of a painting?\nMust mention the central limit theorem.\n\nb. (16 points) A painting is discovered. Based on background information your prior belief that it was\npainted by Van Gough is 0.75. What is your updated belief after observing that the average number of\nbrushstrokes in the neighbourhood is 19?\nThis is an inference question: Let 𝑌be the event that Van gough was the artist.\n𝑃(𝑌|𝑋= 19) =\n𝑓(𝑋= 19|𝑌)𝑃(𝑌)\n𝑓(𝑋= 19|𝑌)𝑃(𝑌) + 𝑓(𝑋= 19|𝑌)𝑃(𝑌𝐶)\n\n3\nBeta ± (20 points)\nYou have observed 30 successes and 20 fails for an event with unknown probability. Based on this information\nyou can model the probability of success, 𝑋, as a Beta random variable. You want to make a claim of the\nform: \"the probability of success is 𝑚± 𝑏.\"\nSelect 𝑚to be the expectation of 𝑋. Select 𝑏to be the smallest value, rounded to two decimal places, such\nthat 𝑃(𝑚−𝑏< 𝑋< 𝑚+ 𝑏) is greater than or equal to 95%. Provide your answer as pseudocode that prints\nout the values 𝑚and 𝑏.\nIncremental solution:\n\n4\nBayesian Carbon Dating (34 points)\nWe are able to know the age of ancient artefacts using a process called carbon dating. This process involves\na lot of uncertainty! Living things have a constant proportion of a molecule called C14 in them. When living\nthings die those molecules start to decay. The time to decay in years, 𝑇, of a C14 molecule is distributed as an\nexponential. 𝑇∼Exp(𝜆= 1/8267).\na. (5 points) Consider a single C14 molecule. What is the probability that it decays within 500 years?\n𝑃(𝑇≤500) = 1 −𝑒−\n1\n8267 ∗500 = 0.05868875306\nb. (8 points) C14 molecules decay independently. A particular sample started with 100 molecules. What\nis the probability that exactly 95 are left after 500 years? Let 𝑝be your answer to part a.\nX Bin(n=100, p = 0.0586)\nP(X = 5) = scipy.stats.binom.pmf(5, 100, 0.05868)\n\nc. (6 points) Write pseudocode for a function pr_measure_given_age(m, age) which returns 𝑃(𝑀=\nm|𝐴= age), the probability that exactly m molecules are left out of the original 100 after exactly age\nnumber of years.\nd. (15 points) You observe a measurement of 95 C14 molecules in a sample. You assume that the sample\noriginally had 100 C14 molecules when it died. Write pseudocode for a function age_belief() that\nreturns a list of length 1000 where the value at index 𝑖in the list stores 𝑃(𝐴= 𝑖|𝑀= 95). Age is a\ndiscrete random variable which takes on whole numbers of years. 𝐴= 𝑖is the event that the sample\norganism died 𝑖years ago. You may use the function pr_measure_given_age(m, age) from part c.\nFor your prior belief: you know that the sample must be between 𝐴= 500 and 𝐴= 600 inclusive and\nyou assume that every year in that range is equally likely.\n\n5\nReliability engineering (23 points)\nThe “reliability distribution\" is a random variable parameterized by 𝑎with PDF:\n𝑓(𝑋= 𝑥) = 1\n𝑎2 𝑥𝑎−1𝑒−𝑥2\n𝑎2\nWe wish to model how long a particular model of phone will function before it breaks. We are going to use\na reliability distribution. To this end we collect 𝑁independent measurements of how long the type of phone\nfunctions before it breaks: 𝑥1, 𝑥2, . . . , 𝑥𝑁. Explain, in words, how you would choose parameter 𝑎using the\nmaximum likelihood estimation framework, and provide any necessary derivatives.\nFirst, we start by defining our likelihood function.\n𝐿(𝑎) =\n𝑁\nÖ\n𝑖=1\n𝑓(𝑋𝑖|𝑎)\nWe want to determine ˆ𝑎= argmax\n𝑎\n𝐿(𝑎). Since the argmax of 𝐿(𝑎) is equivalent to the argmax of the log of\n𝐿(𝑎) and logs make the math simpler we write:\n𝐿𝐿(𝑎) = log\n 𝑁\nÖ\n𝑖=1\n𝑓(𝑋𝑖|𝑎)\n!\nPlugging in the provided PDF and simplifying:\n𝐿𝐿(𝑎) = log\n 𝑁\nÖ\n𝑖=1\n1\n𝑎2 𝑥𝑎−1\n𝑖\n𝑒−\n𝑥2\n𝑖\n𝑎2\n!\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\nlog\n \n1\n𝑎2 𝑥𝑎−1\n𝑖\n𝑒−\n𝑥2\n𝑖\n𝑎2\n!#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\nlog\n\u0012 1\n𝑎2\n\u0013\n+ log\n\u0010\n𝑥𝑎−1\n𝑖\n\u0011\n+ log\n \n𝑒−\n𝑥2\n𝑖\n𝑎2\n!#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\n−2 log (𝑎) + (𝑎−1) log (𝑥𝑖) −𝑥2\n𝑖\n𝑎2 log (𝑒)\n#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n−2 log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n(𝑎−1) log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\n𝑎2 log (𝑒)\n𝐿𝐿(𝑎) = −2𝑁log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n𝑎log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) −1\n𝑎2\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\nNow we will take the partial derivative of the log likelihood with respect to the parameter of interest 𝑎:\n𝜕𝐿𝐿(𝑎)\n𝜕𝑎\n= 𝜕\n𝜕𝑎\n \n−2𝑁log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n𝑎log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) −1\n𝑎2\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\n!\n𝜕𝐿𝐿(𝑎)\n𝜕𝑎\n= −2𝑁\n𝑎+\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) + 2\n𝑎3\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\nFrom here, we would set the partial derivative equal to 0 and solve for 𝑎.\nNote: You were required to provide the necessary derivatives but you did not need to actually determine the\nvalue of 𝑎as the problem states. Any math beyond the calculation of the partial derivative was not required\nor penalized.\n\n6\nRank ordering of samples (25 points)\nA random variable 𝑋can take on three values: 1, 2 or 3 with the following probabilities:\nValue\nProbability\n1",
+      "source_type": "exam_question",
+      "document_name": "FinalWin2022Soln",
+      "score": 0.5435739755630493
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p44_p45_4e99c07201",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling\nWith enough samples, you can easily compute:\n• Probability estimates\n• Conditional probability estimates\n• Expectation estimates\nWhy? Because your samples represent\nthe joint distribution incredibly well!\n45\n[flu, und, fev, tir]\nP(has flu | undergrad and is tired) = 0.122\nIf you can sample enough from the joint distribution, \nyou can answer any probability inference question.\n\nBreaking News\n46",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.5367857217788696
+    },
+    {
+      "chunk_id": "cs109_05_section_soln_sec1_part3_d9a7c69ea6",
+      "text": "– 5 –\n3\nUnderstanding Bayes Nets\nA = 0\nA = 1\nB = 0\nB = 1\nB = 0\nB = 1\nC = 0\n0.36\n0.20\n0.00\n0.00\nC = 1\n0.04\n0.20\n0.10\n0.10\nThe joint probability table (above) for random variables 𝐴, 𝐵and 𝐶is equivalent to the Bayes\nnetwork (below). Both give the probability of any combination of the random variables. In the\nBayes network the probability of each random variable is provided given its causal parents.\n• Use the Bayes network to explain why 𝑃(𝐴= 0, 𝐵= 1, 𝐶= 1) = 0.20\n𝑃(𝐴= 0, 𝐵= 1, 𝐶= 1) = 𝑃(𝐴= 0)𝑃(𝐵= 1)𝑃(𝐶= 1|𝐴= 0, 𝐵= 1) = 0.8∗0.5∗0.5 = 0.2.\n• What is 𝑃(𝐴= 1|𝐶= 1)?\nUsing the table, we see that\n𝑃(𝐴= 1|𝐶= 1) =\n0.1 + 0.1\n0.1 + 0.1 + 0.2 + 0.04 = 0.2\n0.44 = 5\n11\n• Is 𝐴independent of 𝐵? Explain your answer.\nYes. This follows directly from the structure of the bayesian network, because A and B have\nno shared ancestors. Alternatively, note that 𝑃(𝐴= 𝑎, 𝐵= 𝑏) = 𝑃(𝐴= 𝑎)𝑃(𝐵= 𝑏), which\nsatisfies the definition of independence.\n• Is 𝐴independent of 𝐵given 𝐶= 1? Explain your answer.\n\n– 6 –\nNo. From the table, we can see that 𝑃(𝐵= 1|𝐴= 0, 𝐶= 1) =\n0.2\n0.4+0.2 ≠𝑃(𝐵= 1|𝐴= 1, 𝐶=\n1) =\n0.1\n0.1+0.1. So given 𝐶= 1, knowing the value of A informs us about the value of B, and\ntherefore A and B are not conditionally independent given C.\nNote: This phenomenon is sometimes called ”Explaining Away” if you’re curious to read\nmore.\n4\nFish Sticks [courtesy of Lisa Yan]\nFish Sticks, the online platform designed to meet all of your fish stick needs, wants to model their\nhourly homepage traffic from Stanford. The company decides to model two different behaviors for\nhomepage visits according to the Bayesian Network below:\n𝐴and 𝐵are the numbers of Stanford students and faculty, respectively, who visit the Fish Sticks\nhomepage in an hour. Since Fish Sticks does not know when Stanford people eat, the company\nmodels demand as a ”hidden” Bernoulli random variable 𝐷, which determines the distribution of\n𝐴and 𝐵. Recall that in a Bayesian Network, random variables are conditionally independent given\ntheir parents. For example, given 𝐷= 0, 𝐴∼Poi(5) and 𝐵∼Poi(3), two independent random\nvariables.\na. Given that 6 users from group 𝐴visit the homepage in the next hour, what is the probability\nthat 𝐷= 0?\nNote that given 𝐷= 0, 𝐴∼Poi(𝜆= 5), and given 𝐷= 1, 𝐴∼Poi(𝜆= 8). By Bayes’\nTheorem,\n𝑃(𝐷= 0|𝐴= 6) =\n𝑃(𝐴= 6|𝐷= 0)𝑃(𝐷= 0)\n𝑃(𝐴= 6|𝐷= 0)𝑃(𝐷= 0) + 𝑃(𝐴= 6|𝐷= 1)𝑃(𝐷= 1)\n=\n56𝑒−5\n6! (1 −0.3)\n56𝑒−5\n6! (1 −0.3) + 86𝑒−8\n6! (0.3)\n=\n56𝑒−5(1 −0.3)\n56𝑒−5(1 −0.3) + 86𝑒−8(0.3) ≈0.7364\nb. What is the probability that in the next hour, the total number of users who visit the\nhomepage from groups 𝐴and 𝐵is equal to 12, i.e., what is 𝑃(𝐴+ 𝐵= 12)?\n\n– 7 –\nBy Law of Total Probability,\n𝑃(𝐴+ 𝐵= 12) = 𝑃(𝐴+ 𝐵= 12|𝐷= 0)𝑃(𝐷= 0) + 𝑃(𝐴+ 𝐵= 12|𝐷= 1)𝑃(𝐷= 1).\n𝐴and 𝐵are conditionally independent Poisson random variables given 𝐷, and therefore\n𝐴+ 𝐵|𝐷= 0 ∼Poi(𝜆= 8) and 𝐴+ 𝐵|𝐷= 1 ∼Poi(𝜆= 14). Using the Poisson PMF,\n𝑃(𝐴+ 𝐵= 12) = 812𝑒−8\n12!\n· (1 −0.3) + 1412𝑒−14\n12!\n· (0.3) ≈0.0632.\nc. Now simulate 𝑃(𝐴+ 𝐵= total), where total = 12, by implementing the\ninfer prob total(total, ntrials) function below using rejection sampling.\n• total is the total number of users from groups 𝐴and 𝐵in the event 𝐴+ 𝐵= total.\n• ntrials is the number of observations to generate for rejection sampling.\n• prob is the return value to the function, where prob ≈𝑃(𝐴+ 𝐵= total).\n• The function call is implemented for you at the bottom of the code block.\nYou can call the following functions from the scipy package:\n• stats.bernoulli.rvs(𝑝), which randomly generates a 1 with probability 𝑝, and\ngenerates a 0 otherwise.\n• stats.poisson.rvs(𝜆), which randomly generates a value according to a Poisson\ndistribution with parameter 𝜆\nYou are not required to use lists or numpy arrays in this question (but you can if you want).\nPseudo-code is fine as long as your code accurately conveys your approach.\nimport numpy as np\nfrom scipy import stats\ndef infer_prob_total(total, ntrials):",
+      "source_type": "review_section",
+      "document_name": "05 section soln",
+      "score": 0.5327011346817017
+    },
+    {
+      "chunk_id": "cs109_finalfall2021soln_preamble_dfa36463ce",
+      "text": "CS109 Final Exam\nChris Piech\nCS109\nFall 2021\nThis is a closed calculator/computer exam. You are, however, allowed to use notes in the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions and\nparameter values you used, where appropriate. It is fine for your answers to include summations, products,\nfactorials, exponentials, and combinations.\nYou can leave your answer in terms of Φ (the CDF of the standard normal) or Φ−1 (the inverse CDF). For\nexample Φ\n\u0010\n3\n4\n\u0011\nis an acceptable final answer.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than I have in\nmy entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\nEmail (preferably your gradescope email):\n\n1\nTrue of False (36 points)\nAnswer True or False for each of the following questions. You must give a brief justification for your answer.\na. (6 points) If two random variables 𝑋and𝑌are independent, then it is still possible for some assignments\n𝑋= 𝑥and 𝑌= 𝑦to be dependent.\nFalse\nAll events must be independent as well.\nb. (6 points) The log likelihood function that is used to estimate 𝑝of a Bernoulli, for a set of observations,\nmust always be 0 or smaller.\nTrue\n𝐿𝐿(𝑝) = log\n𝑛\nÖ\n𝑖=1\n𝑃(𝑋= 𝑥𝑖; 𝑝) =\n𝑛\n∑︁\n𝑖=1\nlog 𝑃(𝑋= 𝑥𝑖; 𝑝)\nBecause the bernoulli distribution is discrete, the likelihood of any point must be between 0 and 1\ninclusive. This means the log likelihood of any point is at most 0. If you sum together non-positive\nnumbers, the result is non-positive. (This is not strictly true for continuous distributions since the\nlikelihood of a point can be greater than 1)\nc. (6 points) You sampled two sets of numbers from unknown distributions: (𝑎1...𝑎𝑛) and (𝑏1...𝑏𝑛). You\nobserve a difference between their modes, and you decide to use bootstrapping to ascertain whether the\nmodes of their respective distributions are truly different. If your algorithm estimates a p-value of 0.99,\nthis implies that the modes of the underlying distributions are not meaningfully different.\nTrue\nA p-value of 0.99 would occur if the difference we observed between the modes of the two datasets is\nthe kind of difference we would observe frequently by chance if the two sets of points were drawn from\ndistributions with the same mode.\n\nd. (6 points) Let 𝑋1...𝑋𝑛be i.i.d. Then ( 1\n𝑛\nÍ𝑛\n𝑖=1 𝑋𝑖) is a new random variable which tends toward a normal\ndistribution with mean 0 and variance 0 as 𝑛tends toward infinity.\nFalse\nThe mean does not tend towards 0, but it is always the same value 𝐸[𝑋𝑖] regardless of 𝑛. This can even\nbe shown for non-independent variables: 𝐸[ 1\n𝑛\nÍ𝑛\n𝑖=1 𝑋𝑖] = 1\n𝑛𝐸[Í𝑛\n𝑖=1 𝑋𝑖] = 1\n𝑛\nÍ𝑛\n𝑖=1 𝐸[𝑋𝑖] = 1\n𝑛𝑛𝐸[𝑋𝑖] =\n𝐸[𝑋𝑖]. The variance does tend toward 0 for large 𝑛(but the whole answer is still false).\nIt is worth mentioning that the central limit theorem does not hold for random variables that have\nundefined variance (we did not discuss these distributions in class), so it would also be technically\ncorrect to say that these i.i.d. R.V.s don’t always tend toward Normal, making the statement false. This\nlevel of detail is beyond scope of this course.\ne. (6 points) Let 𝑋∼Poi(𝜆= 5) and let 𝑌∼Exp(𝜆= 5). 𝑃(𝑋= 0) is equal to 𝑃(𝑌> 1)\nTrue\nIntuitively, the probability of no occurrences in an interval is the same as the first occurrence happening\nafter the interval. Mathematically, 𝑃(𝑋= 0) = 50𝑒−5\n0!\n= 𝑒−5 = 1 −(1 −𝑒−5) = 1 −𝑃(𝑌≤1) = 𝑃(𝑌> 1)\nf. (6 points) Let 𝑋1, 𝑋2, ..., 𝑋𝑛be (not necessarily independent) random variables each with mean 1. It\nmust be the case that 𝑃(𝑋1 + ... + 𝑋𝑛>= 𝑛) is greater than 0.\nTrue\nThis is one of the more challenging problems.\nBy linearity of expectation (Lecture 6), E(𝑋1 + ... + 𝑋𝑛) = E(𝑋1) + ... + E(𝑋𝑛) = 1 + ... + 1 = 𝑛,\nregardless of any dependency among the 𝑋𝑖s. Then there must be at least some positive probability that\n𝑋1 + ... + 𝑋𝑛≥𝑛, or else the mean of 𝑋1 + ... + 𝑋𝑛would be less than 𝑛.\nSome incorrect or insufficient arguments included:\n• Invoking the Central Limit Theorem, which does not necessarily apply here because the 𝑋𝑖s are\nnot necessarily independent, and 𝑛may not necessarily be large. Even if this was used to argue\nthat the mean of the sum is 𝑛(which is true), we still deducted most of the points because using\nthe CLT in an unjustified situation is a serious mistake (we don’t want you to do that in real\napplications later in your careers!)\n• Arguing that each 𝑋𝑖must be able to take on the value 1 with some probability (this is not true,\ne.g., consider a variable that is 2 half the time and 0 half the time)\n• Arguing that each 𝑋𝑖must be able to take on a value 1 or greater with some probability (this is\ntrue), so there must be some outcome where this happens for all of them (this is not true, and\ndoes not address the issue of the variables potentially being dependent. e.g., consider a case where\n𝑋1 = 2 half the time and 0 the other half of the time, and 𝑋2 = 2 half of the time and 0 the other\nhalf of the time, but they are dependent such that 𝑋1 is 2 when 𝑋2 is 0, and vice versa. Then there\nis no such outcome, even though the situation is valid for the problem because both 𝑋𝑖s have mean",
+      "source_type": "exam_question",
+      "document_name": "FinalFall2021Soln",
+      "score": 0.5304339528083801
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p20_83ac6d989e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference via math\n21\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝑈= 1 = 0.8\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0 \n1. Compute joint probabilities\n2. Definition of conditional probability\n𝑃𝐹*+ = 1, 𝐹,- = 0, 𝑈= 0, 𝑇= 1\n𝑃𝐹*+ = 0, 𝐹,- = 0, 𝑈= 0, 𝑇= 1\n𝑃𝐹*+ = 1, 𝐹,- = 0, 𝑈= 0, 𝑇= 1\n∑. 𝑃𝐹*+ = 𝑥, 𝐹,- = 0, 𝑈= 0, 𝑇= 1  \n2.  𝑃𝐹+, = 1|𝐹\"- = 0, 𝑈= 0, 𝑇= 1 ?\n𝑃𝐹#$ = 1 = 0.1\n= 0.095",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.5290391445159912
+    },
+    {
+      "chunk_id": "cs109_finalfall2021soln_q0_42694214da",
+      "text": "5 = 𝑛\n𝑛0.5 = 0.5\n𝑉𝑎𝑟(𝑋) = 𝑉𝑎𝑟\n \n1\n𝑛\n𝑛\n∑︁\n𝑖=1\n𝑍𝑖\n!\n= 1\n𝑛2𝑉𝑎𝑟\n 𝑛\n∑︁\n𝑖=1\n𝑍𝑖\n!\n= 1\n𝑛2\n𝑛\n∑︁\n𝑖=1\n𝑉𝑎𝑟(𝑍𝑖) = 1\n𝑛2\n𝑛\n∑︁\n𝑖=1\n𝑣= 𝑛\n𝑛2 𝑣= 𝑣\n𝑛= 𝑣\n20\nUsing CLT, 𝑋∼𝑁\u0000𝜇= 0.5, 𝜎2 = 𝑣\n20\n\u0001\nd. (6 points) What is an approximation for the distribution of the mean from one population minus the\nmean from another population? Note: this value may be negative if the first population has a smaller\nmean than the second.\nLet 𝑋1 and 𝑋2 be the means of the populations. 𝑋1 ∼𝑁(𝜇= 0.5, 𝜎2 = 𝑣\n20), 𝑋2 ∼𝑁(𝜇= 0.5, 𝜎2 = 𝑣\n20)\n𝐸[𝑋1 −𝑋2] = 𝐸[𝑋1] −𝐸[𝑋2] = 0\n𝑉𝑎𝑟(𝑋1 −𝑋2) = 𝑉𝑎𝑟(𝑋1) + 𝑉𝑎𝑟(𝑋2) = 𝑣\n10\nThe sum (or difference) of independent normals is still normal: 𝑌∼𝑁(𝜇= 0, 𝜎2 = 𝑣\n10)\ne. (8 points) What is the smallest difference in means, 𝑘, that would look statistically significant if there\nwere only two populations? In other words, the probability of seeing a difference in means of 𝑘or\ngreater is < 0.05.\nOne tricky part of this problem is to recognize the double sidedness to distance. We would consider it\na significant distance if 𝑃(𝑌< −𝑘) or 𝑃(𝑌> 𝑘).\n𝑃(𝑌< −𝑘) + 𝑃(𝑌> 𝑘) = 0.05\n𝐹𝑌(−𝑘) + (1 −𝐹𝑌(𝑘)) = 0.05\n(1 −𝐹𝑌(𝑘)) + (1 −𝐹𝑌(𝑘)) = 0.05\n2 −2𝐹𝑌(𝑘) = 0.05\n𝐹𝑌(𝑘) = 0.975\nNow we need the inverse Φ to get the value of 𝑘out.",
+      "source_type": "exam_question",
+      "document_name": "FinalFall2021Soln",
+      "score": 0.5273289680480957
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p20_p21_e38075bc02",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhy do we care?\nIn the real world, we don’t know the true parameters.\n• But we observe data:\ndef estimator ;𝜃: a random variable estimating the true parameter 𝜃.\nIn parameter estimation,\nWe’ll initially and often rely on point estimates—i.e., the best single value\n• Provides an understanding of why data looks the way it does\n• Can make future predictions using that model\n• Can run simulations to generate more data\n21\n# times coin comes up heads, # requests for \nRydeShare per minute, # visitors to website per \nday, offer amount for that used bike you can’t sell\n\nMaximum \nLikelihood \nEstimator\n22",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.5235775709152222
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p17_p18_f18b5f576e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhat would a CS109 student do?\n1. Populate a Bayesian network by \nasking an infectious diseases expert\n  \n \n \nor\nby using reasonable assumptions\n2. Answer inference questions\nUsing a Bayes Net\n18\nOur focus\ntoday\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑈= 1 = 0.8\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0\n\nInference: Math\n19",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.49776726961135864
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p19_5e24f694ad",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference via math\n20\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝑈= 1 = 0.8\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0 \n1.  𝑃𝐹+, = 0, 𝑈= 1, 𝐹\"- = 0, 𝑇= 1 ?\nCompute joint probabilities\nusing chain rule.",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.4937584698200226
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p6_d6230156f4",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nReasonable Questions Starting Out\n1. In situations where we can’t obverse the entire population, what can we \nsafely infer by polling a sample drawn from that population?\n2. How large does your sample need to be before your conclusions become \ntrustworthy, and how do we express our confidence in those \nconclusions.\n3. Are there alternative ways to infer population statistics without polling \nentire populations?\n7\n𝜎",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.49215376377105713
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p23_dec7807e01",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nEstimating population statistics\n24\n1. Collect a sample, 𝑋!, 𝑋\", … , 𝑋#.\n2. Compute sample mean, 2𝑋=\n!\n# ∑$%!\n#\n𝑋$.\n3. Compute sample deviation, 𝑋$ −2𝑋.\n4. Compute sample variance, 𝑆\" =\n!\n#6! ∑$%!\n#\n𝑋$ −2𝑋\".\nHow close are our estimates $𝑋 and 𝑆\" to the true 𝜇 and 𝜎\"?\n𝑆\" = 793\n−11, 2, −4, −4,8, −15, … , −12\n2𝑋= 83\n72, 85,79,79,91,68, … , 71\n𝑛= 200\nA particular outcome",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.4877878725528717
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p22_7b79e99754",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference via math\n3.  𝑃𝐹+, = 1|𝑈= 1, 𝑇= 1 ?\n23\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝑈= 1 = 0.8\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0 \n1. Compute joint probabilities\n2. Definition of conditional probability\n𝑃𝐹*+ = 1, 𝑈= 1, 𝐹,- = 1, 𝑇= 1\n…\n𝑃𝐹*+ = 0, 𝑈= 1, 𝐹,- = 0, 𝑇= 1 ?\n∑/ 𝑃𝐹*+ = 1, 𝑈= 1, 𝐹,- = 𝑦, 𝑇= 1\n∑. ∑/ 𝑃𝐹*+ = 𝑥, 𝑈= 1, 𝐹,- = 𝑦, 𝑇= 1  \n= 0.122",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.4855654239654541
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p9_p10_b563fedecb",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIf we had a distribution 𝐹 of our entire population, \nwe could compute exact statistics about happiness.\nBut we only have 200 people—or rather, a sample.\nAssuming we have just a single sample,\n• how do we report estimated statistics?\n◦We’re careful to call them estimated mean and estimated \nvariance, since they’re based on a sample\n• How do we report confidence intervals on these \nestimates?\n• How do we perform something called \nhypothesis testing? Oh, and what is it?\nA single sample\n10\nA happy\nBhutanese person\n\nUnbiased \nestimators\n11",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.4829840064048767
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p17_b57564ae4a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSome estimators\n𝑋!, 𝑋\", … , 𝑋# are 𝑛 iid random variables,\nwhere 𝑋$ drawn from distribution 𝐹 with 𝐸𝑋$ = 𝜇, Var 𝑋$ = 𝜎\".\nSample mean:\n18\n!𝑋= 1\n𝑛0\n$%!\n#\n𝑋$\nunbiased estimate of 𝜇 \nSample variance:\n𝑆\" =\n1\n𝑛−1 0\n$%!\n#\n𝑋$ −!𝑋\"\nunbiased estimate of 𝜎\"\npotentially useful estimates if trying to infer parameters of a Gaussian",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.4826236367225647
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p6_88df05adf8",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap for p-values\n1. Create a universal sample using\nyour two samples\n2. Repeat 10,000 times: \na. Resample both samples\nb. Recalculate the mean difference\nbetween the resamples\n3. p-value =\n7\nProbability\nthat observed \ndifference arose \nby chance\n# (mean diffs >= observed diff)\nn\nbhutan_sample\nnepal_sample",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.4789179861545563
+    },
+    {
+      "chunk_id": "cs109_06_section_soln_clt_sec1_part2_cfea372a3f",
+      "text": "𝑟𝑦\n0 𝑑𝑦\n= −1\n4\n∫∞\n0\n𝑒−1\n4 𝑦\u0010\n𝑒−1\n3𝑟𝑦−1\n\u0011\n𝑑𝑦\n= 1\n4\n∫∞\n0\n𝑒−1\n4 𝑦𝑑𝑦−1\n4\n∫∞\n0\n𝑒−( 1\n3𝑟+ 1\n4)𝑦𝑑𝑦\n= 1 +\n1\n4\n1\n3𝑟+ 1\n4\n𝑒−( 1\n3𝑟+ 1\n4)𝑦\n\n∞\n0\n= 1 −\n1\n4\n1\n3𝑟+ 1\n4\n=\n1\n3𝑟+ 1\n4\n1\n3𝑟+ 1\n4\n−\n1\n4\n1\n3𝑟+ 1\n4\n=\n1\n3𝑟\n1\n3𝑟+ 1\n4\nFor those question why that first of two integrals vanished to 1, note that the integrand is\njust the PDF of Expo(𝜆= 1\n4)!\nIncidentally, we can compute the probability density function from the CDF by dif-\nferentiating with respect to 𝑟:\n𝑓(𝑟) = 𝑑𝐹(𝑟)\n𝑑𝑟\n= 𝑑\n𝑑𝑟\n1\n3𝑟\n1\n3𝑟+ 1\n4\n=\n1\n12( 1\n3𝑟+ 1\n4)2\nb. What is the probability that Kathleen finishes before Jacob does?\nIn comparison, that is delightfully straightforward, because we get to plug 𝑟= 1 into our\nresult from part a. 𝑃(𝑋< 𝑌) = 1\n3 · 12\n7 = 4\n7. That, however, is the probability that Jacob\nfinishing before Kathleen, and we want to opposite. Therefore, the probability of interest\n\n– 5 –\nis really 3\n7. Given the expected completion times of 3 and 4 hours for Jacob and Kathleen,\nrespectively, this seems right.\n2.3\nCentral Limit Theorem and Sampling Calisthenics\na. Let 𝑋1, 𝑋2, 𝑋3, ..., 𝑋1000 be iid—that is, independent and identically distributed—such that\n𝑋𝑖∼NegBin(𝑟= 10, 𝑝= 0.5), and let 𝑊= 𝑋1 + 𝑋2 + ... + 𝑋1000. According to the Central\nLimit Theorem, what distribution does 𝑊assume, and what are its parameters?\nThis is classic Central Limit Theorem where the distribution of the sum is a Gaussian with\nmean 1000 𝐸[𝑋𝑖] and variance 1000𝑉𝑎𝑟(𝑋𝑖). The formulas for a Negative Binomial’s mean\nand variance are well-defined and are computed as:\n𝐸[𝑋𝑖] = 𝑟\n𝑝= 10\n0.5 = 20\n𝑉𝑎𝑟(𝑋𝑖) = 𝑟(1 −𝑝)\n𝑝2\n= 10 · 0.5\n0.52\n= 20\nHow neat is it that the mean and variance are the same? This all means that 𝑊∼\nN (20000, 20000).\nb. Define ¯𝑋=\n1\n1000\nÍ1000\n𝑖=1 𝑋𝑖to be the sample mean of our 1000 iid samples. What is the\nstandard deviation of the random variable ¯𝑋?\nThe Central Limit Theorem has a lot to say about the distribution of sample means as well.\nIn particular, for this problem, ¯𝑋∼N (𝐸[𝑋𝑖], 𝑉𝑎𝑟[𝑋𝑖]\n1000 ). That’s more than we’re asking—all\nI need from you is that 𝑉𝑎𝑟(𝑋𝑖) =\n20\n1000 = 0.02.\nc. You compute the variance of your 1000 samples, 𝑋1, 𝑋2, 𝑋3, ..., 𝑋1000 according to the\ntraditional definition of variance—i.e.\n1\n1000\nÍ1000\n𝑖=1 (𝑋𝑖−¯𝑋)2. Do you expect this variance to,\nmore often than not, be larger, equal to, or smaller than the variance of NegBin(10, 0.5).\nExplain your answer.\nHere the population variance is 20, since we know the population distribution is the Negative\nBinomial. Recall that the unbiased sample variance divides the sum of the differences squared\nby 𝑛−1, or 999. The traditionally computed variance divides by a slightly larger number of\n1000, so we expect the traditionally computed variance to, more often than not, be a little\ntoo low.\nd. The number of samples needed for the Central Limit Theorem to apply is generally\nunderstood to be 30 or more. However, the Central Limit Theorem works well for an even\nsmaller number of samples when 𝑋𝑖∼Bin(10, 0.5) than is does when\n𝑋𝑖∼NegBin(10, 0.5). Briefly explain why.\n\n– 6 –\nThe simple answer is that 𝑋𝑖∼Bin(10, 0.5) is symmetric, so there are no asymmetries\nto overcome as you add samples together. In fact, you can view, say, 3 Bin(10, 0.5) as 30\nBer(0.5).\ne. Recall that sampling theory allows a reasonably large sample to stand in for the true\npopulation distribution. When resampling from the sample for bootstrapping purposes, we\ngenerally do so with replacement. Why with replacement instead of without?\nWe sample with replacement because we treat the original set of samples as a probability\nmass function. If we were to sample without replacement, we’re incapable of creating\nresamples of a size larger than the original sample, and when the size of the resample is\nclose to the size of the original, each resample would essentially be a replica of the original.",
+      "source_type": "review_section",
+      "document_name": "06 section soln clt",
+      "score": 0.47548413276672363
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p4_a68eae6f07",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSample\n5\nA sample is selected from a population.",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.47181597352027893
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p5_c1d9d32b84",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSample\n6\nA sample is selected from a population.",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.46822527050971985
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p19_665aaf3b2e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIntuition about the sample variance, 𝑆#\n20\n𝑆\" =\n1\n𝑛−1 3\n$%!\n#\n𝑋$ −2𝑋\"\n150\n0\nHappiness\n𝜇\n𝜎\" = 1\n𝑁3\n$%!\n&\n𝑥$ −𝜇\"\npopulation\nvariance\nsample\nvariance\npopulation mean\nsample mean\nPopulation size, 𝑁\n$𝑋\n𝑋$ −)𝑋\nActual, 𝜎\"\nEstimate, 𝑆\"",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.46122658252716064
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p52_af07371a26",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the statistic on the resample\n3. You now have a distribution of your statistic\nAlgorithm in practice: Resampling\n53\n𝑃𝑋= 𝑘= # values in sample equal to 𝑘\n𝑛\n?\n[116, 76, 132, 85, ..., 78]",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.4609494209289551
+    },
+    {
+      "chunk_id": "cs109_finalspring2017_q7d_8e19b865fb",
+      "text": "Note that (by our answer to part a), px = 2q −0.5.\nSince ¯Y is an unbiased estimate of q (the sample mean is always an\nunbiased estimate), we have px ⇡2 ¯Y −0.5. It then makes sense to\nestimate ˆpx = 2 ¯Y −0.5.\nAnd this turns out to be unbiased:\nE[ ˆpx] = 2E[ ¯Y ] −0.5 = 2⌃100\ni=1E[Yi]\n100\n−0.5 = 2q −0.5 = px",
+      "source_type": "exam_question",
+      "document_name": "FinalSpring2017",
+      "score": 0.44313836097717285
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p0_p1_b4b6de66de",
+      "text": "20: Maximum \nLikelihood Estimation\nJerry Cain\nMay 15th, 2024\n1\nLecture Discussion on Ed\n\nBootstrap:\np-value\n2",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.44070085883140564
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p6_899aa4aac4",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference\n7\nFlu\nCold\nHiccups\nUnder-\ngrad\nChest \npain\nTired\nSore\nThroat\nFever\nNausea\nAnother inference question:\n𝑃𝐶! = 1, 𝑈= 1|𝑆= 0, 𝐹\" = 0\n= 𝑃𝐶! = 1, 𝑈= 1, 𝑆= 0, 𝐹\" = 0\n𝑃𝑆= 0, 𝐹\" = 0",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.4357973635196686
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p25_799364dff7",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nHow close is our estimate !𝑋 to 𝜇?\ndef The standard error of the mean is an\n \nestimate of the standard deviation of 2𝑋.\n26\nVar 2𝑋= 𝜎\"\n𝑛\n𝐸$𝑋= 𝜇\n𝑆𝐸=\n𝑆\"\n𝑛\nIntuition:\n• 𝑆! is an unbiased estimate of 𝜎!\n• 𝑆!/𝑛 is an unbiased estimate of 𝜎!/𝑛= Var )𝑋\n•\n𝑆!/𝑛 is an estimate of Var )𝑋\nWe want to\nestimate this\nMore info on bias of \nstandard error: wikipedia",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.43523550033569336
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p0_p1_230e5abd19",
+      "text": "22: Maximum a \nPosteriori \nJerry Cain\nMay 20, 2024\n1\nLecture Discussion on Ed\n\nMaximum a \nPosteriori \nEstimator\n2",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.4342077970504761
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p5_d47dd788f1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference\n6\nFlu\nCold\nHiccups\nUnder-\ngrad\nChest \npain\nTired\nSore\nThroat\nFever\nNausea\nOne inference question:\n𝑃𝐹= 1|𝑁= 1, 𝑇= 1\n= 𝑃𝐹= 1, 𝑁= 1, 𝑇= 1\n𝑃𝑁= 1, 𝑇= 1",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.43402034044265747
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p21_f1e95ab02d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTraining: MLE estimates, !𝑃𝑿|𝑌\n22\n1𝑃𝑿|𝑌= 0\n1𝑃𝑿|𝑌= 1\n𝑋' = 0\n0.4\n0.0\n𝑋' = 1\n0.6\n1.0\nMLE of 1𝑃𝑋' = 𝑥|𝑌= 𝑦= # 𝑋' = 𝑥,𝑌= 𝑦\n# 𝑌= 𝑦\nMLE\nJust count!\nPatient 1  1 \n0\nPatient 2  1 \n1\n     \nPatient 𝑛  0 \n1\nFeature 1\nOutput\n…\n…\nCount:  \n \n# datapoints\n𝑋' = 0, Y = 0:  \n4\n𝑋' = 1, Y = 0:  \n6\n𝑋' = 0, Y = 1:  \n0\n𝑋' = 1, Y = 1:  \n100\nTotal:  \n \n \n110",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.433391273021698
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p43_96e15597e5",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the sample variance on the resample\n3. You now have a distribution of your sample variance\nBootstrapped variance\n44\n[52, 38, 98, 107, ..., 94]\n⚠\nThis resampled sample is \ngenerated with replacement.\nWhy are these \nsamples different?",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.42845776677131653
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p16_9144aa579c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCalculating population statistics exactly \nrequires us knowing all 𝑁 datapoints.\n0\nHappiness\n𝜇\nIntuition about the sample variance, 𝑆#\n17\n𝜎\" = 1\n𝑁3\n$%!\n&\n𝑥$ −𝜇\"\npopulation\nvariance\npopulation mean\n𝑥\" −𝜇\nActual, 𝜎\"\n150\nPopulation size, 𝑁",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.42730432748794556
+    }
+  ],
+  "built_at": "2026-04-28T05:13:11Z"
+}

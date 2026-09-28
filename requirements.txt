@@ -1,0 +1,21 @@
+#
+# Top-level Python dependencies for the Socrates project.
+# Install into your virtualenv with:
+#   pip install -r requirements.txt
+#
+
+# Shared utilities
+requests>=2.28.0
+pyyaml>=6.0
+
+# Central backend (FastAPI + SQLAlchemy)
+fastapi>=0.110.0
+python-multipart>=0.0.9
+uvicorn[standard]>=0.27.0
+SQLAlchemy>=2.0.0
+pydantic>=2.0.0
+
+# Evidence packet pipeline and Jetson/jetson_runtime integration
+openai>=1.0.0
+faster-whisper>=1.0.0
+opencv-python>=4.8.0

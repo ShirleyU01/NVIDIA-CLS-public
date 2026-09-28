@@ -1,0 +1,226 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/01_intros_and_counting_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/01_intros_and_counting_annotated.pdf",
+  "sha256": "6870309d739d24ca16db6e8160b5bb703ca91217252da4455b7aa9d5a249440a",
+  "title_guess": "01 intros and counting annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "CS109: Probability for \nComputer Scientists\nJerry Cain\nApril 1, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 95
+    },
+    {
+      "page_index": 1,
+      "text": "Welcome to \nCS109!\n2",
+      "char_count": 20
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nJerry Cain\n3\nI went here from 1987 \nthrough 1991 and \nmajored in chemistry.\nThen I came here for a PhD in chem, switched to CS\nReceived MSCS 1998\nLecturer: nearly 28 years\nMy interests over time\nChemistry \nand Physics\nComputer \nScience\nSTEM\nEducation",
+      "char_count": 323
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhy Jerry likes probability\n• I majored in chemistry and focused on physical chemistry—thermodynamics, \nquantum mechanics, etc.—and my undergraduate research was rooted in \nsurface science and statistical mechanics.\n• When I switched to CS as a grad\nstudent here, I focused on CS theory\nand all the beautiful mathematics\nthat comes with it. \n• Probability has revived parts of AI and \ninformation theory that were thought \nto be borderline dead when I was getting\nmy MSCS degree here during the 90’s.\n4\n1974\n1996",
+      "char_count": 585
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhat makes this quarter important\nWe are seeing a huge surge in statistics, predictions, and probabilistic \nmodels shared through global news, governing bodies, and social media.\nThe technological and social innovation we develop during this time will \nstrongly influence how we solve interesting problems impacting the lives of \ncountless people across the globe.\n5\nNational Weather \nService Alerts\nhttps://www.weather.gov/\nWorld Politics\nhttps://abcnews.go.com/538\nhttps://www.nytimes.com/\nhttps://www.economist.com/",
+      "char_count": 591
+    },
+    {
+      "page_index": 5,
+      "text": "Course \nMechanics\n6",
+      "char_count": 19
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nPrerequisites\n7\nCS106B\nProgramming\nRecursion\nHash tables\nBinary trees\nCS103\nProofs (induction)\nSet theory\nMathematical\n    maturity\nMATH 51\nMultivariate differentiation\nMultivariate integration\nWorking knowledge of linear\n   algebra (e.g., vectors)",
+      "char_count": 321
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCompanion class: CS109ACE\n• CS109ACE is an extra 1-unit \"ACE\" section that provides additional \nsupport, practice, and instruction for undergraduate students\nconcerned about their preparation and mathematical background.\n• Meets for an additional weekly section and has additional review \nsessions, office hours, and practice problems\n• Admission is via application. You can ignore the published deadline in \nthe form, as our CS109ACE application is due this Friday, April 5th at \n5:00pm.\n• CS109ACE meets on Mondays from 5:30 – 7:20pm, \n(location TBD) and starts on April 8th.\n• Feel free to email Michelle Qin at mdqin@stanford.edu \nwith any questions.\n8\nMichelle Qin",
+      "char_count": 742
+    },
+    {
+      "page_index": 8,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCourse components\n42% \n6 Problem Sets\n22% \nTwo Midterms\n21% \nFinal Exam\n5%  \nSection Participation\n10% \nConcept Checks\n9",
+      "char_count": 193
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCourse components\n42% \n6 Problem Sets\n22% \nTwo Midterms\n21% \nFinal Exam\n5%  \nSection Participation\n10% \nConcept Checks\n10\nCoding portion in Python\n• Review session on Thursday \n04/04 at noon in Huang 018\nWritten portion\n• LaTeX for powerful typesetting\n• Tutorial on CS109 website\nLate policy\n• Need a short extension? No need to ask! \nTake an extra class period.\n• Need a longer extension? Just ask us and \nwe’ll probably be okay with it.\n• Extensions can be at most two extra class \nperiods.",
+      "char_count": 566
+    },
+    {
+      "page_index": 10,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCourse components\n42% \n6 Problem Sets\n22% \nTwo Midterms\n21% \nFinal Exam\n5%  \nSection Participation\n10% \nConcept Checks\n11\n• In person! But held outside of class so we \ncan let you work sans time pressure.\n• Closed-book, mostly-closed-notes, closed-\ncomputer, no calculators.\n• You can bring two 8.5” x 11” pages of \nnotes—using both sides—and refer to them \nduring the exams. \n• Held on Wednesdays.\no Week 4: Wed, 04/24, 7:00 – 9:00pm\no Week 7: Wed, 05/15, 7:00 – 9:00pm\n•\nIrreconcilable Conflict? Let Jerry know and \nwe’ll work something out.",
+      "char_count": 616
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCourse components\n42% \n6 Problem Sets\n22% \nTwo Midterms\n21% \nFinal Exam\n5%  \nSection Participation\n10% \nConcept Checks\n12\n• Scheduled for Saturday, June 8th from \n8:30 until 11:30am (our official time).\n• Closed-book, mostly-closed-notes, closed \ncomputer, no calculators.\n• You can prepare four 8.5” x 11” pages of \nnotes—using both sides—and refer to them \nand a provided reference sheet during the \nexam.\n• Conflict with another final exam? I’ll offer \nthe final on Friday, June 7th from 12:15pm \nto 3:15pm for those with a documented \nconflict with another final exam.",
+      "char_count": 645
+    },
+    {
+      "page_index": 12,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCourse components\n42% \n6 Problem Sets\n22% \nTwo Midterms\n21% \nFinal Exam\n5%  \nSection Participation\n10% \nConcept Checks\n13\n• Sections meet on Thursdays \nand Fridays. Times are already \nposted right here.\n• Sections start Week 2\n• Your section grade is 100%, \nbut each absence (beyond one \nfreebie) reduces the weight of \nsection participation and \nincreases the weight of the \nfinal exam\n• Go to section!",
+      "char_count": 476
+    },
+    {
+      "page_index": 13,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCourse components\n42% \n6 Problem Sets\n22% \nTwo Midterms\n21% \nFinal Exam\n5%  \nSection Participation\n10% \nConcept Checks\n14\n• Short set of questions released \nafter each lecture.\n• Questions are straightforward \nand there to ensure you’ve \nabsorbed the key points and \nformulas from class.\n• All of Week n’s concept checks \nare due the Tuesday of Week \nn + 1 at noon.\n• No late submissions accepted \nunless truly extenuating \ncircumstances make it truly \nimpossible to meet deadline.",
+      "char_count": 554
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCS109 Contest\n• Announced mid-quarter, genuinely optional\n• Boost final course grades after letter\ngrade buckets have been determined\nYour baseline is CS109, and the sky is the limit.\nSome of last quarter’s winners:\n• The Probability of Curing Cancer: Will My Clinical Trial Succeed?\n• Modeling Indexical Fields as Bayesian Networks\n• StatTuring: Distinguishing between LLM and Human text\n• Parka: A Mobile App for Early Parkinson’s Disease Detection\n15",
+      "char_count": 526
+    },
+    {
+      "page_index": 15,
+      "text": "Why you \nshould take \nCS109\n16",
+      "char_count": 30
+    },
+    {
+      "page_index": 16,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTraditional View of Probability\n17",
+      "char_count": 107
+    },
+    {
+      "page_index": 17,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nCS view of probability\n18\nhttp://www.site.com\nhttp://www.site.com\nhttp://www.site.com",
+      "char_count": 158
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMoonshot: Machine Learning\n19\nBuild a \nprobabilistic \nmodel\nData\nPredict",
+      "char_count": 145
+    },
+    {
+      "page_index": 19,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBinary Classification Silliness\n20\nchihuahua or muffin?\npoodle or fried chicken?",
+      "char_count": 153
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nClassification: Where is this useful?\nA machine learning algorithm \nperforms better than the best \ndermatologists.\nDeveloped in 2017 at Stanford.\n21\nEsteva, Andre, et al. \"Dermatologist-level classification of skin cancer with deep neural networks.\" \nNature 542.7639 (2017): 115-118.",
+      "char_count": 356
+    },
+    {
+      "page_index": 21,
+      "text": "22\nProbability is more than \njust machine learning.",
+      "char_count": 51
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProbability and medicine\n23\nPredicted Hospital \nResource Use in United \nStates (IHME)\nhttps://covid19.healthdata.org\n/projections\nHow do COVID-19, RSV, and \nmonkeypox testing rates in a \nregion correlate with the actual \nspread of the disease?",
+      "char_count": 316
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProbability and art\n24",
+      "char_count": 95
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProbability, Meteorology, and Earthquake Prediction\n25",
+      "char_count": 127
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProbability and ethics\n26\nSo far, there are no unified ethical standards … for autonomous cars. The \nbig Moral Machine study conducted by MIT showed that it’s hard to \nidentify universal ethical values. The moral choices that people made in \nthe MIT survey were different and varied even at a local level. That’s why \nit’s hard to create a universal ethics of self-driving cars that won’t be \ncontroversial. [source]",
+      "char_count": 489
+    },
+    {
+      "page_index": 26,
+      "text": "Counting\n27",
+      "char_count": 11
+    },
+    {
+      "page_index": 27,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nWhat is Counting?\nAn experiment\nin probability:\nCounting: \nHow many possible outcomes can occur by\n \nperforming this experiment?\n28\nOutcome\nExperiment",
+      "char_count": 223
+    },
+    {
+      "page_index": 28,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nWhat is Counting Combinatorial Analysis?\n29\n6\n36\n{1, 2, 3,\n 4, 5, 6}\nRoll even only\n3\n{2, 4, 6}\n{(1, 1) , (1, 2), (1, 3), (1, 4), (1, 5), (1, 6),\n (2, 1) , (2, 2), (2, 3), (2, 4), (2, 5), (2, 6),\n (3, 1) , (3, 2), (3, 3), (3, 4), (3, 5), (3, 6),\n (4, 1) , (4, 2), (4, 3), (4, 4), (4, 5), (4, 6),\n (5, 1) , (5, 2), (5, 3), (5, 4), (5, 5), (5, 6),\n (6, 1) , (6, 2), (6, 3), (6, 4), (6, 5), (6, 6)}\nRoll\nRoll",
+      "char_count": 478
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nSum Rule of Counting, Inclusion-Exclusion Principle\nIf the outcome of an experiment can be either from\nSet 𝐴, where 𝐴= 𝑚,\nor Set 𝐵, where 𝐵= 𝑛,\nwhere 𝐴 and 𝐵 may overlap, then\nThe total number of outcomes of the experiment is\n 𝐴∪𝐵= 𝐴+ 𝐵−|𝐴∩𝐵|.\n30",
+      "char_count": 319
+    },
+    {
+      "page_index": 30,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nProduct Rule of Counting\nIf an experiment has two parts, where\nthe first part’s outcomes are drawn from 𝐴, where 𝐴= 𝑚, \nand the second part’s outcomes are drawn from 𝐵, where 𝐵= 𝑛,\nThen the number of outcomes of the experiment is\n 𝐴𝐵= 𝑚𝑛.\nThis generalizes to multistep experiments—i.e., three steps, five steps, fifty \nsteps, and so forth.\n31\nTwo-step experiment\nA\nB",
+      "char_count": 439
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nBaby’s First Example: Transmitting bytes over a network\nAn 8-bit string is sent over a network.\n• The receiver only accepts strings that\neither start with 01 or end with 00.\nHow many 8-bit strings will the receiver accept?\n32\nbyte (8 bits)\n01001100\nDefine\n𝐴 : 8-bit strings \nstarting with 01\n𝐵 : 8-bit strings \nending with 00",
+      "char_count": 398
+    },
+    {
+      "page_index": 32,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nBaby’s First Example: Transmitting bytes over a network\nAn 8-bit string is sent over a network.\n• The receiver only accepts strings that\neither start with 01 or end with 00.\nHow many 8-bit strings will the receiver accept?\n33\nbyte (8 bits)\n01001100\nDefine\n𝐴 : 8-bit strings \nstarting with 01\n𝐵 : 8-bit strings \nending with 00",
+      "char_count": 398
+    },
+    {
+      "page_index": 33,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nLicense plates\nHow many CA license plates are possible with each of the following formats?\n34\n(pre-1982)\n(present day)",
+      "char_count": 191
+    },
+    {
+      "page_index": 34,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nLicense plates\nHow many CA license plates are possible with each of the following formats?\n35\n(pre-1982)\n(present day)",
+      "char_count": 191
+    },
+    {
+      "page_index": 35,
+      "text": "Permutations I\n36",
+      "char_count": 17
+    },
+    {
+      "page_index": 36,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nUnique 6-digit passcodes with six smudges\n37\nHow many unique 6-digit passcodes are possible if a \nphone password uses each of six distinct numbers?",
+      "char_count": 220
+    },
+    {
+      "page_index": 37,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nArrange 𝑛 indistinct objects\n38",
+      "char_count": 104
+    },
+    {
+      "page_index": 38,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nArrange 𝑛 distinct objects\n39\nIsabel\nGroucho\nMichelle\nJacob\nKathleen",
+      "char_count": 141
+    },
+    {
+      "page_index": 39,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nArrange 𝑛 distinct objects\n40\nSteps:\n1. Choose 1st  can \n \n5 options\n2. Choose 2nd  can \n \n4 options\n…\n5. Choose 5th  can \n \n1 option\nTotal = 5 × 4 × 3 × 2 × 1\n \n= 120 \n1st \n2nd \n3rd \n4th \n5th",
+      "char_count": 265
+    },
+    {
+      "page_index": 40,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nPermutations\nA permutation is an ordered arrangement of objects.\nThe number of unique orderings (permutations) of 𝑛 distinct objects is\n \n \n \n𝑛! = 𝑛 × 𝑛−1  × 𝑛−2  × ⋯ × 2 × 1 \n41",
+      "char_count": 251
+    },
+    {
+      "page_index": 41,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nUnique 6-digit passcodes with six smudges\n42\nTotal = 6!\n  \n= 720 passcodes\nHow many unique 6-digit passcodes are possible if a \nphone password uses each of six distinct numbers?\n>>> import math\n>>> math.factorial(6)\n720",
+      "char_count": 292
+    },
+    {
+      "page_index": 42,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Winter 2024\nUnique 6-digit passcodes with four smudges\n43\nHow many unique 6-digit passcodes are possible if a \nphone password uses each of four distinct numbers?\nNext time!",
+      "char_count": 233
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:57Z"
+}

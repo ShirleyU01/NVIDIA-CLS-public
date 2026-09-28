@@ -1,0 +1,15 @@
+{
+  "course": "CS109",
+  "document_role": "exam",
+  "source_path": "data/raw/CS109/exams/demo_exam.pdf",
+  "relative_path": "data/raw/CS109/exams/demo_exam.pdf",
+  "sha256": "demo1111",
+  "title_guess": "Demo Exam",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "1. Define independence for two discrete random variables.\n\n2. A fair coin is flipped twice.\n(a) What is P(two heads)?\n(b) What is P(at least one head)?"
+    }
+  ],
+  "ingested_at": "2026-04-17T00:00:00Z"
+}

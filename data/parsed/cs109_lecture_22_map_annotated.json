@@ -1,0 +1,176 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/22_map_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/22_map_annotated.pdf",
+  "sha256": "713d6a676a9a057743724fbaf0454d36bb80d8223ccdfc33b62a2ffc9405c40f",
+  "title_guess": "22 map annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "22: Maximum a \nPosteriori \nJerry Cain\nMay 20, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 77
+    },
+    {
+      "page_index": 1,
+      "text": "Maximum a \nPosteriori \nEstimator\n2",
+      "char_count": 34
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum A Posteriori (MAP) Estimator\n3\nMaximum \nLikelihood \nEstimator\n(MLE)\nWhat parameter 𝜃\nmaximizes the likelihood\nof our observed data \n𝑋!, 𝑋\", … , 𝑋# ?\n𝜃$%& = arg max\n'\n𝑓𝑋!, 𝑋\", … , 𝑋#|𝜃\n𝐿𝜃= 𝑓𝑋!, 𝑋\", … , 𝑋#|𝜃\n= \"\n!\"#\n$\n𝑓𝑋!|𝜃\nMaximum\na Posteriori\n(MAP) \nEstimator\nGiven the sample data \n𝑋!, 𝑋\", … , 𝑋# ,\nwhat is the most probable \nparameter 𝜃?\n𝜃$() = arg max\n'\n 𝑓𝜃|𝑋!, 𝑋\", … , 𝑋#\nlikelihood of data\nposterior distribution\nof 𝜃\nConsider a sample of 𝑛 iid random variables 𝑋', 𝑋(, … , 𝑋).",
+      "char_count": 563
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMaximum A Posteriori (MAP) Estimator\nConsider a sample of 𝑛 iid random variables 𝑋', 𝑋(, … , 𝑋).\ndef The Maximum a Posteriori (MAP) Estimator of 𝜃 is the value of 𝜃 that \nmaximizes the posterior distribution of 𝜃.\n4\n𝜃*+, = arg max\n-\n𝑓𝜃|𝑋', 𝑋(, … , 𝑋)\nIntuition with Bayes’ Theorem:\nposterior\nlikelihood prior\n𝑃𝜃data =  𝑃data 𝜃𝑃𝜃 \n𝑃data\n𝐿𝜃, probability of data \ngiven parameter 𝜃\nBefore seeing data,\nprior belief of 𝜃\nAfter seeing \ndata, posterior \nbelief of 𝜃",
+      "char_count": 532
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSolving for 𝜃!\"#\n• Observe data: 𝑋!, 𝑋\", … , 𝑋#, all iid \n• Let likelihood be same as MLE:\n• Let the prior distribution of 𝜃 be 𝑔𝜃.\n5\n𝜃$() = arg max\n'\n𝑓𝜃|𝑋!, 𝑋\", … , 𝑋#\n= arg max\n'\n𝑓𝑋!, 𝑋\", … , 𝑋#|𝜃𝑔𝜃\nℎ𝑋!, 𝑋\", … , 𝑋#\n(Bayes’ Theorem)\n= arg max\n'\n𝑔𝜃∏*+!\n#\n𝑓𝑋*| 𝜃\nℎ𝑋!, 𝑋\", … , 𝑋#\n(independence)\n= arg max\n'\n𝑔𝜃2\n*+!\n#\n𝑓𝑋*| 𝜃\n(1/ℎ𝑋#, 𝑋%, … , 𝑋$  is a positive constant w.r.t. 𝜃)\n= arg max\n'\nlog 𝑔𝜃+ 6\n*+!\n#\nlog 𝑓𝑋*| 𝜃\n𝑓𝑋#, 𝑋%, … , 𝑋$|𝜃= \"\n!\"#\n$\n𝑓𝑋!| 𝜃",
+      "char_count": 520
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n𝜃!\"#: Interpretation 1\n• Observe data: 𝑋!, 𝑋\", … , 𝑋#, all iid \n• Let likelihood be same as MLE:\n• Let the prior distribution of 𝜃 be 𝑔𝜃.\n6\n𝜃$() = arg max\n'\n𝑓𝜃|𝑋!, 𝑋\", … , 𝑋#\n= arg max\n'\n𝑓𝑋!, 𝑋\", … , 𝑋#|𝜃𝑔𝜃\nℎ𝑋!, 𝑋\", … , 𝑋#\n(Bayes’ Theorem)\n= arg max\n'\n𝑔𝜃∏*+!\n#\n𝑓𝑋*| 𝜃\nℎ𝑋!, 𝑋\", … , 𝑋#\n(independence)\n= arg max\n'\n𝑔𝜃2\n*+!\n#\n𝑓𝑋*| 𝜃\n(1/ℎ𝑋#, 𝑋%, … , 𝑋$  is a positive constant w.r.t. 𝜃)\n= arg max\n'\nlog 𝑔𝜃+ 6\n*+!\n#\nlog 𝑓𝑋*| 𝜃\n𝑓𝑋#, 𝑋%, … , 𝑋$|𝜃= \"\n!\"#\n$\n𝑓𝑋!| 𝜃\n𝜃$() maximizes \nlog prior + log-likelihood",
+      "char_count": 569
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n𝜃!\"#: Interpretation 2\n• Observe data: 𝑋!, 𝑋\", … , 𝑋#, all iid \n• Let likelihood be same as MLE:\n• Let the prior distribution of 𝜃 be 𝑔𝜃.\n7\n𝜃$() = arg max\n'\n𝑓𝜃|𝑋!, 𝑋\", … , 𝑋#\n= arg max\n'\n𝑓𝑋!, 𝑋\", … , 𝑋#|𝜃𝑔𝜃\nℎ𝑋!, 𝑋\", … , 𝑋#\n(Bayes’ Theorem)\n= arg max\n'\n𝑔𝜃∏*+!\n#\n𝑓𝑋*| 𝜃\nℎ𝑋!, 𝑋\", … , 𝑋#\n(independence)\n= arg max\n'\n𝑔𝜃2\n*+!\n#\n𝑓𝑋*| 𝜃\n(1/ℎ𝑋#, 𝑋%, … , 𝑋$  is a positive constant w.r.t. 𝜃)\n= arg max\n'\nlog 𝑔𝜃+ 6\n*+!\n#\nlog 𝑓𝑋*| 𝜃\n𝑓𝑋#, 𝑋%, … , 𝑋$|𝜃= \"\n!\"#\n$\n𝑓𝑋!| 𝜃\nThe mode of the\nposterior distribution of 𝜃\n𝜃$() maximizes \nlog prior + log-likelihood",
+      "char_count": 613
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMode: A statistic of a random variable\nThe mode of a random variable 𝑋 is defined as:\n• Intuitively: The value of 𝑋 that is \"most likely\".\n• Note some distributions don’t have a unique mode\n(e.g., Uniform distribution, Bernoulli(0.5))\n8\narg max\n4\n𝑝𝑥\narg max\n4\n𝑓𝑥\n(𝑋 discrete, PMF 𝑝𝑥)\n(𝑋 continuous, PDF 𝑓𝑥)\n𝜃$() is the most probable 𝜃\ngiven the data 𝑋!, 𝑋\", … , 𝑋#.\n𝜃*+, = arg max\n-\n𝑓𝜃|𝑋', 𝑋(, … , 𝑋)",
+      "char_count": 473
+    },
+    {
+      "page_index": 8,
+      "text": "Bernoulli MAP: \nChoosing a \nprior\n9",
+      "char_count": 35
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nHow does MAP work? (for Bernoulli)\n10\nChoose model\nBernoulli 𝑝\nObserve data\nChoose prior on 𝜃\nFind  𝜃$() = \n  arg max\n'\n 𝑓𝜃|𝑋!, 𝑋\", … , 𝑋#\n𝑛 heads, 𝑚 tails\n(some 𝑔𝜃)\nMAP depends on what \n𝑔𝜃 we choose.\nmaximize\nlog prior + log-likelihood\nlog 𝑔𝜃+ 6\n*+!\n#\nlog 𝑓𝑋*|𝜃\n• Differentiate, set to 0\n• Solve",
+      "char_count": 369
+    },
+    {
+      "page_index": 10,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMAP for Bernoulli\n• Flip a coin 8 times. Observe 𝑛= 7 heads and 𝑚= 1 tail.\n• Choose a prior on 𝜃. What is 𝜃$()?\nSuppose we pick a prior 𝜃~𝒩0.5, 1( . 𝑔𝜃=\n!\n\", 𝑒- .-/.1 !/\" \n11\n1. Determine log \nprior + log \nlikelihood\n2. Differentiate\nwrt (each) 𝜃, \nset to 0\n3. Solve resulting\nequations\nWe should choose a prior that’s \neasier to deal with. This one is hard!\nlog 𝑔𝜃+ log 𝑓𝑋!, 𝑋\", … , 𝑋#|𝜃\n= log\n1\n2𝜋\n𝑒- .-/.1 !/\" + log\n𝑛+ 𝑚\n𝑛\n𝑝# 1 −𝑝3\n= −log\n2𝜋−𝑝−0.5 %/2 + log 𝑛+ 𝑚\n𝑛\n+ 𝑛log 𝑝+ 𝑚log 1 −𝑝\n−𝑝−0.5 + 𝑛\n𝑝−\n𝑚\n1 −𝑝= 0\ncubic equations, nope not going to do it",
+      "char_count": 625
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nA better approach: Use conjugate distributions\n12\nChoose model\nBernoulli 𝑝\nObserve data\nChoose prior on 𝜃\nFind  𝜃$() = \n  arg max\n'\n 𝑓𝜃|𝑋!, 𝑋\", … , 𝑋#\n𝑛 heads, 𝑚 tails\n(some 𝑔𝜃)\n(choose conjugate\ndistribution)\n⭐\nmaximize\nlog prior + log-likelihood\nUp next: Conjugate \npriors are great\nfor MAP!\nlog 𝑔𝜃+ 6\n*+!\n#\nlog 𝑓𝑋*|𝜃\n• Differentiate, set to 0\n• Solve",
+      "char_count": 426
+    },
+    {
+      "page_index": 12,
+      "text": "Bernoulli MAP: \nConjugate prior\n13",
+      "char_count": 34
+    },
+    {
+      "page_index": 13,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBeta is a conjugate distribution for Bernoulli\nBeta is a conjugate distribution for Bernoulli, meaning:\n• Prior and posterior parametric forms are the same\n• Practically, conjugate means easy update:\n \n \nAdd numbers of \"successes\" and \"failures\" seen to Beta parameters.\n• You can set the prior to reflect how fair/biased you think the experiment is a priori.\nMode of Beta(𝑎, 𝑏): \n14\nPrior\nPosterior\nExperiment\nObserve 𝑛 successes and 𝑚 failures\nBeta(𝑎= 𝑛*345 + 1, 𝑏= 𝑚*345 + 1) \nBeta 𝑎= 𝑛*345 + 𝑛+ 1, 𝑏= 𝑚*345 + 𝑚+ 1  \n𝑎−1\n𝑎+ 𝑏−2\n(we’ll prove this in a few minutes)\nMostly Review\nBeta parameters 𝑎, 𝑏 are called hyperparameters. \nInterpret Beta(𝑎, 𝑏):  𝑎+ 𝑏−2 trials, \nwith 𝑎−1 successes and with 𝑏−1 failures",
+      "char_count": 783
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nHow does MAP work? (for Bernoulli)\n15\nChoose model\nBernoulli 𝑝\nObserve data\nChoose prior on 𝜃\nFind  𝜃$() = \n  arg max\n'\n 𝑓𝜃|𝑋!, 𝑋\", … , 𝑋#\n𝑛 heads, 𝑚 tails\n(some 𝑔𝜃)\n(choose conjugate\ndistribution)\n⭐\nmaximize\nlog prior + log-likelihood\nlog 𝑔𝜃+ 6\n*+!\n#\nlog 𝑓𝑋*|𝜃\n• Differentiate, set to 0\n• Solve\nMode of posterior \ndistribution of 𝜃\n(posterior is also\nconjugate)",
+      "char_count": 435
+    },
+    {
+      "page_index": 15,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConjugate strategy: MAP for Bernoulli\n• Flip a coin 8 times. Observe 𝑛= 7 heads and 𝑚= 1 tail.\n• Choose a prior on 𝜃. What is 𝜃$()?\n16\n1. Choose a prior\n2. Determine posterior\n3. Compute MAP\nSuppose we pick a prior 𝜃~Beta 𝑎, 𝑏.\nBecause Beta is a conjugate distribution for Bernoulli,\nthe posterior distribution is 𝜃|𝐷~Beta 𝑎+ 𝑛, 𝑏+ 𝑚\nDefine as data, 𝐷\n𝜃$() =\n𝑎+ 𝑛−1\n𝑎+ 𝑛+ 𝑏+ 𝑚−2\n(mode of Beta 𝑎+ 𝑛, 𝑏+ 𝑚)",
+      "char_count": 477
+    },
+    {
+      "page_index": 16,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMAP in practice\n• Flip a coin 8 times. Observe 𝑛= 7 heads and 𝑚= 1 tail.\n• What is the MAP estimator of the Bernoulli parameter 𝑝,\nif we assume a prior on 𝑝 of Beta 2, 2 ?\n17",
+      "char_count": 247
+    },
+    {
+      "page_index": 17,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMAP in practice\n• Flip a coin 8 times. Observe 𝑛= 7 heads and 𝑚= 1 tail.\n• What is the MAP estimator of the Bernoulli parameter 𝑝,\nif we assume a prior on 𝑝 of Beta 2, 2 ?\n18\n1. Choose a prior\n2. Determine posterior\n3. Compute MAP\n𝜃~Beta 2,2 .\nPosterior distribution of 𝜃 given observed data is Beta 9, 3\n𝜃$() = 8\n10\nBefore flipping the coin, \nwe imagined 2 trials:\n1 imaginary head, 1 \nimaginary tail. \nAfter the experiment, we saw 10 trials: \n8 heads (imaginary and real),\n2 tails (imaginary and real).",
+      "char_count": 577
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProving the mode of Beta\n19\nChoose model\nBernoulli 𝑝\nObserve data\nChoose prior on 𝜃\nFind  𝜃$() = \n  arg max\n'\n 𝑓𝜃|𝑋!, 𝑋\", … , 𝑋#\n𝑛 heads, 𝑚 tails\n(some arbitrary 𝑔𝜃)\n(choose conjugate)\nBeta 𝑎, 𝑏\nThese are equivalent \ninterpretations of 𝜃$().\nWe’ll use this equivalence \nto prove the mode of Beta.\nMode of posterior \ndistribution of 𝜃\nmaximize\nlog prior + log-likelihood\nlog 𝑔𝜃+ 6\n*+!\n#\nlog 𝑓𝑋*|𝜃\n• Differentiate, set to 0\n• Solve\n(posterior is also\nconjugate)",
+      "char_count": 532
+    },
+    {
+      "page_index": 19,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMAP for Bernoulli, conjugate prior (from first principles)\n• Flip a coin 8 times. Observe 𝑛= 7 heads and 𝑚= 1 tail.\n• Choose a prior on 𝜃. What is 𝜃$()?\nSuppose we pick a prior 𝜃~Beta 𝑎, 𝑏. 𝑔𝜃= 𝑝= !\n6 𝑝4-! 1 −𝑝7-!\n20\n1. Determine log prior + log likelihood\n2. Differentiate\nw.r.t. (each) 𝜃, \nset to 0\n3. Solve\nlog 𝑔𝜃+ log 𝑓𝑋!, 𝑋\", … , 𝑋#|𝜃= log 1\n𝛽𝑝4-! 1 −𝑝7-! + log\n𝑛+ 𝑚\n𝑛\n𝑝# 1 −𝑝3\n= log 1\n𝛽+ 𝑎−1 log 𝑝+ 𝑏−1 log 1 −𝑝+ log 𝑛+ 𝑚\n𝑛\n+ 𝑛log 𝑝+ 𝑚log 1 −𝑝\n𝑎−1\n𝑝\n+ 𝑛\n𝑝−𝑏−1\n1 −𝑝−\n𝑚\n1 −𝑝= 0\n(next slide)\nnormalizing \nconstant, 𝛽",
+      "char_count": 592
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMAP for Bernoulli, conjugate prior (from ﬁrst principles)\n• Flip a coin 8 times. Observe 𝑛= 7 heads and 𝑚= 1 tail.\n• Choose a prior on 𝜃. What is 𝜃$()?\nSuppose we pick a prior 𝜃~Beta 𝑎, 𝑏. 𝑔𝜃= !\n6 𝑝4-! 1 −𝑝7-!\n21\n3. Solve for 𝑝\nnormalizing \nconstant, 𝛽\n𝑎−1\n𝑝\n+ 𝑛\n𝑝−𝑏−1\n1 −𝑝−\n𝑚\n1 −𝑝= 0\n𝜃$() =\n𝑎+ 𝑛−1\n𝑎+ 𝑛+ 𝑏+ 𝑚−2\nThe mode of the posterior,\nBeta 𝑎+ 𝑛, 𝑏+ 𝑚!\nIf we choose a conjugate prior, we avoid calculus \nwith MAP, and we can simply report mode of \nposterior.\n✅\n(from previous slide)\n𝑎+ 𝑛−1\n𝑝\n−𝑏+ 𝑚−1\n1 −𝑝\n= 0\n⟹\n𝑎+ 𝑛−1 −𝑎+ 𝑛−1 𝑝= 𝑏+ 𝑚−1 𝑝\n⟹\n𝑝𝑎+ 𝑛+ 𝑏+ 𝑚−2 = 𝑎+ 𝑛−1\n⟹",
+      "char_count": 640
+    },
+    {
+      "page_index": 21,
+      "text": "Choosing \nhyperparameters \nfor conjugate \nprior\n22",
+      "char_count": 50
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhere’d you get them priors?\n• Let 𝜃 be the probability a coin turns up heads.\n• Model 𝜃 with 2 different priors:\n◦Prior 1: Beta(3,8): 2 imaginary heads,\n \n7 imaginary tails\n◦Prior 2: Beta(7,4): 6 imaginary heads,\n \n3 imaginary tails\nNow flip 100 coins and get 58 heads and 42 tails.\n1. What are the two posterior distributions?\n2. What are the modes of the two posterior distributions?\n23\nmode: \"\n9\nmode: :\n9\nprior",
+      "char_count": 488
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhere’d you get them priors?\n• Let 𝜃 be the probability a coin turns up heads.\n• Model 𝜃 with 2 different priors:\n◦Prior 1: Beta(3,8): 2 imaginary heads,\n \n7 imaginary tails\n◦Prior 2: Beta(7,4): 6 imaginary heads,\n \n3 imaginary tails\nNow flip 100 coins and get 58 heads and 42 tails.\n24\nmode: \"\n9\nmode: :\n9\nprior\nposterior\nPosterior 1: Beta(61,50)\nmode: :/\n!/9\nmode: :;\n!/9\nPosterior 2: Beta(65,46)\nProvided we collect enough data, posteriors will converge to \nthe true value and choice of prior will matter less.",
+      "char_count": 586
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMAP with Laplace smoothing: a prior which represents 𝑘 imagined \n \n \n \n \n \n \n \nobservations of each outcome.\n• Categorical data (i.e., Multinomial, Bernoulli/Binomial)\n• Also known as additive smoothing\nLaplace estimate \n \nImagine 𝑘= 1 of each outcome\n \n \n \n \n \n(follows from Laplace’s \"law of succession\")\nExample: \nLaplace estimate for probabilities from previously mentioned\n \n \n \nexperiment (100 coins: 58 heads, 42 tails)\nLaplace smoothing\n25\n59\n102\n43\n102\nheads\ntails\nLaplace smoothing:\n• Easy to implement/remember",
+      "char_count": 594
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider our previous 6-sided die.\n• Roll the dice \n𝑛= 12 times.\n• Observe:  \n3 ones, 2 twos, 0 threes, 3 fours, 1 fives, 3 sixes\nRecall 𝜃*GH:\nWhat are your Laplace estimates for each roll outcome?\nBack to our happy Laplace\n26\n𝑝! = 3/12, 𝑝\" = 2/12, 𝑝< = 0/12, \n𝑝; = 3/12, 𝑝1 = 1/12, 𝑝: = 3/12\n⚠",
+      "char_count": 367
+    },
+    {
+      "page_index": 26,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider our previous 6-sided die.\n• Roll the dice \n𝑛= 12 times.\n• Observe:  \n3 ones, 2 twos, 0 threes, 3 fours, 1 fives, 3 sixes\nRecall 𝜃*GH:\nWhat are your Laplace estimates for each roll outcome?\nBack to our happy Laplace\n27\n𝑝! = 3/12, 𝑝\" = 2/12, 𝑝< = 0/12, \n𝑝; = 3/12, 𝑝1 = 1/12, 𝑝: = 3/12\n𝑝* = 𝑋* + 1\n𝑛+ 𝑚\n𝑝! = 4/18, 𝑝\" = 3/18, 𝑝< = 1/18, \n𝑝; = 4/18, 𝑝1 = 2/18, 𝑝: = 4/18\n⚠\n✅\nLaplace smoothing:\n• Easy to implement/remember\n• Avoids parameter estimation of 𝟎",
+      "char_count": 535
+    },
+    {
+      "page_index": 27,
+      "text": "Extra: Other \nConjugates\n28",
+      "char_count": 27
+    },
+    {
+      "page_index": 28,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConjugate distributions\nMAP\nestimator:\n29\n𝜃*+, = arg max\n-\n𝑓𝜃|𝑋', 𝑋(, … , 𝑋)\nThe mode of the\nposterior distribution of 𝜃\nDistribution parameter\nConjugate distribution\nBernoulli 𝑝\nBeta\nBinomial 𝑝\nBeta\nMultinomial 𝑝!\nDirichlet\nPoisson 𝜆\nGamma\nExponential 𝜆\nGamma\nNormal 𝜇\nNormal\nNormal 𝜎%\nInverse Gamma",
+      "char_count": 373
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMultinomial is Multiple times the fun\nDirichlet 𝑎', 𝑎(, … , 𝑎L  is a conjugate for Multinomial.\n• Generalizes Beta in the\nsame way Multinomial\ngeneralizes Binomial:\nPrior \n Dirichlet 𝑎', 𝑎(, … , 𝑎L\n  \n Saw ∑MN'\nL 𝑎M −𝑚 imaginary trials, with 𝑎M −1 of outcome 𝑖\nExperiment  Observe 𝑛' + 𝑛( + ⋯+ 𝑛L new trials, with 𝑛M of outcome 𝑖\nPosterior \n Dirichlet 𝑎' + 𝑛', 𝑎( + 𝑛(, … , 𝑎L + 𝑛L\n30\nMAP:\n𝑝* =\n𝑎* + 𝑛* −1\n∑*+!\n3 𝑎* + ∑*+!\n3 𝑛* −𝑚\n𝑓𝑥!, 𝑥\", … , 𝑥3 =\n1\n𝐵𝑎!, 𝑎\", … , 𝑎3\n2\n*+!\n3\n𝑥*\n4\"-!\nm",
+      "char_count": 557
+    },
+    {
+      "page_index": 30,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nGood times with Gamma\nGamma 𝛼, 𝛽 is a conjugate for Poisson.\n• Also conjugate for Exponential,\nbut we won’t delve into that\n• Mode of gamma: 𝛼−1 /𝛽 \nPrior \n \n𝜃~Gamma 𝛼, 𝛽 = \nO!4!\"#P\"$%\nQ(R)\n  \n \n \nSaw 𝛼−1 total imaginary events during 𝛽 prior time periods\nExperiment Observe 𝑛 events during next 𝑘 time periods\nPosterior\n𝜃|𝑛 events in 𝑘 periods ~Gamma 𝛼+ 𝑛, 𝛽+ 𝑘 \n31\n𝜃$() = 𝛼+ 𝑛−1\n𝛽+ 𝑘\nMAP:\nGamma 𝛼, 𝛽 = \n!!\"!\"##\"$%\n$(&)",
+      "char_count": 493
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMAP for Poisson\nLet 𝜆 be the average # of successes in a time period.\n1. What does it mean to have\na prior of 𝜃~Gamma 11,5 ?\nNow perform the experiment and see 11 events in next 2 time periods.\n2. Given your prior, what is the\nposterior distribution?\n3. What is 𝜃*+,?\n32\nGamma 𝛼, 𝛽 \nis conjugate for Poisson\nObserve 10 imaginary events\nin 5 time periods,\ni.e., observe at Poisson rate = 2\n🤔\nMode: &'#\n(",
+      "char_count": 475
+    },
+    {
+      "page_index": 32,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMAP for Poisson\nLet 𝜆 be the average # of successes in a time period.\n1. What does it mean to have\na prior of 𝜃~Gamma 11,5 ?\nNow perform the experiment and see 11 events in next 2 time periods.\n2. Given your prior, what is the\nposterior distribution?\n3. What is 𝜃*+,?\n33\nGamma 𝛼, 𝛽 \nis conjugate for Poisson Mode: &'#\n(\nObserve 10 imaginary events\nin 5 time periods,\ni.e., observe at Poisson rate = 2\n𝜃|𝑛 events in 𝑘 periods ~Gamma 22, 7  \n𝜃$() = 3, the updated Poisson rate",
+      "char_count": 547
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:59Z"
+}

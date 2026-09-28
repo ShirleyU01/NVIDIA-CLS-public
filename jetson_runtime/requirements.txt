@@ -1,0 +1,15 @@
+# jetson_runtime Python Dependencies
+# Install: pip3 install -r requirements.txt
+
+faster-whisper>=1.0.0    # STT — uses small.en model (already downloaded)
+requests>=2.28.0         # HTTP (Piper TTS)
+opencv-python>=4.8.0     # Camera capture + video recording
+openai>=1.0.0            # Cloud LLM
+fastapi>=0.135.1         # Jetson FastAPI backend
+uvicorn>=0.41.0          # ASGI server for FastAPI
+pydantic>=2.11.7         # Data models / validation
+
+# System packages (installed via apt, not pip):
+#   arecord  (alsa-utils) — continuous audio recording for session video
+#   ffmpeg                — mux video + audio into recording.mp4
+#   pactl    (pulseaudio-utils) — mic volume

@@ -1,0 +1,216 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/11_joint_rvs_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/11_joint_rvs_annotated.pdf",
+  "sha256": "24122f40ca66136394d084d4f039a76d420f4585ae571556529e1e190a425ec9",
+  "title_guess": "11 joint rvs annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "11: Joint (Multivariate) \nDistributions\nJerry Cain\nApril 24th, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 94
+    },
+    {
+      "page_index": 1,
+      "text": "Normal \nApproximation\n2",
+      "char_count": 23
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNormal Random Variables\n• Used to model many real-life situations because it maximizes entropy \n(i.e., randomness) for a given mean and variance.\n• Also useful for approximating the Binomial random variable!\n3\n𝑋~𝒩(𝜇, 𝜎!)\nmean\nvariance",
+      "char_count": 307
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWebsite testing\n4\nApproach 1: Binomial\n𝑋~Bin 𝑛= 100, 𝑝= 0.5\nWant: 𝑃𝑋≥65\n𝑃𝑋≥65 = .\n!\"#$\n%&&\n100\n𝑘\n0.5! 1 −0.5 %&&'!\nDefine\nSolve\n• 100 people are presented with a new website design.\n• 𝑋= # people whose time on site increases\n• PM assumes design has no effect, so assume P(stickier) = 0.5 independently.\n• CEO will endorse the new design if 𝑋≥65.\nWhat is 𝑃CEO endorses change ? Give a numerical approximation.",
+      "char_count": 481
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDon’t worry, Normal approximates Binomial\nGalton Board\n(We’ll explain why in 2 weeks)\n5",
+      "char_count": 160
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWebsite testing\n6\nApproach 1: Binomial\n𝑋~Bin 𝑛= 100, 𝑝= 0.5\nWant: 𝑃𝑋≥65\nDefine\nApproach 2: approximate with Normal\nDefine\n𝑌~𝒩𝜇, 𝜎(\n𝜇= 𝑛𝑝= 50 \n𝜎! = 𝑛𝑝1 −𝑝= 25 \n𝜎=\n25 = 5 \n𝑃𝑋≥65 ≈0.0018\n𝑃𝑋≥65 ≈𝑃𝑌≥65 = 1 −𝐹\"(65)\n= 1 −Φ\n#$%$&\n$\n= 1 −Φ 3 ≈0.0013 ? \n(this approach is missing something important)\n⚠ ⚠\n🤨\n• 100 people are given a new website design.\n• 𝑋= # people whose time on site increases\n• PM assumes design has no effect, so P(stickier) = 0.5 independently.\n• CEO will endorse the new design if 𝑋≥65.\nWhat is 𝑃CEO endorses change ? Give a numerical approximation.\nSolve\nSolve\njerry$ python\n>>> from scipy.stats import binom, norm\n>>> binom.pmf(range(65, 101), n, p).sum()\n0.001758820861485058\n>>> 1 - norm(50, 5).cdf(65)\n0.0013498980316301035",
+      "char_count": 813
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWebsite testing (with continuity correction)\n7\n64 65 66               \n𝑃𝑋≥65\n65\n≈𝑃𝑌≥64.5\n≈0.0018\n✅ the better\nApproach 2\nBinomial\nNormal\nYou must perform a continuity correction when \napproximating a Binomial RV with a Normal RV.\nIn our website testing, 𝑌~𝒩50, 25  approximates 𝑋~Bin 100,0.5 .",
+      "char_count": 366
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nContinuity correction\nIf 𝑌~𝒩𝑛𝑝, 𝑛𝑝(1 −𝑝)  approximates 𝑋~Bin(𝑛, 𝑝), how do we approximate \nthe following probabilities?\n8\nDiscrete (e.g., Binomial) \nprobability question\nContinuous (Normal) \nprobability question\n𝑃𝑋= 6\n𝑃𝑋≥6\n𝑃𝑋> 6\n𝑃𝑋< 6\n𝑃𝑋≤6\n…  5 6 7 …",
+      "char_count": 323
+    },
+    {
+      "page_index": 8,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nContinuity correction\nIf 𝑌~𝒩𝑛𝑝, 𝑛𝑝(1 −𝑝)  approximates 𝑋~Bin(𝑛, 𝑝), how do we approximate \nthe following probabilities?\n9\nDiscrete (e.g., Binomial) \nprobability question\nContinuous (Normal) \nprobability question\n𝑃𝑋= 6\n𝑃𝑋≥6\n𝑃𝑋> 6\n𝑃𝑋< 6\n𝑃𝑋≤6\n𝑃5.5 ≤𝑌≤6.5\n𝑃𝑌≥5.5\n𝑃𝑌≥6.5\n𝑃𝑌≤5.5\n𝑃𝑌≤6.5\n…  5 6 7 …",
+      "char_count": 363
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWho gets to approximate?\n10\n𝑋~Bin 𝑛, 𝑝\n𝐸𝑋= 𝑛𝑝\nVar 𝑋= 𝑛𝑝(1 −𝑝)\n𝑌~𝒩𝜇, 𝜎!\n𝜇= 𝑛𝑝\n𝜎( = 𝑛𝑝(1 −𝑝)\n𝑌~Poi(𝜆)\n𝜆= 𝑛𝑝\n?",
+      "char_count": 180
+    },
+    {
+      "page_index": 10,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. If there is a choice, use Gaussian to approximate.\n2. When using Normal to approximate a discrete RV, use a continuity correction.\nWho gets to approximate?\n11\nPoisson approximation\n𝑛 large (> 20), 𝑝 small (< 0.05)\nslight dependence okay\nNormal approximation\n𝑛 large (> 20), 𝑝 mid-ranged (𝑛𝑝1 −𝑝> 10)\nindependence\n0\n0.05\n0.1\n0.15\n0.2\n0.25\n0\n10\n!(\" = #)\n$\nBin(100,0.04)\nN(4,1.96)\nPoi(4)\n0\n0.01\n0.02\n0.03\n0.04\n0.05\n0.06\n0.07\n0.08\n0.09\n30\n40\n50\n60\n70\n!(\" = #)\n$\nBin(100,0.5)\nN(50,5)\nPoi(50)",
+      "char_count": 562
+    },
+    {
+      "page_index": 11,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStanford Admissions (a while back)\nStanford accepts 2480 students.\n• Each admitted student matriculates with p = 0.68 (independently)\n• Let 𝑋= # of students who will attend\nWhat is 𝑃𝑋> 1745 ? Give a numerical approximation.\n12\nStrategy:\nA. Just Binomial\nB. Poisson\nC. Normal\nD. None/other",
+      "char_count": 361
+    },
+    {
+      "page_index": 12,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStanford Admissions (a while back)\nStanford accepts 2480 students.\n• Each admitted student matriculates with p = 0.68 (independently)\n• Let 𝑋= # of students who will attend\nWhat is 𝑃𝑋> 1745 ? Give a numerical approximation.\n13\nStrategy:\nA. Just Binomial\nB. Poisson\nC. Normal\nD. None/other\n𝐸𝑋= 𝑛𝑝= 1686 \nVar 𝑋= 𝑛𝑝1 −𝑝≈540 →𝜎= 23.3 \ncomputationally expensive (also not an approximation)\n𝑝= 0.68, not small enough\nVariance 𝑛𝑝1 −𝑝= 540 > 10\nDefine an approximation\nSolve\nLet 𝑌~𝒩𝐸𝑋, Var 𝑋\n𝑃𝑋> 1745 ≈𝑃𝑌≥1745.5\nContinuity\ncorrection\n⚠\n𝑃𝑌≥1745.5 = 1 −𝐹1745.5\n= 1 −Φ 1745.5 −1686\n23.3\n= 1 −Φ 2.54 ≈0.0055\n✅",
+      "char_count": 670
+    },
+    {
+      "page_index": 13,
+      "text": "Discrete Joint \nRVs\n14",
+      "char_count": 22
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n15\nFrom last slide deck\nWhat is the probability that the Warriors win?\nHow do you model zero-sum games?\nReview\n𝑃𝐴! > 𝐴\"\nThis is a probability of an event \ninvolving two random variables!",
+      "char_count": 259
+    },
+    {
+      "page_index": 15,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nJoint probability mass functions\n16\nRoll two 6-sided dice, yielding values 𝑋 and 𝑌.\n𝑃𝑋= 1\nprobability of\nan event\n𝑃𝑋= 𝑘\nprobability mass function\n𝑋 \nrandom variable",
+      "char_count": 237
+    },
+    {
+      "page_index": 16,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nJoint probability mass functions\n17\nRoll two 6-sided dice, yielding values 𝑋 and 𝑌.\n𝑋 \nrandom variable\n𝑃𝑋= 1\nprobability of\nan event\n𝑃𝑋= 𝑘\nprobability mass function\n𝑃𝑋= 1 ∩𝑌= 6\nprobability of the intersection\nof two events\n𝑃𝑋= 1, 𝑌= 6\nnew notation: the comma\n𝑋, 𝑌\nrandom variables\n𝑃𝑋= 𝑎, 𝑌= 𝑏\njoint probability mass function",
+      "char_count": 397
+    },
+    {
+      "page_index": 17,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nDiscrete joint distributions\nFor two discrete joint random variables 𝑋 and 𝑌,\nthe joint probability mass function is defined as:\n𝑝!,# 𝑎, 𝑏= 𝑃𝑋= 𝑎, 𝑌= 𝑏\nThe marginal distributions of the joint PMF are defined as:\n18\n𝑝5 𝑎= 𝑃𝑋= 𝑎= .\n6\n𝑝5,8 𝑎, 𝑦\n𝑝8 𝑏= 𝑃𝑌= 𝑏= .\n9\n𝑝5,8 𝑥, 𝑏\nUse marginal distributions to \nextract a 1D RV from a joint PMF.",
+      "char_count": 406
+    },
+    {
+      "page_index": 18,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTwo dice\nRoll two 6-sided dice, yielding values 𝑋 and 𝑌.\n1. What is the joint PMF of 𝑋 and 𝑌?\n19\n𝑝5,8 𝑎, 𝑏= 1/36\n𝑎, 𝑏∈\n1,1 , … , 6,6\n𝑋 \n1\n2\n3\n4\n5\n6\n𝑌\n1\n1/36 \n...\n...\n...\n...\n1/36 \n2\n...\n...\n...\n...\n...\n...\n3\n...\n...\n...\n...\n...\n...\n4\n...\n...\n...\n...\n...\n...\n5\n...\n...\n...\n...\n...\n...\n6\n1/36\n...\n...\n...\n...\n1/36 \nProbability table\n• All possible outcomes\nfor several discrete RVs\n• Not parametric (e.g., \nparameter 𝑝 in Ber(𝑝))\n𝑃𝑋= 4, 𝑌= 3",
+      "char_count": 512
+    },
+    {
+      "page_index": 19,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTwo dice\nRoll two 6-sided dice, yielding values 𝑋 and 𝑌.\n1. What is the joint PMF of 𝑋 and 𝑌?\n2. What is the marginal PMF of 𝑋?\n20\n𝑝5,8 𝑎, 𝑏= 1/36\n𝑎, 𝑏∈\n1,1 , … , 6,6\n𝑝) 𝑎= 𝑃𝑋= 𝑎= D\n*\n𝑝),\" 𝑎, 𝑦= D\n*,-\n#\n1\n36 = 1\n6\n𝑎∈1, … , 6",
+      "char_count": 297
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nA computer (or three) in every house.\n21\n0\n1\n2\n3\n0\n.16\n?\n.07\n.04\n1\n.12\n.14\n.12\n0\n2\n.07\n.12\n0\n0\n3\n.04\n0\n0\n0\n𝑋 (# Macs)\n𝑌 (# PCs)\nConsider households in Silicon Valley.\n• A household has 𝑋 Macs and 𝑌 PCs.\n• Each house has a maximum of 3 computers total (Macs + PCs).\n1. What is 𝑃𝑋= 1, 𝑌= 0 , the missing entry in the probability table?",
+      "char_count": 406
+    },
+    {
+      "page_index": 21,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConsider households in Silicon Valley.\n• A household has 𝑋 Macs and 𝑌 PCs.\n• Each house has a maximum of 3 computers total (Macs + PCs).\n1. What is 𝑃𝑋= 1, 𝑌= 0 , the missing entry in the probability table?\nA computer (or three) in every house.\n22\n0\n1\n2\n3\n0\n.16\n.12\n.07\n.04\n1\n.12\n.14\n.12\n0\n2\n.07\n.12\n0\n0\n3\n.04\n0\n0\n0\n𝑋 (# Macs)\n𝑌 (# PCs)\nD\n.\nD\n*\n𝑝),\" 𝑥, 𝑦= 1\nA joint PMF must sum to 1:",
+      "char_count": 456
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0\n1\n2\n3\n0\n.16\n.12\n.07\n.04 .39\n1\n.12\n.14\n.12\n0\n.38\n2\n.07\n.12\n0\n0\n.19\n3\n.04\n0\n0\n0\n.04\n.39\n.38\n.19\n.04\nA computer (or three) in every house.\n23\n𝑋 (# Macs)\n𝑌 (# PCs)\nConsider households in Silicon Valley.\n• A household has 𝑋 Macs and 𝑌 PCs.\n• Each house has a maximum of 3 computers total (Macs + PCs).\n2. How do you compute the marginal PMF of 𝑋?\nA\nsum cols here\nB\nC\nsum rows here",
+      "char_count": 450
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n0\n1\n2\n3\n0\n.16\n.12\n.07\n.04 .39\n1\n.12\n.14\n.12\n0\n.38\n2\n.07\n.12\n0\n0\n.19\n3\n.04\n0\n0\n0\n.04\n.39\n.38\n.19\n.04\nA computer (or three) in every house.\n24\n𝑋 (# Macs)\n𝑌 (# PCs)\nConsider households in Silicon Valley.\n• A household has 𝑋 Macs and 𝑌 PCs.\n• Each house has a maximum of 3 computers total (Macs + PCs).\n2. How do you compute the marginal PMF of 𝑋?\nA\nsum cols here\nB\nC\nsum rows here\nA.  𝑝),\" 𝑥, 0 = 𝑃𝑋= 𝑥, 𝑌= 0\nB.  Marginal PMF of 𝑋\nC.  Marginal PMF of 𝑌\n𝑝! 𝑥= 2\n\"\n𝑝!,$ 𝑥, 𝑦\n𝑝$ 𝑦= 2\n%\n𝑝!,$ 𝑥, 𝑦\nTo find a marginal distribution over one variable, \nsum over all other variables in the joint PMF.",
+      "char_count": 661
+    },
+    {
+      "page_index": 24,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nA computer (or three) in every house.\n25\n0\n1\n2\n3\n0\n.16\n.12\n.07\n.04\n1\n.12\n.14\n.12\n0\n2\n.07\n.12\n0\n0\n3\n.04\n0\n0\n0\n𝑋 (# Macs)\n𝑌 (# PCs)\nConsider households in Silicon Valley.\n• A household has 𝑋 Macs and 𝑌 PCs.\n• Each house has a maximum of 3 computers total (Macs + PCs).\n3. Let 𝐶= 𝑋+ 𝑌. What is 𝑃𝐶= 3 ?",
+      "char_count": 371
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nA computer (or three) in every house.\n26\n0\n1\n2\n3\n0\n.16\n.12\n.07\n.04\n1\n.12\n.14\n.12\n0\n2\n.07\n.12\n0\n0\n3\n.04\n0\n0\n0\n𝑋 (# Macs)\n𝑌 (# PCs)\nConsider households in Silicon Valley.\n• A household has 𝑋 Macs and 𝑌 PCs.\n• Each house has a maximum of 3 computers total (Macs + PCs).\n3. Let 𝐶= 𝑋+ 𝑌. What is 𝑃𝐶= 3 ?\n𝑃𝐶= 3 = 𝑃𝑋+ 𝑌= 3  \n= <\n!\n<\n\"\n𝑃𝑋+ 𝑌= 3|𝑋= 𝑥, 𝑌= 𝑦𝑃𝑋= 𝑥, 𝑌= 𝑦\n= 𝑃𝑋= 0, 𝑌= 3 + 𝑃𝑋= 1, 𝑌= 2  \n    +𝑃𝑋= 2, 𝑌= 1 + 𝑃𝑋= 3, 𝑌= 0\nLaw of Total Probability\nWe’ll come back to sums of RVs next lecture!",
+      "char_count": 562
+    },
+    {
+      "page_index": 26,
+      "text": "Multinomial RV\n27",
+      "char_count": 17
+    },
+    {
+      "page_index": 27,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRecall the good times\n28\nPermutations\n𝑛!\nHow many ways are \nthere to order 𝑛 \nobjects?",
+      "char_count": 159
+    },
+    {
+      "page_index": 28,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMultinomials generalize \nBinomials for counting.\nCounting unordered objects\n29\nBinomial coefficient\nHow many ways are there\nto group 𝑛 objects into\ntwo groups of size 𝑘 and \n𝑛−𝑘, respectively?\nCalled the binomial coefficient\nbecause of something from aLgEbRa\nMultinomial coefficient\nHow many ways are there\nto group 𝑛 objects into\n𝑟 groups of sizes 𝑛-, 𝑛!, …, 𝑛4 \nrespectively?\n𝑛\n𝑘\n=\n𝑛!\n𝑘! 𝑛−𝑘!\n𝑛\n𝑛%, 𝑛(, … , 𝑛C\n=\n𝑛!\n𝑛%! 𝑛(! ⋯𝑛C!",
+      "char_count": 502
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMultinomial RVs also generalize \nBinomial RVs for probability!\nProbability\n30\nBinomial RV\nWhat is the probability\nof getting 𝑘 successes \nand 𝑛−𝑘 failures\nin 𝑛 trials?\nBinomial # of ways of \nordering the successes\nProbability of each ordering \nof 𝑘 successes is equal + \nmutually exclusive \n𝑃𝑋= 𝑘= 𝑛\n𝑘𝑝! 1 −𝑝\"#!\nMultinomial RV\nWhat is the probability of \ngetting 𝑐- of outcome 1,\n𝑐! of outcome 2, …, and\n 𝑐5 of outcome 𝑚\nin 𝑛 trials?",
+      "char_count": 506
+    },
+    {
+      "page_index": 30,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMultinomial Random Variable\nConsider an experiment of 𝑛 independent trials:\n• Each trial results in one of 𝑚 outcomes. 𝑃outcome 𝑖= 𝑝E, \n• Let 𝑋E= # trials with outcome 𝑖\n31\nJoint PMF\n𝑃𝑋! = 𝑐!, 𝑋\" = 𝑐\", … , 𝑋# = 𝑐# =\n𝑛\n𝑐!, 𝑐\", … , 𝑐# 𝑝!\n$#𝑝\"\n$$ ⋯𝑝#\n$%\nwhere\nD\n6,-\n5\n𝑐6 = 𝑛\nand\nD\n6,-\n5\n𝑝6 = 1\nMultinomial # of ways of \nordering the outcomes\nProbability of each ordering \nis equal + mutually exclusive \n<\n&'(\n)\n𝑝& = 1",
+      "char_count": 487
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nHello dice rolls, my old friends\nA fair, six-sided die is rolled 7 times.\nWhat is the probability of getting:\n32\n• 1 one\n• 1 two\n• 0 threes\n• 2 fours\n• 0 fives\n• 3 sixes",
+      "char_count": 242
+    },
+    {
+      "page_index": 32,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nHello dice rolls, my old friends\nA fair, six-sided die is rolled 7 times.\nWhat is the probability of getting:\n33\n• 1 one\n• 1 two\n• 0 threes\n• 2 fours\n• 0 fives\n• 3 sixes\n𝑃𝑋% = 1, 𝑋( = 1, 𝑋F = 0, 𝑋G = 2, 𝑋$ = 0, 𝑋# = 3\n=\n7\n1,1,0,2,0,3\n1\n6\n% 1\n6\n% 1\n6\n& 1\n6\n( 1\n6\n& 1\n6\nF\n= 420 1\n6\nH",
+      "char_count": 354
+    },
+    {
+      "page_index": 33,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nHello dice rolls, my old friends\nA fair, six-sided die is rolled 7 times.\nWhat is the probability of getting:\n34\n• 1 one\n• 1 two\n• 0 threes\n• 2 fours\n• 0 fives\n• 3 sixes\n𝑃𝑋% = 1, 𝑋( = 1, 𝑋F = 0, 𝑋G = 2, 𝑋$ = 0, 𝑋# = 3\n=\n7\n1,1,0,2,0,3\n1\n6\n% 1\n6\n% 1\n6\n& 1\n6\n( 1\n6\n& 1\n6\nF\n= 420 1\n6\nH\n# of times\na six appears\nprobability\nof rolling a six\nchoose where\nthe sixes appear\nthis many times",
+      "char_count": 454
+    },
+    {
+      "page_index": 34,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProbabilistic text analysis\nIgnoring the order of words…\nWhat is the probability of any given word that you write in English?\n• 𝑃word =\"the\" > 𝑃word = \"susurration\"\n• 𝑃word = \"Stanford\" > 𝑃word = \"Cal\"\nProbabilities of counts of words = Multinomial distribution\n35\n👈\nA document is a large multinomial.\n(according to the Global Language Monitor,\nthere are 988,968 words in the English language \nused on the internet.)",
+      "char_count": 489
+    },
+    {
+      "page_index": 35,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProbabilistic text analysis\nProbabilities of counts of words = multinomial distribution\nExample document:\n\"When my late husband was alive he deposited some amount of Money \nwith overseas Bank in which the amount will be declared to you once you \nrespond to this message indicating your interest in helping to receive the \nfund and use it for Heavens work as my wish.\"\n36\n#words: 𝑛= 48\n𝑃 \nspam =\n48!\n1! 1! 1! 1! ⋯3! 𝑝bank\n%\n𝑝fund\n%\n⋯𝑝to\nF\nbank = 1\nfund = 1\nmoney = 1\nwish = 1\n…\nto = 3\nNote: 𝑃bank spam ≫𝑃bank legit",
+      "char_count": 586
+    },
+    {
+      "page_index": 36,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nOld and New Analysis\nAuthorship of the Federalist Papers\n• 85 essays advocating ratification\nof the US constitution\n• Written under the pseudonym \"Publius\"\n(really, Alexander Hamilton, James Madison, John Jay)\nWho wrote which essays?\n• Analyze probability of words in each essay and compare against word \ndistributions from known writings of three authors\n• Curious what the analysis is? Read this!\n37",
+      "char_count": 474
+    },
+    {
+      "page_index": 37,
+      "text": "Statistics of \nTwo RVs\n38",
+      "char_count": 25
+    },
+    {
+      "page_index": 38,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nExpectation and Covariance\nIn real life, we often have many RVs interacting at once.\n• We’ve seen some simpler cases (e.g., sum of independent Bernoullis).\n• Come Friday, we’ll discuss sums of Binomials, Poissons, etc.\n• In general, manipulating joint PMFs is difficult.\n• Fortunately, you don’t need to model joint RVs completely all the time. \nInstead, we’ll focus next on reporting statistics of multiple RVs:\n• Expectation of sums (you’ve seen some of this, more on Friday)\n• Covariance: measure of how two random variable vary with each other \n(more next Monday and Wednesday)\n39",
+      "char_count": 657
+    },
+    {
+      "page_index": 39,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProperties of Expectation, extended to two RVs\n40\nwe’ve seen this! \nwe’ll prove momentarily.\nTrue for both independent \nand dependent random \nvariables!\n1. Linearity:\n𝐸𝑎𝑋+ 𝑏𝑌+ 𝑐= 𝑎𝐸𝑋+ 𝑏𝐸𝑌+ 𝑐\n2. Expectation of a sum = sum of expectation:\n𝐸𝑋+ 𝑌= 𝐸𝑋+ 𝐸𝑌\n3. Unconscious statistician:\n𝐸𝑔𝑋, 𝑌\n= .\n9\n.\n6\n𝑔𝑥, 𝑦𝑝5,8(𝑥, 𝑦)",
+      "char_count": 385
+    },
+    {
+      "page_index": 40,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProof of expectation of a sum of RVs\n41\n𝐸𝑋+ 𝑌= 𝐸𝑋+ 𝐸𝑌\nD\n.\nD\n*\n𝑥+ 𝑦𝑝),\" 𝑥, 𝑦\nLOTUS,\n𝑔𝑋, 𝑌= 𝑋+ 𝑌\n= D\n.\nD\n*\n𝑥𝑝),\" 𝑥, 𝑦+ D\n.\nD\n*\n𝑦𝑝),\" 𝑥, 𝑦\nLinearity of summations\n(cont. case: linearity of integrals)\n= D\n.\n𝑥D\n*\n𝑝),\" 𝑥, 𝑦+ D\n*\n𝑦D\n.\n𝑝),\" 𝑥, 𝑦\nMarginal PMFs for 𝑋 and 𝑌\n= D\n.\n𝑥𝑝) 𝑥+ D\n*\n𝑦𝑝\" 𝑦\n= 𝐸𝑋+ 𝐸[𝑌]\n𝐸𝑋+ 𝑌=",
+      "char_count": 377
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:58Z"
+}

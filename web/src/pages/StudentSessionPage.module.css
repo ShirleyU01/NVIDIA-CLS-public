@@ -1,0 +1,168 @@
+.page {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.recordingBanner {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-red-700, #b91c1c);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: color-mix(in srgb, var(--color-red-100, #fee2e2) 40%, transparent);
+  border-radius: 6px;
+}
+
+.recordingDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-red-600, #dc2626);
+  flex-shrink: 0;
+  animation: recordingPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes recordingPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.left {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.panel {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.question {
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--font-heading);
+}
+
+.questionHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  text-align: center;
+  width: 100%;
+}
+
+.questionKicker {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+.statusPill {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.thinkingProgress {
+  width: 100%;
+  max-width: 240px;
+  height: 6px;
+  margin-top: 0.35rem;
+  background: var(--color-border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.thinkingProgressBar {
+  height: 100%;
+  width: 40%;
+  background: var(--color-green-700, #15803d);
+  border-radius: 999px;
+  animation: thinkingProgress 1.2s ease-in-out infinite;
+}
+
+@keyframes thinkingProgress {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
+
+.transcript {
+  min-height: 180px;
+  color: var(--color-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.doneSpeakingButton {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-radius: 10px;
+  padding: 0.65rem 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.doneSpeakingButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.doneSpeakingButtonSent {
+  background: color-mix(in srgb, var(--color-green-700, #15803d) 18%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--color-green-700, #15803d) 45%, var(--color-border));
+  color: var(--color-text);
+}
+
+.doneError {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-red-700);
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.doneLink {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-radius: 10px;
+  padding: 0.65rem 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.doneLink:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

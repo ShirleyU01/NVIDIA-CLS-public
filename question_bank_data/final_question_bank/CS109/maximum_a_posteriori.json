@@ -1,0 +1,1230 @@
+{
+  "topic_id": "maximum_a_posteriori",
+  "topic_name": "Maximum a Posteriori (MAP)",
+  "course": "CS109",
+  "questions": [
+    {
+      "question_id": "CS109_maximum_a_posteriori_0001",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A student says, \u201cMAP and MLE are basically the same, because both just pick the parameter value that best fits the data.\u201d Do you agree? Explain the difference in optimization target, and then describe a situation with very little data where MAP and MLE would likely give meaningfully different answers.",
+      "expected_answer": "A strong answer should say that MLE chooses the parameter value that maximizes the likelihood of the observed data, f(data|theta), while MAP chooses the parameter value that maximizes the posterior, f(theta|data), which is proportional to likelihood times prior. So MAP incorporates prior beliefs whereas MLE ignores them. With little data, the prior can noticeably shift the estimate, so MAP and MLE can differ substantially; for example, with only a few Bernoulli trials or a few category counts in a multinomial, a smoothing prior prevents extreme estimates like 0 or 1 that MLE might produce.",
+      "source_chunk_ids": [
+        "cs109_22_map_annotated_p2_7bb5f93925",
+        "cs109_22_map_annotated_p3_79cca40980",
+        "cs109_08_section_soln_sec1_part1_d1268b16a2"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States clearly that MLE maximizes f(data|theta) and MAP maximizes f(theta|data).",
+          "Uses Bayes' theorem or proportionality posterior \u221d likelihood \u00d7 prior.",
+          "Explains that differences are largest with small samples because the prior matters more.",
+          "Gives a concrete example such as Bernoulli coin flips or multinomial/Laplace smoothing."
+        ],
+        "partial_credit": [
+          "Correctly distinguishes prior vs no prior but does not articulate the optimization targets precisely.",
+          "Mentions Bayes' theorem but gives only a vague explanation of when estimates differ."
+        ],
+        "common_mistakes": [
+          "Saying MAP maximizes likelihood and MLE maximizes posterior.",
+          "Claiming the denominator P(data) changes the argmax over theta.",
+          "Saying MAP is always better without discussing dependence on the prior."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you explain why the normalizing constant P(data) is irrelevant for finding the MAP estimate, but not irrelevant if you want the full posterior distribution?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Write the two objective functions explicitly: what does MLE maximize, and what does MAP maximize?"
+        }
+      ],
+      "hints": [
+        "Start by separating what each method is optimizing: one uses only how well the parameter explains the observed data, while the other also includes what was believed about the parameter before seeing data.",
+        "Write the two targets explicitly as a likelihood versus a posterior, and recall from Bayes' rule that the posterior is proportional to likelihood times prior; when taking an argmax over the parameter, think about which factors depend on the parameter.",
+        "For the small-data example, use a setting like a few coin flips or a tiny multinomial count table: ask what MLE would do after an extreme sample and how a nontrivial prior or smoothing term would pull the MAP estimate away from that extreme."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0002",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "You observe a coin flipped 8 times with 7 heads and 1 tail, and you place a Beta(2,2) prior on the Bernoulli parameter p. Talk through the three steps: identify the posterior distribution, compute the MAP estimate, and interpret the prior in terms of imaginary observations.",
+      "expected_answer": "The student should say that a Beta prior is conjugate to the Bernoulli/binomial likelihood. Starting from Beta(2,2) and observing 7 heads and 1 tail gives posterior Beta(2+7, 2+1) = Beta(9,3). The MAP estimate is the mode of Beta(9,3), which is (9-1)/(9+3-2) = 8/10 = 0.8. The Beta(2,2) prior can be interpreted as 1 imaginary head and 1 imaginary tail, so after adding the real data we effectively have 8 heads and 2 tails.",
+      "source_chunk_ids": [
+        "cs109_22_map_annotated_p17_ffafcf950c",
+        "cs109_22_map_annotated_p14_8d04f0ef1d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies conjugacy and posterior Beta(9,3).",
+          "Computes MAP as 0.8 using the mode formula.",
+          "Interprets Beta(2,2) as 1 imaginary success and 1 imaginary failure."
+        ],
+        "partial_credit": [
+          "Gets posterior correct but confuses MAP with posterior mean.",
+          "States 0.8 with weak or incomplete justification."
+        ],
+        "common_mistakes": [
+          "Using 9/12 instead of 8/10 by taking posterior mean or raw parameter ratio.",
+          "Calling 0.8 the posterior distribution instead of a point estimate.",
+          "Forgetting that the mode formula subtracts 1 from each shape parameter when both exceed 1."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your answer change if you were asked for the posterior mean instead of the MAP estimate?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the posterior after adding observed heads and tails to a Beta prior, in general?"
+        }
+      ],
+      "hints": [
+        "Start by recognizing that a Beta prior is conjugate to a Bernoulli/binomial likelihood, so the posterior stays in the Beta family after seeing heads and tails.",
+        "Write the prior as Beta(\u03b1,\u03b2), then update with the data using \u03b1' = \u03b1 + (# heads) and \u03b2' = \u03b2 + (# tails); keep in mind this posterior distribution is different from the MAP point estimate.",
+        "For a Beta(a,b) posterior with both parameters greater than 1, the MAP is the mode \\((a-1)/(a+b-2)\\), not the mean; to interpret the prior as imaginary data, use that Beta(\u03b1,\u03b2) corresponds to \\(\u03b1-1\\) prior successes and \\(\u03b2-1\\) prior failures."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0003",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "For a Bernoulli parameter p with prior p ~ Beta(a,b), suppose you observe n heads and m tails. Derive the MAP estimator from first principles by writing the log posterior up to an additive constant, differentiating, and solving. Then say when this interior formula may fail to apply.",
+      "expected_answer": "The posterior is proportional to p^(a-1)(1-p)^(b-1) times p^n(1-p)^m, so posterior \u221d p^(a+n-1)(1-p)^(b+m-1). The log posterior up to a constant is (a+n-1)log p + (b+m-1)log(1-p). Differentiating gives (a+n-1)/p - (b+m-1)/(1-p) = 0, leading to p_MAP = (a+n-1)/(a+b+n+m-2). This interior mode formula applies when a+n>1 and b+m>1; otherwise the mode can occur at a boundary 0 or 1.",
+      "source_chunk_ids": [
+        "cs109_22_map_annotated_p20_p21_aec5fb5719",
+        "cs109_22_map_annotated_p9_ab0d975983"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes posterior kernel correctly.",
+          "Uses log posterior and derivative correctly.",
+          "Solves algebra to obtain (a+n-1)/(a+b+n+m-2).",
+          "Notes boundary caveat when shape parameters are not both greater than 1."
+        ],
+        "partial_credit": [
+          "Gets the formula but does not derive it clearly.",
+          "Derivation mostly correct but omits the boundary discussion."
+        ],
+        "common_mistakes": [
+          "Using (a+n)/(a+b+n+m) which is the posterior mean, not the MAP mode.",
+          "Dropping minus signs in differentiating log(1-p).",
+          "Ignoring conditions for an interior maximum."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What does your formula reduce to if the prior is uniform Beta(1,1), and how does that compare to the MLE?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you first tell me the posterior distribution family before attempting the derivative?"
+        }
+      ],
+      "hints": [
+        "Combine the Beta prior kernel with the Bernoulli likelihood kernel; the posterior should still look like a Beta-type expression in powers of p and 1-p.",
+        "Write the log posterior up to a constant as one coefficient times log p plus another coefficient times log(1-p), then differentiate carefully\u2014especially the sign from d/dp[log(1-p)].",
+        "Set the derivative equal to 0 and isolate p by matching the two fractional terms; after finding the interior critical point, check whether both updated Beta shape parameters exceed 1, since otherwise the mode can lie on a boundary rather than inside (0,1)."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0004",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You roll a possibly unfair six-sided die N times and observe counts n1 through n6. Using Laplace smoothing, explain how to produce a MAP estimate for each face probability, and then explain why this estimate is often preferred to plain relative frequencies when the die outcomes will later be used inside a classifier.",
+      "expected_answer": "With Laplace smoothing, we act as if we had seen one imagined occurrence of each face before collecting data. So the MAP estimate for face i is p_i = (n_i + 1)/(N + 6). This avoids zero estimated probabilities for unseen faces, which is especially important in downstream models like Naive Bayes where multiplying by a single zero can zero out an entire class score. Plain MLE n_i/N can be too brittle when some categories are rare or unobserved.",
+      "source_chunk_ids": [
+        "cs109_08_section_soln_sec1_part1_d1268b16a2",
+        "cs109_23_naive_bayes_annotated_p25_p26_b15b90b12e"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Gives the Laplace-smoothed estimate (n_i+1)/(N+6).",
+          "Explains the 'imaginary one count per category' interpretation.",
+          "Connects smoothing to avoiding zeros in classification or prediction."
+        ],
+        "partial_credit": [
+          "Provides the formula but gives little interpretation.",
+          "Mentions zero-probability avoidance without connecting it to MAP or the prior."
+        ],
+        "common_mistakes": [
+          "Using n_i/N instead of the smoothed formula.",
+          "Adding 1 to numerator but forgetting to add 6 to denominator.",
+          "Calling Laplace smoothing an MLE rather than a MAP-style estimate with a prior."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If one face never appeared in the data, what would MLE estimate for that face, and what would Laplace/MAP estimate?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "How many pseudo-counts are added in total under Laplace smoothing for a six-sided die?"
+        }
+      ],
+      "hints": [
+        "Think of Laplace smoothing as starting with a tiny prior belief that every face has been seen once before any rolls are observed. For a MAP estimate, combine those pseudo-counts with the actual counts.",
+        "Write the estimate for face i as 'adjusted count for face i' divided by 'total adjusted count.' The adjusted count adds one to n_i, and the total must add the same one-for-each-face across all six outcomes.",
+        "Compare this to plain relative frequency n_i/N when some faces are rare or never observed. In a classifier such as Naive Bayes, a single zero estimated probability can wipe out an entire class score, which is why the smoothed MAP estimate is usually more robust."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0005",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A classmate computes the posterior f(theta|data) using Bayes\u2019 theorem and then says, \u201cTo get the MAP estimate, I need to evaluate the denominator P(data) as a function of theta and maximize the whole fraction.\u201d Identify the mistake and explain carefully why the denominator can be ignored for MAP optimization but not ignored in every Bayesian task.",
+      "expected_answer": "The mistake is that P(data) does not depend on theta; it is a normalizing constant when data are fixed. Therefore maximizing f(theta|data) over theta is equivalent to maximizing f(data|theta)f(theta). But if we want the full posterior distribution, posterior probabilities, or expectations under the posterior, then we do care about normalization so that the posterior integrates or sums to 1.",
+      "source_chunk_ids": [
+        "cs109_22_map_annotated_p3_79cca40980",
+        "cs109_17_cont_joint_ii_annotated_p24_p25_78ee9a2e6b"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explicitly says P(data) is constant with respect to theta.",
+          "States that MAP can maximize likelihood \u00d7 prior instead of the normalized posterior.",
+          "Explains that normalization matters for obtaining the full posterior, credible statements, or posterior expectations."
+        ],
+        "partial_credit": [
+          "Says denominator is constant but does not explain what tasks require it.",
+          "Recognizes the optimization simplification but not the conceptual reason."
+        ],
+        "common_mistakes": [
+          "Saying P(data) depends on theta.",
+          "Confusing the observed data with a random variable during optimization over theta.",
+          "Claiming Bayes normalization never matters."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example of a Bayesian quantity besides the MAP estimate that would require the normalized posterior?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In the expression f(theta|data) = f(data|theta)f(theta)/f(data), which terms vary when theta changes and the data are already observed?"
+        }
+      ],
+      "hints": [
+        "When the data are already observed, ask yourself which parts of Bayes' theorem actually change as \\(\\theta\\) changes. The key MAP idea is to optimize only over terms that depend on the parameter.",
+        "Write the posterior as \\(f(\\theta\\mid data) \\propto f(data\\mid \\theta)f(\\theta)\\). The denominator \\(P(data)\\) is the evidence obtained by summing/integrating over possible \\(\\theta\\) values, so it is not a function of the particular \\(\\theta\\) you are maximizing over.",
+        "For an \\(\\arg\\max_\\theta\\), multiplying or dividing by a constant does not change where the maximum occurs, so MAP can use likelihood \u00d7 prior directly. But if you need the actual posterior distribution to integrate to 1\u2014for posterior probabilities, credible intervals, or posterior expectations\u2014the normalization term matters."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0006",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "In a Naive Bayes spam filter, one word has never appeared in spam emails in your training set, but it does appear in a new test email. Explain how MLE estimation of conditional probabilities can break the classifier, and how a MAP-style Laplace estimate changes both the training estimates and the final prediction rule.",
+      "expected_answer": "Under MLE, if a word never appeared among spam training emails, the estimate P(word|spam) becomes 0. In Naive Bayes, the class score multiplies many conditional probabilities, so one zero makes the entire spam score zero regardless of the other evidence. With Laplace smoothing, we add pseudo-counts so the estimate becomes positive rather than zero. The prediction rule is still an argmax over P(X|Y)P(Y), but the learned parameters are MAP-smoothed estimates rather than raw MLE counts, making the classifier more robust to unseen events.",
+      "source_chunk_ids": [
+        "cs109_08_section_soln_sec1_part1_d1268b16a2",
+        "cs109_23_naive_bayes_annotated_p25_p26_b15b90b12e",
+        "cs109_23_naive_bayes_annotated_p46_749f33d4e8"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains the zero-frequency problem under MLE.",
+          "Connects the zero to multiplicative collapse of a Naive Bayes class score.",
+          "Explains that Laplace/MAP replaces zero by a small positive estimate via pseudo-counts.",
+          "Notes that the classification rule remains argmax but with different parameter estimates."
+        ],
+        "partial_credit": [
+          "Mentions smoothing prevents zeros but does not explain why zeros are damaging in Naive Bayes.",
+          "Confuses the posterior over classes with parameter posterior."
+        ],
+        "common_mistakes": [
+          "Saying Laplace smoothing changes the Bayes decision rule itself rather than the estimated probabilities inside it.",
+          "Claiming MLE can never output zero probabilities.",
+          "Ignoring class prior P(Y)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why is this issue especially severe for Naive Bayes compared with a model that does not multiply many estimated probabilities together?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What happens to a product of probabilities if even one estimated factor is exactly zero?"
+        }
+      ],
+      "hints": [
+        "Start by focusing on the 'zero-frequency' issue: in Naive Bayes, one unseen word under a class can have an outsized effect because class scores combine many conditional probabilities multiplicatively.",
+        "Write the spam score as something proportional to P(Y=spam) times the product of P(word_i|spam). Under MLE, if the training count for this word in spam is zero, ask what that does to the entire spam likelihood when the word appears in the test email.",
+        "For the MAP-style fix, think Laplace smoothing: add pseudo-counts before estimating P(word|class), so the conditional is no longer zero. The prediction still compares classes with an argmax over prior \u00d7 likelihood, but now those probabilities come from smoothed estimates rather than raw counts."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0007",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose the number of customer orders in one hour is modeled as Poisson with rate lambda, and you observe X = 4 in the first hour. Your prior density is proportional to lambda e^{-lambda/2} for lambda > 0. Derive the MLE for lambda, then derive the posterior up to proportionality and find the MAP estimate. Be explicit about what is a distribution and what is a point estimate.",
+      "expected_answer": "For one Poisson observation x=4, the likelihood is proportional to lambda^4 e^{-lambda}, so the log-likelihood is 4 log lambda - lambda + constant, giving MLE lambda_hat = 4. The prior is proportional to lambda e^{-lambda/2}. Multiplying prior and likelihood gives posterior proportional to lambda^5 e^{-3lambda/2}, which is a distribution over lambda. To get the MAP, maximize log posterior: 5 log lambda - 3lambda/2 + constant, derivative 5/lambda - 3/2 = 0, so lambda_MAP = 10/3. The posterior is the whole updated density; the MAP is just its mode, a single point estimate.",
+      "source_chunk_ids": [
+        "cs109_08_section_soln_sec1_part1_d1268b16a2"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Derives likelihood and MLE lambda=4 correctly.",
+          "Forms posterior kernel by multiplying likelihood and prior.",
+          "Differentiates log posterior correctly to obtain MAP 10/3.",
+          "Clearly distinguishes posterior distribution from MAP point estimate."
+        ],
+        "partial_credit": [
+          "Gets MLE and posterior form right but makes an algebra slip in MAP.",
+          "Knows that MAP differs from MLE because of the prior but does not fully derive it."
+        ],
+        "common_mistakes": [
+          "Using posterior mean instead of mode.",
+          "Forgetting to include the prior factor lambda.",
+          "Calling the posterior itself 'the MAP'."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Compared with the MLE of 4, why is the MAP estimate smaller here, in terms of what the prior is encouraging?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Before maximizing, what expression do you get when you multiply the Poisson likelihood by the prior kernel?"
+        }
+      ],
+      "hints": [
+        "Start by writing the Poisson likelihood for a single observation x=4 as a function of \u03bb, ignoring constants that do not depend on \u03bb. The MLE is the value of \u03bb that maximizes this likelihood (or its log).",
+        "For a Poisson model, the likelihood kernel is \u03bb^x e^{-\u03bb}; combine that with the prior kernel \u03bb e^{-\u03bb/2} by multiplication to get the posterior kernel. Be careful: this posterior is a distribution over \u03bb, not a single estimate.",
+        "Use log-posterior to find the MAP: add the log-likelihood and log-prior terms, differentiate with respect to \u03bb, and set the result equal to 0. The MAP is the mode of that posterior density, whereas the MLE came only from the likelihood."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0008",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Someone says, \u201cA MAP estimate is Bayesian, so reporting the MAP means you have fully expressed your posterior uncertainty.\u201d Critique this statement. Contrast what information is retained by the full posterior versus a point estimate such as MAP, and give an example of a decision context where that distinction matters.",
+      "expected_answer": "The statement is false. MAP is only a single point: the mode of the posterior. The full posterior retains uncertainty, spread, asymmetry, and sometimes multimodality, which MAP discards. This matters when decisions depend on uncertainty rather than just the most likely value\u2014for example, medical treatment, risk-sensitive forecasting, or interval reporting, where posterior mean, credible intervals, or the whole posterior may be more informative than one mode.",
+      "source_chunk_ids": [
+        "cs109_22_map_annotated_p14_8d04f0ef1d",
+        "cs109_21_beta_annotated_p42_407f400c78",
+        "cs109_20_mle_annotated_p20_p21_e38075bc02"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that MAP is a point estimate, specifically the posterior mode.",
+          "Explains what the full posterior contains that MAP loses.",
+          "Gives a concrete example where uncertainty matters for decision-making."
+        ],
+        "partial_credit": [
+          "Recognizes that MAP is only one summary but does not clearly say what additional information the posterior provides.",
+          "Gives a generic statement about uncertainty without an example."
+        ],
+        "common_mistakes": [
+          "Saying Bayesian methods always require reporting only one number.",
+          "Confusing posterior mean with MAP.",
+          "Claiming a point estimate captures uncertainty if the prior was used."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "In the Beta-Bernoulli setting, what are two different summaries of the posterior besides the MAP that one might report?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the difference between a distribution over parameter values and a single best parameter value?"
+        }
+      ],
+      "hints": [
+        "Start by distinguishing the object MAP gives from the object Bayesian inference actually produces: is MAP a whole distribution or just one summary of it?",
+        "Recall that MAP is the posterior mode, a single point. Ask yourself what features of the posterior distribution\u2014like spread, skewness, or multiple plausible regions\u2014a single mode cannot retain.",
+        "For the critique, state why reporting only MAP does not communicate uncertainty, then think of a decision where tail risk or interval uncertainty matters, such as treatment choice or safety-critical forecasting."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0009",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "A startup founder has a strong prior that a new product\u2019s click-through rate is near 0.8, based on earlier related campaigns. You model the click probability with a Beta prior and then observe 14 clicks and 6 non-clicks. Explain how two different priors with the same mean 0.8 but different strengths could lead to noticeably different MAP estimates, and why both priors become less influential as more data arrive.",
+      "expected_answer": "A good answer should say that a Beta prior encodes both a center and a strength through pseudo-counts. Two priors can both have mean 0.8, for example a weak prior like Beta(5,2) and a stronger prior like Beta(80,20) or Beta(81,21), but the stronger one contributes many more imaginary observations and pulls the posterior mode more strongly toward 0.8. After adding real data, the posterior parameters are prior plus observed successes and failures. As the sample size grows large, the real counts dominate the pseudo-counts, so the influence of the prior shrinks and different reasonable priors produce more similar posteriors and MAP estimates.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p40_c62ffaf649",
+        "cs109_22_map_annotated_p23_382b2c609c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains mean versus strength of a Beta prior.",
+          "Uses pseudo-count interpretation to compare weak and strong priors.",
+          "States that larger datasets reduce prior influence.",
+          "Connects this to resulting MAP or posterior behavior."
+        ],
+        "partial_credit": [
+          "Knows that stronger priors matter more but does not explain with pseudo-counts.",
+          "Mentions convergence with more data but not why."
+        ],
+        "common_mistakes": [
+          "Thinking all Beta priors with mean 0.8 are equivalent.",
+          "Saying prior influence never fades.",
+          "Confusing the prior mean with the MAP estimate."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the observed data suggested a click rate near 0.7 instead of 0.8, which prior would pull the MAP estimate more strongly away from 0.7, and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What aspect of a Beta prior tells you how many 'imaginary observations' it corresponds to?"
+        }
+      ],
+      "hints": [
+        "For a Beta prior, distinguish its center from its strength: many different Beta distributions can have mean 0.8, but differ in how concentrated they are around that value.",
+        "Use the pseudo-count view: the prior contributes imaginary clicks and non-clicks, and the posterior is found by adding the observed 14 clicks and 6 non-clicks to those prior counts. A prior with a larger total count will tug the posterior mode more strongly toward 0.8.",
+        "Compare two priors with the same ratio \\(\\alpha/(\\alpha+\\beta)=0.8\\) but very different totals \\(\\alpha+\\beta\\). Then ask what happens when the real sample size becomes much larger than those totals: the data dominate, so the different MAP estimates get closer."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0010",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "For the Beta-Bernoulli model, a student sees a posterior Beta(9,3) and reports the MAP estimate as 9/12. Diagnose the error. Then state both the posterior mean and posterior mode, and explain in words why they are different summaries.",
+      "expected_answer": "The student used the posterior mean, not the MAP. For Beta(9,3), the posterior mean is 9/(9+3) = 3/4 = 0.75. The posterior mode, since both parameters exceed 1, is (9-1)/(9+3-2) = 8/10 = 0.8. They differ because the mean is the center of mass of the posterior distribution, whereas MAP is the location where the posterior density is highest.",
+      "source_chunk_ids": [
+        "cs109_22_map_annotated_p17_ffafcf950c",
+        "cs109_22_map_annotated_p20_p21_aec5fb5719"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies 9/12 as posterior mean, not MAP.",
+          "Computes mean 0.75 and mode 0.8 correctly.",
+          "Explains conceptual difference between mean and mode."
+        ],
+        "partial_credit": [
+          "Recognizes the confusion but computes only one of the two quantities.",
+          "Explains mean versus mode vaguely."
+        ],
+        "common_mistakes": [
+          "Claiming mean and mode are always equal for Beta distributions.",
+          "Using (a-1)/(a+b) or another incorrect formula.",
+          "Calling 0.75 the MLE."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you describe a posterior shape where the mean and mode would be especially far apart?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What formula gives the mode of a Beta(alpha,beta) distribution when alpha and beta are both greater than 1?"
+        }
+      ],
+      "hints": [
+        "Ask which posterior summary uses the formula a/(a+b) for a Beta(a,b) distribution. If 9/12 came from that pattern, the student may have reported the wrong summary for MAP.",
+        "For a Beta(a,b) posterior, write down both formulas: the posterior mean and, when a>1 and b>1, the posterior mode. Then substitute a=9 and b=3 and compare the two expressions instead of assuming they match.",
+        "To explain the difference in words, contrast 'center of mass' of the posterior with 'highest point' of the posterior density. In a skewed Beta distribution, those locations need not be the same."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0011",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "In lecture, MAP for Bernoulli was presented as maximizing log prior plus log likelihood. Explain why taking logs does not change the optimizer, and then discuss one computational advantage and one conceptual advantage of working with the log posterior rather than the raw posterior product.",
+      "expected_answer": "Taking logs does not change the argmax because the logarithm is a strictly increasing function. So maximizing posterior proportional to prior times likelihood is equivalent to maximizing log prior plus log likelihood. Computationally, logs turn products into sums and reduce underflow when many probabilities are multiplied. Conceptually, they separate the contribution of prior belief from the contribution of observed data, making it clearer how MAP balances regularization-like prior information with fit to data.",
+      "source_chunk_ids": [
+        "cs109_22_map_annotated_p9_ab0d975983",
+        "cs109_finalfall2023soln_p10_33e8fea6fa"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States monotonicity of log and invariance of argmax.",
+          "Gives a computational reason such as numerical stability or easier differentiation.",
+          "Gives a conceptual reason such as additive decomposition into prior and data terms."
+        ],
+        "partial_credit": [
+          "Explains product-to-sum but not why argmax is preserved.",
+          "Mentions logs help numerically without connecting to MAP."
+        ],
+        "common_mistakes": [
+          "Saying logs approximate the objective rather than preserve the optimizer exactly.",
+          "Forgetting the posterior is only proportional up to a constant for MAP.",
+          "Claiming logs require independence to be valid."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How does this additive log-posterior perspective connect to the idea of regularization in models like logistic regression?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If a function is strictly increasing, what happens to the location of its maximum when applied to an objective?"
+        }
+      ],
+      "hints": [
+        "Start by asking: if one function is strictly increasing, what happens to the location of its maximum when you apply it to an objective? Also remember MAP often maximizes a posterior only up to a proportionality constant.",
+        "Write the MAP objective as prior \u00d7 likelihood, then compare it with log prior + log likelihood. The key is that taking log changes the scale but not the argmax, while also turning a product of many small probabilities into a sum.",
+        "For your two advantages, give one computational point and one conceptual point: computationally think about underflow or easier optimization with sums, and conceptually think about how the prior term and data-fit term become visibly separate contributions."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0012",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are fitting a one-parameter logistic regression model P(Y=1|X=x)=sigma(theta x), but the dataset is very small. Your prior on theta is standard normal. Without doing full calculus, explain why MAP estimation leads to an objective of the form log f(theta) plus a sum of log f(y_i|theta), and interpret what the Gaussian prior is encouraging about theta.",
+      "expected_answer": "By Bayes' theorem, the posterior over theta is proportional to the prior times the likelihood of the observed labels given theta. Assuming independent training examples, the likelihood factorizes across i, so the log posterior becomes log f(theta) + sum_i log f(y_i|theta), up to an additive constant independent of theta. A standard normal prior places highest density near theta=0 and penalizes large magnitude theta, so MAP balances data fit with a preference for smaller parameter values. This acts like shrinkage or regularization when data are scarce.",
+      "source_chunk_ids": [
+        "cs109_finalfall2023soln_p10_33e8fea6fa",
+        "cs109_22_map_annotated_p3_79cca40980"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses Bayes' theorem and independence to justify the additive objective.",
+          "Explains that the Gaussian prior favors theta values near zero.",
+          "Connects the prior to shrinkage/regularization under limited data."
+        ],
+        "partial_credit": [
+          "States the objective form but gives limited explanation of why it arises.",
+          "Mentions regularization without tying it to the normal prior."
+        ],
+        "common_mistakes": [
+          "Saying the prior is on Y rather than theta.",
+          "Ignoring the factorization of likelihood across observations.",
+          "Claiming the prior changes the logistic link function itself."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why would MAP often be preferred to MLE in this setting when the sample size is tiny?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Which random quantity has the prior in this problem: theta, X, or Y?"
+        }
+      ],
+      "hints": [
+        "Start from the MAP definition: you are maximizing the posterior over the parameter \\(\\theta\\), not changing the logistic model itself. Ask what Bayes\u2019 rule says about posterior in terms of prior and likelihood.",
+        "For a dataset of independent examples, write the likelihood as a product over training cases, with each term coming from the logistic regression probability of the observed label. Then take logs so the product becomes a sum, and constants that do not depend on \\(\\theta\\) can be ignored.",
+        "Think about the shape of a standard normal density on \\(\\theta\\): it is largest at 0 and decreases as \\(|\\theta|\\) grows. In the log-posterior objective, that means the prior contributes a penalty against large-magnitude coefficients, which is why MAP behaves like shrinkage when data are scarce."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0013",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "For the standard normal prior on theta in the previous logistic-regression setup, compare the probability density at theta=0 and theta=2. You do not need to compute a decimal unless you want to; explain how the ratio is obtained and what it implies about the prior\u2019s attitude toward large coefficients.",
+      "expected_answer": "For a standard normal density, f(theta) is proportional to exp(-theta^2/2). So the ratio f(0)/f(2) = exp(0)/exp(-2^2/2) = exp(2). That means theta=0 has e^2 times the prior density of theta=2, so the prior substantially prefers smaller-magnitude coefficients and disfavors large ones before seeing data.",
+      "source_chunk_ids": [
+        "cs109_finalfall2023soln_p10_33e8fea6fa"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses the normal density kernel exp(-theta^2/2).",
+          "Correctly computes the ratio as e^2.",
+          "Interprets the result as prior shrinkage toward zero."
+        ],
+        "partial_credit": [
+          "Gets the qualitative interpretation right but not the exact ratio.",
+          "Sets up the ratio correctly but makes a minor algebra slip."
+        ],
+        "common_mistakes": [
+          "Using probabilities instead of densities.",
+          "Forgetting the normalizing constant cancels in the ratio.",
+          "Concluding the prior makes theta=2 impossible rather than less plausible."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would this prior preference interact with a small dataset whose likelihood weakly favors a large positive theta?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What part of the normal density cancels when you take a ratio at two theta values?"
+        }
+      ],
+      "hints": [
+        "Treat this as a comparison of prior densities, not probabilities: under a standard normal prior, points closer to 0 get more density.",
+        "Write the ratio as f(0)/f(2) using the normal density; the constant out front cancels, so only the kernel exp(-theta^2/2) matters.",
+        "Substitute theta=0 and theta=2 into the exponent and simplify the quotient into a single exponential. The result should show that 0 is more favored by the prior, reflecting shrinkage toward smaller-magnitude coefficients rather than ruling out larger ones."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0014",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "In a Bayesian parameter-estimation problem, explain the difference between saying \u201ctheta is a random variable\u201d and saying \u201cthe data are random variables.\u201d Why is this distinction natural in MAP estimation, and how does it differ from the MLE viewpoint emphasized in classical estimation?",
+      "expected_answer": "A strong answer should say that in Bayesian analysis, before observing data we represent uncertainty about the parameter theta with a prior distribution, so theta is treated as a random variable. The data are also random variables under the sampling model, and once observed they become fixed values in the posterior update. MAP is natural because it asks for the most probable theta given the observed data. In contrast, MLE typically treats theta as a fixed unknown constant and maximizes the probability of the observed data under different candidate parameter values.",
+      "source_chunk_ids": [
+        "cs109_21_beta_annotated_p12_dfb20dfb00",
+        "cs109_22_map_annotated_p2_7bb5f93925",
+        "cs109_20_mle_annotated_p20_p21_e38075bc02"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains Bayesian randomness for theta via prior uncertainty.",
+          "Explains that observed data are fixed once conditioned on.",
+          "Contrasts MAP's posterior view with MLE's fixed-parameter likelihood view."
+        ],
+        "partial_credit": [
+          "States that Bayesian treats parameters as random but does not clearly contrast with MLE.",
+          "Discusses priors vaguely without conditioning language."
+        ],
+        "common_mistakes": [
+          "Saying Bayesian methods assume theta physically changes randomly from trial to trial.",
+          "Claiming MLE also puts a prior on theta.",
+          "Failing to distinguish unobserved random variables from observed values."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Once the data are observed, which quantity are we maximizing in MAP, and over what variable?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "In MLE, is theta treated as random or fixed while we optimize the likelihood?"
+        }
+      ],
+      "hints": [
+        "Start by separating two kinds of uncertainty: uncertainty about the unknown parameter before seeing data, and randomness in the sampling process that generates data. Ask which quantities are unobserved random variables and which become fixed once you condition on what was observed.",
+        "In the Bayesian view, \btheta gets a prior to represent your uncertainty, while the data are modeled as random under the likelihood; after observation, the dataset is treated as fixed evidence. Be careful not to say theta physically changes from trial to trial\u0014the randomness is epistemic.",
+        "For MAP, focus on maximizing the posterior p(theta | x_obs), which combines prior and likelihood for the observed sample. Contrast that with MLE, where theta is treated as a fixed unknown constant and you maximize the likelihood p(x_obs | theta) instead."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0015",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You have two analysts estimating a coin\u2019s bias after 100 flips with 58 heads and 42 tails. One uses prior Beta(3,8), the other uses Beta(7,4). Explain why their posterior MAP estimates are closer to each other than their prior MAP estimates were, and give the intuition for why enough data can overwhelm differences in reasonable priors.",
+      "expected_answer": "The prior modes are quite different because the priors encode different imaginary evidence. But after 100 real flips, both posteriors add the same large observed counts to their respective prior counts, so the real data dominate the pseudo-counts. Since 100 observations are much larger than the prior strengths here, the posterior modes move toward the empirical rate near 0.58 and end up closer to each other than the prior modes were. This is the general idea that with enough data, the likelihood dominates moderate prior differences.",
+      "source_chunk_ids": [
+        "cs109_22_map_annotated_p23_382b2c609c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains using pseudo-count or prior-strength intuition.",
+          "States that large real sample sizes reduce relative prior influence.",
+          "Connects this to posterior MAPs moving toward the data-driven proportion."
+        ],
+        "partial_credit": [
+          "Says 'data matter more' without explaining why.",
+          "Mentions convergence qualitatively but not in terms of prior versus sample size."
+        ],
+        "common_mistakes": [
+          "Claiming the priors become irrelevant immediately after any data.",
+          "Saying the posterior MAPs must be identical.",
+          "Confusing posterior distributions with likelihood functions."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What would happen if there were only 4 flips instead of 100\u2014would you expect the two analysts\u2019 MAP estimates to be closer or farther apart?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "How can a Beta prior be interpreted as imaginary heads and tails?"
+        }
+      ],
+      "hints": [
+        "Think of each Beta prior as contributing a small amount of pseudo-evidence about heads vs. tails, while the 100 flips provide the same real evidence to both analysts.",
+        "Write the posterior for each analyst by adding the observed heads and tails to the prior parameters, then compare the prior strength (total pseudo-counts) with the sample size. The key is that both posteriors are being pulled toward the same empirical proportion from the data.",
+        "For a Beta posterior, the MAP depends on the updated parameters, so both analysts\u2019 modes shift toward the likelihood\u2019s preferred bias. Because the observed counts are much larger than the differences between these reasonable priors, the two posterior MAPs end up closer than the prior MAPs were."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0016",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A student argues: \u201cSince Naive Bayes predicts Y by argmax_y P(Y|X), and that is called MAP classification, the word MAP here means the same thing as MAP parameter estimation.\u201d Evaluate this statement. Clarify what quantity is being maximized in each case and why the same phrase can refer to different random variables.",
+      "expected_answer": "The statement is only partially true and needs clarification. In MAP classification, we maximize the posterior over the class label Y given features X, so we choose the most probable class. In MAP parameter estimation, we maximize the posterior over the parameter theta given data, so we choose the most probable parameter value. The same phrase 'maximum a posteriori' means taking the posterior mode, but the random variable whose posterior is being maximized is different: class label in classification, parameter in estimation.",
+      "source_chunk_ids": [
+        "cs109_23_naive_bayes_annotated_p24_f8314943fc",
+        "cs109_22_map_annotated_p3_79cca40980"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Distinguishes posterior over Y from posterior over theta.",
+          "Explains that both are posterior-mode decisions but over different variables.",
+          "Notes why the same terminology applies in both contexts."
+        ],
+        "partial_credit": [
+          "Recognizes they are related but does not clearly distinguish the optimized variable.",
+          "Explains classification correctly but not parameter estimation."
+        ],
+        "common_mistakes": [
+          "Saying the two uses of MAP are unrelated.",
+          "Confusing P(Y|X) with P(theta|data).",
+          "Thinking MAP classification requires a prior on parameters rather than on classes."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "In Naive Bayes, what estimated quantities are used to construct the posterior over the class label?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When classifying one email, are we maximizing over possible labels or over model parameters?"
+        }
+      ],
+      "hints": [
+        "Focus on what MAP literally means: taking the mode of a posterior distribution. Ask yourself: posterior over which unknown quantity in each setting?",
+        "In Naive Bayes classification, the maximization is over possible class labels after observing features, i.e. compare posterior probabilities for different values of Y. In MAP parameter estimation, the maximization is over parameter values after observing data, i.e. compare posterior probabilities for different values of \u03b8.",
+        "The key clarification is that the phrase \"maximum a posteriori\" can apply to any random variable with a posterior distribution. So the shared idea is posterior-mode selection, but the variable being optimized differs between prediction (Y) and estimation (\u03b8)."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0017",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose a Bernoulli experiment yields n heads and m tails, and you use a uniform prior Beta(1,1). Derive the MAP estimate and compare it to the MLE. Why is this comparison a useful caution against saying \u201cMAP always differs from MLE\u201d or \u201cMAP always adds smoothing\u201d?",
+      "expected_answer": "With prior Beta(1,1), the posterior is Beta(n+1,m+1). The MAP mode formula gives (n+1-1)/(n+m+1+1-2) = n/(n+m), which is exactly the MLE, provided n and m are both positive so the interior mode formula applies. So MAP need not differ from MLE; it depends on the prior. This is a useful caution because smoothing occurs for priors like Beta(2,2) or Laplace pseudo-counts, not automatically for every prior.",
+      "source_chunk_ids": [
+        "cs109_22_map_annotated_p20_p21_aec5fb5719",
+        "cs109_22_map_annotated_p2_7bb5f93925"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Derives posterior Beta(n+1,m+1).",
+          "Shows MAP equals n/(n+m) under Beta(1,1) in the interior case.",
+          "Explains the broader lesson that MAP and MLE can coincide depending on the prior."
+        ],
+        "partial_credit": [
+          "States equality without clear derivation.",
+          "Mentions dependence on prior but omits the caveat about boundary cases."
+        ],
+        "common_mistakes": [
+          "Claiming Beta(1,1) adds one pseudo-count to the MAP formula itself in the same way as posterior mean.",
+          "Confusing MAP with posterior mean (n+1)/(n+m+2).",
+          "Saying MAP must always be more conservative than MLE."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What posterior summary under Beta(1,1) would give the smoothed estimate (n+1)/(n+m+2) instead?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the posterior distribution after combining Beta(1,1) with n heads and m tails?"
+        }
+      ],
+      "hints": [
+        "Start with conjugacy: a Bernoulli/binomial likelihood with a Beta prior gives a Beta posterior. Also be careful not to use the posterior mean formula here\u2014the question asks for the posterior mode.",
+        "Write the posterior parameters after observing n heads and m tails under a Beta(1,1) prior, then recall the interior mode of Beta(a,b) is (a-1)/(a+b-2) when a,b>1.",
+        "Substitute your posterior a and b into that mode formula and simplify, then compare the result to the Bernoulli MLE. Check separately what happens at boundary cases like n=0 or m=0, since that is where blanket claims about MAP always differing or always smoothing can fail."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0018",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Imagine you are tracking an object\u2019s 2-D location with a prior density over (X,Y) and then observe a noisy distance measurement D=4. Without computing formulas in detail, explain the Bayesian update structure and then say what a MAP estimate would mean in this continuous setting. Why is that conceptually the same idea as MAP for a coin\u2019s bias, even though the parameter is now two-dimensional and continuous?",
+      "expected_answer": "The posterior density over location is proportional to the likelihood of the observed distance given location times the prior density over location: f(x,y|d) \u221d f(d|x,y)f(x,y). A MAP estimate is the location (x,y) where this posterior density is highest, that is, the posterior mode in two dimensions. This is conceptually the same as coin-bias MAP because in both cases we start with a prior over an unknown quantity, update with Bayes' theorem using observed data, and then choose the value of that unknown quantity that maximizes the posterior. The only differences are the dimension and the form of the distributions.",
+      "source_chunk_ids": [
+        "cs109_17_cont_joint_ii_annotated_p28_f49accb886",
+        "cs109_17_cont_joint_ii_annotated_p35_dfab351b05",
+        "cs109_22_map_annotated_p3_79cca40980"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Describes posterior \u221d likelihood \u00d7 prior in the 2-D setting.",
+          "Defines MAP as the posterior mode over (x,y).",
+          "Connects the idea directly to Bernoulli/coin MAP as the same posterior-mode principle."
+        ],
+        "partial_credit": [
+          "Describes Bayesian update correctly but does not articulate the MAP interpretation clearly.",
+          "Understands the analogy but omits the continuous-density viewpoint."
+        ],
+        "common_mistakes": [
+          "Thinking MAP requires a discrete parameter space.",
+          "Confusing the posterior density with a probability at a point in continuous space.",
+          "Saying the denominator must be computed to identify the MAP point."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "In continuous problems, why do we talk about maximizing density rather than probability at an exact point?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What two ingredients are multiplied to get the posterior up to proportionality?"
+        }
+      ],
+      "hints": [
+        "Treat the unknown as the location parameter \\((X,Y)\\), and remember that in Bayesian inference you update a prior using the data through a likelihood.",
+        "Set up the posterior density for location after observing the distance as something proportional to the likelihood of seeing \\(D=4\\) from a candidate point \\((x,y)\\) times the prior density at that point; you do not need the normalizing denominator to discuss MAP.",
+        "In a continuous 2-D problem, the MAP estimate is the point where this posterior density is largest\u2014the posterior mode\u2014just like coin-bias MAP picks the value of \\(p\\) that maximizes its posterior, even though here the parameter space is continuous and two-dimensional."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0019",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Explain the pseudo-count interpretation of Beta(a,b) priors for Bernoulli data. Then use that interpretation to explain why Beta(2,2) is often described as \u201cone imaginary head and one imaginary tail,\u201d while Beta(3,8) corresponds to a stronger and more asymmetric prior belief.",
+      "expected_answer": "In the Beta-Bernoulli model, Beta(a,b) can be viewed as encoding prior evidence roughly equivalent to a-1 prior successes and b-1 prior failures when thinking in terms of posterior updating and mode intuition. Thus Beta(2,2) acts like one imaginary head and one imaginary tail, giving a symmetric weak prior away from the boundaries. Beta(3,8) corresponds to two imaginary heads and seven imaginary tails, so it is stronger because it contributes more pseudo-observations and asymmetric because it favors lower values of p.",
+      "source_chunk_ids": [
+        "cs109_22_map_annotated_p17_ffafcf950c",
+        "cs109_22_map_annotated_p23_382b2c609c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Gives the pseudo-count intuition accurately in the MAP/posterior-update context.",
+          "Correctly interprets Beta(2,2) and Beta(3,8).",
+          "Explains both strength and asymmetry of the prior."
+        ],
+        "partial_credit": [
+          "Correctly interprets one example but not both.",
+          "Understands that Beta parameters encode prior belief but does not express pseudo-counts clearly."
+        ],
+        "common_mistakes": [
+          "Using a and b directly as imaginary successes and failures without clarifying the +1 convention in this context.",
+          "Saying Beta(2,2) is uniform.",
+          "Ignoring asymmetry of Beta(3,8)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the MAP estimate react differently to a small sample under Beta(3,8) compared with Beta(2,2)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If a prior encodes more pseudo-observations, should you expect it to affect small-sample MAP estimates more or less strongly?"
+        }
+      ],
+      "hints": [
+        "For a Beta prior with Bernoulli data, think of it as prior evidence added before any real flips; in the MAP/pseudo-count story, be careful that the counts are offset by 1 rather than using a and b directly.",
+        "Write the posterior after h heads and t tails as Beta(a+h, b+t), and ask: what imaginary numbers of heads and tails would make this look like ordinary count updating? Apply that same interpretation to Beta(2,2) and Beta(3,8).",
+        "When comparing the two priors, look at two features: the total pseudo-counts (how strong the prior is) and whether the head and tail pseudo-counts are equal or unequal (whether the prior is symmetric or favors smaller/larger p)."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0020",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says, \u201cLaplace smoothing guarantees that no estimated probability is 0 or 1, so it must always improve predictive performance.\u201d Do you agree? Give a nuanced answer that connects Laplace smoothing to MAP and discusses both its benefit and its limitation.",
+      "expected_answer": "A good answer should say no, not always. Laplace smoothing corresponds to a prior or pseudo-count-based MAP estimate, and its key benefit is robustness: it prevents impossible zero probabilities from sparse data and often improves generalization, especially in models like Naive Bayes. But whether it improves performance depends on whether the prior is appropriate for the problem and on the amount of data. With lots of data, the effect may be negligible; with a mismatched prior, it can bias estimates in an unhelpful direction.",
+      "source_chunk_ids": [
+        "cs109_08_section_soln_sec1_part1_d1268b16a2",
+        "cs109_22_map_annotated_p23_382b2c609c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that Laplace smoothing is a MAP/prior-based method.",
+          "Explains the benefit of avoiding zero probabilities and improving robustness.",
+          "Explains limitations: dependence on prior appropriateness and diminishing impact with more data."
+        ],
+        "partial_credit": [
+          "Says it helps with zeros but gives no nuanced discussion of limitations.",
+          "States it may not always help but does not connect to priors or MAP."
+        ],
+        "common_mistakes": [
+          "Claiming smoothing is universally better.",
+          "Claiming smoothing is unrelated to priors.",
+          "Ignoring sample-size effects."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you describe a setting where the prior induced by Laplace smoothing might be too strong or poorly matched to the domain?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What specific numerical pathology does Laplace smoothing prevent in multinomial or Naive Bayes models?"
+        }
+      ],
+      "hints": [
+        "Separate the property of the estimate from the quality of predictions: avoiding exact 0 or 1 probabilities is useful, but it does not by itself prove better test performance. Think about what Laplace smoothing is doing to the counts.",
+        "Connect Laplace smoothing to MAP by viewing it as adding pseudo-counts from a prior over probabilities. Then identify its main benefit in sparse-data settings, especially when a zero count would otherwise make a whole likelihood collapse.",
+        "For the limitation, ask when that prior helps versus when it can bias the estimate: compare small-data and large-data regimes, and consider what happens if the prior implied by Laplace smoothing does not match the true distribution well."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0021",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Consider a Bernoulli dataset with no observed heads and 5 observed tails. Compare the MLE and the MAP under a Beta(2,2) prior. Compute both point estimates and explain why the prior changes the answer so dramatically in this small-sample, boundary-case setting.",
+      "expected_answer": "With 0 heads and 5 tails, the MLE is p_hat = 0/5 = 0. Under a Beta(2,2) prior, the posterior is Beta(2+0, 2+5) = Beta(2,7). Since both shape parameters exceed 1, the MAP is (2-1)/(2+7-2) = 1/7. The prior changes the answer because Beta(2,2) encodes one imaginary head and one imaginary tail, so even though the observed sample has no heads, the posterior does not put its mode at zero. This illustrates how MAP can avoid extreme boundary estimates when data are sparse.",
+      "source_chunk_ids": [
+        "cs109_22_map_annotated_p20_p21_aec5fb5719",
+        "cs109_22_map_annotated_p17_ffafcf950c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes MLE 0 and posterior Beta(2,7).",
+          "Computes MAP as 1/7.",
+          "Explains the pseudo-count/boundary-avoidance intuition."
+        ],
+        "partial_credit": [
+          "Gets qualitative comparison right but not the exact MAP value.",
+          "Computes posterior correctly but confuses MAP with posterior mean 2/9."
+        ],
+        "common_mistakes": [
+          "Saying the MAP is 0 because no heads were observed.",
+          "Using posterior mean instead of mode.",
+          "Forgetting to update both Beta parameters."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the answer differ under a uniform Beta(1,1) prior?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "After observing 0 heads and 5 tails, what posterior do you get from a Beta(2,2) prior?"
+        }
+      ],
+      "hints": [
+        "Notice this is a boundary-case sample: all 5 observations are tails, so the likelihood alone pushes the Bernoulli parameter toward an extreme value, while the Beta(2,2) prior pulls away from the edge.",
+        "Let x be the number of heads and n the total trials. Compute the MLE from x/n, then update the prior with the Beta-Bernoulli rule to get the posterior Beta(2+x, 2+n-x).",
+        "For the MAP, use the mode of a Beta(a,b) posterior when a,b>1: (a-1)/(a+b-2). Be careful not to use the posterior mean instead, and use the result to explain the prior as adding pseudo-counts that soften an extreme small-sample estimate."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0022",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Suppose you must explain to a nontechnical manager why using MAP instead of MLE can help with generalization to unseen data. Give an answer grounded in a simple probability model, and make clear what role the prior plays without overselling it as certainty.",
+      "expected_answer": "A strong explanation would say that MLE chooses the parameter value that best explains only the data we happened to observe, which can overreact to small or unrepresentative samples. MAP adds prior knowledge or reasonable regularizing assumptions, such as 'all die faces are possible' or 'very large coefficients are unlikely,' and then updates that belief using the data. This tends to avoid extreme estimates like zero probabilities or overly large parameters, which can improve predictions on new cases. But the prior is not certainty; it is an assumption that can help when data are limited and becomes less influential as more data accumulate.",
+      "source_chunk_ids": [
+        "cs109_08_section_soln_sec1_part1_d1268b16a2",
+        "cs109_20_mle_annotated_p20_p21_e38075bc02",
+        "cs109_finalfall2023soln_p10_33e8fea6fa"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains overreaction of MLE to limited data.",
+          "Explains prior as regularizing or smoothing information in MAP.",
+          "Uses a concrete example such as zero counts, coin flips, die probabilities, or logistic-regression shrinkage.",
+          "States that the prior is not absolute truth and weakens relative to large datasets."
+        ],
+        "partial_credit": [
+          "Gives a general explanation of prior plus data but without a concrete model.",
+          "Overemphasizes generalization without explaining the mechanism."
+        ],
+        "common_mistakes": [
+          "Claiming MAP always generalizes better than MLE.",
+          "Describing the prior as certain knowledge.",
+          "Failing to mention dependence on sample size."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the manager asks, 'What if our prior is wrong?' how would you answer?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you give one concrete example where MLE produces an extreme estimate from very little data?"
+        }
+      ],
+      "hints": [
+        "Start with a tiny-sample example, like coin flips or die rolls, where MLE can make an extreme estimate from limited data. Think about how that could hurt predictions on future observations.",
+        "Identify the two ingredients you want to contrast: MLE uses only the likelihood from the observed sample, while MAP combines the likelihood with a prior that encodes a mild preference for plausible parameter values. A good concrete angle is zero counts or very large coefficients being discouraged.",
+        "Use the key relationship 'posterior is proportional to likelihood times prior' to explain the mechanism: the prior acts like smoothing or regularization, pulling estimates away from extremes when data are scarce. Also mention that this is not certainty\u2014its influence fades as the dataset grows."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0023",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A student says, \u201cMAP and MLE are basically the same thing, because in both cases you choose the parameter value that best matches the observed data.\u201d Do you agree? Give a careful comparison using Bayes' theorem, and explain what changes in the optimization problem when we move from MLE to MAP. Then describe one situation in which the two estimates would be close and one situation in which they could differ noticeably.",
+      "expected_answer": "A strong answer should say that MLE chooses the parameter value that maximizes the likelihood of the observed data, f(x1,...,xn|theta), while MAP chooses the parameter value that maximizes the posterior density, f(theta|x1,...,xn). By Bayes' theorem, f(theta|data) is proportional to f(data|theta)f(theta), so MAP maximizes likelihood times prior, or equivalently log-likelihood plus log-prior, since the evidence term f(data) does not depend on theta. The student should emphasize that MLE asks, \u201cwhich theta makes the data most likely?\u201d whereas MAP asks, \u201cwhich theta is most plausible after combining prior belief and data?\u201d They should also note that if the prior is flat or the sample size is very large, MAP and MLE are often close, while with limited data or a strong informative prior they can differ substantially.",
+      "source_chunk_ids": [
+        "cs109_22_map_annotated_p3_79cca40980",
+        "cs109_22_map_annotated_p2_7bb5f93925",
+        "cs109_04_cond_bayes_annotated_p27_08be1e5795",
+        "cs109_22_map_annotated_p9_ab0d975983",
+        "cs109_22_map_annotated_p23_382b2c609c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Clearly distinguishes maximizing likelihood from maximizing posterior.",
+          "Uses Bayes' theorem correctly and explains why the denominator can be ignored in the argmax.",
+          "States that MAP incorporates a prior and MLE does not.",
+          "Explains at least one regime where they are similar and one where they differ, with sensible reasoning about data size or prior strength."
+        ],
+        "partial_credit": [
+          "Gives correct definitions of MLE and MAP but does not connect them through Bayes' theorem.",
+          "Mentions priors qualitatively without explaining the optimization change.",
+          "Correctly says large samples reduce prior influence but gives no contrasting case."
+        ],
+        "common_mistakes": [
+          "Saying MAP maximizes P(data) or the Bayes denominator.",
+          "Claiming MLE and MAP are always identical.",
+          "Confusing posterior probability of theta with likelihood of data given theta.",
+          "Saying the prior always dominates regardless of sample size."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Suppose the prior is not flat but extremely concentrated around one value. Without computing, explain how that would alter the MAP estimate relative to MLE when the sample size is only 3."
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you write the MAP objective starting from f(theta|data) and identify exactly which factor is absent from MLE?"
+        }
+      ],
+      "hints": [
+        "Start by separating the two objects being maximized: MLE looks at the likelihood of the observed data as a function of the parameter, while MAP looks at the posterior distribution of the parameter after seeing the data.",
+        "Use Bayes\u2019 theorem to rewrite the posterior: posterior is proportional to likelihood times prior. In the argmax over the parameter, notice which term does not depend on the parameter and therefore does not affect the optimizer.",
+        "Describe the optimization change as adding prior information: MAP maximizes likelihood \u00d7 prior (or log-likelihood + log-prior), unlike MLE. For the comparison cases, think about a nearly flat prior or lots of data versus a strong informative prior with only a small amount of data."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0024",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "You flip a coin 8 times and observe 7 heads and 1 tail. Assume a Beta(a,b) prior on the Bernoulli parameter p. Derive the MAP estimator aloud from first principles, and then evaluate it for a=2, b=2. Finally, compare your answer to the MLE and explain the direction of the difference.",
+      "expected_answer": "The student should start from the posterior up to proportionality: f(p|data) is proportional to p^n (1-p)^m times p^(a-1)(1-p)^(b-1), so the posterior is proportional to p^(a+n-1)(1-p)^(b+m-1), i.e. a Beta(a+n,b+m) distribution. For the MAP, maximize the log posterior: (a+n-1)log p + (b+m-1)log(1-p) plus a constant. Differentiate to get (a+n-1)/p - (b+m-1)/(1-p)=0, then solve to obtain p_MAP=(a+n-1)/(a+n+b+m-2), assuming the mode is interior. With a=b=2, n=7, m=1, this gives p_MAP=(2+7-1)/(2+7+2+1-2)=8/10=0.8. The MLE is 7/8=0.875. MAP is smaller here because the Beta(2,2) prior adds symmetric pull toward the center, acting like one imagined head and one imagined tail, which shrinks the estimate away from the extreme suggested by limited data.",
+      "source_chunk_ids": [
+        "cs109_22_map_annotated_p20_p21_aec5fb5719",
+        "cs109_22_map_annotated_p17_ffafcf950c",
+        "cs109_22_map_annotated_p14_8d04f0ef1d",
+        "cs109_22_map_annotated_p9_ab0d975983"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Sets up posterior by combining Bernoulli likelihood with Beta prior.",
+          "Uses log posterior or equivalent algebra to derive the general MAP formula correctly.",
+          "Correctly computes p_MAP=0.8 for Beta(2,2) with 7 heads and 1 tail.",
+          "Correctly compares against MLE=7/8 and explains shrinkage toward the prior center."
+        ],
+        "partial_credit": [
+          "Identifies posterior as Beta(a+n,b+m) but cannot fully derive the mode formula.",
+          "Computes the numerical answer correctly from memory but gives limited derivation.",
+          "Compares to MLE qualitatively without explicit calculation."
+        ],
+        "common_mistakes": [
+          "Using posterior mean instead of posterior mode.",
+          "Forgetting the minus-1 terms in the Beta mode formula.",
+          "Claiming the MAP equals (a+n)/(a+b+n+m), which is the posterior mean, not the mode.",
+          "Saying the prior adds two heads and two tails rather than one and one for Beta(2,2)."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What changes if a=1 and b=1? Does MAP still differ from MLE in this example, and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you separate the ideas of posterior mean and posterior mode for a Beta posterior, and tell me which one MAP uses?"
+        }
+      ],
+      "hints": [
+        "Start by multiplying the Bernoulli likelihood for 7 heads and 1 tail by the Beta(a,b) prior. Focus on the powers of p and 1-p; that kernel should look like another Beta distribution.",
+        "MAP means posterior mode, not posterior mean, so maximize the posterior density (or its log) over 0<p<1. Write the log posterior as a coefficient times log p plus another coefficient times log(1-p), and be careful with the exponent shifts from the prior.",
+        "Differentiate the log posterior and set the derivative to zero; you should get an equation like A/p = B/(1-p) that you can solve for p. Then plug in a=b=2 and compare that value to the MLE 7/8, noting the symmetric prior shrinks the estimate toward the center rather than the extreme data proportion."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0025",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are estimating the hourly order rate lambda for a new boba stand. In the first hour you observe 4 orders, and your prior density for lambda is proportional to lambda times e^(-lambda/2). I do not want just the final number: identify which objects are distributions and which are point estimates, derive the posterior up to proportionality, and then find both the MLE and the MAP. Conclude by explaining why the two answers differ.",
+      "expected_answer": "The student should say that the observation X is modeled as Poisson(lambda), so the likelihood for observing X=4 is proportional to lambda^4 e^-lambda (ignoring the 4! constant). The prior is a distribution on lambda, not a point estimate, and is given up to proportionality by lambda e^(-lambda/2). The posterior is also a distribution on lambda, proportional to likelihood times prior: lambda^4 e^-lambda times lambda e^(-lambda/2) = lambda^5 e^(-3lambda/2). The MLE is the value maximizing the likelihood alone, so from 4 log lambda - lambda the maximizer is lambda_MLE=4. The MAP is the value maximizing the posterior, equivalently 5 log lambda - 3lambda/2, giving 5/lambda - 3/2 = 0 so lambda_MAP = 10/3. The answers differ because the prior favors smaller lambda values through the exponential decay term, so the posterior mode is pulled downward relative to the likelihood-based estimate. The student should also explicitly distinguish the posterior distribution f(lambda|X=4) from the single-number MAP estimate.",
+      "source_chunk_ids": [
+        "cs109_08_section_soln_sec1_part1_d1268b16a2",
+        "cs109_22_map_annotated_p3_79cca40980",
+        "cs109_20_mle_annotated_p20_p21_e38075bc02",
+        "cs109_17_cont_joint_ii_annotated_p24_p25_78ee9a2e6b"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly identifies likelihood, prior, posterior, MLE, and MAP as different kinds of objects.",
+          "Forms posterior up to proportionality as lambda^5 e^(-3lambda/2).",
+          "Computes MLE=4 and MAP=10/3 correctly.",
+          "Explains qualitatively why the prior shifts the estimate downward."
+        ],
+        "partial_credit": [
+          "Gets the likelihood and posterior setup mostly right but makes a calculus slip in one optimizer.",
+          "Finds MLE correctly and understands that MAP uses posterior rather than likelihood.",
+          "Recognizes that posterior is a distribution and MAP a point estimate, even if algebra is incomplete."
+        ],
+        "common_mistakes": [
+          "Treating the posterior as equal to the MAP value.",
+          "Forgetting to multiply likelihood by prior.",
+          "Maximizing the normalized posterior and getting stuck on the unknown normalizing constant.",
+          "Using the Poisson mean formula incorrectly and setting MAP equal to the observed count automatically."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If instead you had observed 40 orders in one hour with the same prior, would you expect the gap between MLE and MAP to widen or narrow? Explain without redoing all the algebra."
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you tell me which expression corresponds to a density over lambda and which expression corresponds to a single best estimate of lambda?"
+        }
+      ],
+      "hints": [
+        "First separate the types of objects: the prior and posterior are distributions over \u03bb, while the MLE and MAP are single \u03bb values that maximize something. Also model the observed count as X | \u03bb following a Poisson distribution.",
+        "For the first hour with x = 4, write the likelihood up to proportionality by dropping constants that do not depend on \u03bb. Then form the posterior up to proportionality by multiplying that likelihood by the prior density \u03bbe^(-\u03bb/2); you do not need the normalizing constant for MAP.",
+        "To get the MLE, maximize the log-likelihood; to get the MAP, maximize the log-posterior instead. Compare the two objective functions and notice the prior contributes an extra log \u03bb term and extra exponential decay, which shifts the posterior mode relative to the likelihood-only maximizer."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0026",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "In Naive Bayes classification, someone says: \u201cUsing MAP means we are finding the parameter values by maximizing the posterior over parameters, so the predicted class label is not MAP.\u201d Another student says: \u201cNo, the classifier predicts the label with highest posterior probability given the features, so that prediction itself is also a MAP decision.\u201d Reconcile these two statements. Are they contradictory, or are they using the term MAP in two different ways?",
+      "expected_answer": "A strong answer should explain that the two students are referring to different random variables being maximized. In parameter estimation, MAP means choosing parameter values that maximize the posterior distribution over parameters, such as smoothed estimates of class-conditional probabilities. In classification, one often predicts the label y that maximizes P(Y=y|X=x), which is also a maximum a posteriori decision, but now the posterior is over labels rather than model parameters. In Naive Bayes, both uses can appear together: during training, one may estimate probabilities using MLE or MAP/Laplace smoothing, and during prediction, one chooses the class label with largest posterior probability. So the statements are not contradictory; they use the same Bayesian idea at two levels.",
+      "source_chunk_ids": [
+        "cs109_23_naive_bayes_annotated_p24_f8314943fc",
+        "cs109_23_naive_bayes_annotated_p25_p26_b15b90b12e",
+        "cs109_23_naive_bayes_annotated_p46_749f33d4e8",
+        "cs109_22_map_annotated_p2_7bb5f93925"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Clearly distinguishes MAP over parameters from MAP over class labels.",
+          "Explains that both involve maximizing a posterior, but of different quantities.",
+          "Connects this distinction to Naive Bayes training versus prediction.",
+          "Avoids claiming one student is simply wrong."
+        ],
+        "partial_credit": [
+          "Recognizes there are two meanings of MAP but explains only one of them clearly.",
+          "States that prediction uses posterior class probabilities but does not connect to parameter estimation.",
+          "Mentions Laplace smoothing without tying it to parameter MAP."
+        ],
+        "common_mistakes": [
+          "Saying MAP only applies to parameter estimation and never to classification decisions.",
+          "Confusing P(X|Y)P(Y) with posterior over parameters.",
+          "Claiming that Naive Bayes prediction is MLE because it uses likelihood terms.",
+          "Failing to note that the denominator P(X) is constant across labels in classification argmax."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Give a concrete example of one quantity in Naive Bayes that might be estimated with Laplace smoothing during training, and one different quantity maximized at test time."
+        },
+        {
+          "condition": "incorrect",
+          "question": "When you write y-hat = argmax_y P(Y=y|X=x), what random variable is the posterior over there: parameters or labels?"
+        }
+      ],
+      "hints": [
+        "Focus on what object is being maximized when someone says \u201cMAP.\u201d Is it a model parameter, or is it the class label for a particular example?",
+        "Separate Naive Bayes into two stages: training can choose parameters by maximizing a posterior over parameters, while prediction chooses the label by maximizing a posterior over labels given the features.",
+        "Write the two argmax expressions side by side: one looks like argmax over \u03b8 of P(\u03b8|D), and the other like argmax over y of P(y|x). For classification, remember P(y|x) is proportional to P(x|y)P(y), with P(x) the same across labels."
+      ]
+    },
+    {
+      "question_id": "CS109_maximum_a_posteriori_0027",
+      "course": "CS109",
+      "topic_id": "maximum_a_posteriori",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "You roll a possibly unfair 6-sided die N times and observe counts n1 through n6. First, give the MLE for the face probabilities. Then suppose you use Laplace smoothing, interpreted as one imagined observation of each face, and give the resulting MAP estimate. Finally, explain why this matters in a downstream application like Naive Bayes or prediction, especially when some outcomes were never observed.",
+      "expected_answer": "The student should model the data with a multinomial distribution. Under MLE, the estimate is p_i = n_i/N for each face i. With Laplace smoothing, interpreted as adding one pseudo-count to each category, the MAP estimate becomes p_i = (n_i+1)/(N+6). A strong explanation should say that this prevents zero probabilities for unseen outcomes, which is important because in models like Naive Bayes, multiplying by a single zero estimated conditional probability can force an entire class score to zero. The student should also note that the smoothing reflects a prior preference against extreme certainty when data are limited.",
+      "source_chunk_ids": [
+        "cs109_08_section_soln_sec1_part1_d1268b16a2",
+        "cs109_22_map_annotated_p2_7bb5f93925",
+        "cs109_23_naive_bayes_annotated_p25_p26_b15b90b12e",
+        "cs109_23_naive_bayes_annotated_p31_1fb219e78c"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly states the multinomial MLE p_i=n_i/N.",
+          "Correctly states the Laplace/MAP estimate p_i=(n_i+1)/(N+6).",
+          "Explains the pseudo-count interpretation of Laplace smoothing.",
+          "Connects nonzero probabilities to stability in downstream prediction, such as Naive Bayes."
+        ],
+        "partial_credit": [
+          "Gets the formulas right but gives only a vague explanation of why smoothing helps.",
+          "Explains zero-probability problems correctly but omits the MLE formula or the pseudo-count interpretation.",
+          "Recognizes the multinomial setting without fully connecting it to MAP."
+        ],
+        "common_mistakes": [
+          "Using denominator N+1 instead of N+6.",
+          "Calling Laplace smoothing an MLE rather than a MAP-style estimate with a prior.",
+          "Saying smoothing is only for numerical convenience and has no probabilistic interpretation.",
+          "Forgetting that all categories receive a pseudo-count, including observed ones."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If N becomes very large while the counts stay proportionally similar, what happens to the difference between the MLE and Laplace/MAP estimates, and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "How many pseudo-observations does Laplace smoothing add in total for a 6-sided die, and where do they go?"
+        }
+      ],
+      "hints": [
+        "Treat the six face probabilities as parameters of a multinomial model; for MLE, start by asking which probabilities make the observed counts most plausible.",
+        "For the unsmoothed estimate, use the observed proportion for each face. For Laplace smoothing, imagine adding one pseudo-count to every face before converting counts back into probabilities.",
+        "In the MAP version, every category\u2014seen or unseen\u2014gets that extra count, so the total count also increases by the sum of all pseudo-counts. This matters in prediction because an unseen outcome should not force an entire product of probabilities, as in Naive Bayes, to collapse to zero."
+      ]
+    }
+  ]
+}

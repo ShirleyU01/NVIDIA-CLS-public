@@ -1,0 +1,1263 @@
+{
+  "topic_id": "covariance_correlation",
+  "topic_name": "Covariance and Correlation",
+  "course": "CS109",
+  "model": "gpt-5.4",
+  "questions": [
+    {
+      "question_id": "CS109_covariance_correlation_0001",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "A student says: 'Covariance tells you how strongly two variables are related, so if the covariance between height and weight is 255 in one dataset and 46 in another, the first pair must be more strongly related.' Do you agree? Explain using the effect of changing units, and say what aspect of covariance remains meaningful across unit changes.",
+      "expected_answer": "A strong answer should disagree with the claim as stated. Covariance depends on units: if weight and height are rescaled, covariance changes by the product of the scale factors, so a larger numerical covariance does not necessarily mean a stronger relationship. For example, converting pounds to kilograms and inches to centimeters changes the covariance value substantially even though the underlying association is the same. What is meaningful across such unit changes is the sign of covariance, which tells whether the variables tend to move together or in opposite directions; to compare strength across scales, correlation is more appropriate.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p28_de1d23005d",
+        "cs109_13_joint_statistics_annotated_p17_1cbf4de398",
+        "cs109_13_joint_statistics_annotated_p29_715714a4d0"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States clearly that covariance magnitude is not directly comparable across unit changes.",
+          "Explains linear scaling effect: Cov(aX+b,cY+d)=ac Cov(X,Y), at least verbally.",
+          "Identifies that the sign of covariance is more meaningful than the raw magnitude.",
+          "Mentions correlation as the unitless measure for comparing strength."
+        ],
+        "partial_credit": [
+          "Says covariance depends on units but does not explain why.",
+          "Mentions sign is meaningful but omits correlation.",
+          "Recognizes unit conversion issue but confuses covariance and correlation."
+        ],
+        "common_mistakes": [
+          "Claiming covariance is unitless.",
+          "Saying translation changes covariance magnitude.",
+          "Treating larger covariance as universally stronger dependence."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If I convert only one variable, say height from inches to centimeters, how does the covariance change and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Suppose I multiply height by 2 and keep weight unchanged. Would you expect the covariance to stay the same, double, or do something else?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from covariance correlation; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming covariance is unitless. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0002",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Let A and B be random variables with Var(A)=4, Var(B)=9, and Cov(A,B)=-3. Without assuming independence, compute Var(A+B) and interpret what the sign of the covariance did to the total variability of the sum.",
+      "expected_answer": "Use the variance-of-a-sum formula: Var(A+B)=Var(A)+Var(B)+2Cov(A,B)=4+9+2(-3)=7. The negative covariance reduces the variability of the sum because when one variable tends to be above its mean, the other tends to be below its mean, causing partial cancellation in A+B. So the sum varies less than it would if the variables were uncorrelated.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p23_6833fbfbbf",
+        "cs109_13_joint_statistics_annotated_p17_1cbf4de398"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes the correct formula for Var(A+B).",
+          "Substitutes values correctly and gets 7.",
+          "Interprets negative covariance as reducing variance through cancellation."
+        ],
+        "partial_credit": [
+          "Correct formula but arithmetic error.",
+          "Gets the sign effect right but forgets the factor of 2.",
+          "States variance is smaller but gives no explanation."
+        ],
+        "common_mistakes": [
+          "Using Var(A+B)=Var(A)+Var(B) without checking independence/zero covariance.",
+          "Using Cov(A,B) once instead of 2Cov(A,B).",
+          "Interpreting negative covariance as making variance negative."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What would Var(A+B) be if A and B were uncorrelated instead, and how would you compare that to your answer?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you expand Cov(A+B,A+B) term by term to see where the factor of 2 comes from?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Using Var(A+B)=Var(A)+Var(B) without checking independence/zero covariance. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0003",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A classmate argues: 'If two variables are dependent, then their correlation cannot be zero.' Give a counterexample or a reasoning path that shows why this is false, and explain what correlation zero actually rules out.",
+      "expected_answer": "The statement is false. A standard counterexample is Y=X^2 when X is symmetric around 0, for example X taking values -1 and 1 with equal probability or a centered continuous symmetric distribution. Then Y is completely determined by X, so X and Y are dependent, but Cov(X,Y)=E[XY]-E[X]E[Y]=E[X^3]-E[X]E[X^2]=0 under symmetry, hence correlation is 0 when the variances are nonzero. Correlation zero rules out linear association, not all forms of dependence.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p31_ef05b30d10",
+        "cs109_13_joint_statistics_annotated_p32_p33_5951088976",
+        "cs109_13_joint_statistics_annotated_p29_715714a4d0"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explicitly rejects 'dependence implies nonzero correlation.'",
+          "Provides or describes a valid nonlinear counterexample such as Y=X^2 with symmetric X.",
+          "Explains why dependence still holds.",
+          "States that correlation 0 means no linear relationship / uncorrelated, not independence."
+        ],
+        "partial_credit": [
+          "Gives the right conclusion but no valid example.",
+          "Mentions nonlinear dependence vaguely without explaining covariance 0.",
+          "Says uncorrelated does not imply independent but cannot justify it."
+        ],
+        "common_mistakes": [
+          "Claiming correlation 0 implies independence in general.",
+          "Giving an example with nonzero covariance.",
+          "Saying 'dependent' means 'causal.'"
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Under what stronger condition would zero covariance follow automatically, and why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If Y is exactly determined by X through a curved relation, does that guarantee nonzero correlation? Why or why not?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from covariance correlation.",
+        "Watch out for this common trap: Claiming correlation 0 implies independence in general. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0004",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "In a city, colder days tend to produce higher heating bills. Describe the sign you expect for the covariance between outside temperature and utility bill, and justify your answer using the centered-product definition of covariance rather than only intuition.",
+      "expected_answer": "The covariance should be negative. On colder-than-average days, temperature is below its mean so X-E[X] is negative, while the utility bill tends to be above its mean so Y-E[Y] is positive; their product is negative. On warmer-than-average days, temperature is positive relative to its mean and bills tend to be below average, again giving a negative product. Averaging these products leads to negative covariance.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p13_db89ebdd01",
+        "cs109_13_joint_statistics_annotated_p12_41fd4b7bf5"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States covariance is negative.",
+          "Uses the sign of (X-E[X])(Y-E[Y]) in both cold and warm cases.",
+          "Connects the expected product to negative average covariance."
+        ],
+        "partial_credit": [
+          "Gets the sign right with only informal reasoning.",
+          "Uses EXY-EXEY correctly but does not interpret centered terms.",
+          "Explains only one side of the mean split."
+        ],
+        "common_mistakes": [
+          "Saying covariance is positive because both variables are 'large' in winter.",
+          "Confusing temperature with lack of heating need.",
+          "Describing causation instead of covariation only."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would changing temperature from Celsius to Fahrenheit change the sign or only the magnitude of the covariance?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Think about a day colder than average. What are the signs of temperature minus its mean and bill minus its mean?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying covariance is positive because both variables are 'large' in winter. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0005",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Suppose Y=aX+b with probability 1, where a>0 and both variables have nonzero variance. Explain why the correlation must be 1, not just positive. Then say what changes if a<0.",
+      "expected_answer": "If Y=aX+b exactly, then Cov(X,Y)=Cov(X,aX+b)=a Cov(X,X)=a Var(X). Also sigma_Y=|a| sigma_X because adding b does not change variance and scaling by a multiplies standard deviation by |a|. Therefore rho(X,Y)=Cov(X,Y)/(sigma_X sigma_Y)=a Var(X)/(sigma_X |a| sigma_X)=a/|a|. So if a>0, rho=1; if a<0, rho=-1. The key point is that perfect linear relationship gives extreme correlation, not merely a positive or negative value.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p29_715714a4d0",
+        "cs109_13_joint_statistics_annotated_p17_1cbf4de398"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses covariance linearity to get Cov(X,Y)=a Var(X).",
+          "Uses sigma_Y=|a| sigma_X.",
+          "Derives rho=1 for a>0 and rho=-1 for a<0.",
+          "Emphasizes exact linearity, not approximate linearity."
+        ],
+        "partial_credit": [
+          "States the correct result with incomplete derivation.",
+          "Knows adding b does not matter but mishandles absolute value.",
+          "Explains geometrically but not algebraically."
+        ],
+        "common_mistakes": [
+          "Saying rho=a.",
+          "Forgetting standard deviations are nonnegative.",
+          "Claiming any positive slope gives correlation merely greater than 0 but not necessarily 1."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Why does the intercept b not affect correlation here?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you compute Cov(X,aX+b) first and then divide by the standard deviations?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from covariance correlation; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying rho=a. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0006",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "You know Cov(X,Y)=5. Define U=3X-7 and V=-2Y+4. Compute Cov(U,V) and explain each step, especially which parts of the transformation matter and which do not.",
+      "expected_answer": "Use covariance under linear transformations: Cov(aX+b,cY+d)=ac Cov(X,Y). Therefore Cov(U,V)=Cov(3X-7,-2Y+4)=3(-2)Cov(X,Y)=-6\u00b75=-30. The constants -7 and +4 do not affect covariance because centering removes additive shifts; only the multiplicative factors matter, and their product determines the scaling and sign.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p17_1cbf4de398"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Applies Cov(aX+b,cY+d)=ac Cov(X,Y).",
+          "Gets -30.",
+          "Explains why additive constants do not matter.",
+          "Explains sign flip from multiplying by a negative constant."
+        ],
+        "partial_credit": [
+          "Correct numeric result with weak explanation.",
+          "Uses the one-variable rule twice but incompletely.",
+          "Forgets one scaling factor but otherwise reasons correctly."
+        ],
+        "common_mistakes": [
+          "Adding constants into covariance.",
+          "Using 3+(-2) instead of 3\u00b7(-2).",
+          "Claiming covariance cannot be negative if original covariance was positive."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would the correlation between U and V compare with that between X and Y?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is Cov(X+b,Y) compared with Cov(X,Y), and why?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Adding constants into covariance. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0007",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Give an oral proof sketch of the identity Cov(X,Y)=E[XY]-E[X]E[Y]. I do not want only the formula; I want the expansion and the role of linearity of expectation.",
+      "expected_answer": "Start from the definition Cov(X,Y)=E[(X-E[X])(Y-E[Y])]. Expand the product inside: XY - X E[Y] - E[X] Y + E[X]E[Y]. Since E[X] and E[Y] are constants, take expectation term by term using linearity: E[XY] - E[Y]E[X] - E[X]E[Y] + E[X]E[Y]. The middle terms combine to leave E[XY]-E[X]E[Y]. The key step is treating the means as constants and using linearity of expectation.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p12_41fd4b7bf5",
+        "cs109_11_joint_rvs_annotated_p39_93a41618e7"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Starts from centered-product definition.",
+          "Expands correctly.",
+          "Uses linearity of expectation correctly and identifies constants.",
+          "Arrives at E[XY]-E[X]E[Y]."
+        ],
+        "partial_credit": [
+          "States the formula but only partially justifies it.",
+          "Expands correctly but mishandles constants verbally.",
+          "Uses linearity without naming it."
+        ],
+        "common_mistakes": [
+          "Writing E[XY]=E[X]E[Y] without independence.",
+          "Dropping one cross term.",
+          "Confusing covariance with variance."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What happens to this formula if you plug in Y=X?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When you take expectation of X\u00b7E[Y], is E[Y] a random variable or a constant?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from covariance correlation; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Writing E[XY]=E[X]E[Y] without independence. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0008",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student says: 'If Cov(X,Y)=0, then X and Y must be independent, because EXY=EXEY.' How would you respond? Your answer should distinguish a true implication from a false converse.",
+      "expected_answer": "I would say the student is reversing a one-way implication. Independence implies E[XY]=E[X]E[Y], so independent variables have covariance 0 when expectations exist. But the converse is false in general: covariance 0 or EXY=EXEY does not force independence. There can be nonlinear dependence with zero covariance, such as Y=X^2 for a symmetric centered X. So the true implication is independence \u21d2 no correlation; the false one is no correlation \u21d2 independence.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p32_p33_5951088976",
+        "cs109_13_joint_statistics_annotated_p29_715714a4d0"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States correctly that independence implies zero covariance / no correlation.",
+          "Rejects the converse.",
+          "Provides or references a valid counterexample.",
+          "Uses language of implication/converse clearly."
+        ],
+        "partial_credit": [
+          "Gets the conclusion right but gives no example.",
+          "Says not always true but cannot explain why.",
+          "Mentions nonlinear relationship vaguely."
+        ],
+        "common_mistakes": [
+          "Claiming EXY=EXEY is equivalent to independence.",
+          "Confusing dependence with causation.",
+          "Forgetting correlation requires nonzero standard deviations."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you name a condition under which zero covariance would imply independence?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Is every relationship between variables linear? How does that matter for covariance?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from covariance correlation.",
+        "Watch out for this common trap: Claiming EXY=EXEY is equivalent to independence. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0009",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "An analyst computes the covariance between product price and demand and finds it positive in observational data. A manager concludes: 'Raising price causes demand to increase.' Critique this conclusion carefully, using what covariance and correlation can and cannot tell us.",
+      "expected_answer": "The causal conclusion is not justified from covariance alone. Positive covariance means that in the observed data, higher-than-average prices tend to appear with higher-than-average demand, but that could be due to confounding factors such as seasonality, product quality, promotion timing, or stores changing prices when demand is already expected to be high. Covariance and correlation quantify association, especially linear association for correlation, not causation. So the result may reflect a real relationship, a confounded relationship, or even a spurious one; causal claims need additional design or assumptions.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p13_db89ebdd01",
+        "cs109_13_joint_statistics_annotated_p34_3fe549e0aa",
+        "cs109_13_joint_statistics_annotated_p35_21c6682315",
+        "cs109_13_joint_statistics_annotated_p32_p33_5951088976"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rejects causal claim from covariance alone.",
+          "Explains covariance as association, not causation.",
+          "Mentions possible confounding or spurious correlation.",
+          "Notes correlation/covariance concern observed co-movement, not interventions."
+        ],
+        "partial_credit": [
+          "Says 'correlation does not imply causation' with little explanation.",
+          "Mentions confounding vaguely.",
+          "Focuses only on unit dependence rather than causality."
+        ],
+        "common_mistakes": [
+          "Saying positive covariance proves price increases demand.",
+          "Claiming causation can be inferred if covariance is large enough.",
+          "Treating observational association as experimental evidence."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give a concrete third variable that might create this positive observed covariance?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If ice cream sales and drownings are positively correlated, does selling ice cream cause drownings? What lesson transfers here?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying positive covariance proves price increases demand. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0010",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Let S=X1+X2+X3 where Var(X1)=1, Var(X2)=2, Var(X3)=3, Cov(X1,X2)=0.5, Cov(X1,X3)=-1, and Cov(X2,X3)=0. Compute Var(S), and explain why each covariance appears with a factor of 2.",
+      "expected_answer": "Use the general formula Var(S)=sum of variances plus twice the sum of pairwise covariances. So Var(S)=1+2+3 + 2(0.5-1+0)=6+2(-0.5)=5. The factor of 2 appears because when expanding Cov(X1+X2+X3, X1+X2+X3), each off-diagonal pair appears twice: once as Cov(Xi,Xj) and once as Cov(Xj,Xi), and covariance is symmetric.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p23_6833fbfbbf",
+        "cs109_13_joint_statistics_annotated_p40_7ce58bce9d",
+        "cs109_13_joint_statistics_annotated_p17_1cbf4de398"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes the correct general formula.",
+          "Substitutes all terms correctly and gets 5.",
+          "Explains symmetry and double counting of off-diagonal pairs."
+        ],
+        "partial_credit": [
+          "Correct setup with arithmetic slip.",
+          "Gets most terms but misses one covariance.",
+          "States factor 2 without explaining symmetry/double counting."
+        ],
+        "common_mistakes": [
+          "Adding covariances only once without factor 2.",
+          "Assuming independence and dropping covariance terms.",
+          "Including Cov(Xi,Xi) separately in addition to variance terms."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If all pairwise covariances were zero, what simplifying interpretation would you give?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you start from Cov(S,S) and list the nine pairwise covariance terms explicitly?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Adding covariances only once without factor 2. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0011",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Why is Var(X) a special case of covariance? Give both the formula and the intuition in words, and then explain why this helps derive variance formulas for sums.",
+      "expected_answer": "Variance is Cov(X,X). Formally, Cov(X,X)=E[(X-E[X])(X-E[X])]=E[(X-E[X])^2]=Var(X). Intuitively, covariance measures joint variation of two variables, and variance is how a variable co-varies with itself. This identity is useful because Var(X+Y)=Cov(X+Y,X+Y), so bilinearity and symmetry of covariance let us expand variance of sums systematically.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p17_1cbf4de398",
+        "cs109_13_joint_statistics_annotated_p23_6833fbfbbf"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States Var(X)=Cov(X,X).",
+          "Gives correct derivation from the definition.",
+          "Provides intuition in words.",
+          "Connects this identity to variance-of-sum expansions."
+        ],
+        "partial_credit": [
+          "States the identity but not the intuition.",
+          "Gives intuition but not derivation.",
+          "Mentions sums vaguely without explaining Cov(X+Y,X+Y)."
+        ],
+        "common_mistakes": [
+          "Treating variance and covariance as unrelated formulas.",
+          "Writing Var(X)=E[X^2] instead of E[X^2]-(E[X])^2 without context.",
+          "Failing to connect covariance properties to variance expansions."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Use your explanation to derive Var(X+Y) in one or two steps."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What do you get if you literally substitute Y=X into Cov(X,Y)?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from covariance correlation; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Treating variance and covariance as unrelated formulas. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0012",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "Imagine a scatterplot where points lie almost exactly on a downward-sloping line. Without computing anything, explain what you expect for the sign and approximate magnitude of the correlation, and contrast that with what covariance alone cannot tell you from the picture.",
+      "expected_answer": "The correlation should be negative and close to -1 because the relationship is nearly perfectly linear with negative slope. Correlation is scaled to lie between -1 and 1 and measures linear relationship strength and direction. Covariance would also be negative, but its magnitude depends on the units of the two axes, so from the picture alone its numerical size is not intrinsically interpretable across different scalings.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p29_715714a4d0",
+        "cs109_13_joint_statistics_annotated_p31_ef05b30d10",
+        "cs109_13_joint_statistics_annotated_p28_de1d23005d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies negative sign and magnitude near 1 for correlation.",
+          "Explains that correlation reflects near-perfect negative linearity.",
+          "Contrasts with covariance's unit dependence.",
+          "Notes covariance would be negative but not scale-comparable."
+        ],
+        "partial_credit": [
+          "Gets sign right but not magnitude.",
+          "Mentions -1 without saying why exact -1 requires perfect linearity.",
+          "Discusses covariance vaguely."
+        ],
+        "common_mistakes": [
+          "Saying covariance alone determines closeness to a line regardless of units.",
+          "Confusing strong negative with small negative number only.",
+          "Claiming any downward trend gives correlation exactly -1."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What geometric feature would have to be true for the correlation to be exactly -1 rather than just close?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What range must any correlation coefficient lie in?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying covariance alone determines closeness to a line regardless of units. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0013",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A researcher finds correlation 0.95 between two time series and says: 'This proves a meaningful relationship between the phenomena.' Give a careful oral response that distinguishes statistical association, linearity, and the possibility of spurious correlation.",
+      "expected_answer": "A correlation of 0.95 is strong linear association in the observed data, but by itself it does not prove a meaningful underlying relationship. Time series can be highly correlated because both trend over time, both respond to a common factor, or by coincidence in finite samples. Correlation measures linear co-movement, not causality and not necessarily a scientifically meaningful mechanism. So one should consider confounding, temporal structure, and whether the relationship persists after accounting for shared trends or other variables.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p34_3fe549e0aa",
+        "cs109_13_joint_statistics_annotated_p35_21c6682315",
+        "cs109_13_joint_statistics_annotated_p29_715714a4d0",
+        "cs109_13_joint_statistics_annotated_p32_p33_5951088976"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that 0.95 indicates strong linear association, not proof of meaning or causation.",
+          "Mentions spurious correlation or common trends/confounders.",
+          "Distinguishes statistical association from substantive explanation.",
+          "Shows skepticism appropriate to observational data."
+        ],
+        "partial_credit": [
+          "Says 'correlation is not causation' without elaboration.",
+          "Mentions spurious correlation but not why time series are risky.",
+          "Focuses only on sample size or only on causation."
+        ],
+        "common_mistakes": [
+          "Accepting 0.95 as proof of causality.",
+          "Assuming high correlation excludes confounding.",
+          "Ignoring the linearity aspect of correlation."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What additional analyses or study designs would make the causal claim more credible?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Could two unrelated variables both increase over time and therefore show high correlation? Explain."
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from covariance correlation.",
+        "Watch out for this common trap: Accepting 0.95 as proof of causality. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0014",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "computational_reasoning",
+      "difficulty": "medium",
+      "question": "Suppose X and Y are independent with finite variances. Show verbally how independence simplifies Cov(X,Y), and then use that to simplify Var(X+Y).",
+      "expected_answer": "Independence implies E[XY]=E[X]E[Y]. Therefore Cov(X,Y)=E[XY]-E[X]E[Y]=0. Then the variance-of-sum formula becomes Var(X+Y)=Var(X)+2Cov(X,Y)+Var(Y)=Var(X)+Var(Y). The logic is: independence gives zero covariance, and zero covariance removes the cross term.",
+      "source_chunk_ids": [
+        "cs109_18_clt_annotated_p2_b1d98f2cbe",
+        "cs109_13_joint_statistics_annotated_p12_41fd4b7bf5",
+        "cs109_13_joint_statistics_annotated_p23_6833fbfbbf"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Uses independence to state E[XY]=E[X]E[Y].",
+          "Concludes Cov(X,Y)=0.",
+          "Correctly simplifies Var(X+Y) to the sum of variances.",
+          "Makes clear the chain of reasoning."
+        ],
+        "partial_credit": [
+          "Knows independent implies covariance 0 but cannot justify via expectation.",
+          "Gets variance sum formula right without explaining why.",
+          "Explains covariance part but forgets final variance result."
+        ],
+        "common_mistakes": [
+          "Stating covariance 0 implies independence.",
+          "Using variance additivity without any condition.",
+          "Confusing pairwise independence with unrelated concepts."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Does the reverse implication hold: if Var(X+Y)=Var(X)+Var(Y), must X and Y be independent?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the definition of covariance in terms of E[XY], E[X], and E[Y]?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Stating covariance 0 implies independence. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0015",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Can correlation change if we add constants or multiply by negative constants? Answer by discussing separately the transformations X* = aX+b and Y* = cY+d, and explain what happens to both covariance and correlation.",
+      "expected_answer": "For covariance, additive constants do nothing and scaling multiplies by the product: Cov(X*,Y*)=ac Cov(X,Y). For correlation, additive constants also do nothing because standard deviations are unchanged by shifts; positive rescalings leave correlation unchanged, while multiplying one variable by a negative constant flips the sign of correlation. More generally, Corr(aX+b,cY+d)=sign(ac) Corr(X,Y) when a and c are nonzero. So correlation is invariant to unit changes up to possible sign reversal from negative scaling.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p17_1cbf4de398",
+        "cs109_13_joint_statistics_annotated_p29_715714a4d0",
+        "cs109_13_joint_statistics_annotated_p28_de1d23005d"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States covariance transformation correctly.",
+          "Explains correlation invariance under shifts and positive rescaling.",
+          "Explains sign flip under negative scaling.",
+          "Separates effects on covariance from effects on correlation."
+        ],
+        "partial_credit": [
+          "Gets covariance right but not correlation.",
+          "Says correlation is unitless without discussing negative scaling.",
+          "Understands shifts do not matter but not scale effects."
+        ],
+        "common_mistakes": [
+          "Claiming correlation is unchanged even if one variable is multiplied by -1.",
+          "Claiming adding constants changes covariance.",
+          "Mixing up standard deviation scaling with variance scaling."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If U=-X and V=5Y+2, how does Corr(U,V) relate to Corr(X,Y)?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What happens to standard deviation when you replace X by aX+b?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from covariance correlation; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Claiming correlation is unchanged even if one variable is multiplied by -1. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0016",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You are shown four scatterplots: one perfect upward line, one perfect downward line, one circular cloud centered at the origin, and one parabola opening upward symmetric about the y-axis. For each, state whether the correlation is 1, -1, 0, or 'other,' and justify your choices aloud.",
+      "expected_answer": "The perfect upward line has correlation 1 because Y=aX+b with positive slope exactly. The perfect downward line has correlation -1 because Y=aX+b with negative slope exactly. The circular cloud centered at the origin has correlation 0 if it is symmetric with no linear trend. The symmetric upward-opening parabola can also have correlation 0 despite clear dependence because the positive and negative X values balance the linear association; this illustrates that zero correlation does not exclude nonlinear relationships.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p30_dbbdee6ec1",
+        "cs109_13_joint_statistics_annotated_p31_ef05b30d10",
+        "cs109_13_joint_statistics_annotated_p29_715714a4d0"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Correctly classifies the four patterns.",
+          "Explains exact \u00b11 via deterministic linear form.",
+          "Explains why symmetric nonlinear patterns can have correlation 0.",
+          "Distinguishes no linear relationship from no relationship."
+        ],
+        "partial_credit": [
+          "Gets the line cases right but struggles with the parabola.",
+          "Says the cloud is near 0 without mentioning symmetry.",
+          "Recognizes nonlinear dependence vaguely."
+        ],
+        "common_mistakes": [
+          "Assigning nonzero correlation to the symmetric parabola solely because there is dependence.",
+          "Saying any clear pattern must have high correlation.",
+          "Forgetting that exact \u00b11 requires exact linearity."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If I tilt the circular cloud into an ellipse with positive slope, what happens to correlation conceptually?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Does correlation measure any kind of pattern, or specifically linear pattern?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Assigning nonzero correlation to the symmetric parabola solely because there is dependence. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0017",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Suppose E[X]=2, E[Y]=-1, and E[XY]=0.5. Compute Cov(X,Y). Then explain whether this information alone is enough to determine the correlation, and what additional quantities you would need.",
+      "expected_answer": "Cov(X,Y)=E[XY]-E[X]E[Y]=0.5-(2)(-1)=2.5. This is enough to determine covariance but not correlation, because correlation divides covariance by sigma_X sigma_Y. So we would also need the standard deviations or variances of X and Y, and they must be positive for correlation to be defined in the usual way.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p12_41fd4b7bf5",
+        "cs109_13_joint_statistics_annotated_p29_715714a4d0"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Computes covariance as 2.5.",
+          "States that correlation cannot be determined from this alone.",
+          "Identifies missing information: sigma_X and sigma_Y or the variances.",
+          "Notes the role of nonzero variance for defining correlation."
+        ],
+        "partial_credit": [
+          "Gets covariance right but says too little about correlation.",
+          "Knows more information is needed but does not specify what.",
+          "Arithmetic slip but correct reasoning."
+        ],
+        "common_mistakes": [
+          "Calling 2.5 the correlation.",
+          "Dividing by means instead of standard deviations.",
+          "Assuming covariance magnitude determines correlation magnitude."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If Var(X)=25 and Var(Y)=1, what would the correlation be?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is the formula connecting correlation to covariance?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Calling 2.5 the correlation. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0018",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "misconception_check",
+      "difficulty": "medium",
+      "question": "A student reasons: 'Because covariance is symmetric, Cov(X,Y)=Cov(Y,X), it follows that if X causes Y then Y causes X.' Identify the flaw in this argument and separate the mathematical symmetry from the interpretation of observed data.",
+      "expected_answer": "The flaw is confusing a symmetric numerical summary with a directional causal claim. Covariance is symmetric because the product (X-E[X])(Y-E[Y]) is unchanged when X and Y are swapped, so it measures co-variation without direction. Causation is not a symmetric mathematical property of a joint distribution summary; it concerns what would happen under interventions or mechanisms. So Cov(X,Y)=Cov(Y,X) says association is symmetric, not causation.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p17_1cbf4de398",
+        "cs109_13_joint_statistics_annotated_p32_p33_5951088976"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Identifies category error between symmetric association and directional causation.",
+          "Explains why covariance is mathematically symmetric.",
+          "States covariance provides no causal direction.",
+          "Uses intervention/mechanism idea or equivalent distinction."
+        ],
+        "partial_credit": [
+          "Says covariance is not causation but gives little explanation.",
+          "Notes symmetry but does not connect it to the flaw.",
+          "Rejects the claim intuitively only."
+        ],
+        "common_mistakes": [
+          "Suggesting covariance can reveal causal direction if large enough.",
+          "Equating association with mechanism.",
+          "Failing to explain the mathematical symmetry."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Would correlation have the same limitation regarding causal direction? Why?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If I swap X and Y in E[(X-EX)(Y-EY)], does the value change?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from covariance correlation.",
+        "Watch out for this common trap: Suggesting covariance can reveal causal direction if large enough. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0019",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A public-health analyst says handedness and musical ability have covariance near zero, so there is no relationship at all. How would you refine that statement to make it statistically accurate without overstating what zero covariance means?",
+      "expected_answer": "I would say that covariance near zero suggests little to no linear co-variation on the scale measured, not necessarily no relationship whatsoever. The variables may indeed be unrelated, but from covariance alone we cannot rule out nonlinear dependence, interactions with other variables, or measurement issues. So the statistically accurate statement is that there is little evidence of linear association, not proof of complete independence or no connection in every sense.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p13_db89ebdd01",
+        "cs109_13_joint_statistics_annotated_p29_715714a4d0",
+        "cs109_13_joint_statistics_annotated_p32_p33_5951088976"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Rephrases near-zero covariance as near absence of linear association.",
+          "Avoids claiming complete independence or no relationship.",
+          "Acknowledges possible nonlinear relationships or other limitations.",
+          "Keeps interpretation cautious and data-centered."
+        ],
+        "partial_credit": [
+          "Says zero covariance does not imply independence but does not rephrase clearly.",
+          "Mentions 'linear' but not why it matters.",
+          "Focuses only on causation instead of dependence."
+        ],
+        "common_mistakes": [
+          "Saying near-zero covariance proves no relationship.",
+          "Treating covariance 0 and independence as equivalent.",
+          "Ignoring that 'near zero' is also a sample-size/context issue."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What additional plot or analysis would you want before concluding there is truly no relationship?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can two variables have a curved relationship and still have covariance zero?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying near-zero covariance proves no relationship. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0020",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Let T = X - Y. Derive an expression for Var(T) in terms of Var(X), Var(Y), and Cov(X,Y). Then interpret what happens when X and Y are strongly positively correlated.",
+      "expected_answer": "Write T=X+(-Y). Then Var(T)=Var(X)+Var(-Y)+2Cov(X,-Y)=Var(X)+Var(Y)-2Cov(X,Y), since Var(-Y)=Var(Y) and Cov(X,-Y)=-Cov(X,Y). If X and Y are strongly positively correlated, the covariance term is large and positive, so subtracting 2Cov(X,Y) reduces the variance of the difference. Intuitively, if the variables move together, their difference is more stable.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p23_6833fbfbbf",
+        "cs109_13_joint_statistics_annotated_p17_1cbf4de398"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Derives Var(X-Y)=Var(X)+Var(Y)-2Cov(X,Y).",
+          "Uses transformation properties correctly.",
+          "Interprets positive covariance as reducing variance of the difference.",
+          "Gives intuitive explanation of co-movement canceling in subtraction."
+        ],
+        "partial_credit": [
+          "Correct formula with weak derivation.",
+          "Derivation mostly correct but sign error in interpretation.",
+          "States the effect qualitatively without formula."
+        ],
+        "common_mistakes": [
+          "Writing +2Cov instead of -2Cov.",
+          "Claiming Var(-Y)=-Var(Y).",
+          "Saying positive correlation increases variability of the difference."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "What if X and Y are strongly negatively correlated instead?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What is Cov(X,-Y) in terms of Cov(X,Y)?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Writing +2Cov instead of -2Cov. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0021",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "question": "Explain how the statement 'correlation measures linear relationship' should be understood carefully. In particular, contrast the meanings of rho=0, rho close to 1, and rho exactly 1.",
+      "expected_answer": "Correlation is about how well one variable aligns with an increasing or decreasing straight-line pattern after standardization. If rho=0, there is no linear relationship, but nonlinear dependence may still exist. If rho is close to 1, there is strong positive linear association but not necessarily a perfect line. If rho=1 exactly, then there is an exact linear relation Y=aX+b with positive slope almost surely; similarly rho=-1 gives an exact negative linear relation. So the distinction between near-perfect and perfect is important.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p29_715714a4d0",
+        "cs109_13_joint_statistics_annotated_p31_ef05b30d10"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains linear rather than general dependence.",
+          "Distinguishes rho=0 from independence.",
+          "Distinguishes rho close to 1 from rho exactly 1.",
+          "States exact \u00b11 correspond to deterministic linear relation."
+        ],
+        "partial_credit": [
+          "Gets the broad idea but misses one case.",
+          "Says 0 means no relationship without qualifying linear.",
+          "Discusses strong association but not exactness of 1."
+        ],
+        "common_mistakes": [
+          "Equating rho=0 with independence universally.",
+          "Equating high rho with causation.",
+          "Failing to distinguish exact from approximate linearity."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you give an example of a deterministic relationship with rho=0?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If points lie near a line but not exactly on it, should rho be exactly 1?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from covariance correlation; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Equating rho=0 with independence universally. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0022",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "Suppose a hidden variable K influences whether users like several different movie genres. Observationally, the genre-preference indicators are dependent. Explain why this kind of situation warns us to be cautious when interpreting covariance or correlation between any two observed preferences.",
+      "expected_answer": "A hidden variable K can induce dependence among observed variables even if, conditional on K, the variables are much simpler or even conditionally independent. So a nonzero covariance or correlation between two observed preferences may reflect shared dependence on K rather than a direct relationship between the two preferences themselves. This means association summaries are about the marginal data-generating structure and can be confounded by latent variables; they do not by themselves identify direct effects or causal links.",
+      "source_chunk_ids": [
+        "cs109_06_rvs_annotated_p9_p10_e768695e32",
+        "cs109_13_joint_statistics_annotated_p32_p33_5951088976"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Explains that latent K can induce observed dependence.",
+          "Connects this to caution in interpreting covariance/correlation.",
+          "Mentions conditional independence or shared cause structure.",
+          "Separates marginal association from direct relationship."
+        ],
+        "partial_credit": [
+          "Mentions hidden variables vaguely.",
+          "Says correlation may be confounded but gives no mechanism.",
+          "Focuses only on causation without explaining induced dependence."
+        ],
+        "common_mistakes": [
+          "Assuming observed correlation must be direct influence.",
+          "Ignoring latent-variable confounding.",
+          "Claiming conditional independence implies marginal independence."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If two variables become independent after conditioning on K, what does that say about the source of their marginal association?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Could two variables be associated only because both depend on an unobserved third factor?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Assuming observed correlation must be direct influence. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0023",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "applied_scenario",
+      "difficulty": "medium",
+      "question": "A city analyst records outside temperature X in degrees Celsius and household utility bill Y in dollars. She then converts temperature to Fahrenheit, X' = 1.8X + 32, and bills to cents, Y' = 100Y, and notices the covariance changed a lot. Explain, without doing heavy arithmetic, how Cov(X',Y') relates to Cov(X,Y), what happens to the sign, and why this makes raw covariance a poor scale-free measure of association.",
+      "expected_answer": "A strong answer should use the linear transformation rule for covariance. Since X' = 1.8X + 32 and Y' = 100Y, Cov(X',Y') = Cov(1.8X + 32, 100Y) = 1.8\u00b7100\u00b7Cov(X,Y), because adding constants does not affect covariance and scaling multiplies covariance by the product of the scale factors. So the magnitude changes by a factor of 180, but the sign stays the same because both scale factors are positive. This shows covariance depends on units, so comparing magnitudes across different measurement scales is misleading; the sign is more stable, and correlation is preferred when a unitless measure is needed.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p17_1cbf4de398",
+        "cs109_13_joint_statistics_annotated_p28_de1d23005d",
+        "cs109_13_joint_statistics_annotated_p29_715714a4d0"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States or derives Cov(aX+b,cY+d)=ac\u00b7Cov(X,Y).",
+          "Explains that +32 has no effect and scaling by 1.8 and 100 changes only magnitude.",
+          "Correctly says the sign is unchanged here because both multipliers are positive.",
+          "Interprets why covariance is unit-dependent and therefore not a scale-free association measure."
+        ],
+        "partial_credit": [
+          "Correct qualitative statement that covariance changes under rescaling but does not clearly express the product ac.",
+          "Identifies that constants do not matter but forgets to discuss sign or units.",
+          "Mentions correlation as unitless without connecting it to the scenario."
+        ],
+        "common_mistakes": [
+          "Saying adding 32 changes covariance because it changes the mean.",
+          "Claiming covariance is invariant under unit conversion.",
+          "Confusing covariance with correlation and saying both remain numerically unchanged."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If instead the analyst defines X'' = -X, what happens to Cov(X'',Y) and to the correlation between X and Y?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "Can you expand Cov(1.8X+32,100Y) step by step using the rule for covariance of linear transformations?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying adding 32 changes covariance because it changes the mean. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0024",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "computational_reasoning",
+      "difficulty": "hard",
+      "question": "Let S = X + Y for two random variables that are not assumed independent. A student says, 'The variance of a sum is always the sum of the variances.' Respond to this claim by deriving Var(S) from covariance properties, and then interpret what positive versus negative covariance would mean for the variability of S.",
+      "expected_answer": "The claim is false in general. Using Var(S) = Cov(S,S) and bilinearity of covariance, Var(X+Y) = Cov(X+Y,X+Y) = Cov(X,X) + Cov(X,Y) + Cov(Y,X) + Cov(Y,Y). By symmetry Cov(X,Y)=Cov(Y,X), so Var(X+Y)=Var(X)+2Cov(X,Y)+Var(Y). If Cov(X,Y)>0, X and Y tend to move together, so their sum is more variable than under zero covariance. If Cov(X,Y)<0, they partially offset each other, so the sum is less variable. Only when covariance is zero\u2014such as under independence, though zero covariance can also occur without independence\u2014does the variance reduce to the sum of variances.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p17_1cbf4de398",
+        "cs109_13_joint_statistics_annotated_p23_6833fbfbbf",
+        "cs109_13_joint_statistics_annotated_p32_p33_5951088976"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Starts from Var(X+Y)=Cov(X+Y,X+Y) or an equivalent correct expansion.",
+          "Correctly derives Var(X+Y)=Var(X)+2Cov(X,Y)+Var(Y).",
+          "Explains the effect of positive and negative covariance on total variability.",
+          "Clarifies that independence implies zero covariance, but zero covariance does not necessarily imply independence."
+        ],
+        "partial_credit": [
+          "Gives the correct formula but with little derivation.",
+          "Derives the formula but does not interpret the sign of covariance.",
+          "States the independence caveat imprecisely but shows some awareness of it."
+        ],
+        "common_mistakes": [
+          "Omitting the cross terms and asserting Var(X+Y)=Var(X)+Var(Y) always.",
+          "Saying negative covariance makes variance negative.",
+          "Claiming zero covariance and independence are equivalent."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "How would your argument extend to Var(X1 + X2 + ... + Xn)? State the structure of the formula rather than proving every step."
+        },
+        {
+          "condition": "incorrect",
+          "question": "What are the four covariance terms that appear when you expand Cov(X+Y, X+Y)?"
+        }
+      ],
+      "hints": [
+        "Start by naming the relevant quantities and writing the probability or statistics relationship before substituting values.",
+        "Watch out for this common trap: Omitting the cross terms and asserting Var(X+Y)=Var(X)+Var(Y) always. Decide what the correct setup should do differently.",
+        "Once the setup is correct, carry the calculation through in small steps and interpret what the result means in the original context."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0025",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "misconception_check",
+      "difficulty": "hard",
+      "question": "A researcher says: 'If two variables have correlation 0, then they must be independent.' Give a careful response. Your answer should address which implication involving independence and correlation is valid, which converse fails, and use a concrete nonlinear example to justify your claim.",
+      "expected_answer": "The statement is false. The valid implication is that independence implies zero covariance and therefore zero correlation, provided variances are finite; this follows because for independent variables E[XY]=E[X]E[Y], so Cov(X,Y)=0. But the converse fails: zero correlation means only no linear relationship, not no relationship at all. A standard example is Y = X^2 when X is symmetric about 0, such as X taking values -1 and 1 equally likely or X having mean 0 under a symmetric distribution. Then E[X]=0 and E[XY]=E[X^3]=0, so Cov(X,Y)=0 and correlation is 0, yet Y is completely determined by X, so they are certainly dependent.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p29_715714a4d0",
+        "cs109_13_joint_statistics_annotated_p31_ef05b30d10",
+        "cs109_13_joint_statistics_annotated_p32_p33_5951088976"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States clearly that 'correlation 0 implies independence' is false.",
+          "States the correct direction: independence implies zero correlation/covariance.",
+          "Uses a nonlinear counterexample such as Y=X^2 with symmetric X.",
+          "Explains why the example has zero correlation but is still dependent."
+        ],
+        "partial_credit": [
+          "Says the claim is false and mentions nonlinear dependence, but gives no concrete example.",
+          "Gives an example but does not explain why covariance is zero.",
+          "Correctly states one implication but muddles converse and inverse language."
+        ],
+        "common_mistakes": [
+          "Saying uncorrelated means unrelated in every sense.",
+          "Using a counterexample that actually has nonzero covariance.",
+          "Claiming dependence always produces nonzero correlation."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "Can you distinguish 'no linear relationship' from 'no relationship' in one or two sentences using your example?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "If X and Y are independent, what is E[XY] in terms of E[X] and E[Y], and what does that imply for covariance?"
+        }
+      ],
+      "hints": [
+        "Identify the claim being made, then compare it against the formal definition from covariance correlation.",
+        "Watch out for this common trap: Saying uncorrelated means unrelated in every sense. Decide what the correct setup should do differently.",
+        "Use the formal test or definition to separate what feels intuitive from what is actually implied."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0026",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "question": "Suppose a scatterplot of variables X and Y lies exactly on a straight line with positive slope, but the points are measured in very different units and have different spreads. Explain why the correlation must be 1, not just 'large and positive.' Then contrast this with a situation where covariance is positive but correlation is strictly less than 1.",
+      "expected_answer": "If all observations satisfy Y = aX + b with a > 0 exactly, then X and Y have a perfect positive linear relationship. Correlation standardizes covariance by the standard deviations, so differences in units and spread are normalized away. In that case, the entire variation in Y is explained by a positive linear function of X, and by the characterization of correlation, rho(X,Y)=1. By contrast, covariance can be positive whenever X and Y tend to increase together on average, even if the points do not lie perfectly on a line; then the association is positive but imperfect, so correlation is between 0 and 1 rather than equal to 1.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p29_715714a4d0",
+        "cs109_13_joint_statistics_annotated_p30_dbbdee6ec1",
+        "cs109_13_joint_statistics_annotated_p31_ef05b30d10"
+      ],
+      "rubric": {
+        "full_credit": [
+          "States that exact positive linearity Y=aX+b with a>0 implies correlation 1.",
+          "Explains the role of standardization/unitlessness in correlation.",
+          "Contrasts perfect linear relation with merely positive covariance.",
+          "Correctly places imperfect positive linear association at 0<rho<1."
+        ],
+        "partial_credit": [
+          "Knows that a perfect line gives correlation 1 but does not explain why units do not matter.",
+          "Explains positive covariance versus positive correlation qualitatively but not the exact value 1.",
+          "Mentions normalization vaguely without connecting to the scenario."
+        ],
+        "common_mistakes": [
+          "Saying correlation depends on the slope magnitude directly rather than on perfect linearity.",
+          "Confusing positive covariance with correlation 1.",
+          "Ignoring the condition that the points lie exactly on a line."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If the line had negative slope instead, what would change and what would stay the same in your reasoning?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "What extra condition, beyond 'covariance is positive,' is needed to force correlation all the way up to 1?"
+        }
+      ],
+      "hints": [
+        "Focus first on the central definition or representation from covariance correlation; avoid jumping straight to a final statement.",
+        "Watch out for this common trap: Saying correlation depends on the slope magnitude directly rather than on perfect linearity. Decide what the correct setup should do differently.",
+        "Finish by explaining why the definition applies here, not just by naming the definition."
+      ]
+    },
+    {
+      "question_id": "CS109_covariance_correlation_0027",
+      "course": "CS109",
+      "topic_id": "covariance_correlation",
+      "question_type": "applied_scenario",
+      "difficulty": "hard",
+      "question": "You model a portfolio return as R = A + B, where A is the return from a tech stock and B is the return from an airline stock. Two analysts agree on Var(A) and Var(B), but disagree about dependence: one says the assets are independent, the other says they are strongly negatively correlated. Without plugging in numbers, explain how their predictions for Var(R) differ, what covariance term causes the difference, and why this matters for diversification.",
+      "expected_answer": "The key formula is Var(R)=Var(A+B)=Var(A)+Var(B)+2Cov(A,B). If the assets are independent, then Cov(A,B)=0, so the portfolio variance is just the sum of individual variances. If they are strongly negatively correlated, then Cov(A,B)<0, so the term 2Cov(A,B) reduces the overall variance, potentially substantially. This matters for diversification because combining assets that move in opposite directions can offset fluctuations and lower total risk even when each asset is individually volatile. The disagreement is therefore not about expected return here, but about the covariance structure driving portfolio risk.",
+      "source_chunk_ids": [
+        "cs109_13_joint_statistics_annotated_p23_6833fbfbbf",
+        "cs109_13_joint_statistics_annotated_p40_7ce58bce9d",
+        "cs109_18_clt_annotated_p2_b1d98f2cbe"
+      ],
+      "rubric": {
+        "full_credit": [
+          "Writes or states Var(A+B)=Var(A)+Var(B)+2Cov(A,B).",
+          "Explains the independent case as covariance zero.",
+          "Explains the negatively correlated case as reducing variance through a negative covariance term.",
+          "Connects the result to diversification/risk reduction in a portfolio context."
+        ],
+        "partial_credit": [
+          "Knows negative covariance lowers portfolio variance but does not state the full formula.",
+          "States the formula but gives little interpretation of diversification.",
+          "Mentions independence but does not explain why covariance is zero under independence."
+        ],
+        "common_mistakes": [
+          "Saying negatively correlated assets make variance negative.",
+          "Claiming independence and negative correlation are compatible descriptions of the same pair of assets.",
+          "Focusing only on expected returns rather than variance and covariance."
+        ]
+      },
+      "follow_ups": [
+        {
+          "condition": "correct",
+          "question": "If Cov(A,B) were positive instead, how would that change your diversification argument?"
+        },
+        {
+          "condition": "incorrect",
+          "question": "When you expand Var(A+B), what happens to the cross terms, and what quantity do they become?"
+        }
+      ],
+      "hints": [
+        "Translate the story into events, variables, or assumptions before trying to calculate or conclude anything.",
+        "Watch out for this common trap: Saying negatively correlated assets make variance negative. Decide what the correct setup should do differently.",
+        "Connect each term in your formula or explanation back to the real-world role it plays in the scenario."
+      ]
+    }
+  ]
+}

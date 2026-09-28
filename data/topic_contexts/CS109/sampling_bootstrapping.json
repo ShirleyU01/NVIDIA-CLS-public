@@ -1,0 +1,246 @@
+{
+  "course": "CS109",
+  "topic_id": "sampling_bootstrapping",
+  "topic_name": "Sampling and Bootstrapping",
+  "queries_used": [
+    "Sampling and Bootstrapping definition",
+    "Sampling and Bootstrapping intuition",
+    "Sampling and Bootstrapping worked example",
+    "Sampling and Bootstrapping exam problem",
+    "sampling overview",
+    "sampling practice",
+    "bootstrap overview",
+    "bootstrap practice",
+    "resampling overview",
+    "resampling practice",
+    "empirical distribution overview",
+    "empirical distribution practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p0_p1_d131025068",
+      "text": "19: Sampling and the \nBootstrap\nJerry Cain\nMay 13th, 2024\n1\nLecture Discussion on Ed\n\nSampling \ndeﬁnitions\n2",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.6556271314620972
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p54_d0e2d8fe3c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTo the code!\nBootstrap provides a way to calculate probabilities of \nstatistics using code.\nBootstrapping works for any statistic*\n55\n*as long as your sample is iid and the underlying distribution does not have a long tail\nGoogle colab notebook link",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.616146445274353
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p38_p39_9dc7c60e9c",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrapped sample variance\nBootstrap Algorithm (sample):\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the sample variance on the resample\n3. You now have a distribution of your sample variance \nWhat is the distribution of your sample variance?\n39\nEven without closed forms,\nwe estimate statistics of the sample variance with bootstrapping!\n\nBootstrap: \nSample variance\n40",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.5966060161590576
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p37_7fdcaaf36b",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap algorithm\nBootstrap Algorithm (sample):\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the statistic on the resample\n3. You now have a distribution of your statistic \nWhat is the distribution of your statistic?\n38",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.5813232660293579
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p40_979ac90e2a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrapped sample variance\nBootstrap Algorithm (sample):\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the sample variance on the resample\n3. You now have a distribution of your sample variance \nWhat is the distribution of your sample variance?\n41\nGoal",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.5742524862289429
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p36_5ee070b082",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap algorithm\nBootstrap Algorithm (sample):\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the sample mean on the resample\n3. You now have a distribution of your sample mean \nWhat is the distribution of your sample mean?\n37\nWe’ll talk about this algorithm \nin detail with a demo!",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.572088897228241
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p33_a57db77c85",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap insight 2: Simulate a distribution\nApproximate the procedure of simulating a distribution of a statistic, e.g., 2𝑋.\n34\n≈\nPopulation \ndistribution\n(we don’t have this)\nSample \ndistribution\n(we do have this)\nBootstrap\nmeans\nSimulated distribution of \nsample means\nSimulated distribution of \nsample means",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.5720257759094238
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p43_96e15597e5",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the sample variance on the resample\n3. You now have a distribution of your sample variance\nBootstrapped variance\n44\n[52, 38, 98, 107, ..., 94]\n⚠\nThis resampled sample is \ngenerated with replacement.\nWhy are these \nsamples different?",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.5682287216186523
+    },
+    {
+      "chunk_id": "cs109_06_section_soln_clt_sec1_part2_cfea372a3f",
+      "text": "𝑟𝑦\n0 𝑑𝑦\n= −1\n4\n∫∞\n0\n𝑒−1\n4 𝑦\u0010\n𝑒−1\n3𝑟𝑦−1\n\u0011\n𝑑𝑦\n= 1\n4\n∫∞\n0\n𝑒−1\n4 𝑦𝑑𝑦−1\n4\n∫∞\n0\n𝑒−( 1\n3𝑟+ 1\n4)𝑦𝑑𝑦\n= 1 +\n1\n4\n1\n3𝑟+ 1\n4\n𝑒−( 1\n3𝑟+ 1\n4)𝑦\n\n∞\n0\n= 1 −\n1\n4\n1\n3𝑟+ 1\n4\n=\n1\n3𝑟+ 1\n4\n1\n3𝑟+ 1\n4\n−\n1\n4\n1\n3𝑟+ 1\n4\n=\n1\n3𝑟\n1\n3𝑟+ 1\n4\nFor those question why that first of two integrals vanished to 1, note that the integrand is\njust the PDF of Expo(𝜆= 1\n4)!\nIncidentally, we can compute the probability density function from the CDF by dif-\nferentiating with respect to 𝑟:\n𝑓(𝑟) = 𝑑𝐹(𝑟)\n𝑑𝑟\n= 𝑑\n𝑑𝑟\n1\n3𝑟\n1\n3𝑟+ 1\n4\n=\n1\n12( 1\n3𝑟+ 1\n4)2\nb. What is the probability that Kathleen finishes before Jacob does?\nIn comparison, that is delightfully straightforward, because we get to plug 𝑟= 1 into our\nresult from part a. 𝑃(𝑋< 𝑌) = 1\n3 · 12\n7 = 4\n7. That, however, is the probability that Jacob\nfinishing before Kathleen, and we want to opposite. Therefore, the probability of interest\n\n– 5 –\nis really 3\n7. Given the expected completion times of 3 and 4 hours for Jacob and Kathleen,\nrespectively, this seems right.\n2.3\nCentral Limit Theorem and Sampling Calisthenics\na. Let 𝑋1, 𝑋2, 𝑋3, ..., 𝑋1000 be iid—that is, independent and identically distributed—such that\n𝑋𝑖∼NegBin(𝑟= 10, 𝑝= 0.5), and let 𝑊= 𝑋1 + 𝑋2 + ... + 𝑋1000. According to the Central\nLimit Theorem, what distribution does 𝑊assume, and what are its parameters?\nThis is classic Central Limit Theorem where the distribution of the sum is a Gaussian with\nmean 1000 𝐸[𝑋𝑖] and variance 1000𝑉𝑎𝑟(𝑋𝑖). The formulas for a Negative Binomial’s mean\nand variance are well-defined and are computed as:\n𝐸[𝑋𝑖] = 𝑟\n𝑝= 10\n0.5 = 20\n𝑉𝑎𝑟(𝑋𝑖) = 𝑟(1 −𝑝)\n𝑝2\n= 10 · 0.5\n0.52\n= 20\nHow neat is it that the mean and variance are the same? This all means that 𝑊∼\nN (20000, 20000).\nb. Define ¯𝑋=\n1\n1000\nÍ1000\n𝑖=1 𝑋𝑖to be the sample mean of our 1000 iid samples. What is the\nstandard deviation of the random variable ¯𝑋?\nThe Central Limit Theorem has a lot to say about the distribution of sample means as well.\nIn particular, for this problem, ¯𝑋∼N (𝐸[𝑋𝑖], 𝑉𝑎𝑟[𝑋𝑖]\n1000 ). That’s more than we’re asking—all\nI need from you is that 𝑉𝑎𝑟(𝑋𝑖) =\n20\n1000 = 0.02.\nc. You compute the variance of your 1000 samples, 𝑋1, 𝑋2, 𝑋3, ..., 𝑋1000 according to the\ntraditional definition of variance—i.e.\n1\n1000\nÍ1000\n𝑖=1 (𝑋𝑖−¯𝑋)2. Do you expect this variance to,\nmore often than not, be larger, equal to, or smaller than the variance of NegBin(10, 0.5).\nExplain your answer.\nHere the population variance is 20, since we know the population distribution is the Negative\nBinomial. Recall that the unbiased sample variance divides the sum of the differences squared\nby 𝑛−1, or 999. The traditionally computed variance divides by a slightly larger number of\n1000, so we expect the traditionally computed variance to, more often than not, be a little\ntoo low.\nd. The number of samples needed for the Central Limit Theorem to apply is generally\nunderstood to be 30 or more. However, the Central Limit Theorem works well for an even\nsmaller number of samples when 𝑋𝑖∼Bin(10, 0.5) than is does when\n𝑋𝑖∼NegBin(10, 0.5). Briefly explain why.\n\n– 6 –\nThe simple answer is that 𝑋𝑖∼Bin(10, 0.5) is symmetric, so there are no asymmetries\nto overcome as you add samples together. In fact, you can view, say, 3 Bin(10, 0.5) as 30\nBer(0.5).\ne. Recall that sampling theory allows a reasonably large sample to stand in for the true\npopulation distribution. When resampling from the sample for bootstrapping purposes, we\ngenerally do so with replacement. Why with replacement instead of without?\nWe sample with replacement because we treat the original set of samples as a probability\nmass function. If we were to sample without replacement, we’re incapable of creating\nresamples of a size larger than the original sample, and when the size of the resample is\nclose to the size of the original, each resample would essentially be a replica of the original.",
+      "source_type": "review_section",
+      "document_name": "06 section soln clt",
+      "score": 0.5667569637298584
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p32_38c0131b65",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap insight 1: Estimate the true distribution\nYou can estimate the PMF of the underlying distribution, using your sample.*\n33\n≈\n𝐹≈#𝐹\nThe underlying \ndistribution\nthe sample distribution\n(aka the histogram of \nyour sample data)\n*This is just a histogram of your data!",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.5246710777282715
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p5_c1d9d32b84",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSample\n6\nA sample is selected from a population.",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.5051455497741699
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p4_a68eae6f07",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nSample\n5\nA sample is selected from a population.",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.5041294097900391
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p53_6222fa1d83",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nAlgorithm in practice: Resampling\n54\n𝑃𝑋= 𝑘= # values in sample equal to 𝑘\n𝑛\n?\n[116, 76, 132, 85, ..., 78]\ndef resample(sample, n):\n    # estimate the PMF using the sample\n    # draw n new samples from the PMF\nreturn np.random.choice(sample, n, replace = True)\nThis resampled sample is \ngenerated with replacement.",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.49991077184677124
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p2_e760697bd1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nToday’s lecture\nTake what we’ve seen with discrete joint distributions…\n…and generalize to continuous joint distributions.\nFor the most part, this\nisn’t too bad. Examples:\nBut some concepts, while mathematically accessible given what we’ve \nlearned, are difficult to implement in practice.\nWe’ll focus on some of these today.\n3\nMarginal \ndistributions\n𝑓! 𝑎= $\n\"#\n#\n𝑓!,% 𝑎, 𝑦𝑑𝑦\nIndependent RVs\n𝑝!,% 𝑥, 𝑦= 𝑝! 𝑥𝑝% 𝑦\n𝑓!,% 𝑥, 𝑦= 𝑓! 𝑥𝑓% 𝑦\n𝑝! 𝑎= *\n&\n𝑝!,% 𝑎, 𝑦\nGoal of CS109 continuous joint \ndistributions unit: build \nmathematical maturity",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.4886513948440552
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p33_6eaaaa342e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVisualizing Binomial PMFs\n34\nMatch the distribution \nof 𝑋 to the graph:\n1.  Bin 10, 0.5\n2.  Bin 10, 0.3\n3.  Bin 10, 0.7\n4.  Bin 5, 0.5\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\nC.  \nD.  \n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\nA.  \nB.  \n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑋~Bin(𝑛, 𝑝)\n𝑝𝑖= 𝑛\n𝑘𝑝# 1 −𝑝$%#\n𝐸𝑋= 𝑛𝑝",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.4877595901489258
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p44_p45_4e99c07201",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling\nWith enough samples, you can easily compute:\n• Probability estimates\n• Conditional probability estimates\n• Expectation estimates\nWhy? Because your samples represent\nthe joint distribution incredibly well!\n45\n[flu, und, fev, tir]\nP(has flu | undergrad and is tired) = 0.122\nIf you can sample enough from the joint distribution, \nyou can answer any probability inference question.\n\nBreaking News\n46",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.485021710395813
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p52_af07371a26",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n1. Estimate the PMF using the sample\n2. Repeat 10,000 times: \na. Resample sample.size() from PMF \nb. Recalculate the statistic on the resample\n3. You now have a distribution of your statistic\nAlgorithm in practice: Resampling\n53\n𝑃𝑋= 𝑘= # values in sample equal to 𝑘\n𝑛\n?\n[116, 76, 132, 85, ..., 78]",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.48317188024520874
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p40_c62ffaf649",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMedicinal Beta\n• Before being tested, a medicine is believed to \"work\" 80% of the time.\n• The medicine is administered to 20 patients.\n• It \"works\" for 14, \"doesn’t work\" for 6.\nWhat is your new belief that the drug \"works\"?\n41\nWhat is the prior distribution of 𝜃? (select all that apply)\nA.  𝜃~Beta 1, 1 = Uni 0, 1\nB.  𝜃~Beta 81, 101\nC.  𝜃~Beta 80, 20\nD.  𝜃~Beta 81, 21\nE.  𝜃~Beta 5, 2\nBeta(𝑎= 𝑛!)&* + 1, 𝑏= 𝑚!)&* + 1)\nPrior\nBeta(𝑎= 𝑛!)&* + 𝑛+ 1, 𝑏= 𝑚!)&* + 𝑚+ 1)\nPosterior\n(Bayesian interpretation)\nInterpretation: 80 successes / 100 imaginary trials\n(you can choose either based on how strongly you believe in prior data. \nWe choose E on next slide)",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.47804027795791626
+    },
+    {
+      "chunk_id": "cs109_finalwin2022soln_preamble_667e8456d8",
+      "text": "CS109 Final Exam\nChris Piech\nCS109\nWinter 2022\nThis is a closed calculator/computer exam. You are, however, allowed to use notes in the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions and\nparameter values you used, where appropriate. It is fine for your answers to include summations, products,\nfactorials, exponentials, and combinations.\nYou can leave your answer in terms of Φ (the CDF of the standard normal) or Φ−1 (the inverse CDF). For\nexample Φ\n\u0010\n3\n4\n\u0011\nis an acceptable final answer. Recall that the exam is going to be “curved\" according to the\ndifficulty of the questions and as such hard questions will not translate to lower grades.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than I have in\nmy entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\nEmail (preferably your gradescope email):\n\n1\nShort Answer (30 points)\nAnswer each of the following questions. You must give a brief justification for your answer.\na. (6 points) Google Maps stores a probability distribution of the time of day that people go to the San\nFrancisco Airport (SFO):\nLet 𝑝𝑖be the probability that a person will show up at SFO 𝑖hours past midnight (so 𝑝6 is the probability\nthat they will show up between 6a and 7a). Out of the visitors that will visit SFO on a given day, what\nfraction do you expect to show up between midnight and noon? Give an expression.\n11\n∑︁\n𝑖=0\n𝑝𝑖\nSince Í23\n𝑖=0 𝑝𝑖= 1, the following is another equivalent answer:\n11Í\n𝑖=0\n𝑝𝑖\n23Í\n𝑖=0\n𝑝𝑖\nb. (7 points) We will consider a datapoint 𝑥an “outlier” if the probability of seeing a value 𝑥or larger is\n≤0.05. Consider a distribution 𝑋∼Geo(𝑝= 0.8). Is 7 an outlier? Give an expression.\n7 is an outlier if 1 −Σ6\n𝑖=0(0.2)𝑖−1(0.8) ≤0.05\nc. (7 points) A class uses High Resolution Course Feedback. In a given week they ask a random sample\nof 20 people for a numerical rating, instead of asking everyone. Assume the population expectation of\nrating is 4.5 and the population variance of rating is 1.0. What is the probability that the sample mean\nrating from 20 students will be ≥4.7?\nTrue\nA p-value of 0.99 would occur if the difference we observed between the modes of the two datasets is\nthe kind of difference we would observe frequently by chance if the two sets of points were drawn from\ndistributions with the same mode.\nd. (10 points) You meet a person at a party who mentions that they have two children. They reveal that\nthey have a daughter who was born on a Tuesday. What is the probability that they have two daughters?\nAssume a child has a 1⁄2 chance of being a daughter and a 1⁄7 chance of being born on a Tuesday. Assume\nthat the genders of the children, and the weekdays they were born on, are all independent of one another.\n\nThe answer is 13/27.\nLet B be the event that both children are girls. Let T be the event that there is a girl born on a Tuesday.\n𝑃(𝐵|𝑇) = 𝑃(𝑇|𝐵)𝑃(𝐵)\n𝑃(𝑇)\n𝑃(𝐵) = 1/4\n𝑃(𝑇|𝐵) = 1/7 + 1/7 −1/49\n𝑃(𝑇) = 1/14 + 1/14 −1/196\nAnother explanation:\nThis is a well known paradox known as the boy-girl-paradox. Intuition says that the answer is 0.5, but\nit is not!\nFigure 1: We are conditioning on the yellow region (i.e. think of it as the \"new sample space\"). We are\nassessing the probability of the yellow region inside the \"female/female\" quadrant.\nLet the event \"there are two daughters\" be 𝐸.\nLet the event \"there is at least one daughter born on Tuesday\" be 𝐹.\n𝑃(𝐸|𝐹) = 𝑃(𝐸𝐹)\n𝑃(𝐹)\nUsing Inclusion-Exclusion Principle:\n= 𝑃(C1 Fem Tue, C2 Fem) + 𝑃(C1 Fem, C2 Fem Tue) −𝑃(C1 Fem Tue, C2 Fem Tue)\n𝑃(C1 Fem Tue) + 𝑃(C2 Fem Tue) −𝑃(C1 Fem Tue, C2 Fem Tue)\nThis turns into\n(7 + 7 −1)/142\n(14 + 14 −1)/142 = 13\n27 = 0.48148148\n.\n\n2\nQuantitative Art History (20 points)\nA Stanford alumni discovered that the “Average Number of Brushstrokes in the Neighborhood\" is very\npredictive of whether a painting has been painted by Van Gough [1].\nLet 𝑋∼𝑁(𝜇= 20, 𝜎2 = 9) be the average number of brushstrokes in the neighborhood if Van Gough is\nthe painter. Let 𝑋∼𝑁(𝜇= 12, 𝜎2 = 25) be the average number of brushstrokes in the neighborhood if Van\nGough is not the painter.\nAside: A brushstroke 𝑗is a neighbor of brushstroke 𝑖if they are at most 200 pixels apart. For each brushstroke\nwe can calculate how many other brushstrokes are neighbours. The Average Number of Brushstrokes in the\nNeighborhood is an average of these values over all brushstrokes in a painting. Here is a painting by Van\nGough (left) and the auto-identified brush strokes (right).\na. (4 points) Why is a normal distribution appropriate for the “average number of brushstrokes in the\nneighborhood\" of a painting?\nMust mention the central limit theorem.\n\nb. (16 points) A painting is discovered. Based on background information your prior belief that it was\npainted by Van Gough is 0.75. What is your updated belief after observing that the average number of\nbrushstrokes in the neighbourhood is 19?\nThis is an inference question: Let 𝑌be the event that Van gough was the artist.\n𝑃(𝑌|𝑋= 19) =\n𝑓(𝑋= 19|𝑌)𝑃(𝑌)\n𝑓(𝑋= 19|𝑌)𝑃(𝑌) + 𝑓(𝑋= 19|𝑌)𝑃(𝑌𝐶)\n\n3\nBeta ± (20 points)\nYou have observed 30 successes and 20 fails for an event with unknown probability. Based on this information\nyou can model the probability of success, 𝑋, as a Beta random variable. You want to make a claim of the\nform: \"the probability of success is 𝑚± 𝑏.\"\nSelect 𝑚to be the expectation of 𝑋. Select 𝑏to be the smallest value, rounded to two decimal places, such\nthat 𝑃(𝑚−𝑏< 𝑋< 𝑚+ 𝑏) is greater than or equal to 95%. Provide your answer as pseudocode that prints\nout the values 𝑚and 𝑏.\nIncremental solution:\n\n4\nBayesian Carbon Dating (34 points)\nWe are able to know the age of ancient artefacts using a process called carbon dating. This process involves\na lot of uncertainty! Living things have a constant proportion of a molecule called C14 in them. When living\nthings die those molecules start to decay. The time to decay in years, 𝑇, of a C14 molecule is distributed as an\nexponential. 𝑇∼Exp(𝜆= 1/8267).\na. (5 points) Consider a single C14 molecule. What is the probability that it decays within 500 years?\n𝑃(𝑇≤500) = 1 −𝑒−\n1\n8267 ∗500 = 0.05868875306\nb. (8 points) C14 molecules decay independently. A particular sample started with 100 molecules. What\nis the probability that exactly 95 are left after 500 years? Let 𝑝be your answer to part a.\nX Bin(n=100, p = 0.0586)\nP(X = 5) = scipy.stats.binom.pmf(5, 100, 0.05868)\n\nc. (6 points) Write pseudocode for a function pr_measure_given_age(m, age) which returns 𝑃(𝑀=\nm|𝐴= age), the probability that exactly m molecules are left out of the original 100 after exactly age\nnumber of years.\nd. (15 points) You observe a measurement of 95 C14 molecules in a sample. You assume that the sample\noriginally had 100 C14 molecules when it died. Write pseudocode for a function age_belief() that\nreturns a list of length 1000 where the value at index 𝑖in the list stores 𝑃(𝐴= 𝑖|𝑀= 95). Age is a\ndiscrete random variable which takes on whole numbers of years. 𝐴= 𝑖is the event that the sample\norganism died 𝑖years ago. You may use the function pr_measure_given_age(m, age) from part c.\nFor your prior belief: you know that the sample must be between 𝐴= 500 and 𝐴= 600 inclusive and\nyou assume that every year in that range is equally likely.\n\n5\nReliability engineering (23 points)\nThe “reliability distribution\" is a random variable parameterized by 𝑎with PDF:\n𝑓(𝑋= 𝑥) = 1\n𝑎2 𝑥𝑎−1𝑒−𝑥2\n𝑎2\nWe wish to model how long a particular model of phone will function before it breaks. We are going to use\na reliability distribution. To this end we collect 𝑁independent measurements of how long the type of phone\nfunctions before it breaks: 𝑥1, 𝑥2, . . . , 𝑥𝑁. Explain, in words, how you would choose parameter 𝑎using the\nmaximum likelihood estimation framework, and provide any necessary derivatives.\nFirst, we start by defining our likelihood function.\n𝐿(𝑎) =\n𝑁\nÖ\n𝑖=1\n𝑓(𝑋𝑖|𝑎)\nWe want to determine ˆ𝑎= argmax\n𝑎\n𝐿(𝑎). Since the argmax of 𝐿(𝑎) is equivalent to the argmax of the log of\n𝐿(𝑎) and logs make the math simpler we write:\n𝐿𝐿(𝑎) = log\n 𝑁\nÖ\n𝑖=1\n𝑓(𝑋𝑖|𝑎)\n!\nPlugging in the provided PDF and simplifying:\n𝐿𝐿(𝑎) = log\n 𝑁\nÖ\n𝑖=1\n1\n𝑎2 𝑥𝑎−1\n𝑖\n𝑒−\n𝑥2\n𝑖\n𝑎2\n!\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\nlog\n \n1\n𝑎2 𝑥𝑎−1\n𝑖\n𝑒−\n𝑥2\n𝑖\n𝑎2\n!#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\nlog\n\u0012 1\n𝑎2\n\u0013\n+ log\n\u0010\n𝑥𝑎−1\n𝑖\n\u0011\n+ log\n \n𝑒−\n𝑥2\n𝑖\n𝑎2\n!#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\n−2 log (𝑎) + (𝑎−1) log (𝑥𝑖) −𝑥2\n𝑖\n𝑎2 log (𝑒)\n#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n−2 log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n(𝑎−1) log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\n𝑎2 log (𝑒)\n𝐿𝐿(𝑎) = −2𝑁log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n𝑎log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) −1\n𝑎2\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\nNow we will take the partial derivative of the log likelihood with respect to the parameter of interest 𝑎:\n𝜕𝐿𝐿(𝑎)\n𝜕𝑎\n= 𝜕\n𝜕𝑎\n \n−2𝑁log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n𝑎log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) −1\n𝑎2\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\n!\n𝜕𝐿𝐿(𝑎)\n𝜕𝑎\n= −2𝑁\n𝑎+\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) + 2\n𝑎3\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\nFrom here, we would set the partial derivative equal to 0 and solve for 𝑎.\nNote: You were required to provide the necessary derivatives but you did not need to actually determine the\nvalue of 𝑎as the problem states. Any math beyond the calculation of the partial derivative was not required\nor penalized.\n\n6\nRank ordering of samples (25 points)\nA random variable 𝑋can take on three values: 1, 2 or 3 with the following probabilities:\nValue\nProbability\n1",
+      "source_type": "exam_question",
+      "document_name": "FinalWin2022Soln",
+      "score": 0.47609418630599976
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p6_d6230156f4",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nReasonable Questions Starting Out\n1. In situations where we can’t obverse the entire population, what can we \nsafely infer by polling a sample drawn from that population?\n2. How large does your sample need to be before your conclusions become \ntrustworthy, and how do we express our confidence in those \nconclusions.\n3. Are there alternative ways to infer population statistics without polling \nentire populations?\n7\n𝜎",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.46629762649536133
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p34_aef0eac23e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n# Method: Make Sample\n# -------------------\n# create a single sample from the joint distribution\n# based on the medical \"WebMD\" Bayesian Network\ndef make_sample():\n    # prior on causal factors\n    flu = bernoulli(0.1)\n    und = bernoulli(0.8)\n    # choose fever based on flu\n    if flu == 1: fev = bernoulli(0.9)\n    else:        fev = bernoulli(0.05)\n    # choose tired based on (undergrad and flu)\n    if   flu == 0 and und == 0: tir = bernoulli(0.1)\n    elif flu == 0 and und == 1: tir = bernoulli(0.8)\n    elif flu == 1 and und == 0: tir = bernoulli(0.9)\n    else:                       tir = bernoulli(1.0)\n    # a sample from the joint has an\n    # assignment to *all* random variables\n    return [flu, und, fev, tir]\n35\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝑈= 1 = 0.8\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.46570658683776855
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p35_021cabc29f",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n# Method: Make Sample\n# -------------------\n# create a single sample from the joint distribution\n# based on the medical \"WebMD\" Bayesian Network\ndef make_sample():\n    # prior on causal factors\n    flu = bernoulli(0.1)\n    und = bernoulli(0.8)\n    # choose fever based on flu\n    if flu == 1: fev = bernoulli(0.9)\n    else:        fev = bernoulli(0.05)\n    # choose tired based on (undergrad and flu)\n    if   flu == 0 and und == 0: tir = bernoulli(0.1)\n    elif flu == 0 and und == 1: tir = bernoulli(0.8)\n    elif flu == 1 and und == 0: tir = bernoulli(0.9)\n    else:                       tir = bernoulli(1.0)\n    # a sample from the joint has an\n    # assignment to *all* random variables\n    return [flu, und, fev, tir]\n36\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝑈= 1 = 0.8\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.4656469225883484
+    },
+    {
+      "chunk_id": "cs109_22_map_annotated_p28_4003f4ca12",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConjugate distributions\nMAP\nestimator:\n29\n𝜃*+, = arg max\n-\n𝑓𝜃|𝑋', 𝑋(, … , 𝑋)\nThe mode of the\nposterior distribution of 𝜃\nDistribution parameter\nConjugate distribution\nBernoulli 𝑝\nBeta\nBinomial 𝑝\nBeta\nMultinomial 𝑝!\nDirichlet\nPoisson 𝜆\nGamma\nExponential 𝜆\nGamma\nNormal 𝜇\nNormal\nNormal 𝜎%\nInverse Gamma",
+      "source_type": "lecture_slide",
+      "document_name": "22 map annotated",
+      "score": 0.4633525013923645
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p11_p12_279fd66720",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nMarginal distributions\nSuppose 𝑋 and 𝑌 are continuous random\nvariables with joint PDF:\nThe marginal density functions—that is, the marginal PDFs—are therefore:\n𝑓! 𝑎= 1\n()\n)\n𝑓!,# 𝑎, 𝑦𝑑𝑦 \n𝑓# 𝑏= 1\n()\n)\n𝑓!,# 𝑥, 𝑏𝑑x\n12\n𝑓) 𝑥\n𝑓* 𝑦\n$\n!\"\n\"\n$\n!\"\n\"\n𝑓),* 𝑥, 𝑦𝑑𝑦𝑑𝑥= 1\n\nJoint CDFs\n13",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.4552430510520935
+    },
+    {
+      "chunk_id": "cs109_10_normal_gaussian_annotated_p10_8eddb3475d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nNormal Random Variable\nMatch PDF to distribution:\n1.  𝒩0, 1\n2.  𝒩(−2, 0.5)\n3.  𝒩0, 5\n4.  𝒩(0, 0.2)\n11\n0\n0.1\n0.2\n0.3\n0.4\n0.5\n0.6\n0.7\n0.8\n0.9\n1\n-5\n-4\n-3\n-2\n-1\n0\n1\n2\n3\n4\n5\n!(0,1)\n!(0,0.2)\n!(0,5)\n!(-2,0.5)\nA. \nB.\nC.\nD.\n𝑋~𝒩(𝜇, 𝜎!)\nmean\nvariance\n𝑥\n𝑓𝑥",
+      "source_type": "lecture_slide",
+      "document_name": "10 normal gaussian annotated",
+      "score": 0.45473435521125793
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p32_5097a09c33",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nVisualizing Binomial PMFs\n33\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n𝑋~Bin(𝑛, 𝑝)\n𝑝𝑖= 𝑛\n𝑘𝑝# 1 −𝑝$%#\n𝐸𝑋= 𝑛𝑝\nC.  \nD.  \nMatch the distribution \nof 𝑋 to the graph:\n1.  Bin 10, 0.5\n2.  Bin 10, 0.3\n3.  Bin 10, 0.7\n4.  Bin 5, 0.5\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\n0\n0.1\n0.2\n0.3\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9 10\nA.  \nB.  \n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘\n𝑘\n𝑃𝑋= 𝑘",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.4521821439266205
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p39_5a05065137",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n40\ndef rejection_sampling(event, observation):\n  samples = sample_a_ton()\n  samples_observation = \n        reject_inconsistent(samples, observation)\n  samples_event =\n        # number of samples with 𝐹*+ = 1, 𝑈= 1, 𝑇= 1\n  return len(samples_event)/len(samples_observation)\nWhat is 𝑃𝐹!\" = 1|𝑈= 1, 𝑇= 1 ?\nInference\nquestion:\nKeep only samples that are consistent\nwith the observation 𝑈= 1, 𝑇= 1 .",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.43819326162338257
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p43_31db23ba0a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n44\ndef rejection_sampling(event, observation):\nsamples = sample_a_ton()\nsamples_observation =\n        reject_inconsistent(samples, observation)\nsamples_event =\n        reject_inconsistent(samples_observation, event)\nreturn len(samples_event)/len(samples_observation)\n# samples with 𝐹+, = 1, 𝑈= 1, 𝑇= 1\nWhat is 𝑃𝐹!\" = 1|𝑈= 1, 𝑇= 1 ?\nInference\nquestion:\n# samples with 𝑈= 1, 𝑇= 1\nProbability ≈",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.437771201133728
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p13_58ce7c1194",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap\n14\nLet’s go try it!\nGoogle colab notebook link",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.4329255521297455
+    },
+    {
+      "chunk_id": "cs109_20_mle_annotated_p5_45b3167180",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap for p-values\n1. Create a universal sample using\nyour two samples\n6\ni.e., recreate the \nnull hypothesis\n+\n=\n≈",
+      "source_type": "lecture_slide",
+      "document_name": "20 mle annotated",
+      "score": 0.40931236743927
+    },
+    {
+      "chunk_id": "cs109_19_sampling_bootstrap_annotated_p29_2ad960cadc",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBootstrap\nThe Bootstrap:\nProbability for Computer Scientists\n30",
+      "source_type": "lecture_slide",
+      "document_name": "19 sampling bootstrap annotated",
+      "score": 0.3986794948577881
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p38_02e15e9317",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n39\ndef rejection_sampling(event, observation):\n  samples = sample_a_ton()\n  samples_observation = \n        reject_inconsistent(samples, observation)\n  samples_event =\n        # number of samples with 𝐹*+ = 1, 𝑈= 1, 𝑇= 1\n  return len(samples_event)/len(samples_observation)\nWhat is 𝑃𝐹!\" = 1|𝑈= 1, 𝑇= 1 ?\nInference\nquestion:",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.3891329765319824
+    }
+  ],
+  "built_at": "2026-04-28T05:13:13Z"
+}

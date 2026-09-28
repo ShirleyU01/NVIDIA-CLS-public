@@ -1,0 +1,246 @@
+{
+  "course": "CS109",
+  "document_role": "lecture",
+  "source_path": "data/raw/CS109/lectures/15_general_inference_annotated.pdf",
+  "relative_path": "data/raw/CS109/lectures/15_general_inference_annotated.pdf",
+  "sha256": "5c8e6f573c14dba0e1d17d7ad18385b2f823830ce8155add518d9925fcf9d596",
+  "title_guess": "15 general inference annotated",
+  "pages": [
+    {
+      "page_index": 0,
+      "text": "15: General Inference\nJerry Cain\nMay 3rd, 2024\n1\nLecture Discussion on Ed",
+      "char_count": 73
+    },
+    {
+      "page_index": 1,
+      "text": "Inference\n2",
+      "char_count": 11
+    },
+    {
+      "page_index": 2,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference\n3",
+      "char_count": 84
+    },
+    {
+      "page_index": 3,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference\n4",
+      "char_count": 84
+    },
+    {
+      "page_index": 4,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference\n5\nFlu\nCold\nHiccups\nUnder-\ngrad\nChest \npain\nTired\nSore\nThroat\nFever\nNausea\nGeneral inference question:\nGiven the values of some random\nvariables, what is the conditional\ndistribution of some other random\nvariables?",
+      "char_count": 296
+    },
+    {
+      "page_index": 5,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference\n6\nFlu\nCold\nHiccups\nUnder-\ngrad\nChest \npain\nTired\nSore\nThroat\nFever\nNausea\nOne inference question:\n𝑃𝐹= 1|𝑁= 1, 𝑇= 1\n= 𝑃𝐹= 1, 𝑁= 1, 𝑇= 1\n𝑃𝑁= 1, 𝑇= 1",
+      "char_count": 229
+    },
+    {
+      "page_index": 6,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference\n7\nFlu\nCold\nHiccups\nUnder-\ngrad\nChest \npain\nTired\nSore\nThroat\nFever\nNausea\nAnother inference question:\n𝑃𝐶! = 1, 𝑈= 1|𝑆= 0, 𝐹\" = 0\n= 𝑃𝐶! = 1, 𝑈= 1, 𝑆= 0, 𝐹\" = 0\n𝑃𝑆= 0, 𝐹\" = 0",
+      "char_count": 255
+    },
+    {
+      "page_index": 7,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference\nIf we know the full joint distribution,\nwe can answer all probabilistic\ninference questions.\nWhat is the size of the joint \nprobability table? \nA.  2#$% entries\nB.  𝑁# entries\nC.  2# entries\nD.  None/other/don’t know\nFlu\nCold\nHiccups\nUnder-\ngrad\nChest \npain\nTired\nSore\nThroat\nFever\nNausea\n𝑁= 9\nall binary RVs",
+      "char_count": 391
+    },
+    {
+      "page_index": 8,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference\nIf we know the full joint distribution,\nwe can answer all probabilistic\ninference questions.\nWhat is the size of the joint \nprobability table? \nA.  2#$% entries\nB.  𝑁# entries\nC.  2# entries\nD.  None/other/don’t know\nFlu\nCold\nHiccups\nUnder-\ngrad\nChest \npain\nTired\nSore\nThroat\nFever\nNausea\n𝑁= 9\nall binary RVs\nBrute-force computation of a full joint \nprobability mass function is often intractable.",
+      "char_count": 480
+    },
+    {
+      "page_index": 9,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nN can be large…\n10",
+      "char_count": 91
+    },
+    {
+      "page_index": 10,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditionally Independent RVs\nRecall that two events 𝐴 and 𝐵 are\nconditionally independent given 𝐸 if:\n𝑛 discrete random variables 𝑋%, 𝑋&, … , 𝑋' are called conditionally \nindependent given 𝑌 if: \n \nfor all 𝑥%, 𝑥&, … , 𝑥', 𝑦:\n𝑃𝑋% = 𝑥%, 𝑋& = 𝑥&, … , 𝑋' = 𝑥'|𝑌= 𝑦= 6\n()%\n'\n𝑃𝑋( = 𝑥(|𝑌= 𝑦\nThis implies the following (cool to remember for later):\nlog 𝑃𝑋% = 𝑥%, 𝑋& = 𝑥&, … , 𝑋' = 𝑥'|𝑌= 𝑦= :\n()%\n'\nlog 𝑃𝑋( = 𝑥(|𝑌= 𝑦\n11\n𝑃𝐴𝐵|𝐸= 𝑃𝐴|𝐸𝑃(𝐵|𝐸)",
+      "char_count": 502
+    },
+    {
+      "page_index": 11,
+      "text": "Bayesian \nNetworks\n12",
+      "char_count": 21
+    },
+    {
+      "page_index": 12,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nA simpler WebMD\nGreat! Just specify 2* = 16 joint \nprobabilities?\n𝑃𝐹+, = 𝑎, 𝐹\"- = 𝑏, 𝑈= 𝑐, 𝑇= 𝑑\nWhat would an infectious diseases (ID) \nexpert do?\n13\nFlu\nUnder-\ngrad\nTired\nFever\nDescribe the joint distribution using causality!",
+      "char_count": 299
+    },
+    {
+      "page_index": 13,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConstructing a Bayesian Network\nWhat would an ID expert do?\n1. Describe the joint distribution using \ncausality.\n2. Assume   \nconditional \nindependence.\n14\nFlu\nUnder-\ngrad\nTired\nFever",
+      "char_count": 256
+    },
+    {
+      "page_index": 14,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConstructing a Bayesian Network\nIn a Bayesian Network,\nEach random variable is \nconditionally independent of its \nnon-descendants, given its parents. \n• Node: random variable\n• Directed edge: conditional dependency\nExamples:\n• 𝑃𝐹!\" = 1|𝑇= 0, 𝐹#$ = 1 = 𝑃𝐹!\" = 1|𝐹#$ = 1\n• 𝑃𝐹#$ = 1, 𝑈= 0 = 𝑃𝐹#$ = 1 𝑃𝑈= 0\n15\nFlu\nUnder-\ngrad\nTired\nFever",
+      "char_count": 406
+    },
+    {
+      "page_index": 15,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConstructing a Bayesian Network\nWhat would an ID expert do?\n1. Describe the joint distribution using \ncausality.\n2. Assume conditional independence.\n3. Provide 𝑃values|parents  for each \nrandom variable\nWhat conditional probabilities\nshould our expert specify?\n16\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑈= 1 = 0.8\n✅",
+      "char_count": 440
+    },
+    {
+      "page_index": 16,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConstructing a Bayesian Network\nWhat would an ID expert do?\n1. Describe the joint distribution using \ncausality.\n2. Assume conditional independence.\n3. Provide 𝑃values|parents  for each \nrandom variable\nWhat conditional probabilities\nshould our expert specify?\n17\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑈= 1 = 0.8\n𝑃𝑇= 1|𝐹!\" = 0, 𝑈= 0\n𝑃𝑇= 1|𝐹!\" = 0, 𝑈= 1\n𝑃𝑇= 1|𝐹!\" = 1, 𝑈= 0\n𝑃𝑇= 1|𝐹!\" = 1, 𝑈= 1",
+      "char_count": 518
+    },
+    {
+      "page_index": 17,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhat would a CS109 student do?\n1. Populate a Bayesian network by \nasking an infectious diseases expert\n  \n \n \nor\nby using reasonable assumptions\n2. Answer inference questions\nUsing a Bayes Net\n18\nOur focus\ntoday\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑈= 1 = 0.8\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0",
+      "char_count": 493
+    },
+    {
+      "page_index": 18,
+      "text": "Inference: Math\n19",
+      "char_count": 18
+    },
+    {
+      "page_index": 19,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference via math\n20\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝑈= 1 = 0.8\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0 \n1.  𝑃𝐹+, = 0, 𝑈= 1, 𝐹\"- = 0, 𝑇= 1 ?\nCompute joint probabilities\nusing chain rule.",
+      "char_count": 386
+    },
+    {
+      "page_index": 20,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference via math\n21\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝑈= 1 = 0.8\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0 \n1. Compute joint probabilities\n2. Definition of conditional probability\n𝑃𝐹*+ = 1, 𝐹,- = 0, 𝑈= 0, 𝑇= 1\n𝑃𝐹*+ = 0, 𝐹,- = 0, 𝑈= 0, 𝑇= 1\n𝑃𝐹*+ = 1, 𝐹,- = 0, 𝑈= 0, 𝑇= 1\n∑. 𝑃𝐹*+ = 𝑥, 𝐹,- = 0, 𝑈= 0, 𝑇= 1  \n2.  𝑃𝐹+, = 1|𝐹\"- = 0, 𝑈= 0, 𝑇= 1 ?\n𝑃𝐹#$ = 1 = 0.1\n= 0.095",
+      "char_count": 544
+    },
+    {
+      "page_index": 21,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference via math\n3.  𝑃𝐹+, = 1|𝑈= 1, 𝑇= 1 ?\n22\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝑈= 1 = 0.8\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0",
+      "char_count": 329
+    },
+    {
+      "page_index": 22,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference via math\n3.  𝑃𝐹+, = 1|𝑈= 1, 𝑇= 1 ?\n23\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝑈= 1 = 0.8\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0 \n1. Compute joint probabilities\n2. Definition of conditional probability\n𝑃𝐹*+ = 1, 𝑈= 1, 𝐹,- = 1, 𝑇= 1\n…\n𝑃𝐹*+ = 0, 𝑈= 1, 𝐹,- = 0, 𝑇= 1 ?\n∑/ 𝑃𝐹*+ = 1, 𝑈= 1, 𝐹,- = 𝑦, 𝑇= 1\n∑. ∑/ 𝑃𝐹*+ = 𝑥, 𝑈= 1, 𝐹,- = 𝑦, 𝑇= 1  \n= 0.122",
+      "char_count": 545
+    },
+    {
+      "page_index": 23,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference via math\n24\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝑈= 1 = 0.8\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0 \nSolving inference questions \nprecisely is possible, but \nsometimes tedious.\nCan we use sampling\nto do approximate \ninference?",
+      "char_count": 430
+    },
+    {
+      "page_index": 24,
+      "text": "Rejection \nSampling\n25",
+      "char_count": 22
+    },
+    {
+      "page_index": 25,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\nStep 0:\nRequire a fully specified\nBayesian Network\n26\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝑈= 1 = 0.8\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0",
+      "char_count": 364
+    },
+    {
+      "page_index": 26,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n27\nWhat is 𝑃𝐹!\" = 1|𝑈= 1, 𝑇= 1 ?\nInference\nquestion:\ndef rejection_sampling(event, observation):\n  samples = sample_a_ton()\n  samples_observation = …\n        # number of samples with 𝑈= 1, 𝑇= 1\n  samples_event =\n \n \n # number of samples with 𝐹*+ = 1, 𝑈= 1, 𝑇= 1\n  return len(samples_event)/len(samples_observation)\n[flu, und, fev, tir]",
+      "char_count": 437
+    },
+    {
+      "page_index": 27,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n28\ndef rejection_sampling(event, observation):\n  samples = sample_a_ton()\n  samples_observation = …\n        # number of samples with 𝑈= 1, 𝑇= 1\n  samples_event =\n \n \n # number of samples with 𝐹*+ = 1, 𝑈= 1, 𝑇= 1\n  return len(samples_event)/len(samples_observation)\nWhat is 𝑃𝐹!\" = 1|𝑈= 1, 𝑇= 1 ?\nInference\nquestion:\n# samples with 𝐹+, = 1, 𝑈= 1, 𝑇= 1\n# samples with 𝑈= 1, 𝑇= 1\nProbability ≈",
+      "char_count": 491
+    },
+    {
+      "page_index": 28,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n29\ndef rejection_sampling(event, observation):\n  samples = sample_a_ton()\n  samples_observation = …\n        # number of samples with 𝑈= 1, 𝑇= 1\n  samples_event =\n \n \n # number of samples with 𝐹*+ = 1, 𝑈= 1, 𝑇= 1\n  return len(samples_event)/len(samples_observation)\nWhat is 𝑃𝐹!\" = 1|𝑈= 1, 𝑇= 1 ?\nInference\nquestion:\n[flu, und, fev, tir]",
+      "char_count": 437
+    },
+    {
+      "page_index": 29,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\nN_SAMPLES = 100000\n# Method: Sample a ton\n# -------------------\n# create N_SAMPLES with likelihood proportional\n# to the joint distribution\ndef sample_a_ton():\n    samples = []\n    for i in range(N_SAMPLES):\n        sample = make_sample() # a particle\n        samples.append(sample)\n    return samples\n30\nHow do we make a sample\n𝐹*+ = 𝑎, 𝑈= 𝑏, 𝐹,- = 𝑐, 𝑇= 𝑑\n \n \naccording to the\n \n \njoint probability?\nCreate a sample using the Bayesian Network!",
+      "char_count": 547
+    },
+    {
+      "page_index": 30,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n31\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝑈= 1 = 0.8\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0 \n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n# Method: Make Sample\n# -------------------\n# create a single sample from the joint distribution\n# based on the medical \"WebMD\" Bayesian Network\ndef make_sample():\n    # prior on causal factors\n    flu = bernoulli(0.1)\n    und = bernoulli(0.8)\n    # choose fever based on flu\n    if flu == 1: fev = bernoulli(0.9)\n    else:        fev = bernoulli(0.05)\n    # choose tired based on (undergrad and flu)\n    # \n    # TODO: fill in\n    # \n    # \n    # a sample from the joint has an\n    # assignment to *all* random variables\n    return [flu, und, fev, tir]",
+      "char_count": 868
+    },
+    {
+      "page_index": 31,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n32\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝑈= 1 = 0.8\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0 \n# Method: Make Sample\n# -------------------\n# create a single sample from the joint distribution\n# based on the medical \"WebMD\" Bayesian Network\ndef make_sample():\n    # prior on causal factors\n    flu = bernoulli(0.1)\n    und = bernoulli(0.8)\n    # choose fever based on flu\n    if flu == 1: fev = bernoulli(0.9)\n    else:        fev = bernoulli(0.05)\n    # choose tired based on (undergrad and flu)\n    # \n    # TODO: fill in\n    # \n    # \n    # a sample from the joint has an\n    # assignment to *all* random variables\n    return [flu, und, fev, tir]",
+      "char_count": 868
+    },
+    {
+      "page_index": 32,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n33\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝑈= 1 = 0.8\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0 \n# Method: Make Sample\n# -------------------\n# create a single sample from the joint distribution\n# based on the medical \"WebMD\" Bayesian Network\ndef make_sample():\n    # prior on causal factors\n    flu = bernoulli(0.1)\n    und = bernoulli(0.8)\n    # choose fever based on flu\n    if flu == 1: fev = bernoulli(0.9)\n    else:        fev = bernoulli(0.05)\n    # choose tired based on (undergrad and flu)\n    # \n    # TODO: fill in\n    # \n    # \n    # a sample from the joint has an\n    # assignment to *all* random variables\n    return [flu, und, fev, tir]",
+      "char_count": 868
+    },
+    {
+      "page_index": 33,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n# Method: Make Sample\n# -------------------\n# create a single sample from the joint distribution\n# based on the medical \"WebMD\" Bayesian Network\ndef make_sample():\n    # prior on causal factors\n    flu = bernoulli(0.1)\n    und = bernoulli(0.8)\n    # choose fever based on flu\n    if flu == 1: fev = bernoulli(0.9)\n    else:        fev = bernoulli(0.05)\n    # choose tired based on (undergrad and flu)\n    # \n    # TODO: fill in\n    # \n    # \n    # a sample from the joint has an\n    # assignment to *all* random variables\n    return [flu, und, fev, tir]\nRejection sampling algorithm\n34\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝑈= 1 = 0.8\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0 \n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05",
+      "char_count": 868
+    },
+    {
+      "page_index": 34,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n# Method: Make Sample\n# -------------------\n# create a single sample from the joint distribution\n# based on the medical \"WebMD\" Bayesian Network\ndef make_sample():\n    # prior on causal factors\n    flu = bernoulli(0.1)\n    und = bernoulli(0.8)\n    # choose fever based on flu\n    if flu == 1: fev = bernoulli(0.9)\n    else:        fev = bernoulli(0.05)\n    # choose tired based on (undergrad and flu)\n    if   flu == 0 and und == 0: tir = bernoulli(0.1)\n    elif flu == 0 and und == 1: tir = bernoulli(0.8)\n    elif flu == 1 and und == 0: tir = bernoulli(0.9)\n    else:                       tir = bernoulli(1.0)\n    # a sample from the joint has an\n    # assignment to *all* random variables\n    return [flu, und, fev, tir]\n35\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝑈= 1 = 0.8\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0",
+      "char_count": 1038
+    },
+    {
+      "page_index": 35,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n# Method: Make Sample\n# -------------------\n# create a single sample from the joint distribution\n# based on the medical \"WebMD\" Bayesian Network\ndef make_sample():\n    # prior on causal factors\n    flu = bernoulli(0.1)\n    und = bernoulli(0.8)\n    # choose fever based on flu\n    if flu == 1: fev = bernoulli(0.9)\n    else:        fev = bernoulli(0.05)\n    # choose tired based on (undergrad and flu)\n    if   flu == 0 and und == 0: tir = bernoulli(0.1)\n    elif flu == 0 and und == 1: tir = bernoulli(0.8)\n    elif flu == 1 and und == 0: tir = bernoulli(0.9)\n    else:                       tir = bernoulli(1.0)\n    # a sample from the joint has an\n    # assignment to *all* random variables\n    return [flu, und, fev, tir]\n36\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝑈= 1 = 0.8\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0",
+      "char_count": 1038
+    },
+    {
+      "page_index": 36,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n37\nWhat is 𝑃𝐹!\" = 1|𝑈= 1, 𝑇= 1 ?\nInference\nquestion:\ndef rejection_sampling(event, observation):\n  samples = sample_a_ton()\n  samples_observation = …\n        # number of samples with 𝑈= 1, 𝑇= 1\n  samples_event =\n \n \n # number of samples with 𝐹*+ = 1, 𝑈= 1, 𝑇= 1\n  return len(samples_event)/len(samples_observation)\n[flu, und, fev, tir]",
+      "char_count": 437
+    },
+    {
+      "page_index": 37,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n38\ndef rejection_sampling(event, observation):\n  samples = sample_a_ton()\n  samples_observation = …\n        # number of samples with 𝑈= 1, 𝑇= 1\n  samples_event =\n        # number of samples with 𝐹*+ = 1, 𝑈= 1, 𝑇= 1\n  return len(samples_event)/len(samples_observation)\nWhat is 𝑃𝐹!\" = 1|𝑈= 1, 𝑇= 1 ?\nInference\nquestion:",
+      "char_count": 419
+    },
+    {
+      "page_index": 38,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n39\ndef rejection_sampling(event, observation):\n  samples = sample_a_ton()\n  samples_observation = \n        reject_inconsistent(samples, observation)\n  samples_event =\n        # number of samples with 𝐹*+ = 1, 𝑈= 1, 𝑇= 1\n  return len(samples_event)/len(samples_observation)\nWhat is 𝑃𝐹!\" = 1|𝑈= 1, 𝑇= 1 ?\nInference\nquestion:",
+      "char_count": 424
+    },
+    {
+      "page_index": 39,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n40\ndef rejection_sampling(event, observation):\n  samples = sample_a_ton()\n  samples_observation = \n        reject_inconsistent(samples, observation)\n  samples_event =\n        # number of samples with 𝐹*+ = 1, 𝑈= 1, 𝑇= 1\n  return len(samples_event)/len(samples_observation)\nWhat is 𝑃𝐹!\" = 1|𝑈= 1, 𝑇= 1 ?\nInference\nquestion:\nKeep only samples that are consistent\nwith the observation 𝑈= 1, 𝑇= 1 .",
+      "char_count": 496
+    },
+    {
+      "page_index": 40,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n41\ndef rejection_sampling(event, observation):\nsamples = sample_a_ton()\nsamples_observation =\n        reject_inconsistent(samples, observation)\nsamples_event =\n        reject_inconsistent(samples_observation, event)\nreturn len(samples_event)/len(samples_observation)\nKeep only samples that are consistent\nwith the observation 𝑇= 1, 𝑈= 0 .\nWhat is 𝑃𝐹!\" = 1|𝑈= 1, 𝑇= 1 ?\nInference\nquestion:\n𝑈= 1, 𝑇= 1\n# Method: reject_inconsistent\n# ---------------------------\n# Rejects all samples that do not align with the outcome.\n# Returns a list of consistent samples.\ndef reject_inconsistent(samples, outcome):\n    consistent_samples = []\n    for sample in samples:\n        if check_consistent(sample, outcome):\n            consistent_samples.append(sample)\n    return consistent_samples",
+      "char_count": 879
+    },
+    {
+      "page_index": 41,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n42\ndef rejection_sampling(event, observation):\nsamples = sample_a_ton()\nsamples_observation =\n        reject_inconsistent(samples, observation)\nsamples_event =\n        reject_inconsistent(samples_observation, event)\nreturn len(samples_event)/len(samples_observation)\nConditional event = samples with 𝐹+, = 1, 𝑈= 1, 𝑇= 1 .\nWhat is 𝑃𝐹!\" = 1|𝑈= 1, 𝑇= 1 ?\nInference\nquestion:",
+      "char_count": 473
+    },
+    {
+      "page_index": 42,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n43\ndef rejection_sampling(event, observation):\nsamples = sample_a_ton()\nsamples_observation =\n        reject_inconsistent(samples, observation)\nsamples_event =\n        reject_inconsistent(samples_observation, event)\nreturn len(samples_event)/len(samples_observation)\nConditional event = samples with 𝐹+, = 1, 𝑈= 1, 𝑇= 1 .\nWhat is 𝑃𝐹!\" = 1|𝑈= 1, 𝑇= 1 ?\nInference\nquestion:\ndef reject_inconsistent(samples, outcome):\n    ...\n    return consistent_samples\n𝐹*+ = 1\n𝐹*+ = 𝑥, 𝑈= 1, 𝐹,- = 𝑦, 𝑇= 1",
+      "char_count": 591
+    },
+    {
+      "page_index": 43,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling algorithm\n44\ndef rejection_sampling(event, observation):\nsamples = sample_a_ton()\nsamples_observation =\n        reject_inconsistent(samples, observation)\nsamples_event =\n        reject_inconsistent(samples_observation, event)\nreturn len(samples_event)/len(samples_observation)\n# samples with 𝐹+, = 1, 𝑈= 1, 𝑇= 1\nWhat is 𝑃𝐹!\" = 1|𝑈= 1, 𝑇= 1 ?\nInference\nquestion:\n# samples with 𝑈= 1, 𝑇= 1\nProbability ≈",
+      "char_count": 493
+    },
+    {
+      "page_index": 44,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nRejection sampling\nWith enough samples, you can easily compute:\n• Probability estimates\n• Conditional probability estimates\n• Expectation estimates\nWhy? Because your samples represent\nthe joint distribution incredibly well!\n45\n[flu, und, fev, tir]\nP(has flu | undergrad and is tired) = 0.122\nIf you can sample enough from the joint distribution, \nyou can answer any probability inference question.",
+      "char_count": 470
+    },
+    {
+      "page_index": 45,
+      "text": "Breaking News\n46",
+      "char_count": 16
+    },
+    {
+      "page_index": 46,
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBefore You Go! CS109 Challenge\n47\nDo something cool and creative\nwith probability!\nGrand Prize:\n \nAll exams replaced with 100%\nAll Serious Entries:\n \nExtra credit (between %0.5 and \n      2% added to overall average)\n          \nOptional Proposal: Sun. 05/12, 11:59pm\nDue: \nSun. 06/02, 11:59pm\nhttps://cs109.stanford.edu/handouts/challenge.html",
+      "char_count": 416
+    }
+  ],
+  "ingested_at": "2026-04-21T00:32:58Z"
+}

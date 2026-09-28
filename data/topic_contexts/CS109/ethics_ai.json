@@ -1,0 +1,246 @@
+{
+  "course": "CS109",
+  "topic_id": "ethics_ai",
+  "topic_name": "Ethics in Probability and AI",
+  "queries_used": [
+    "Ethics in Probability and AI definition",
+    "Ethics in Probability and AI intuition",
+    "Ethics in Probability and AI worked example",
+    "Ethics in Probability and AI exam problem",
+    "ai ethics overview",
+    "ai ethics practice",
+    "bias overview",
+    "bias practice",
+    "fairness overview",
+    "fairness practice",
+    "ethical considerations overview",
+    "ethical considerations practice"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "cs109_01_intros_and_counting_annotated_p25_p26_561504157b",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nProbability and ethics\n26\nSo far, there are no unified ethical standards … for autonomous cars. The \nbig Moral Machine study conducted by MIT showed that it’s hard to \nidentify universal ethical values. The moral choices that people made in \nthe MIT survey were different and varied even at a local level. That’s why \nit’s hard to create a universal ethics of self-driving cars that won’t be \ncontroversial. [source]\n\nCounting\n27",
+      "source_type": "lecture_slide",
+      "document_name": "01 intros and counting annotated",
+      "score": 0.5775195360183716
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p32_f98bba92d1",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n3 Corollaries of Axioms of Probability\nCorollary 1:  \n \n𝑃𝐸! = 1 −𝑃(𝐸)\nCorollary 2:  \n \nIf 𝐸⊆𝐹, then 𝑃𝐸≤𝑃(𝐹)\nCorollary 3:  \n \n𝑃𝐸∪𝐹= 𝑃𝐸+ 𝑃𝐹−𝑃𝐸𝐹\n  \n \n \n \n \n(Inclusion-Exclusion Principle for Probability)\n33",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.5500878691673279
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p15_3b7231a7cc",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThree Axioms of Probability\nDefinition of probability: \n𝑃𝐸= lim\n\"→$\n\"(&)\n\"\nAxiom 1: \n \n \n \n0 ≤𝑃𝐸≤1\nAxiom 2: \n \n \n \n𝑃𝑆= 1\nAxiom 3: \n \n \n \nIf 𝐸 and 𝐹 are mutually exclusive (𝐸∩𝐹= ∅),\n \n \n \n \n \n \nthen 𝑃𝐸∪𝐹= 𝑃𝐸+ 𝑃𝐹\n16",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.5416864156723022
+    },
+    {
+      "chunk_id": "cs109_finalwin2022soln_preamble_667e8456d8",
+      "text": "CS109 Final Exam\nChris Piech\nCS109\nWinter 2022\nThis is a closed calculator/computer exam. You are, however, allowed to use notes in the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions and\nparameter values you used, where appropriate. It is fine for your answers to include summations, products,\nfactorials, exponentials, and combinations.\nYou can leave your answer in terms of Φ (the CDF of the standard normal) or Φ−1 (the inverse CDF). For\nexample Φ\n\u0010\n3\n4\n\u0011\nis an acceptable final answer. Recall that the exam is going to be “curved\" according to the\ndifficulty of the questions and as such hard questions will not translate to lower grades.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than I have in\nmy entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\nEmail (preferably your gradescope email):\n\n1\nShort Answer (30 points)\nAnswer each of the following questions. You must give a brief justification for your answer.\na. (6 points) Google Maps stores a probability distribution of the time of day that people go to the San\nFrancisco Airport (SFO):\nLet 𝑝𝑖be the probability that a person will show up at SFO 𝑖hours past midnight (so 𝑝6 is the probability\nthat they will show up between 6a and 7a). Out of the visitors that will visit SFO on a given day, what\nfraction do you expect to show up between midnight and noon? Give an expression.\n11\n∑︁\n𝑖=0\n𝑝𝑖\nSince Í23\n𝑖=0 𝑝𝑖= 1, the following is another equivalent answer:\n11Í\n𝑖=0\n𝑝𝑖\n23Í\n𝑖=0\n𝑝𝑖\nb. (7 points) We will consider a datapoint 𝑥an “outlier” if the probability of seeing a value 𝑥or larger is\n≤0.05. Consider a distribution 𝑋∼Geo(𝑝= 0.8). Is 7 an outlier? Give an expression.\n7 is an outlier if 1 −Σ6\n𝑖=0(0.2)𝑖−1(0.8) ≤0.05\nc. (7 points) A class uses High Resolution Course Feedback. In a given week they ask a random sample\nof 20 people for a numerical rating, instead of asking everyone. Assume the population expectation of\nrating is 4.5 and the population variance of rating is 1.0. What is the probability that the sample mean\nrating from 20 students will be ≥4.7?\nTrue\nA p-value of 0.99 would occur if the difference we observed between the modes of the two datasets is\nthe kind of difference we would observe frequently by chance if the two sets of points were drawn from\ndistributions with the same mode.\nd. (10 points) You meet a person at a party who mentions that they have two children. They reveal that\nthey have a daughter who was born on a Tuesday. What is the probability that they have two daughters?\nAssume a child has a 1⁄2 chance of being a daughter and a 1⁄7 chance of being born on a Tuesday. Assume\nthat the genders of the children, and the weekdays they were born on, are all independent of one another.\n\nThe answer is 13/27.\nLet B be the event that both children are girls. Let T be the event that there is a girl born on a Tuesday.\n𝑃(𝐵|𝑇) = 𝑃(𝑇|𝐵)𝑃(𝐵)\n𝑃(𝑇)\n𝑃(𝐵) = 1/4\n𝑃(𝑇|𝐵) = 1/7 + 1/7 −1/49\n𝑃(𝑇) = 1/14 + 1/14 −1/196\nAnother explanation:\nThis is a well known paradox known as the boy-girl-paradox. Intuition says that the answer is 0.5, but\nit is not!\nFigure 1: We are conditioning on the yellow region (i.e. think of it as the \"new sample space\"). We are\nassessing the probability of the yellow region inside the \"female/female\" quadrant.\nLet the event \"there are two daughters\" be 𝐸.\nLet the event \"there is at least one daughter born on Tuesday\" be 𝐹.\n𝑃(𝐸|𝐹) = 𝑃(𝐸𝐹)\n𝑃(𝐹)\nUsing Inclusion-Exclusion Principle:\n= 𝑃(C1 Fem Tue, C2 Fem) + 𝑃(C1 Fem, C2 Fem Tue) −𝑃(C1 Fem Tue, C2 Fem Tue)\n𝑃(C1 Fem Tue) + 𝑃(C2 Fem Tue) −𝑃(C1 Fem Tue, C2 Fem Tue)\nThis turns into\n(7 + 7 −1)/142\n(14 + 14 −1)/142 = 13\n27 = 0.48148148\n.\n\n2\nQuantitative Art History (20 points)\nA Stanford alumni discovered that the “Average Number of Brushstrokes in the Neighborhood\" is very\npredictive of whether a painting has been painted by Van Gough [1].\nLet 𝑋∼𝑁(𝜇= 20, 𝜎2 = 9) be the average number of brushstrokes in the neighborhood if Van Gough is\nthe painter. Let 𝑋∼𝑁(𝜇= 12, 𝜎2 = 25) be the average number of brushstrokes in the neighborhood if Van\nGough is not the painter.\nAside: A brushstroke 𝑗is a neighbor of brushstroke 𝑖if they are at most 200 pixels apart. For each brushstroke\nwe can calculate how many other brushstrokes are neighbours. The Average Number of Brushstrokes in the\nNeighborhood is an average of these values over all brushstrokes in a painting. Here is a painting by Van\nGough (left) and the auto-identified brush strokes (right).\na. (4 points) Why is a normal distribution appropriate for the “average number of brushstrokes in the\nneighborhood\" of a painting?\nMust mention the central limit theorem.\n\nb. (16 points) A painting is discovered. Based on background information your prior belief that it was\npainted by Van Gough is 0.75. What is your updated belief after observing that the average number of\nbrushstrokes in the neighbourhood is 19?\nThis is an inference question: Let 𝑌be the event that Van gough was the artist.\n𝑃(𝑌|𝑋= 19) =\n𝑓(𝑋= 19|𝑌)𝑃(𝑌)\n𝑓(𝑋= 19|𝑌)𝑃(𝑌) + 𝑓(𝑋= 19|𝑌)𝑃(𝑌𝐶)\n\n3\nBeta ± (20 points)\nYou have observed 30 successes and 20 fails for an event with unknown probability. Based on this information\nyou can model the probability of success, 𝑋, as a Beta random variable. You want to make a claim of the\nform: \"the probability of success is 𝑚± 𝑏.\"\nSelect 𝑚to be the expectation of 𝑋. Select 𝑏to be the smallest value, rounded to two decimal places, such\nthat 𝑃(𝑚−𝑏< 𝑋< 𝑚+ 𝑏) is greater than or equal to 95%. Provide your answer as pseudocode that prints\nout the values 𝑚and 𝑏.\nIncremental solution:\n\n4\nBayesian Carbon Dating (34 points)\nWe are able to know the age of ancient artefacts using a process called carbon dating. This process involves\na lot of uncertainty! Living things have a constant proportion of a molecule called C14 in them. When living\nthings die those molecules start to decay. The time to decay in years, 𝑇, of a C14 molecule is distributed as an\nexponential. 𝑇∼Exp(𝜆= 1/8267).\na. (5 points) Consider a single C14 molecule. What is the probability that it decays within 500 years?\n𝑃(𝑇≤500) = 1 −𝑒−\n1\n8267 ∗500 = 0.05868875306\nb. (8 points) C14 molecules decay independently. A particular sample started with 100 molecules. What\nis the probability that exactly 95 are left after 500 years? Let 𝑝be your answer to part a.\nX Bin(n=100, p = 0.0586)\nP(X = 5) = scipy.stats.binom.pmf(5, 100, 0.05868)\n\nc. (6 points) Write pseudocode for a function pr_measure_given_age(m, age) which returns 𝑃(𝑀=\nm|𝐴= age), the probability that exactly m molecules are left out of the original 100 after exactly age\nnumber of years.\nd. (15 points) You observe a measurement of 95 C14 molecules in a sample. You assume that the sample\noriginally had 100 C14 molecules when it died. Write pseudocode for a function age_belief() that\nreturns a list of length 1000 where the value at index 𝑖in the list stores 𝑃(𝐴= 𝑖|𝑀= 95). Age is a\ndiscrete random variable which takes on whole numbers of years. 𝐴= 𝑖is the event that the sample\norganism died 𝑖years ago. You may use the function pr_measure_given_age(m, age) from part c.\nFor your prior belief: you know that the sample must be between 𝐴= 500 and 𝐴= 600 inclusive and\nyou assume that every year in that range is equally likely.\n\n5\nReliability engineering (23 points)\nThe “reliability distribution\" is a random variable parameterized by 𝑎with PDF:\n𝑓(𝑋= 𝑥) = 1\n𝑎2 𝑥𝑎−1𝑒−𝑥2\n𝑎2\nWe wish to model how long a particular model of phone will function before it breaks. We are going to use\na reliability distribution. To this end we collect 𝑁independent measurements of how long the type of phone\nfunctions before it breaks: 𝑥1, 𝑥2, . . . , 𝑥𝑁. Explain, in words, how you would choose parameter 𝑎using the\nmaximum likelihood estimation framework, and provide any necessary derivatives.\nFirst, we start by defining our likelihood function.\n𝐿(𝑎) =\n𝑁\nÖ\n𝑖=1\n𝑓(𝑋𝑖|𝑎)\nWe want to determine ˆ𝑎= argmax\n𝑎\n𝐿(𝑎). Since the argmax of 𝐿(𝑎) is equivalent to the argmax of the log of\n𝐿(𝑎) and logs make the math simpler we write:\n𝐿𝐿(𝑎) = log\n 𝑁\nÖ\n𝑖=1\n𝑓(𝑋𝑖|𝑎)\n!\nPlugging in the provided PDF and simplifying:\n𝐿𝐿(𝑎) = log\n 𝑁\nÖ\n𝑖=1\n1\n𝑎2 𝑥𝑎−1\n𝑖\n𝑒−\n𝑥2\n𝑖\n𝑎2\n!\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\nlog\n \n1\n𝑎2 𝑥𝑎−1\n𝑖\n𝑒−\n𝑥2\n𝑖\n𝑎2\n!#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\nlog\n\u0012 1\n𝑎2\n\u0013\n+ log\n\u0010\n𝑥𝑎−1\n𝑖\n\u0011\n+ log\n \n𝑒−\n𝑥2\n𝑖\n𝑎2\n!#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n\"\n−2 log (𝑎) + (𝑎−1) log (𝑥𝑖) −𝑥2\n𝑖\n𝑎2 log (𝑒)\n#\n𝐿𝐿(𝑎) =\n𝑁\n∑︁\n𝑖=1\n−2 log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n(𝑎−1) log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\n𝑎2 log (𝑒)\n𝐿𝐿(𝑎) = −2𝑁log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n𝑎log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) −1\n𝑎2\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\nNow we will take the partial derivative of the log likelihood with respect to the parameter of interest 𝑎:\n𝜕𝐿𝐿(𝑎)\n𝜕𝑎\n= 𝜕\n𝜕𝑎\n \n−2𝑁log (𝑎) +\n𝑁\n∑︁\n𝑖=1\n𝑎log (𝑥𝑖) −\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) −1\n𝑎2\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\n!\n𝜕𝐿𝐿(𝑎)\n𝜕𝑎\n= −2𝑁\n𝑎+\n𝑁\n∑︁\n𝑖=1\nlog (𝑥𝑖) + 2\n𝑎3\n𝑁\n∑︁\n𝑖=1\n𝑥2\n𝑖\nFrom here, we would set the partial derivative equal to 0 and solve for 𝑎.\nNote: You were required to provide the necessary derivatives but you did not need to actually determine the\nvalue of 𝑎as the problem states. Any math beyond the calculation of the partial derivative was not required\nor penalized.\n\n6\nRank ordering of samples (25 points)\nA random variable 𝑋can take on three values: 1, 2 or 3 with the following probabilities:\nValue\nProbability\n1",
+      "source_type": "exam_question",
+      "document_name": "FinalWin2022Soln",
+      "score": 0.5415012836456299
+    },
+    {
+      "chunk_id": "cs109_15_general_inference_annotated_p23_p24_63310f4a9e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nInference via math\n24\nFlu\nUnder-\ngrad\nTired\nFever\n𝑃𝐹#$ = 1 = 0.1\n𝑃𝑈= 1 = 0.8\n𝑃𝐹!\" = 1|𝐹#$ = 1 = 0.9\n𝑃𝐹!\" = 1|𝐹#$ = 0 = 0.05\n𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 0 = 0.1\n 𝑃𝑇= 1|𝐹#$ = 0, 𝑈= 1 = 0.8\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 0 = 0.9\n 𝑃𝑇= 1|𝐹#$ = 1, 𝑈= 1 = 1.0 \nSolving inference questions \nprecisely is possible, but \nsometimes tedious.\nCan we use sampling\nto do approximate \ninference?\n\nRejection \nSampling\n25",
+      "source_type": "lecture_slide",
+      "document_name": "15 general inference annotated",
+      "score": 0.5401726961135864
+    },
+    {
+      "chunk_id": "cs109_midtermfall2024soln_preamble_1a95125874",
+      "text": "CS109 Midterm Exam\nChris Piech\nCS109\nFall 2024\nOct 29th\nThis is a closed calculator/computer exam. You are, however, allowed to use notes in the exam. You have 2\nhours (120 minutes) to take the exam. The exam is 120 points, meant to roughly correspond to one point per\nminute of the exam. You may want to use the point allocation for each problem as an indicator for pacing\nyourself on the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions and\nparameter values you used, where appropriate. It is fine for your answers to include summations, products,\nfactorials, exponentials, and combinations. You can leave your answer in terms of Φ (the CDF of the standard\nnormal) or Φ−1. For example Φ(3/4) is an acceptable final answer. Code can be written in pseudo code. In\npseudo code, ideas are more important than syntax.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than I have in\nmy entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\nStanford Email (@stanford.edu):\n\n1\nAdventure is Out There [20 points]\ndef adventure_is_out_there ():\nmystery = bernoulli (0.3)\nif mystery == 1:\nreturn bernoulli (0.5) == 1\nelse:\nreturn good_times ()\ndef good_times ():\ntreasure = bernoulli (0.2)\nkindness = bernoulli (0.7)\nreturn treasure == 1 or kindness == 1\ndef bernoulli(p):\n# returns 1 with probability p\n# returns 0 with probability (1-p)\nif random () < p: return 1\nelse: return 0\na. (5 points) You call good times(). What is the probability that good times returns True?\nLet T be the event treasure is 1 and K be the event kindness is 1.\nWe can use the Inclusion-Exclusion Rule to find the probability of OR:\nP(good times returns True) = P(T or K)\n= P(T)+P(K)−P(T and K)\n= P(T)+P(K)−P(T)·P(K)\n= 0.2+0.7−0.2·0.7\nAlternatively, we could subtract the complement: 1−0.3·0.8\nb. (5 points) You call adventure is out there(). What is the probability that adventure is out there\nreturns True? if needed let pa be your answer to part (a).\nLet M be the event that mystery was 1 and B be the event that the bernoulli(0.5) call on line 4 returned\na 1.\nThere are two cases where this function returns True: if M and B both happened, or if M didn’t happen,\nand then good times returned True. These two possibilities are mutually exclusive, so we can break down\nthis probability of OR into a sum.\nP(adventure is out there returns True) = P(M and B or MC and good times returns True)\n= P(M and B)+P(MC and good times returns True)\n= P(M)P(B|M)+P(MC)P(good times returns True|MC)\n= 0.3·0.5+(1−0.3)pa\n= 0.15+0.7pa\n2\n\nc. (6 points) You call adventure is out there() and it returns True. What is the probability that mystery\nwas 1? if needed let pb be your answer to part (b).\nLet A be the event that adventure is out there() returns True. Let M be the event that mystery was 1.\nHere, we are told the A happened, and we want to know if M happened, conditioned on A happening. This\nconditional is hard to reason about directly, but if it was flipped, it would be easier to calculate a number\nfor; this tells us that we should use Bayes’ Theorem.\nWe know that P(M) = 0.3, and P(A) = pb is from part b. If M happens, then the function returns True if\nthe Bernoulli call on line 4 is 1, and False otherwise. Thus, P(A|M) = P(B) = 0.5.\nP(M|A) = P(A|M)P(M)\nP(A)\n= 0.5·0.3\npb\nd. (4 points) If adventure is out there returns True, you win $100; otherwise, you win $0. What are your\nexpected winnings? if needed let pa and pb be your answer to part (a) and (b) respectively.\nLet W be our winnings. The possible values for W are 0 and 100, and the probability that W = 100 is pb,\nso P(W = 0) = 1−pb. Using the general formula for expectation:\nE[W] = 100·P(W = 100)+0·P(W = 0) = 100pb\n3\n\n2\nChance Encounters [20 points]\nFor each of the following scenarios, Step 1: Declare a random variable of a type introduced in class that best\nmodels the scenario, specifying its parameters e.g., X ∼Bin(n = 10, p = 0.3). Step 2: State the question in\nterms of your random variable e.g., P(X = 2). Do not solve the probability statements from Step 2.\nImportant notes: If the problem cannot be modeled using one of the random variables types introduced in\nclass, write “N/A” and move on. Use an approximation variable if doing so would provide a substantial\ncomputational speedup.\na. (5 points) During lecture, Chris has an probability of 0.05 of giving out one fruit for each slide he presents\n(independently). What is the probability that he gives out his first fruit on slide 5?\nLet S be the first slide when Chris gives out fruit. There are multiple possible solutions:\nS ∼Geo(p = 0.05). We want to find P(S = 5).\nS ∼NegBin(r = 1, p = 0.05). We want to find P(S = 5).\nWe can also consider the number of fruits in which Chris gives out fruits using S ∼Bin(n = 5, p = 0.05).\nWe want to find P(S = 1)\n5\n. We have to divide by 5 because we must only count the outcome where Chris\ngives out fruit on the last of the 5 slides.\nb. (5 points) On a clear night at the Stanford Observatory, astronomers see an average of 5 stars per 2-degree\nby 2-degree area of the night sky. Assuming stars are randomly scattered across the sky, what is the\nprobability that exactly three stars will be seen in a randomly selected 2x2 degree patch?\nLet S be the number of stars in a 2x2 degree patch of the night sky. S ∼Poi(λ = 5). We want to find\nP(S = 3).\nc. (5 points) You are flipping 10 unusual coins. The first coin has a probability of 1/1 of landing heads, the\nsecond has a probability of 1/2, the third has a probability of 1/3, and so on. What is the probability of\nobserving exactly 5 heads if you flip each of these 10 coins once?\nN/A; because the probabilities of success or heads on each coin flip are not consistent, there is no random\nvariable we’ve learned in class that fits this scenario.\nd. (5 points) A blossoming cherry tree currently has 300,000 beautiful pink petals. Today each petal has a",
+      "source_type": "exam_question",
+      "document_name": "MidtermFall2024Soln",
+      "score": 0.5380155444145203
+    },
+    {
+      "chunk_id": "cs109_finalfall2021soln_q0_42694214da",
+      "text": "5 = 𝑛\n𝑛0.5 = 0.5\n𝑉𝑎𝑟(𝑋) = 𝑉𝑎𝑟\n \n1\n𝑛\n𝑛\n∑︁\n𝑖=1\n𝑍𝑖\n!\n= 1\n𝑛2𝑉𝑎𝑟\n 𝑛\n∑︁\n𝑖=1\n𝑍𝑖\n!\n= 1\n𝑛2\n𝑛\n∑︁\n𝑖=1\n𝑉𝑎𝑟(𝑍𝑖) = 1\n𝑛2\n𝑛\n∑︁\n𝑖=1\n𝑣= 𝑛\n𝑛2 𝑣= 𝑣\n𝑛= 𝑣\n20\nUsing CLT, 𝑋∼𝑁\u0000𝜇= 0.5, 𝜎2 = 𝑣\n20\n\u0001\nd. (6 points) What is an approximation for the distribution of the mean from one population minus the\nmean from another population? Note: this value may be negative if the first population has a smaller\nmean than the second.\nLet 𝑋1 and 𝑋2 be the means of the populations. 𝑋1 ∼𝑁(𝜇= 0.5, 𝜎2 = 𝑣\n20), 𝑋2 ∼𝑁(𝜇= 0.5, 𝜎2 = 𝑣\n20)\n𝐸[𝑋1 −𝑋2] = 𝐸[𝑋1] −𝐸[𝑋2] = 0\n𝑉𝑎𝑟(𝑋1 −𝑋2) = 𝑉𝑎𝑟(𝑋1) + 𝑉𝑎𝑟(𝑋2) = 𝑣\n10\nThe sum (or difference) of independent normals is still normal: 𝑌∼𝑁(𝜇= 0, 𝜎2 = 𝑣\n10)\ne. (8 points) What is the smallest difference in means, 𝑘, that would look statistically significant if there\nwere only two populations? In other words, the probability of seeing a difference in means of 𝑘or\ngreater is < 0.05.\nOne tricky part of this problem is to recognize the double sidedness to distance. We would consider it\na significant distance if 𝑃(𝑌< −𝑘) or 𝑃(𝑌> 𝑘).\n𝑃(𝑌< −𝑘) + 𝑃(𝑌> 𝑘) = 0.05\n𝐹𝑌(−𝑘) + (1 −𝐹𝑌(𝑘)) = 0.05\n(1 −𝐹𝑌(𝑘)) + (1 −𝐹𝑌(𝑘)) = 0.05\n2 −2𝐹𝑌(𝑘) = 0.05\n𝐹𝑌(𝑘) = 0.975\nNow we need the inverse Φ to get the value of 𝑘out.",
+      "source_type": "exam_question",
+      "document_name": "FinalFall2021Soln",
+      "score": 0.5364938378334045
+    },
+    {
+      "chunk_id": "cs109_01_intros_and_counting_annotated_p0_p1_412fad0414",
+      "text": "CS109: Probability for \nComputer Scientists\nJerry Cain\nApril 1, 2024\n1\nLecture Discussion on Ed\n\nWelcome to \nCS109!\n2",
+      "source_type": "lecture_slide",
+      "document_name": "01 intros and counting annotated",
+      "score": 0.5333608984947205
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p23_99fc4d6045",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nConditional probability and Bayes’ Theorem\n24\n𝑃𝐹|𝐸= 𝑃𝐹𝑃𝐸|𝐹\n𝑃𝐸\n𝑃𝐹|𝐸= 𝑃𝐸∩𝐹\n𝑃𝐸\nDefinition\nBayes’ Theorem\nPrior: some prob. of event 𝐹\nPosterior: prob. of \n𝐹 knowing that 𝐸 \nhappened\nLikelihood\nScaling to the correct sample space\nScaling to the correct sample space\nIndependence\n𝑃𝐹|𝐸= 𝑃𝐹\nSample space doesn’t need\nto be scaled\n𝐸, 𝐹 independent",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.5251550674438477
+    },
+    {
+      "chunk_id": "cs109_finalwin2022soln_q0_22f09650a5",
+      "text": "625\n2",
+      "source_type": "exam_question",
+      "document_name": "FinalWin2022Soln",
+      "score": 0.5206524729728699
+    },
+    {
+      "chunk_id": "cs109_05_section_soln_sec2_part1_69fbee7835",
+      "text": "# here's where your implementation belongs\nreturn prob\ntotal = 12\nntrials = 50000\nprint('Simulated% P(A + B)=', infer_prob_total(total, ntrials))\nThis is the full implementation right here:\nimport numpy as np\nfrom scipy import stats\ndef infer_prob_total(total, ntrials):\n\n– 8 –\nn_samples_event = 0\nfor i in range(ntrials):\nd = stats.bernoulli.rvs(0.3)\nif d == 0:\nuser_sum = stats.poisson.rvs(5) + stats.poisson.rvs(3)\nelse:\nuser_sum = stats.poisson.rvs(8) + stats.poisson.rvs(6)\nif user_sum == total: n_samples_event += 1\nprob = n_samples_event/ntrials\nreturn prob\nntrials = 50000\ntotal = 12\nprint(\"Simulated P(A + B)=\", infer_prob_total(total, ntrials))\n5\nChatGPT, Watermarking, and Bayesian Inference\nChatGPT is a generative AI technology that can be coarsely summarized to be a chat bot with a\nseemingly boundless ability to discuss any topic—history, computer science, art, nuclear physics,\nprobability, and even the ethics of using ChatGPT—in any one of several written languages,\nincluding English, French, Spanish, C++, JavaScript, Python, and some 100 others.\nUnsurprisingly, we will soon be left to wonder whether a poem, a Tweet, a C++ function, or a\ncollege thesis is written by ChatGPT or a human being. Questions about authorship, accuracy, and\nattribution have prompted OpenAI, the company behind ChatGPT, to address these concerns by\nimplementing ChatGPT to employ what’s termed watermarking and insert certain words more or\nless often than is customary in even the best of human-authored writing.\nTo illustrate, let’s assume that most humans use the word the an average of 4.8 times per 100\nwords, whereas ChatGPT might generate prose where the appears on average 6.5 times per 100\nwords. Similarly, humans use the word of on average about 3.9 times per 100 words, whereas\nChatGPT might leverage of about 6.2 times per 100 words. Conversely, ChatGPT might generate\nthe word by only 1.6 times per 100 words, whereas humans use the word by about 2.7 times per\n100 words.\na. You elect to model word frequency of all words using either a Poisson for paragraphs of 200\nor so words—but as a Gaussian for larger documents—say 10000 words or more. Explain\nwhy the Gaussian might be the better choice for larger documents than the Poisson, whereas\nPoisson is more easily defended for smaller documents.\nThe Poisson distribution provides an accurate estimate for documents with low word counts\nsince we expect mostly low word counts with a long right tail for higher word counts.",
+      "source_type": "review_section",
+      "document_name": "05 section soln",
+      "score": 0.5155847072601318
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p9_b3d5151ec8",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStarting Today!\nToday we are going to learn something unintuitive,\nbeautiful, and useful!\n10\nWe are going to think of probabilities as\nrandom variables.",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.5115842819213867
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p12_dfb20dfb00",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBayesian probability\nBayesian statistics: Probability represents our ever-\nevolving understanding of the world.\nMixing discrete and continuous random variables, \ncombined with Bayes’ Theorem, allows us to reason about \nprobabilities as random variables.\n13",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.5091533660888672
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p4_6c2e1bc6c8",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWhat is a probability?\nA number between 0 and 1\nto which we ascribe meaning.*\n5\n*our belief that an event 𝐸 occurs.",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.5049227476119995
+    },
+    {
+      "chunk_id": "cs109_05_independence_annotated_p3_9f91220977",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nIntuition through proof\nStatement:\nIf 𝐸 and 𝐹 are independent, then 𝑃𝐸𝐹= 𝑃𝐸.\nProof: \n \n \n \n \n \n \n \n \n \n \nDefinition of\n \n \n \n \n \n \n \n \nconditional probability\n \n \n \n \n \n \n \n \nIndependence of 𝐸 and 𝐹\n \n \n \n \n \n \n \n \nTaking the bus to cancellation city\n4\n𝑃𝐸𝐹= 𝑃𝐸𝐹\n𝑃(𝐹)\n= 𝑃𝐸𝑃𝐹\n𝑃(𝐹)\n= 𝑃(𝐸)\nKnowing that 𝐹 happened does not \nchange our belief that 𝐸 happened.\n𝑃𝐸𝐹= 𝑃𝐸𝑃(𝐹)\nIndependent\nevents 𝐸 and 𝐹",
+      "source_type": "lecture_slide",
+      "document_name": "05 independence annotated",
+      "score": 0.5023908615112305
+    },
+    {
+      "chunk_id": "cs109_21_beta_annotated_p10_a0b35f551d",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nA new deﬁnition of probability\nFlip a coin 𝑛+ 𝑚 times, produce 𝑛 heads.\nWe don’t know the probability 𝜃 that the coin\ncomes up heads.\n11\nThe world’s first coin\nFrequentist\n𝜃 is a single value.\n𝜃=\nlim\n123→5\n𝑛\n𝑛+ 𝑚≈\n𝑛\n𝑛+ 𝑚\nBayesian\n𝜃 is a random variable.\n𝜃’s continuous support: (0, 1)",
+      "source_type": "lecture_slide",
+      "document_name": "21 beta annotated",
+      "score": 0.4663315415382385
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p16_p17_ba45532e31",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nAxiom 3 is the (analytically) useful axiom\nAxiom 3: \n \nIf 𝐸 and 𝐹 are mutually exclusive—that is, if\n                              𝐸∩𝐹= ∅—then 𝑃𝐸∪𝐹= 𝑃𝐸+ 𝑃𝐹\nMore generally, for any sequence of\nmutually exclusive events 𝐸(, 𝐸), … :\n17\njust like the Sum Rule of Counting, but \nfor probabilities\n𝑃O\n*+(\n$\n𝐸*\n= P\n*+(\n$\n𝑃𝐸*\n𝑆\n𝐸!\n𝐸\"\n𝐸#\n\nEqually Likely \nOutcomes\n18",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.455005407333374
+    },
+    {
+      "chunk_id": "cs109_03_probability_annotated_p0_p1_84ba594f15",
+      "text": "03: Intro to Probability\nJerry Cain and Kanu Grover\nApril 3rd, 2024\n1\nLecture Discussion on Ed\n\nDefining \nProbability\n2",
+      "source_type": "lecture_slide",
+      "document_name": "03 probability annotated",
+      "score": 0.45384690165519714
+    },
+    {
+      "chunk_id": "cs109_08_section_soln_sec1_part4_2c83657e86",
+      "text": "– 7 –\n• Different methods of turnout projection can produce a bias.\n• Partisan non-response bias: The probability that a poll respondent will agree\nto participate in a survey varies in response to media coverage. When there is\nunusually bad news about a candidate, their supporters are not in the mood to\ntell pollsters what they think – even though their ultimate voting intention has\nnot changed. This causes the other candidate’s vote share to be over-represented\nin polls.\nEthical Considerations\n• Poll results influence how people will vote. When the public believes a candidate\nis extremely likely to win, some people are less likely to vote. This is why some\nanalysts think election polls should be covered using margins of error rather than\nspeculative win probabilities.\n• Poll results act as a feedback mechanism that affect parties’ policy choices.",
+      "source_type": "review_section",
+      "document_name": "08 section soln",
+      "score": 0.37267327308654785
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p36_28c4716126",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nWith this continuous version of Bayes’ \ntheorem, we can explore new domains.\n• Before measuring, you hold some \nprior beliefs about the 2-D location of \nan object, 𝑋, 𝑌.\n• You observe a noisy distance \nmeasurement, 𝐷=4.\n• After the measurement, do you \nupdate your beliefs about the 2-D \nlocation of the object after that \nnoisy measurement.\n37\nTracking in 2-D space\nTop-down view\n!\n3-D view\n\"\nTop-down view\n3-D view\n0.08     \n0.04",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.37152013182640076
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p37_fabc7a103a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTracking in 2-D space: Posterior belief\n38\n𝑓+,, 𝑥, 𝑦= 𝐾= ⋅ 𝑒. \n\"#$ !% &#$ !\n'\nPrior belief\nPosterior belief\nTop-down view\n𝑦\n3-D view\n𝑥\n𝑦\n𝑥\nTop-down view\n3-D view\n𝑓+,,|I 𝑥, 𝑦|4 = \n \n𝐾M⋅𝑒.\nM. :!-H! !\nE\n -\n:.G !- H.G !\nN\n0.08     \n0.04",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.36290544271469116
+    },
+    {
+      "chunk_id": "cs109_17_cont_joint_ii_annotated_p29_fff893986e",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTop-down view\n1. Define prior\nYou have a prior belief about the 2-D location of an object, 𝑋, 𝑌.\n30\nLet 𝑋, 𝑌= object’s 2-D location, \nassuming satellite is at (0,0)\nSuppose the prior distribution is a\nsymmetric bivariate normal distribution:\n𝑥\n𝑦\n𝑓!,% 𝑥, 𝑦\n3-D view\n𝑓+,, 𝑥, 𝑦=\n1\n2𝜋2E 𝑒\n. \n:.G !- H.G !\nE E!\nnormalizing constant\n= 𝐾5 ⋅ 𝑒% \n#$% &' ($% &\n)\n𝑓!,%|2 𝑥, 𝑦|𝑑=\n𝑓2|!,% 𝑑|𝑥, 𝑦 𝑓!,% 𝑥, 𝑦\n𝑓2 𝑑",
+      "source_type": "lecture_slide",
+      "document_name": "17 cont joint ii annotated",
+      "score": 0.35924896597862244
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p29_16d1fabbc9",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nBrute Force Bayes: 𝑚= 300 (# features)\n30\n•\n1𝑃𝑌= 1 | 𝒙 : estimated probability a \nheart is healthy given 𝒙\n• 𝑿= 𝑋', 𝑋$, … , 𝑋).. : whether 300 \nregions of interest (ROI) are healthy (1) \nor unhealthy (0)\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\nHow many parameters do we \nhave to learn?\nA.  2 ⋅2 \n+ 2 = 6\nB.  2 ⋅300 + 2 = 602\nC.  2 ⋅24,, + 2 = a lot\n1𝑃𝑿|𝑌\n1𝑃𝑌\nLearn parameters\nthrough MLE or MAP\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑌 | 𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑿",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.3540264368057251
+    },
+    {
+      "chunk_id": "cs109_25_logistic_regression_annotated_p44_d0de35ec97",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\n45\nNaïve Bayes \n \n \n     vs \nLogistic Regression\n[𝑃𝑿|𝑌[𝑃𝑌\n𝑿\n𝑌\n[𝑃𝑿, 𝑌\n[𝑌= arg max\n.# !,$\n𝑃𝑌 | 𝑿= arg max\n.# !,$\n𝑃𝑿|𝑌𝑃𝑌\n[𝑌= arg max\n.# !,$\n𝑃𝑌|𝑿\n𝜃#𝒙\n𝑿\n0\n0.2\n0.4\n0.6\n0.8\n1\n-10\n-8\n-6\n-4\n-2\n0\n2\n4\n6\n8\n10\n! \"\n\"\n𝑃𝑌= 1|𝑿\nCompare/contrast:\n1. What distributions are we modeling?\n2. After learning our parameters, could we randomly generate a new datapoint 𝒙, 𝑦?\n3. Could we model a continuous 𝑋& feature (e.g., 𝑋&~Normal, or 𝑋&~Unknown)?\n4. Could we model a non-binary discrete 𝑋& (e.g., 𝑋& ∈1,2, … , 6 )?\n𝜃",
+      "source_type": "lecture_slide",
+      "document_name": "25 logistic regression annotated",
+      "score": 0.34326785802841187
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p32_0e61718cb5",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThe Naïve Bayes assumption\n33\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑌 | 𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n= arg max\n*+ ,,!\nH\n5+!\n#\n(𝑃𝑋5|𝑌\n(𝑃𝑌\nNaïve Bayes \nAssumption\n𝑋!, … , 𝑋% are all conditionally \nindependent given 𝑌.\nAssumption:",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.340989887714386
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p30_39037a9054",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStatistics: Expectation and variance\n1. a. Let 𝑋= the outcome of a fair 24-sided\n \ndie roll. What is 𝐸𝑋?\nb. Let 𝑌= the sum of seven rolls of a fair\n24-sided die. What is 𝐸𝑌?\n2. Let 𝑍= # of tails on 10 flips of a \nbiased coin, with p = 0.71. What is 𝐸𝑍?\n3. Compare the variances of \n𝐵4~Ber 0.0 , 𝐵5~Ber 0.1 ,\n𝐵!~Ber 0.5 , and 𝐵)~Ber(0.9).\n31",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.3404582738876343
+    },
+    {
+      "chunk_id": "cs109_23_naive_bayes_annotated_p30_8d68fefd68",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nThis approach requires you to learn \n𝑂2/  parameters.\nBrute Force Bayes: 𝑚= 300 (# features)\n31\n•\n1𝑃𝑌= 1 | 𝒙 : estimated probability a \nheart is healthy given 𝒙\n• 𝑿= 𝑋', 𝑋$, … , 𝑋).. : whether 300 \nregions of interest (ROI) are healthy (1) \nor unhealthy (0)\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\nHow many parameters do we \nhave to learn?\nA.  2 ⋅2 \n+ 2 = 6\nB.  2 ⋅300 + 2 = 602\nC.  2 ⋅24,, + 2 = a lot\n1𝑃𝑿|𝑌\n1𝑃𝑌\nLearn parameters\nthrough MLE or MAP\n(𝑌= arg max\n*+ ,,!\n(𝑃𝑌 | 𝑿\n= arg max\n*+ ,,!\n(𝑃𝑿|𝑌(𝑃𝑌\n(𝑃𝑿",
+      "source_type": "lecture_slide",
+      "document_name": "23 naive bayes annotated",
+      "score": 0.340153306722641
+    },
+    {
+      "chunk_id": "cs109_16_cont_joint_i_annotated_p38_c95c412d5f",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nTeaser: Linear transforms vs. independence\nLet 𝑋~𝒩(𝜇, 𝜎%) and 𝑌= 𝑋+ 𝑋. What is the distribution of 𝑌?\n• Are both approaches valid?\n39\numm, 𝑋 is NOT independent of 𝑋!\nIndependent RVs approach ❌\n𝑌= 𝑋+ 𝑋\n𝑋+ 𝑋~𝒩𝜇+ 𝜇, 𝜎% + 𝜎% ?\n𝑌~𝒩2𝜇, 2𝜎% ?\n⚠\nLet 𝑋~𝒩(𝜇, 𝜎&).\nIf 𝑌= 𝑎𝑋+ 𝑏,\nthen 𝑌~𝒩(𝑎𝜇+ 𝑏, 𝑎&𝜎&).\nLet 𝑋(~𝒩𝜇(, 𝜎(\n& , 𝑋&~𝒩𝜇&, 𝜎&\n&\nbe independent.\nThen 𝑌= 𝑋( + 𝑋&~𝒩(𝜇( + 𝜇&, 𝜎(\n& + 𝜎&\n&)\n𝑌= 2𝑋\nLinear transform approach\n𝑌~𝒩(2𝜇, 4𝜎%)\n✅\nFor independent 𝑋(~𝒩𝜇(, 𝜎(\n& , 𝑋&~𝒩𝜇&, 𝜎&\n& ,\n𝑎𝑋( + 𝑏𝑋& + 𝑐~𝒩𝑎𝜇( + 𝑏𝜇& + 𝑐, 𝑎&𝜎(\n& + 𝑏&𝜎&\n&",
+      "source_type": "lecture_slide",
+      "document_name": "16 cont joint i annotated",
+      "score": 0.3400350511074066
+    },
+    {
+      "chunk_id": "cs109_07_bernoulli_binomial_annotated_p31_95c857330a",
+      "text": "Lisa Yan, Chris Piech, Mehran Sahami, and Jerry Cain, CS109, Spring 2024\nStatistics: Expectation and variance\n1. a. Let 𝑋= the outcome of a fair 24-sided\n \ndie roll. What is 𝐸𝑋?\nb. Let 𝑌= the sum of seven rolls of a fair\n24-sided die. What is 𝐸𝑌?\n2. Let 𝑍= # of tails on 10 flips of a \nbiased coin, with p = 0.71. What is 𝐸𝑍?\n3. Compare the variances of \n𝐵4~Ber 0.0 , 𝐵5~Ber 0.1 ,\n𝐵!~Ber 0.5 , and 𝐵)~Ber(0.9).\n32\nIf you can identify common RVs, just look up \nstatistics instead of rederiving from scratch.",
+      "source_type": "lecture_slide",
+      "document_name": "07 bernoulli binomial annotated",
+      "score": 0.3361779451370239
+    },
+    {
+      "chunk_id": "cs109_01_section_soln_sec1_part1_ca6b35b380",
+      "text": "CS109\nApril 11, 2024\nSection 1 Solution: Combinatorics and Probability\nChris Piech, Mehran Sahami, Jerry Cain, Lisa Yan, and numerous CS109 CA’s.\nOverview of Section Materials\nThe warm-up questions provided will help students practice concepts introduced in lectures. The section prob-\nlems are meant to apply these concepts in more complex scenarios similar to what you will see in problem sets\nand exams. In fact, many of them are old exam questions.\nBefore you leave lab, make sure you click here so that you’re marked as having attended this week’s section. The\nCA leading your discussion section can enter the password needed once you’ve submitted.\nWarm-ups\n1. Equality versus Inequality\nShow that for any events 𝐴and 𝐵that\n𝑃(𝐴) + 𝑃(𝐵) −1 ≤𝑃(𝐴∩𝐵) ≤𝑃(𝐴∪𝐵) ≤𝑃(𝐴) + 𝑃(𝐵)\nFor each of the three inequalities, describe sets 𝐴and 𝐵that would result in equality.\nWe’ll show each of the three to be true, one by one.\n• The Inclusion-Exclusion Principle is clear that 𝑃(𝐴∪𝐵) = 𝑃(𝐴) + 𝑃(𝐵) −𝑃(𝐴∩𝐵). Because all\nprobabilities, including those of intersections, are greater than or equal to 0, we have that 𝑃(𝐴∪𝐵) =\n𝑃(𝐴) + 𝑃(𝐵) −𝑃(𝐴∩𝐵) ≤𝑃(𝐴) + 𝑃(𝐵). When does the equality hold? When 𝐴and 𝐵are mutually\nexclusive events so that the probability that both events occur is 0.\n• 𝑃(𝐴∩𝐵) ≤𝑃(𝐴∪𝐵) is true simply because 𝐴∩𝐵⊆𝐴∪𝐵. Equality holds when 𝐴and 𝐵are the same\nevent.\n• Inclusion-Exclusion states that 𝑃(𝐴∪𝐵) = 𝑃(𝐴) + 𝑃(𝐵) −𝑃(𝐴∩𝐵) so that 𝑃(𝐴∪𝐵) + 𝑃(𝐴∩𝐵) = 𝑃(𝐴) +\n𝑃(𝐵). Because all probabilities are at most 1, we have 𝑃(𝐴) +𝑃(𝐵) = 𝑃(𝐴∩𝐵) +𝑃(𝐴∪𝐵) ≤𝑃(𝐴∩𝐵) +1,\nso that 𝑃(𝐴) + 𝑃(𝐵) −1 ≤𝑃(𝐴∩𝐵). Equality holds when the union of 𝐴and 𝐵is the full sample space 𝑆.\n2. Fish Pond\nSuppose there are 7 blue fish, 4 red fish, and 8 green fish in a large fishing tank. You drop a net into it and end up\nwith 2 fish. What is the probability you get 2 blue fish?",
+      "source_type": "review_section",
+      "document_name": "01 section soln",
+      "score": 0.3312988579273224
+    },
+    {
+      "chunk_id": "cs109_practicemidterm_preamble_638eba6eb0",
+      "text": "– 1 –\nChris Piech\nCS 109\nOct 27, 2017\nPractice Midterm Examination\nProblems by Will Monroe, Mehran Sahami and Chris Piech\nThis is a closed calculator/computer exam. You are, however, allowed to use notes or a textbook\nin the exam. The last page of the exam is a Standard Normal Table, in case you need it. You have\n2 hours (120 minutes) to take the exam. The exam is 120 points, meant to roughly correspond to\none point per minute of the exam. You may want to use the point allocation for each problem as an\nindicator for pacing yourself on the exam.\nIn the event of an incorrect answer, any explanation you provide of how you obtained your answer can\npotentially allow us to give you partial credit for a problem. For example, describe the distributions\nand parameter values you used, where appropriate. It is ﬁne for your answers to include summations,\nproducts, factorials, exponentials, and combinations, unless the question speciﬁcally asks for a\nnumeric quantity or closed form. Where numeric answers are required, the use of fractions is ﬁne.\nI acknowledge and accept the letter and spirit of the honor code. I pledge to write more neatly than\nI have in my entire life:\nSignature:\nFamily Name (print):\nGiven Name (print):\n\n– 2 –",
+      "source_type": "exam_question",
+      "document_name": "PracticeMidterm",
+      "score": 0.32844972610473633
+    },
+    {
+      "chunk_id": "cs109_demo_exam_q2_efd3fc77a3",
+      "text": "A fair coin is flipped twice.",
+      "source_type": "exam_question",
+      "document_name": "Demo Exam",
+      "score": 0.32809099555015564
+    }
+  ],
+  "built_at": "2026-04-28T05:13:15Z"
+}

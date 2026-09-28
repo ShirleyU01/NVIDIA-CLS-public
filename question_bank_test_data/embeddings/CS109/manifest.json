@@ -1,0 +1,9 @@
+{
+  "embedding_model": "text-embedding-3-small",
+  "dim": 1536,
+  "course": "CS109",
+  "chunk_file": "question_bank_test_data/chunks/CS109.jsonl",
+  "chunk_file_sha256": "fc91a15cff5b9750875096236d1908929e7e43f653a514c3c426276ec6fc99e5",
+  "num_vectors": 16,
+  "created_at": "2026-04-18T05:01:07Z"
+}

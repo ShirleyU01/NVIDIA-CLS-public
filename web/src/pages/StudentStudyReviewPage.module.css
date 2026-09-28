@@ -1,0 +1,206 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 32px 20px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.title {
+  font-size: 28px;
+  margin: 0;
+  color: var(--color-ink);
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+/* ---------- Loader ---------- */
+
+.loaderPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 24px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  color: var(--color-text);
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 3px solid color-mix(in srgb, var(--color-sage-700) 20%, transparent);
+  border-top-color: var(--color-sage-700);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loaderText {
+  font-size: 16px;
+  margin: 0;
+  color: var(--color-ink);
+}
+
+.loaderHint {
+  font-size: 13px;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+/* ---------- Feedback card ---------- */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text);
+}
+
+.multiBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 16px;
+  margin-top: 8px;
+  border-top: 1px solid var(--color-border);
+}
+
+.multiBlock:first-child {
+  padding-top: 0;
+  margin-top: 0;
+  border-top: none;
+}
+
+.questionTitle {
+  font-size: 19px;
+  margin: 0;
+  color: var(--color-ink);
+}
+
+.placeholder {
+  font-size: 15px;
+  color: var(--color-muted);
+}
+
+/* ---------- Standardized narrative sections ---------- */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sectionTitle {
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0;
+  color: var(--color-sage-700);
+}
+
+.sectionList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.sectionItem {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+.sectionItemMarkdown {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.sectionItemMarkdown :global(p) {
+  margin: 0;
+}
+
+.sectionEmpty {
+  font-size: 14px;
+  color: var(--color-muted);
+  font-style: italic;
+  margin: 0;
+}
+
+/* "Next steps" reads as advice — tint with terracotta so it pops. */
+.sectionNext .sectionTitle {
+  color: var(--color-clay-700);
+}
+
+.sectionNext .sectionItem {
+  color: var(--color-ink);
+}
+
+/* ---------- Footer / errors ---------- */
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.doneLink {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-size: 14px;
+  color: var(--color-sage-700);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.doneLink:hover {
+  text-decoration: underline;
+}
+
+.doneLink:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  color: var(--color-red-700);
+  font-size: 13px;
+  margin: 0;
+}
