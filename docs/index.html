@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Socrates — a spoken exam that can show its work</title>
+  <meta name="description" content="Socrates is an edge system for oral exams and paper practice on NVIDIA Jetson. Scores are kept only when they point at a transcript quote or a captured frame." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:opsz,wght@6..72,450;6..72,560;6..72,650&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f4f0e6;
+      --sheet: #fbf8f1;
+      --ink: #1c1a16;
+      --muted: #5e584e;
+      --line: #d8d0c2;
+      --accent: #1d4a40;
+      --accent-soft: #e5efe9;
+      --dark: #171613;
+      --dark-muted: #c8c0b2;
+      --dark-line: #3a362f;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", "Helvetica Neue", sans-serif;
+      font-size: 17px;
+      line-height: 1.55;
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--ink); }
+
+    .wrap {
+      width: min(1080px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    header.top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 24px;
+      padding: 28px 0 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .mark {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 22px;
+      font-weight: 560;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    nav {
+      display: flex;
+      gap: 22px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    nav a { color: var(--muted); text-decoration: none; }
+    nav a:hover { color: var(--ink); }
+
+    .hero { padding: 72px 0 28px; }
+    .eyebrow {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 18px;
+    }
+    h1 {
+      font-family: "Newsreader", Georgia, serif;
+      font-weight: 560;
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      margin: 0 0 24px;
+      max-width: 16ch;
+    }
+    .lede {
+      max-width: 62ch;
+      font-size: 19px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin: 56px 0 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .fact {
+      padding: 22px 22px 22px 0;
+    }
+    .fact + .fact { padding-left: 22px; border-left: 1px solid var(--line); }
+    .fact strong {
+      display: block;
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 22px;
+      font-weight: 560;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+    .fact span { color: var(--muted); font-size: 15px; }
+
+    section { padding: 88px 0; }
+    section h2 {
+      font-family: "Newsreader", Georgia, serif;
+      font-weight: 560;
+      font-size: clamp(32px, 4vw, 44px);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin: 0 0 18px;
+    }
+    .section-kicker {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 12px;
+    }
+    .intro {
+      max-width: 62ch;
+      color: var(--muted);
+      margin: 0 0 36px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--line);
+    }
+    .mode { padding: 28px 36px 8px 0; }
+    .mode + .mode {
+      padding: 28px 0 8px 36px;
+      border-left: 1px solid var(--line);
+    }
+    .mode h3 {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 28px;
+      font-weight: 560;
+      margin: 0 0 8px;
+    }
+    .mode p { margin: 0 0 18px; color: var(--muted); }
+    ol.steps {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: step;
+    }
+    ol.steps li {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 10px;
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+      font-size: 15.5px;
+    }
+    ol.steps li::before {
+      content: counter(step, decimal-leading-zero);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--accent);
+      padding-top: 3px;
+    }
+
+    .rail { display: grid; gap: 0; }
+    .stage {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 8px;
+      padding: 22px 0;
+      border-top: 1px solid var(--line);
+    }
+    .stage:last-child { border-bottom: 1px solid var(--line); }
+    .stage .n {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--accent);
+      padding-top: 6px;
+    }
+    .stage h3 {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 26px;
+      font-weight: 560;
+      margin: 0 0 6px;
+    }
+    .stage p { margin: 0; color: var(--muted); max-width: 68ch; }
+
+    .check {
+      background: var(--dark);
+      color: #f6f1e7;
+    }
+    .check .section-kicker { color: #8fbfb2; }
+    .check .intro { color: var(--dark-muted); }
+    .check-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .check h2 { max-width: 14ch; }
+    .rules { margin: 28px 0 0; padding: 0; list-style: none; }
+    .rules li {
+      padding: 14px 0;
+      border-top: 1px solid var(--dark-line);
+      color: var(--dark-muted);
+    }
+    .rules strong { color: #f6f1e7; font-weight: 500; }
+
+    .packet {
+      background: #211f1b;
+      border: 1px solid var(--dark-line);
+      padding: 22px 22px 18px;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 13px;
+      line-height: 1.65;
+      color: #e7e0d4;
+    }
+    .packet .label {
+      display: block;
+      margin-bottom: 14px;
+      color: #8fbfb2;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .packet .k { color: #8d877b; }
+    .packet .ok { color: #b7d7c8; }
+    .packet .note {
+      margin-top: 16px;
+      color: #8d877b;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 13px;
+    }
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .flow span {
+      border: 1px solid var(--line);
+      background: var(--sheet);
+      padding: 10px 12px;
+      font-size: 14px;
+    }
+    .flow span em {
+      display: block;
+      font-style: normal;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .take {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 48px;
+    }
+    .take p { margin: 0 0 16px; color: var(--muted); }
+    .take p:last-child { margin: 0; }
+
+    .map {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+    .map th {
+      text-align: left;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0 16px 10px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .map td {
+      padding: 14px 16px 14px 0;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .map code {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 13px;
+      color: var(--accent);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0 48px;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    footer a { color: var(--ink); }
+
+    @media (max-width: 800px) {
+      .wrap { width: min(1080px, calc(100% - 32px)); }
+      header.top, footer { flex-direction: column; align-items: flex-start; }
+      nav { flex-wrap: wrap; gap: 12px 18px; }
+      .facts, .split, .check-grid, .take, .stage {
+        grid-template-columns: 1fr;
+      }
+      .fact + .fact, .mode + .mode {
+        border-left: 0;
+        padding-left: 0;
+        border-top: 1px solid var(--line);
+      }
+      .mode { padding-right: 0; }
+      .hero { padding-top: 48px; }
+      section { padding: 64px 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="mark" href="#top">Socrates</a>
+      <nav>
+        <a href="#modes">Two modes</a>
+        <a href="#system">System</a>
+        <a href="#check">The check</a>
+        <a href="#code">Code</a>
+        <a href="https://github.com/ShirleyU01/NVIDIA-CLS-public">Repository</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <p class="eyebrow">Project case study · edge AI for assessment</p>
+        <h1>A spoken exam that can show its work.</h1>
+        <p class="lede">
+          Socrates runs on an NVIDIA Jetson, beside the student. It speaks a question, listens, and can photograph the work on the page. When a score is produced, each claim has to match a line the student actually said, or a frame the camera actually captured. If it cannot, the system flags the gap instead of hiding it.
+        </p>
+        <div class="facts">
+          <div class="fact">
+            <strong>On the device</strong>
+            <span>Speech, voice, and camera stay on the Jetson. The class record lives on a central API.</span>
+          </div>
+          <div class="fact">
+            <strong>Two products</strong>
+            <span>A spoken exam for assessment, and a paper study session for practice with feedback in the moment.</span>
+          </div>
+          <div class="fact">
+            <strong>A score with a trail</strong>
+            <span>Transcript quotes must be exact substrings. Timestamps must come from a real capture.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="modes">
+        <p class="section-kicker">What a student does</p>
+        <h2>One device, two kinds of session.</h2>
+        <p class="intro">
+          Oral exams show understanding that a multiple-choice form misses. They also do not scale, and a model score with no source is not something a teacher can stand behind. Socrates splits that problem into a high-stakes spoken exam and a lower-stakes study loop.
+        </p>
+        <div class="split">
+          <article class="mode">
+            <h3>Oral exam</h3>
+            <p>The proctor conducts the exam out loud. The session is the record: video, a timestamped transcript, and screenshots.</p>
+            <ol class="steps">
+              <li>The device speaks the question with Piper, a local text-to-speech voice.</li>
+              <li>The student answers. faster-whisper transcribes on the Jetson, with a short domain prompt so technical terms survive.</li>
+              <li>The proctor can ask a follow-up, then move on.</li>
+              <li>The camera can grab the moment the student points at written work.</li>
+              <li>The finished folder — recording, transcript, images — is what grading reads.</li>
+            </ol>
+          </article>
+          <article class="mode">
+            <h3>Study mode</h3>
+            <p>Practice, not a recorded exam. The student works on paper, shows the page, and gets feedback before the session ends.</p>
+            <ol class="steps">
+              <li>Pick a course, a topic, and how many questions. The bank selects ones this student has not already seen.</li>
+              <li>Solve it on paper. Frame the page. Up to five captures per question.</li>
+              <li>A vision model reads the writing and returns feedback the student can see immediately.</li>
+              <li>An “ask me anything” tutor stays on that problem, including the math.</li>
+              <li>Ending the run writes three things: takeaways, what to improve, and a next step. The teacher dashboard reads the same run.</li>
+            </ol>
+          </article>
+        </div>
+      </section>
+
+      <section id="system">
+        <p class="section-kicker">How it is put together</p>
+        <h2>Four parts. The session is the object they share.</h2>
+        <p class="intro">
+          Course material becomes a question. The Jetson runs the session. A central service keeps rubrics, students, and reviews. A separate pipeline turns the session into a packet a person can audit.
+        </p>
+        <div class="rail">
+          <article class="stage">
+            <div class="n">01</div>
+            <div>
+              <h3>Question bank</h3>
+              <p>Lecture and exam PDFs are parsed, chunked without a model, embedded in FAISS, and retrieved by topic. Generation and evaluation are later stages, checkpointed on disk, so a failed question does not force the course to be parsed again. The export is the flat exam JSON the proctor already knows how to ask.</p>
+            </div>
+          </article>
+          <article class="stage">
+            <div class="n">02</div>
+            <div>
+              <h3>Jetson runtime</h3>
+              <p>A local FastAPI service drives the student UI. Speech-to-text, text-to-speech, and the camera sit next to the person taking the exam. Session files are written on the device: recording, transcript, paper photos, and study metrics.</p>
+            </div>
+          </article>
+          <article class="stage">
+            <div class="n">03</div>
+            <div>
+              <h3>Central API and web app</h3>
+              <p>FastAPI and SQLite hold rubrics, assessments, student identity, question history, and session status. One React app serves both roles: the student flow on the device, and a teacher console for assessments, session detail, study metrics, and a written review with final scores and comments.</p>
+            </div>
+          </article>
+          <article class="stage">
+            <div class="n">04</div>
+            <div>
+              <h3>Evidence packet</h3>
+              <p>Given a rubric and a normalized session, the pipeline asks a model to score each criterion and attach evidence. The model is swappable. The checks underneath it are not. The teacher’s review is stored beside the packet, so the model draft and the human decision stay distinct.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <section class="check" id="check">
+    <div class="wrap">
+      <div class="check-grid">
+        <div>
+          <p class="section-kicker">The part worth walking through</p>
+          <h2>The model proposes. The code decides what is allowed to stand.</h2>
+          <p class="intro">
+            An unconstrained grader can invent a quotation. Socrates treats the model output as untrusted until it survives a deterministic pass over the session that actually happened.
+          </p>
+          <ul class="rules">
+            <li><strong>A quote has to occur.</strong> Every transcript quote must be an exact substring of a student answer. A paraphrase is a flag, not evidence.</li>
+            <li><strong>A time has to exist.</strong> A timestamp must match a screenshot from that session, or both ends are null and the missing time is flagged.</li>
+            <li><strong>A positive score needs support.</strong> If the score is above zero and the evidence list is empty, the item is flagged <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px;">score_without_evidence</span>.</li>
+            <li><strong>Confidence is a number in range.</strong> Anything outside 0 to 1 is rejected as a flag, not quietly clamped.</li>
+          </ul>
+        </div>
+        <aside class="packet" aria-label="Illustrative evidence item">
+          <span class="label">Illustrative item · not a real session</span>
+          <div><span class="k">criterion</span>  States uncertainty, not a point estimate</div>
+          <div><span class="k">score</span>      2 / 2</div>
+          <div><span class="k">evidence</span>   transcript_quote</div>
+          <div>           “not exactly 0.6 after thirty trials”</div>
+          <div><span class="k">t0, t1</span>     42.0, 42.0</div>
+          <div><span class="k">check</span>      quote ⊆ student answer</div>
+          <div>           timestamp ∈ captured frames</div>
+          <div><span class="k">flag</span>       <span class="ok">none</span></div>
+          <p class="note">
+            The same function returns flags such as <em>invalid_quote_not_found_in_answers</em> and <em>invalid_timestamp_not_in_screenshots</em> when the support is not in the session. Those names are the real ones in <em>integration/evidence_packet/validation.py</em>.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section id="bank">
+      <p class="section-kicker">From a syllabus to a question the device can ask</p>
+      <h2>The course is a pipeline, not a prompt.</h2>
+      <p class="intro">
+        The bank was built against a probability course, CS109: lectures, exams, and review notes. Each stage writes a checkpoint. Embeddings are a FAISS index plus a sidecar of chunk metadata, so a later vector database can replace the index without rewriting generation.
+      </p>
+      <div class="flow" aria-label="Question bank stages">
+        <span><em>01</em>Ingest PDFs</span>
+        <span><em>02</em>Chunk by document type</span>
+        <span><em>03</em>Embed</span>
+        <span><em>04</em>Retrieve by topic</span>
+        <span><em>05</em>Generate</span>
+        <span><em>06</em>Evaluate</span>
+        <span><em>07</em>Export exam JSON</span>
+      </div>
+    </section>
+
+    <section id="read">
+      <div class="take">
+        <div>
+          <p class="section-kicker">Why this is the project to show</p>
+          <h2>It is a system, and the risky part is checked.</h2>
+        </div>
+        <div>
+          <p>
+            A company reading this should see three decisions, not a feature list. The interaction runs on the device, because an oral exam is a camera, a microphone, and a person in the same room. The durable record is separate, because teachers, rubrics, and reviews outlive one Jetson. And the model is not the grader of record: it proposes a score, and ordinary code checks whether the evidence is real.
+          </p>
+          <p>
+            The surface area matches that. There is a student flow and a teacher flow in one web app, a runtime for the spoken exam, a study loop with paper capture and a tutor, a question bank with stages you can rerun, and tests around the packet, the study feedback, and the bank.
+          </p>
+          <p>
+            The public repository is the code and the course materials. Student sessions and recordings are not in it.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="code">
+      <p class="section-kicker">Where to open the code</p>
+      <h2>Start in these files.</h2>
+      <table class="map">
+        <thead>
+          <tr><th>Path</th><th>What it is</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>jetson_runtime/proctor.py</code></td>
+            <td>The spoken exam: ask, listen, follow up, capture.</td>
+          </tr>
+          <tr>
+            <td><code>jetson_runtime/stt/stt_service.py</code></td>
+            <td>faster-whisper on the device.</td>
+          </tr>
+          <tr>
+            <td><code>integration/evidence_packet/validation.py</code></td>
+            <td>The checks that a quote and a timestamp have to pass.</td>
+          </tr>
+          <tr>
+            <td><code>integration/evidence_packet/pipeline.py</code></td>
+            <td>Load rubric and session, score each criterion, assemble the packet.</td>
+          </tr>
+          <tr>
+            <td><code>question_bank/pipeline.py</code></td>
+            <td>Orchestrates ingest through export.</td>
+          </tr>
+          <tr>
+            <td><code>backend/routes/sessions.py</code></td>
+            <td>Session detail, artifacts, and the teacher review.</td>
+          </tr>
+          <tr>
+            <td><code>web/src/pages/</code></td>
+            <td>Student exam, study mode, and the teacher console.</td>
+          </tr>
+          <tr>
+            <td><code>docs/</code></td>
+            <td>System design, the study-mode brief, and the packet plan.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      <div>Socrates · oral exam, study mode, and evidence packets.</div>
+      <a href="https://github.com/ShirleyU01/NVIDIA-CLS-public">github.com/ShirleyU01/NVIDIA-CLS-public</a>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,5 +1,7 @@
 ## Socrates Oral Exam, Study Mode & Evidence Packet
 
+**Case study:** [A spoken exam that can show its work](https://shirleyu01.github.io/NVIDIA-CLS-public/) — the shareable overview of what this system is, how the Jetson exam and the evidence check fit together, and where to read the code.
+
 This repo contains the core pieces of the **Socrates** system for running spoken exams and AI-guided study sessions on Jetson devices, normalizing the resulting artifacts, generating verifiable LLM-backed evidence packets, and surfacing student usage metrics for teachers.
 
 **Quick links:** [Code structure](#code-structure-overview) · [Setup instructions](#setup-instructions) · [Question bank pipeline](#question-bank-pipeline) · [Full-stack quick start](#full-stack-quick-start-real-apis--db) · [Study Mode](#running-study-mode) · [Central backend API](#central-backend-fastapi) · [Testing](#testing)
