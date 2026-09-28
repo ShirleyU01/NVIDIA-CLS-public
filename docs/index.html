@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Socrates — a spoken exam that can show its work</title>
-  <meta name="description" content="Socrates is an edge system for oral exams and paper practice on NVIDIA Jetson. Scores are kept only when they point at a transcript quote or a captured frame." />
+  <meta name="description" content="Socrates is an edge system for oral exams and paper practice, built in Stanford CS210A/B with NVIDIA and piloted in CS109. Scores are kept only when they point at a transcript quote or a captured frame." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:opsz,wght@6..72,450;6..72,560;6..72,650&display=swap" rel="stylesheet" />
@@ -111,6 +111,13 @@
       margin-bottom: 6px;
     }
     .fact span { color: var(--muted); font-size: 15px; }
+    .facts.context { margin-top: 0; border-top: 0; grid-template-columns: repeat(4, 1fr); }
+    .teamline {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .teamline a { color: var(--ink); }
 
     section { padding: 88px 0; }
     section h2 {
@@ -311,11 +318,17 @@
     }
     footer a { color: var(--ink); }
 
+    @media (max-width: 980px) {
+      .facts.context { grid-template-columns: 1fr 1fr; }
+      .facts.context .fact:nth-child(3) { border-left: 0; padding-left: 0; }
+      .facts.context .fact:nth-child(n + 3) { border-top: 1px solid var(--line); }
+    }
+
     @media (max-width: 800px) {
       .wrap { width: min(1080px, calc(100% - 32px)); }
       header.top, footer { flex-direction: column; align-items: flex-start; }
       nav { flex-wrap: wrap; gap: 12px 18px; }
-      .facts, .split, .check-grid, .take, .stage {
+      .facts, .facts.context, .split, .check-grid, .take, .stage {
         grid-template-columns: 1fr;
       }
       .fact + .fact, .mode + .mode {
@@ -344,7 +357,7 @@
 
     <main id="top">
       <section class="hero">
-        <p class="eyebrow">Project case study · edge AI for assessment</p>
+        <p class="eyebrow">Stanford CS210A/B · with NVIDIA</p>
         <h1>A spoken exam that can show its work.</h1>
         <p class="lede">
           Socrates runs on an NVIDIA Jetson, beside the student. It speaks a question, listens, and can photograph the work on the page. When a score is produced, each claim has to match a line the student actually said, or a frame the camera actually captured. If it cannot, the system flags the gap instead of hiding it.
@@ -363,6 +376,25 @@
             <span>Transcript quotes must be exact substrings. Timestamps must come from a real capture.</span>
           </div>
         </div>
+        <div class="facts context">
+          <div class="fact">
+            <strong>CS210A/B</strong>
+            <span>Stanford Industry Innovation Lab, in collaboration with NVIDIA.</span>
+          </div>
+          <div class="fact">
+            <strong>Team of four</strong>
+            <span>Alfred Yu, Shirley Yu, Aya Aburous, and Jad Bitar.</span>
+          </div>
+          <div class="fact">
+            <strong>CS109 pilot</strong>
+            <span>50+ students across 89 study sessions.</span>
+          </div>
+          <div class="fact">
+            <strong>NVIDIA award</strong>
+            <span>Won at the end of the quarter.</span>
+          </div>
+        </div>
+        <p class="teamline">Team deck: <a href="https://docs.google.com/presentation/d/1DrCBaUoLtRfTOH6J1aFKBzsz0-z7lgn4dmX9f20DyFc/edit?usp=sharing">The Dropouts — Socrates</a>.</p>
       </section>
 
       <section id="modes">
@@ -501,6 +533,9 @@
           </p>
           <p>
             The surface area matches that. There is a student flow and a teacher flow in one web app, a runtime for the spoken exam, a study loop with paper capture and a tutor, a question bank with stages you can rerun, and tests around the packet, the study feedback, and the bank.
+          </p>
+          <p>
+            We built it as a team of four in Stanford CS210A/B, with NVIDIA as the collaborating company. Study mode was then piloted in Stanford CS109 with 50+ students across 89 sessions. NVIDIA gave the project its award at the end of the quarter.
           </p>
           <p>
             The public repository is the code and the course materials. Student sessions and recordings are not in it.
