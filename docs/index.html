@@ -40,18 +40,43 @@
       margin: 0 auto;
     }
 
-    a.open-app {
-      display: block;
+    .open-app {
       background: var(--accent);
       color: var(--paper);
-      text-align: center;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      padding: 12px 16px;
     }
-    a.open-app:hover { color: var(--paper); background: var(--ink); }
+    .open-app .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 18px 0;
+    }
+    .open-app p {
+      margin: 0;
+      max-width: 62ch;
+      color: #e7f2ee;
+      font-size: 15px;
+    }
+    .open-app strong {
+      display: block;
+      color: var(--paper);
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 28px;
+      font-weight: 560;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .open-app a {
+      flex: 0 0 auto;
+      background: var(--paper);
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 12px 18px;
+    }
+    .open-app a:hover { color: var(--ink); }
 
     header.top {
       display: flex;
@@ -339,7 +364,7 @@
 
     @media (max-width: 800px) {
       .wrap { width: min(1080px, calc(100% - 32px)); }
-      header.top, footer { flex-direction: column; align-items: flex-start; }
+      header.top, footer, .open-app .wrap { flex-direction: column; align-items: flex-start; }
       nav { flex-wrap: wrap; gap: 12px 18px; }
       .facts, .facts.context, .split, .check-grid, .take, .stage {
         grid-template-columns: 1fr;
@@ -356,7 +381,15 @@
   </style>
 </head>
 <body>
-  <a class="open-app" href="https://shirleyu01.github.io/NVIDIA-CLS-public/app/">Open the app</a>
+  <div class="open-app">
+    <div class="wrap">
+      <p>
+        <strong>The app is open in the browser.</strong>
+        Sample exams are already loaded. No install. For the teacher side, sign in with teacher / dropouts210.
+      </p>
+      <a href="https://shirleyu01.github.io/NVIDIA-CLS-public/app/">Open the app</a>
+    </div>
+  </div>
   <div class="wrap">
     <header class="top">
       <a class="mark" href="#top">Socrates</a>
@@ -365,7 +398,6 @@
         <a href="#system">System</a>
         <a href="#check">The check</a>
         <a href="#code">Code</a>
-        <a href="https://shirleyu01.github.io/NVIDIA-CLS-public/app/">Open the app</a>
         <a href="https://github.com/ShirleyU01/NVIDIA-CLS-public">Repository</a>
       </nav>
     </header>
