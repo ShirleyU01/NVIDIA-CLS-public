@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Socrates — a spoken exam that can show its work</title>
-  <meta name="description" content="Socrates is an edge system for oral exams and paper practice, built in Stanford CS210A/B with NVIDIA and piloted in CS109. Scores are kept only when they point at a transcript quote or a captured frame." />
+  <title>Socrates — an oral exam for when working code is not enough</title>
+  <meta name="description" content="Socrates is a multimodal oral-exam system built with NVIDIA in Stanford CS210A/B. A hybrid Jetson and cloud design, piloted in CS109 with 50+ students across 89 sessions." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:opsz,wght@6..72,450;6..72,560;6..72,650&display=swap" rel="stylesheet" />
@@ -394,9 +394,9 @@
     <header class="top">
       <a class="mark" href="#top">Socrates</a>
       <nav>
-        <a href="#modes">Two modes</a>
-        <a href="#system">System</a>
-        <a href="#check">The check</a>
+        <a href="#problem">Problem</a>
+        <a href="#architecture">Redesign</a>
+        <a href="#pilot">CS109</a>
         <a href="#code">Code</a>
         <a href="https://github.com/ShirleyU01/NVIDIA-CLS-public">Repository</a>
       </nav>
@@ -405,187 +405,162 @@
     <main id="top">
       <section class="hero">
         <p class="eyebrow">Stanford CS210A/B · with NVIDIA</p>
-        <h1>A spoken exam that can show its work.</h1>
+        <h1>Working code is no longer the proof.</h1>
         <p class="lede">
-          Socrates runs on an NVIDIA Jetson, beside the student. It speaks a question, listens, and can photograph the work on the page. When a score is produced, each claim has to match a line the student actually said, or a frame the camera actually captured. If it cannot, the system flags the gap instead of hiding it.
+          Coding agents make a finished project easy to produce, so a submission by itself says less about what a student understands. Instructors at CMU and Stanford described the same shift: ask students to explain their reasoning, defend a design choice, and answer a follow-up out loud. Socrates is the multimodal oral exam we built for that conversation, with NVIDIA.
         </p>
-        <div class="facts">
-          <div class="fact">
-            <strong>On the device</strong>
-            <span>Speech, voice, and camera stay on the Jetson. The class record lives on a central API.</span>
-          </div>
-          <div class="fact">
-            <strong>Two products</strong>
-            <span>A spoken exam for assessment, and a paper study session for practice with feedback in the moment.</span>
-          </div>
-          <div class="fact">
-            <strong>A score with a trail</strong>
-            <span>Transcript quotes must be exact substrings. Timestamps must come from a real capture.</span>
-          </div>
-        </div>
         <div class="facts context">
           <div class="fact">
-            <strong>CS210A/B</strong>
-            <span>Stanford Industry Innovation Lab, in collaboration with NVIDIA.</span>
+            <strong>50+ students</strong>
+            <span>Piloted in Stanford CS109, Probability for Computer Scientists.</span>
           </div>
           <div class="fact">
-            <strong>Team of four</strong>
-            <span>Alfred Yu, Shirley Yu, Aya Aburous, and Jad Bitar.</span>
+            <strong>89 sessions</strong>
+            <span>Real class use, then another pass on follow-ups, questions, capture, and speed.</span>
           </div>
           <div class="fact">
-            <strong>CS109 pilot</strong>
-            <span>50+ students across 89 study sessions.</span>
+            <strong>600+ questions</strong>
+            <span>Generated for the course, grounded in the material, and asked across those sessions.</span>
           </div>
           <div class="fact">
-            <strong>NVIDIA award</strong>
-            <span>Won at the end of the quarter.</span>
+            <strong>150+ chats</strong>
+            <span>Students kept talking with the system after the question, inside the same session.</span>
           </div>
         </div>
-        <p class="teamline"><a href="https://drive.google.com/drive/folders/1M867FOX_EmWp5n82QwIgs64iXkkMAjRO">Promo video</a></p>
+        <p class="teamline">
+          A team of four — Alfred Yu, Shirley Yu, Aya Aburous, and Jad Bitar — in Stanford CS210A/B, Industry Innovation Lab, with NVIDIA. NVIDIA’s award at the end of the quarter.
+          <a href="https://drive.google.com/drive/folders/1M867FOX_EmWp5n82QwIgs64iXkkMAjRO">Promo video</a>.
+        </p>
       </section>
 
-      <section id="modes">
-        <p class="section-kicker">What a student does</p>
-        <h2>One device, two kinds of session.</h2>
+      <section id="problem">
+        <p class="section-kicker">What instructors actually asked for</p>
+        <h2>A useful oral exam remembers the conversation.</h2>
         <p class="intro">
-          Oral exams show understanding that a multiple-choice form misses. They also do not scale, and a model score with no source is not something a teacher can stand behind. Socrates splits that problem into a high-stakes spoken exam and a lower-stakes study loop.
+          The early conversations were with professors and instructors at CMU and Stanford. The recurring theme was oral assessment: one student, one course, many turns.
+        </p>
+        <ol class="steps">
+          <li>Remember what the student already said, and treat the session as one conversation.</li>
+          <li>Ask a follow-up when the explanation is incomplete, in the moment.</li>
+          <li>Stay on the course material, using the lectures and exams as the source.</li>
+          <li>Leave a structured record a teacher can use later, tied to the transcript and to what the camera saw.</li>
+        </ol>
+      </section>
+
+      <section id="architecture">
+        <p class="section-kicker">The first design, and why it changed</p>
+        <h2>Everything fit on the Jetson until we ran it together.</h2>
+        <p class="intro">
+          We started on an NVIDIA Jetson Orin Nano so the exam could stay private, feel responsive, and keep going when the network was poor. Speech, vision, and a local language model each worked on their own.
         </p>
         <div class="split">
           <article class="mode">
-            <h3>Oral exam</h3>
-            <p>The proctor conducts the exam out loud. The session is the record: video, a timestamped transcript, and screenshots.</p>
+            <h3>On the device</h3>
+            <p>The student-facing loop: hear the answer, speak the next question, and watch for a moment worth saving.</p>
             <ol class="steps">
-              <li>The device speaks the question with Piper, a local text-to-speech voice.</li>
-              <li>The student answers. faster-whisper transcribes on the Jetson, with a short domain prompt so technical terms survive.</li>
-              <li>The proctor can ask a follow-up, then move on.</li>
-              <li>The camera can grab the moment the student points at written work.</li>
-              <li>The finished folder — recording, transcript, images — is what grading reads.</li>
+              <li>Speech in and speech out, next to the student.</li>
+              <li>A camera for the diagram, the equation, or the place they point.</li>
+              <li>A local model for the turns that have to feel immediate.</li>
             </ol>
           </article>
           <article class="mode">
-            <h3>Study mode</h3>
-            <p>Practice, not a recorded exam. The student works on paper, shows the page, and gets feedback before the session ends.</p>
+            <h3>What broke</h3>
+            <p>Voice, video, and model inference competed for the same memory and compute. End to end, the pause was too long for a natural conversation.</p>
             <ol class="steps">
-              <li>Pick a course, a topic, and how many questions. The bank selects ones this student has not already seen.</li>
-              <li>Solve it on paper. Frame the page. Up to five captures per question.</li>
-              <li>A vision model reads the writing and returns feedback the student can see immediately.</li>
-              <li>An “ask me anything” tutor stays on that problem, including the math.</li>
-              <li>Ending the run writes three things: takeaways, what to improve, and a next step. The teacher dashboard reads the same run.</li>
+              <li>Each piece was fine alone.</li>
+              <li>Together, the Orin Nano could not keep the dialogue moving.</li>
+              <li>Forcing the heavy work onto the device made the exam feel stalled.</li>
             </ol>
           </article>
         </div>
       </section>
 
-      <section id="system">
-        <p class="section-kicker">How it is put together</p>
-        <h2>Four parts. The session is the object they share.</h2>
-        <p class="intro">
-          Course material becomes a question. The Jetson runs the session. A central service keeps rubrics, students, and reviews. A separate pipeline turns the session into a packet a person can audit.
-        </p>
-        <div class="rail">
-          <article class="stage">
-            <div class="n">01</div>
-            <div>
-              <h3>Question bank</h3>
-              <p>Lecture and exam PDFs are parsed, chunked without a model, embedded in FAISS, and retrieved by topic. Generation and evaluation are later stages, checkpointed on disk, so a failed question does not force the course to be parsed again. The export is the flat exam JSON the proctor already knows how to ask.</p>
-            </div>
-          </article>
-          <article class="stage">
-            <div class="n">02</div>
-            <div>
-              <h3>Jetson runtime</h3>
-              <p>A local FastAPI service drives the student UI. Speech-to-text, text-to-speech, and the camera sit next to the person taking the exam. Session files are written on the device: recording, transcript, paper photos, and study metrics.</p>
-            </div>
-          </article>
-          <article class="stage">
-            <div class="n">03</div>
-            <div>
-              <h3>Central API and web app</h3>
-              <p>FastAPI and SQLite hold rubrics, assessments, student identity, question history, and session status. One React app serves both roles: the student flow on the device, and a teacher console for assessments, session detail, study metrics, and a written review with final scores and comments.</p>
-            </div>
-          </article>
-          <article class="stage">
-            <div class="n">04</div>
-            <div>
-              <h3>Evidence packet</h3>
-              <p>Given a rubric and a normalized session, the pipeline asks a model to score each criterion and attach evidence. The model is swappable. The checks underneath it are not. The teacher’s review is stored beside the packet, so the model draft and the human decision stay distinct.</p>
-            </div>
-          </article>
-        </div>
-      </section>
     </main>
   </div>
 
-  <section class="check" id="check">
+  <section class="check" id="hybrid">
     <div class="wrap">
       <div class="check-grid">
         <div>
-          <p class="section-kicker">The part worth walking through</p>
-          <h2>The model proposes. The code decides what is allowed to stand.</h2>
+          <p class="section-kicker">The redesign</p>
+          <h2>Keep the conversation on the device. Send the heavy work to the cloud.</h2>
           <p class="intro">
-            An unconstrained grader can invent a quotation. Socrates treats the model output as untrusted until it survives a deterministic pass over the session that actually happened.
+            We split the system. The parts a student waits on stay on the Jetson. Heavier inference runs in the cloud, asynchronously, so a slow call does not freeze the turn they are in. A FastAPI layer routes that work and holds session state across the whole exam.
           </p>
+        </div>
+        <div>
           <ul class="rules">
-            <li><strong>A quote has to occur.</strong> Every transcript quote must be an exact substring of a student answer. A paraphrase is a flag, not evidence.</li>
-            <li><strong>A time has to exist.</strong> A timestamp must match a screenshot from that session, or both ends are null and the missing time is flagged.</li>
-            <li><strong>A positive score needs support.</strong> If the score is above zero and the evidence list is empty, the item is flagged <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px;">score_without_evidence</span>.</li>
-            <li><strong>Confidence is a number in range.</strong> Anything outside 0 to 1 is rejected as a flag, not quietly clamped.</li>
+            <li><strong>On the Jetson.</strong> Speech, the camera, and the turn the student is in right now.</li>
+            <li><strong>In the cloud.</strong> The heavier language-model work, off the critical path of the live loop.</li>
+            <li><strong>One session record.</strong> FastAPI tracks the multi-turn exam so each answer still belongs to the same conversation.</li>
+            <li><strong>About 30% lower interactive latency</strong> after the split, compared with running the full stack on the Orin Nano.</li>
           </ul>
         </div>
-        <aside class="packet" aria-label="Illustrative evidence item">
-          <span class="label">Illustrative item · not a real session</span>
-          <div><span class="k">criterion</span>  States uncertainty, not a point estimate</div>
-          <div><span class="k">score</span>      2 / 2</div>
-          <div><span class="k">evidence</span>   transcript_quote</div>
-          <div>           “not exactly 0.6 after thirty trials”</div>
-          <div><span class="k">t0, t1</span>     42.0, 42.0</div>
-          <div><span class="k">check</span>      quote ⊆ student answer</div>
-          <div>           timestamp ∈ captured frames</div>
-          <div><span class="k">flag</span>       <span class="ok">none</span></div>
-          <p class="note">
-            The same function returns flags such as <em>invalid_quote_not_found_in_answers</em> and <em>invalid_timestamp_not_in_screenshots</em> when the support is not in the session. Those names are the real ones in <em>integration/evidence_packet/validation.py</em>.
-          </p>
-        </aside>
       </div>
     </div>
   </section>
 
   <div class="wrap">
-    <section id="bank">
-      <p class="section-kicker">From a syllabus to a question the device can ask</p>
-      <h2>The course is a pipeline, not a prompt.</h2>
+    <section id="vision">
+      <p class="section-kicker">Seeing the board without watching every frame</p>
+      <h2>Students say “this part.” They rarely say “take a picture.”</h2>
       <p class="intro">
-        The bank was built against a probability course, CS109: lectures, exams, and review notes. Each stage writes a checkpoint. Embeddings are a FAISS index plus a sidecar of chunk metadata, so a later vector database can replace the index without rewriting generation.
+        In an oral exam someone draws a diagram, writes an equation, or points while they talk. Running vision on every frame would have spent the budget we had just moved off the device. The speech stream listens for those cues. A trigger grabs one frame, stores it with that turn, and later analysis can read the picture next to the transcript.
       </p>
-      <div class="flow" aria-label="Question bank stages">
-        <span><em>01</em>Ingest PDFs</span>
-        <span><em>02</em>Chunk by document type</span>
-        <span><em>03</em>Embed</span>
-        <span><em>04</em>Retrieve by topic</span>
-        <span><em>05</em>Generate</span>
-        <span><em>06</em>Evaluate</span>
-        <span><em>07</em>Export exam JSON</span>
+      <div class="flow" aria-label="How a visual cue becomes evidence">
+        <span><em>01</em>Student says “here” or “this part”</span>
+        <span><em>02</em>The cue is caught in the speech stream</span>
+        <span><em>03</em>One frame is saved with that turn</span>
+        <span><em>04</em>Transcript and image stay together</span>
       </div>
     </section>
 
-    <section id="read">
+    <section id="grounding">
+      <p class="section-kicker">Questions that belong to the course</p>
+      <h2>Retrieval, a fixed output shape, and memory of the session.</h2>
+      <p class="intro">
+        Follow-ups are only useful if they know the course and what this student already said. Course PDFs are chunked and indexed with FAISS. Generation is constrained to a schema, so a question arrives as structured fields the exam can ask and a teacher can review. Session state carries the conversation forward, so the next question is a response to the last answer.
+      </p>
+      <div class="rail">
+        <article class="stage">
+          <div class="n">01</div>
+          <div>
+            <h3>FAISS over the course</h3>
+            <p>Lectures and exams for CS109 are retrieved by topic. The question is grounded in that material, and the pipeline checkpoints each stage so a failed generation does not re-parse the course.</p>
+          </div>
+        </article>
+        <article class="stage">
+          <div class="n">02</div>
+          <div>
+            <h3>Schema-constrained generation</h3>
+            <p>The model fills a known shape: the question, what a good answer covers, and the fields a later review can score. The output is a record, and a quoted line has to appear in the student’s answer.</p>
+          </div>
+        </article>
+        <article class="stage">
+          <div class="n">03</div>
+          <div>
+            <h3>State across turns</h3>
+            <p>Each answer updates the session. The next follow-up can press on what was thin, and the teacher still sees one exam at the end.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="pilot">
       <div class="take">
         <div>
-          <p class="section-kicker">Why this is the project to show</p>
-          <h2>It is a system, and the risky part is checked.</h2>
+          <p class="section-kicker">Stanford CS109</p>
+          <h2>Fifty students, then another pass on what they found.</h2>
         </div>
         <div>
           <p>
-            A company reading this should see three decisions, not a feature list. The interaction runs on the device, because an oral exam is a camera, a microphone, and a person in the same room. The durable record is separate, because teachers, rubrics, and reviews outlive one Jetson. And the model is not the grader of record: it proposes a score, and ordinary code checks whether the evidence is real.
+            We ran Socrates in CS109, Probability for Computer Scientists: 50+ students, 89 sessions, 600+ questions, and 150+ chat interactions. Students and instructors told us where follow-ups wandered, where a question was off, where the capture missed the page, and where the system still felt slow.
           </p>
           <p>
-            The surface area matches that. There is a student flow and a teacher flow in one web app, a runtime for the spoken exam, a study loop with paper capture and a tutor, a question bank with stages you can rerun, and tests around the packet, the study feedback, and the bank.
+            That feedback went back into the follow-up behavior, the question quality, the moment the camera fires, and the responsiveness of the live loop.
           </p>
           <p>
-            We built it as a team of four in Stanford CS210A/B, with NVIDIA as the collaborating company. Study mode was then piloted in Stanford CS109 with 50+ students across 89 sessions. NVIDIA gave the project its award at the end of the quarter.
-          </p>
-          <p>
-            The public repository is the code and the course materials. Student sessions and recordings are not in it.
+            The hard part was getting speech, vision, retrieval, session state, the Jetson, cloud inference, and a real student in the same conversation, inside the memory and latency we actually had. Generating a question was the small piece of that.
           </p>
         </div>
       </div>
@@ -601,42 +576,30 @@
         <tbody>
           <tr>
             <td><code>jetson_runtime/proctor.py</code></td>
-            <td>The spoken exam: ask, listen, follow up, capture.</td>
+            <td>The live exam: speak, listen, follow up, and capture a frame when the student points.</td>
           </tr>
           <tr>
-            <td><code>jetson_runtime/stt/stt_service.py</code></td>
-            <td>faster-whisper on the device.</td>
-          </tr>
-          <tr>
-            <td><code>integration/evidence_packet/validation.py</code></td>
-            <td>The checks that a quote and a timestamp have to pass.</td>
-          </tr>
-          <tr>
-            <td><code>integration/evidence_packet/pipeline.py</code></td>
-            <td>Load rubric and session, score each criterion, assemble the packet.</td>
+            <td><code>backend/</code></td>
+            <td>FastAPI orchestration, session state, and the teacher review.</td>
           </tr>
           <tr>
             <td><code>question_bank/pipeline.py</code></td>
-            <td>Orchestrates ingest through export.</td>
+            <td>Course PDFs to a FAISS index to questions the exam can ask.</td>
           </tr>
           <tr>
-            <td><code>backend/routes/sessions.py</code></td>
-            <td>Session detail, artifacts, and the teacher review.</td>
+            <td><code>integration/evidence_packet/</code></td>
+            <td>Structured scoring. A quoted line has to appear in the answer.</td>
           </tr>
           <tr>
             <td><code>web/src/pages/</code></td>
-            <td>Student exam, study mode, and the teacher console.</td>
-          </tr>
-          <tr>
-            <td><code>docs/</code></td>
-            <td>System design, the study-mode brief, and the packet plan.</td>
+            <td>The student and teacher app. The review copy is linked at the top of this page.</td>
           </tr>
         </tbody>
       </table>
     </section>
 
     <footer>
-      <div>Socrates · oral exam, study mode, and evidence packets.</div>
+      <div>Socrates · a multimodal oral exam, built with NVIDIA and piloted in CS109.</div>
       <a href="https://github.com/ShirleyU01/NVIDIA-CLS-public">github.com/ShirleyU01/NVIDIA-CLS-public</a>
     </footer>
   </div>
