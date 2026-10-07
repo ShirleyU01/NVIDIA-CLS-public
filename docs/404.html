@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Socrates</title>
+    <script>
+      (function () {
+        var path = window.location.pathname
+        var marker = '/NVIDIA-CLS-public/app/'
+        var at = path.indexOf(marker)
+        if (at === -1) return
+        var rest = path.slice(at + marker.length)
+        sessionStorage.setItem('socrates-spa-redirect', rest)
+        window.location.replace(path.slice(0, at + marker.length))
+      })()
+    </script>
+  </head>
+  <body>
+    <p>
+      Page not found.
+      <a href="/NVIDIA-CLS-public/">Case study</a>
+      ·
+      <a href="/NVIDIA-CLS-public/app/">Open the app</a>
+    </p>
+  </body>
+</html>

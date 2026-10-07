@@ -1,5 +1,7 @@
 ## Socrates Oral Exam, Study Mode & Evidence Packet
 
+**Open the app:** [https://shirleyu01.github.io/NVIDIA-CLS-public/app/](https://shirleyu01.github.io/NVIDIA-CLS-public/app/) — the product UI, with sample exams, so it can be opened from this repo without a Jetson. Teacher login: `teacher` / `dropouts210`. Speech, camera, and live study sessions run on the device; the source for that runtime is `jetson_runtime/`.
+
 **Case study:** [A spoken exam that can show its work](https://shirleyu01.github.io/NVIDIA-CLS-public/) — the shareable overview of what this system is, how the Jetson exam and the evidence check fit together, and where to read the code.
 
 Built by Alfred Yu, Shirley Yu, Aya Aburous, and Jad Bitar in Stanford CS210A/B, in collaboration with NVIDIA. Study mode was piloted in Stanford CS109 with 50+ students across 89 sessions, and the project won NVIDIA’s award at the end of the quarter.

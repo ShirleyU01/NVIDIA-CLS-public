@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -p tsconfig.json && vite build",
+    "build:review": "tsc -p tsconfig.json && vite build --base=/NVIDIA-CLS-public/app/",
     "test": "vitest",
     "lint": "eslint .",
     "preview": "vite preview"

@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <title>Socrates Web</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" crossorigin src="/NVIDIA-CLS-public/app/assets/index-BLPQiMRK.js"></script>
+    <link rel="stylesheet" crossorigin href="/NVIDIA-CLS-public/app/assets/index-qv_lmJ7b.css">
   </head>
   <body>
     <div id="root"></div>
@@ -13,12 +15,11 @@
         if (!rest) return
         sessionStorage.removeItem('socrates-spa-redirect')
         if (rest.charAt(0) !== '/') rest = '/' + rest
-        var base = '%BASE_URL%'.replace(/\/$/, '')
-        if (!base || base === '%BASE_URL%' || base === '/') base = ''
+        var base = '/NVIDIA-CLS-public/app/'.replace(/\/$/, '')
+        if (!base || base === '/NVIDIA-CLS-public/app/' || base === '/') base = ''
         history.replaceState(null, '', base + rest)
       })()
     </script>
-    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
 

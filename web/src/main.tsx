@@ -6,13 +6,15 @@ import App from './App'
 import './index.css'
 
 const rootElement = document.getElementById('root')
+const rawBase = import.meta.env.BASE_URL
+const basename = !rawBase || rawBase === '/' ? undefined : rawBase.replace(/\/$/, '')
 
 if (rootElement) {
   const root = ReactDOM.createRoot(rootElement)
 
   root.render(
     <React.StrictMode>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <App />
       </BrowserRouter>
     </React.StrictMode>,
